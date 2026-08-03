@@ -1,0 +1,39 @@
+threat-intelligence:
+  en: Threat Intelligence
+  lt: Grėsmių žvalgyba
+investigations:
+  en: Investigations
+  lt: Tyrimai
+fraud-scams:
+  en: Fraud & Scams
+  lt: Sukčiavimas
+osint:
+  en: OSINT
+  lt: OSINT
+malware:
+  en: Malware
+  lt: Kenkėjiška programinė įranga
+social-engineering:
+  en: Social Engineering
+  lt: Socialinė inžinerija
+ai-security:
+  en: AI & Emerging Threats
+  lt: DI ir naujos grėsmės
+information-operations:
+  en: Information Operations
+  lt: Informacinės operacijos
+tradecraft:
+  en: Tradecraft
+  lt: Analitiniai metodai
+commentary:
+  en: Commentary
+  lt: Komentarai
+identity-security:
+  en: Identity Security
+  lt: Tapatybės saugumas
+data-breaches:
+  en: Data Breaches
+  lt: Duomenų saugumo incidentai
+security-briefings:
+  en: Security Briefings
+  lt: Saugumo apžvalgos

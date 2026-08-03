@@ -1,0 +1,24 @@
+- key: home
+  url: /lt/
+  icon: fa-solid fa-house
+- key: articles
+  url: /lt/tyrimai/
+  icon: fa-solid fa-binoculars
+- key: briefings
+  url: /lt/apzvalgos/
+  icon: fa-solid fa-wave-square
+- key: categories
+  url: /lt/kategorijos/
+  icon: fa-solid fa-diagram-project
+- key: archive
+  url: /lt/archyvas/
+  icon: fa-solid fa-box-archive
+- key: about
+  url: /lt/apie/
+  icon: fa-solid fa-circle-info
+- key: speaker
+  url: /lt/pranesejas/
+  icon: fa-solid fa-microphone-lines
+- key: contact
+  url: /lt/kontaktai/
+  icon: fa-solid fa-envelope

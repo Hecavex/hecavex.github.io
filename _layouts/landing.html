@@ -1,0 +1,152 @@
+---
+layout: compress
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b0e12">
+  <title>{% if page.url == '/404.html' %}Signal lost — HECAVEX{% else %}HECAVEX — Cyber Threat Intelligence by Deividas Lis{% endif %}</title>
+  <meta name="description" content="{{ page.description | default: 'Independent cyber threat intelligence, OSINT and cybercrime investigations by Lithuanian researcher and speaker Deividas Lis.' }}">
+  {% unless page.url == '/404.html' %}<meta name="robots" content="index,follow,max-image-preview:large">{% else %}<meta name="robots" content="noindex,follow">{% endunless %}
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta property="og:title" content="HECAVEX — Cyber Threat Intelligence by Deividas Lis">
+  <meta property="og:description" content="Independent cyber threat intelligence, OSINT and cybercrime investigations by Lithuanian researcher and speaker Deividas Lis.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hecavex.com/">
+  <meta property="og:image" content="https://hecavex.com/assets/img/og/hecavex-default-en.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://hecavex.com{{ page.url }}">
+  <link rel="alternate" hreflang="en" href="https://hecavex.com/en/">
+  <link rel="alternate" hreflang="lt" href="https://hecavex.com/lt/">
+  <link rel="alternate" hreflang="x-default" href="https://hecavex.com/">
+  <link rel="icon" href="/assets/img/favicons/favicon.svg">
+  <link rel="stylesheet" href="/assets/lib/fonts/main.css">
+  <link rel="stylesheet" href="/assets/css/landing.css">
+  {% unless page.url == '/404.html' %}{% include entity-schema.html %}{% endunless %}
+</head>
+<body>
+  <a class="portal-skip" href="#main-content">Skip to content / Pereiti prie turinio</a>
+  {% if page.url == '/404.html' %}
+    <main class="portal-error" id="main-content">
+      <a class="portal-brand" href="/" aria-label="HECAVEX home"><img src="/assets/img/brand/hecavex-mark.svg" width="48" height="48" alt=""><strong>HECAVEX</strong></a>
+      <p class="portal-kicker">404 · SIGNAL LOST</p>
+      <h1>The requested page could not be found.</h1>
+      <p>Prašomas puslapis nerastas. Choose an edition to continue.</p>
+      <div class="portal-error-actions"><a href="/lt/" data-language="lt">Lietuvių</a><a href="/en/" data-language="en">English</a></div>
+    </main>
+  {% else %}
+    <header class="portal-header">
+      <a class="portal-brand" href="/" aria-label="HECAVEX home"><img src="/assets/img/brand/hecavex-mark.svg" width="48" height="48" alt=""><strong>HECAVEX</strong></a>
+      <nav aria-label="Publication links">
+        <a href="#editions">Editions / Leidiniai</a>
+        <a href="#briefing">Briefings / Apžvalgos</a>
+        <a href="#latest">Latest / Naujausia</a>
+        <a href="mailto:info@hecavex.com">Contact / Kontaktai</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="portal-hero" aria-labelledby="portal-title">
+        <div class="portal-hero-copy">
+          <p class="portal-kicker">CYBER THREAT INTELLIGENCE · DIGITAL INVESTIGATIONS</p>
+          <h1 id="portal-title">Intelligence Beyond Indicators</h1>
+          <p class="portal-lt-tagline" lang="lt">Žvalgyba už indikatorių ribų</p>
+        </div>
+        <div class="portal-hero-aside">
+          <svg class="portal-signal-field" viewBox="0 0 520 150" aria-hidden="true" focusable="false">
+            <path class="portal-signal-grid" d="M0 26H520M0 75H520M0 124H520M76 0V150M210 0V150M344 0V150M478 0V150" />
+            <path class="portal-signal-path" d="M0 108L76 108L122 46L210 46L258 92L344 92L392 25L478 25L520 62" />
+            <circle cx="122" cy="46" r="5" />
+            <circle cx="258" cy="92" r="5" />
+            <circle cx="392" cy="25" r="5" />
+          </svg>
+          <div class="portal-intro">
+            <p>Independent research into the infrastructure, behaviour and people behind digital threats.</p>
+            <p lang="lt">Nepriklausomai tiriame infrastruktūrą, elgseną ir žmones, slypinčius už skaitmeninių grėsmių.</p>
+          </div>
+          <ul class="portal-credentials" aria-label="Publication profile">
+            <li>Independent CTI</li>
+            <li>Vilnius · Europe</li>
+            <li>Deividas Lis</li>
+          </ul>
+          <nav class="portal-hero-links" aria-label="Publication highlights">
+            <a href="#latest">Latest research</a>
+            <a href="#briefing">Signal briefings</a>
+            <a href="/en/speaker/">Media &amp; speaking <span aria-hidden="true">→</span></a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="portal-editions" id="editions" aria-labelledby="editions-title">
+        <div class="portal-section-head">
+          <p class="portal-kicker" id="editions-title">CHOOSE AN EDITION · PASIRINKITE LEIDINĮ</p>
+          <p>Research, briefings and analysis in your preferred language.</p>
+        </div>
+        <div class="portal-edition-grid">
+          <a class="portal-edition portal-edition-lt" href="/lt/" lang="lt" hreflang="lt" data-language="lt">
+            <span class="portal-edition-code">LT</span>
+            <span class="portal-edition-copy"><strong>Lietuviškas leidinys</strong><small>Tyrimai apie kibernetines grėsmes, sukčiavimo infrastruktūrą ir informacines operacijas Lietuvoje bei už jos ribų.</small></span>
+            <span class="portal-edition-action">Atverti leidinį <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="portal-edition portal-edition-en" href="/en/" lang="en" hreflang="en" data-language="en">
+            <span class="portal-edition-code">EN</span>
+            <span class="portal-edition-copy"><strong>English edition</strong><small>Cyber threat intelligence, OSINT, cybercrime investigations and direct analytical commentary.</small></span>
+            <span class="portal-edition-action">Open edition <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+        <p class="portal-editions-note">Language preference is stored only in this browser. <span lang="lt">Kalbos pasirinkimas saugomas tik šioje naršyklėje.</span></p>
+      </section>
+
+      {% assign portal_briefings = site.posts | where: 'lang', 'en' | where: 'content_type', 'signal-brief' %}
+      {% if portal_briefings.size > 0 %}
+        {% assign portal_brief = portal_briefings.first %}
+        {% assign portal_brief_lt = nil %}
+        {% for candidate in site.posts %}{% if candidate.lang == 'lt' and candidate.translation_key == portal_brief.translation_key %}{% assign portal_brief_lt = candidate %}{% break %}{% endif %}{% endfor %}
+        <section class="portal-briefing" id="briefing" aria-labelledby="briefing-title">
+          <div class="portal-briefing-heading"><p class="portal-kicker">HECAVEX SIGNAL BRIEF · #{{ portal_brief.issue }}</p><h2 id="briefing-title">Current security signal, without the noise</h2><p lang="lt">Svarbiausi saugumo signalai – be informacinio triukšmo.</p></div>
+          <div class="portal-briefing-body">
+            <div><time datetime="{{ portal_brief.date | date_to_xmlschema }}">{{ portal_brief.coverage_start | date: '%Y-%m-%d' }}–{{ portal_brief.coverage_end | date: '%Y-%m-%d' }}</time><h3><a href="{{ portal_brief.url }}">{{ portal_brief.title }}</a></h3><p>{{ portal_brief.description }}</p></div>
+            <ul>{% for topic in portal_brief.leading_topics limit: 3 %}<li>{{ topic }}</li>{% endfor %}</ul>
+            <div class="portal-briefing-links"><a href="{{ portal_brief.url }}" lang="en">Read briefing</a>{% if portal_brief_lt %}<a href="{{ portal_brief_lt.url }}" lang="lt">Skaityti apžvalgą</a>{% endif %}<a href="/en/briefings/">Archive</a></div>
+          </div>
+        </section>
+      {% endif %}
+
+      <section class="portal-latest" id="latest" aria-labelledby="latest-title">
+        <div class="portal-section-head portal-section-head-latest">
+          <div><p class="portal-kicker">LATEST / NAUJAUSIA</p><h2 id="latest-title">Recent research · Naujausi tyrimai</h2></div>
+          <div class="portal-all-links"><a href="/lt/tyrimai/" lang="lt">Visi tyrimai</a><a href="/en/research/" lang="en">All research</a></div>
+        </div>
+        <div class="portal-research-grid">
+          {% assign all_english_posts = site.posts | where: 'lang', 'en' %}
+          {% assign english_posts = '' | split: '' %}
+          {% for candidate in all_english_posts %}{% unless candidate.content_type == 'signal-brief' %}{% assign english_posts = english_posts | push: candidate %}{% endunless %}{% endfor %}
+          {% for post in english_posts limit: 3 %}
+            {% assign translated_post = nil %}
+            {% for candidate in site.posts %}{% if candidate.lang == 'lt' and candidate.translation_key == post.translation_key %}{% assign translated_post = candidate %}{% break %}{% endif %}{% endfor %}
+            {% assign card_image = post.image.thumbnail | default: post.image.path | default: post.image | default: '/assets/img/brand/hecavex-mark.svg' %}
+            <article class="portal-research-card">
+              {% if card_image %}<a class="portal-research-image" href="{{ post.url }}" tabindex="-1"><img src="{{ card_image }}" alt="" loading="lazy" width="640" height="360"></a>{% endif %}
+              <div class="portal-research-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time><span>{{ post.content_type | default: 'research' | replace: '_', ' ' | replace: '-', ' ' }}</span></div>
+              <h3 lang="en"><a href="{{ post.url }}" title="{{ post.title | xml_escape }}">{{ post.card_title | default: post.title }}</a></h3>
+              {% if translated_post %}<p class="portal-research-translation" lang="lt"><a href="{{ translated_post.url }}" title="{{ translated_post.title | xml_escape }}">{{ translated_post.card_title | default: translated_post.title }}</a></p>{% endif %}
+              <div class="portal-research-languages"><a href="{{ post.url }}" lang="en" data-language="en">Read in English</a>{% if translated_post %}<a href="{{ translated_post.url }}" lang="lt" data-language="lt">Skaityti lietuviškai</a>{% endif %}</div>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="portal-author" aria-labelledby="author-title">
+        <div><p class="portal-kicker">RESEARCHER · SPEAKER · MEDIA COMMENTATOR</p><h2 id="author-title">Deividas Lis</h2><p>Former cybercrime investigator and cyber threat intelligence practitioner publishing independent research for technical, executive and public audiences.</p></div>
+        <div class="portal-author-links"><a href="/lt/apie/" lang="lt">Apie autorių</a><a href="/en/about/" lang="en">About the author</a><a href="/en/speaker/">Speaking &amp; media <span aria-hidden="true">→</span></a></div>
+      </section>
+    </main>
+
+    <footer class="portal-footer"><p>© 2026 HECAVEX · Independent cyber threat intelligence</p><nav aria-label="Footer"><a href="/lt/redakcija/">Standartai</a><a href="/en/editorial/">Standards</a><a href="/lt/privatumas/">Privatumas</a><a href="/en/privacy/">Privacy</a><a href="mailto:info@hecavex.com">info@hecavex.com</a></nav></footer>
+  {% endif %}
+  {% unless page.url == '/404.html' %}{% include privacy-notice.html %}{% endunless %}
+  <script>document.addEventListener('click',function(e){var l=e.target.closest('[data-language]');if(l)localStorage.setItem('hecavex-language',l.dataset.language)});</script>
+</body>
+</html>

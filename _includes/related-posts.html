@@ -1,0 +1,4 @@
+{% assign localized_posts = site.posts | where: 'lang', page.lang %}{% assign shown = 0 %}
+<section class="related-posts"><h2>{{ site.data.hecavex[page.lang].related_articles }}</h2><div class="hx-grid">
+{% for post in localized_posts %}{% if post.url != page.url and shown < 2 %}{% assign is_related = false %}{% for category in page.categories %}{% if post.categories contains category %}{% assign is_related = true %}{% endif %}{% endfor %}{% if is_related %}<article class="hx-card"><h3><a href="{{ post.url }}">{{ post.title }}</a></h3><p>{{ post.description | default: post.excerpt | strip_html | truncate: 170 }}</p><a href="{{ post.url }}">{{ site.data.hecavex[page.lang].read_more }} →</a></article>{% assign shown = shown | plus: 1 %}{% endif %}{% endif %}{% endfor %}
+</div></section>

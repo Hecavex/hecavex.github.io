@@ -1,0 +1,7 @@
+{% if page.series_key %}
+{% assign series_posts = site.posts | where: 'lang', page.lang | where: 'series_key', page.series_key | sort: 'series_part' %}
+<nav class="hx-series" aria-label="{% if page.lang == 'lt' %}Straipsnių serija{% else %}Article series{% endif %}">
+  <p>{% if page.lang == 'lt' %}Straipsnių serija{% else %}Article series{% endif %}</p>
+  <ol>{% for item in series_posts %}<li{% if item.url == page.url %} aria-current="page"{% endif %}><a href="{{ item.url }}">{% if page.lang == 'lt' %}{{ item.series_part }} dalis{% else %}Part {{ item.series_part }}{% endif %}: {{ item.title }}</a></li>{% endfor %}</ol>
+</nav>
+{% endif %}

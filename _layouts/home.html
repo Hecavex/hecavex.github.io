@@ -1,0 +1,22 @@
+---
+layout: default
+---
+{% assign hx = site.data.hecavex[page.lang] %}
+{% assign localized_posts = site.posts | where: 'lang', page.lang %}
+{% assign posts = '' | split: '' %}
+{% assign briefings = localized_posts | where: 'content_type', 'signal-brief' %}
+{% for post in localized_posts %}{% unless post.content_type == 'signal-brief' %}{% assign posts = posts | push: post %}{% endunless %}{% endfor %}
+{% assign recent = '' | split: '' %}
+{% for post in posts %}{% unless post.featured %}{% assign recent = recent | push: post %}{% endunless %}{% endfor %}
+<section class="hx-hero">
+  <p class="hx-eyebrow">{{ hx.descriptor }}</p><h1>{{ hx.tagline }}</h1><p>{{ hx.supporting }}</p>
+  <a class="hx-button" href="{% if page.lang == 'lt' %}/lt/tyrimai/{% else %}/en/research/{% endif %}">{{ hx.all_articles }} →</a>
+  {% if localized_posts.first %}<p class="hx-hero-freshness"><span>{% if page.lang == 'lt' %}Naujausia publikacija{% else %}Latest publication{% endif %}</span><time datetime="{{ localized_posts.first.date | date_to_xmlschema }}">{{ localized_posts.first.date | date: '%Y-%m-%d' }}</time></p>{% endif %}
+</section>
+{% if briefings.size > 0 %}<section class="hx-latest hx-latest-briefing"><div class="hx-section-head"><div><h2>{{ hx.latest_briefing }}</h2><p class="hx-section-intro">{{ hx.briefing_explainer }}</p></div><a href="{% if page.lang == 'lt' %}/lt/apzvalgos/{% else %}/en/briefings/{% endif %}">{{ hx.all_briefings }} →</a></div>{% include signal-brief-card.html brief=briefings.first %}</section>{% endif %}
+<section class="hx-latest"><div class="hx-section-head"><h2>{{ hx.latest_research }}</h2><a href="{% if page.lang == 'lt' %}/lt/tyrimai/{% else %}/en/research/{% endif %}">{{ hx.view_all }} →</a></div>{% include post-grid.html posts=recent limit=6 %}</section>
+{% include homepage-topics.html %}
+{% assign featured = posts | where: 'featured', true %}{% if featured.size > 0 %}<section class="hx-featured"><div class="hx-section-head"><div><h2>{{ hx.featured_research }}</h2><p class="hx-section-intro">{{ hx.selected_explainer }}</p></div></div>{% include post-grid.html posts=featured limit=3 %}</section>{% endif %}
+{% include homepage-media.html %}
+{% include homepage-trust.html %}
+{% include subscribe-panel.html %}

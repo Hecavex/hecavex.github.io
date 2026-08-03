@@ -1,0 +1,4 @@
+---
+layout: default
+---
+{% assign posts = site.posts | where: 'lang', page.lang %}{% assign category_posts = '' | split: '' %}{% for post in posts %}{% if post.categories contains page.category_slug %}{% assign category_posts = category_posts | push: post %}{% endif %}{% endfor %}<header class="hx-page-head"><p class="hx-eyebrow">{{ site.data.hecavex[page.lang].categories }}</p><h1>{{ page.title }}</h1><p>{% if page.lang == 'lt' %}Šios kategorijos publikacijos ir tyrimai.{% else %}Publications and research filed under this category.{% endif %}</p></header>{% include post-grid.html posts=category_posts %}

@@ -1,0 +1,13 @@
+{% assign brief = include.brief %}
+{% if brief %}
+<article class="hx-signal-card">
+  <a class="hx-signal-card-image" href="{{ brief.url }}" aria-label="{{ brief.title }}"><img src="{{ brief.image.thumbnail | default: brief.image.path | default: '/assets/img/series/hecavex-signal-brief.svg' }}" alt="" loading="lazy"></a>
+  <div class="hx-signal-card-body">
+    <div class="hx-signal-card-meta"><span>{{ site.data.content_types['signal-brief'][brief.lang] }}</span><span>#{{ brief.issue }}</span><time datetime="{{ brief.date | date_to_xmlschema }}">{{ brief.date | date: '%Y-%m-%d' }}</time></div>
+    <h3><a href="{{ brief.url }}">{{ brief.title }}</a></h3>
+    <p>{{ brief.description }}</p>
+    <ul class="hx-signal-topics" aria-label="{% if brief.lang == 'lt' %}Pagrindinės temos{% else %}Leading topics{% endif %}">{% for topic in brief.leading_topics limit: 3 %}<li>{{ topic }}</li>{% endfor %}</ul>
+    <div class="hx-signal-card-footer"><div class="hx-signal-counts"><span class="critical">{{ brief.critical_count | default: 0 }} {% if brief.lang == 'lt' %}kritiniai{% else %}critical{% endif %}</span><span class="high">{{ brief.high_count | default: 0 }} {% if brief.lang == 'lt' %}aukšti{% else %}high{% endif %}</span><span class="watch">{{ brief.watch_count | default: 0 }} {% if brief.lang == 'lt' %}stebėti{% else %}watch{% endif %}</span></div><a class="hx-signal-card-action" href="{{ brief.url }}">{% if brief.lang == 'lt' %}Skaityti apžvalgą{% else %}Read the briefing{% endif %} →</a></div>
+  </div>
+</article>
+{% endif %}

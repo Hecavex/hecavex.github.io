@@ -1,0 +1,4 @@
+---
+layout: default
+---
+{% assign localized_posts = site.posts | where: 'lang', page.lang %}{% assign posts = '' | split: '' %}{% for post in localized_posts %}{% unless post.content_type == 'signal-brief' %}{% assign posts = posts | push: post %}{% endunless %}{% endfor %}<header class="hx-page-head"><p class="hx-eyebrow">HECAVEX / {{ page.lang | upcase }}</p><h1>{{ page.title }}</h1><p>{{ page.description }}</p></header>{% include post-grid.html posts=posts %}

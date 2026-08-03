@@ -1,0 +1,32 @@
+# Bundler cache
+.bundle
+vendor
+
+# Jekyll cache
+.jekyll-cache
+.jekyll-metadata
+_site
+assets/img/posts/2024-11-10-github/main/main_page.png
+assets/img/posts/2024-11-10-github/main/cover.png
+
+# RubyGems
+*.gem
+
+# NPM dependencies
+node_modules
+
+# IDE configurations
+.idea
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+
+# Misc
+
+# Hidden system files
+*~
+.DS_Store
+Thumbs.db
+_source_media/
+_tmp_contact/

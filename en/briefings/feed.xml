@@ -1,0 +1,8 @@
+---
+layout: feed-hx
+lang: en
+home: /en/briefings/
+permalink: /en/briefings/feed.xml
+content_type: signal-brief
+sitemap: false
+---

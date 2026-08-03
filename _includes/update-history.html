@@ -1,0 +1,1 @@
+{% if page.updates %}<section class="hx-updates" aria-labelledby="update-history"><h2 id="update-history">{% if page.lang == 'lt' %}Atnaujinimų istorija{% else %}Update history{% endif %}</h2><ol>{% for update in page.updates %}<li><time>{{ update.date | date: '%Y-%m-%d' }}</time> — {{ update.note[page.lang] | default: update.note }}</li>{% endfor %}</ol></section>{% endif %}

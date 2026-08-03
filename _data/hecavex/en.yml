@@ -1,0 +1,57 @@
+code: en
+locale: en_US
+name: English
+home: Home
+articles: Research
+briefings: Briefings
+topics: Topics
+categories: Categories
+tags: Tags
+archive: Archive
+about: About
+contact: Contact
+speaker: Speaking & media
+privacy: Privacy
+corrections: Corrections
+search: Search
+search_hint: Search English research
+read_more: Read analysis
+latest_research: Latest research
+latest_briefing: Latest Signal Brief
+featured_research: Selected work
+related_articles: Related articles
+language: Language
+switch_language: Switch language
+edition: English edition
+translation_unavailable: This content is currently available only in its original language.
+published: Published
+updated: Updated
+reading_time: Reading time
+author: Author
+sources: Sources
+share: Share
+copy_link: Copy link
+back_to_top: Back to top
+all_articles: All research
+all_briefings: All briefings
+briefing_explainer: Five vulnerabilities, significant incidents and developments worth tracking — short, sourced and prioritised.
+selected_explainer: Three starting points that show the range of HECAVEX investigations and technical analysis.
+view_all: View all
+no_results: No English results found
+minutes: min read
+descriptor: Cyber Threat Intelligence & Digital Investigations
+tagline: Intelligence Beyond Indicators
+supporting: Researching the infrastructure, behaviour and people behind digital threats.
+footer: Independent cyber threat intelligence and digital investigations.
+rss: RSS
+translation_available: Read in Lithuanian
+only_en: Available in English only
+only_lt: Available in Lithuanian only
+not_found_title: Signal lost.
+not_found_text: The requested page could not be found, may have moved, or is no longer available.
+skip_to_content: Skip to content
+theme_mode: Theme mode
+theme_short: Theme
+light: Light
+dark: Dark
+system: System

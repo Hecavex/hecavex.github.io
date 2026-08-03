@@ -1,0 +1,6 @@
+---
+layout: default
+---
+{% assign briefings = site.posts | where: 'lang', page.lang | where: 'content_type', 'signal-brief' %}
+<header class="hx-page-head hx-briefings-head"><p class="hx-eyebrow">HECAVEX SIGNAL BRIEF</p><h1>{{ page.title }}</h1><p>{{ page.description }}</p><a href="/{{ page.lang }}/{% if page.lang == 'lt' %}apzvalgos{% else %}briefings{% endif %}/feed.xml"><i class="fa-solid fa-rss" aria-hidden="true"></i> {% if page.lang == 'lt' %}Prenumeruoti apžvalgų RSS{% else %}Subscribe to briefing RSS{% endif %}</a></header>
+<div class="hx-briefing-archive">{% for brief in briefings %}{% include signal-brief-card.html brief=brief %}{% else %}<p>{{ site.data.hecavex[page.lang].translation_unavailable }}</p>{% endfor %}</div>

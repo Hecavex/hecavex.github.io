@@ -1,0 +1,148 @@
+/*
+ * HECAVEX semantic colour system.
+ * Change brand colours here; components should consume these role tokens.
+ */
+:root,
+html[data-bs-theme='dark'] {
+  color-scheme: dark;
+
+  --hx-bg: #0b0f14;
+  --hx-sidebar: #090d12;
+  --hx-surface-1: #111720;
+  --hx-surface-2: #161d27;
+  --hx-surface-3: #1b2430;
+  --hx-border-subtle: #252f3b;
+  --hx-border: #33404f;
+  --hx-border-strong: #455466;
+  --hx-text: #f2f4f7;
+  --hx-text-soft: #d3d8df;
+  --hx-text-muted: #a1aab5;
+  --hx-text-faint: #65717f;
+  --hx-ember: #e15a4f;
+  --hx-ember-hover: #ef6b60;
+  --hx-ember-soft: rgb(225 90 79 / 12%);
+  --hx-ember-border: rgb(225 90 79 / 42%);
+  --hx-bronze: #c7984c;
+  --hx-bronze-soft: rgb(199 152 76 / 12%);
+  --hx-steel: #7fa5cf;
+  --hx-steel-hover: #9abbdf;
+  --hx-success: #65a981;
+  --hx-warning: #d4a554;
+  --hx-danger: #e15a4f;
+  --hx-info: #7fa5cf;
+  --hx-shadow: rgb(0 0 0 / 32%);
+
+  /* Chirpy role bridge */
+  --main-bg: var(--hx-bg);
+  --sidebar-bg: var(--hx-sidebar);
+  --main-border-color: var(--hx-border-subtle);
+  --text-color: var(--hx-text-soft);
+  --text-muted-color: var(--hx-text-muted);
+  --text-muted-highlight-color: var(--hx-text-soft);
+  --heading-color: var(--hx-text);
+  --label-color: var(--hx-text-soft);
+  --link-color: var(--hx-steel);
+  --link-underline-color: var(--hx-border-strong);
+  --card-bg: var(--hx-surface-1);
+  --card-hover-bg: var(--hx-surface-2);
+  --btn-border-color: var(--hx-border);
+  --button-bg: var(--hx-surface-2);
+  --sidebar-border-color: var(--hx-border-subtle);
+  --sidebar-muted-color: var(--hx-text-muted);
+  --sidebar-active-color: var(--hx-text);
+  --sidebar-hover-bg: var(--hx-surface-2);
+  --sidebar-btn-bg: var(--hx-surface-1);
+  --sidebar-btn-color: var(--hx-text-muted);
+  --site-title-color: var(--hx-text);
+  --site-subtitle-color: var(--hx-text-muted);
+  --topbar-bg: rgb(11 15 20 / 82%);
+  --topbar-text-color: var(--hx-text-soft);
+  --search-border-color: var(--hx-border);
+  --search-icon-color: var(--hx-text-faint);
+  --input-focus-border-color: var(--hx-ember);
+  --toc-highlight: var(--hx-steel);
+  --tag-border: var(--hx-border);
+  --tag-hover: var(--hx-surface-3);
+  --categories-border: var(--hx-border-subtle);
+  --categories-hover-bg: var(--hx-surface-2);
+  --timeline-color: var(--hx-border-subtle);
+}
+
+html[data-bs-theme='light'] {
+  color-scheme: light;
+
+  --hx-bg: #f3f5f7;
+  --hx-sidebar: #e9edf1;
+  --hx-surface-1: #ffffff;
+  --hx-surface-2: #f7f8fa;
+  --hx-surface-3: #edf0f3;
+  --hx-border-subtle: #dce1e6;
+  --hx-border: #c8d0d8;
+  --hx-border-strong: #adb8c3;
+  --hx-text: #161b22;
+  --hx-text-soft: #303844;
+  --hx-text-muted: #626d79;
+  --hx-text-faint: #7d8792;
+  --hx-ember: #c9473e;
+  --hx-ember-hover: #b83b34;
+  --hx-ember-soft: rgb(201 71 62 / 9%);
+  --hx-ember-border: rgb(201 71 62 / 32%);
+  --hx-bronze: #966c27;
+  --hx-bronze-soft: rgb(150 108 39 / 10%);
+  --hx-steel: #426f9f;
+  --hx-steel-hover: #315f91;
+  --hx-success: #397a58;
+  --hx-warning: #946b24;
+  --hx-danger: #c9473e;
+  --hx-info: #426f9f;
+  --hx-shadow: rgb(30 40 50 / 12%);
+  --main-bg: var(--hx-bg);
+  --sidebar-bg: var(--hx-sidebar);
+  --main-border-color: var(--hx-border-subtle);
+  --text-color: var(--hx-text-soft);
+  --text-muted-color: var(--hx-text-muted);
+  --text-muted-highlight-color: var(--hx-text-soft);
+  --heading-color: var(--hx-text);
+  --label-color: var(--hx-text-soft);
+  --link-color: var(--hx-steel);
+  --link-underline-color: var(--hx-border-strong);
+  --card-bg: var(--hx-surface-1);
+  --card-hover-bg: var(--hx-surface-2);
+  --btn-border-color: var(--hx-border);
+  --button-bg: var(--hx-surface-1);
+  --sidebar-border-color: var(--hx-border);
+  --sidebar-muted-color: var(--hx-text-muted);
+  --sidebar-active-color: var(--hx-text);
+  --sidebar-hover-bg: var(--hx-surface-3);
+  --sidebar-btn-bg: var(--hx-surface-1);
+  --sidebar-btn-color: var(--hx-text-muted);
+  --site-title-color: var(--hx-text);
+  --site-subtitle-color: var(--hx-text-muted);
+  --topbar-bg: rgb(243 245 247 / 88%);
+  --topbar-text-color: var(--hx-text-soft);
+  --search-border-color: var(--hx-border);
+  --search-icon-color: var(--hx-text-faint);
+  --input-focus-border-color: var(--hx-ember);
+  --toc-highlight: var(--hx-steel);
+  --tag-border: var(--hx-border);
+  --tag-hover: var(--hx-surface-3);
+  --categories-border: var(--hx-border-subtle);
+  --categories-hover-bg: var(--hx-surface-2);
+  --timeline-color: var(--hx-border-subtle);
+}
+
+/* Backward-compatible aliases for older HECAVEX component names. */
+:root {
+  --hx-obsidian: var(--hx-bg);
+  --hx-carbon: var(--hx-surface-1);
+  --hx-graphite: var(--hx-surface-2);
+  --hx-slate: var(--hx-surface-3);
+  --hx-bone: var(--hx-text);
+  --hx-mist: var(--hx-text-soft);
+  --hx-ash: var(--hx-text-muted);
+  --hx-muted: var(--hx-text-faint);
+  --hx-signal: var(--hx-ember);
+  --hx-signal-hover: var(--hx-ember-hover);
+  --hx-amber: var(--hx-bronze);
+  --hx-blue: var(--hx-steel);
+}
