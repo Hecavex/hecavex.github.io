@@ -14,6 +14,7 @@ assets/img/posts/2024-11-10-github/main/cover.png
 
 # NPM dependencies
 node_modules
+_data/apt_notes_live.yml
 
 # IDE configurations
 .idea

@@ -12,7 +12,7 @@
       {% if page.url == item.url %}{% assign nav_active = true %}{% endif %}
       {% if item.key == 'briefings' and page.content_type == 'signal-brief' %}{% assign nav_active = true %}{% endif %}
       {% if item.key == 'articles' and page.layout == 'post' and page.content_type != 'signal-brief' %}{% assign nav_active = true %}{% endif %}
-      <li class="nav-item{% if nav_active %} active{% endif %}"><a href="{{ item.url }}" class="nav-link"{% if nav_active %} aria-current="page"{% endif %}><i class="fa-fw {{ item.icon }}"></i><span>{{ site.data.hecavex[nav_lang][item.key] | upcase }}</span></a></li>
+      <li class="nav-item{% if nav_active %} active{% endif %}"><a href="{{ item.url }}" class="nav-link"{% if nav_active %} aria-current="page"{% endif %}{% if item.external %} rel="external"{% endif %}><i class="fa-fw {{ item.icon }}"></i><span>{{ site.data.hecavex[nav_lang][item.key] | upcase }}{% if item.external %} <span class="hx-nav-external" aria-hidden="true">↗</span>{% endif %}</span></a></li>
     {% endfor %}
   </ul></nav>
   <div class="sidebar-bottom d-flex flex-wrap align-items-center w-100">

@@ -7,6 +7,10 @@
 - key: briefings
   url: /lt/apzvalgos/
   icon: fa-solid fa-wave-square
+- key: apt_notes
+  url: https://apt.hecavex.com/
+  icon: fa-solid fa-database
+  external: true
 - key: categories
   url: /lt/kategorijos/
   icon: fa-solid fa-diagram-project

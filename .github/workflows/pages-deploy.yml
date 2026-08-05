@@ -46,6 +46,9 @@ jobs:
       - name: Validate localized content
         run: bundle exec ruby tools/validate_content.rb
 
+      - name: Sync latest APT Notes entry
+        run: bundle exec ruby tools/sync_apt_notes.rb
+
       - name: Setup Node
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
