@@ -1,7 +1,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f6f8">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0e12">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5f7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0f14">
   <meta
     name="viewport"
     content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
@@ -51,11 +51,26 @@
   {% capture localized_og_locale %}<meta property="og:locale" content="{{ site.data.hecavex[hx_lang].locale }}" />{% endcapture %}
   {% assign seo_tags = seo_tags | replace: generated_og_locale, localized_og_locale %}
   {% if hx_lang == 'lt' and page.image == nil %}{% assign seo_tags = seo_tags | replace: 'hecavex-default-en.png', 'hecavex-default-lt.png' %}{% endif %}
+  {% if page.layout == 'post' %}
+    {% capture generated_publisher %}"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"{{ site.logo | absolute_url }}"},"name":"Deividas Lis"}{% endcapture %}
+    {% capture hecavex_publisher %}"publisher":{"@type":"Organization","@id":"{{ site.url }}/#organization","name":"HECAVEX","url":"{{ site.url }}/","logo":{"@type":"ImageObject","url":"{{ site.logo | absolute_url }}"}}{% endcapture %}
+    {% assign seo_tags = seo_tags | replace: generated_publisher, hecavex_publisher %}
+  {% endif %}
   {{ seo_tags }}
   {% include hreflang.html %}
   {% if alternate %}<meta property="og:locale:alternate" content="{{ site.data.hecavex[alternate.lang].locale }}">{% endif %}
+  {% if page.image.width and page.image.height %}
+    <meta property="og:image:width" content="{{ page.image.width }}">
+    <meta property="og:image:height" content="{{ page.image.height }}">
+  {% endif %}
   <meta name="robots" content="{{ page.robots | default: 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' }}">
-  {% if page.layout == 'post' %}<meta name="author" content="Deividas Lis">{% endif %}
+  {% if page.layout == 'post' %}
+    <meta name="author" content="Deividas Lis">
+    <link rel="author" href="{% if hx_lang == 'lt' %}{{ '/lt/apie/' | absolute_url }}{% else %}{{ '/en/about/' | absolute_url }}{% endif %}">
+    {% assign primary_category = page.categories | first %}
+    {% if primary_category %}<meta property="article:section" content="{{ site.data.taxonomy[primary_category][hx_lang] | default: primary_category | escape }}">{% endif %}
+    {% for tag in page.tags %}<meta property="article:tag" content="{{ tag | escape }}">{% endfor %}
+  {% endif %}
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
   {%- if site.social.fediverse_handle %}

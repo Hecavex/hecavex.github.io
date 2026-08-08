@@ -4,12 +4,18 @@
   "@type": "Organization",
   "@id": "{{ site.url }}/#organization",
   "name": "HECAVEX",
-  "alternateName": "Project Hecavex",
+  "alternateName": "HECAVEX Research",
   "url": "{{ site.url }}/",
   "logo": "{{ '/assets/img/brand/hecavex-mark.svg' | absolute_url }}",
   "description": {{ site.description | jsonify }},
   "founder": { "@id": "{{ site.url }}/#deividas-lis" },
-  "sameAs": ["https://github.com/deilis", "https://www.linkedin.com/in/deilis"]
+  "sameAs": ["https://github.com/Hecavex", "https://www.linkedin.com/in/deilis"],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "research and media enquiries",
+    "email": "info@hecavex.com",
+    "availableLanguage": ["English", "Lithuanian"]
+  }
 }
 </script>
 {% if page.layout == 'post' or page.translation_key == 'about' or page.translation_key == 'speaker-media' %}
@@ -20,13 +26,46 @@
   "@id": "{{ site.url }}/#deividas-lis",
   "name": "Deividas Lis",
   "url": "{{ '/en/about/' | absolute_url }}",
-  "jobTitle": "Cyber Threat Intelligence Researcher and Public Speaker",
+  "image": "{{ '/assets/img/authors/deividas-lis.svg' | absolute_url }}",
+  "jobTitle": "Cyber Threat Intelligence Researcher, Threat Hunter and Public Speaker",
   "description": "Lithuanian cyber threat intelligence researcher, former cybercrime investigator, public speaker and media commentator.",
   "homeLocation": { "@type": "Place", "name": "Vilnius, Lithuania" },
   "knowsLanguage": ["Lithuanian", "English"],
-  "knowsAbout": ["Cyber Threat Intelligence", "OSINT", "Cybercrime Investigations", "Online Fraud", "Social Engineering", "Information Operations", "Detection Engineering"],
-  "sameAs": ["https://github.com/deilis", "https://www.linkedin.com/in/deilis"],
+  "knowsAbout": ["Cyber Threat Intelligence", "Malware Analysis", "Threat Hunting", "OSINT", "Cybercrime Investigations", "Online Fraud", "Supply-Chain Attacks", "Social Engineering", "Information Operations", "Detection Engineering"],
+  "sameAs": ["https://github.com/Hecavex", "https://www.linkedin.com/in/deilis"],
   "worksFor": { "@id": "{{ site.url }}/#organization" }
+}
+</script>
+{% endif %}
+{% if page.layout == 'post' %}
+{% assign breadcrumb_section_name = 'Research' %}
+{% assign breadcrumb_section_url = '/en/research/' %}
+{% if page.lang == 'lt' %}{% assign breadcrumb_section_name = 'Tyrimai' %}{% assign breadcrumb_section_url = '/lt/tyrimai/' %}{% endif %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "{{ page.url | absolute_url }}#breadcrumb",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HECAVEX",
+      "item": "{{ site.url }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ breadcrumb_section_name | jsonify }},
+      "item": {{ breadcrumb_section_url | absolute_url | jsonify }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ page.title | jsonify }},
+      "item": {{ page.url | absolute_url | jsonify }}
+    }
+  ]
 }
 </script>
 {% endif %}
@@ -84,7 +123,7 @@
 }
 </script>
 {% endif %}
-{% if page.translation_key == 'home' %}
+{% if page.layout == 'landing' %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -92,6 +131,7 @@
   "@id": "{{ site.url }}/#website",
   "url": "{{ site.url }}/",
   "name": "HECAVEX",
+  "alternateName": "HECAVEX Research",
   "description": {{ site.description | jsonify }},
   "inLanguage": ["en", "lt"],
   "publisher": { "@id": "{{ site.url }}/#organization" }

@@ -20,6 +20,12 @@ class Theme {
   /** @type {MediaQueryList} System dark-mode preference query. */
   static #mediaDark = window.matchMedia('(prefers-color-scheme: dark)');
 
+  /** Browser UI colours matched to the HECAVEX page canvas. */
+  static #browserChrome = Object.freeze({
+    [this.Mode.LIGHT]: '#f3f5f7',
+    [this.Mode.DARK]: '#0b0f14'
+  });
+
   /** @returns {string|null} The theme currently set on the DOM. */
   static get #domTheme() {
     return this.#root.dataset.bsTheme || null;
@@ -50,6 +56,10 @@ class Theme {
    */
   static #apply(theme, { persist = false, domPersist = false } = {}) {
     this.#root.dataset.bsTheme = theme;
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+      meta.content = this.#browserChrome[theme];
+      meta.removeAttribute('media');
+    });
 
     if (persist) {
       localStorage.setItem(this.#storageKey, theme);

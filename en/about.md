@@ -17,7 +17,7 @@ HECAVEX is independent. It is not presented as a registered company, managed sec
 
 Deividas has worked across law enforcement, financial-sector security and private-sector threat research. He is also a public cybersecurity speaker, presenting and joining industry discussions on cyber threat intelligence, intelligence sharing and collaborative defence. His focus includes tactical and technical CTI, OSINT, Python-based automation and security detection content.
 
-Professional profiles: [GitHub](https://github.com/deilis) and [LinkedIn](https://www.linkedin.com/in/deilis).
+Professional profiles: [GitHub](https://github.com/Hecavex) and [LinkedIn](https://www.linkedin.com/in/deilis).
 
 For conference talks, panels, podcasts and expert media commentary, see [speaking and media](/en/speaker/).
 

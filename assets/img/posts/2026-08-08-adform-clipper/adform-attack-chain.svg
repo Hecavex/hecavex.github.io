@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="760" viewBox="0 0 1600 760" role="img" aria-labelledby="title desc">
+  <title id="title">Adform JavaScript crypto clipper atakos grandinė</title>
+  <desc id="desc">Kenkėjiškas priedas prie patikimo reklamos skripto stebi DOM, formas ir iškarpinę, o aptiktą piniginės adresą pakeičia operatoriaus adresu.</desc>
+  <defs><linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#091017"/><stop offset="1" stop-color="#111a26"/></linearGradient><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0L12 6L0 12Z" fill="#ff5e57"/></marker></defs>
+  <rect width="1600" height="760" fill="url(#bg2)"/>
+  <g stroke="#22354a" opacity=".4"><path d="M0 120H1600M0 240H1600M0 360H1600M0 480H1600M0 600H1600"/><path d="M200 0V760M400 0V760M600 0V760M800 0V760M1000 0V760M1200 0V760M1400 0V760"/></g>
+  <text x="90" y="86" fill="#ff5e57" font-family="monospace" font-size="20" letter-spacing="4">BROWSER-SIDE CRYPTO CLIPPER</text>
+  <text x="90" y="145" fill="#f3f6fb" font-family="Arial,sans-serif" font-size="44" font-weight="700">Patikimas kelias, pakeistas gavėjas</text>
+  <text x="90" y="188" fill="#a8b4c4" font-family="Arial,sans-serif" font-size="21">Payload’as veikė tik atidarytame puslapyje. To visiškai pakanka sugadinti vieną transakciją.</text>
+  <g font-family="Arial,sans-serif">
+    <g transform="translate(95 265)"><rect width="250" height="260" rx="6" fill="#121c29" stroke="#3c536d"/><text x="24" y="48" fill="#78b7f0" font-family="monospace" font-size="17">01 · DISTRIBUTION</text><text x="24" y="103" fill="#f3f6fb" font-size="26" font-weight="700">Adform script</text><text x="24" y="145" fill="#a8b4c4" font-size="19">Legitimus failas</text><text x="24" y="175" fill="#a8b4c4" font-size="19">+ appended JS</text><path d="M34 215H212" stroke="#ff5e57" stroke-width="8"/><path d="M34 233H165" stroke="#6aa9e9" stroke-width="5"/></g>
+    <path d="M360 395H485" stroke="#ff5e57" stroke-width="5" marker-end="url(#arrow)"/>
+    <g transform="translate(505 265)"><rect width="270" height="260" rx="6" fill="#121c29" stroke="#3c536d"/><text x="24" y="48" fill="#78b7f0" font-family="monospace" font-size="17">02 · SENSORIAI</text><text x="24" y="100" fill="#f3f6fb" font-size="24" font-weight="700">DOM + forms</text><text x="24" y="136" fill="#f3f6fb" font-size="24" font-weight="700">clipboard</text><text x="24" y="183" fill="#a8b4c4" font-size="18">copy · cut · paste</text><text x="24" y="212" fill="#a8b4c4" font-size="18">input · value setter</text></g>
+    <path d="M790 395H915" stroke="#ff5e57" stroke-width="5" marker-end="url(#arrow)"/>
+    <g transform="translate(935 265)"><rect width="260" height="260" rx="6" fill="#121c29" stroke="#ff5e57" stroke-width="2"/><text x="24" y="48" fill="#ff5e57" font-family="monospace" font-size="17">03 · REWRITE</text><text x="24" y="104" fill="#f3f6fb" font-size="25" font-weight="700">BTC / ETH / TRON</text><text x="24" y="154" fill="#a8b4c4" font-size="18">Regex aptinka adresą</text><text x="24" y="184" fill="#a8b4c4" font-size="18">ir pakeičia operatoriaus</text><text x="24" y="214" fill="#a8b4c4" font-size="18">reikšme</text></g>
+    <path d="M1210 395H1335" stroke="#ff5e57" stroke-width="5" marker-end="url(#arrow)"/>
+    <g transform="translate(1350 265)"><rect width="160" height="260" rx="6" fill="#22171b" stroke="#ff5e57"/><text x="22" y="48" fill="#ff5e57" font-family="monospace" font-size="17">04</text><circle cx="80" cy="120" r="42" fill="none" stroke="#ff5e57" stroke-width="5"/><path d="M58 120H102M80 98V142" stroke="#ff5e57" stroke-width="5"/><text x="24" y="205" fill="#f3f6fb" font-size="21" font-weight="700">Klaidingas</text><text x="24" y="234" fill="#f3f6fb" font-size="21" font-weight="700">gavėjas</text></g>
+  </g>
+  <rect x="95" y="590" width="1415" height="92" rx="5" fill="#0d151f" stroke="#2e4359"/>
+  <text x="125" y="630" fill="#f2ad3d" font-family="monospace" font-size="18">PAPILDOMA TELEMETRIJA</text>
+  <text x="125" y="662" fill="#a8b4c4" font-family="Arial,sans-serif" font-size="19">Pirmas variantas bandė siųsti hostname + URL path į 84.32.102[.]230:7744; HTTPS puslapiuose tai blokavo mixed-content politika.</text>
+</svg>

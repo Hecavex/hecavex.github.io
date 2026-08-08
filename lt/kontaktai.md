@@ -11,6 +11,6 @@ Dėl pranešimų konferencijose, interviu, ekspertinių komentarų, tinklalaidž
 
 Žurnalistams ir renginių organizatoriams skirta [pranešimų temų, biografijos ir ankstesnių pasirodymų informacija](/lt/pranesejas/).
 
-Su Deividu taip pat galima susisiekti per [LinkedIn](https://www.linkedin.com/in/deilis). Kodas ir vieši projektai skelbiami [GitHub](https://github.com/deilis).
+Su Deividu taip pat galima susisiekti per [LinkedIn](https://www.linkedin.com/in/deilis). Kodas ir vieši projektai skelbiami [GitHub](https://github.com/Hecavex).
 
 Apie svetainės saugumo spragas praneškite pagal repozitorijos `SECURITY.md` aprašą. Jautrių duomenų nesiųskite įprastu el. paštu.

@@ -45,7 +45,8 @@ a{text-underline-offset:.2em}a:focus-visible,button:focus-visible,input:focus-vi
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
 /* HECAVEX colour-role application */
-body { background:var(--hx-bg);color:var(--hx-text-soft) }
+html { min-height:100%;background:var(--hx-bg);overscroll-behavior-y:none }
+body { min-height:100%;background:var(--hx-bg);color:var(--hx-text-soft) }
 h1,h2,h3,h4,h5,h6 { color:var(--hx-text) }
 
 #sidebar { background:var(--hx-sidebar);border-right:1px solid var(--hx-border-subtle) }
@@ -133,6 +134,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,.hx-card:focus-within {
   color:var(--hx-text-soft);
   border-color:var(--hx-border-subtle)!important;
   box-shadow:none!important;
+}
+
+/* Keep Chirpy's sticky TOC masks neutral instead of tinting the panel edges. */
+.toc-border-cover,
+#toc-wrapper::before,
+#toc-wrapper::after {
+  background:var(--hx-bg)!important;
+  pointer-events:none;
 }
 
 #breadcrumb a,

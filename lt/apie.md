@@ -17,7 +17,7 @@ HECAVEX nėra pristatomas kaip registruota bendrovė, saugumo paslaugų teikėja
 
 Deividas yra dirbęs teisėsaugoje, finansų sektoriaus saugumo srityje ir privačiuose grėsmių tyrimuose. Jis taip pat yra viešas kibernetinio saugumo pranešėjas, skaitantis pranešimus ir dalyvaujantis diskusijose apie kibernetinių grėsmių žvalgybą, dalijimąsi žvalgybos informacija bei bendradarbiavimu grįstą gynybą. Pagrindinės jo sritys – taktinė ir techninė CTI, OSINT, automatizavimas su „Python“ ir saugumo aptikimo taisyklės.
 
-Profesionalūs profiliai: [GitHub](https://github.com/deilis) ir [LinkedIn](https://www.linkedin.com/in/deilis).
+Profesionalūs profiliai: [GitHub](https://github.com/Hecavex) ir [LinkedIn](https://www.linkedin.com/in/deilis).
 
 Dėl pranešimų konferencijose, diskusijų, tinklalaidžių ar ekspertinių komentarų žiniasklaidai žr. [pranešimų ir žiniasklaidos puslapį](/lt/pranesejas/).
 
