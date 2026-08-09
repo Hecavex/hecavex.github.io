@@ -25,11 +25,19 @@ begin
   link = entry.match(%r{<link\s+href="([^"]+)"})&.captures&.first.to_s
   raise 'entry URL is outside apt.hecavex.com' unless link.start_with?('https://apt.hecavex.com/')
 
+  title = value(entry, 'title')[0, 180]
+  actor_name = title.match(/\A(APT\d+)\b/i)&.captures&.first
+  destination = if actor_name
+                  "https://apt.hecavex.com/actors/#{actor_name.downcase}/"
+                else
+                  link
+                end
+
   record = {
-    'title' => value(entry, 'title')[0, 180],
+    'title' => title,
     'summary' => value(entry, 'summary')[0, 320],
-    'url' => link,
-    'date' => value(entry, 'updated')[0, 10],
+    'url' => destination,
+    'date' => value(entry, 'updated')[0, 32],
     'type' => 'Knowledge-base update'
   }
   File.write(OUTPUT, record.to_yaml, mode: 'w', encoding: 'UTF-8')

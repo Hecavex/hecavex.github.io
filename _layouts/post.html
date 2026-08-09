@@ -131,6 +131,7 @@ script_includes:
     {{ content }}
   </div>
   {% include update-history.html %}
+  {% include citation.html %}
   {% assign has_translation = false %}{% for candidate in site.posts %}{% if candidate.translation_key == page.translation_key and candidate.lang != page.lang %}{% assign has_translation = true %}{% endif %}{% endfor %}
   {% unless has_translation %}<p class="hx-translation-note"><i class="fa-solid fa-language" aria-hidden="true"></i> {{ site.data.hecavex[page.lang].translation_unavailable }}</p>{% endunless %}
   {% include subscribe-panel.html %}

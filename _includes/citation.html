@@ -1,0 +1,8 @@
+<aside class="hx-citation" aria-labelledby="hx-citation-title">
+  <div>
+    <p class="hx-eyebrow">{% if page.lang == 'lt' %}Publikacijos įrašas{% else %}Publication record{% endif %}</p>
+    <h2 id="hx-citation-title">{% if page.lang == 'lt' %}Cituoti šį darbą{% else %}Cite this work{% endif %}</h2>
+    <p class="hx-citation-text">Lis, Deividas. “{{ page.title }}.” <cite>HECAVEX</cite>, {{ page.date | date: '%Y-%m-%d' }}. <a href="{{ page.url | absolute_url }}">{{ page.url | absolute_url }}</a>.</p>
+  </div>
+  <div class="hx-citation-links"><a href="{% if page.lang == 'lt' %}/lt/redakcija/{% else %}/en/editorial/{% endif %}">{% if page.lang == 'lt' %}Metodika ir standartai{% else %}Methodology and standards{% endif %}</a><a href="{% if page.lang == 'lt' %}/lt/pataisymai/{% else %}/en/corrections/{% endif %}">{% if page.lang == 'lt' %}Pataisymai{% else %}Corrections{% endif %}</a></div>
+</aside>

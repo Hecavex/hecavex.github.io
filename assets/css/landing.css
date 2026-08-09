@@ -28,6 +28,10 @@ a:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
 
 .portal-brand strong{font-size:.88rem;letter-spacing:.18em}
 
+.portal-brand-copy{display:flex;flex-direction:column;line-height:1.2}
+
+.portal-brand-copy small{margin-top:.2rem;color:var(--muted);font:600 .61rem var(--mono);letter-spacing:.06em}
+
 .portal-header nav,.portal-footer nav{display:flex;align-items:center;gap:1.35rem}
 
 .portal-header nav a,.portal-footer a{color:var(--soft);font-size:.82rem;text-decoration:none}

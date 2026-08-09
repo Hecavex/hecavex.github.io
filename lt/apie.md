@@ -9,6 +9,8 @@ permalink: /lt/apie/
 
 **Project Hecavex** – nepriklausomas kibernetinių grėsmių žvalgybos ir skaitmeninių tyrimų leidinys, kurį kuria Vilniuje gyvenantis tyrėjas **Deividas Lis**.
 
+HECAVEX yra leidinio ir tyrimų identitetas, o Deividas – jo autorius ir redaktorius. Straipsniai, Signalų apžvalgos ir susieta APT Notes žinių bazė yra skirtingi to paties nepriklausomo darbo formatai.
+
 Čia nagrinėjama skaitmeninių grėsmių infrastruktūra, veikėjų elgsena ir už jų esantys žmonės. Patikrinti faktai atskiriami nuo pranešimų, išvadų ir analitinių vertinimų, o neapibrėžtumas įvardijamas tiesiai.
 
 HECAVEX nėra pristatomas kaip registruota bendrovė, saugumo paslaugų teikėjas ar naujienų agregatorius.
@@ -18,6 +20,8 @@ HECAVEX nėra pristatomas kaip registruota bendrovė, saugumo paslaugų teikėja
 Deividas yra dirbęs teisėsaugoje, finansų sektoriaus saugumo srityje ir privačiuose grėsmių tyrimuose. Jis taip pat yra viešas kibernetinio saugumo pranešėjas, skaitantis pranešimus ir dalyvaujantis diskusijose apie kibernetinių grėsmių žvalgybą, dalijimąsi žvalgybos informacija bei bendradarbiavimu grįstą gynybą. Pagrindinės jo sritys – taktinė ir techninė CTI, OSINT, automatizavimas su „Python“ ir saugumo aptikimo taisyklės.
 
 Profesionalūs profiliai: [GitHub](https://github.com/Hecavex) ir [LinkedIn](https://www.linkedin.com/in/deilis).
+
+[Dabartinių tyrimų krypčių puslapyje](/lt/dabar/) aprašyta, kam šiuo metu skiriamas dėmesys ir kaip naudojami skirtingi HECAVEX formatai.
 
 Dėl pranešimų konferencijose, diskusijų, tinklalaidžių ar ekspertinių komentarų žiniasklaidai žr. [pranešimų ir žiniasklaidos puslapį](/lt/pranesejas/).
 

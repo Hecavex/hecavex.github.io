@@ -1,5 +1,5 @@
-title: APT28 profile rebuilt with current operations and evidence relationships
-summary: Expanded through August 2026 with campaign-level confidence, current DNS and Office exploitation, structured vulnerabilities, malware relationships and explicit attribution boundaries.
-url: https://apt.hecavex.com/updates/#apt28-major-review-2026
-date: "2026-08-09"
-type: Major profile review
+title: APT44 profile added with current access, defence and destructive-operation evidence
+summary: A source-specific APT44 record covering Unit 74455 attribution, BadPilot, defence-sector collection, major destructive campaigns, vulnerabilities, malware, techniques and the boundary with APT28.
+url: https://apt.hecavex.com/actors/apt44/
+date: "2026-08-09T10:10:00Z"
+type: New actor profile

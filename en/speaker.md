@@ -20,11 +20,32 @@ For speaking or media enquiries, email **[info@hecavex.com](mailto:info@hecavex.
 - Information operations, disinformation infrastructure and AI-assisted influence campaigns
 - Intelligence sharing, MISP and practical collaborative defence
 
-Talks can be adapted for conference keynotes, technical sessions, executive briefings, panels, webinars, podcasts and newsroom interviews.
+## Featured talk abstracts
+
+### Intelligence beyond indicators
+
+Threat intelligence becomes useful when it changes a decision. This talk moves beyond longer IOC lists and shows how infrastructure, behaviour, confidence and collection gaps can be turned into an assessment that defenders and leaders can act on.
+
+### One scam domain is rarely alone
+
+A single phishing or fraud URL is usually an entry point, not the investigation. This practical session follows the pivots through redirects, DNS, certificates, hosting, page templates and related infrastructure while separating useful correlation from accidental overlap.
+
+### Attackers are looking for people
+
+ClickFix, session theft and modern social engineering succeed by turning the victim into part of the execution chain. This talk explains why MFA and awareness slogans are not enough, then connects attacker behaviour to practical detection and response opportunities.
+
+## Practical details
+
+- **Formats:** 20-minute briefing, 45-minute conference session, panel, webinar, podcast or newsroom interview
+- **Languages:** English or Lithuanian
+- **Location:** Vilnius, Lithuania; available remotely or in person by arrangement
+- **Audiences:** technical, executive or general public
 
 ## Media commentary
 
 Deividas is available for concise expert commentary on active cybercrime campaigns, online fraud, data breaches, phishing and social engineering, threat intelligence, OSINT and information operations. Commentary can be provided in **English or Lithuanian**.
+
+For a deadline-driven media request, put the deadline and subject in the email title and write to **[info@hecavex.com](mailto:info@hecavex.com)**.
 
 ## Short biography
 

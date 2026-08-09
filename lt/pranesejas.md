@@ -20,11 +20,32 @@ Dėl pranešimų ar komentarų žiniasklaidai rašykite **[info@hecavex.com](mai
 - Informacinės operacijos, dezinformacijos infrastruktūra ir DI padedamos įtakos kampanijos
 - Dalijimasis žvalgybos informacija, MISP ir praktinė bendradarbiavimu grįsta gynyba
 
-Turinys gali būti pritaikytas konferencijų pagrindiniams ar techniniams pranešimams, vadovų sesijoms, diskusijoms, internetiniams seminarams, tinklalaidėms ir interviu.
+## Pagrindinių pranešimų aprašymai
+
+### Žvalgyba už indikatorių ribų
+
+Threat intelligence tampa naudinga tada, kai pakeičia sprendimą. Šiame pranešime einu toliau už dar ilgesnius IOC sąrašus ir rodau, kaip infrastruktūrą, elgseną, pasitikėjimo lygį bei informacijos spragas paversti vertinimu, kurį realiai gali naudoti gynėjai ir vadovai.
+
+### Vienas scam domenas retai būna vienas
+
+Vienas phishingo ar sukčiavimo URL dažniausiai yra tyrimo pradžia, o ne pabaiga. Praktiniame pranešime pereinu per redirect'us, DNS, sertifikatus, hostingą, puslapių šablonus bei susijusią infrastruktūrą ir parodau, kaip atskirti prasmingą koreliaciją nuo paprasto sutapimo.
+
+### Užpuolikai ieško žmonių
+
+ClickFix, sesijų vagystės ir šiuolaikinė socialinė inžinerija veikia todėl, kad pati auka tampa execution chain'o dalimi. Pranešime aiškinu, kodėl vien MFA ar awareness šūkio neužtenka, ir susieju užpuolikų elgseną su praktinėmis aptikimo bei reagavimo galimybėmis.
+
+## Praktinė informacija
+
+- **Formatai:** 20 min. apžvalga, 45 min. konferencijos pranešimas, diskusija, webinaras, podcastas ar interviu žiniasklaidai
+- **Kalbos:** lietuvių arba anglų
+- **Vieta:** Vilnius; nuotolinis arba gyvas dalyvavimas pagal susitarimą
+- **Auditorijos:** techninė, vadovų arba plačioji
 
 ## Komentarai žiniasklaidai
 
 Deividas gali pateikti aiškius ekspertinius komentarus apie aktyvias elektroninių nusikaltimų kampanijas, internetinį sukčiavimą, duomenų vagystes, phishingą ir socialinę inžineriją, grėsmių žvalgybą, OSINT bei informacines operacijas. Komentarai teikiami **lietuvių arba anglų kalba**.
+
+Jeigu komentaras reikalingas iki konkretaus redakcijos deadline'o, terminą ir temą įrašykite laiško pavadinime ir siųskite į **[info@hecavex.com](mailto:info@hecavex.com)**.
 
 ## Trumpa biografija
 

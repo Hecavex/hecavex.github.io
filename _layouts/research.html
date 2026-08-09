@@ -1,4 +1,26 @@
 ---
 layout: default
 ---
-{% assign localized_posts = site.posts | where: 'lang', page.lang %}{% assign posts = '' | split: '' %}{% for post in localized_posts %}{% unless post.content_type == 'signal-brief' %}{% assign posts = posts | push: post %}{% endunless %}{% endfor %}<header class="hx-page-head"><p class="hx-eyebrow">HECAVEX / {{ page.lang | upcase }}</p><h1>{{ page.title }}</h1><p>{{ page.description }}</p></header>{% include post-grid.html posts=posts %}
+{% assign localized_posts = site.posts | where: 'lang', page.lang %}
+{% assign posts = '' | split: '' %}
+{% for post in localized_posts %}{% unless post.content_type == 'signal-brief' %}{% assign posts = posts | push: post %}{% endunless %}{% endfor %}
+{% assign featured = posts | where: 'featured', true %}
+<header class="hx-page-head hx-research-head">
+  <p class="hx-eyebrow">HECAVEX / {{ page.lang | upcase }}</p>
+  <h1>{{ page.title }}</h1>
+  <p>{{ page.description }}</p>
+  <nav class="hx-page-links" aria-label="{% if page.lang == 'lt' %}Tyrimų katalogas{% else %}Research directory{% endif %}">
+    <a href="/{% if page.lang == 'lt' %}lt/kategorijos{% else %}en/categories{% endif %}/">{% if page.lang == 'lt' %}Kategorijos{% else %}Categories{% endif %}</a>
+    <a href="/{% if page.lang == 'lt' %}lt/archyvas{% else %}en/archive{% endif %}/">{% if page.lang == 'lt' %}Archyvas{% else %}Archive{% endif %}</a>
+    <a href="/{% if page.lang == 'lt' %}lt/dabar{% else %}en/now{% endif %}/">{% if page.lang == 'lt' %}Dabartinės tyrimų kryptys{% else %}Current research focus{% endif %}</a>
+  </nav>
+</header>
+{% if featured.size > 0 %}
+<section class="hx-start-here" aria-labelledby="hx-start-here-title">
+  <div class="hx-section-head"><div><p class="hx-eyebrow">{% if page.lang == 'lt' %}Atrinkta autoriaus{% else %}Selected by the author{% endif %}</p><h2 id="hx-start-here-title">{% if page.lang == 'lt' %}Pradėkite čia{% else %}Start here{% endif %}</h2><p class="hx-section-intro">{% if page.lang == 'lt' %}Trys darbai, parodantys Deivido Lis tyrimų spektrą: nuo techninės analizės iki sukčiavimo infrastruktūros ir informacinių operacijų.{% else %}Three pieces demonstrating the range of Deividas Lis's work, from technical analysis to fraud infrastructure and information operations.{% endif %}</p></div></div>
+  <div class="hx-start-grid">
+    {% for post in featured limit: 3 %}<a class="hx-start-item" href="{{ post.url }}"><span>{{ site.data.content_types[post.content_type][page.lang] | default: post.content_type | replace: '-', ' ' }}</span><strong>{{ post.card_title | default: post.title }}</strong><small>{{ post.description }}</small></a>{% endfor %}
+  </div>
+</section>
+{% endif %}
+<section class="hx-research-index" aria-labelledby="hx-all-research-title"><div class="hx-section-head"><h2 id="hx-all-research-title">{% if page.lang == 'lt' %}Visi tyrimai{% else %}All research{% endif %}</h2></div>{% include post-grid.html posts=posts %}</section>

@@ -9,6 +9,8 @@ permalink: /en/about/
 
 **Project Hecavex** is an independent cyber threat intelligence and digital investigations publication operated by researcher **Deividas Lis**, based in Vilnius, Lithuania.
 
+HECAVEX is the publication and research identity; Deividas is its author and editor. Articles, Signal Briefs and the connected APT Notes knowledge base are different formats within the same body of independent work.
+
 The publication examines the infrastructure, behaviour and people behind digital threats. Its work separates verified evidence from reporting, inference and assessment, and states uncertainty where it exists.
 
 HECAVEX is independent. It is not presented as a registered company, managed security provider or news aggregator.
@@ -18,6 +20,8 @@ HECAVEX is independent. It is not presented as a registered company, managed sec
 Deividas has worked across law enforcement, financial-sector security and private-sector threat research. He is also a public cybersecurity speaker, presenting and joining industry discussions on cyber threat intelligence, intelligence sharing and collaborative defence. His focus includes tactical and technical CTI, OSINT, Python-based automation and security detection content.
 
 Professional profiles: [GitHub](https://github.com/Hecavex) and [LinkedIn](https://www.linkedin.com/in/deilis).
+
+The [current research focus](/en/now/) describes the subjects receiving attention now and how the different HECAVEX formats are used.
 
 For conference talks, panels, podcasts and expert media commentary, see [speaking and media](/en/speaker/).
 

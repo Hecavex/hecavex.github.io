@@ -10,6 +10,7 @@ layout: default
 {% for post in posts %}{% unless post.featured %}{% assign recent = recent | push: post %}{% endunless %}{% endfor %}
 <section class="hx-hero">
   <p class="hx-eyebrow">{{ hx.descriptor }}</p><h1>{{ hx.tagline }}</h1><p>{{ hx.supporting }}</p>
+  <p class="hx-hero-author">{% if page.lang == 'lt' %}Nepriklausomas leidinys, kurį kuria{% else %}An independent publication by{% endif %} <a href="{% if page.lang == 'lt' %}/lt/apie/{% else %}/en/about/{% endif %}">Deividas Lis</a></p>
   <a class="hx-button" href="{% if page.lang == 'lt' %}/lt/tyrimai/{% else %}/en/research/{% endif %}">{{ hx.all_articles }} →</a>
   {% if localized_posts.first %}<p class="hx-hero-freshness"><span>{% if page.lang == 'lt' %}Naujausia publikacija{% else %}Latest publication{% endif %}</span><time datetime="{{ localized_posts.first.date | date_to_xmlschema }}">{{ localized_posts.first.date | date: '%Y-%m-%d' }}</time></p>{% endif %}
 </section>

@@ -11,12 +11,6 @@
   url: https://apt.hecavex.com/
   icon: fa-solid fa-database
   external: true
-- key: categories
-  url: /en/categories/
-  icon: fa-solid fa-diagram-project
-- key: archive
-  url: /en/archive/
-  icon: fa-solid fa-box-archive
 - key: about
   url: /en/about/
   icon: fa-solid fa-circle-info
