@@ -4,9 +4,15 @@
   "@type": "Organization",
   "@id": "{{ site.url }}/#organization",
   "name": "HECAVEX",
-  "alternateName": "HECAVEX Research",
+  "alternateName": ["HECAVEX Research", "hecavex.com"],
   "url": "{{ site.url }}/",
-  "logo": "{{ '/assets/img/brand/hecavex-mark.svg' | absolute_url }}",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "{{ '/assets/img/favicons/web-app-manifest-512x512.png' | absolute_url }}",
+    "width": 512,
+    "height": 512
+  },
+  "image": "{{ '/assets/img/og/hecavex-default-en.png' | absolute_url }}",
   "description": {{ site.description | jsonify }},
   "founder": { "@id": "{{ site.url }}/#deividas-lis" },
   "sameAs": ["https://github.com/Hecavex", "https://www.linkedin.com/in/deilis"],
@@ -18,7 +24,7 @@
   }
 }
 </script>
-{% if page.layout == 'post' or page.translation_key == 'about' or page.translation_key == 'speaker-media' %}
+{% if page.layout == 'post' or page.layout == 'home' or page.layout == 'landing' or page.translation_key == 'about' or page.translation_key == 'speaker-media' %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -131,9 +137,10 @@
   "@id": "{{ site.url }}/#website",
   "url": "{{ site.url }}/",
   "name": "HECAVEX",
-  "alternateName": "HECAVEX Research",
+  "alternateName": ["HECAVEX Research", "hecavex.com"],
   "description": {{ site.description | jsonify }},
   "inLanguage": ["en", "lt"],
+  "creator": { "@id": "{{ site.url }}/#deividas-lis" },
   "publisher": { "@id": "{{ site.url }}/#organization" }
 }
 </script>

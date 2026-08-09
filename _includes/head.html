@@ -79,6 +79,9 @@
   {% endif %}
 
   <title>
+    {%- if page.seo_title -%}
+      {{- page.seo_title -}}
+    {%- else -%}
     {%- unless page.layout == 'home' -%}
       {%- capture title -%}
         {%- if page.collection == 'tabs' -%}
@@ -91,6 +94,7 @@
       {{- title | append: ' | ' -}}
     {%- endunless -%}
     {{- site.title -}}
+    {%- endif -%}
   </title>
 
   {% include_cached favicons.html %}

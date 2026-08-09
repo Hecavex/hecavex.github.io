@@ -22,6 +22,7 @@ module Hecavex
       data["layout"] = "category-hx"
       data["lang"] = lang
       data["title"] = label
+      data["seo_title"] = lang == "lt" ? "#{label} tyrimai | HECAVEX" : "#{label} research | HECAVEX"
       data["description"] = lang == "lt" ? "HECAVEX publikacijos kategorijoje „#{label}“." : "HECAVEX publications in #{label}."
       data["category_slug"] = slug
       data["translation_key"] = "category-#{slug}"
@@ -59,6 +60,7 @@ module Hecavex
       data["layout"] = "tag-hx"
       data["lang"] = lang
       data["title"] = tag
+      data["seo_title"] = lang == "lt" ? "#{tag} žymos publikacijos | HECAVEX" : "#{tag} tagged research | HECAVEX"
       data["tag_name"] = tag
       data["tag_slug"] = slug
       data["description"] = lang == "lt" ? "HECAVEX publikacijos su žyma „#{tag}“." : "HECAVEX publications tagged #{tag}."

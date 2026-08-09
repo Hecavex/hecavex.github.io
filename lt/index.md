@@ -2,7 +2,9 @@
 layout: home
 lang: lt
 translation_key: home
-title: HECAVEX
-description: Nepriklausomi Deivido Lis kibernetinių grėsmių žvalgybos, kenkėjiško kodo analizės, grėsmių medžioklės, OSINT ir skaitmeniniai tyrimai.
+title: "HECAVEX: kibernetinių grėsmių žvalgyba"
+seo_title: "HECAVEX | Kibernetinių grėsmių žvalgyba – Deividas Lis"
+description: HECAVEX yra nepriklausomas Deivido Lis kibernetinių grėsmių žvalgybos leidinys apie kenkėjiško kodo analizę, grėsmių medžioklę, OSINT ir skaitmeninius tyrimus.
 permalink: /lt/
+last_modified_at: 2026-08-09 18:00:00 +0300
 ---
