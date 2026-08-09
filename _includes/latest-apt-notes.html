@@ -1,4 +1,9 @@
-{% assign apt_note = site.data.apt_notes_live | default: site.data.apt_notes %}
+{% assign apt_note = site.data.apt_notes %}
+{% if site.data.apt_notes_live %}
+  {% assign apt_live_date = site.data.apt_notes_live.date | date: '%s' | plus: 0 %}
+  {% assign apt_fallback_date = apt_note.date | date: '%s' | plus: 0 %}
+  {% if apt_live_date >= apt_fallback_date %}{% assign apt_note = site.data.apt_notes_live %}{% endif %}
+{% endif %}
 <section class="hx-latest hx-latest-apt" aria-labelledby="latest-apt-notes-title">
   <div class="hx-section-head">
     <div>

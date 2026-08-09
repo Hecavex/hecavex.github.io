@@ -13,11 +13,11 @@ layout: default
   <a class="hx-button" href="{% if page.lang == 'lt' %}/lt/tyrimai/{% else %}/en/research/{% endif %}">{{ hx.all_articles }} →</a>
   {% if localized_posts.first %}<p class="hx-hero-freshness"><span>{% if page.lang == 'lt' %}Naujausia publikacija{% else %}Latest publication{% endif %}</span><time datetime="{{ localized_posts.first.date | date_to_xmlschema }}">{{ localized_posts.first.date | date: '%Y-%m-%d' }}</time></p>{% endif %}
 </section>
-{% if briefings.size > 0 %}<section class="hx-latest hx-latest-briefing"><div class="hx-section-head"><div><h2>{{ hx.latest_briefing }}</h2><p class="hx-section-intro">{{ hx.briefing_explainer }}</p></div><a href="{% if page.lang == 'lt' %}/lt/apzvalgos/{% else %}/en/briefings/{% endif %}">{{ hx.all_briefings }} →</a></div>{% include signal-brief-card.html brief=briefings.first %}</section>{% endif %}
-{% include latest-apt-notes.html %}
 <section class="hx-latest"><div class="hx-section-head"><h2>{{ hx.latest_research }}</h2><a href="{% if page.lang == 'lt' %}/lt/tyrimai/{% else %}/en/research/{% endif %}">{{ hx.view_all }} →</a></div>{% include post-grid.html posts=recent limit=6 %}</section>
+{% if briefings.size > 0 %}<section class="hx-latest hx-latest-briefing"><div class="hx-section-head"><div><h2>{{ hx.latest_briefing }}</h2><p class="hx-section-intro">{{ hx.briefing_explainer }}</p></div><a href="{% if page.lang == 'lt' %}/lt/apzvalgos/{% else %}/en/briefings/{% endif %}">{{ hx.all_briefings }} →</a></div>{% include signal-brief-card.html brief=briefings.first %}</section>{% endif %}
 {% include homepage-topics.html %}
 {% assign featured = posts | where: 'featured', true %}{% if featured.size > 0 %}<section class="hx-featured"><div class="hx-section-head"><div><h2>{{ hx.featured_research }}</h2><p class="hx-section-intro">{{ hx.selected_explainer }}</p></div></div>{% include post-grid.html posts=featured limit=3 %}</section>{% endif %}
 {% include homepage-media.html %}
 {% include homepage-trust.html %}
+{% include latest-apt-notes.html %}
 {% include subscribe-panel.html %}
