@@ -2,16 +2,16 @@
 layout: page
 lang: lt
 translation_key: about
-title: Apie HECAVEX
-description: Deividas Lis – Lietuvos kibernetinių grėsmių žvalgybos tyrėjas, buvęs elektroninių nusikaltimų tyrėjas, viešas pranešėjas ir HECAVEX autorius.
+title: Deividas Lis — HECAVEX tyrėjas ir redaktorius
+description: Deividas Lis yra nepriklausomas kibernetinių grėsmių žvalgybos tyrėjas, buvęs elektroninių nusikaltimų tyrėjas, grėsmių medžiotojas, viešas pranešėjas ir HECAVEX autorius.
 permalink: /lt/apie/
 ---
 
-**Project Hecavex** – nepriklausomas kibernetinių grėsmių žvalgybos ir skaitmeninių tyrimų leidinys, kurį kuria Vilniuje gyvenantis tyrėjas **Deividas Lis**.
+**HECAVEX** yra nepriklausomas kibernetinių grėsmių žvalgybos ir skaitmeninių tyrimų leidinys, kurį kuria ir redaguoja tyrėjas **Deividas Lis**.
 
 HECAVEX yra leidinio ir tyrimų identitetas, o Deividas – jo autorius ir redaktorius. Straipsniai, Signalų apžvalgos ir susieta APT Notes žinių bazė yra skirtingi to paties nepriklausomo darbo formatai.
 
-Čia nagrinėjama skaitmeninių grėsmių infrastruktūra, veikėjų elgsena ir už jų esantys žmonės. Patikrinti faktai atskiriami nuo pranešimų, išvadų ir analitinių vertinimų, o neapibrėžtumas įvardijamas tiesiai.
+Čia nagrinėjama kibernetinių nusikaltimų infrastruktūra, kenkėjiškas kodas, šnipinėjimo veikla, sukčiavimas, informacinės operacijos ir už skaitmeninių grėsmių esantys žmonės. Tyrimų geografija nėra ribojama vienu regionu. Patikrinti faktai atskiriami nuo pranešimų, išvadų ir analitinių vertinimų, o neapibrėžtumas įvardijamas tiesiai.
 
 HECAVEX nėra pristatomas kaip registruota bendrovė, saugumo paslaugų teikėjas ar naujienų agregatorius.
 
@@ -50,3 +50,15 @@ Dėl pranešimų konferencijose, diskusijų, tinklalaidžių ar ekspertinių kom
 - Jokios baime paremtos rinkodaros ar išgalvoto užtikrintumo.
 
 Išsamus požiūris į šaltinius, pasitikėjimo lygius, pataisymus, interesus ir DI priemonių naudojimą aprašytas [HECAVEX redakciniuose standartuose](/lt/redakcija/).
+
+<aside class="hx-page-cta" aria-labelledby="about-cta-lt">
+  <div>
+    <p class="hx-page-cta__eyebrow">Nuo ko pradėti</p>
+    <h2 id="about-cta-lt">Pradėkite nuo tyrimų</h2>
+    <p>Skaitykite techninius vertinimus ir tyrimus arba susisiekite su Deividu dėl konferencijos, interviu ar eksperto komentaro.</p>
+  </div>
+  <div class="hx-page-cta__actions">
+    <a class="hx-button hx-button--primary" href="/lt/tyrimai/">Peržiūrėti tyrimus</a>
+    <a class="hx-button" href="mailto:info@hecavex.com">Užklausa žiniasklaidai ar renginiui</a>
+  </div>
+</aside>

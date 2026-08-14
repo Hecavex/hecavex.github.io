@@ -1,10 +1,12 @@
 # HECAVEX
 
-HECAVEX is a bilingual cyber threat intelligence and digital investigations publication built on Jekyll and Chirpy.
+This repository contains [hecavex.com](https://hecavex.com), my bilingual cyber threat intelligence publication. I use it for investigations, technical analysis, short signal briefings and the occasional opinion that needed more room than a LinkedIn post.
 
-## Local setup
+The site runs on Jekyll. It started from Chirpy, but most of the publishing structure and visual work is now specific to HECAVEX.
 
-Requirements: Ruby 3.1–3.4 (3.4 in CI), Bundler, and Node.js 22.
+## Run it locally
+
+You need Ruby, Bundler and Node.js 22.
 
 ```sh
 bundle install
@@ -13,50 +15,46 @@ npm run build
 bundle exec jekyll serve --livereload
 ```
 
-The production-equivalent checks are:
+Do not edit `_site`. Jekyll rebuilds it from the source files.
+
+## Writing a post
+
+Posts are kept in matching English and Lithuanian folders:
+
+- `_posts/en/blogs/` and `_posts/lt/blogs/` for commentary
+- `_posts/en/bulletins/` and `_posts/lt/bulletins/` for Signal Briefs
+- `_posts/en/research/` and `_posts/lt/research/` for investigations and technical work
+
+Start from the nearest file in `_templates/`. Paired translations must use the same `translation_key`. Keep `draft: true` until the text, links, image description and metadata have been checked.
+
+Research posts also carry a visible publication record. It shows the version, evidence basis, methods, confidence, TLP marking and revision history. The format is described in [docs/EDITORIAL-PACKAGES.md](docs/EDITORIAL-PACKAGES.md).
+
+## Check before publishing
 
 ```sh
 bundle exec ruby tools/validate_content.rb
 npm test
 npm run build
 JEKYLL_ENV=production bundle exec jekyll build
+bundle exec ruby tools/audit_site.rb _site
 bundle exec htmlproofer _site --disable-external
 ```
 
-On PowerShell, set production mode with `$env:JEKYLL_ENV='production'` before the Jekyll command.
+In PowerShell, set production mode first:
 
-## Creating content
-
-English and Lithuanian posts use the same source structure under `_posts/en/` and `_posts/lt/`:
-
-- `blogs/` — commentary, publication notes, and other author-led blog posts (`content_type: commentary`).
-- `bulletins/` — numbered HECAVEX Signal Brief issues (`content_type: signal-brief`).
-- `research/` — investigations, incident and malware analysis, technical analysis and guides, and threat notes.
-
-Folder placement is for editorial organisation; public URLs are controlled by front matter and the permalink defaults in `_config.yml`. Copy a suitable file from `_templates/`. Every public post requires `title`, `description`, `lang`, `translation_key`, a valid canonical `categories` value, and `author`.
-
-Use the same `translation_key` on the English and Lithuanian versions. The language switcher resolves the paired post directly. A post without a pair stays publishable and shows a localized availability notice. Set `featured: true` for homepage placement. Set `draft: true` until publication and keep `comments: false` unless a configured provider is intentionally enabled.
-
-Cover images use:
-
-```yaml
-image:
-  path: /assets/img/posts/example/cover.webp
-  alt: A factual description in the article language
+```powershell
+$env:JEKYLL_ENV = "production"
 ```
 
-Add canonical category identifiers and localized labels in `_data/taxonomy.yml`. Author records are in `_data/authors.yml`; do not invent contact details or credentials.
+The GitHub Actions workflow runs the same checks before it deploys the site. A broken internal link, incomplete social preview, malformed schema or missing accessibility label should stop the deployment instead of becoming a production surprise.
 
-CTI front matter supports `content_type`, `confidence`, `tlp`, and bilingual `updates`. Styled callouts can use `<aside class="hx-callout key-finding">` with a leading `<strong>Key finding</strong>`; variants include `warning` and the default informational style.
+## Measurement
 
-## Brand assets
+Measurement is optional. When `HECAVEX_ANALYTICS_TOKEN` is not configured, the analytics script is not added to the site. More detail is in [docs/MEASUREMENT.md](docs/MEASUREMENT.md).
 
-SVG logos live under `assets/img/brand/`; favicons under `assets/img/favicons/`; social images under `assets/img/og/`. Brand and typography tokens are centralized at the end of `assets/css/jekyll-theme-chirpy.scss`. The mark is intentionally one-colour-capable and should be used instead of the wordmark below approximately 96px.
+## Related sites
 
-## Deployment
+- [APT Notes](https://apt.hecavex.com) contains the structured threat-actor knowledge base.
+- [HECAVEX Labs](https://labs.hecavex.com) contains datasets and small browser-based research tools.
 
-The canonical production URL is `https://hecavex.com`; `CNAME` configures the GitHub Pages custom domain. `.github/workflows/pages-deploy.yml` validates content, builds Node assets, builds Jekyll in production mode, runs HTMLProofer and deploys only after success. Configure the repository Pages source as GitHub Actions and provision DNS outside this repository.
-
-Real values still required before publishing contact features: a verified public/security contact and any optional social profiles. Analytics and comments are deliberately disabled.
-
-See `CUSTOMIZATIONS.md` for the upgrade map.
+All three are separate deployments, but they share the same HECAVEX and author identity in navigation and structured data.

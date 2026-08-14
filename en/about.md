@@ -2,22 +2,22 @@
 layout: page
 lang: en
 translation_key: about
-title: About HECAVEX
-description: Deividas Lis is a Lithuanian cyber threat intelligence researcher, former cybercrime investigator, public speaker and media commentator behind HECAVEX.
+title: Deividas Lis — researcher and editor of HECAVEX
+description: Deividas Lis is an independent cyber threat intelligence researcher, former cybercrime investigator, threat hunter, public speaker and media commentator behind HECAVEX.
 permalink: /en/about/
 ---
 
-**Project Hecavex** is an independent cyber threat intelligence and digital investigations publication operated by researcher **Deividas Lis**, based in Vilnius, Lithuania.
+**HECAVEX** is the independent cyber threat intelligence and digital investigations publication created and edited by researcher **Deividas Lis**.
 
 HECAVEX is the publication and research identity; Deividas is its author and editor. Articles, Signal Briefs and the connected APT Notes knowledge base are different formats within the same body of independent work.
 
-The publication examines the infrastructure, behaviour and people behind digital threats. Its work separates verified evidence from reporting, inference and assessment, and states uncertainty where it exists.
+The publication examines cybercrime infrastructure, malware, espionage, fraud, information operations and the people behind digital threats. Its scope is international. Its work separates verified evidence from reporting, inference and assessment, and states uncertainty where it exists.
 
 HECAVEX is independent. It is not presented as a registered company, managed security provider or news aggregator.
 
 ## About the researcher
 
-Deividas has worked across law enforcement, financial-sector security and private-sector threat research. He is also a public cybersecurity speaker, presenting and joining industry discussions on cyber threat intelligence, intelligence sharing and collaborative defence. His focus includes tactical and technical CTI, OSINT, Python-based automation and security detection content.
+Deividas has worked across law enforcement, financial-sector security and private-sector threat research. He is also a public cybersecurity speaker and media commentator, presenting and joining industry discussions on cyber threat intelligence, intelligence sharing, fraud and collaborative defence. His work combines tactical and technical CTI, infrastructure analysis, OSINT, threat hunting, Python-based automation and security detection content.
 
 Professional profiles: [GitHub](https://github.com/Hecavex) and [LinkedIn](https://www.linkedin.com/in/deilis).
 
@@ -50,3 +50,15 @@ For conference talks, panels, podcasts and expert media commentary, see [speakin
 - No fear-based marketing or fabricated certainty.
 
 The complete approach to sourcing, confidence, corrections, conflicts and AI-assisted work is documented in the [HECAVEX editorial standards](/en/editorial/).
+
+<aside class="hx-page-cta" aria-labelledby="about-cta-en">
+  <div>
+    <p class="hx-page-cta__eyebrow">Where to start</p>
+    <h2 id="about-cta-en">Start with the research</h2>
+    <p>Read the technical assessments and investigations, or contact Deividas for a conference, interview or expert comment.</p>
+  </div>
+  <div class="hx-page-cta__actions">
+    <a class="hx-button hx-button--primary" href="/en/research/">Browse research</a>
+    <a class="hx-button" href="mailto:info@hecavex.com">Media &amp; speaking enquiry</a>
+  </div>
+</aside>

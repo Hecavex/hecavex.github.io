@@ -3,7 +3,7 @@ layout: page
 lang: en
 translation_key: speaker-media
 title: Cybersecurity Speaker and Media Expert
-description: Invite Lithuanian cyber threat intelligence researcher and former cybercrime investigator Deividas Lis for conferences, panels, podcasts and media commentary.
+description: Invite cyber threat intelligence researcher, former cybercrime investigator and HECAVEX editor Deividas Lis for conferences, panels, podcasts and media commentary.
 permalink: /en/speaker/
 ---
 
@@ -49,7 +49,7 @@ For a deadline-driven media request, put the deadline and subject in the email t
 
 ## Short biography
 
-**Deividas Lis is a Lithuanian cyber threat intelligence researcher, former cybercrime investigator and public speaker. His work focuses on CTI, OSINT, fraud infrastructure, social engineering, information operations and detection engineering. He publishes independent bilingual research through HECAVEX.**
+**Deividas Lis is an independent cyber threat intelligence researcher, former cybercrime investigator and public speaker. His work covers CTI, threat hunting, malware, cybercrime infrastructure, OSINT, fraud, espionage, information operations and detection engineering. He publishes independent bilingual research through HECAVEX.**
 
 Event organisers and editors may use this biography with attribution. For a longer professional background and selected appearances, see [About HECAVEX and Deividas Lis](/en/about/).
 

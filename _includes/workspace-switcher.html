@@ -1,0 +1,14 @@
+{% assign workspace_lang = page.lang | default: 'en' %}
+<details class="hx-language hx-workspace-switcher">
+  <summary aria-label="{% if workspace_lang == 'lt' %}Keisti HECAVEX sritį{% else %}Switch HECAVEX workspace{% endif %}">
+    <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+    <span class="hx-language-label">{% if workspace_lang == 'lt' %}Sritis{% else %}Workspace{% endif %}</span>
+    <strong>{% if workspace_lang == 'lt' %}Tyrimai{% else %}Research{% endif %}</strong>
+    <i class="fa-solid fa-chevron-down hx-language-chevron" aria-hidden="true"></i>
+  </summary>
+  <div class="hx-language-menu">
+    <a href="/{{ workspace_lang }}/" aria-current="page"><span>{% if workspace_lang == 'lt' %}Tyrimai{% else %}Research{% endif %}</span><small>MAIN</small></a>
+    <a href="https://apt.hecavex.com/"><span>APT Notes</span><small>TI</small></a>
+    <a href="https://labs.hecavex.com/"><span>HECAVEX Labs</span><small>TOOLS</small></a>
+  </div>
+</details>

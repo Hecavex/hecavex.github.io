@@ -10,6 +10,7 @@
   {%- capture seo_tags -%}
     {% seo title=false %}
   {%- endcapture -%}
+  {% assign seo_tags = seo_tags | strip_json_ld %}
 
   <!-- Setup Open Graph image -->
 
@@ -59,10 +60,11 @@
   {{ seo_tags }}
   {% include hreflang.html %}
   {% if alternate %}<meta property="og:locale:alternate" content="{{ site.data.hecavex[alternate.lang].locale }}">{% endif %}
-  {% if page.image.width and page.image.height %}
-    <meta property="og:image:width" content="{{ page.image.width }}">
-    <meta property="og:image:height" content="{{ page.image.height }}">
-  {% endif %}
+  {% assign hx_social_alt = page.image.alt | default: page.title | default: site.title %}
+  <meta property="og:image:alt" content="{{ hx_social_alt | escape }}">
+  <meta name="twitter:image:alt" content="{{ hx_social_alt | escape }}">
+  <meta property="og:image:width" content="{{ page.image.width | default: 1200 }}">
+  <meta property="og:image:height" content="{{ page.image.height | default: 630 }}">
   <meta name="robots" content="{{ page.robots | default: 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' }}">
   {% if page.layout == 'post' %}
     <meta name="author" content="Deividas Lis">
@@ -164,4 +166,5 @@
 
   {% include metadata-hook.html %}
   {% include entity-schema.html %}
+  {% if jekyll.environment == 'production' %}{% include privacy-measurement.html %}{% endif %}
 </head>

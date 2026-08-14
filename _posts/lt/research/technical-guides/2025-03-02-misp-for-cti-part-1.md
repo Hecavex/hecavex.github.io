@@ -2,7 +2,7 @@
 title: "MISP grėsmių žvalgybai: diegimas, integracija ir automatizavimas [1 dalis]"
 description: "Praktinis MISP diegimo su „Docker“, pagrindinių duomenų modelių, integracijų ir automatizavimo galimybių vadovas grėsmių žvalgybos komandoms."
 date: 2025-03-02 14:00:00 +0300
-last_modified_at: 2026-08-01 12:00:00 +0300
+last_modified_at: 2026-08-14 12:00:00 +0300
 lang: lt
 translation_key: misp-for-cti-part-1-001
 categories: [threat-intelligence, tradecraft]
@@ -18,6 +18,17 @@ featured: false
 draft: false
 toc: true
 comments: false
+research_version: "1.1"
+research_status: updated
+key_findings:
+  - MISP gali būti naudinga dalijimosi ir koreliacijos platforma, bet ji nepakeičia rinkimo reikalavimų, šaltinių vertinimo ir žvalgybos rengimo proceso.
+  - Produkcinę vertę lemia duomenų modelis, platinimo taisyklės, galiojimas, prieigos kontrolė, priežiūra ir patikrintas atkūrimas, o ne vien veikiantis konteineris.
+  - API automatizavimas turi išsaugoti kilmę ir pasitikėjimą, o kiekvienas importuotas indikatorius neturi automatiškai tapti blokavimo sprendimu.
+scope: MISP diegimo principai, duomenų modelis, eksploatavimo kontrolės ir įvadinis „PyMISP“ automatizavimas CTI komandoms.
+limitations: Tikslūs diegimo kintamieji ir palaikomos integracijos keičiasi tarp versijų. Prieš produkcinį naudojimą komandas reikia tikrinti pagal konkrečios versijos oficialią MISP dokumentaciją.
+updates:
+  - date: 2026-08-14
+    note: Atnaujintas saugus diegimas, TLS ir API raktų naudojimas, duomenų kokybės kontrolės ir platformos atskyrimas nuo paties žvalgybos proceso.
 ---
 
 ## Įvadas

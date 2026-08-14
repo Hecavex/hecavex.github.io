@@ -7,22 +7,26 @@ layout: compress
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0b0e12">
-  <title>{% if page.url == '/404.html' %}Signal lost — HECAVEX{% else %}HECAVEX — Cyber Threat Intelligence by Deividas Lis{% endif %}</title>
-  <meta name="description" content="{{ page.description | default: 'Independent cyber threat intelligence, OSINT and cybercrime investigations by Lithuanian researcher and speaker Deividas Lis.' }}">
+  <title>{% if page.url == '/404.html' %}404 — Indicator not found | HECAVEX{% else %}HECAVEX — Cyber Threat Intelligence by Deividas Lis{% endif %}</title>
+  <meta name="description" content="{{ page.description | default: 'Independent cyber threat intelligence research, malware analysis, threat hunting, OSINT and digital investigations by Deividas Lis.' }}">
   {% unless page.url == '/404.html' %}<meta name="robots" content="index,follow,max-image-preview:large">{% else %}<meta name="robots" content="noindex,follow">{% endunless %}
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta property="og:title" content="HECAVEX — Cyber Threat Intelligence by Deividas Lis">
-  <meta property="og:description" content="Independent cyber threat intelligence, OSINT and cybercrime investigations by Lithuanian researcher and speaker Deividas Lis.">
+  <meta property="og:description" content="Independent cyber threat intelligence research, malware analysis, threat hunting, OSINT and digital investigations by Deividas Lis.">
   <meta property="og:site_name" content="HECAVEX">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="lt_LT">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hecavex.com/">
   <meta property="og:image" content="https://hecavex.com/assets/img/og/hecavex-default-en.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="HECAVEX cyber threat intelligence research">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="HECAVEX — Cyber Threat Intelligence by Deividas Lis">
-  <meta name="twitter:description" content="Independent cyber threat intelligence, OSINT and cybercrime investigations by Lithuanian researcher and speaker Deividas Lis.">
+  <meta name="twitter:description" content="Independent cyber threat intelligence research, malware analysis, threat hunting, OSINT and digital investigations by Deividas Lis.">
   <meta name="twitter:image" content="https://hecavex.com/assets/img/og/hecavex-default-en.png">
+  <meta name="twitter:image:alt" content="HECAVEX cyber threat intelligence research">
   <link rel="canonical" href="https://hecavex.com{{ page.url }}">
   <link rel="alternate" hreflang="en" href="https://hecavex.com/en/">
   <link rel="alternate" hreflang="lt" href="https://hecavex.com/lt/">
@@ -37,10 +41,24 @@ layout: compress
   {% if page.url == '/404.html' %}
     <main class="portal-error" id="main-content">
       <a class="portal-brand" href="/" aria-label="HECAVEX home"><img src="/assets/img/brand/hecavex-mark.svg" width="48" height="48" alt=""><span class="portal-brand-copy"><strong>HECAVEX</strong><small>by Deividas Lis</small></span></a>
-      <p class="portal-kicker">404 · SIGNAL LOST</p>
-      <h1>The requested page could not be found.</h1>
-      <p>Prašomas puslapis nerastas. Choose an edition to continue.</p>
-      <div class="portal-error-actions"><a href="/lt/" data-language="lt">Lietuvių</a><a href="/en/" data-language="en">English</a></div>
+      <section class="portal-error-panel" aria-live="polite">
+        <div class="portal-error-code" aria-hidden="true"><span>4</span><svg viewBox="0 0 160 160" focusable="false"><circle cx="80" cy="80" r="58"></circle><circle cx="80" cy="80" r="31"></circle><path d="M80 80L132 48"></path><circle cx="80" cy="80" r="5"></circle><path class="portal-error-blip" d="M18 118L49 118L61 92L80 132L98 106L111 118L142 118"></path></svg><span>4</span></div>
+        <div class="portal-error-copy" data-error-copy="en">
+          <p class="portal-kicker">404 · INDICATOR NOT FOUND</p>
+          <h1>We followed the lead. It went nowhere.</h1>
+          <p>The page has moved, was mistyped, or is practising better OPSEC than most threat actors.</p>
+          <dl class="portal-error-assessment"><div><dt>Assessment</dt><dd>Page absent</dd></div><div><dt>Confidence</dt><dd>Annoyingly high</dd></div><div><dt>Attribution</dt><dd>Inconclusive, obviously</dd></div></dl>
+          <div class="portal-error-actions"><a class="portal-error-primary" href="/en/research/" data-language="en">Open English research</a><a href="/en/" data-language="en">English home</a></div>
+        </div>
+        <div class="portal-error-copy" data-error-copy="lt" lang="lt" hidden>
+          <p class="portal-kicker">404 · INDIKATORIUS NERASTAS</p>
+          <h1>Nusekėme pėdsaką. Jis vedė į niekur.</h1>
+          <p>Puslapis perkeltas, adresas parašytas kreivai arba jo OPSEC tiesiog geresnis nei daugelio threat actor.</p>
+          <dl class="portal-error-assessment"><div><dt>Vertinimas</dt><dd>Puslapio nėra</dd></div><div><dt>Pasitikėjimas</dt><dd>Erzinančiai aukštas</dd></div><div><dt>Atribucija</dt><dd>Aišku, kad neaiški</dd></div></dl>
+          <div class="portal-error-actions"><a class="portal-error-primary" href="/lt/tyrimai/" data-language="lt">Atverti tyrimus</a><a href="/lt/" data-language="lt">Lietuviškas puslapis</a></div>
+        </div>
+      </section>
+      <div class="portal-error-language" aria-label="Error page language"><button type="button" data-error-language="en" aria-pressed="true">EN</button><button type="button" data-error-language="lt" aria-pressed="false">LT</button></div>
     </main>
   {% else %}
     <header class="portal-header">
@@ -49,6 +67,7 @@ layout: compress
         <a href="#editions">Editions / Leidiniai</a>
         <a href="#briefing">Briefings / Apžvalgos</a>
         <a href="https://apt.hecavex.com/">APT Notes</a>
+        <a href="https://labs.hecavex.com/">Labs</a>
         <a href="#latest">Latest / Naujausia</a>
         <a href="mailto:info@hecavex.com">Contact / Kontaktai</a>
       </nav>
@@ -57,7 +76,7 @@ layout: compress
     <main id="main-content">
       <section class="portal-hero" aria-labelledby="portal-title">
         <div class="portal-hero-copy">
-          <p class="portal-kicker">CYBER THREAT INTELLIGENCE · DIGITAL INVESTIGATIONS</p>
+          <p class="portal-kicker">INDEPENDENT RESEARCH BY DEIVIDAS LIS</p>
           <h1 id="portal-title">Intelligence Beyond Indicators</h1>
           <p class="portal-lt-tagline" lang="lt">Žvalgyba už indikatorių ribų</p>
         </div>
@@ -70,13 +89,13 @@ layout: compress
             <circle cx="392" cy="25" r="5" />
           </svg>
           <div class="portal-intro">
-            <p>Independent research into the infrastructure, behaviour and people behind digital threats.</p>
+            <p>Cyber threat intelligence research into the infrastructure, code, behaviour and people behind digital threats.</p>
             <p lang="lt">Nepriklausomai tiriame infrastruktūrą, elgseną ir žmones, slypinčius už skaitmeninių grėsmių.</p>
           </div>
           <ul class="portal-credentials" aria-label="Publication profile">
             <li>Independent CTI</li>
-            <li>Vilnius · Europe</li>
-            <li>Deividas Lis</li>
+            <li>Original technical research</li>
+            <li>Deividas Lis · researcher and editor</li>
           </ul>
           <nav class="portal-hero-links" aria-label="Publication highlights">
             <a href="#latest">Latest research</a>
@@ -129,14 +148,14 @@ layout: compress
         <div class="portal-research-grid">
           {% assign all_english_posts = site.posts | where: 'lang', 'en' %}
           {% assign english_posts = '' | split: '' %}
-          {% for candidate in all_english_posts %}{% unless candidate.content_type == 'signal-brief' %}{% assign english_posts = english_posts | push: candidate %}{% endunless %}{% endfor %}
+          {% for candidate in all_english_posts %}{% if candidate.publication_class == 'primary-research' or candidate.publication_class == 'technical-assessment' %}{% assign english_posts = english_posts | push: candidate %}{% endif %}{% endfor %}
           {% for post in english_posts limit: 3 %}
             {% assign translated_post = nil %}
             {% for candidate in site.posts %}{% if candidate.lang == 'lt' and candidate.translation_key == post.translation_key %}{% assign translated_post = candidate %}{% break %}{% endif %}{% endfor %}
             {% assign card_image = post.image.thumbnail | default: post.image.path | default: post.image | default: '/assets/img/brand/hecavex-mark.svg' %}
             <article class="portal-research-card">
               {% if card_image %}<a class="portal-research-image" href="{{ post.url }}" tabindex="-1"><img src="{{ card_image }}" alt="" loading="lazy" width="640" height="360"></a>{% endif %}
-              <div class="portal-research-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time><span>{{ post.content_type | default: 'research' | replace: '_', ' ' | replace: '-', ' ' }}</span></div>
+              <div class="portal-research-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time><span>{{ site.data.publication_classes[post.publication_class].en | default: post.content_type | replace: '_', ' ' | replace: '-', ' ' }}</span></div>
               <h3 lang="en"><a href="{{ post.url }}" title="{{ post.title | xml_escape }}">{{ post.card_title | default: post.title }}</a></h3>
               {% if translated_post %}<p class="portal-research-translation" lang="lt"><a href="{{ translated_post.url }}" title="{{ translated_post.title | xml_escape }}">{{ translated_post.card_title | default: translated_post.title }}</a></p>{% endif %}
               <div class="portal-research-languages"><a href="{{ post.url }}" lang="en" data-language="en">Read in English</a>{% if translated_post %}<a href="{{ translated_post.url }}" lang="lt" data-language="lt">Skaityti lietuviškai</a>{% endif %}</div>
@@ -151,9 +170,9 @@ layout: compress
       </section>
     </main>
 
-    <footer class="portal-footer"><p>© 2026 HECAVEX · Independent cyber threat intelligence</p><nav aria-label="Footer"><a href="https://apt.hecavex.com/">APT Notes</a><a href="/lt/redakcija/">Standartai</a><a href="/en/editorial/">Standards</a><a href="/lt/privatumas/">Privatumas</a><a href="/en/privacy/">Privacy</a><a href="mailto:info@hecavex.com">info@hecavex.com</a></nav></footer>
+    <footer class="portal-footer"><p>© 2026 HECAVEX · Independent cyber threat intelligence</p><nav aria-label="Footer"><a href="https://apt.hecavex.com/">APT Notes</a><a href="https://labs.hecavex.com/">Labs</a><a href="/lt/redakcija/">Standartai</a><a href="/en/editorial/">Standards</a><a href="/lt/privatumas/">Privatumas</a><a href="/en/privacy/">Privacy</a><a href="mailto:info@hecavex.com">info@hecavex.com</a></nav></footer>
   {% endif %}
   {% unless page.url == '/404.html' %}{% include privacy-notice.html %}{% endunless %}
-  <script>document.addEventListener('click',function(e){var l=e.target.closest('[data-language]');if(l)localStorage.setItem('hecavex-language',l.dataset.language)});</script>
+  <script>document.addEventListener('click',function(e){var l=e.target.closest('[data-language]');if(l)localStorage.setItem('hecavex-language',l.dataset.language)});{% if page.url == '/404.html' %}(function(){var copies=[].slice.call(document.querySelectorAll('[data-error-copy]'));var buttons=[].slice.call(document.querySelectorAll('[data-error-language]'));function show(lang){copies.forEach(function(item){item.hidden=item.dataset.errorCopy!==lang});buttons.forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.errorLanguage===lang))});document.documentElement.lang=lang}var initial=location.pathname.indexOf('/lt/')===0?'lt':'en';show(initial);buttons.forEach(function(button){button.addEventListener('click',function(){show(button.dataset.errorLanguage)})})})();{% endif %}</script>
 </body>
 </html>

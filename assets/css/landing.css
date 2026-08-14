@@ -166,19 +166,21 @@ a:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
 
 .portal-footer p{margin:0}
 
-.portal-error{display:grid;align-content:center;min-height:100vh;width:min(720px,calc(100% - 3rem));margin:auto}
+.portal-error{display:grid;align-content:center;min-height:100vh;width:min(900px,calc(100% - 3rem));margin:auto;padding-block:3rem}
 
-.portal-error .portal-brand{margin-bottom:4rem}
+.portal-error .portal-brand{margin-bottom:2rem}
 
-.portal-error h1{margin:.5rem 0;color:var(--text);font-size:clamp(2.4rem,7vw,4.5rem);line-height:1}
+.portal-error-panel{display:grid;grid-template-columns:minmax(14rem,34%) minmax(0,1fr);gap:2.5rem;align-items:center;padding:2rem;border:1px solid var(--border);border-left:4px solid var(--ember);background:linear-gradient(135deg,var(--surface),var(--surface-2))}.portal-error-code{display:flex;align-items:center;justify-content:center;color:var(--text);font:700 clamp(3rem,8vw,6rem)/1 var(--mono)}.portal-error-code svg{width:min(10rem,32vw);height:auto}.portal-error-code circle,.portal-error-code path{fill:none;stroke:var(--border);stroke-width:2}.portal-error-code path{stroke:var(--ember)}.portal-error-code .portal-error-blip{stroke:var(--lt);stroke-width:3}.portal-error-copy[hidden]{display:none}.portal-error h1{max-width:14ch;margin:.5rem 0;color:var(--text);font-size:clamp(2.2rem,5vw,4rem);line-height:1.02}
 
 .portal-error>p:not(.portal-kicker){color:var(--muted)}
 
-.portal-error-actions{display:flex;gap:.75rem;margin-top:1.5rem}
+.portal-error-assessment{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:1.5rem 0 0;border:1px solid var(--border)}.portal-error-assessment div{min-width:0;padding:.65rem .75rem}.portal-error-assessment div+div{border-left:1px solid var(--border)}.portal-error-assessment dt{color:var(--faint);font:700 .62rem var(--mono);letter-spacing:.07em;text-transform:uppercase}.portal-error-assessment dd{margin:.22rem 0 0;color:var(--soft);font-size:.78rem}.portal-error-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem}
 
-.portal-error-actions a{padding:.65rem 1rem;border:1px solid var(--border);text-decoration:none}
+.portal-error-actions a{padding:.65rem 1rem;border:1px solid var(--border);font-size:.82rem;text-decoration:none}.portal-error-actions .portal-error-primary{border-color:var(--ember);background:var(--ember);color:var(--text);font-weight:700}
 
 .portal-error-actions a:hover{border-color:var(--ember)}
+
+.portal-error-language{display:flex;justify-content:flex-end;gap:.35rem;margin-top:.75rem}.portal-error-language button{min-width:2.6rem;padding:.35rem .5rem;border:1px solid var(--border);background:transparent;color:var(--muted);font:700 .68rem var(--mono);cursor:pointer}.portal-error-language button[aria-pressed="true"]{border-color:var(--en);color:var(--text)}
 
 @media(max-width:850px){.portal-header,.portal-hero,.portal-editions,.portal-latest,.portal-author,.portal-footer{width:calc(100% - 2rem);max-width:720px}
 
@@ -257,6 +259,8 @@ a:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
 .portal-author{margin-bottom:3rem;padding:1.35rem}
 
 .portal-footer nav{gap:.8rem}}
+
+@media(max-width:700px){.portal-error{width:calc(100% - 2rem);padding-block:1.5rem}.portal-error-panel{grid-template-columns:1fr;gap:1rem;padding:1.25rem}.portal-error-code{justify-content:flex-start}.portal-error-code svg{width:5.5rem}.portal-error-assessment{grid-template-columns:1fr}.portal-error-assessment div+div{border-top:1px solid var(--border);border-left:0}}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
 

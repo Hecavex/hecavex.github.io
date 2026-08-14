@@ -4,6 +4,8 @@ require "date"
 
 ALLOWED_LANGS = %w[en lt].freeze
 ALLOWED_CATEGORIES = %w[threat-intelligence investigations fraud-scams osint malware social-engineering ai-security information-operations tradecraft commentary identity-security data-breaches security-briefings].freeze
+ALLOWED_CONTENT_TYPES = %w[investigation malware-analysis incident-analysis technical-analysis technical-guide commentary threat-note signal-brief].freeze
+EVIDENCE_BEARING_TYPES = %w[investigation malware-analysis incident-analysis technical-analysis technical-guide].freeze
 errors = []
 warnings = []
 keys = {}
@@ -20,6 +22,15 @@ Dir.glob("_posts/**/*.{md,markdown}").sort.each do |path|
   lang = data["lang"]
   errors << "#{path}: lang must be en or lt" unless ALLOWED_LANGS.include?(lang)
   %w[title description translation_key].each { |field| errors << "#{path}: missing #{field}" if data[field].to_s.strip.empty? }
+  content_type = data["content_type"].to_s
+  errors << "#{path}: missing or invalid content_type" unless ALLOWED_CONTENT_TYPES.include?(content_type)
+  if EVIDENCE_BEARING_TYPES.include?(content_type)
+    %w[key_findings scope limitations].each do |field|
+      value = data[field]
+      missing = value.nil? || (value.respond_to?(:empty?) && value.empty?) || value.to_s.strip.empty?
+      errors << "#{path}: evidence-bearing publication missing #{field}" if missing
+    end
+  end
   key = data["translation_key"]
   if key && lang
     pair = [key, lang]

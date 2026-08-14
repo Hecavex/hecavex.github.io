@@ -1,13 +1,5 @@
-# Security Policy
+# Reporting a security issue
 
-## Supported Versions
+Please report website or deployment vulnerabilities privately to [info@hecavex.com](mailto:info@hecavex.com), or use the current contact listed in [security.txt](https://hecavex.com/.well-known/security.txt).
 
-| Version    | Supported |
-| :--------- | :-------: |
-| >= `7.0.0` |     ✓     |
-| <= `6.0.0` |     ✗     |
-
-## Reporting a Vulnerability
-
-If you find a vulnerability, please report it to `cotes.chung@gmail.com`.
-We will try our best to respond within a week. Thank you for your time!
+Do not put exploit details, credentials, personal data, malware samples or unpublished research in a public issue.

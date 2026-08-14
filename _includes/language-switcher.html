@@ -17,7 +17,7 @@
   {% if alternate %}
     <a class="hx-translation-link" href="{{ other_url }}" lang="{{ other_lang }}" hreflang="{{ other_lang }}" data-language="{{ other_lang }}">
       <i class="fa-solid fa-language" aria-hidden="true"></i>
-      {{ current_copy.translation_available }}
+      {% if other_lang == 'en' %}Read in English{% else %}Skaityti lietuviškai{% endif %}
     </a>
   {% endif %}
 {% else %}

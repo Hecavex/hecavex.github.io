@@ -4,8 +4,9 @@ layout: default
 {% assign hx = site.data.hecavex[page.lang] %}
 {% assign localized_posts = site.posts | where: 'lang', page.lang %}
 {% assign posts = '' | split: '' %}
+{% assign commentary = '' | split: '' %}
 {% assign briefings = localized_posts | where: 'content_type', 'signal-brief' %}
-{% for post in localized_posts %}{% unless post.content_type == 'signal-brief' %}{% assign posts = posts | push: post %}{% endunless %}{% endfor %}
+{% for post in localized_posts %}{% if post.publication_class == 'primary-research' or post.publication_class == 'technical-assessment' %}{% assign posts = posts | push: post %}{% elsif post.publication_class == 'commentary' %}{% assign commentary = commentary | push: post %}{% endif %}{% endfor %}
 {% assign recent = '' | split: '' %}
 {% for post in posts %}{% unless post.featured %}{% assign recent = recent | push: post %}{% endunless %}{% endfor %}
 <section class="hx-hero">
@@ -15,6 +16,7 @@ layout: default
   {% if localized_posts.first %}<p class="hx-hero-freshness"><span>{% if page.lang == 'lt' %}Naujausia publikacija{% else %}Latest publication{% endif %}</span><time datetime="{{ localized_posts.first.date | date_to_xmlschema }}">{{ localized_posts.first.date | date: '%Y-%m-%d' }}</time></p>{% endif %}
 </section>
 <section class="hx-latest"><div class="hx-section-head"><h2>{{ hx.latest_research }}</h2><a href="{% if page.lang == 'lt' %}/lt/tyrimai/{% else %}/en/research/{% endif %}">{{ hx.view_all }} →</a></div>{% include post-grid.html posts=recent limit=6 %}</section>
+{% if commentary.size > 0 %}<section class="hx-commentary-latest"><div class="hx-section-head"><div><p class="hx-eyebrow">{% if page.lang == 'lt' %}Analitinė pozicija{% else %}Analytical position{% endif %}</p><h2>{% if page.lang == 'lt' %}Naujausi komentarai{% else %}Latest commentary{% endif %}</h2><p class="hx-section-intro">{% if page.lang == 'lt' %}Argumentai apie grėsmių žvalgybos praktiką ir sprendimus, aiškiai atskirti nuo pirminių tyrimų.{% else %}Arguments on threat-intelligence practice and decisions, clearly separated from primary research.{% endif %}</p></div><a href="{% if page.lang == 'lt' %}/lt/tyrimai/#commentary{% else %}/en/research/#commentary{% endif %}">{{ hx.view_all }} →</a></div>{% include post-grid.html posts=commentary limit=2 %}</section>{% endif %}
 {% if briefings.size > 0 %}<section class="hx-latest hx-latest-briefing"><div class="hx-section-head"><div><h2>{{ hx.latest_briefing }}</h2><p class="hx-section-intro">{{ hx.briefing_explainer }}</p></div><a href="{% if page.lang == 'lt' %}/lt/apzvalgos/{% else %}/en/briefings/{% endif %}">{{ hx.all_briefings }} →</a></div>{% include signal-brief-card.html brief=briefings.first %}</section>{% endif %}
 {% include homepage-topics.html %}
 {% include homepage-labs.html %}

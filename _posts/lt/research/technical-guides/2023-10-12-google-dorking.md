@@ -2,7 +2,7 @@
 title: "OSINT galimybės: pažangioji „Google“ paieška"
 description: "Pažangūs „Google“ paieškos operatoriai padeda aptikti įprastoje paieškoje sunkiai randamą informaciją ir yra naudingi OSINT, saugumo tyrimams bei analizei."
 date: 2023-10-12 14:00:00 +0300
-last_modified_at: 2026-08-01 12:00:00 +0300
+last_modified_at: 2026-08-14 12:00:00 +0300
 lang: lt
 translation_key: google-dorking-001
 categories: [osint, tradecraft]
@@ -18,6 +18,17 @@ featured: false
 draft: false
 toc: true
 comments: false
+research_version: "2.0"
+research_status: updated
+key_findings:
+  - Pažangioji paieška daugiausia vertės suteikia tada, kai platus klausimas suskaidomas į objektus, šaltinių ribas, dokumentų tipus ir laiko intervalus.
+  - Paieškos rezultatas yra tyrimo pradinis taškas, o ne įrodymas, kol neatvertas, neišsaugotas ir kontekste neįvertintas pirminis puslapis.
+  - Operatorių palaikymas, reitingavimas ir rezultatų skaičius keičiasi, todėl reikia fiksuoti užklausą, paieškos sistemą, datą ir rastą šaltinį.
+scope: Teisėtas viešojo žiniatinklio turinio aptikimas naudojant pagrindinius paieškos operatorius OSINT ir CTI užduotims.
+limitations: Paieškos sistemos rodo nepilną ir nuolat kintantį indeksą. Nerastas rezultatas neįrodo, kad informacija ar ryšys neegzistuoja.
+updates:
+  - date: 2026-08-14
+    note: Tekstas pertvarkytas į pakartojamą OSINT rinkimo metodą, pridėtas paieškos žurnalas, įrodymų išsaugojimas ir dabartiniai operatorių apribojimai.
 ---
 
 ## Įvadas
@@ -121,3 +132,48 @@ Datos intervalas pasirinktose svetainėse:
 `cache:` operatorius istoriškai galėjo parodyti paieškos sistemos išsaugotą puslapio kopiją, tačiau jo prieinamumas ir veikimas laikui bėgant keitėsi. Tyrime verta patikrinti ir specializuotas interneto archyvavimo paslaugas.
 
 <aside class="hx-callout warning"><strong>Apribojimas</strong>Paieškos operatorių palaikymas ir rezultatų skaičius keičiasi. Prieš dokumentuojant išvadą užklausą verta pakartoti ir išsaugoti paieškos datą.</aside>
+
+## Paieškos žurnalas
+
+Jei rezultatas vėliau bus naudojamas tyrime ar analitiniame vertinime, vien nuorodos neužtenka. Reikėtų fiksuoti bent šiuos laukus:
+
+| Laukas | Ką išsaugoti |
+|---|---|
+| Tyrimo klausimas | Kokią hipotezę ar sprendimą tikrina užklausa |
+| Užklausa | Tiksli paieškos sistemai pateikta eilutė |
+| Paieškos sistema | „Google“, „Bing“ ar kitas indeksas |
+| Paieškos laikas | Data, laikas ir laiko juosta |
+| Rezultato URL | Pirminis puslapis, o ne paieškos rezultatų puslapis |
+| Išsaugojimas | Vietinė kopija, archyvo nuoroda ar ekrano kopija, kai tai teisėta |
+| Vertinimas | Kodėl šaltinis svarbus ir kiek jis patikimas |
+
+Paieškos sistemos rodomas rezultatų skaičius retai tinka kaip patikimas matavimas. Jis gali būti apytikslis, kisti tarp užklausų ir sumažėti perėjus į paskutinius puslapius. Jei išvada priklauso nuo skaičiaus, reikia surinkti, normalizuoti ir pašalinti pasikartojančius rezultatus.
+
+## Nuo rezultato iki įrodymo
+
+Rezultatas tampa naudingas tik patikrinus pirminį puslapį. Kas jį paskelbė? Kada? Ar pateikiami pirminiai dokumentai? Ar puslapis nebuvo pakeistas? Ar teiginį patvirtina kitas, nepriklausomas šaltinis?
+
+Čia ir atsiranda skirtumas tarp „radau per Google“ ir normaliai dokumentuoto OSINT darbo. Paieškos sistema padeda rasti pradines kryptis. Įrodymų vertinimo už analitiką ji neatlieka.
+
+## Dažniausios klaidos
+
+- Per anksti pridedama per daug apribojimų ir prarandami sinonimai bei naudingi šaltiniai.
+- Aukšta rezultato pozicija supainiojama su patikimumu.
+- Nieko neradus padaroma išvada, kad informacija ar ryšys neegzistuoja.
+- Naudojami nebeveikiantys operatoriai ir nepatikrinama, kaip jie elgiasi dabar.
+- Nuorodos kaupiamos neturint aiškaus tyrimo klausimo.
+- Įtartini rezultatai atveriami įprastoje darbo sistemoje, nors tam reikėtų izoliuotos tyrimo aplinkos.
+
+## Trumpas darbo modelis
+
+```text
+objektas arba išskirtinė frazė
+→ sinonimas ar alias
+→ šaltinio riba
+→ dokumento formatas
+→ laiko intervalas
+→ pirminio šaltinio išsaugojimas
+→ patikimumo ir reikšmės vertinimas
+```
+
+Operatorius galima išmokti per keliolika minučių. Sunkesnė dalis yra žinoti, kokį klausimą kiekviena užklausa tikrina, ko paieškos indeksas nerodo ir ką būtina išsaugoti, kad rezultatas vėliau išlaikytų analitinį svorį.

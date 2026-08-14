@@ -6,6 +6,7 @@
     <p class="site-subtitle mb-0">{{ site.data.hecavex[nav_lang].descriptor }}</p>
     <p class="site-byline mb-0"><a href="{% if nav_lang == 'lt' %}/lt/apie/{% else %}/en/about/{% endif %}">{{ site.data.hecavex[nav_lang].byline }}</a></p>
     {% include language-switcher.html context='sidebar' %}
+    {% include workspace-switcher.html %}
   </header>
   <nav class="flex-column flex-grow-1 w-100 ps-0" aria-label="Primary navigation"><ul class="nav">
     {% for item in site.data.navigation[nav_lang] %}

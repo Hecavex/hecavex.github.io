@@ -3,7 +3,7 @@ layout: page
 lang: lt
 translation_key: speaker-media
 title: Kibernetinio saugumo pranešėjas ir ekspertas žiniasklaidai
-description: Kvieskite Lietuvos kibernetinių grėsmių žvalgybos tyrėją ir buvusį elektroninių nusikaltimų tyrėją Deividą Lis į konferencijas, diskusijas, tinklalaides ir žiniasklaidą.
+description: Kvieskite kibernetinių grėsmių žvalgybos tyrėją, buvusį elektroninių nusikaltimų tyrėją ir HECAVEX redaktorių Deividą Lis į konferencijas, diskusijas, tinklalaides ir žiniasklaidą.
 permalink: /lt/pranesejas/
 ---
 
@@ -49,7 +49,7 @@ Jeigu komentaras reikalingas iki konkretaus redakcijos deadline'o, terminą ir t
 
 ## Trumpa biografija
 
-**Deividas Lis – Lietuvos kibernetinių grėsmių žvalgybos tyrėjas, buvęs elektroninių nusikaltimų tyrėjas ir viešas pranešėjas. Jo pagrindinės sritys – CTI, OSINT, sukčiavimo infrastruktūra, socialinė inžinerija, informacinės operacijos ir aptikimo inžinerija. Nepriklausomus dvikalbius tyrimus jis skelbia HECAVEX.**
+**Deividas Lis yra nepriklausomas kibernetinių grėsmių žvalgybos tyrėjas, buvęs elektroninių nusikaltimų tyrėjas ir viešas pranešėjas. Jo darbas apima CTI, threat hunting, malware, kibernetinių nusikaltimų infrastruktūrą, OSINT, sukčiavimą, šnipinėjimą, informacines operacijas ir aptikimo inžineriją. Nepriklausomus dvikalbius tyrimus jis skelbia HECAVEX.**
 
 Renginių organizatoriai ir redakcijos gali naudoti šią biografiją nurodydami autorių. Išsamesnę profesinę informaciją ir ankstesnius pasirodymus rasite puslapyje [Apie HECAVEX ir Deividą Lis](/lt/apie/).
 

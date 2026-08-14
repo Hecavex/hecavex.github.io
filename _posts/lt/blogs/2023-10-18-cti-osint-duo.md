@@ -1,12 +1,13 @@
 ---
-title: "OSINT ir CTI: duetas aktyviai gynybai"
-description: "Atvirųjų šaltinių žvalgyba ir kibernetinių grėsmių žvalgyba kartu padeda geriau suprasti grėsmių aplinką, anksčiau aptikti riziką ir priimti pagrįstus gynybos sprendimus."
+title: "OSINT renka. CTI padeda priimti sprendimą."
+card_title: "OSINT ir CTI nėra tas pats darbas"
+description: "Kodėl atvirųjų šaltinių rinkimas ir kibernetinių grėsmių žvalgyba yra susijusios, bet skirtingos disciplinos, ir kaip viešą informaciją paversti pagrįstu saugumo sprendimu."
 date: 2023-10-18 14:00:00 +0300
-last_modified_at: 2026-08-01 12:00:00 +0300
+last_modified_at: 2026-08-14 12:00:00 +0300
 lang: lt
 translation_key: cti-osint-duo-001
 categories: [threat-intelligence, osint]
-tags: [osint, cti, gynyba]
+tags: [osint, cti, žvalgybos-reikalavimai, analizė]
 author: deividas-lis
 content_type: commentary
 confidence: moderate

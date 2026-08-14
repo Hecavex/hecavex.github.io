@@ -1,0 +1,12 @@
+{% if site.privacy_measurement_token and site.privacy_measurement_token != empty %}
+<script>
+  (() => {
+    if (navigator.doNotTrack === '1' || window.doNotTrack === '1') return;
+    const beacon = document.createElement('script');
+    beacon.defer = true;
+    beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    beacon.dataset.cfBeacon = JSON.stringify({ token: '{{ site.privacy_measurement_token }}' });
+    document.head.appendChild(beacon);
+  })();
+</script>
+{% endif %}
