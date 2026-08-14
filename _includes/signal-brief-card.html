@@ -7,7 +7,7 @@
     <h3><a href="{{ brief.url }}">{{ brief.title }}</a></h3>
     <p>{{ brief.description }}</p>
     <ul class="hx-signal-topics" aria-label="{% if brief.lang == 'lt' %}Pagrindinės temos{% else %}Leading topics{% endif %}">{% for topic in brief.leading_topics limit: 3 %}<li>{{ topic }}</li>{% endfor %}</ul>
-    <div class="hx-signal-card-footer"><div class="hx-signal-counts"><span class="critical">{{ brief.critical_count | default: 0 }} {% if brief.lang == 'lt' %}kritiniai{% else %}critical{% endif %}</span><span class="high">{{ brief.high_count | default: 0 }} {% if brief.lang == 'lt' %}aukšti{% else %}high{% endif %}</span><span class="watch">{{ brief.watch_count | default: 0 }} {% if brief.lang == 'lt' %}stebėti{% else %}watch{% endif %}</span></div><a class="hx-signal-card-action" href="{{ brief.url }}">{% if brief.lang == 'lt' %}Skaityti apžvalgą{% else %}Read the briefing{% endif %} →</a></div>
+    <div class="hx-signal-card-footer"><div class="hx-signal-counts"><span class="critical">{{ brief.critical_count | default: 0 }} {% if brief.lang == 'lt' %}{% if brief.critical_count == 1 %}kritinis{% else %}kritiniai{% endif %}{% else %}critical{% endif %}</span><span class="high">{{ brief.high_count | default: 0 }} {% if brief.lang == 'lt' %}{% if brief.high_count == 1 %}aukštas{% else %}aukšti{% endif %}{% else %}high{% endif %}</span><span class="watch">{{ brief.watch_count | default: 0 }} {% if brief.lang == 'lt' %}{% if brief.watch_count == 1 %}stebimas{% else %}stebėti{% endif %}{% else %}watch{% endif %}</span></div><a class="hx-signal-card-action" href="{{ brief.url }}">{% if brief.lang == 'lt' %}Skaityti apžvalgą{% else %}Read the briefing{% endif %} →</a></div>
   </div>
 </article>
 {% endif %}
