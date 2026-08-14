@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">CTI Pivoting 101 analytical cycle</title>
+  <desc id="desc">A hypothesis-led intelligence cycle connects a decision need, seed, discriminating collection, typed evidence, challenge and defensible judgement.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#080d13"/><stop offset=".64" stop-color="#111a24"/><stop offset="1" stop-color="#21171b"/></linearGradient>
+    <pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse"><path d="M56 0H0V56" fill="none" stroke="#2b3947" opacity=".32"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0l10 5-10 5z" fill="#79b8ff"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/>
+  <text x="92" y="82" fill="#ff6259" font-family="Consolas,monospace" font-size="22" font-weight="700" letter-spacing="5">CTI TRADECRAFT · ANALYTICAL FIELD GUIDE</text>
+  <text x="92" y="172" fill="#f4f6f8" font-family="Arial,sans-serif" font-size="72" font-weight="700">Pivoting 101</text>
+  <text x="92" y="226" fill="#aab7c5" font-family="Arial,sans-serif" font-size="28">The method leads. Sources and tools answer specific questions.</text>
+  <g fill="none" stroke="#79b8ff" stroke-width="4" marker-end="url(#arrow)">
+    <path d="M438 422C500 320 594 277 696 285"/>
+    <path d="M904 285c104 9 193 61 246 150"/>
+    <path d="M1150 551c-56 92-144 139-246 151"/>
+    <path d="M696 702c-104-10-195-60-252-149"/>
+  </g>
+  <g font-family="Arial,sans-serif" text-anchor="middle">
+    <g transform="translate(116 356)"><rect width="322" height="196" rx="17" fill="#1f161a" stroke="#ff6259" stroke-width="3"/><text x="161" y="52" fill="#ff8179" font-family="Consolas,monospace" font-size="18">01 · REQUIREMENT</text><text x="161" y="99" fill="#f4f6f8" font-size="27" font-weight="700">Decision + hypothesis</text><text x="161" y="139" fill="#aab7c5" font-size="18">What must be decided?</text><text x="161" y="167" fill="#aab7c5" font-size="18">What would disprove H1?</text></g>
+    <g transform="translate(638 254)"><rect width="324" height="176" rx="17" fill="#121a24" stroke="#405165"/><text x="162" y="49" fill="#79b8ff" font-family="Consolas,monospace" font-size="18">02 · COLLECT</text><text x="162" y="94" fill="#f4f6f8" font-size="26" font-weight="700">Discriminating pivot</text><text x="162" y="133" fill="#aab7c5" font-size="18">Coverage · OPSEC · provenance</text></g>
+    <g transform="translate(1148 374)"><rect width="344" height="176" rx="17" fill="#121a24" stroke="#405165"/><text x="172" y="49" fill="#79b8ff" font-family="Consolas,monospace" font-size="18">03 · EVIDENCE</text><text x="172" y="94" fill="#f4f6f8" font-size="26" font-weight="700">Typed, timed edges</text><text x="172" y="133" fill="#aab7c5" font-size="18">Raw record · source · confidence</text></g>
+    <g transform="translate(638 612)"><rect width="324" height="176" rx="17" fill="#171f2a" stroke="#e5aa44" stroke-width="3"/><text x="162" y="49" fill="#e5aa44" font-family="Consolas,monospace" font-size="18">04 · CHALLENGE</text><text x="162" y="94" fill="#f4f6f8" font-size="26" font-weight="700">Competing explanation</text><text x="162" y="133" fill="#aab7c5" font-size="18">Confirm · reject · iterate · stop</text></g>
+    <g transform="translate(568 444)"><rect width="464" height="124" rx="62" fill="#18221e" stroke="#67c39a" stroke-width="3"/><text x="232" y="49" fill="#67c39a" font-family="Consolas,monospace" font-size="17">DEFENSIBLE OUTPUT</text><text x="232" y="88" fill="#f4f6f8" font-size="25" font-weight="700">Judgement · cluster · action</text></g>
+  </g>
+  <text x="92" y="842" fill="#8fa0b1" font-family="Consolas,monospace" font-size="21" letter-spacing="2">A RESULT IS NOT A RELATIONSHIP UNTIL THE ANALYST CAN EXPLAIN THE EDGE.</text>
+</svg>

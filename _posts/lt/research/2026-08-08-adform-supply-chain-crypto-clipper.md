@@ -157,7 +157,7 @@ Ankstyvas blokas dar buvo gana grubus. Jis:
 Defangintas request modelis:
 
 ```text
-hxxp://84.32.102[.]230:7744/p?h={location.hostname}&u={location.pathname}
+hxxp://84.32.102[.]230:7744/p?h={location.hostname}&u={location.pathname}Noo
 ```
 
 Bet čia yra kabliukas. Šiame variante iškoduotos BTC, ETH ir TRON pakeitimo eilutės buvo netinkamos. BTC neatitiko Bech32 checksum, ETH nebuvo validus 20 baitų hex adresas, o TRON taip pat neatitiko formato. Kodas vis tiek galėjo sugadinti vartotojo įrašą ir sukelti nesėkmingą transakciją, bet negalėjo patikimai nukreipti lėšų į veikiančią piniginę.

@@ -3,7 +3,7 @@ title: "UNIPARK Smishing: From One SMS to 126 Phishing Hosts"
 card_title: "UNIPARK Smishing: One Domain, a Much Larger Phishing Kit"
 description: "A full CTI investigation into an UNIPARK smishing lure: domain rotation, exact-hash pivots, 126 related hosts, card and PIN collection, and an NKSC sinkhole."
 date: 2026-08-11 11:30:00 +0300
-last_modified_at: 2026-08-11 11:30:00 +0300
+last_modified_at: 2026-08-14 10:30:00 +0300
 lang: en
 translation_key: unipark-smishing-campaign-infrastructure
 permalink: /en/research/unipark-smishing-campaign-infrastructure/
@@ -27,6 +27,7 @@ key_findings:
 - "The shared core bundle hash appeared in 163 URLScan records across 126 unique hostnames impersonating RingGo, EyeParking, UNIPARK, EasyPark, Q-Park and other parking brands."
 - "Of the 163 linked scans, 121 pages were delivered through Cloudflare and 42 directly from 12 AS132203 Aceville/Tencent Cloud IP addresses. All 163 contacted /console."
 - "The +63 number fits the Philippine numbering plan but is not reliable evidence of the operator's location or identity."
+- "Cisco Talos's JWR report describes strikingly similar tradecraft, but JWR-specific protocols, endpoints, session identifiers, encryption and published IOCs do not match the UNIPARK set. The evidence does not establish one campaign or operator."
 image:
   path: /assets/img/posts/2026-08-11-unipark-smishing/unipark-smishing-hero.svg
   alt: "An UNIPARK-themed smishing message leads to a newly registered domain and a reusable parking payment phishing kit"
@@ -50,6 +51,68 @@ I use **HCVX-PARKING-KIT-2026** as a temporary analytical cluster label. It is n
 > **Assessment:** confidence is high that this was an UNIPARK-themed smishing and payment-phishing campaign using a repeatedly deployed parking phishing kit. Confidence is medium that every related domain was controlled by one operator, and low for any geographic or personal attribution.
 {: .prompt-danger }
 
+## Update, 14 August 2026: is this Cisco Talos's JWR?
+
+On 13 August, [Cisco Talos published its analysis of the JWR phishing framework](https://blog.talosintelligence.com/dissecting-the-jwr-phishing-framework/). The parallels with this UNIPARK case are difficult to miss.
+
+Both frameworks:
+
+- arrive through SMS lures involving roads, parking, tolls or small administrative fees
+- use a Vue-based, multi-screen victim application
+- collect card number, expiry, CVV, PIN, OTP and device-fingerprint data
+- maintain bidirectional WebSocket communication so an operator can choose the victim's next screen in real time
+- support invalid-code, rejected-card and retry states
+- separate a reusable engine from interchangeable brand layers
+- retain Chinese-language developer or operator-facing strings
+- place some deployments in Aceville and Tencent Cloud infrastructure
+- use a `/com/` route or static assets beneath it.
+
+That is close enough to make "JWR in Lithuania" an attractive headline. It is not close enough to make it a defensible assessment. The implementation details matter more than the theme.
+
+### Where the implementations diverge
+
+| Characteristic | HCVX-PARKING-KIT-2026 / UNIPARK | Cisco Talos JWR | Assessment |
+| --- | --- | --- | --- |
+| client framework | Vue, Vite-style hashed bundles, Socket.IO and Engine.IO | Vue 2.x with Host Bridge and Content Mode | common frontend choice, not a unique code relationship |
+| real-time channel | same-origin Socket.IO on `/console` | binary WebSocket at `webSocket/QT/{sessionId}/khkjsahfjkwhakjlsdwdddddd88` | different protocol and path |
+| session identity | `uuid` and `shopHost` query values | `JWRCID` and `JWRCVV-{timestamp}-{random}-{random}` | no JWR-specific identifier in the documented UNIPARK IOCs |
+| client to server | `changleField`, `submitData`, `notice` | JWR envelopes, acknowledgements and `cvvform` | different event schema |
+| server to client | `config`, `operation` and UNIPARK state names | more than 40 `to_*`, `tip_*` and `updata_*` commands | similar purpose, different command vocabulary |
+| REST fallback | not documented in this investigation | `api/open/addClick`, `getSyncSettings`, `pollInstruction`, `addCvv`, `the_final_interface` | strong JWR markers were not found in the UNIPARK investigation |
+| worker and iframe | no documented JWR Host Bridge model | `static/js/ws-worker.js`, parent bridge and phishing iframe | different architecture |
+| encryption | AES-CBC with static client-side key material | AES-CTR through `JwrCrypto` and a new session key | different implementation |
+| anti-analysis | broad headless score and a 0.31 `isSpider` threshold | self-referential regular-expression guard and decoy variable | both resist analysis, but differently |
+| exact client hash | UNIPARK core `7068d7b0...` and other bundle hashes | four JWR SHA-256 values published by Talos | no exact match |
+
+### IOC and infrastructure comparison
+
+I compared the [JWR IOC set published by Talos](https://github.com/Cisco-Talos/IOCs/blob/main/2026/08/dissecting-the-jwr-phishing-framework.txt) with the hashes, domains and IPs documented in this investigation:
+
+```text
+exact SHA-256 overlap: 0
+exact domain overlap:  0
+exact IP overlap:      0
+```
+
+This does not prove that no relationship can exist. Published IOC sets are not complete infrastructure maps. It does mean that no exact overlap has currently been demonstrated.
+
+There is one relevant supporting infrastructure signal. Two Talos JWR addresses, `43.156.227[.]15` and `43.160.241[.]151`, fall within the `ACEVILLEPTELTD-SG` ranges `43.156.0.0/16` and `43.160.0.0/16`. Exact-hash UNIPARK deployments also appeared in those provider ranges, including `43.156.224[.]182`, `43.160.226[.]55` and `43.160.238[.]159`.
+
+That is shared cloud-provider and netblock context. It is not a shared address, server or operator. Alibaba and Tencent infrastructure can be popular across the same criminal ecosystem without every customer joining the same Telegram chat.
+
+### What the evidence supports
+
+| Judgement | Confidence | Basis |
+| --- | --- | --- |
+| UNIPARK and JWR use the same real-time, operator-driven payment-phishing tradecraft | high | SMS lures, Vue, live WebSocket control, multi-stage card, PIN and OTP collection, fingerprinting |
+| both may sit within the same broader Chinese-language PhaaS ecosystem | moderate | operational model, language residues, multi-brand architecture and partially shared provider context |
+| the UNIPARK kit is a JWR variant or shares direct code lineage | low | no exact hash or JWR-specific protocol marker and materially different implementation |
+| one operator controls both the UNIPARK and Talos campaigns | low | no shared domain, address, account, session marker, backend endpoint or other control artefact |
+
+Talos itself notes that JWR is behaviourally aligned with several other Chinese-language PhaaS families while lacking code-level implementation overlap with Lucid, Darcula and Lighthouse. The same discipline applies here: **behavioural convergence is not code lineage, and code lineage would still not establish one operator**.
+
+Until a shared JWR-specific client marker, exact artefact, backend endpoint, operator account or another rare control artefact appears, HCVX-PARKING-KIT-2026 remains a separate analytical cluster. JWR is now a valuable comparison and hunting hypothesis, not a replacement name for the cluster.
+
 ## The SMS
 
 ![Reconstruction of the supplied UNIPARK smishing message](/assets/img/posts/2026-08-11-unipark-smishing/sms-lure-reconstruction.svg)
@@ -66,6 +129,9 @@ The lure combines several familiar pressure points:
 That last instruction is not merely user support. A reply confirms that the recipient number is active. [Apple also states](https://support.apple.com/en-gb/guide/iphone/iph3f94d910d/ios) that a message can no longer be submitted through its "Report Spam" control after the user replies. I cannot prove from one screenshot that replying would make the link clickable on every iOS and carrier combination. It is, however, clearly useful to the sender.
 
 ## Method and safety boundaries
+
+> **Practical follow-up:** the separate [infrastructure pivoting 101 guide](/en/research/infrastructure-pivoting-101/) shows this case's complete workflow, PowerShell commands, URLScan queries, evidence grading and the path from one URL to a 126-host cluster.
+{: .prompt-info }
 
 I did not run the "let us click Submit and see what happens" experiment. The malicious JavaScript was **not executed** in a browser, a headless environment or Node. No form was completed, no WebSocket session was initiated and no test card data was sent to the backend.
 
@@ -411,5 +477,9 @@ I would not add Cloudflare edge addresses or `siena.nksc.lt` addresses to a bloc
 20. [EMVCo on how EMV chips resist counterfeit-card fraud](https://www.emvco.com/knowledge-hub/how-do-emv-chip-specifications-tackle-card-fraud/)
 21. [Europol on card-not-present fraud, skimming and counterfeit cards](https://www.europol.europa.eu/crime-areas/online-fraud-schemes/fraud-against-payment-systems)
 22. [URLScan record for the `ringgo.zqmk.cloud` variant](https://urlscan.io/result/019fef6c-3238-7223-9b8c-08efa2358ac9/)
+23. [Cisco Talos: Dissecting the JWR phishing framework](https://blog.talosintelligence.com/dissecting-the-jwr-phishing-framework/)
+24. [JWR IOC set published by Cisco Talos](https://github.com/Cisco-Talos/IOCs/blob/main/2026/08/dissecting-the-jwr-phishing-framework.txt)
+25. [APNIC RDAP record for Talos JWR address `43.156.227.15`](https://rdap.apnic.net/ip/43.156.227.15)
+26. [APNIC RDAP record for Talos JWR address `43.160.241.151`](https://rdap.apnic.net/ip/43.160.241.151)
 
 _This investigation documents criminal-infrastructure indicators and defensive pivots. UNIPARK, RingGo, EyeParking, EasyPark, Q-Park, NCP, Cloudflare and other legitimate providers mentioned here are not treated as participants merely because their names or infrastructure were impersonated or abused._

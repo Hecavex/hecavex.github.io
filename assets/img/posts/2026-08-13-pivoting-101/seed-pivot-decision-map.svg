@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050" role="img" aria-labelledby="title desc">
+  <title id="title">CTI seed-to-pivot decision map</title>
+  <desc id="desc">A decision map connecting URL, domain, IP, certificate, web artefact, file hash and identity seeds to high-precision pivots, corroborating pivots and common analytical traps.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1118"/>
+      <stop offset="1" stop-color="#111a26"/>
+    </linearGradient>
+    <style>
+      .title{font:700 42px Inter,Segoe UI,sans-serif;fill:#f4f7fb}.sub{font:400 19px Inter,Segoe UI,sans-serif;fill:#9fb0c4}.label{font:700 15px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:1.8px;fill:#ff6258}.head{font:700 20px Inter,Segoe UI,sans-serif;fill:#f4f7fb}.body{font:400 16px Inter,Segoe UI,sans-serif;fill:#c6d0dc}.muted{font:400 14px Inter,Segoe UI,sans-serif;fill:#8292a6}.box{fill:#111a26;stroke:#314054;stroke-width:1.5}.seed{fill:#151d28;stroke:#75b8f3;stroke-width:2}.strong{fill:#121d25;stroke:#64c6a1;stroke-width:2}.warn{fill:#21191a;stroke:#ff6258;stroke-width:1.5}.line{fill:none;stroke:#53677f;stroke-width:2}.arrow{fill:#53677f}.accent{fill:#e8a83d}
+    </style>
+  </defs>
+  <rect width="1600" height="1050" fill="url(#bg)"/>
+  <path d="M0 2H1600" stroke="#ff6258" stroke-width="4"/>
+  <text x="70" y="78" class="label">SEED → QUESTION → DISCRIMINATING PIVOT → CONTROL</text>
+  <text x="70" y="132" class="title">From what I have to what I should do next</text>
+  <text x="70" y="170" class="sub">Start with the relationship you need to test. Shared infrastructure creates candidates. Rare, time-bound artefacts confirm edges.</text>
+
+  <text x="70" y="226" class="label">SEED</text>
+  <text x="340" y="226" class="label">FIRST QUESTION</text>
+  <text x="755" y="226" class="label">HIGH-PRECISION PIVOT</text>
+  <text x="1170" y="226" class="label">CORROBORATE / DO NOT OVERCLAIM</text>
+
+  <g transform="translate(70 250)">
+    <rect class="seed" width="220" height="92" rx="3"/><text x="20" y="38" class="head">Full URL</text><text x="20" y="66" class="muted">raw + canonical</text>
+    <rect class="box" x="270" width="360" height="92" rx="3"/><text x="290" y="34" class="body">What did it redirect to, request</text><text x="290" y="59" class="body">and serve at that time?</text>
+    <rect class="strong" x="685" width="360" height="92" rx="3"/><text x="705" y="29" class="body">Redirect edge, response SHA-256,</text><text x="705" y="54" class="body">asset hashes, rare path + query schema</text><text x="705" y="78" class="muted">Preserve raw URL before normalising</text>
+    <rect class="warn" x="1100" width="360" height="92" rx="3"/><text x="1120" y="28" class="body">Corroborate with timestamped scan</text><text x="1120" y="53" class="body">or telemetry. A similar lure is not a match.</text><text x="1120" y="77" class="muted">Never expose private tokens via public scans</text>
+  </g>
+
+  <g transform="translate(70 362)">
+    <rect class="seed" width="220" height="92" rx="3"/><text x="20" y="38" class="head">Domain / host</text><text x="20" y="66" class="muted">FQDN + apex</text>
+    <rect class="box" x="270" width="360" height="92" rx="3"/><text x="290" y="34" class="body">Who registered it, where did it</text><text x="290" y="59" class="body">resolve and which URLs existed?</text>
+    <rect class="strong" x="685" width="360" height="92" rx="3"/><text x="705" y="29" class="body">RDAP events, pDNS windows, CT SANs,</text><text x="705" y="54" class="body">exact certificate / asset reuse</text><text x="705" y="78" class="muted">Track first seen, last seen and TTL</text>
+    <rect class="warn" x="1100" width="360" height="92" rx="3"/><text x="1120" y="28" class="body">Registrar, TLD, NS and ASN are context.</text><text x="1120" y="53" class="body">Require a rarer independent feature.</text><text x="1120" y="77" class="muted">Current DNS is not historical DNS</text>
+  </g>
+
+  <g transform="translate(70 474)">
+    <rect class="seed" width="220" height="92" rx="3"/><text x="20" y="38" class="head">IP / service</text><text x="20" y="66" class="muted">address + port + time</text>
+    <rect class="box" x="270" width="360" height="92" rx="3"/><text x="290" y="34" class="body">Which services and domains coexisted</text><text x="290" y="59" class="body">inside the relevant time window?</text>
+    <rect class="strong" x="685" width="360" height="92" rx="3"/><text x="705" y="29" class="body">RIR RDAP, BGP prefix, pDNS, unique</text><text x="705" y="54" class="body">banner, JA4/SSH key/certificate history</text><text x="705" y="78" class="muted">Prefer dedicated infrastructure evidence</text>
+    <rect class="warn" x="1100" width="360" height="92" rx="3"/><text x="1120" y="28" class="body">Down-weight CDN, shared hosting, NAT</text><text x="1120" y="53" class="body">and scanner artefacts.</text><text x="1120" y="77" class="muted">A /24 is not an actor boundary</text>
+  </g>
+
+  <g transform="translate(70 586)">
+    <rect class="seed" width="220" height="92" rx="3"/><text x="20" y="38" class="head">TLS certificate</text><text x="20" y="66" class="muted">DER/PEM + observation</text>
+    <rect class="box" x="270" width="360" height="92" rx="3"/><text x="290" y="34" class="body">Is the same key or certificate reused,</text><text x="290" y="59" class="body">and when was it issued or observed?</text>
+    <rect class="strong" x="685" width="360" height="92" rx="3"/><text x="705" y="29" class="body">Cert SHA-256, SPKI SHA-256, SAN set,</text><text x="705" y="54" class="body">serial + issuer, CT issuance burst</text><text x="705" y="78" class="muted">Separate issuance from deployment time</text>
+    <rect class="warn" x="1100" width="360" height="92" rx="3"/><text x="1120" y="28" class="body">Automation and shared platforms reuse</text><text x="1120" y="53" class="body">issuers and naming conventions.</text><text x="1120" y="77" class="muted">SAN overlap alone is not control</text>
+  </g>
+
+  <g transform="translate(70 698)">
+    <rect class="seed" width="220" height="92" rx="3"/><text x="20" y="38" class="head">HTML / JS / image</text><text x="20" y="66" class="muted">preserved bytes</text>
+    <rect class="box" x="270" width="360" height="92" rx="3"/><text x="290" y="34" class="body">Is it the same build, the same kit,</text><text x="290" y="59" class="body">or only visually similar?</text>
+    <rect class="strong" x="685" width="360" height="92" rx="3"/><text x="705" y="29" class="body">Exact bytes, source maps, uncommon</text><text x="705" y="54" class="body">constants, endpoint graph, DOM signature</text><text x="705" y="78" class="muted">Use fuzzy hashes only to generate candidates</text>
+    <rect class="warn" x="1100" width="360" height="92" rx="3"/><text x="1120" y="28" class="body">Templates, libraries and favicons are</text><text x="1120" y="53" class="body">widely copied. Verify code lineage.</text><text x="1120" y="77" class="muted">Screenshot similarity is low precision</text>
+  </g>
+
+  <g transform="translate(70 810)">
+    <rect class="seed" width="220" height="92" rx="3"/><text x="20" y="38" class="head">File / payload hash</text><text x="20" y="66" class="muted">exact or similarity hash</text>
+    <rect class="box" x="270" width="360" height="92" rx="3"/><text x="290" y="34" class="body">Where was this exact object delivered,</text><text x="290" y="59" class="body">and which samples share code?</text>
+    <rect class="strong" x="685" width="360" height="92" rx="3"/><text x="705" y="29" class="body">SHA-256, signer, import set, imphash,</text><text x="705" y="54" class="body">TLSH/ssdeep, delivery URL relationships</text><text x="705" y="78" class="muted">Distinguish byte identity from family similarity</text>
+    <rect class="warn" x="1100" width="360" height="92" rx="3"/><text x="1120" y="28" class="body">Do not fetch or detonate samples when</text><text x="1120" y="53" class="body">metadata answers the intelligence need.</text><text x="1120" y="77" class="muted">Filename is weak and attacker-controlled</text>
+  </g>
+
+  <g transform="translate(70 922)">
+    <rect class="seed" width="220" height="80" rx="3"/><text x="20" y="32" class="head">Identity / account</text><text x="20" y="58" class="muted">email, phone, handle, ID</text>
+    <rect class="box" x="270" width="360" height="80" rx="3"/><text x="290" y="31" class="body">Is reuse rare, controlled and temporally</text><text x="290" y="56" class="body">consistent across operations?</text>
+    <rect class="strong" x="685" width="360" height="80" rx="3"/><text x="705" y="31" class="body">Exact account or token identifier plus</text><text x="705" y="56" class="body">independent infrastructure or behaviour</text>
+    <rect class="warn" x="1100" width="360" height="80" rx="3"/><text x="1120" y="31" class="body">Compromise, resale, spoofing and false flags</text><text x="1120" y="56" class="body">remain competing explanations.</text>
+  </g>
+</svg>

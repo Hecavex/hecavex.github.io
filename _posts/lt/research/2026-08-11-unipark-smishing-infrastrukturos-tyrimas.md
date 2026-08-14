@@ -3,7 +3,7 @@ title: "UNIPARK smishing: nuo vienos SMS iki 126 phishing hostų"
 card_title: "UNIPARK smishing: vienas domenas, gerokai didesnis phishing kit'as"
 description: "Pilnas UNIPARK vardu siųstos smishing žinutės CTI tyrimas: domeno rotacija, exact-hash pivotai, 126 susiję hostai, kortelės bei PIN rinkimas ir NKSC sinkhole."
 date: 2026-08-11 11:30:00 +0300
-last_modified_at: 2026-08-11 11:30:00 +0300
+last_modified_at: 2026-08-14 10:30:00 +0300
 lang: lt
 translation_key: unipark-smishing-campaign-infrastructure
 permalink: /lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/
@@ -27,6 +27,7 @@ key_findings:
 - "Bendras core bundle hash URLScan duomenyse matytas 163 skenuose ir 126 unikaliuose hostuose, apsimetusiuose RingGo, EyeParking, UNIPARK, EasyPark, Q-Park ir kitais parkingo brand'ais."
 - "Iš 163 susietų skenų 121 puslapis buvo pateiktas per Cloudflare, o 42 tiesiogiai iš 12 AS132203 Aceville/Tencent Cloud IP. Visuose 163 matytas /console ryšys."
 - "+63 numeris rodo Filipinų numeracijos planą, bet nėra patikimas operatoriaus lokacijos ar tapatybės įrodymas."
+- "Cisco Talos aprašytas JWR framework'as labai panašus veikimo modeliu, tačiau JWR-specific protokolas, endpoint'ai, session ID, šifravimas ir publikuoti IOC nesutampa su UNIPARK rinkiniu. To nepakanka tai pačiai kampanijai ar operatoriui teigti."
 image:
   path: /assets/img/posts/2026-08-11-unipark-smishing/unipark-smishing-hero.svg
   alt: "UNIPARK vardu siunčiama smishing žinutė veda į naują domeną ir daugkartinio parkingo phishing rinkinio infrastruktūrą"
@@ -50,6 +51,68 @@ Toliau gavosi dar smagiau. Keturi pagrindiniai statiniai failai exact-hash sutap
 > **Verdiktas:** confidence yra high, kad tai UNIPARK brandą naudojanti smishing ir payment phishing kampanija bei pakartotinai deploy'inamas parkingo phishing kit'as. Confidence yra tik medium, kad visi susiję domenai valdomi vieno operatoriaus, ir low bet kokiai geografinei ar asmens attribution.
 {: .prompt-danger }
 
+## Atnaujinimas 2026-08-14: ar tai Cisco Talos aprašytas JWR?
+
+2026 m. rugpjūčio 13 d. [Cisco Talos publikavo JWR phishing framework analizę](https://blog.talosintelligence.com/dissecting-the-jwr-phishing-framework/). Skaitant jų techninį aprašymą buvo sunku nepastebėti paralelių su šituo UNIPARK atveju.
+
+Abu framework'ai:
+
+- platinami per SMS su kelių, parkingo, toll ar nedidelio administracinio mokesčio lure
+- turi Vue pagrindu veikiančią daugelio ekranų victim aplikaciją
+- renka kortelės numerį, galiojimą, CVV, PIN, OTP ir device fingerprint duomenis
+- palaiko bidirectional WebSocket ryšį, per kurį operatorius realiu laiku parenka kitą aukos ekraną
+- gali rodyti neteisingo kodo, atmestos kortelės ar pakartotinio bandymo būsenas
+- naudoja vieną bendrą engine ir keičiamus brand'o sluoksnius
+- turi kinų kalbos developer arba operator-facing string'ų
+- dalį deployment'ų laiko Aceville ir Tencent Cloud infrastruktūroje
+- naudoja `/com/` kelią ar po juo esančius statinius failus.
+
+Iš pirmo žvilgsnio atrodo labai arti. Beveik taip arti, kad norisi jau rašyti "radom JWR Lietuvoje". Būtent čia reikia sustoti ir palyginti ne temą, o implementation.
+
+### Kas techniškai nesutampa
+
+| Požymis | HCVX-PARKING-KIT-2026 / UNIPARK | Cisco Talos JWR | Vertinimas |
+| --- | --- | --- | --- |
+| client framework | Vue, Vite-style hashed bundle'ai, Socket.IO ir Engine.IO | Vue 2.x, Host Bridge ir Content Mode | bendras frontend pasirinkimas, ne unikalus code ryšys |
+| real-time channel | same-origin Socket.IO per `/console` | binary WebSocket per `webSocket/QT/{sessionId}/khkjsahfjkwhakjlsdwdddddd88` | skirtingas protocol ir path |
+| session identity | query `uuid` ir `shopHost` | `JWRCID` bei `JWRCVV-{timestamp}-{random}-{random}` | JWR-specific marker'ių UNIPARK IOC rinkinyje nėra |
+| client → server | `changleField`, `submitData`, `notice` | JWR message envelope, instruction acknowledgements ir `cvvform` | skirtinga event schema |
+| server → client | `config`, `operation` ir UNIPARK būsenų pavadinimai | daugiau nei 40 `to_*`, `tip_*` bei `updata_*` komandų | funkcija panaši, command vocabulary skiriasi |
+| REST fallback | šiame tyrime nedokumentuotas | `api/open/addClick`, `getSyncSettings`, `pollInstruction`, `addCvv`, `the_final_interface` | stiprūs JWR marker'iai UNIPARK tyrime nebuvo rasti |
+| worker ir iframe | UNIPARK bundle'uose nedokumentuotas JWR Host Bridge modelis | `static/js/ws-worker.js`, parent bridge ir phishing iframe | architektūra skiriasi |
+| šifravimas | AES-CBC su statine client-side rakto medžiaga | AES-CTR su `JwrCrypto` ir nauju session key | skirtinga implementation |
+| anti-analysis | platus headless score, `isSpider` threshold 0,31 | self-referential regex execution guard ir decoy variable | abi turi anti-analysis, bet ne tą patį |
+| exact client hash | UNIPARK core `7068d7b0...` ir kiti bundle hash'ai | keturi Talos publikuoti JWR SHA-256 | exact sutapimų nėra |
+
+### IOC ir infrastruktūros palyginimas
+
+Palyginau [Talos publikuotą JWR IOC rinkinį](https://github.com/Cisco-Talos/IOCs/blob/main/2026/08/dissecting-the-jwr-phishing-framework.txt) su šiame tyrime dokumentuotais hash, domenais ir IP:
+
+```text
+exact SHA-256 overlap: 0
+exact domain overlap:  0
+exact IP overlap:      0
+```
+
+Tai nėra įrodymas, kad ryšio negali būti. IOC sąrašai nėra pilna infrastruktūra. Bet tai tikrai nėra pagrindas sakyti, kad exact overlap jau rastas.
+
+Infrastruktūros pusėje yra vienas įdomus supporting signal. Du Talos JWR IP, `43.156.227[.]15` ir `43.160.241[.]151`, priklauso `ACEVILLEPTELTD-SG` blokams `43.156.0.0/16` ir `43.160.0.0/16`. UNIPARK exact-hash cluster'yje irgi buvo hostų tuose pačiuose provider blokuose, pavyzdžiui `43.156.224[.]182`, `43.160.226[.]55` ir `43.160.238[.]159`.
+
+Tai bendras cloud provider ir netblock kontekstas. Ne bendras IP, ne bendras serveris ir ne bendras operatorius. Alibaba bei Tencent infrastruktūra šiame kriminaliniame ecosystem'e populiari ne dėl to, kad visi klientai sėdi viename Telegram chat'e.
+
+### Ką galima teigti dabar
+
+| Teiginys | Confidence | Kodėl |
+| --- | --- | --- |
+| UNIPARK ir JWR priklauso tam pačiam real-time operator-driven payment phishing tradecraft tipui | high | SMS lure, Vue, live WebSocket control, multi-step card, PIN ir OTP flow, fingerprinting |
+| abu gali būti tos pačios platesnės Chinese-language PhaaS ekosistemos produktai | moderate | panašus veikimo modelis, kinų kalbos pėdsakai, multi-brand architektūra ir dalinai tas pats cloud provider kontekstas |
+| UNIPARK kit'as yra JWR variantas arba turi bendrą code lineage | low | nėra exact hash ar JWR-specific protocol marker'ių, o pagrindinė implementation skiriasi |
+| UNIPARK ir Talos kampaniją valdo tas pats operatorius | low | nėra bendro domeno, IP, account, session marker, backend endpoint ar kito control artefakto |
+
+Talos patys pažymi, kad JWR elgesiu panašus į kelias kitas kinų kalba veikiančias PhaaS šeimas, nors su Lucid, Darcula ir Lighthouse neturi code-level implementation overlap. Tai labai tinkama pamoka ir šitam atvejui: **behavioral convergence nėra code lineage, o code lineage dar nėra tas pats operatorius**.
+
+Kol neturime bendro JWR-specific client marker, exact asset, backend endpoint, operator account ar kito retesnio control artefakto, HCVX-PARKING-KIT-2026 palieku atskiru analitiniu cluster'iu. JWR dabar yra svarbi comparison ir hunting hipotezė, bet ne naujas šio cluster'io vardas.
+
 ## Pati SMS
 
 ![Atkurtas gautos UNIPARK smishing žinutės vaizdas](/assets/img/posts/2026-08-11-unipark-smishing/sms-lure-reconstruction.svg)
@@ -66,6 +129,9 @@ SMS naudojo kelis normalius social engineering kabliukus vienu metu:
 Paskutinis punktas nėra vien UX pagalba. Atsakymas patvirtina, kad numeris aktyvus. Be to, [Apple nurodo](https://support.apple.com/en-gb/guide/iphone/iph3f94d910d/ios), kad atrašius į žinutę jos jau nebegalima pateikti per "Report Spam" funkciją. Ar konkrečioje iOS ir operatoriaus kombinacijoje atsakymas dar ir aktyvintų nuorodą, iš vienos ekrano nuotraukos neįrodysiu. Bet pačiam sukčiui atsakymas tikrai nėra bloga žinia.
 
 ## Tyrimo metodika ir ribos
+
+> **Praktinis tęsinys:** atskirame [infrastruktūros pivoting 101 vadove](/lt/tyrimai/infrastrukturos-pivoting-101/) parodau visą šio case workflow, naudotus PowerShell ir URLScan query pavyzdžius, evidence grading ir kelią nuo vieno URL iki 126 hostų cluster'io.
+{: .prompt-info }
 
 Šį kartą nedariau "pažiūrėkim, kas bus paspaudus Submit" eksperimento. Kenkėjiškas JavaScript **nebuvo paleistas** nei naršyklėje, nei headless aplinkoje, nei su Node. Formos nebuvo pildomos, WebSocket ryšys nebuvo inicijuotas, į backend nesiunčiau nei testinių kortelių, nei šiukšlių.
 
@@ -412,5 +478,9 @@ Cloudflare edge IP ir `siena.nksc.lt` adresų į blocklist nedėčiau. Pirmi yra
 20. [EMVCo apie EMV lusto apsaugą nuo counterfeit kortelių](https://www.emvco.com/knowledge-hub/how-do-emv-chip-specifications-tackle-card-fraud/)
 21. [Europol apie card-not-present sukčiavimą, skimming ir counterfeit korteles](https://www.europol.europa.eu/crime-areas/online-fraud-schemes/fraud-against-payment-systems)
 22. [RingGo varianto `ringgo.zqmk.cloud` URLScan įrašas](https://urlscan.io/result/019fef6c-3238-7223-9b8c-08efa2358ac9/)
+23. [Cisco Talos: Dissecting the JWR phishing framework](https://blog.talosintelligence.com/dissecting-the-jwr-phishing-framework/)
+24. [Cisco Talos publikuotas JWR IOC rinkinys](https://github.com/Cisco-Talos/IOCs/blob/main/2026/08/dissecting-the-jwr-phishing-framework.txt)
+25. [APNIC RDAP objektas Talos JWR IP `43.156.227.15`](https://rdap.apnic.net/ip/43.156.227.15)
+26. [APNIC RDAP objektas Talos JWR IP `43.160.241.151`](https://rdap.apnic.net/ip/43.160.241.151)
 
 _Šis tyrimas dokumentuoja nusikalstamos infrastruktūros požymius ir gynybinius pivotus. UNIPARK, RingGo, EyeParking, EasyPark, Q-Park, NCP, Cloudflare ir kiti paminėti teisėti paslaugų teikėjai nėra laikomi kampanijos dalyviais vien todėl, kad jų vardai ar infrastruktūra buvo panaudoti arba imituoti._
