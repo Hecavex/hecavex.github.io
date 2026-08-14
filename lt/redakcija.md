@@ -9,6 +9,8 @@ permalink: /lt/redakcija/
 
 HECAVEX atskiria patvirtintus faktus, trečiųjų šalių pranešimus, analitines išvadas ir nuomonę. Užtikrintai skambantis pasakojimas nepakeičia įrodymų.
 
+Atskira [Įrodymų ir atribucijos metodika](/lt/metodika/) išsamiau aprašo teiginių tipus, šaltinių vertinimą, infrastruktūros ryšius, veikėjų naming ir indikatorių gyvavimo ciklą.
+
 ## Šaltiniai
 
 Pirmenybė teikiama pirminiams šaltiniams, techninei dokumentacijai, duomenų rinkiniams ir tiesiogiai stebėtai infrastruktūrai. Žiniasklaidos pranešimai bei antrinė analizė gali suteikti kontekstą, tačiau nėra prilyginami pirminiams įrodymams. Esminiai teiginiai turi būti susieti su šaltiniais, o neapibrėžtumas ar trūkstami įrodymai – aiškiai įvardyti.

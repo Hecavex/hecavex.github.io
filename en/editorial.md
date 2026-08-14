@@ -9,6 +9,8 @@ permalink: /en/editorial/
 
 HECAVEX distinguishes verified facts, third-party reporting, analytical inference, and opinion. A confident narrative is never a substitute for evidence.
 
+The separate [Evidence and attribution framework](/en/methodology/) describes statement types, source evaluation, infrastructure relationships, actor naming and indicator lifecycle in greater technical detail.
+
 ## Sourcing
 
 Primary sources, technical documentation, datasets, and directly observed infrastructure are preferred. Reporting and secondary analysis may provide context but are not treated as equivalent to primary evidence. Material claims should link to their sources, and uncertainty or missing evidence should be stated.

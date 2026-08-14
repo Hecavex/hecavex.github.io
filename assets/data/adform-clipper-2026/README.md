@@ -1,6 +1,12 @@
-# Adform crypto-clipper research data
+# Adform JavaScript supply-chain crypto-clipper research data
 
+Release: `v1.0.0`
 HECAVEX snapshot: 2026-08-08.
+
+Publication:
+
+- <https://hecavex.com/en/research/adform-supply-chain-crypto-clipper/>
+- <https://hecavex.com/lt/tyrimai/adform-supply-chain-crypto-clipper/>
 
 ## Files
 
@@ -10,6 +16,9 @@ HECAVEX snapshot: 2026-08-08.
 - `payload-capabilities.csv`: static-analysis mapping from each response hash to its wallet-replacement capability and public sample source.
 - `reproduction-notes.md`: byte-level reproduction of the `02ff86c7...` advanced-only response from the archived `a04461bb...` two-block response.
 - `functioning-wallet-replacement-hosts.csv`: the strict 55-host subset with at least one exact match to a functioning BTC and ETH replacement variant.
+- `sources.csv`: primary and supporting sources used to interpret the observations.
+- `evidence-manifest.csv`: SHA-256, size and purpose of every released artifact.
+- `CITATION.cff`, `CHANGELOG.md` and `LICENSE.md`: citation, version and reuse information.
 
 ## Interpretation
 
@@ -31,4 +40,10 @@ The Bitcoin and Ethereum addresses are high-confidence replacement destinations 
 - Central incident window reported by Adform: `2026-07-26T21:49:00Z` to `2026-07-27T17:16:00Z`.
 - Recommended cache-review extension: through at least `2026-08-06T23:59:59Z`, based on an observed seven-day `max-age`.
 
-Source article: <https://hecavex.com/lt/tyrimai/adform-supply-chain-crypto-clipper/>
+## Collection boundary
+
+This package contains public metadata and analyst-created structured data. It does not contain executable malicious JavaScript. URLs to third-party evidence are provided for verification, but availability can change after publication.
+
+## Versioning
+
+This directory is an immutable release. A material correction or additional collection will be issued as a new version and described in `CHANGELOG.md`.

@@ -17,6 +17,7 @@ featured: false
 draft: false
 toc: true
 comments: false
+research_bundle: https://github.com/Hecavex/research-artifacts/releases/tag/unipark-smishing-2026-v1.0.0
 scope: "Analysis of an UNIPARK-themed SMS received on 11 August 2026, static examination of its phishing application, and infrastructure pivots across DNS, certificates and public URLScan data."
 limitations: "No malicious JavaScript was executed, no forms were completed and the backend was not tested. The investigation does not identify a specific operator, count successful victims or establish the true user of the sending number."
 key_findings:

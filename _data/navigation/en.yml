@@ -11,6 +11,10 @@
   url: https://apt.hecavex.com/
   icon: fa-solid fa-database
   external: true
+- key: labs
+  url: https://labs.hecavex.com/
+  icon: fa-solid fa-flask
+  external: true
 - key: about
   url: /en/about/
   icon: fa-solid fa-circle-info

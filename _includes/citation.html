@@ -1,8 +1,43 @@
-<aside class="hx-citation" aria-labelledby="hx-citation-title">
+<aside class="hx-citation" aria-labelledby="hx-citation-title" data-citation-title="{{ page.title | escape }}" data-citation-url="{{ page.url | absolute_url }}" data-citation-date="{{ page.date | date: '%Y-%m-%d' }}" data-citation-lang="{{ page.lang }}">
   <div>
     <p class="hx-eyebrow">{% if page.lang == 'lt' %}Publikacijos įrašas{% else %}Publication record{% endif %}</p>
     <h2 id="hx-citation-title">{% if page.lang == 'lt' %}Cituoti šį darbą{% else %}Cite this work{% endif %}</h2>
     <p class="hx-citation-text">Lis, Deividas. “{{ page.title }}.” <cite>HECAVEX</cite>, {{ page.date | date: '%Y-%m-%d' }}. <a href="{{ page.url | absolute_url }}">{{ page.url | absolute_url }}</a>.</p>
   </div>
-  <div class="hx-citation-links"><a href="{% if page.lang == 'lt' %}/lt/redakcija/{% else %}/en/editorial/{% endif %}">{% if page.lang == 'lt' %}Metodika ir standartai{% else %}Methodology and standards{% endif %}</a><a href="{% if page.lang == 'lt' %}/lt/pataisymai/{% else %}/en/corrections/{% endif %}">{% if page.lang == 'lt' %}Pataisymai{% else %}Corrections{% endif %}</a></div>
+  <div class="hx-citation-links">
+    <button type="button" class="hx-citation-download" data-format="bibtex">BibTeX ↓</button>
+    <button type="button" class="hx-citation-download" data-format="ris">RIS ↓</button>
+    {% if page.research_bundle %}<a href="{{ page.research_bundle }}">{% if page.lang == 'lt' %}Tyrimo medžiaga{% else %}Research bundle{% endif %} ↓</a>{% endif %}
+    <a href="{% if page.lang == 'lt' %}/lt/metodika/{% else %}/en/methodology/{% endif %}">{% if page.lang == 'lt' %}Įrodymų metodika{% else %}Evidence methodology{% endif %}</a>
+    <a href="{% if page.lang == 'lt' %}/lt/pataisymai/{% else %}/en/corrections/{% endif %}">{% if page.lang == 'lt' %}Pataisymai{% else %}Corrections{% endif %}</a>
+  </div>
 </aside>
+<script>
+(() => {
+  const box = document.currentScript.previousElementSibling;
+  if (!box || box.dataset.citationReady === 'true') return;
+  box.dataset.citationReady = 'true';
+  const clean = value => value.replace(/[{}]/g, '').trim();
+  const slug = clean(box.dataset.citationTitle).toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 70) || 'hecavex-research';
+  box.querySelectorAll('.hx-citation-download').forEach(button => button.addEventListener('click', () => {
+    const title = clean(box.dataset.citationTitle);
+    const url = box.dataset.citationUrl;
+    const date = box.dataset.citationDate;
+    const year = date.slice(0, 4);
+    const lang = box.dataset.citationLang;
+    const key = `Lis${year}${slug.split('-').slice(0, 3).map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('')}`;
+    const bibtex = `@article{${key},\n  author = {Lis, Deividas},\n  title = {${title}},\n  journal = {HECAVEX},\n  year = {${year}},\n  date = {${date}},\n  url = {${url}},\n  language = {${lang}}\n}\n`;
+    const ris = `TY  - JOUR\nAU  - Lis, Deividas\nTI  - ${title}\nJO  - HECAVEX\nPY  - ${year}\nDA  - ${date}\nUR  - ${url}\nLA  - ${lang}\nER  - \n`;
+    const value = button.dataset.format === 'bibtex' ? bibtex : ris;
+    const extension = button.dataset.format === 'bibtex' ? 'bib' : 'ris';
+    const href = URL.createObjectURL(new Blob([value], { type: 'text/plain;charset=utf-8' }));
+    const link = document.createElement('a');
+    link.href = href;
+    link.download = `${slug}.${extension}`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(href);
+  }));
+})();
+</script>
