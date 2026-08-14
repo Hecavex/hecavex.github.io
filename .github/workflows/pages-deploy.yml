@@ -69,7 +69,9 @@ jobs:
           test -f "$site_dir/security.txt"
           grep -Fq "Canonical: https://hecavex.com/.well-known/security.txt" "$site_dir/.well-known/security.txt"
           sitemap_urls=$(grep -c "<loc>" "$site_dir/sitemap.xml")
-          test "$sitemap_urls" -le 120
+          # Leave room for legitimate bilingual publications while retaining a
+          # guardrail against accidentally indexing generated or redirect pages.
+          test "$sitemap_urls" -le 160
           ! grep -Fq "https://hecavex.com/lt/research/" "$site_dir/sitemap.xml"
           rm -f \
             "$site_dir/assets/lib/.editorconfig" \
