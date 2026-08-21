@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "time"
+
 module Hecavex
   class HomepageLastmodGenerator < Jekyll::Generator
     safe true
@@ -11,9 +13,21 @@ module Hecavex
 
         posts = site.posts.docs
         posts = posts.select { |post| post.data["lang"] == page.data["lang"] } if page.data["lang"]
-        latest = posts.filter_map { |post| post.data["last_modified_at"] || post.date }.max
-        page.data["last_modified_at"] = latest if latest
+        candidates = posts.filter_map { |post| normalized_time(post.data["last_modified_at"] || post.date) }
+        candidates << normalized_time(page.data["last_modified_at"])
+        candidates.compact!
+        page.data["last_modified_at"] = candidates.max unless candidates.empty?
       end
+    end
+
+    private
+
+    def normalized_time(value)
+      return value.to_time if value.respond_to?(:to_time)
+
+      Time.parse(value.to_s) unless value.nil?
+    rescue ArgumentError
+      nil
     end
   end
 end
