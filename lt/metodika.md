@@ -5,6 +5,7 @@ translation_key: analytical-methodology
 title: Įrodymų ir atribucijos metodika
 description: Kaip HECAVEX atskiria stebėjimus, išvadas ir vertinimus, tikrina šaltinius, vertina infrastruktūros ryšius, nustato pasitikėjimą ir taiso analitines išvadas.
 permalink: /lt/metodika/
+last_modified_at: 2026-08-21 22:30:00 +0300
 ---
 
 HECAVEX tyrimai remiasi nepilna, konkrečiu laiku surinkta ir kartais sąmoningai klaidinančia vieša informacija. Ši metodika paaiškina, kaip iš tokios medžiagos gaunamas analitinis vertinimas. Ji nereiškia, kad vieši šaltiniai gali atsakyti į kiekvieną žvalgybinį klausimą.
@@ -91,5 +92,4 @@ Kai tai saugu ir teisėta, prie tyrimo pateikiami machine-readable stebėjimai, 
 
 Nauji įrodymai gali padidinti ar sumažinti pasitikėjimą, padalinti klasterį, padaryti indikatorių nebeaktualų arba pakeisti atribuciją. Reikšmingi pakeitimai datuojami straipsnyje ar tyrimo release ir registruojami [pataisymų puslapyje](/lt/pataisymai/). Tyliai pakeisti išvadą nėra tinkamas pataisymo procesas.
 
-Šią metodiką reikia skaityti kartu su [redakciniais standartais](/lt/redakcija/).
-
+Šią metodiką reikia skaityti kartu su [redakciniais standartais](/lt/redakcija/) ir [bendru žvalgybos terminų žodynu](/lt/zodynas/), kuriame paaiškinta, kaip tos pačios sąvokos taikomos Research, Radar, APT Notes ir Labs.

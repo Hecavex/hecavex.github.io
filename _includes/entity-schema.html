@@ -2,7 +2,7 @@
 {% assign schema_description = page.description | default: site.description %}
 {% assign schema_image = page.image.path | default: page.image | default: site.social_preview_image %}
 {% assign schema_page_type = 'WebPage' %}
-{% if page.layout == 'home' or page.layout == 'research' or page.layout == 'archive-hx' or page.layout == 'taxonomy' or page.layout == 'category-hx' or page.layout == 'tag-hx' or page.translation_key == 'briefings-index' or page.layout == 'landing' %}{% assign schema_page_type = 'CollectionPage' %}{% endif %}
+{% if page.layout == 'home' or page.layout == 'research' or page.layout == 'archive-hx' or page.layout == 'taxonomy' or page.layout == 'category-hx' or page.layout == 'tag-hx' or page.translation_key == 'briefings-index' or page.translation_key == 'portfolio-projects' or page.translation_key == 'portfolio-glossary' or page.layout == 'landing' %}{% assign schema_page_type = 'CollectionPage' %}{% endif %}
 {% if page.translation_key == 'about' or page.translation_key == 'speaker-media' %}{% assign schema_page_type = 'ProfilePage' %}{% endif %}
 {% assign schema_article_type = 'Article' %}
 {% if page.content_type == 'signal-brief' %}{% assign schema_article_type = 'NewsArticle' %}{% endif %}

@@ -2,7 +2,7 @@
 <aside class="hx-privacy-notice" id="hx-privacy-notice" aria-labelledby="hx-privacy-title" hidden>
   <div>
     <strong id="hx-privacy-title">
-      {% if privacy_lang == 'lt' %}Privatumo pranešimas{% elsif privacy_lang == 'en' %}Privacy notice{% else %}Privacy / Privatumas{% endif %}
+      {% if privacy_lang == 'lt' %}Privatumas pagal dizainą{% elsif privacy_lang == 'en' %}Privacy by design{% else %}Privacy by design / Privatumas pagal dizainą{% endif %}
     </strong>
     <p>
       {% if privacy_lang == 'lt' %}
@@ -25,7 +25,7 @@
     </nav>
   </div>
   <button type="button" data-privacy-dismiss>
-    {% if privacy_lang == 'lt' %}Supratau{% elsif privacy_lang == 'en' %}Got it{% else %}Got it / Supratau{% endif %}
+    {% if privacy_lang == 'lt' %}Uždaryti{% elsif privacy_lang == 'en' %}Close{% else %}Close / Uždaryti{% endif %}
   </button>
 </aside>
 <script>
@@ -34,7 +34,7 @@
     if (!notice) return;
 
     const storageKey = 'hecavex-privacy-notice';
-    const noticeVersion = '2026-08-03';
+    const noticeVersion = '2026-08-21';
     let dismissed = false;
 
     try {

@@ -5,6 +5,7 @@ translation_key: analytical-methodology
 title: Evidence and attribution framework
 description: How HECAVEX separates observations, inferences and assessments, evaluates sources, handles infrastructure overlap, assigns confidence and corrects analytical conclusions.
 permalink: /en/methodology/
+last_modified_at: 2026-08-21 22:30:00 +0300
 ---
 
 HECAVEX publishes research from incomplete, time-bound and often adversarial public information. This framework explains how that material is converted into an assessment. It is not a claim that public sources can answer every intelligence question.
@@ -91,5 +92,4 @@ Where publication is safe and lawful, research releases include machine-readable
 
 New evidence can raise or lower confidence, split a cluster, invalidate an indicator or change an attribution. Material changes are dated in the article or research release and recorded on the [corrections page](/en/corrections/). Quietly replacing a conclusion is not an acceptable correction process.
 
-This framework should be read together with the [editorial standards](/en/editorial/).
-
+This framework should be read together with the [editorial standards](/en/editorial/) and the [shared intelligence glossary](/en/glossary/), which defines how the same terms are applied across Research, Radar, APT Notes and Labs.

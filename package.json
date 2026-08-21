@@ -12,6 +12,7 @@
     "lint:js": "eslint",
     "lint:scss": "stylelint _sass/**/*.scss",
     "lint:fix:scss": "npm run lint:scss -- --fix",
+    "audit:responsive": "node tools/audit_responsive.mjs _site",
     "test": "npm run lint:js && npm run lint:scss",
     "prepare": "husky"
   },
@@ -34,6 +35,7 @@
     "eslint": "^10.5.0",
     "globals": "^17.6.0",
     "husky": "^9.1.7",
+    "playwright-core": "^1.62.1",
     "purgecss": "^8.0.0",
     "rollup": "^4.62.2",
     "stylelint": "^17.13.0",
