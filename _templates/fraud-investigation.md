@@ -13,10 +13,11 @@ content_type: fraud-investigation
 confidence:
 tlp: clear
 research_version: "1.0"
-research_status: published
+research_status: draft
 evidence_basis: ""
 methods: []
 draft: true
+published: false
 toc: true
 comments: false
 ---

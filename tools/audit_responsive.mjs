@@ -17,6 +17,7 @@ const routes = [
   '/lt/projektai/',
   '/en/glossary/',
   '/lt/zodynas/',
+  '/en/briefings/2026-08-22/',
   '/en/research/unipark-smishing-campaign-infrastructure/'
 ];
 
@@ -193,7 +194,58 @@ try {
         };
       });
       if (!focusState.valid) fail(route, width, focusState.reason);
+      if (route !== '/' && width <= 1024) {
+        await page.keyboard.press('Tab');
+        const nextFocus = await page.evaluate(() => ({
+          id: document.activeElement?.id || '',
+          label: document.activeElement?.getAttribute('aria-label') || document.activeElement?.textContent?.trim() || ''
+        }));
+        if (nextFocus.id !== 'sidebar-trigger') {
+          fail(route, width, `closed sidebar precedes the visible menu trigger in tab order (focused ${nextFocus.id || nextFocus.label || 'unknown'})`);
+        }
+      }
       await page.evaluate(() => document.activeElement?.blur());
+
+      const searchTrigger = page.locator('#search-trigger');
+      if (await searchTrigger.count()) {
+        await searchTrigger.click();
+        const searchInput = page.locator('#search-input');
+        if (!(await searchInput.isVisible()) || !(await searchInput.evaluate((element) => document.activeElement === element))) {
+          fail(route, width, 'opening search does not expose and focus its input');
+        }
+        await page.keyboard.press('Escape');
+        if (await searchInput.isVisible()) fail(route, width, 'Escape does not close search');
+        if (!(await searchTrigger.evaluate((element) => document.activeElement === element))) {
+          fail(route, width, 'closing search does not restore focus to its trigger');
+        }
+        await searchTrigger.evaluate((element) => element.blur());
+      }
+
+      const topbarLanguage = page.locator('.hx-language--topbar');
+      if (await topbarLanguage.count()) {
+        const languageSummary = topbarLanguage.locator('summary');
+        await languageSummary.click();
+        const languageLink = topbarLanguage.locator('a').first();
+        await languageLink.focus();
+        await page.keyboard.press('Escape');
+        if (await topbarLanguage.evaluate((element) => element.open)) {
+          fail(route, width, 'Escape does not close the language disclosure');
+        }
+        if (!(await languageSummary.evaluate((element) => document.activeElement === element))) {
+          fail(route, width, 'closing the language disclosure does not restore focus to its summary');
+        }
+        await languageSummary.evaluate((element) => element.blur());
+      }
+
+      if (route === '/en/' && width === 390) {
+        await page.evaluate(() => {
+          window.__hecavexScrollOptions = null;
+          window.scrollTo = (options) => { window.__hecavexScrollOptions = options; };
+          document.getElementById('back-to-top')?.click();
+        });
+        const scrollBehavior = await page.evaluate(() => window.__hecavexScrollOptions?.behavior);
+        if (scrollBehavior !== 'auto') fail(route, width, 'back-to-top ignores the reduced-motion preference');
+      }
 
       if (route === '/') {
         if (width <= 850) {
@@ -208,18 +260,38 @@ try {
         } else if (!(await page.locator('.portal-desktop-nav').isVisible())) {
           fail(route, width, 'desktop landing-page navigation is not visible');
         }
-      } else if (width <= 849) {
+      } else if (width <= 1024) {
         const trigger = page.locator('#sidebar-trigger');
         if (!(await trigger.isVisible())) {
           fail(route, width, 'sidebar trigger is not visible');
         } else {
+          const closedState = await page.locator('#sidebar').evaluate((element) => ({
+            ariaHidden: element.getAttribute('aria-hidden'),
+            inert: element.inert
+          }));
+          if (!closedState.inert || closedState.ariaHidden !== 'true') {
+            fail(route, width, 'closed sidebar remains exposed to assistive technology or keyboard navigation');
+          }
           await trigger.click();
           const sidebarVisible = await page.locator('#sidebar').evaluate((element) => {
             const rect = element.getBoundingClientRect();
             return rect.right > 0 && rect.left < innerWidth;
           });
           if (!sidebarVisible) fail(route, width, 'sidebar did not enter the viewport after activation');
-          const projectLink = page.locator('#sidebar nav[aria-label="Primary navigation"] a[href$="/projects/"], #sidebar nav[aria-label="Primary navigation"] a[href$="/projektai/"]');
+          const openState = await page.locator('#sidebar').evaluate((element) => ({
+            ariaHidden: element.getAttribute('aria-hidden'),
+            inert: element.inert
+          }));
+          if (openState.inert || openState.ariaHidden !== null) {
+            fail(route, width, 'open sidebar is still hidden from keyboard or assistive technology');
+          }
+          const closeButton = page.locator('#sidebar-close');
+          if (!(await closeButton.isVisible()) || !(await closeButton.evaluate((element) => document.activeElement === element))) {
+            fail(route, width, 'opening the sidebar does not expose and focus its close control');
+          }
+          const triggerLabel = await trigger.getAttribute('aria-label');
+          if (!/close|uždaryti/i.test(triggerLabel || '')) fail(route, width, 'open sidebar trigger has no close label');
+          const projectLink = page.locator('#sidebar .sidebar-nav a[href$="/projects/"], #sidebar .sidebar-nav a[href$="/projektai/"]');
           if (!(await projectLink.first().isVisible())) fail(route, width, 'portfolio link is not reachable in mobile navigation');
           const workspace = page.locator('#sidebar .hx-workspace-switcher > summary');
           if (!(await workspace.isVisible())) {
@@ -230,11 +302,107 @@ try {
               fail(route, width, 'Data destination is missing from the workspace switcher');
             }
           }
+          await closeButton.click();
+          const closedAgain = await page.locator('#sidebar').evaluate((element) => ({
+            ariaHidden: element.getAttribute('aria-hidden'),
+            inert: element.inert
+          }));
+          if (!closedAgain.inert || closedAgain.ariaHidden !== 'true') {
+            fail(route, width, 'sidebar does not leave the accessibility tree after closing');
+          }
+          if (!(await trigger.evaluate((element) => document.activeElement === element))) {
+            fail(route, width, 'closing the sidebar does not restore focus to the trigger');
+          }
         }
       }
 
       await context.close();
     }
+  }
+
+  const noJavaScriptContext = await browser.newContext({
+    javaScriptEnabled: false,
+    viewport: { width: 390, height: 900 },
+    reducedMotion: 'reduce',
+    serviceWorkers: 'block'
+  });
+  const noJavaScriptPage = await noJavaScriptContext.newPage();
+  const noJavaScriptResponse = await noJavaScriptPage.goto(`${baseUrl}/en/`, { waitUntil: 'domcontentloaded' });
+  if (!noJavaScriptResponse || noJavaScriptResponse.status() !== 200) {
+    fail('/en/ (no JavaScript)', 390, `expected HTTP 200, received ${noJavaScriptResponse?.status() || 'no response'}`);
+  } else {
+    const noJavaScriptState = await noJavaScriptPage.evaluate(() => {
+      const sidebar = document.getElementById('sidebar');
+      const trigger = document.getElementById('sidebar-trigger');
+      const project = sidebar?.querySelector('.sidebar-nav a[href$="/projects/"]');
+      const rect = sidebar?.getBoundingClientRect();
+      return {
+        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        projectVisible: Boolean(project && project.getClientRects().length),
+        sidebarPosition: sidebar ? getComputedStyle(sidebar).position : null,
+        sidebarVisible: Boolean(rect && rect.right > 0 && rect.left < innerWidth),
+        triggerVisible: Boolean(trigger && trigger.getClientRects().length)
+      };
+    });
+    if (noJavaScriptState.overflow > 1) fail('/en/ (no JavaScript)', 390, 'page overflows horizontally');
+    if (!noJavaScriptState.sidebarVisible || noJavaScriptState.sidebarPosition !== 'static') {
+      fail('/en/ (no JavaScript)', 390, 'primary navigation is not presented as in-flow content');
+    }
+    if (!noJavaScriptState.projectVisible) fail('/en/ (no JavaScript)', 390, 'primary project navigation is unreachable');
+    if (noJavaScriptState.triggerVisible) fail('/en/ (no JavaScript)', 390, 'non-functional menu trigger remains visible');
+  }
+  await noJavaScriptContext.close();
+
+  for (const colorScheme of ['light', 'dark']) {
+    const contrastContext = await browser.newContext({
+      colorScheme,
+      viewport: { width: 1440, height: 900 },
+      serviceWorkers: 'block'
+    });
+    const contrastPage = await contrastContext.newPage();
+    await contrastPage.goto(`${baseUrl}/en/`, { waitUntil: 'networkidle' });
+    const contrast = await contrastPage.evaluate(() => {
+      const parse = (value) => {
+        const hex = value.trim().match(/^#([0-9a-f]{6})$/i);
+        if (hex) return [0, 2, 4].map((offset) => Number.parseInt(hex[1].slice(offset, offset + 2), 16));
+        const rgb = value.match(/rgba?\((\d+(?:\.\d+)?)[, ]+(\d+(?:\.\d+)?)[, ]+(\d+(?:\.\d+)?)/i);
+        return rgb ? rgb.slice(1, 4).map(Number) : null;
+      };
+      const luminance = (rgb) => {
+        const values = rgb.map((channel) => {
+          const value = channel / 255;
+          return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+        });
+        return 0.2126 * values[0] + 0.7152 * values[1] + 0.0722 * values[2];
+      };
+      const ratio = (foreground, background) => {
+        const foregroundLuminance = luminance(parse(foreground));
+        const backgroundLuminance = luminance(parse(background));
+        return (Math.max(foregroundLuminance, backgroundLuminance) + 0.05) /
+          (Math.min(foregroundLuminance, backgroundLuminance) + 0.05);
+      };
+      const rootStyle = getComputedStyle(document.documentElement);
+      const backgrounds = ['--hx-bg', '--hx-paper'].map((name) => rootStyle.getPropertyValue(name));
+      const secondary = ['--hx-muted', '--hx-faint'].map((name) => ({
+        name,
+        minimumRatio: Math.min(...backgrounds.map((background) => ratio(rootStyle.getPropertyValue(name), background)))
+      }));
+      const primary = document.querySelector('.hx-button--primary');
+      const primaryStyle = getComputedStyle(primary);
+      return {
+        primaryRatio: ratio(primaryStyle.color, primaryStyle.backgroundColor),
+        secondary
+      };
+    });
+    if (contrast.primaryRatio < 4.5) {
+      fail(`/en/ (${colorScheme} contrast)`, 1440, `primary button contrast is ${contrast.primaryRatio.toFixed(2)}:1`);
+    }
+    contrast.secondary.forEach(({ name, minimumRatio }) => {
+      if (minimumRatio < 4.5) {
+        fail(`/en/ (${colorScheme} contrast)`, 1440, `${name} contrast is ${minimumRatio.toFixed(2)}:1`);
+      }
+    });
+    await contrastContext.close();
   }
 } finally {
   await browser.close();
@@ -247,5 +415,5 @@ if (failures.length) {
 }
 
 console.log(
-  `Responsive audit passed: ${routes.length} pages × ${widths.length} viewports; no page overflow, clipped primary layout, obstructive privacy notice or unreachable navigation.`
+  `Responsive audit passed: ${routes.length} pages × ${widths.length} viewports plus no-JavaScript navigation and light/dark contrast; no page overflow, clipped primary layout, obstructive privacy notice or unreachable navigation.`
 );

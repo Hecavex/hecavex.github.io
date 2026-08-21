@@ -1,21 +1,14 @@
 - key: home
   url: /en/
-  icon: fa-solid fa-house
 - key: articles
   url: /en/research/
-  icon: fa-solid fa-binoculars
 - key: briefings
   url: /en/briefings/
-  icon: fa-solid fa-wave-square
 - key: projects
   url: /en/projects/
-  icon: fa-solid fa-layer-group
 - key: about
   url: /en/about/
-  icon: fa-solid fa-circle-info
 - key: speaker
   url: /en/speaker/
-  icon: fa-solid fa-microphone-lines
 - key: contact
   url: /en/contact/
-  icon: fa-solid fa-envelope

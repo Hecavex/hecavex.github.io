@@ -1,61 +1,56 @@
 # HECAVEX
 
-This repository contains [hecavex.com](https://hecavex.com), my bilingual cyber threat intelligence publication. I use it for investigations, technical analysis, short signal briefings and the occasional opinion that needed more room than a LinkedIn post.
+This repository publishes [hecavex.com](https://hecavex.com), my independent bilingual cyber threat intelligence publication. It contains investigations, technical assessments, Signal Briefs, commentary and the public record behind each research package.
 
-The site runs on Jekyll. It started from Chirpy, but most of the publishing structure and visual work is now specific to HECAVEX.
+The site is generated with Jekyll, but its presentation is owned here: the layouts in `_layouts`, components in `_includes`, and the single CSS and JavaScript entry points in `assets/css/hecavex.css` and `assets/js/site.js`. It does not load a packaged or remote Jekyll theme.
 
-## Run it locally
+## Run locally
 
-You need Ruby, Bundler and Node.js 22.
+Install Ruby, Bundler and Node.js 22, then run:
 
 ```sh
 bundle install
 npm ci
-npm run build
+npm test
 bundle exec jekyll serve --livereload
 ```
 
-Do not edit `_site`. Jekyll rebuilds it from the source files.
+Jekyll writes the generated site to `_site`; do not edit that directory.
 
-## Writing a post
+## Publish research
 
-Posts are kept in matching English and Lithuanian folders:
+English and Lithuanian posts live in matching folders:
 
 - `_posts/en/blogs/` and `_posts/lt/blogs/` for commentary
 - `_posts/en/bulletins/` and `_posts/lt/bulletins/` for Signal Briefs
 - `_posts/en/research/` and `_posts/lt/research/` for investigations and technical work
 
-Start from the nearest file in `_templates/`. Paired translations must use the same `translation_key`. Keep `draft: true` until the text, links, image description and metadata have been checked.
+Start from the closest file in `_templates`. Paired translations use the same `translation_key`. Templates set both `draft: true` and `published: false`; keep both safeguards until the copy, citations, image descriptions and metadata have been checked, then change them to `draft: false` and `published: true` for release.
 
-Research posts also carry a visible publication record. It shows the version, evidence basis, methods, confidence, TLP marking and revision history. The format is described in [docs/EDITORIAL-PACKAGES.md](docs/EDITORIAL-PACKAGES.md).
+Primary research and technical assessments include a visible publication record with stable ID, version, evidence basis, methods, confidence, TLP marking and revision history. See [Editorial packages](docs/EDITORIAL-PACKAGES.md).
 
-## Check before publishing
+## Validate a release
 
 ```sh
 bundle exec ruby tools/validate_content.rb
 npm test
-npm run build
 JEKYLL_ENV=production bundle exec jekyll build
 bundle exec ruby tools/audit_site.rb _site
-bundle exec htmlproofer _site --disable-external
+npm run audit:responsive
 ```
 
-In PowerShell, set production mode first:
+The deployment workflow runs the same content, frontend, SEO, accessibility, link and responsive checks before publishing GitHub Pages.
 
-```powershell
-$env:JEKYLL_ENV = "production"
-```
+Measurement is disabled unless `HECAVEX_ANALYTICS_TOKEN` is set. The implementation and privacy boundary are documented in [Measurement](docs/MEASUREMENT.md).
 
-The GitHub Actions workflow runs the same checks before it deploys the site. A broken internal link, incomplete social preview, malformed schema or missing accessibility label should stop the deployment instead of becoming a production surprise.
+## HECAVEX network
 
-## Measurement
+- [APT Notes](https://apt.hecavex.com) — structured threat-actor knowledge
+- [HECAVEX Labs](https://labs.hecavex.com) — research tools and datasets
+- [HECAVEX Radar](https://radar.hecavex.com) — recently observed potential phishing signals relevant to Lithuania
 
-Measurement is optional. When `HECAVEX_ANALYTICS_TOKEN` is not configured, the analytics script is not added to the site. More detail is in [docs/MEASUREMENT.md](docs/MEASUREMENT.md).
+The sites deploy independently while sharing HECAVEX identity, editorial language and cross-navigation.
 
-## Related sites
+## Licensing
 
-- [APT Notes](https://apt.hecavex.com) contains the structured threat-actor knowledge base.
-- [HECAVEX Labs](https://labs.hecavex.com) contains datasets and small browser-based research tools.
-- [HECAVEX Radar](https://radar.hecavex.com) contains recently observed, defanged potential phishing signals relevant to Lithuania.
-
-All four are separate deployments, but they share the same HECAVEX and author identity in navigation and structured data.
+Website code and templates are available under the repository's [MIT license](LICENSE), including retained attribution for historically derived portions. Editorial work, evidence, datasets, media and third-party material are governed by the terms stated with each publication or research package; the software license does not relicense them.

@@ -1,102 +1,33 @@
 ---
 layout: compress
 ---
-
-<!doctype html>
-
-{% include origin-type.html %}
-
 {% include lang.html %}
-
-<!-- `site.alt_lang` can specify a language different from the UI -->
-<html
-  lang="{{ page.lang | default: site.alt_lang | default: site.lang }}"
-  {%- if site.theme_mode == 'light' or site.theme_mode == 'dark' -%}
-    data-bs-theme="{{ site.theme_mode }}"
-  {%- endif -%}
->
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang }}">
   {% include head.html lang=lang %}
-
-  <body>
+  <body data-language="{{ page.lang | default: 'en' }}" data-layout="{{ page.layout }}">
     <a class="hx-skip-link" href="#main-content">{{ site.data.hecavex[page.lang].skip_to_content | default: 'Skip to content' }}</a>
     {% include sidebar.html lang=lang %}
-
-    <div id="main-wrapper" class="d-flex justify-content-center">
-      <div class="container d-flex flex-column px-xxl-5">
-        {% include topbar.html lang=lang %}
-
-        <div class="row flex-grow-1">
-          <main
-            id="main-content"
-            aria-label="{% if page.lang == 'lt' %}Pagrindinis turinys{% else %}Main content{% endif %}"
-            class="col-12{% if layout.panel_includes %} col-lg-11 col-xl-9{% endif %} px-md-4"
-            tabindex="-1"
-          >
-            {% if layout.layout == 'default' %}
-              {% include refactor-content.html content=content lang=lang %}
-            {% else %}
-              {{ content }}
-            {% endif %}
-          </main>
-
-          {% if layout.panel_includes %}
-            <!-- panel -->
-            <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted">
-              {% for _include in layout.panel_includes %}
-                {% assign _include_path = _include | append: '.html' %}
-                {% include {{ _include_path }} lang=lang %}
-              {% endfor %}
-            </aside>
-          {% endif %}
-        </div>
-
-        <div class="row">
-          <!-- tail -->
-          <div id="tail-wrapper" class="col-12 px-md-4">
-            {% for _include in layout.tail_includes %}
-              {% assign _include_path = _include | append: '.html' %}
-              {% include {{ _include_path }} lang=lang %}
-            {% endfor %}
-
-            {% include footer.html lang=lang %}
-          </div>
-        </div>
-
-        {% include search-results.html lang=lang %}
+    <div id="mask" class="site-mask" hidden></div>
+    <div id="main-wrapper" class="site-shell">
+      {% include topbar.html lang=lang %}
+      <div class="site-content-grid{% if layout.panel_includes %} has-panel{% endif %}">
+        <main id="main-content" tabindex="-1">
+          {{ content }}
+        </main>
+        {% if layout.panel_includes %}
+          <aside id="panel-wrapper" class="site-panel" aria-label="{% if page.lang == 'lt' %}Puslapio turinys{% else %}On this page{% endif %}">
+            {% for item in layout.panel_includes %}{% assign include_path = item | append: '.html' %}{% include {{ include_path }} lang=lang %}{% endfor %}
+          </aside>
+        {% endif %}
       </div>
-
-      <aside aria-label="Scroll to Top">
-        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow" aria-label="{{ site.data.hecavex[page.lang].back_to_top | default: 'Back to top' }}">
-          <i class="fas fa-angle-up"></i>
-        </button>
-      </aside>
+      <div id="tail-wrapper" class="site-tail">
+        {% for item in layout.tail_includes %}{% assign include_path = item | append: '.html' %}{% include {{ include_path }} lang=lang %}{% endfor %}
+        {% include footer.html lang=lang %}
+      </div>
     </div>
-
-    <div id="mask" class="d-none position-fixed w-100 h-100 z-1"></div>
-
+    <button id="back-to-top" type="button" class="back-to-top" aria-label="{{ site.data.hecavex[page.lang].back_to_top | default: 'Back to top' }}">↑</button>
     {% include privacy-notice.html %}
-
-    {% if site.pwa.enabled %}
-      {% include_cached notification.html lang=lang %}
-    {% endif %}
-
-    <!-- Embedded scripts -->
-
-    {% for _include in layout.script_includes %}
-      {% assign _include_path = _include | append: '.html' %}
-      {% include {{ _include_path }} %}
-    {% endfor %}
-
-    {% include search-loader.html lang=lang %}
-    <script>
-      document.addEventListener('click', function (event) {
-        const languageLink = event.target.closest('[data-language]');
-        if (languageLink) localStorage.setItem('hecavex-language', languageLink.dataset.language);
-
-        document.querySelectorAll('.hx-language[open]').forEach(function (switcher) {
-          if (!switcher.contains(event.target)) switcher.removeAttribute('open');
-        });
-      });
-    </script>
+    {% for item in layout.script_includes %}{% assign include_path = item | append: '.html' %}{% include {{ include_path }} %}{% endfor %}
   </body>
 </html>

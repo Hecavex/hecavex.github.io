@@ -1,10 +1,16 @@
-{% assign tl = page.lang | default: 'en' %}{% assign tx = site.data.hecavex[tl] %}
-<header id="topbar-wrapper" class="flex-shrink-0" aria-label="Top bar"><div id="topbar" class="d-flex align-items-center justify-content-between px-lg-3 h-100">
-  <nav id="breadcrumb" aria-label="Breadcrumb"><span><a href="/{{ tl }}/">{{ tx.home }}</a></span>{% unless page.layout == 'home' %}<span>{{ page.title }}</span>{% endunless %}</nav>
-  <button type="button" id="sidebar-trigger" class="btn btn-link" aria-label="Menu"><i class="fas fa-bars fa-fw"></i></button>
-  <div id="topbar-title">{% if page.layout == 'home' %}HECAVEX{% else %}{{ page.title }}{% endif %}</div>
-  <div class="hx-topbar-language">{% include language-switcher.html context='topbar' %}</div>
-  <button type="button" id="search-trigger" class="btn btn-link" aria-label="{{ tx.search }}"><i class="fas fa-search fa-fw"></i></button>
-  <search id="search" class="align-items-center ms-3 ms-lg-0"><i class="fas fa-search fa-fw"></i><input class="form-control" id="search-input" type="search" aria-label="{{ tx.search }}" autocomplete="off" placeholder="{{ tx.search_hint }}"></search>
-  <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">{% if tl == 'lt' %}Atšaukti{% else %}Cancel{% endif %}</button>
-</div></header>
+{% assign top_lang = page.lang | default: 'en' %}{% assign top_copy = site.data.hecavex[top_lang] %}
+<header id="topbar-wrapper" class="site-topbar">
+  <div id="topbar">
+    <button type="button" id="sidebar-trigger" class="topbar-button menu-button" aria-label="{% if top_lang == 'lt' %}Atverti meniu{% else %}Open menu{% endif %}" aria-controls="sidebar" aria-expanded="false" data-open-label="{% if top_lang == 'lt' %}Atverti meniu{% else %}Open menu{% endif %}" data-close-label="{% if top_lang == 'lt' %}Uždaryti meniu{% else %}Close menu{% endif %}"><span aria-hidden="true">☰</span></button>
+    <a class="topbar-wordmark" href="/{{ top_lang }}/">HECAVEX</a>
+    <nav id="breadcrumb" aria-label="Breadcrumb"><a href="/{{ top_lang }}/">{{ top_copy.home }}</a>{% unless page.layout == 'home' %}<span aria-hidden="true">/</span><span>{{ page.title }}</span>{% endunless %}</nav>
+    <div class="topbar-actions">
+      {% include language-switcher.html context='topbar' %}
+      <button type="button" id="search-trigger" class="topbar-button" aria-label="{{ top_copy.search }}" aria-controls="search-panel" aria-expanded="false"><span aria-hidden="true">⌕</span><span>{{ top_copy.search }}</span></button>
+    </div>
+  </div>
+  <section id="search-panel" class="site-search-panel" aria-label="{{ top_copy.search }}" hidden>
+    <div class="search-field"><label for="search-input">{{ top_copy.search }}</label><input id="search-input" type="search" autocomplete="off" placeholder="{{ top_copy.search_hint }}"><button type="button" id="search-cancel">{% if top_lang == 'lt' %}Uždaryti{% else %}Close{% endif %}</button></div>
+    <div id="search-results" aria-live="polite"></div>
+  </section>
+</header>

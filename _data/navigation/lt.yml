@@ -1,21 +1,14 @@
 - key: home
   url: /lt/
-  icon: fa-solid fa-house
 - key: articles
   url: /lt/tyrimai/
-  icon: fa-solid fa-binoculars
 - key: briefings
   url: /lt/apzvalgos/
-  icon: fa-solid fa-wave-square
 - key: projects
   url: /lt/projektai/
-  icon: fa-solid fa-layer-group
 - key: about
   url: /lt/apie/
-  icon: fa-solid fa-circle-info
 - key: speaker
   url: /lt/pranesejas/
-  icon: fa-solid fa-microphone-lines
 - key: contact
   url: /lt/kontaktai/
-  icon: fa-solid fa-envelope

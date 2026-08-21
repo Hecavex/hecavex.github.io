@@ -1,27 +1,30 @@
-<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
-  {% assign nav_lang = page.lang | default: 'en' %}
-  <header class="profile-wrapper">
-    <a href="/{{ nav_lang }}/" id="avatar" aria-label="HECAVEX — {{ site.data.hecavex[nav_lang].home }}"><img src="{{ '/assets/img/brand/hecavex-mark.svg' | relative_url }}" width="72" height="72" alt=""></a>
-    <a class="site-title d-block" href="/{{ nav_lang }}/">HECAVEX</a>
-    <p class="site-subtitle mb-0">{{ site.data.hecavex[nav_lang].descriptor }}</p>
-    <p class="site-byline mb-0"><a href="{% if nav_lang == 'lt' %}/lt/apie/{% else %}/en/about/{% endif %}">{{ site.data.hecavex[nav_lang].byline }}</a></p>
+{% assign nav_lang = page.lang | default: 'en' %}
+<aside id="sidebar" class="site-sidebar" aria-label="{% if nav_lang == 'lt' %}Pagrindinė navigacija{% else %}Primary navigation{% endif %}">
+  <button type="button" id="sidebar-close" class="sidebar-close" aria-label="{% if nav_lang == 'lt' %}Uždaryti meniu{% else %}Close menu{% endif %}"><span aria-hidden="true">×</span></button>
+  <div class="sidebar-identity">
+    <a class="sidebar-brand" href="/{{ nav_lang }}/" aria-label="HECAVEX — {{ site.data.hecavex[nav_lang].home }}">
+      <img src="{{ '/assets/img/brand/hecavex-mark.svg' | relative_url }}" width="48" height="48" alt="">
+      <span><strong>HECAVEX</strong><small>{{ site.data.hecavex[nav_lang].descriptor }}</small></span>
+    </a>
+    <p class="sidebar-byline"><a href="{% if nav_lang == 'lt' %}/lt/apie/{% else %}/en/about/{% endif %}">{{ site.data.hecavex[nav_lang].byline }}</a></p>
+  </div>
+  <nav aria-label="{% if nav_lang == 'lt' %}Pagrindinė navigacija{% else %}Primary navigation{% endif %}" class="sidebar-nav">
+    <ol>
+      {% for item in site.data.navigation[nav_lang] %}
+        {% assign active = false %}
+        {% if page.url == item.url %}{% assign active = true %}{% endif %}
+        {% if item.key == 'briefings' and page.content_type == 'signal-brief' %}{% assign active = true %}{% endif %}
+        {% if item.key == 'articles' and page.layout == 'post' and page.content_type != 'signal-brief' %}{% assign active = true %}{% endif %}
+        <li{% if active %} class="active"{% endif %}><a href="{{ item.url }}"{% if active %} aria-current="page"{% endif %}><span aria-hidden="true">0{{ forloop.index }}</span><strong>{{ site.data.hecavex[nav_lang][item.key] }}</strong></a></li>
+      {% endfor %}
+    </ol>
+  </nav>
+  <div class="sidebar-tools">
     {% include language-switcher.html context='sidebar' %}
     {% include workspace-switcher.html %}
-  </header>
-  <nav class="flex-column flex-grow-1 w-100 ps-0" aria-label="Primary navigation"><ul class="nav">
-    {% for item in site.data.navigation[nav_lang] %}
-      {% assign nav_active = false %}
-      {% if page.url == item.url %}{% assign nav_active = true %}{% endif %}
-      {% if item.key == 'briefings' and page.content_type == 'signal-brief' %}{% assign nav_active = true %}{% endif %}
-      {% if item.key == 'articles' and page.layout == 'post' and page.content_type != 'signal-brief' %}{% assign nav_active = true %}{% endif %}
-      <li class="nav-item{% if nav_active %} active{% endif %}"><a href="{{ item.url }}" class="nav-link"{% if nav_active %} aria-current="page"{% endif %}{% if item.external %} rel="external"{% endif %}><i class="fa-fw {{ item.icon }}"></i><span>{{ site.data.hecavex[nav_lang][item.key] | upcase }}{% if item.external %} <span class="hx-nav-external" aria-hidden="true">↗</span>{% endif %}</span></a></li>
-    {% endfor %}
-  </ul></nav>
-  <div class="sidebar-bottom d-flex flex-wrap align-items-center w-100">
-    {% unless site.theme_mode == 'light' or site.theme_mode == 'dark' %}
-      <div class="btn-group dropup"><button type="button" class="btn btn-link nav-link hx-sidebar-control" aria-label="{{ site.data.hecavex[nav_lang].theme_mode }}" id="mode-toggle" data-bs-toggle="dropdown"><i class="fa-regular fa-sun" data-theme-mode="light" aria-hidden="true"></i><i class="fa-regular fa-moon" data-theme-mode="dark" aria-hidden="true"></i><i class="fa-solid fa-display" data-theme-mode="system" aria-hidden="true"></i><span>{{ site.data.hecavex[nav_lang].theme_short }}</span></button>
-      <ul class="dropdown-menu rounded-3 mb-1 p-1"><li><button class="dropdown-item" type="button" data-theme-mode="light">{{ site.data.hecavex[nav_lang].light }}</button></li><li><button class="dropdown-item" type="button" data-theme-mode="dark">{{ site.data.hecavex[nav_lang].dark }}</button></li><li><button class="dropdown-item" type="button" data-theme-mode="system">{{ site.data.hecavex[nav_lang].system }}</button></li></ul></div>
-    {% endunless %}
-    <a class="hx-sidebar-control" href="/{{ nav_lang }}/feed.xml" aria-label="RSS"><i class="fa-solid fa-rss" aria-hidden="true"></i><span>RSS</span></a>
+    <div class="sidebar-actions">
+      <button type="button" id="mode-toggle" class="sidebar-control" aria-label="{{ site.data.hecavex[nav_lang].theme_mode }}"><span aria-hidden="true">◐</span> {{ site.data.hecavex[nav_lang].theme_short }}</button>
+      <a class="sidebar-control" href="/{{ nav_lang }}/feed.xml"><span aria-hidden="true">↳</span> RSS</a>
+    </div>
   </div>
 </aside>

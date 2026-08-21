@@ -1,13 +1,8 @@
 {% assign workspace_lang = page.lang | default: 'en' %}
 <details class="hx-language hx-workspace-switcher">
-  <summary>
-    <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
-    <span class="hx-language-label">{% if workspace_lang == 'lt' %}Sritis{% else %}Workspace{% endif %}</span>
-    <strong>{% if workspace_lang == 'lt' %}Tyrimai{% else %}Research{% endif %}</strong>
-    <i class="fa-solid fa-chevron-down hx-language-chevron" aria-hidden="true"></i>
-  </summary>
+  <summary><span>{% if workspace_lang == 'lt' %}HECAVEX sritys{% else %}HECAVEX network{% endif %}</span><span aria-hidden="true">⌄</span></summary>
   <div class="hx-language-menu">
-    <a href="/{% if workspace_lang == 'lt' %}lt/tyrimai/{% else %}en/research/{% endif %}"{% unless page.translation_key == 'portfolio-projects' %} aria-current="page"{% endunless %}><span>{% if workspace_lang == 'lt' %}Tyrimai{% else %}Research{% endif %}</span><small>MAIN</small></a>
+    <a href="/{% if workspace_lang == 'lt' %}lt/tyrimai/{% else %}en/research/{% endif %}" aria-current="page"><span>{% if workspace_lang == 'lt' %}Tyrimai{% else %}Research{% endif %}</span><small>MAIN</small></a>
     <a href="https://radar.hecavex.com/"><span>Radar</span><small>SIGNALS</small></a>
     <a href="https://apt.hecavex.com/"><span>APT Notes</span><small>ACTORS</small></a>
     <a href="https://labs.hecavex.com/"><span>Labs</span><small>TOOLS</small></a>

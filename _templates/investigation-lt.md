@@ -13,7 +13,7 @@ content_type: investigation
 confidence:
 tlp: clear
 research_version: "1.0"
-research_status: published
+research_status: draft
 evidence_basis: ""
 methods: []
 image:
@@ -21,6 +21,7 @@ image:
   alt:
 featured: false
 draft: true
+published: false
 toc: true
 comments: false
 ---

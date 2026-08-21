@@ -1,52 +1,6 @@
-<!-- Post sharing snippet -->
-
-<div class="share-wrapper d-flex align-items-center">
-  <span class="share-label text-muted">{{ site.data.locales[include.lang].post.share }}</span>
-  <span class="share-icons">
-    {% capture title %}{{ page.title }} - {{ site.title }}{% endcapture %}
-    {% assign title = title | uri_escape %}
-    {% assign url = page.url | absolute_url | url_encode %}
-
-    {% for share in site.data.share.platforms -%}
-      {%- capture tooltip -%}
-        data-bs-toggle="tooltip" data-bs-placement="top" title="{{ share.type }}" aria-label="{{ share.type }}"
-      {%- endcapture -%}
-
-      {% if share.type == 'Mastodon' %}
-        <script defer type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/share-to-mastodon/+esm"></script>
-        <button class="btn text-start" {{ tooltip }}>
-          <share-to-mastodon
-            class="share-mastodon"
-            message="{{ title }}"
-            url="{{ url }}"
-            {%- if share.instances -%}
-              customInstanceList="{{ share.instances | jsonify | xml_escape }}"
-            {%- endif %}
-          >
-            <i class="fa-fw {{ share.icon }}"></i>
-          </share-to-mastodon>
-        </button>
-
-        {% continue %}
-      {% endif %}
-
-      {% assign link = share.link | replace: 'TITLE', title | replace: 'URL', url %}
-
-      <a href="{{ link }}" target="_blank" rel="noopener" {{ tooltip }}>
-        <i class="fa-fw {{ share.icon }}"></i>
-      </a>
-    {% endfor %}
-
-    <button
-      id="copy-link"
-      aria-label="Copy link"
-      class="btn small"
-      data-bs-toggle="tooltip"
-      data-bs-placement="top"
-      title="{{ site.data.locales[include.lang].post.button.share_link.title }}"
-      data-title-succeed="{{ site.data.locales[include.lang].post.button.share_link.succeed }}"
-    >
-      <i class="fa-fw fas fa-link pe-none fs-6"></i>
-    </button>
-  </span>
+<div class="hx-share">
+  <strong>{% if page.lang == 'lt' %}Dalytis{% else %}Share{% endif %}</strong>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" target="_blank" rel="noopener">LinkedIn</a>
+  <a href="mailto:?subject={{ page.title | uri_escape }}&body={{ page.url | absolute_url | url_encode }}">Email</a>
+  <button id="copy-link" type="button" data-success="{% if page.lang == 'lt' %}Nukopijuota{% else %}Copied{% endif %}">{{ site.data.hecavex[page.lang].copy_link }}</button>
 </div>

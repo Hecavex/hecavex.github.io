@@ -1,71 +1,40 @@
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5f7">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0f14">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover"
-  >
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f0ea">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0e12">
 
-  {%- capture seo_tags -%}
-    {% seo title=false %}
-  {%- endcapture -%}
+  {%- capture seo_tags -%}{% seo title=false %}{%- endcapture -%}
   {% assign seo_tags = seo_tags | strip_json_ld %}
-
-  <!-- Setup Open Graph image -->
-
-  {% if page.image %}
-    {% assign src = page.image.path | default: page.image %}
-
-    {% unless src contains '://' %}
-      {%- capture img_url -%}
-        {% include media-url.html src=src subpath=page.media_subpath absolute=true %}
-      {%- endcapture -%}
-
-      {%- capture old_url -%}{{ src | absolute_url }}{%- endcapture -%}
-      {%- capture new_url -%}{{ img_url }}{%- endcapture -%}
-
-      {% assign seo_tags = seo_tags | replace: old_url, new_url %}
-    {% endunless %}
-
-  {% elsif site.social_preview_image %}
-    {%- capture img_url -%}
-      {% include media-url.html src=site.social_preview_image absolute=true %}
-    {%- endcapture -%}
-
-    {%- capture og_image -%}
-      <meta property="og:image" content="{{ img_url }}" />
-    {%- endcapture -%}
-
-    {%- capture twitter_image -%}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta property="twitter:image" content="{{ img_url }}" />
-    {%- endcapture -%}
-
-    {% assign old_meta_clip = '<meta name="twitter:card" content="summary" />' %}
-    {% assign new_meta_clip = og_image | append: twitter_image %}
-    {% assign seo_tags = seo_tags | replace: old_meta_clip, new_meta_clip %}
-  {% endif %}
-
   {% assign hx_lang = page.lang | default: 'en' %}
-  {% capture generated_og_locale %}<meta property="og:locale" content="{{ hx_lang }}" />{% endcapture %}
-  {% capture localized_og_locale %}<meta property="og:locale" content="{{ site.data.hecavex[hx_lang].locale }}" />{% endcapture %}
-  {% assign seo_tags = seo_tags | replace: generated_og_locale, localized_og_locale %}
-  {% if hx_lang == 'lt' and page.image == nil %}{% assign seo_tags = seo_tags | replace: 'hecavex-default-en.png', 'hecavex-default-lt.png' %}{% endif %}
-  {% if page.layout == 'post' %}
-    {% capture generated_publisher %}"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"{{ site.logo | absolute_url }}"},"name":"Deividas Lis"}{% endcapture %}
-    {% capture hecavex_publisher %}"publisher":{"@type":"Organization","@id":"{{ site.url }}/#organization","name":"HECAVEX","url":"{{ site.url }}/","logo":{"@type":"ImageObject","url":"{{ site.logo | absolute_url }}"}}{% endcapture %}
-    {% assign seo_tags = seo_tags | replace: generated_publisher, hecavex_publisher %}
+  {% if page.image %}
+    {% assign image_source = page.image.path | default: page.image %}
+    {% unless image_source contains '://' %}
+      {% capture image_url %}{% include media-url.html src=image_source subpath=page.media_subpath absolute=true %}{% endcapture %}
+      {% assign generated_image_url = image_source | absolute_url %}
+      {% assign seo_tags = seo_tags | replace: generated_image_url, image_url %}
+    {% endunless %}
+  {% elsif site.social_preview_image %}
+    {% assign image_url = site.social_preview_image | absolute_url %}
+    {% capture image_meta %}<meta property="og:image" content="{{ image_url }}"><meta name="twitter:card" content="summary_large_image"><meta property="twitter:image" content="{{ image_url }}">{% endcapture %}
+    {% assign seo_tags = seo_tags | replace: '<meta name="twitter:card" content="summary" />', image_meta %}
   {% endif %}
+  {% capture generated_locale %}<meta property="og:locale" content="{{ hx_lang }}" />{% endcapture %}
+  {% capture localized_locale %}<meta property="og:locale" content="{{ site.data.hecavex[hx_lang].locale }}" />{% endcapture %}
+  {% assign seo_tags = seo_tags | replace: generated_locale, localized_locale %}
+  {% if hx_lang == 'lt' and page.image == nil %}{% assign seo_tags = seo_tags | replace: 'hecavex-default-en.png', 'hecavex-default-lt.png' %}{% endif %}
   {{ seo_tags }}
+
+  <title>{% if page.seo_title %}{{ page.seo_title }}{% elsif page.layout == 'home' %}{{ site.title }} — {{ site.data.hecavex[hx_lang].descriptor }}{% else %}{{ page.title }} | {{ site.title }}{% endif %}</title>
   {% include hreflang.html %}
   {% if alternate %}<meta property="og:locale:alternate" content="{{ site.data.hecavex[alternate.lang].locale }}">{% endif %}
-  {% assign hx_social_alt = page.image.alt | default: page.title | default: site.title %}
-  <meta property="og:image:alt" content="{{ hx_social_alt | escape }}">
-  <meta name="twitter:image:alt" content="{{ hx_social_alt | escape }}">
+  {% assign social_alt = page.image.alt | default: page.title | default: site.title %}
+  <meta property="og:image:alt" content="{{ social_alt | escape }}">
+  <meta name="twitter:image:alt" content="{{ social_alt | escape }}">
   <meta property="og:image:width" content="{{ page.image.width | default: 1200 }}">
   <meta property="og:image:height" content="{{ page.image.height | default: 630 }}">
   <meta name="robots" content="{{ page.robots | default: 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' }}">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   {% if page.layout == 'post' %}
     <meta name="author" content="Deividas Lis">
     <link rel="author" href="{% if hx_lang == 'lt' %}{{ '/lt/apie/' | absolute_url }}{% else %}{{ '/en/about/' | absolute_url }}{% endif %}">
@@ -73,97 +42,21 @@
     {% if primary_category %}<meta property="article:section" content="{{ site.data.taxonomy[primary_category][hx_lang] | default: primary_category | escape }}">{% endif %}
     {% for tag in page.tags %}<meta property="article:tag" content="{{ tag | escape }}">{% endfor %}
   {% endif %}
-  <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  {%- if site.social.fediverse_handle %}
-    <!-- Fediverse handle/creator -->
-    <meta name="fediverse:creator" content="{{ site.social.fediverse_handle }}">
-  {% endif %}
-
-  <title>
-    {%- if page.seo_title -%}
-      {{- page.seo_title -}}
-    {%- else -%}
-    {%- unless page.layout == 'home' -%}
-      {%- capture title -%}
-        {%- if page.collection == 'tabs' -%}
-          {%- assign tab_key = page.title | downcase -%}
-          {{- site.data.locales[include.lang].tabs[tab_key] -}}
-        {%- else -%}
-          {{- page.title -}}
-        {%- endif -%}
-      {%- endcapture -%}
-      {{- title | append: ' | ' -}}
-    {%- endunless -%}
-    {{- site.title -}}
-    {%- endif -%}
-  </title>
-
-  {% include_cached favicons.html %}
-
-  <!-- Resource Hints -->
-  {% unless site.assets.self_host.enabled %}
-    {% for hint in site.data.origin.cors.resource_hints %}
-      {% for link in hint.links %}
-        <link rel="{{ link.rel }}" href="{{ hint.url }}" {{ link.opts | join: ' ' }}>
-      {% endfor %}
-    {% endfor %}
-  {% endunless %}
-
-  <!-- Bootstrap -->
-  {% unless jekyll.environment == 'production' %}
-    <link rel="stylesheet" href="{{ site.data.origin.cors.bootstrap.css }}">
-  {% endunless %}
-
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ '/assets/css/:THEME.css' | replace: ':THEME', site.theme | relative_url }}">
-
-  <!-- Web Font -->
-  <link rel="stylesheet" href="{{ site.data.origin[type].webfonts | relative_url }}">
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ site.data.origin[type].fontawesome.css | relative_url }}">
-
-  <!-- 3rd-party Dependencies -->
-
-  {% if site.toc and page.toc %}
-    <link rel="stylesheet" href="{{ site.data.origin[type].toc.css | relative_url }}">
-  {% endif %}
-
-  {% if page.layout == 'post' or page.layout == 'page' or page.layout == 'home' %}
-    <link rel="stylesheet" href="{{ site.data.origin[type]['lazy-polyfill'].css | relative_url }}">
-  {% endif %}
-
-  {% if page.layout == 'page' or page.layout == 'post' %}
-    <!-- Image Popup -->
-    <link rel="stylesheet" href="{{ site.data.origin[type].glightbox.css | relative_url }}">
-  {% endif %}
-
-  <!-- Scripts -->
-
-  <script src="{{ '/assets/js/dist/theme.min.js' | relative_url }}"></script>
-
-  {% include js-selector.html lang=lang %}
-
-  {% if jekyll.environment == 'production' %}
-    <!-- PWA -->
-    {% if site.pwa.enabled %}
-      <script
-        defer
-        src="{{ '/app.min.js' | relative_url }}?baseurl={{ site.baseurl | default: '' }}&register={{ site.pwa.cache.enabled }}"
-      ></script>
-    {% endif %}
-
-    <!-- Web Analytics -->
-    {% for analytics in site.analytics %}
-      {% capture str %}{{ analytics }}{% endcapture %}
-      {% assign platform = str | split: '{' | first %}
-      {% if site.analytics[platform].id and site.analytics[platform].id != empty %}
-        {% include analytics/{{ platform }}.html %}
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-
+  {% include favicons.html %}
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="{{ '/assets/css/hecavex.css' | relative_url }}">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('hecavex-theme');
+        if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      } catch (_) { /* System preference remains available when storage is blocked. */ }
+    }());
+  </script>
+  {% if page.mermaid %}<script defer src="https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.min.js"></script>{% endif %}
+  <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
+  {% if page.math %}<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4.1.2/tex-mml-chtml.js"></script>{% endif %}
   {% include metadata-hook.html %}
   {% include entity-schema.html %}
   {% if jekyll.environment == 'production' %}{% include privacy-measurement.html %}{% endif %}

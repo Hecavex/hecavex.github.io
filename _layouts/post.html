@@ -5,125 +5,24 @@ panel_includes:
 tail_includes:
   - related-posts
   - post-nav
-script_includes:
-  - comment
 ---
-
 {% include lang.html %}
-
-{% include toc-status.html %}
-
-<article class="px-1{% if page.content_type %} hx-post--{{ page.content_type }}{% endif %}" data-toc="{{ enable_toc }}">
-  <header>
-    <h1 data-toc-skip>{{ page.title }}</h1>
-    {% if page.description %}
-      <p class="post-desc fw-light mb-4">{{ page.description }}</p>
-    {% endif %}
-
-    <div class="post-meta text-muted">
-      {% include language-switcher.html context='article' %}
-      {% include intelligence-meta.html %}
-      <!-- published date -->
-      <span>
-        {{ site.data.locales[lang].post.posted }}
-        {% include datetime.html date=page.date tooltip=true lang=lang %}
-      </span>
-
-      <!-- lastmod date -->
-      {% if page.last_modified_at and page.last_modified_at != page.date %}
-        <span>
-          {{ site.data.locales[lang].post.updated }}
-          {% include datetime.html date=page.last_modified_at tooltip=true lang=lang %}
-        </span>
-      {% endif %}
-
-      {% if page.image %}
-        {% capture src %}src="{{ page.image.path | default: page.image }}"{% endcapture %}
-        {% capture class %}class="preview-img{% if page.image.no_bg %}{{ ' no-bg' }}{% endif %}"{% endcapture %}
-        {% capture alt %}alt="{{ page.image.alt | xml_escape | default: "Preview Image" }}"{% endcapture %}
-
-        {% if page.image.lqip %}
-          {%- capture lqip -%}lqip="{{ page.image.lqip }}"{%- endcapture -%}
-        {% endif %}
-
-        <div class="mt-3 mb-3">
-          <img {{ src }} {{ class }} {{ alt }} w="1200" h="630" loading="eager" fetchpriority="high" decoding="async" {{ lqip }}>
-          {%- if page.image.alt -%}
-            <figcaption class="text-center pt-2 pb-2">{{ page.image.alt }}</figcaption>
-          {%- endif -%}
-        </div>
-      {% endif %}
-
-      <div class="d-flex justify-content-between">
-        <!-- author(s) -->
-        <span>
-          {% if page.author %}
-            {% assign authors = page.author %}
-          {% elsif page.authors %}
-            {% assign authors = page.authors %}
-          {% endif %}
-
-          {{ site.data.locales[lang].post.written_by }}
-
-          <em>
-            {% if authors %}
-              {% for author in authors %}
-                {% assign author_url = site.data.authors[author].url %}
-                {% if author == 'deividas-lis' and page.lang == 'lt' %}{% assign author_url = '/lt/apie/' %}{% endif %}
-                {% if author_url -%}
-                  <a href="{{ author_url }}">{{ site.data.authors[author].name }}</a>
-                {%- else -%}
-                  {{ site.data.authors[author].name }}
-                {%- endif %}
-                {% unless forloop.last %}{{ '</em>, <em>' }}{% endunless %}
-              {% endfor %}
-            {% else %}
-              <a href="{{ site.social.links[0] }}">{{ site.social.name }}</a>
-            {% endif %}
-          </em>
-        </span>
-
-        <div>
-          <!-- pageviews -->
-          {% if site.pageviews.provider and site.analytics[site.pageviews.provider].id %}
-            <span>
-              <em id="pageviews">
-                <i class="fas fa-spinner fa-spin small"></i>
-              </em>
-              {{ site.data.locales[lang].post.pageview_measure }}
-            </span>
-          {% endif %}
-
-          <!-- read time -->
-          {% include read-time.html content=content prompt=true lang=lang %}
-        </div>
-      </div>
+<article class="hx-article{% if page.content_type %} hx-article--{{ page.content_type }}{% endif %}">
+  <header class="hx-article-head">
+    {% include language-switcher.html context='article' %}
+    <p class="hx-eyebrow">{{ site.data.publication_classes[page.publication_class][page.lang] | default: site.data.content_types[page.content_type][page.lang] | default: 'HECAVEX Research' }}</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="post-desc">{{ page.description }}</p>{% endif %}
+    <div class="hx-article-meta">
+      <span>{% if page.lang == 'lt' %}Paskelbta{% else %}Published{% endif %} <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y-%m-%d' }}</time></span>
+      {% if page.last_modified_at and page.last_modified_at != page.date %}<span>{% if page.lang == 'lt' %}Atnaujinta{% else %}Updated{% endif %} <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: '%Y-%m-%d' }}</time></span>{% endif %}
+      <span>{% include read-time.html content=content prompt=true lang=lang %}</span>
+      <span>{% if page.lang == 'lt' %}Autorius{% else %}By{% endif %} <a href="{% if page.lang == 'lt' %}/lt/apie/{% else %}/en/about/{% endif %}">Deividas Lis</a></span>
     </div>
+    {% include intelligence-meta.html %}
+    {% if page.image %}<figure class="hx-article-hero"><img src="{{ page.image.path | default: page.image }}" alt="{{ page.image.alt | default: '' | escape }}" width="1200" height="630" loading="eager" fetchpriority="high">{% if page.image.alt %}<figcaption>{{ page.image.alt }}</figcaption>{% endif %}</figure>{% endif %}
   </header>
-
-  {% if enable_toc %}
-    <div id="toc-bar" class="d-flex align-items-center justify-content-between invisible">
-      <span class="label text-truncate">{{ page.title }}</span>
-      <button type="button" class="toc-trigger btn me-1" aria-label="{{ site.data.locales[lang].panel.toc }}">
-        <i class="fa-solid fa-list-ul fa-fw"></i>
-      </button>
-    </div>
-
-    <button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm">
-      <span class="label ps-2 pe-1">{{- site.data.locales[lang].panel.toc -}}</span>
-      <i class="fa-solid fa-angle-right fa-fw"></i>
-    </button>
-
-    <dialog id="toc-popup" class="p-0">
-      <div class="header d-flex flex-row align-items-center justify-content-between">
-        <div class="label text-truncate py-2 ms-4">{{- page.title -}}</div>
-        <button id="toc-popup-close" type="button" class="btn-close btn-sm mx-3" aria-label="Close"></button>
-      </div>
-      <div id="toc-popup-content" class="px-4 py-3 pb-4"></div>
-    </dialog>
-  {% endif %}
-
-  <div class="content">
+  <div class="content hx-article-body">
     {% include signal-brief-meta.html %}
     {% include editorial-summary.html %}
     {% include research-package.html %}
@@ -134,62 +33,12 @@ script_includes:
   {% include update-history.html %}
   {% include citation.html %}
   {% assign has_translation = false %}{% for candidate in site.posts %}{% if candidate.translation_key == page.translation_key and candidate.lang != page.lang %}{% assign has_translation = true %}{% endif %}{% endfor %}
-  {% unless has_translation %}<p class="hx-translation-note"><i class="fa-solid fa-language" aria-hidden="true"></i> {{ site.data.hecavex[page.lang].translation_unavailable }}</p>{% endunless %}
+  {% unless has_translation %}<p class="hx-translation-note">{{ site.data.hecavex[page.lang].translation_unavailable }}</p>{% endunless %}
   {% include subscribe-panel.html %}
-
-  <div class="post-tail-wrapper text-muted">
-    <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
-      <!-- categories -->
-      {% if page.categories.size > 0 %}
-        <div class="post-meta">
-          <i class="far fa-folder-open fa-fw me-1"></i>
-          {% for category in page.categories %}
-            <a href="{% if page.lang == 'lt' %}/lt/kategorijos/{% else %}/en/categories/{% endif %}{{ category }}/">{{ site.data.taxonomy[category][page.lang] | default: category }}</a>
-            {%- unless forloop.last -%},{%- endunless -%}
-          {% endfor %}
-        </div>
-      {% endif %}
-
-      <!-- "Edit this post" link -->
-      {% include post-edit.html lang=lang %}
-    </div>
-
-    <!-- tags -->
-    {% if page.tags.size > 0 %}
-      <div class="post-tags">
-        <i class="fa fa-tags fa-fw me-1"></i>
-        {% for tag in page.tags %}
-          <a
-            href="{% if page.lang == 'lt' %}/lt/zymos/{% else %}/en/tags/{% endif %}{{ tag | slugify: 'latin' }}/"
-            class="post-tag no-text-decoration"
-          >
-            {{- tag -}}
-          </a>
-        {% endfor %}
-      </div>
-    {% endif %}
-
-    <div
-      class="
-        post-tail-bottom
-        d-flex justify-content-between align-items-center mt-5 pb-2
-      "
-    >
-      <div class="license-wrapper">
-        {% if site.data.locales[lang].copyright.license.template %}
-          {% capture _replacement %}
-        <a href="{{ site.data.locales[lang].copyright.license.link }}">
-          {{ site.data.locales[lang].copyright.license.name }}
-        </a>
-        {% endcapture %}
-
-          {{ site.data.locales[lang].copyright.license.template | replace: ':LICENSE_NAME', _replacement }}
-        {% endif %}
-      </div>
-
-      {% include post-sharing.html lang=lang %}
-    </div>
-    <!-- .post-tail-bottom -->
-  </div>
-  <!-- div.post-tail-wrapper -->
+  <footer class="hx-article-footer">
+    {% if page.categories.size > 0 %}<div class="hx-taxonomy-row"><strong>{% if page.lang == 'lt' %}Kategorijos{% else %}Categories{% endif %}</strong>{% for category in page.categories %}<a href="{% if page.lang == 'lt' %}/lt/kategorijos/{% else %}/en/categories/{% endif %}{{ category }}/">{{ site.data.taxonomy[category][page.lang] | default: category }}</a>{% endfor %}</div>{% endif %}
+    {% if page.tags.size > 0 %}<div class="hx-taxonomy-row"><strong>{% if page.lang == 'lt' %}Žymos{% else %}Tags{% endif %}</strong>{% for tag in page.tags %}<a href="{% if page.lang == 'lt' %}/lt/zymos/{% else %}/en/tags/{% endif %}{{ tag | slugify: 'latin' }}/">{{ tag }}</a>{% endfor %}</div>{% endif %}
+    {% include post-sharing.html lang=lang %}
+    <p class="hx-content-license">{% if page.lang == 'lt' %}Jei nenurodyta kitaip, šios publikacijos autorinis tekstas platinamas pagal <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Cituojamai trečiųjų šalių medžiagai ir tyrimo artefaktams gali būti taikomos atskiros sąlygos.{% else %}Unless stated otherwise, the author's text in this publication is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Cited third-party material and research artefacts may have separate terms.{% endif %}</p>
+  </footer>
 </article>

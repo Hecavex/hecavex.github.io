@@ -3,26 +3,45 @@ layout: default
 ---
 {% assign hx = site.data.hecavex[page.lang] %}
 {% assign localized_posts = site.posts | where: 'lang', page.lang %}
-{% assign posts = '' | split: '' %}
+{% assign research_posts = '' | split: '' %}
 {% assign commentary = '' | split: '' %}
 {% assign briefings = localized_posts | where: 'content_type', 'signal-brief' %}
-{% for post in localized_posts %}{% if post.publication_class == 'primary-research' or post.publication_class == 'technical-assessment' %}{% assign posts = posts | push: post %}{% elsif post.publication_class == 'commentary' %}{% assign commentary = commentary | push: post %}{% endif %}{% endfor %}
-{% assign recent = '' | split: '' %}
-{% for post in posts %}{% unless post.featured %}{% assign recent = recent | push: post %}{% endunless %}{% endfor %}
-<section class="hx-hero">
-  <p class="hx-eyebrow">{{ hx.descriptor }}</p><h1>{{ hx.tagline }}</h1><p>{{ hx.supporting }}</p>
-  <p class="hx-hero-author">{% if page.lang == 'lt' %}Nepriklausomas leidinys, kurį kuria{% else %}An independent publication by{% endif %} <a href="{% if page.lang == 'lt' %}/lt/apie/{% else %}/en/about/{% endif %}">Deividas Lis</a></p>
-  <a class="hx-button" href="{% if page.lang == 'lt' %}/lt/tyrimai/{% else %}/en/research/{% endif %}">{{ hx.all_articles }} →</a>
-  {% if localized_posts.first %}<p class="hx-hero-freshness"><span>{% if page.lang == 'lt' %}Naujausia publikacija{% else %}Latest publication{% endif %}</span><time datetime="{{ localized_posts.first.date | date_to_xmlschema }}">{{ localized_posts.first.date | date: '%Y-%m-%d' }}</time></p>{% endif %}
+{% for post in localized_posts %}{% if post.publication_class == 'primary-research' or post.publication_class == 'technical-assessment' %}{% assign research_posts = research_posts | push: post %}{% elsif post.publication_class == 'commentary' %}{% assign commentary = commentary | push: post %}{% endif %}{% endfor %}
+{% assign lead = research_posts.first %}
+{% assign recent = '' | split: '' %}{% for post in research_posts offset: 1 limit: 4 %}{% assign recent = recent | push: post %}{% endfor %}
+
+<section class="hx-hero" aria-labelledby="home-title">
+  <div class="hx-hero-copy">
+    <p class="hx-eyebrow">HECAVEX / {{ page.lang | upcase }} · {{ hx.edition }}</p>
+    <h1 id="home-title">{{ hx.tagline }}</h1>
+    <p class="hx-hero-deck">{{ hx.supporting }}</p>
+    <p class="hx-hero-author">{% if page.lang == 'lt' %}Nepriklausomas Deivido Lis leidinys apie grėsmių žvalgybą, techninius tyrimus ir skaitmeninių grėsmių infrastruktūrą.{% else %}An independent publication by Deividas Lis on threat intelligence, technical investigations and the infrastructure behind digital threats.{% endif %}</p>
+    <div class="hx-hero-actions"><a class="hx-button hx-button--primary" href="{% if page.lang == 'lt' %}/lt/tyrimai/{% else %}/en/research/{% endif %}">{{ hx.all_articles }}</a><a href="{% if page.lang == 'lt' %}/lt/metodika/{% else %}/en/methodology/{% endif %}">{% if page.lang == 'lt' %}Kaip atliekami tyrimai{% else %}How the research is done{% endif %} <span aria-hidden="true">→</span></a></div>
+  </div>
+  <dl class="hx-hero-index">
+    <div><dt>{% if page.lang == 'lt' %}Dėmesys{% else %}Focus{% endif %}</dt><dd>CTI · OSINT · malware · fraud</dd></div>
+    <div><dt>{% if page.lang == 'lt' %}Leidėjas{% else %}Publisher{% endif %}</dt><dd>Deividas Lis</dd></div>
+    <div><dt>{% if page.lang == 'lt' %}Prieiga{% else %}Access{% endif %}</dt><dd>{% if page.lang == 'lt' %}Vieša · be registracijos{% else %}Public · no account{% endif %}</dd></div>
+    {% if localized_posts.first %}<div><dt>{% if page.lang == 'lt' %}Atnaujinta{% else %}Updated{% endif %}</dt><dd><time datetime="{{ localized_posts.first.date | date_to_xmlschema }}">{{ localized_posts.first.date | date: '%Y-%m-%d' }}</time></dd></div>{% endif %}
+  </dl>
 </section>
-<section class="hx-latest"><div class="hx-section-head"><h2>{{ hx.latest_research }}</h2><a href="{% if page.lang == 'lt' %}/lt/tyrimai/{% else %}/en/research/{% endif %}">{{ hx.view_all }} →</a></div>{% include post-grid.html posts=recent limit=6 %}</section>
-{% if commentary.size > 0 %}<section class="hx-commentary-latest"><div class="hx-section-head"><div><p class="hx-eyebrow">{% if page.lang == 'lt' %}Analitinė pozicija{% else %}Analytical position{% endif %}</p><h2>{% if page.lang == 'lt' %}Naujausi komentarai{% else %}Latest commentary{% endif %}</h2><p class="hx-section-intro">{% if page.lang == 'lt' %}Argumentai apie grėsmių žvalgybos praktiką ir sprendimus, aiškiai atskirti nuo pirminių tyrimų.{% else %}Arguments on threat-intelligence practice and decisions, clearly separated from primary research.{% endif %}</p></div><a href="{% if page.lang == 'lt' %}/lt/tyrimai/#commentary{% else %}/en/research/#commentary{% endif %}">{{ hx.view_all }} →</a></div>{% include post-grid.html posts=commentary limit=2 %}</section>{% endif %}
-{% if briefings.size > 0 %}<section class="hx-latest hx-latest-briefing"><div class="hx-section-head"><div><h2>{{ hx.latest_briefing }}</h2><p class="hx-section-intro">{{ hx.briefing_explainer }}</p></div><a href="{% if page.lang == 'lt' %}/lt/apzvalgos/{% else %}/en/briefings/{% endif %}">{{ hx.all_briefings }} →</a></div>{% include signal-brief-card.html brief=briefings.first %}</section>{% endif %}
-{% include homepage-topics.html %}
-{% include homepage-radar.html %}
-{% include homepage-labs.html %}
-{% assign featured = posts | where: 'featured', true %}{% if featured.size > 0 %}<section class="hx-featured"><div class="hx-section-head"><div><h2>{{ hx.featured_research }}</h2><p class="hx-section-intro">{{ hx.selected_explainer }}</p></div></div>{% include post-grid.html posts=featured limit=3 %}</section>{% endif %}
-{% include homepage-media.html %}
+
+{% if lead %}
+<section class="hx-lead-story" aria-labelledby="latest-research-title">
+  <div class="hx-section-head"><div><p class="hx-eyebrow">{% if page.lang == 'lt' %}Naujausias darbas{% else %}Latest work{% endif %}</p><h2 id="latest-research-title">{{ hx.latest_research }}</h2></div><a href="{% if page.lang == 'lt' %}/lt/tyrimai/{% else %}/en/research/{% endif %}">{{ hx.view_all }} <span aria-hidden="true">→</span></a></div>
+  <article class="hx-lead-card">
+    <a class="hx-lead-image" href="{{ lead.url }}" aria-label="{{ lead.title | escape }}">{% if lead.image %}<img src="{{ lead.image.thumbnail | default: lead.image.path | default: lead.image }}" alt="" width="960" height="540" loading="eager" fetchpriority="high">{% else %}<img src="/assets/img/brand/hecavex-mark.svg" alt="" width="320" height="320">{% endif %}</a>
+    <div class="hx-lead-copy"><p class="hx-card-meta"><span>{{ site.data.publication_classes[lead.publication_class][page.lang] | default: site.data.content_types[lead.content_type][page.lang] }}</span><time datetime="{{ lead.date | date_to_xmlschema }}">{{ lead.date | date: '%Y-%m-%d' }}</time></p><h3><a href="{{ lead.url }}">{{ lead.card_title | default: lead.title }}</a></h3><p>{{ lead.description }}</p><a class="hx-text-link" href="{{ lead.url }}">{{ hx.read_more }} <span aria-hidden="true">→</span></a></div>
+  </article>
+  {% if recent.size > 0 %}<div class="hx-home-recent">{% include post-grid.html posts=recent limit=4 %}</div>{% endif %}
+</section>
+{% endif %}
+
+<section class="hx-home-briefing" aria-label="{% if page.lang == 'lt' %}Dabartiniai signalai ir Radar{% else %}Current signals and Radar{% endif %}">
+  {% if briefings.first %}<div><div class="hx-section-head"><div><p class="hx-eyebrow">{% if page.lang == 'lt' %}Dabartiniai signalai{% else %}Current signals{% endif %}</p><h2>{{ hx.latest_briefing }}</h2></div><a href="{% if page.lang == 'lt' %}/lt/apzvalgos/{% else %}/en/briefings/{% endif %}">{{ hx.all_briefings }} <span aria-hidden="true">→</span></a></div>{% include signal-brief-card.html brief=briefings.first %}</div>{% endif %}
+  <aside class="hx-radar-note"><p class="hx-eyebrow">HECAVEX RADAR</p><h2>{% if page.lang == 'lt' %}Galimi apsimetimo domenai Lietuvoje{% else %}Potential impersonation domains relevant to Lithuania{% endif %}</h2><p>{% if page.lang == 'lt' %}Viešas, tik skaitymui skirtas signalų sąrašas. Įrašai yra tyrimo kandidatai, o ne kenkėjiškumo nuosprendžiai.{% else %}A public, read-only signal index. Listings are research candidates, not verdicts of maliciousness.{% endif %}</p><dl><div><dt>{% if page.lang == 'lt' %}Būsena{% else %}Status{% endif %}</dt><dd>{% if page.lang == 'lt' %}Eksperimentinis tyrimų projektas{% else %}Experimental research project{% endif %}</dd></div><div><dt>{% if page.lang == 'lt' %}Metodas{% else %}Method{% endif %}</dt><dd>{% if page.lang == 'lt' %}Atviri šaltiniai · įrodymai rodomi atskirai{% else %}Open sources · evidence shown separately{% endif %}</dd></div></dl><div class="hx-radar-actions"><a class="hx-button hx-button--primary" href="https://radar.hecavex.com/">{% if page.lang == 'lt' %}Atverti Radar{% else %}Open Radar{% endif %} <span aria-hidden="true">↗</span></a><a href="https://radar.hecavex.com/methodology/">{% if page.lang == 'lt' %}Metodika{% else %}Methodology{% endif %}</a></div></aside>
+</section>
+
+<section class="hx-network" aria-labelledby="network-title"><div class="hx-section-head"><div><p class="hx-eyebrow">HECAVEX NETWORK</p><h2 id="network-title">{% if page.lang == 'lt' %}Tyrimas, duomenys ir praktiniai įrankiai{% else %}Research, data and practical tools{% endif %}</h2><p class="hx-section-intro">{% if page.lang == 'lt' %}Vienas leidinys, kelios aiškiai atskirtos darbo erdvės.{% else %}One publication, with clearly separated research workspaces.{% endif %}</p></div><a href="{% if page.lang == 'lt' %}/lt/projektai/{% else %}/en/projects/{% endif %}">{{ hx.projects }} <span aria-hidden="true">→</span></a></div><div class="hx-network-grid"><a href="https://apt.hecavex.com/"><span>01</span><strong>APT Notes</strong><small>{% if page.lang == 'lt' %}Struktūruotos grėsmių veikėjų pastabos{% else %}Structured threat-actor notes{% endif %}</small></a><a href="https://labs.hecavex.com/"><span>02</span><strong>Labs</strong><small>{% if page.lang == 'lt' %}Naršyklėje veikiantys tyrimų įrankiai{% else %}Browser-based research tools{% endif %}</small></a><a href="https://labs.hecavex.com/data/"><span>03</span><strong>Data</strong><small>{% if page.lang == 'lt' %}Cituojami tyrimų duomenų rinkiniai{% else %}Citable research datasets{% endif %}</small></a></div></section>
+
 {% include homepage-trust.html %}
-{% include latest-apt-notes.html %}
-{% include subscribe-panel.html %}

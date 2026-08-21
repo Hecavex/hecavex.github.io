@@ -150,6 +150,15 @@ Dir.glob(File.join(root, "**", "*.html")).sort.each do |html|
   end
 end
 
+Dir.glob(File.join(root, "**", "*.xml")).sort.each do |xml|
+  begin
+    Nokogiri::XML(File.read(xml, encoding: "UTF-8")) { |config| config.strict }
+  rescue Nokogiri::XML::SyntaxError => error
+    relative = xml.delete_prefix(root).tr("\\", "/")
+    errors << "#{relative}: invalid XML (#{error.message.lines.first.strip})"
+  end
+end
+
 sitemap_path = File.join(root, "sitemap.xml")
 if File.file?(sitemap_path)
   sitemap = File.read(sitemap_path, encoding: "UTF-8")
@@ -206,9 +215,29 @@ unless inline_scripts.empty?
   end
 end
 
+owned_stylesheet = File.join(root, "assets", "css", "hecavex.css")
+if File.file?(owned_stylesheet)
+  css = File.read(owned_stylesheet, encoding: "UTF-8")
+  hx_classes = documents.values.flat_map do |document|
+    document.css("[class]").flat_map { |node| node["class"].to_s.split.grep(/\Ahx-/) }
+  end.uniq.sort
+  structural_classes = %w[
+    hx-author-proof hx-briefings-head hx-research-head hx-tag-index hx-topic-head hx-workspace-switcher
+  ]
+  unstyled = hx_classes.reject do |class_name|
+    exact_selector = css.match?(/\.#{Regexp.escape(class_name)}(?![a-zA-Z0-9_-])/)
+    base_class = class_name.split("--", 2).first
+    styled_modifier = class_name.include?("--") && css.match?(/\.#{Regexp.escape(base_class)}(?![a-zA-Z0-9_-])/)
+    exact_selector || styled_modifier || structural_classes.include?(class_name)
+  end
+  errors << "owned stylesheet has no selector for: #{unstyled.join(', ')}" unless unstyled.empty?
+else
+  errors << "owned stylesheet is missing"
+end
+
 if errors.any?
   warn errors.uniq.join("\n")
   exit 1
 end
 
-puts "Site audit passed: SEO, consolidated schema, social metadata, accessibility structure, links, fragments and assets."
+puts "Site audit passed: SEO, schema, social metadata, accessibility, links, fragments, XML, assets and owned component styles."

@@ -29,7 +29,6 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
-          submodules: true
           persist-credentials: false
 
       - name: Setup Pages
@@ -45,17 +44,14 @@ jobs:
       - name: Validate localized content
         run: bundle exec ruby tools/validate_content.rb
 
-      - name: Sync latest APT Notes entry
-        run: bundle exec ruby tools/sync_apt_notes.rb
-
       - name: Setup Node
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: 22
           cache: npm
 
-      - name: Build theme assets
-        run: npm ci && npm run build
+      - name: Check owned frontend assets
+        run: npm ci && npm test
 
       - name: Build site
         run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
@@ -74,26 +70,16 @@ jobs:
           # guardrail against accidentally indexing generated or redirect pages.
           test "$sitemap_urls" -le 160
           ! grep -Fq "https://hecavex.com/lt/research/" "$site_dir/sitemap.xml"
-          rm -f \
-            "$site_dir/assets/lib/.editorconfig" \
-            "$site_dir/assets/lib/.git" \
-            "$site_dir/assets/lib/.gitignore" \
-            "$site_dir/assets/lib/.prettierignore" \
-            "$site_dir/assets/lib/package.json" \
-            "$site_dir/assets/css/jekyll-theme-chirpy.css.map"
-          test ! -f "$site_dir/assets/lib/package.json"
-          test ! -f "$site_dir/assets/css/jekyll-theme-chirpy.css.map"
-          ! grep -Fq "sourceMappingURL=" "$site_dir/assets/css/jekyll-theme-chirpy.css"
+          test -f "$site_dir/assets/css/hecavex.css"
+          test -f "$site_dir/assets/js/site.js"
+          test ! -e "$site_dir/assets/lib"
+          ! find "$site_dir" -iname '*chirpy*' -print -quit | grep -q .
           unexpected_hidden=$(find "$site_dir" -mindepth 1 -name '.*' ! -path "$site_dir/.well-known" ! -path "$site_dir/.well-known/*" -print -quit)
           test -z "$unexpected_hidden"
           touch "$site_dir/.nojekyll"
 
       - name: Test site
-        run: |
-          bundle exec ruby tools/audit_site.rb _site
-          bundle exec htmlproofer _site \
-            \-\-disable-external \
-            \-\-ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
+        run: bundle exec ruby tools/audit_site.rb _site
 
       - name: Test responsive layout and navigation
         run: npm run audit:responsive

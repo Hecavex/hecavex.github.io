@@ -3,6 +3,6 @@
   <div><span>{% if page.lang == 'lt' %}Numeris{% else %}Issue{% endif %}</span><strong>#{{ page.issue }}</strong></div>
   <div><span>{% if page.lang == 'lt' %}Apžvelgiamas laikotarpis{% else %}Coverage{% endif %}</span><strong>{{ page.coverage_start | date: '%Y-%m-%d' }}–{{ page.coverage_end | date: '%Y-%m-%d' }}</strong></div>
   <div><span>{% if page.lang == 'lt' %}Informacijos riba{% else %}Information cut-off{% endif %}</span><strong>{{ page.information_cutoff | date: '%Y-%m-%d %H:%M %z' }}</strong></div>
-  <a href="/{{ page.lang }}/{% if page.lang == 'lt' %}apzvalgos{% else %}briefings{% endif %}/feed.xml"><i class="fa-solid fa-rss" aria-hidden="true"></i> {% if page.lang == 'lt' %}Apžvalgų RSS{% else %}Briefing RSS{% endif %}</a>
+  <a href="/{{ page.lang }}/{% if page.lang == 'lt' %}apzvalgos{% else %}briefings{% endif %}/feed.xml">{% if page.lang == 'lt' %}Apžvalgų RSS{% else %}Briefing RSS{% endif %}</a>
 </aside>
 {% endif %}

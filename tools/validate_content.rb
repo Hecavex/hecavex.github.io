@@ -18,7 +18,10 @@ Dir.glob("_posts/**/*.{md,markdown}").sort.each do |path|
     next
   end
   data = YAML.safe_load(match[1], permitted_classes: [Date, Time], aliases: true) || {}
-  next if data["draft"] == true
+  if data["draft"] == true
+    errors << "#{path}: draft posts must also set published: false so Jekyll cannot deploy them" unless data["published"] == false
+    next
+  end
   lang = data["lang"]
   errors << "#{path}: lang must be en or lt" unless ALLOWED_LANGS.include?(lang)
   %w[title description translation_key].each { |field| errors << "#{path}: missing #{field}" if data[field].to_s.strip.empty? }
