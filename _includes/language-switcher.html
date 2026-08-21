@@ -22,7 +22,7 @@
   {% endif %}
 {% else %}
   <details class="hx-language hx-language--{{ switcher_context }}">
-    <summary aria-label="{{ current_copy.switch_language }}">
+    <summary>
       <i class="fa-solid fa-globe" aria-hidden="true"></i>
       <span class="hx-language-label">{{ current_copy.language }}</span>
       <strong>{% if switcher_context == 'topbar' %}{{ current_copy.code | upcase }}{% else %}{{ current_copy.name }}{% endif %}</strong>

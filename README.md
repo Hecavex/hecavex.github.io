@@ -56,5 +56,6 @@ Measurement is optional. When `HECAVEX_ANALYTICS_TOKEN` is not configured, the a
 
 - [APT Notes](https://apt.hecavex.com) contains the structured threat-actor knowledge base.
 - [HECAVEX Labs](https://labs.hecavex.com) contains datasets and small browser-based research tools.
+- [HECAVEX Radar](https://radar.hecavex.com) contains recently observed, defanged potential phishing signals relevant to Lithuania.
 
-All three are separate deployments, but they share the same HECAVEX and author identity in navigation and structured data.
+All four are separate deployments, but they share the same HECAVEX and author identity in navigation and structured data.

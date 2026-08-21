@@ -28,7 +28,7 @@ layout: compress
         <div class="row flex-grow-1">
           <main
             id="main-content"
-            aria-label="Main Content"
+            aria-label="{% if page.lang == 'lt' %}Pagrindinis turinys{% else %}Main content{% endif %}"
             class="col-12{% if layout.panel_includes %} col-lg-11 col-xl-9{% endif %} px-md-4"
             tabindex="-1"
           >

@@ -3,11 +3,13 @@
 
 require "json"
 require "nokogiri"
+require "open3"
 require "uri"
 
 root = File.expand_path(ARGV.fetch(0, "_site"))
 errors = []
 canonicals = {}
+inline_scripts = []
 
 resolve_local = lambda do |raw, html|
   clean = raw.to_s.split(/[?#]/, 2).first
@@ -30,6 +32,14 @@ Dir.glob(File.join(root, "**", "*.html")).sort.each do |html|
 
   errors << "#{relative}: missing html lang" if document.at_css("html")&.[]("lang").to_s.strip.empty?
   errors << "#{relative}: missing title" if document.at_css("title")&.text.to_s.strip.empty?
+
+  document.css("script:not([src])").each_with_index do |script, index|
+    type = script["type"].to_s
+    next unless type.empty? || type == "text/javascript"
+    next if script.text.strip.empty?
+
+    inline_scripts << { path: relative, index: index + 1, source: script.text }
+  end
 
   if indexable
     errors << "#{relative}: missing meta description" if document.at_css('meta[name="description"]')&.[]("content").to_s.strip.empty?
@@ -57,6 +67,7 @@ Dir.glob(File.join(root, "**", "*.html")).sort.each do |html|
           https://hecavex.com/#website
           https://apt.hecavex.com/#website
           https://labs.hecavex.com/#website
+          https://radar.hecavex.com/#website
         ]
         missing_ids = expected_ids - ids
         errors << "#{relative}: graph is missing shared HECAVEX identities: #{missing_ids.join(', ')}" unless missing_ids.empty?
@@ -83,6 +94,30 @@ Dir.glob(File.join(root, "**", "*.html")).sort.each do |html|
   document.css("[href],[src]").each do |node|
     raw = node["href"] || node["src"]
     errors << "#{relative}: unresolved internal reference #{raw}" unless resolve_local.call(raw, html)
+  end
+end
+
+unless inline_scripts.empty?
+  checker = <<~JAVASCRIPT
+    const fs = require('node:fs');
+    const scripts = JSON.parse(fs.readFileSync(0, 'utf8'));
+    const invalid = [];
+    for (const script of scripts) {
+      try {
+        new Function(script.source);
+      } catch (error) {
+        invalid.push({ path: script.path, index: script.index, message: error.message });
+      }
+    }
+    process.stdout.write(JSON.stringify(invalid));
+  JAVASCRIPT
+  output, error, status = Open3.capture3("node", "-e", checker, stdin_data: JSON.generate(inline_scripts))
+  if status.success?
+    JSON.parse(output).each do |failure|
+      errors << "#{failure['path']}: inline script #{failure['index']} has invalid JavaScript (#{failure['message']})"
+    end
+  else
+    errors << "inline JavaScript audit could not run (#{error.lines.first.to_s.strip})"
   end
 end
 

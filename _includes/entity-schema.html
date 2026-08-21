@@ -48,7 +48,7 @@
       "inLanguage": ["en", "lt"],
       "creator": { "@id": "{{ site.url }}/#deividas-lis" },
       "publisher": { "@id": "{{ site.url }}/#organization" },
-      "hasPart": [{ "@id": "https://apt.hecavex.com/#website" }, { "@id": "https://labs.hecavex.com/#website" }]
+      "hasPart": [{ "@id": "https://apt.hecavex.com/#website" }, { "@id": "https://labs.hecavex.com/#website" }, { "@id": "https://radar.hecavex.com/#website" }]
     },
     {
       "@type": "WebSite",
@@ -65,6 +65,15 @@
       "url": "https://labs.hecavex.com/",
       "name": "HECAVEX Labs",
       "description": "Evidence-led cyber threat intelligence datasets, visualisations and browser-based research tools.",
+      "isPartOf": { "@id": "{{ site.url }}/#website" },
+      "publisher": { "@id": "{{ site.url }}/#organization" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://radar.hecavex.com/#website",
+      "url": "https://radar.hecavex.com/",
+      "name": "HECAVEX Radar",
+      "description": "A public, read-only dashboard of recently observed potential phishing signals relevant to Lithuania.",
       "isPartOf": { "@id": "{{ site.url }}/#website" },
       "publisher": { "@id": "{{ site.url }}/#organization" }
     },

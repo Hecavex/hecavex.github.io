@@ -14,7 +14,7 @@ Create a GitHub Actions variable named `HECAVEX_ANALYTICS_TOKEN` in each reposit
 - `apt.hecavex.com`
 - `labs.hecavex.com`
 
-The value is embedded in the built HTML, so it is a variable rather than a secret. Use the same token if the three sites should appear in one view. Use separate tokens if you want separate dashboards.
+The value is embedded in the built HTML, so it is a variable rather than a secret. Use the same token if these three measured sites should appear in one view. Use separate tokens if you want separate dashboards. HECAVEX Radar deliberately has no first-party analytics.
 
 ## Disable it
 

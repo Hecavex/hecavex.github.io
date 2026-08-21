@@ -158,7 +158,9 @@
 
     <!-- lazy-load images -->
     {% if _lazyload %}
-      {% assign _left = _left | append: ' loading="lazy"' %}
+      {% unless _left contains ' loading=' %}
+        {% assign _left = _left | append: ' loading="lazy"' %}
+      {% endunless %}
     {% endif %}
 
     {% if page.layout == 'home' %}
@@ -249,6 +251,8 @@
 
 {% assign heading_levels = '2,3,4,5' | split: ',' %}
 {% assign _heading_content = _content %}
+{% assign heading_anchor_label = 'Link to this section' %}
+{% if page.lang == 'lt' %}{% assign heading_anchor_label = 'Nuoroda į šį skyrių' %}{% endif %}
 
 {% for level in heading_levels %}
   {% assign mark_start = '<h' | append: level | append: ' id="' %}
@@ -267,7 +271,9 @@
       {% assign id = snippet | split: '"' | first %}
       {% assign anchor = '<a href="#'
         | append: id
-        | append: '" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>'
+        | append: '" class="anchor text-muted" aria-label="'
+        | append: heading_anchor_label
+        | append: '"><i class="fas fa-hashtag" aria-hidden="true"></i></a>'
       %}
 
       {% assign left = snippet | split: mark_end | first %}

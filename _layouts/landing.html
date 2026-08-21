@@ -40,7 +40,7 @@ layout: compress
   <a class="portal-skip" href="#main-content">Skip to content / Pereiti prie turinio</a>
   {% if page.url == '/404.html' %}
     <main class="portal-error" id="main-content">
-      <a class="portal-brand" href="/" aria-label="HECAVEX home"><img src="/assets/img/brand/hecavex-mark.svg" width="48" height="48" alt=""><span class="portal-brand-copy"><strong>HECAVEX</strong><small>by Deividas Lis</small></span></a>
+      <a class="portal-brand" href="/"><img src="/assets/img/brand/hecavex-mark.svg" width="48" height="48" alt=""><span class="portal-brand-copy"><strong>HECAVEX</strong><small>by Deividas Lis</small></span></a>
       <section class="portal-error-panel" aria-live="polite">
         <div class="portal-error-code" aria-hidden="true"><span>4</span><svg viewBox="0 0 160 160" focusable="false"><circle cx="80" cy="80" r="58"></circle><circle cx="80" cy="80" r="31"></circle><path d="M80 80L132 48"></path><circle cx="80" cy="80" r="5"></circle><path class="portal-error-blip" d="M18 118L49 118L61 92L80 132L98 106L111 118L142 118"></path></svg><span>4</span></div>
         <div class="portal-error-copy" data-error-copy="en">
@@ -62,12 +62,13 @@ layout: compress
     </main>
   {% else %}
     <header class="portal-header">
-      <a class="portal-brand" href="/" aria-label="HECAVEX home"><img src="/assets/img/brand/hecavex-mark.svg" width="48" height="48" alt=""><span class="portal-brand-copy"><strong>HECAVEX</strong><small>by Deividas Lis</small></span></a>
+      <a class="portal-brand" href="/"><img src="/assets/img/brand/hecavex-mark.svg" width="48" height="48" alt=""><span class="portal-brand-copy"><strong>HECAVEX</strong><small>by Deividas Lis</small></span></a>
       <nav aria-label="Publication links">
         <a href="#editions">Editions / Leidiniai</a>
         <a href="#briefing">Briefings / Apžvalgos</a>
         <a href="https://apt.hecavex.com/">APT Notes</a>
         <a href="https://labs.hecavex.com/">Labs</a>
+        <a href="https://radar.hecavex.com/">Radar</a>
         <a href="#latest">Latest / Naujausia</a>
         <a href="mailto:info@hecavex.com">Contact / Kontaktai</a>
       </nav>
@@ -100,6 +101,7 @@ layout: compress
           <nav class="portal-hero-links" aria-label="Publication highlights">
             <a href="#latest">Latest research</a>
             <a href="#briefing">Signal briefings</a>
+            <a href="https://radar.hecavex.com/">Phishing radar <span aria-hidden="true">↗</span></a>
             <a href="/en/speaker/">Media &amp; speaking <span aria-hidden="true">→</span></a>
           </nav>
         </div>
@@ -107,7 +109,7 @@ layout: compress
 
       <section class="portal-editions" id="editions" aria-labelledby="editions-title">
         <div class="portal-section-head">
-          <p class="portal-kicker" id="editions-title">CHOOSE AN EDITION · PASIRINKITE LEIDINĮ</p>
+          <h2 class="portal-kicker" id="editions-title">CHOOSE AN EDITION · PASIRINKITE LEIDINĮ</h2>
           <p>Research, briefings and analysis in your preferred language.</p>
         </div>
         <div class="portal-edition-grid">
@@ -123,6 +125,26 @@ layout: compress
           </a>
         </div>
         <p class="portal-editions-note">Language preference is stored only in this browser. <span lang="lt">Kalbos pasirinkimas saugomas tik šioje naršyklėje.</span></p>
+      </section>
+
+      <section class="portal-radar" id="radar" aria-labelledby="portal-radar-title">
+        <div class="portal-radar-copy">
+          <p class="portal-kicker">PUBLIC DEFENSIVE INTELLIGENCE · VIEŠA GYNYBINĖ ŽVALGYBA</p>
+          <h2 id="portal-radar-title">Phishing signals relevant to Lithuania</h2>
+          <p>HECAVEX Radar publishes recently observed URLs and domains that may impersonate brands relevant to Lithuania. Indicators are defanged, confidence-scored and presented with their evidence boundaries.</p>
+          <p lang="lt">HECAVEX Radar skelbia neseniai pastebėtus URL adresus ir domenus, galinčius apsimesti Lietuvai aktualiais prekių ženklais. Indikatoriai pateikiami nukenksminti, su pasitikėjimo įverčiu ir aiškiomis įrodymų ribomis.</p>
+        </div>
+        <div class="portal-radar-side">
+          <ul aria-label="Radar publication safeguards">
+            <li><strong>Potential, not confirmed</strong><span>A listing is a research signal, not a verdict.</span></li>
+            <li><strong>Read-only, no login</strong><span>Search recent observations without creating an account.</span></li>
+            <li><strong>Open methodology</strong><span>Review source coverage, dates and detection limits.</span></li>
+          </ul>
+          <div class="portal-radar-actions">
+            <a class="portal-radar-primary" href="https://radar.hecavex.com/">Open HECAVEX Radar <span aria-hidden="true">↗</span></a>
+            <a href="https://radar.hecavex.com/#methodology">Read methodology</a>
+          </div>
+        </div>
       </section>
 
       {% assign portal_briefings = site.posts | where: 'lang', 'en' | where: 'content_type', 'signal-brief' %}
@@ -154,7 +176,7 @@ layout: compress
             {% for candidate in site.posts %}{% if candidate.lang == 'lt' and candidate.translation_key == post.translation_key %}{% assign translated_post = candidate %}{% break %}{% endif %}{% endfor %}
             {% assign card_image = post.image.thumbnail | default: post.image.path | default: post.image | default: '/assets/img/brand/hecavex-mark.svg' %}
             <article class="portal-research-card">
-              {% if card_image %}<a class="portal-research-image" href="{{ post.url }}" tabindex="-1"><img src="{{ card_image }}" alt="" loading="lazy" width="640" height="360"></a>{% endif %}
+              {% if card_image %}<a class="portal-research-image" href="{{ post.url }}" tabindex="-1" aria-label="{{ post.title | xml_escape }}"><img src="{{ card_image }}" alt="" loading="lazy" width="640" height="360"></a>{% endif %}
               <div class="portal-research-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time><span>{{ site.data.publication_classes[post.publication_class].en | default: post.content_type | replace: '_', ' ' | replace: '-', ' ' }}</span></div>
               <h3 lang="en"><a href="{{ post.url }}" title="{{ post.title | xml_escape }}">{{ post.card_title | default: post.title }}</a></h3>
               {% if translated_post %}<p class="portal-research-translation" lang="lt"><a href="{{ translated_post.url }}" title="{{ translated_post.title | xml_escape }}">{{ translated_post.card_title | default: translated_post.title }}</a></p>{% endif %}
@@ -170,7 +192,7 @@ layout: compress
       </section>
     </main>
 
-    <footer class="portal-footer"><p>© 2026 HECAVEX · Independent cyber threat intelligence</p><nav aria-label="Footer"><a href="https://apt.hecavex.com/">APT Notes</a><a href="https://labs.hecavex.com/">Labs</a><a href="/lt/redakcija/">Standartai</a><a href="/en/editorial/">Standards</a><a href="/lt/privatumas/">Privatumas</a><a href="/en/privacy/">Privacy</a><a href="mailto:info@hecavex.com">info@hecavex.com</a></nav></footer>
+    <footer class="portal-footer"><p>© 2026 HECAVEX · Independent cyber threat intelligence</p><nav aria-label="Footer"><a href="https://apt.hecavex.com/">APT Notes</a><a href="https://labs.hecavex.com/">Labs</a><a href="https://radar.hecavex.com/">Radar</a><a href="/lt/redakcija/">Standartai</a><a href="/en/editorial/">Standards</a><a href="/lt/privatumas/">Privatumas</a><a href="/en/privacy/">Privacy</a><a href="mailto:info@hecavex.com">info@hecavex.com</a></nav></footer>
   {% endif %}
   {% unless page.url == '/404.html' %}{% include privacy-notice.html %}{% endunless %}
   <script>document.addEventListener('click',function(e){var l=e.target.closest('[data-language]');if(l)localStorage.setItem('hecavex-language',l.dataset.language)});{% if page.url == '/404.html' %}(function(){var copies=[].slice.call(document.querySelectorAll('[data-error-copy]'));var buttons=[].slice.call(document.querySelectorAll('[data-error-language]'));function show(lang){copies.forEach(function(item){item.hidden=item.dataset.errorCopy!==lang});buttons.forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.errorLanguage===lang))});document.documentElement.lang=lang}var initial=location.pathname.indexOf('/lt/')===0?'lt':'en';show(initial);buttons.forEach(function(button){button.addEventListener('click',function(){show(button.dataset.errorLanguage)})})})();{% endif %}</script>
