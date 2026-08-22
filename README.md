@@ -1,35 +1,41 @@
-# HECAVEX
+# HECAVEX Research
 
-This repository publishes [hecavex.com](https://hecavex.com), my independent bilingual cyber threat intelligence publication. It contains investigations, technical assessments, Signal Briefs, commentary and the public record behind each research package.
+This repository publishes [hecavex.com](https://hecavex.com), the bilingual cyber threat intelligence publication by Deividas Lis. It contains investigations, technical assessments, Signal Briefs, commentary and the public record behind each research package.
 
-Jekyll turns the Markdown archive into static files; every visible interface is original HECAVEX code maintained in this repository. Publishable source is kept under `src`: the presentation layer is built from `src/_layouts/publication.html`, focused components in `src/_includes`, and the CSS and JavaScript entry points in `src/assets/css` and `src/assets/js`.
+The site is a static Astro build. It has no CMS, account system, server runtime or inherited theme. Astro renders the Markdown archive at build time; the browser receives ordinary HTML, CSS and a small progressive-enhancement script. The shared two-row header implements the same HECAVEX portfolio shell used by Radar, APT Notes and Labs.
 
-The portfolio uses the Cold Signal design system: a dark analyst workspace, cyan action colour, green confirmation colour, amber warning colour, Inter for reading and IBM Plex Mono for identifiers and interface metadata. Font files are self-hosted under `src/assets/fonts`; no visitor request is sent to a font CDN.
+## Repository map
+
+- `src/content/posts/en/` and `src/content/posts/lt/` — the 42 canonical localized publications
+- `src/content/pages/` — maintained English and Lithuanian page copy
+- `src/pages/` — Astro routes, feeds, search indexes, taxonomy pages and redirects
+- `src/components/` and `src/layouts/` — the publication interface and portfolio shell
+- `src/data/` — editorial labels, taxonomy, glossary and project records
+- `public/assets/` — self-hosted fonts, images, downloads, social cards, CSS and browser JavaScript
+- `tests/fixtures/production-sitemap-routes.txt` — the 128-route migration contract captured before the rebuild
 
 ## Run locally
 
-Install Ruby, Bundler and Node.js 22, then run:
+Use Node.js 22 or newer:
 
 ```sh
-bundle install
 npm ci
-npm test
-bundle exec jekyll serve --livereload
+npm run dev
 ```
 
-Jekyll writes the generated site to `_site`; do not edit that directory.
+Astro prints the local address, normally `http://localhost:4321/`. Build output is written to `dist`; do not edit it.
 
 ## Publish research
 
-English and Lithuanian posts live in matching folders:
+English and Lithuanian posts live in matching Astro content folders:
 
-- `src/_posts/en/blogs/` and `src/_posts/lt/blogs/` for commentary
-- `src/_posts/en/bulletins/` and `src/_posts/lt/bulletins/` for Signal Briefs
-- `src/_posts/en/research/` and `src/_posts/lt/research/` for investigations and technical work
+- `src/content/posts/en/blogs/` and `src/content/posts/lt/blogs/` for commentary
+- `src/content/posts/en/bulletins/` and `src/content/posts/lt/bulletins/` for Signal Briefs
+- `src/content/posts/en/research/` and `src/content/posts/lt/research/` for investigations and technical work
 
-Start from the closest file in `docs/templates`. Paired translations use the same `translation_key`. Templates set both `draft: true` and `published: false`; keep both safeguards until the copy, citations, image descriptions and metadata have been checked, then change them to `draft: false` and `published: true` for release.
+Start from the closest file in `docs/templates`. Paired translations use the same `translation_key`. Templates set both `draft: true` and `published: false`; keep both safeguards until copy, citations, image descriptions and metadata have been checked, then set `draft: false` and `published: true` for release.
 
-Primary research and technical assessments include a visible publication record with stable ID, version, evidence basis, methods, confidence, TLP marking and revision history. See [Editorial packages](docs/EDITORIAL-PACKAGES.md).
+Primary research and technical assessments include a visible publication record with stable ID, evidence basis, methods, confidence, TLP marking and revision history. See [Editorial packages](docs/EDITORIAL-PACKAGES.md).
 
 After adding or renaming a public post, regenerate its localized social card:
 
@@ -37,30 +43,34 @@ After adding or renaming a public post, regenerate its localized social card:
 npm run generate:social
 ```
 
-The generator renders deterministic, self-hosted 1200×630 PNG previews from each post's title, language, date and `translation_key`. Article diagrams remain static local SVGs; the published site does not load a diagram or mathematics runtime.
+The generator renders deterministic, self-hosted 1200×630 PNG previews. Article diagrams remain local static SVGs; the published site does not load diagram or mathematics runtimes.
 
 ## Validate a release
 
 ```sh
-bundle exec ruby scripts/validate_content.rb
-npm test
-JEKYLL_ENV=production bundle exec jekyll build
-npm run check:performance
-bundle exec ruby scripts/audit_site.rb _site
-npm run audit:responsive
+npm run verify
 ```
 
-The deployment workflow runs the same content, frontend, performance, SEO, accessibility, link and responsive checks before publishing GitHub Pages. The deterministic artifact limits and their measured baseline are documented in [Performance budgets](docs/PERFORMANCE-BUDGETS.md).
+The release gate:
 
-Measurement is disabled unless `HECAVEX_ANALYTICS_TOKEN` is set. The implementation and privacy boundary are documented in [Measurement](docs/MEASUREMENT.md).
+- validates all localized front matter and draft exclusions;
+- type-checks and builds Astro;
+- confirms all 128 pre-migration sitemap URLs and 317 HTML artifacts still exist;
+- verifies feeds, search JSON, redirects, 404s, security endpoints and downloads;
+- audits canonical, hreflang, social, schema, accessibility and internal links;
+- enforces deterministic payload limits; and
+- tests the shared shell from 320 to 1440 px, including keyboard and no-JavaScript navigation.
+
+Measurement is absent unless `PUBLIC_HECAVEX_ANALYTICS_TOKEN` is supplied at build time. GitHub Actions maps the optional `HECAVEX_ANALYTICS_TOKEN` repository variable to it. The privacy boundary is documented in [Measurement](docs/MEASUREMENT.md).
 
 ## HECAVEX network
 
+- [HECAVEX Radar](https://radar.hecavex.com) — potential phishing signals relevant to Lithuania
 - [APT Notes](https://apt.hecavex.com) — structured threat-actor knowledge
-- [HECAVEX Labs](https://labs.hecavex.com) — research tools and datasets
-- [HECAVEX Radar](https://radar.hecavex.com) — recently observed potential phishing signals relevant to Lithuania
+- [HECAVEX Labs](https://labs.hecavex.com) — inspectable research tools and datasets
+- [HECAVEX Data](https://labs.hecavex.com/data/) — citable public research releases
 
-The sites deploy independently while sharing HECAVEX identity, editorial language and cross-navigation.
+The properties deploy independently while sharing the Cold Signal design system, portfolio navigation, typography, spacing and accessibility contract.
 
 ## Licensing
 

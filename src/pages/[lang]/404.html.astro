@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { findPage, type Lang } from '../../lib/site';
+export function getStaticPaths() { return [{ params: { lang: 'en' } }, { params: { lang: 'lt' } }]; }
+const lang = Astro.params.lang as Lang;
+const entry = await findPage(`/${lang}/404.html`);
+if (!entry) throw new Error(`Missing ${lang} 404 content`);
+const alternatePath = lang === 'lt' ? '/en/404.html' : '/lt/404.html';
+---
+<BaseLayout {lang} title={entry.data.title} description={entry.data.description} canonicalPath={entry.data.permalink} {alternatePath} noindex>
+  <section class="shell not-found"><p class="eyebrow">HTTP / 404</p><h1>{entry.data.title}</h1><p>{entry.data.description}</p><a class="button button--primary" href={`/${lang}/`}>{lang === 'lt' ? 'Grįžti į HECAVEX' : 'Return to HECAVEX Research'}</a></section>
+</BaseLayout>

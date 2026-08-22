@@ -202,7 +202,7 @@ function printFailure(failure) {
   return `${failure.label} ${failure.metric} is ${actual}; budget is ${limit}${path}`;
 }
 
-export async function run(siteRoot = '_site') {
+export async function run(siteRoot = 'dist') {
   const measurements = await measureSite(siteRoot);
   const result = evaluateBudgets(measurements);
   printReport(siteRoot, result, DEFAULT_BUDGETS);
@@ -219,7 +219,7 @@ export async function run(siteRoot = '_site') {
 const invokedDirectly = process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url;
 if (invokedDirectly) {
   try {
-    process.exitCode = await run(process.argv[2] || '_site');
+    process.exitCode = await run(process.argv[2] || 'dist');
   } catch (error) {
     console.error(`ERROR: ${error.message}`);
     process.exitCode = 1;

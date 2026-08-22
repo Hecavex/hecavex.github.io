@@ -1,0 +1,10 @@
+---
+import type { Lang } from '../lib/site';
+interface Props { lang: Lang; title: string; description: string; eyebrow?: string; }
+const { lang, title, description, eyebrow = `HECAVEX / ${lang.toUpperCase()}` } = Astro.props;
+---
+<header class="page-head">
+  <p class="eyebrow">{eyebrow}</p>
+  <h1>{title}</h1>
+  <p class="page-deck">{description}</p>
+</header>

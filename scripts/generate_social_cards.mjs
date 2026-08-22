@@ -2,14 +2,15 @@
 
 import { existsSync } from 'node:fs';
 import { mkdir, readFile, readdir } from 'node:fs/promises';
-import { basename, join, resolve } from 'node:path';
+import { join, resolve } from 'node:path';
 import process from 'node:process';
 import { chromium } from 'playwright-core';
 
 const projectRoot = resolve(import.meta.dirname, '..');
 const sourceRoot = join(projectRoot, 'src');
-const postsRoot = join(sourceRoot, '_posts');
-const outputRoot = join(sourceRoot, 'assets', 'img', 'social');
+const publicRoot = join(projectRoot, 'public');
+const postsRoot = join(sourceRoot, 'content', 'posts');
+const outputRoot = join(publicRoot, 'assets', 'img', 'social');
 const browserCandidates = [
   process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
   'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
@@ -84,7 +85,7 @@ for (const file of postFiles) {
     throw new Error(`Missing social-card metadata in ${file}`);
   }
 
-  const isBrief = publicationClass === 'signal-brief' || file.includes(`${join('src', '_posts', lang, 'bulletins')}`);
+  const isBrief = publicationClass === 'signal-brief' || file.includes(`${join('src', 'content', 'posts', lang, 'bulletins')}`);
   cards.push({
     date,
     file,
@@ -105,10 +106,10 @@ for (const card of cards) {
   keys.add(card.filename);
 }
 
-const interLatin = (await readFile(join(sourceRoot, 'assets', 'fonts', 'inter', 'inter-latin-700-normal.woff2'))).toString('base64');
-const interLatinExt = (await readFile(join(sourceRoot, 'assets', 'fonts', 'inter', 'inter-latin-ext-700-normal.woff2'))).toString('base64');
-const monoLatin = (await readFile(join(sourceRoot, 'assets', 'fonts', 'ibm-plex-mono', 'ibm-plex-mono-latin-600-normal.woff2'))).toString('base64');
-const monoLatinExt = (await readFile(join(sourceRoot, 'assets', 'fonts', 'ibm-plex-mono', 'ibm-plex-mono-latin-ext-600-normal.woff2'))).toString('base64');
+const interLatin = (await readFile(join(publicRoot, 'assets', 'fonts', 'inter', 'inter-latin-700-normal.woff2'))).toString('base64');
+const interLatinExt = (await readFile(join(publicRoot, 'assets', 'fonts', 'inter', 'inter-latin-ext-700-normal.woff2'))).toString('base64');
+const monoLatin = (await readFile(join(publicRoot, 'assets', 'fonts', 'ibm-plex-mono', 'ibm-plex-mono-latin-600-normal.woff2'))).toString('base64');
+const monoLatinExt = (await readFile(join(publicRoot, 'assets', 'fonts', 'ibm-plex-mono', 'ibm-plex-mono-latin-ext-600-normal.woff2'))).toString('base64');
 
 await mkdir(outputRoot, { recursive: true });
 const browser = await chromium.launch({ executablePath, headless: true });

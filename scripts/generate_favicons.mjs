@@ -4,7 +4,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { deflateSync } from 'node:zlib';
 
-const outputRoot = resolve(import.meta.dirname, '..', 'src', 'assets', 'img', 'favicons');
+const outputRoot = resolve(import.meta.dirname, '..', 'public', 'assets', 'img', 'favicons');
 const checkOnly = process.argv.includes('--check');
 const sampleGrid = 4;
 const palette = {

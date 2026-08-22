@@ -1,5 +1,0 @@
-{% assign current_lang = page.lang | default: 'en' %}{% assign alternate = nil %}
-{% if page.translation_key %}{% assign candidates = site.posts | concat: site.pages %}{% for candidate in candidates %}{% if candidate.translation_key == page.translation_key and candidate.lang != current_lang %}{% assign alternate = candidate %}{% break %}{% endif %}{% endfor %}{% endif %}
-<link rel="alternate" hreflang="{{ current_lang }}" href="{{ page.url | absolute_url }}">
-{% if alternate %}<link rel="alternate" hreflang="{{ alternate.lang }}" href="{{ alternate.url | absolute_url }}">{% endif %}
-{% if alternate or page.translation_key == 'home' %}<link rel="alternate" hreflang="x-default" href="{{ '/' | absolute_url }}">{% endif %}

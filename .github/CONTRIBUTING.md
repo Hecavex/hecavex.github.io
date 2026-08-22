@@ -14,13 +14,8 @@ HECAVEX is an independently edited research publication. Corrections, broken-lin
 ## Local checks
 
 ```sh
-bundle install
 npm ci
-bundle exec ruby scripts/validate_content.rb
-npm test
-JEKYLL_ENV=production bundle exec jekyll build
-bundle exec ruby scripts/audit_site.rb _site
-npm run audit:responsive
+npm run verify
 ```
 
-Changes to routes, front matter, layouts or shared components should pass the complete sequence. A pull request should describe the reader-facing change, its evidence or reproduction steps, and any known limitation.
+`npm run verify` validates content, type-checks and builds Astro, enforces the pre-migration route contract, audits generated SEO and links, checks payload budgets, and exercises the shared shell from 320 to 1440 px. Changes to routes, front matter, layouts or shared components must pass the complete sequence. A pull request should describe the reader-facing change, its evidence or reproduction steps, and any known limitation.

@@ -15,22 +15,12 @@ updates:
           - "playwright-core"
           - "stylelint*"
 
-  # Jekyll and publication validation dependencies.
-  - package-ecosystem: bundler
-    directory: /
-    schedule:
-      interval: weekly
-      day: monday
-      time: "06:15"
-      timezone: Etc/UTC
-    open-pull-requests-limit: 5
-
   # Pinned GitHub Pages workflow actions.
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
       day: monday
-      time: "06:30"
+      time: "06:15"
       timezone: Etc/UTC
     open-pull-requests-limit: 5

@@ -1,0 +1,121 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import type { Lang } from '../lib/site';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  canonicalPath: string;
+  alternatePath?: string;
+  image?: string;
+  imageAlt?: string;
+  noindex?: boolean;
+  type?: 'WebPage' | 'CollectionPage' | 'Article';
+  published?: Date;
+  modified?: Date;
+}
+
+const {
+  lang, title, description, canonicalPath, alternatePath,
+  image = `/assets/img/og/hecavex-default-${lang}.png`, imageAlt = `${title} social preview`,
+  noindex = false, type = 'WebPage', published, modified
+} = Astro.props;
+const canonical = new URL(canonicalPath, Astro.site);
+const socialImage = new URL(image, Astro.site);
+const fullTitle = title.includes('HECAVEX') ? title : `${title} | HECAVEX`;
+const pageId = `${canonical.href}#webpage`;
+const pageNode: Record<string, unknown> = {
+  '@type': type,
+  '@id': pageId,
+  name: title,
+  description,
+  url: canonical.href,
+  inLanguage: lang,
+  isPartOf: { '@id': 'https://hecavex.com/#website' },
+  author: { '@id': 'https://hecavex.com/#deividas-lis' },
+  publisher: { '@id': 'https://hecavex.com/#organization' },
+  primaryImageOfPage: { '@type': 'ImageObject', url: socialImage.href, width: 1200, height: 630 }
+};
+if (published) pageNode.datePublished = published.toISOString();
+if (modified) pageNode.dateModified = modified.toISOString();
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': 'https://hecavex.com/#organization', name: 'HECAVEX', url: 'https://hecavex.com/', founder: { '@id': 'https://hecavex.com/#deividas-lis' }, sameAs: ['https://github.com/Hecavex', 'https://www.linkedin.com/in/deilis'] },
+    { '@type': 'Person', '@id': 'https://hecavex.com/#deividas-lis', name: 'Deividas Lis', url: 'https://hecavex.com/en/about/' },
+    { '@type': 'WebSite', '@id': 'https://hecavex.com/#website', name: 'HECAVEX', url: 'https://hecavex.com/', inLanguage: ['en', 'lt'], hasPart: [{ '@id': 'https://apt.hecavex.com/#website' }, { '@id': 'https://labs.hecavex.com/#website' }, { '@id': 'https://radar.hecavex.com/#website' }] },
+    { '@type': 'WebSite', '@id': 'https://apt.hecavex.com/#website', name: 'APT Notes by HECAVEX', url: 'https://apt.hecavex.com/', isPartOf: { '@id': 'https://hecavex.com/#website' } },
+    { '@type': 'WebSite', '@id': 'https://labs.hecavex.com/#website', name: 'HECAVEX Labs', url: 'https://labs.hecavex.com/', isPartOf: { '@id': 'https://hecavex.com/#website' } },
+    { '@type': 'WebSite', '@id': 'https://radar.hecavex.com/#website', name: 'HECAVEX Radar', url: 'https://radar.hecavex.com/', isPartOf: { '@id': 'https://hecavex.com/#website' } },
+    pageNode
+  ]
+};
+const measurementToken = import.meta.env.PUBLIC_HECAVEX_ANALYTICS_TOKEN?.trim() ?? '';
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#05080b" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={lang} href={canonical} />
+    {alternatePath && <link rel="alternate" hreflang={lang === 'lt' ? 'en' : 'lt'} href={new URL(alternatePath, Astro.site)} />}
+    <link rel="alternate" hreflang="x-default" href={new URL('/en/', Astro.site)} />
+    <link rel="alternate" type="application/atom+xml" title="HECAVEX Research" href={`/${lang}/feed.xml`} />
+    <link rel="icon" href="/assets/img/favicons/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/assets/img/favicons/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/assets/img/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/img/favicons/site.webmanifest" />
+    <link rel="stylesheet" href="/assets/css/fonts.css" />
+    <link rel="stylesheet" href="/assets/css/hecavex.css" />
+    <script is:inline src="/assets/js/site.js" defer></script>
+    <meta property="og:type" content={type === 'Article' ? 'article' : 'website'} />
+    <meta property="og:site_name" content="HECAVEX" />
+    <meta property="og:locale" content={lang === 'lt' ? 'lt_LT' : 'en_US'} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {measurementToken && <script is:inline define:vars={{ measurementToken }}>
+      (() => {
+        if (navigator.doNotTrack === '1' || window.doNotTrack === '1') return;
+        const beacon = document.createElement('script');
+        beacon.defer = true;
+        beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+        beacon.dataset.cfBeacon = JSON.stringify({ token: measurementToken });
+        document.head.appendChild(beacon);
+      })();
+    </script>}
+  </head>
+  <body data-language={lang}>
+    <a class="skip-link" href="#main-content">{lang === 'lt' ? 'Pereiti prie turinio' : 'Skip to content'}</a>
+    <SiteHeader lang={lang} alternatePath={alternatePath} />
+    <main id="main-content"><slot /></main>
+    <SiteFooter lang={lang} />
+    <dialog class="search-dialog" data-search-dialog aria-labelledby="search-title">
+      <form method="dialog" class="search-dialog-head">
+        <div><span class="eyebrow">HECAVEX / {lang.toUpperCase()}</span><h2 id="search-title">{lang === 'lt' ? 'Ieškoti tyrimų' : 'Search research'}</h2></div>
+        <button value="close" aria-label={lang === 'lt' ? 'Uždaryti paiešką' : 'Close search'}>×</button>
+      </form>
+      <label for="search-input">{lang === 'lt' ? 'Paieškos užklausa' : 'Search query'}</label>
+      <input id="search-input" type="search" autocomplete="off" placeholder={lang === 'lt' ? 'Tema, metodas arba indikatorius' : 'Topic, method or indicator'} data-search-input />
+      <div class="search-results" data-search-results aria-live="polite"></div>
+    </dialog>
+    <button class="back-to-top" type="button" data-back-to-top aria-label={lang === 'lt' ? 'Grįžti į viršų' : 'Back to top'}>↑</button>
+  </body>
+</html>

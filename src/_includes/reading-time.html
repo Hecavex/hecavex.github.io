@@ -1,4 +1,0 @@
-{% assign reading_words = include.content | strip_html | number_of_words: 'auto' %}
-{% assign reading_minutes = reading_words | plus: 199 | divided_by: 200 %}
-{% if reading_minutes < 1 %}{% assign reading_minutes = 1 %}{% endif %}
-<span class="readtime" title="{{ reading_words }} {% if page.lang == 'lt' %}žodžių{% else %}words{% endif %}"><em>{{ reading_minutes }} min</em>{% if include.prompt %} {% if page.lang == 'lt' %}skaitymo{% else %}read{% endif %}{% endif %}</span>

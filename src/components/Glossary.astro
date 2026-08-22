@@ -1,0 +1,8 @@
+---
+import { glossary, type Lang } from '../lib/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+---
+<dl class="glossary-list">
+  {glossary.terms.map((item) => <div id={item.id}><dt>{item.term[lang]}</dt><dd>{item.definition[lang]}</dd></div>)}
+</dl>

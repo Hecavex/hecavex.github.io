@@ -1,6 +1,6 @@
 # Performance budgets
 
-The publication checks generated files directly after a production Jekyll build. The check is offline and deterministic: it measures exact file bytes and each file compressed independently with Node's level-9 gzip implementation. It does not depend on Lighthouse, a browser network profile, a CDN or a transient deployment.
+The publication checks generated files directly after a production Astro build. The check is offline and deterministic: it measures exact file bytes and each file compressed independently with Node's level-9 gzip implementation. It does not depend on Lighthouse, a browser network profile, a CDN or a transient deployment.
 
 The initial limits were set from the production build measured on 22 August 2026. They leave useful room for longer investigations while still stopping accidental framework bundles, uncompressed images, duplicate fonts and runaway page markup.
 
@@ -21,7 +21,7 @@ The font bundle is also limited to 20 files; the baseline contains 18. Images ar
 Run the gate after building the site:
 
 ```sh
-JEKYLL_ENV=production bundle exec jekyll build
+npm run build
 npm run check:performance
 ```
 
