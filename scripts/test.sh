@@ -11,5 +11,6 @@ bundle exec ruby scripts/validate_content.rb
 npm test
 bundle exec jekyll clean
 JEKYLL_ENV=production bundle exec jekyll build --destination "$site_dir"
+npm run check:performance -- "$site_dir"
 bundle exec ruby scripts/audit_site.rb "$site_dir"
 node scripts/audit_responsive.mjs "$site_dir"

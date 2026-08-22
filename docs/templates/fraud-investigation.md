@@ -9,7 +9,7 @@ translation_key:
 categories: [fraud-scams, investigations]
 tags: []
 author: deividas-lis
-content_type: fraud-investigation
+content_type: investigation
 confidence:
 tlp: clear
 research_version: "1.0"

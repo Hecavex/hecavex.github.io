@@ -8,9 +8,13 @@
     "build": "npm test",
     "lint:js": "node --check src/assets/js/site.js",
     "lint:css": "stylelint src/assets/css/fonts.css src/assets/css/hecavex.css src/assets/css/landing.css",
+    "generate:favicons": "node scripts/generate_favicons.mjs",
     "generate:social": "node scripts/generate_social_cards.mjs",
+    "check:favicons": "node scripts/generate_favicons.mjs --check",
+    "check:performance": "node scripts/check_performance_budgets.mjs",
+    "test:performance": "node --test scripts/check_performance_budgets.test.mjs",
     "audit:responsive": "node scripts/audit_responsive.mjs _site",
-    "test": "npm run lint:js && npm run lint:css"
+    "test": "npm run lint:js && npm run lint:css && npm run check:favicons && npm run test:performance"
   },
   "devDependencies": {
     "playwright-core": "^1.62.1",

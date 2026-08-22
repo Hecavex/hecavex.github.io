@@ -45,11 +45,12 @@ The generator renders deterministic, self-hosted 1200×630 PNG previews from eac
 bundle exec ruby scripts/validate_content.rb
 npm test
 JEKYLL_ENV=production bundle exec jekyll build
+npm run check:performance
 bundle exec ruby scripts/audit_site.rb _site
 npm run audit:responsive
 ```
 
-The deployment workflow runs the same content, frontend, SEO, accessibility, link and responsive checks before publishing GitHub Pages.
+The deployment workflow runs the same content, frontend, performance, SEO, accessibility, link and responsive checks before publishing GitHub Pages. The deterministic artifact limits and their measured baseline are documented in [Performance budgets](docs/PERFORMANCE-BUDGETS.md).
 
 Measurement is disabled unless `HECAVEX_ANALYTICS_TOKEN` is set. The implementation and privacy boundary are documented in [Measurement](docs/MEASUREMENT.md).
 

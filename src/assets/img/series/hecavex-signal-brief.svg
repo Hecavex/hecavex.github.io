@@ -2,18 +2,18 @@
   <title id="title">HECAVEX Signal Brief</title>
   <desc id="desc">Abstract cyber threat signal map with a radar grid, connected indicators and an analytical pulse.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b0e12"/><stop offset="1" stop-color="#151b24"/></linearGradient>
-    <radialGradient id="radar"><stop stop-color="#76a9dc" stop-opacity=".35"/><stop offset="1" stop-color="#76a9dc" stop-opacity="0"/></radialGradient>
-    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#506176" stroke-opacity=".18"/></pattern>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05080b"/><stop offset="1" stop-color="#0b1117"/></linearGradient>
+    <radialGradient id="radar"><stop stop-color="#44c7dc" stop-opacity=".32"/><stop offset="1" stop-color="#44c7dc" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#1e3440" stroke-opacity=".45"/></pattern>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect width="1200" height="630" fill="url(#grid)"/>
   <circle cx="900" cy="315" r="270" fill="url(#radar)"/>
-  <g fill="none" stroke="#76a9dc" stroke-opacity=".35"><circle cx="900" cy="315" r="92"/><circle cx="900" cy="315" r="178"/><circle cx="900" cy="315" r="264"/><path d="M636 315h528M900 51v528M713 128l374 374M1087 128L713 502"/></g>
-  <path d="M56 346h196l34-88 58 184 62-252 76 245 56-126h126l37-63 55 169 50-100h358" fill="none" stroke="#f05a4f" stroke-width="8" stroke-linejoin="round"/>
-  <g fill="#0b0e12" stroke="#d59a42" stroke-width="5"><circle cx="286" cy="258" r="13"/><circle cx="482" cy="435" r="13"/><circle cx="701" cy="246" r="13"/></g>
-  <g fill="#76a9dc"><circle cx="900" cy="315" r="15"/><circle cx="1032" cy="202" r="9"/><circle cx="997" cy="433" r="9"/></g>
-  <path d="M1032 202L900 315l97 118" fill="none" stroke="#76a9dc" stroke-width="4" stroke-dasharray="10 10"/>
-  <path d="M72 76h92l28 28-28 28H72z" fill="#f05a4f" opacity=".95"/>
-  <path d="M97 92v24M139 92v24M97 104h42" stroke="#fff" stroke-width="5"/>
+  <g fill="none" stroke="#44c7dc" stroke-opacity=".35"><circle cx="900" cy="315" r="92"/><circle cx="900" cy="315" r="178"/><circle cx="900" cy="315" r="264"/><path d="M636 315h528M900 51v528M713 128l374 374M1087 128L713 502"/></g>
+  <path d="M56 346h196l34-88 58 184 62-252 76 245 56-126h126l37-63 55 169 50-100h358" fill="none" stroke="#a2da68" stroke-width="8" stroke-linejoin="round"/>
+  <g fill="#05080b" stroke="#ffc857" stroke-width="5"><circle cx="286" cy="258" r="13"/><circle cx="482" cy="435" r="13"/><circle cx="701" cy="246" r="13"/></g>
+  <g fill="#44c7dc"><circle cx="900" cy="315" r="15"/><circle cx="1032" cy="202" r="9"/><circle cx="997" cy="433" r="9"/></g>
+  <path d="M1032 202L900 315l97 118" fill="none" stroke="#44c7dc" stroke-width="4" stroke-dasharray="10 10"/>
+  <path d="M72 76h92l28 28-28 28H72z" fill="#44c7dc" opacity=".95"/>
+  <path d="M97 92v24M139 92v24M97 104h42" stroke="#031014" stroke-width="5"/>
 </svg>

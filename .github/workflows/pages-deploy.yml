@@ -58,6 +58,9 @@ jobs:
           JEKYLL_ENV: "production"
           HECAVEX_ANALYTICS_TOKEN: ${{ vars.HECAVEX_ANALYTICS_TOKEN }}
 
+      - name: Enforce performance budgets
+        run: npm run check:performance -- "_site${{ steps.pages.outputs.base_path }}"
+
       - name: Verify deployment artifacts
         run: |
           site_dir="_site${{ steps.pages.outputs.base_path }}"
