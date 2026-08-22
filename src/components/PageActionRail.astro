@@ -1,0 +1,31 @@
+---
+import type { ActionRoute } from '../data/page-context';
+import type { Lang } from '../lib/site';
+
+interface Props {
+  lang: Lang;
+  routes: ActionRoute[];
+}
+
+const { lang, routes } = Astro.props;
+const titleId = `contact-routes-${lang}`;
+---
+<aside class="page-action-rail" aria-labelledby={titleId}>
+  <header>
+    <p class="eyebrow">{lang === 'lt' ? 'Pasirinkite kanalą' : 'Choose a route'}</p>
+    <h2 id={titleId}>{lang === 'lt' ? 'Susisiekimo būdai' : 'Contact routes'}</h2>
+  </header>
+  <ol>
+    {routes.map((route, index) => <li>
+      <span class="page-action-rail__number">{String(index + 1).padStart(2, '0')}</span>
+      <div>
+        <p>{route.label}</p>
+        <h3>{route.title}</h3>
+        <small>{route.description}</small>
+        <div class="page-action-rail__links">
+          {route.links.map((link) => <a href={link.href}>{link.label} <span aria-hidden="true">→</span></a>)}
+        </div>
+      </div>
+    </li>)}
+  </ol>
+</aside>

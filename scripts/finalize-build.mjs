@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-import { readFile, rm, writeFile } from 'node:fs/promises';
-import { join, resolve } from 'node:path';
+import { readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { extname, join, resolve } from 'node:path';
+import { applyArticleImagePolicy } from '../src/lib/html-image-policy.mjs';
 
 const root = resolve(process.argv[2] ?? 'dist');
 await writeFile(join(root, '.nojekyll'), '', 'utf8');
@@ -16,4 +17,23 @@ for (const lang of ['en', 'lt']) {
   await writeFile(target, document);
 }
 
-console.log('Finalized GitHub Pages artifact (.nojekyll and localized 404 compatibility files).');
+async function htmlFiles(directory) {
+  const files = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) files.push(...await htmlFiles(path));
+    else if (extname(path) === '.html') files.push(path);
+  }
+  return files;
+}
+
+let imagePolicyDocuments = 0;
+for (const file of await htmlFiles(root)) {
+  const source = await readFile(file, 'utf8');
+  const finalized = applyArticleImagePolicy(source);
+  if (finalized === source) continue;
+  await writeFile(file, finalized, 'utf8');
+  imagePolicyDocuments += 1;
+}
+
+console.log(`Finalized GitHub Pages artifact (.nojekyll, localized 404 compatibility files and ${imagePolicyDocuments} article image-policy documents).`);

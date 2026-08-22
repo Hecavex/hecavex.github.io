@@ -2,9 +2,11 @@
 import { render } from 'astro:content';
 import ContentOutline from '../../components/ContentOutline.astro';
 import Glossary from '../../components/Glossary.astro';
+import PageActionRail from '../../components/PageActionRail.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import PostCard from '../../components/PostCard.astro';
 import ProjectDirectory from '../../components/ProjectDirectory.astro';
+import { contactRoutesFor, pageFactsFor, researchMapFor, type OutlineItem } from '../../data/page-context';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { dateText, getPages, getLocalizedPosts, languagePairPath, slugify, taxonomy, type Lang, type PageEntry } from '../../lib/site';
 
@@ -31,66 +33,33 @@ const briefings = posts.filter((post) => post.publicationClass === 'signal-brief
 const featured = posts.filter((post) => post.featured).slice(0, 3);
 const tags = [...new Map(posts.flatMap((post) => post.tags).map((tag) => [slugify(tag), tag])).entries()].sort((a, b) => a[1].localeCompare(b[1], lang));
 const title = entry.data.seo_title ?? entry.data.title;
-const outlineHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
-const showStandardOutline = ['about', 'speaker-media'].includes(entry.data.translation_key) && outlineHeadings.length > 1;
-const pageFacts = (() => {
-  if (entry.data.translation_key === 'about') return lang === 'lt' ? [
-    { label: 'Vieta', value: 'Vilnius, Lietuva' },
-    { label: 'Patirtis', value: 'Teisėsauga · finansų sektoriaus saugumas · privatūs grėsmių tyrimai' },
-    { label: 'Sritys', value: 'CTI · OSINT · infrastruktūros analizė' },
-    { label: 'Profiliai', links: [{ label: 'GitHub', href: 'https://github.com/Hecavex' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/in/deilis' }] }
-  ] : [
-    { label: 'Base', value: 'Vilnius, Lithuania' },
-    { label: 'Background', value: 'Law enforcement · financial-sector security · private threat research' },
-    { label: 'Practice', value: 'CTI · OSINT · infrastructure analysis' },
-    { label: 'Profiles', links: [{ label: 'GitHub', href: 'https://github.com/Hecavex' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/in/deilis' }] }
-  ];
-  if (entry.data.translation_key === 'speaker-media') return lang === 'lt' ? [
-    { label: 'Formatai', value: 'Konferencija · diskusija · tinklalaidė · interviu' },
-    { label: 'Kalbos', value: 'Lietuvių · anglų' },
-    { label: 'Dalyvavimas', value: 'Vilnius · nuotoliu arba gyvai' },
-    { label: 'Užklausos', value: 'info@hecavex.com', href: 'mailto:info@hecavex.com' }
-  ] : [
-    { label: 'Formats', value: 'Conference talk · panel · podcast · interview' },
-    { label: 'Languages', value: 'English · Lithuanian' },
-    { label: 'Delivery', value: 'Vilnius · remote or in person' },
-    { label: 'Enquiries', value: 'info@hecavex.com', href: 'mailto:info@hecavex.com' }
-  ];
-  if (entry.data.translation_key === 'contact') return lang === 'lt' ? [
-    { label: 'El. paštas', value: 'info@hecavex.com', href: 'mailto:info@hecavex.com' },
-    { label: 'Užklausos', value: 'Pranešimai · žiniasklaida · bendri tyrimai' },
-    { label: 'Nurodykite', value: 'Temą · formatą · terminą' },
-    { label: 'Jautri medžiaga', value: 'Nesiųskite įprastu el. paštu' }
-  ] : [
-    { label: 'Email', value: 'info@hecavex.com', href: 'mailto:info@hecavex.com' },
-    { label: 'Best for', value: 'Speaking · media · research collaboration' },
-    { label: 'Include', value: 'Subject · format · deadline' },
-    { label: 'Sensitive material', value: 'Do not send through ordinary email' }
-  ];
-  if (entry.data.translation_key === 'research-index') return lang === 'lt' ? [
-    { label: 'Formatai', value: 'Pirminiai tyrimai · vertinimai · komentarai' },
-    { label: 'Temos', value: 'CTI · kenkėjiškas kodas · sukčiavimas · informacinės operacijos' },
-    { label: 'Metodas', value: 'Įrodymai atskiriami nuo išvadų ir vertinimų' },
-    { label: 'Atnaujinta', value: posts[0] ? dateText(posts[0].date) : '—' }
-  ] : [
-    { label: 'Formats', value: 'Primary research · assessments · commentary' },
-    { label: 'Coverage', value: 'CTI · malware · fraud · information operations' },
-    { label: 'Method', value: 'Evidence is kept separate from inference and assessment' },
-    { label: 'Updated', value: posts[0] ? dateText(posts[0].date) : '—' }
-  ];
-  return [];
-})();
+const bodyOutlineHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3) as OutlineItem[];
+const standardOutlineHeadings: OutlineItem[] = [{ depth: 2, slug: 'page-start', text: entry.data.title }, ...bodyOutlineHeadings];
+const showActionRail = entry.data.translation_key === 'contact';
+const showStandardOutline = !showActionRail && standardOutlineHeadings.length > 2;
+const pageFacts = pageFactsFor(entry.data.translation_key, lang, posts[0] ? dateText(posts[0].date) : '—');
+const researchMap = researchMapFor(lang, {
+  featured: featured.length,
+  primary: primary.length,
+  assessments: assessments.length,
+  commentary: commentary.length,
+  briefings: briefings.length
+});
 ---
 <BaseLayout {lang} {title} description={entry.data.description} canonicalPath={entry.data.permalink} {alternatePath} noindex={entry.data.robots?.includes('noindex')} type="CollectionPage">
   <div class="shell page-shell">
     {layout === 'research' ? <>
-      <PageHeader {lang} title={entry.data.title} description={entry.data.description} facts={pageFacts} />
-      <nav class="directory-links" aria-label={lang === 'lt' ? 'Publikacijų katalogas' : 'Publication directory'}><a href="#primary">{lang === 'lt' ? 'Pirminiai tyrimai' : 'Primary research'} · {primary.length}</a><a href="#assessments">{lang === 'lt' ? 'Techniniai vertinimai' : 'Technical assessments'} · {assessments.length}</a><a href="#commentary">{lang === 'lt' ? 'Komentarai' : 'Commentary'} · {commentary.length}</a><a href={lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/'}>Signal Brief · {briefings.length}</a></nav>
-      {featured.length > 0 && <section class="catalogue-section catalogue-section--featured"><header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Atrinkta autoriaus' : 'Selected by the author'}</p><h2>{lang === 'lt' ? 'Pradėkite čia' : 'Start here'}</h2><p>{lang === 'lt' ? 'Trys darbai, parodantys Deivido Lis tyrimų spektrą: nuo techninės analizės iki sukčiavimo infrastruktūros ir informacinių operacijų.' : 'Three pieces demonstrating the range of Deividas Lis’s work, from technical analysis to fraud infrastructure and information operations.'}</p></div></header><div class="post-grid">{featured.map((post) => <PostCard {post} prominent />)}</div></section>}
-      <section id="primary" class="catalogue-section"><header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Originalus įrodymų darbas' : 'Original evidence work'}</p><h2>{lang === 'lt' ? 'Pirminiai tyrimai' : 'Primary research'}</h2><p>{lang === 'lt' ? 'Autoriaus surinkta ir išanalizuota infrastruktūra, kodas, incidentų medžiaga ar kiti techniniai artefaktai.' : 'First-party collection and analysis of infrastructure, code, incident material and other technical artefacts.'}</p></div></header><div class="post-grid">{primary.map((post) => <PostCard {post} />)}</div></section>
-      <section id="assessments" class="catalogue-section"><header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Techninis vertinimas ir metodai' : 'Technical judgement and methods'}</p><h2>{lang === 'lt' ? 'Techniniai vertinimai' : 'Technical assessments'}</h2><p>{lang === 'lt' ? 'Incidentų analizė, techniniai paaiškinimai ir pakartojami praktiniai metodai, paremti cituojamais šaltiniais.' : 'Incident analysis, technical explanation and reproducible practitioner methods grounded in cited sources.'}</p></div></header><div class="post-grid">{assessments.map((post) => <PostCard {post} />)}</div></section>
-      <section id="commentary" class="catalogue-section"><header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Analitinė pozicija' : 'Analytical position'}</p><h2>{lang === 'lt' ? 'Komentarai' : 'Commentary'}</h2><p>{lang === 'lt' ? 'Autoriaus argumentai apie grėsmių žvalgybos praktiką, sprendimus ir analitinį amatą. Tai nėra pirminio tyrimo pakaitalas.' : 'Author arguments on threat-intelligence practice, decisions and analytical tradecraft. These pieces are not presented as primary research.'}</p></div></header><div class="post-grid">{commentary.map((post) => <PostCard {post} />)}</div></section>
-      <aside class="briefing-path"><div><p class="eyebrow">Signal Brief</p><h2>{lang === 'lt' ? 'Trumpas aktualių signalų formatas' : 'The concise current-signal format'}</h2><p>{lang === 'lt' ? 'Trumpi, laiku apriboti pažeidžiamumų, incidentų, kampanijų ir geopolitinių pokyčių vertinimai laikomi atskirame sraute.' : 'Short, time-bounded assessments of vulnerabilities, incidents, campaigns and geopolitical developments live in a separate stream.'}</p></div><a href={lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/'}>{lang === 'lt' ? 'Atverti Signalų apžvalgas' : 'Open Signal Briefs'} →</a></aside>
+      <PageHeader {lang} title={entry.data.title} description={entry.data.description} facts={pageFacts} anchorId="page-start" />
+      <div class="research-layout">
+        <div id="research-catalogue" class="research-catalogue">
+      {featured.length > 0 && <section id="featured" class="catalogue-section catalogue-section--featured" data-outline-heading="true" data-outline-label={lang === 'lt' ? 'Pradėkite čia' : 'Start here'}><header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Atrinkta autoriaus' : 'Selected by the author'}</p><h2>{lang === 'lt' ? 'Pradėkite čia' : 'Start here'}</h2><p>{lang === 'lt' ? 'Trys darbai, parodantys Deivido Lis tyrimų spektrą: nuo techninės analizės iki sukčiavimo infrastruktūros ir informacinių operacijų.' : 'Three pieces demonstrating the range of Deividas Lis’s work, from technical analysis to fraud infrastructure and information operations.'}</p></div></header><div class="post-grid">{featured.map((post) => <PostCard {post} prominent />)}</div></section>}
+      <section id="primary" class="catalogue-section" data-outline-heading="true" data-outline-label={lang === 'lt' ? 'Pirminiai tyrimai' : 'Primary research'}><header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Originalus įrodymų darbas' : 'Original evidence work'}</p><h2>{lang === 'lt' ? 'Pirminiai tyrimai' : 'Primary research'}</h2><p>{lang === 'lt' ? 'Autoriaus surinkta ir išanalizuota infrastruktūra, kodas, incidentų medžiaga ar kiti techniniai artefaktai.' : 'First-party collection and analysis of infrastructure, code, incident material and other technical artefacts.'}</p></div></header><div class="post-grid">{primary.map((post) => <PostCard {post} />)}</div></section>
+      <section id="assessments" class="catalogue-section" data-outline-heading="true" data-outline-label={lang === 'lt' ? 'Techniniai vertinimai' : 'Technical assessments'}><header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Techninis vertinimas ir metodai' : 'Technical judgement and methods'}</p><h2>{lang === 'lt' ? 'Techniniai vertinimai' : 'Technical assessments'}</h2><p>{lang === 'lt' ? 'Incidentų analizė, techniniai paaiškinimai ir pakartojami praktiniai metodai, paremti cituojamais šaltiniais.' : 'Incident analysis, technical explanation and reproducible practitioner methods grounded in cited sources.'}</p></div></header><div class="post-grid">{assessments.map((post) => <PostCard {post} />)}</div></section>
+      <section id="commentary" class="catalogue-section" data-outline-heading="true" data-outline-label={lang === 'lt' ? 'Komentarai' : 'Commentary'}><header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Analitinė pozicija' : 'Analytical position'}</p><h2>{lang === 'lt' ? 'Komentarai' : 'Commentary'}</h2><p>{lang === 'lt' ? 'Autoriaus argumentai apie grėsmių žvalgybos praktiką, sprendimus ir analitinį amatą. Tai nėra pirminio tyrimo pakaitalas.' : 'Author arguments on threat-intelligence practice, decisions and analytical tradecraft. These pieces are not presented as primary research.'}</p></div></header><div class="post-grid">{commentary.map((post) => <PostCard {post} />)}</div></section>
+      <aside id="briefing-path" class="briefing-path" data-outline-heading="true" data-outline-label="Signal Brief"><div><p class="eyebrow">Signal Brief</p><h2>{lang === 'lt' ? 'Trumpas aktualių signalų formatas' : 'The concise current-signal format'}</h2><p>{lang === 'lt' ? 'Trumpi, laiku apriboti pažeidžiamumų, incidentų, kampanijų ir geopolitinių pokyčių vertinimai laikomi atskirame sraute.' : 'Short, time-bounded assessments of vulnerabilities, incidents, campaigns and geopolitical developments live in a separate stream.'}</p></div><a href={lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/'}>{lang === 'lt' ? 'Atverti Signalų apžvalgas' : 'Open Signal Briefs'} →</a></aside>
+        </div>
+        <ContentOutline {lang} headings={researchMap} scopeId="research-catalogue" kind="research-map" topHref="#page-start" />
+      </div>
     </> : layout === 'briefings' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} eyebrow="HECAVEX SIGNAL BRIEF" />
       <p class="feed-link"><a href={`/${lang}/${lang === 'lt' ? 'apzvalgos' : 'briefings'}/feed.xml`}>{lang === 'lt' ? 'Prenumeruoti apžvalgų RSS' : 'Subscribe to briefing RSS'} →</a></p>
@@ -110,9 +79,10 @@ const pageFacts = (() => {
     </> : entry.data.translation_key === 'portfolio-glossary' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} />
       <Glossary {lang} />
-    </> : <article class:list={['standard-page', { 'standard-page--with-outline': showStandardOutline }]}>
-      <PageHeader {lang} title={entry.data.title} description={entry.data.description} facts={pageFacts} />
-      {showStandardOutline && <ContentOutline {lang} headings={outlineHeadings} />}
+    </> : <article id="standard-page-scope" class:list={['standard-page', { 'standard-page--with-rail': showStandardOutline || showActionRail }]}>
+      <PageHeader {lang} title={entry.data.title} description={entry.data.description} facts={pageFacts} anchorId="page-start" />
+      {showStandardOutline && <ContentOutline {lang} headings={standardOutlineHeadings} scopeId="standard-page-scope" condensed={standardOutlineHeadings.length > 40} />}
+      {showActionRail && <PageActionRail {lang} routes={contactRoutesFor(lang)} />}
       <div class="prose"><Content /></div>
     </article>}
   </div>

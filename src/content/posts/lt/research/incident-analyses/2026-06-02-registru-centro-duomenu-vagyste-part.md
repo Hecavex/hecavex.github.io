@@ -174,21 +174,17 @@ visa veikla jau atrodo kaip normali veikla, tada problema tampa ne “ar buvo an
 
 ## **Preliminarūs TTP pagal naujausią informaciją**
 
-**Initial Access** | T1566 - Phishing | Galimos fiktyvios Microsoft / Institucijų prisijungimo nuorodos.
-
-**Initial Access** | T1078 - Valid Accounts | Kompromituotos teisėtos paskyros.
-
-**Credential Access** | T1555 – Credentials from Password Stores | Infostealeriai galėjo vogti browser credentials ir tokenus.
-
-**Credential Access** | T1539 – Steal Web Session Cookie | Galimas Microsoft 365 sesijų hijackinimas.
-
-**Defense Evasion** | T1550 – Use Alternate Authentication Material | Tokenų, slapukų ir aktyvių sesijų naudojimas.
-
-**Collection** | T1114 – Email Collection | Outlook / Exchange laiškų rinkimas.
-
-**Collection** | T1213 – Data from Information Repositories | SharePoint, registrų ir kitų saugyklų duomenų rinkimas.
-
-**Persistence** | T1098 – Account Manipulation | OAuth apps, mail forwarding, papildomos sesijos, delegacijos.
+| Taktika | Technika | Vertinimas |
+| --- | --- | --- |
+| **Initial Access** | T1566 – Phishing | Galimos fiktyvios „Microsoft“ ar institucijų prisijungimo nuorodos. |
+| **Initial Access** | T1078 – Valid Accounts | Kompromituotos teisėtos paskyros. |
+| **Credential Access** | T1555 – Credentials from Password Stores | Informacijos vagių kenkėjiškas kodas galėjo rinkti naršyklės prisijungimo duomenis ir prieigos raktus. |
+| **Credential Access** | T1539 – Steal Web Session Cookie | Galimas „Microsoft 365“ sesijų perėmimas. |
+| **Defense Evasion** | T1550 – Use Alternate Authentication Material | Prieigos raktų, slapukų ir aktyvių sesijų naudojimas. |
+| **Collection** | T1114 – Email Collection | „Outlook“ ar „Exchange“ laiškų rinkimas. |
+| **Collection** | T1213 – Data from Information Repositories | „SharePoint“, registrų ir kitų saugyklų duomenų rinkimas. |
+| **Persistence** | T1098 – Account Manipulation | „OAuth“ programos, laiškų persiuntimas, papildomos sesijos ir delegacijos. |
+{: .hx-table-wide }
 
 ![MITRE ATT&CK aprėpties matrica parodo aptikimo spragas skirtingose taktikose.](/assets/img/posts/substack/registru-centro-duomenu-vagyste-part/08.webp)
 

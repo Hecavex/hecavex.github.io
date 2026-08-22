@@ -20,6 +20,10 @@ async function isFile(path) { try { return (await stat(path)).isFile(); } catch 
 const files = await walk(root);
 const htmlFiles = files.filter((file) => extname(file) === '.html');
 const canonicalOwners = new Map();
+let wideTableClasses = 0;
+let promptClasses = 0;
+let tableRegions = 0;
+let evidenceFigures = 0;
 
 function attr(tag, name) {
   return tag.match(new RegExp(`\\s${name}=(?:"([^"]*)"|'([^']*)')`, 'i'))?.slice(1).find((value) => value !== undefined) ?? '';
@@ -40,7 +44,14 @@ function resolveLocal(raw, currentFile) {
 for (const file of htmlFiles) {
   const route = `/${relative(root, file).replaceAll('\\', '/')}`;
   const html = await readFile(file, 'utf8');
+  if (/\{:\s*[^}]+\}/i.test(html)) failures.push(`${route}: unprocessed legacy Markdown attribute marker`);
+  if (/<p>\s*<img\b[^>]*>\s*<em>[\s\S]*?<\/em>\s*<\/p>/i.test(html)) failures.push(`${route}: evidence image and caption were not converted to a semantic figure`);
+  wideTableClasses += (html.match(/class=["'][^"']*\bhx-table-wide\b/gi) ?? []).length;
+  promptClasses += (html.match(/class=["'][^"']*\bprompt-(?:info|danger)\b/gi) ?? []).length;
+  tableRegions += (html.match(/class=["'][^"']*\btable-scroll-region\b/gi) ?? []).length;
+  evidenceFigures += (html.match(/class=["'][^"']*\bhx-evidence-figure\b/gi) ?? []).length;
   const shellDocument = !route.startsWith('/assets/media/');
+  const articleDocument = /class=["'][^"']*\barticle-body\b[^"']*\bprose\b/i.test(html);
   const noindex = /<meta\s+[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html);
   if (/\{%|\{\{\s*(?:site|page|post)\./i.test(html)) failures.push(`${route}: unrendered template output remains`);
   const htmlTag = html.match(/<html\b[^>]*>/i)?.[0] ?? '';
@@ -77,7 +88,13 @@ for (const file of htmlFiles) {
       previous = index;
     }
   }
-  for (const image of html.match(/<img\b[^>]*>/gi) ?? []) if (!/\salt=(?:"[^"]*"|'[^']*')/i.test(image)) failures.push(`${route}: image missing alt attribute`);
+  for (const image of html.match(/<img\b[^>]*>/gi) ?? []) {
+    if (!/\salt=(?:"[^"]*"|'[^']*')/i.test(image)) failures.push(`${route}: image missing alt attribute`);
+    if (articleDocument && !/\bsrc=["']\/assets\/img\/brand\//i.test(image)) {
+      if (!/\sloading=(?:["']|[^\s>]+)/i.test(image)) failures.push(`${route}: article image missing loading policy`);
+      if (!/\sdecoding=(?:["']|[^\s>]+)/i.test(image)) failures.push(`${route}: article image missing decoding policy`);
+    }
+  }
   for (const tag of html.match(/<(?:a|link|script|img)\b[^>]*(?:href|src)=(?:"[^"]*"|'[^']*')[^>]*>/gi) ?? []) {
     const raw = attr(tag, tag.toLowerCase().startsWith('<a') || tag.toLowerCase().startsWith('<link') ? 'href' : 'src');
     const local = resolveLocal(raw, file);
@@ -88,6 +105,11 @@ for (const file of htmlFiles) {
   }
   if (!stripMarkup(html)) failures.push(`${route}: empty document`);
 }
+
+if (wideTableClasses === 0) failures.push('legacy wide-table classes were not restored');
+if (promptClasses === 0) failures.push('legacy prompt classes were not restored');
+if (tableRegions === 0) failures.push('semantic table overflow regions were not generated');
+if (evidenceFigures === 0) failures.push('semantic evidence figures were not generated');
 
 for (const file of files.filter((path) => ['.xml', '.json', '.txt'].includes(extname(path)))) {
   const source = await readFile(file, 'utf8');

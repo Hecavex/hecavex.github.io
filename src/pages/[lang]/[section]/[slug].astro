@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import ContentOutline from '../../../components/ContentOutline.astro';
 import PostCard from '../../../components/PostCard.astro';
+import type { OutlineItem } from '../../../data/page-context';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imagePath, labelForPost, slugify, type Post } from '../../../lib/site';
 
@@ -32,19 +33,34 @@ const methods = Array.isArray(data.methods) ? data.methods.map(String) : [];
 const findings = Array.isArray(data.key_findings) ? data.key_findings.map(String) : [];
 const updates = Array.isArray(data.updates) ? data.updates as Array<{ date: Date; note: string }> : [];
 const stableId = String(data.research_id ?? `HCVX-${post.translationKey.toUpperCase().replace(/[^A-Z0-9]+/g, '-')}`);
-const generatedOutlineHeadings = [
+const generatedOutlineHeadings: OutlineItem[] = [
   ...(findings.length > 0 ? [{ depth: 2, slug: 'findings-title', text: post.lang === 'lt' ? 'Ką rodo įrodymai' : 'What the evidence supports' }] : []),
   ...(evidenceBearing ? [{ depth: 2, slug: 'record-title', text: post.lang === 'lt' ? 'Tyrimo ribos' : 'Research boundaries' }] : [])
 ];
-const bodyOutlineHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
-const includeSubheadings = generatedOutlineHeadings.length + bodyOutlineHeadings.length <= 40;
-const outlineHeadings = [...generatedOutlineHeadings, ...bodyOutlineHeadings.filter((heading) => includeSubheadings || heading.depth === 2)];
-const showOutline = data.toc !== false && outlineHeadings.length > 1;
+const bodyOutlineHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3) as OutlineItem[];
+const trackedOutlineHeadings: OutlineItem[] = [
+  { depth: 2, slug: 'article-start', text: post.lang === 'lt' ? 'Apžvalga' : 'Overview' },
+  ...generatedOutlineHeadings,
+  ...bodyOutlineHeadings
+];
+const condensedOutline = trackedOutlineHeadings.length > 40;
+const outlineHeadings = condensedOutline ? trackedOutlineHeadings.filter((heading) => heading.depth === 2) : trackedOutlineHeadings;
+const showOutline = data.toc !== false && trackedOutlineHeadings.length > 1;
 const canonical = new URL(post.url, Astro.site).href;
+const sectionPath = post.publicationClass === 'signal-brief'
+  ? `/${post.lang}/${post.lang === 'lt' ? 'apzvalgos' : 'briefings'}/`
+  : `/${post.lang}/${post.lang === 'lt' ? 'tyrimai' : 'research'}/`;
+const sectionLabel = post.publicationClass === 'signal-brief'
+  ? (post.lang === 'lt' ? 'Signalų apžvalgos' : 'Signal Briefs')
+  : (post.lang === 'lt' ? 'Tyrimai' : 'Research');
 ---
 <BaseLayout lang={post.lang} title={post.title} description={post.description} canonicalPath={post.url} alternatePath={translation?.url} image={social} imageAlt={alt || `${post.title} social preview`} type="Article" published={post.date} modified={post.updated ?? post.date}>
   <article class="shell article-shell">
-    <header class="article-head">
+    <nav class="article-breadcrumb" aria-label={post.lang === 'lt' ? 'Publikacijos kelias' : 'Publication path'}>
+      <a href={`/${post.lang}/`}>HECAVEX</a><span aria-hidden="true">/</span><a href={sectionPath}>{sectionLabel}</a><span aria-hidden="true">/</span><span aria-current="page">{post.title}</span>
+    </nav>
+    <div id="article-reading" class:list={['article-reading-layout', { 'article-reading-layout--with-outline': showOutline }]}>
+    <header id="article-start" class="article-head" data-outline-heading="true" data-outline-label={post.lang === 'lt' ? 'Apžvalga' : 'Overview'}>
       <div class="article-edition"><span>{post.lang === 'lt' ? 'LIETUVIŲ' : 'ENGLISH'}</span>{translation && <a href={translation.url} hreflang={translation.lang}>{post.lang === 'lt' ? 'Read in English' : 'Skaityti lietuviškai'} →</a>}</div>
       <p class="eyebrow">{labelForPost(post)}</p>
       <h1>{post.title}</h1>
@@ -54,8 +70,7 @@ const canonical = new URL(post.url, Astro.site).href;
       {hero && <figure class="article-hero"><img src={hero} alt={alt} width={image?.hero_width ?? image?.width ?? 1200} height={image?.hero_height ?? image?.height ?? 630} loading="eager" fetchpriority="high" />{alt && <figcaption>{alt}</figcaption>}</figure>}
     </header>
 
-    <div class:list={['article-grid', { 'article-grid--with-outline': showOutline }]}>
-      {showOutline && <ContentOutline lang={post.lang} headings={outlineHeadings} />}
+      {showOutline && <ContentOutline lang={post.lang} headings={outlineHeadings} scopeId="article-reading" condensed={condensedOutline} />}
       <div class="article-body prose">
         {post.contentType === 'signal-brief' && <aside class="brief-record"><span>HECAVEX SIGNAL BRIEF · #{String(data.issue ?? '—')}</span><dl><div><dt>{post.lang === 'lt' ? 'Aprėptis' : 'Coverage'}</dt><dd>{String(data.coverage_start ?? '—')} — {String(data.coverage_end ?? '—')}</dd></div><div><dt>{post.lang === 'lt' ? 'Informacijos riba' : 'Information cut-off'}</dt><dd>{String(data.information_cutoff ?? '—')}</dd></div></dl></aside>}
         {findings.length > 0 && <section class="editorial-summary" aria-labelledby="findings-title"><p class="eyebrow">{post.lang === 'lt' ? 'Esminės išvados' : 'Key findings'}</p><h2 id="findings-title">{post.lang === 'lt' ? 'Ką rodo įrodymai' : 'What the evidence supports'}</h2><ul>{findings.map((finding) => <li>{finding}</li>)}</ul></section>}

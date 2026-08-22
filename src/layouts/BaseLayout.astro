@@ -53,6 +53,8 @@ const jsonLd = {
   ]
 };
 const measurementToken = import.meta.env.PUBLIC_HECAVEX_ANALYTICS_TOKEN?.trim() ?? '';
+const assetVersion = process.env.GITHUB_SHA?.slice(0, 12) ?? 'local';
+const assetQuery = `?v=${encodeURIComponent(assetVersion)}`;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -72,9 +74,9 @@ const measurementToken = import.meta.env.PUBLIC_HECAVEX_ANALYTICS_TOKEN?.trim() 
     <link rel="icon" href="/assets/img/favicons/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/assets/img/favicons/apple-touch-icon.png" />
     <link rel="manifest" href="/assets/img/favicons/site.webmanifest" />
-    <link rel="stylesheet" href="/assets/css/fonts.css" />
-    <link rel="stylesheet" href="/assets/css/hecavex.css" />
-    <script is:inline src="/assets/js/site.js" defer></script>
+    <link rel="stylesheet" href={`/assets/css/fonts.css${assetQuery}`} />
+    <link rel="stylesheet" href={`/assets/css/hecavex.css${assetQuery}`} />
+    <script is:inline src={`/assets/js/site.js${assetQuery}`} defer></script>
     <meta property="og:type" content={type === 'Article' ? 'article' : 'website'} />
     <meta property="og:site_name" content="HECAVEX" />
     <meta property="og:locale" content={lang === 'lt' ? 'lt_LT' : 'en_US'} />

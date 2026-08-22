@@ -172,21 +172,17 @@ all activity already looks like normal activity, then the problem becomes not "w
 
 ## **Preliminary TTPs based on latest information**
 
-**Initial Access** | T1566 - Phishing | Fake Microsoft / Institutional login links are available.
-
-**Initial Access** | T1078 - Valid Accounts | Legitimate accounts compromised.
-
-**Credential Access** | T1555 - Credentials from Password Stores | Infostealers could steal browser credentials and tokens.
-
-**Credential Access** | T1539 - Steal Web Session Cookie | Hijacking of Microsoft 365 sessions is possible.
-
-**Defense Evasion** | T1550 – Use Alternate Authentication Material | Use of tokens, cookies and active sessions.
-
-**Collection** | T1114 - Email Collection | Collecting Outlook / Exchange mail.
-
-**Collection** | T1213 – Data from Information Repositories | Collection of data from SharePoint, registries and other repositories.
-
-**Persistence** | T1098 - Account Manipulation | OAuth apps, mail forwarding, additional sessions, delegations.
+| Tactic | Technique | Assessment |
+| --- | --- | --- |
+| **Initial Access** | T1566 – Phishing | Fake Microsoft or institutional login links are available. |
+| **Initial Access** | T1078 – Valid Accounts | Legitimate accounts compromised. |
+| **Credential Access** | T1555 – Credentials from Password Stores | Infostealers could steal browser credentials and tokens. |
+| **Credential Access** | T1539 – Steal Web Session Cookie | Hijacking of Microsoft 365 sessions is possible. |
+| **Defense Evasion** | T1550 – Use Alternate Authentication Material | Use of tokens, cookies and active sessions. |
+| **Collection** | T1114 – Email Collection | Collecting Outlook or Exchange mail. |
+| **Collection** | T1213 – Data from Information Repositories | Collection of data from SharePoint, registries and other repositories. |
+| **Persistence** | T1098 – Account Manipulation | OAuth apps, mail forwarding, additional sessions and delegations. |
+{: .hx-table-wide }
 
 ![MITRE ATT&CK coverage matrix reveals detection gaps across tactics.](/assets/img/posts/substack/registru-centro-duomenu-vagyste-part/08.webp)
 

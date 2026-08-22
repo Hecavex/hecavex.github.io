@@ -1,11 +1,10 @@
 ---
 import type { Lang } from '../lib/site';
-export interface PageFactLink { label: string; href: string; }
-export interface PageFact { label: string; value?: string; href?: string; links?: PageFactLink[]; }
-interface Props { lang: Lang; title: string; description: string; eyebrow?: string; facts?: PageFact[]; }
-const { lang, title, description, eyebrow = `HECAVEX / ${lang.toUpperCase()}`, facts = [] } = Astro.props;
+import type { PageFact } from '../data/page-context';
+interface Props { lang: Lang; title: string; description: string; eyebrow?: string; facts?: PageFact[]; anchorId?: string; }
+const { lang, title, description, eyebrow = `HECAVEX / ${lang.toUpperCase()}`, facts = [], anchorId } = Astro.props;
 ---
-<div class:list={['page-intro', { 'page-intro--with-facts': facts.length > 0 }]}>
+<div id={anchorId} class:list={['page-intro', { 'page-intro--with-facts': facts.length > 0 }]} data-outline-heading={anchorId ? 'true' : undefined} data-outline-label={anchorId ? title : undefined}>
   <header class="page-head">
     <p class="eyebrow">{eyebrow}</p>
     <h1>{title}</h1>

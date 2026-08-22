@@ -40,11 +40,17 @@ const baseUrl = `http://127.0.0.1:${address.port}`;
 const routes = [
   '/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/en/projects/',
   '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/',
-  '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/'
+  '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
+  '/en/research/cra-article-14-vulnerability-incident-reporting-guide/', '/lt/tyrimai/infrastrukturos-pivoting-101/'
 ];
 const factRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
-const outlineRoutes = new Set(['/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/']);
+const outlineRoutes = new Set([
+  '/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/',
+  '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
+  '/en/research/cra-article-14-vulnerability-incident-reporting-guide/', '/lt/tyrimai/infrastrukturos-pivoting-101/'
+]);
 const researchRoutes = new Set(['/en/research/', '/lt/tyrimai/']);
+const contactRoutes = new Set(['/en/contact/', '/lt/kontaktai/']);
 const legacyCtaRoutes = new Set(['/en/about/', '/lt/apie/', '/en/contact/', '/lt/kontaktai/']);
 const widths = [320, 390, 768, 1160, 1440];
 const failures = [];
@@ -81,6 +87,8 @@ try {
         const mobileOutline = document.querySelector('.content-outline--mobile');
         const outlineLinks = [...(desktopOutline?.querySelectorAll('a[href^="#"]') ?? [])];
         const ctaButton = document.querySelector('.hx-page-cta .hx-button');
+        const stylesheet = document.querySelector('link[href*="/assets/css/hecavex.css"]');
+        const siteScript = document.querySelector('script[src*="/assets/js/site.js"]');
         const offscreen = [...document.querySelectorAll('main *, .site-header *')].filter((element) => {
           const style = getComputedStyle(element);
           if (style.display === 'none' || style.visibility === 'hidden' || style.position === 'fixed') return false;
@@ -112,12 +120,17 @@ try {
           outlineLinkCount: outlineLinks.length,
           outlineSubtitleCount: outlineLinks.filter((link) => link.closest('li')?.classList.contains('content-outline__depth-3')).length,
           missingOutlineTargets: outlineLinks.map((link) => decodeURIComponent(link.hash.slice(1))).filter((id) => !document.getElementById(id)),
+          outlineStatusVisible: desktopOutline ? !desktopOutline.querySelector('[data-outline-status]')?.hidden : false,
+          researchMapCount: document.querySelectorAll('.content-outline--desktop.content-outline--map [data-outline-item]').length,
+          actionRouteCount: document.querySelectorAll('.page-action-rail li').length,
+          actionLinkCount: document.querySelectorAll('.page-action-rail a').length,
           researchDescriptionCount: document.querySelectorAll('.catalogue-section .section-head p:not(.eyebrow)').length,
           hasBriefingPath: Boolean(document.querySelector('.briefing-path h2')),
           pageUpdatedValue: document.querySelector('.page-facts > div:last-child dd')?.textContent.trim() ?? '',
           ctaButtonHeight: ctaButton?.getBoundingClientRect().height ?? 0,
           ctaButtonDisplay: ctaButton ? getComputedStyle(ctaButton).display : 'missing',
-          leadImageLinkName: document.querySelector('.lead-story-image')?.getAttribute('aria-label') ?? ''
+          leadImageLinkName: document.querySelector('.lead-story-image')?.getAttribute('aria-label') ?? '',
+          versionedAssets: Boolean(stylesheet?.getAttribute('href')?.match(/\?v=[^&]+$/) && siteScript?.getAttribute('src')?.match(/\?v=[^&]+$/))
         };
       }, width);
       if (state.shell !== 'v1') fail(route, width, 'portfolio shell marker is missing');
@@ -128,16 +141,19 @@ try {
       if (Math.abs(state.bodyFontSize - 15.2) > 0.05 || state.bodyColor !== 'rgb(182, 198, 207)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
       if (state.tokens.join('|') !== '#0b1117|#0b1117|#101923|#1e3440|#1e3440|#b6c6cf|#8397a3|#8397a3|#44c7dc|#44c7dc') fail(route, width, `shared Cold Signal tokens changed (${state.tokens.join('|')})`);
       if (state.dot && (Math.abs(Number.parseFloat(state.dot.width) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.height) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.marginRight) - 8.8) > 0.02 || state.dot.color !== 'rgb(68, 199, 220)')) fail(route, width, `active network dot geometry changed (${JSON.stringify(state.dot)})`);
+      if (!state.versionedAssets) fail(route, width, 'core stylesheet or script is not cache-versioned');
       if (factRoutes.has(route) && state.pageFactCount !== 4) fail(route, width, `page fact rail contains ${state.pageFactCount} records instead of 4`);
       if (outlineRoutes.has(route)) {
         if (state.outlineLinkCount < 2) fail(route, width, `content outline contains only ${state.outlineLinkCount} links`);
         if (state.missingOutlineTargets.length) fail(route, width, `content outline has missing targets: ${state.missingOutlineTargets.join(', ')}`);
         if (route.includes('unipark') && state.outlineSubtitleCount < 1) fail(route, width, 'research outline does not expose H3 subtitles');
-        if (width <= 1024) {
+        if (width > 1160 && !state.outlineStatusVisible) fail(route, width, 'desktop reading position did not initialise');
+        if (width <= 1160) {
           if (state.desktopOutlineDisplay !== 'none' || state.mobileOutlineDisplay === 'none') fail(route, width, `mobile outline mode is wrong (${state.desktopOutlineDisplay}/${state.mobileOutlineDisplay})`);
         } else if (state.desktopOutlineDisplay === 'none' || state.mobileOutlineDisplay !== 'none') fail(route, width, `desktop outline mode is wrong (${state.desktopOutlineDisplay}/${state.mobileOutlineDisplay})`);
       }
-      if (researchRoutes.has(route) && (state.researchDescriptionCount < 4 || !state.hasBriefingPath || !/^\d{4}-\d{2}-\d{2}$/.test(state.pageUpdatedValue))) fail(route, width, `research catalogue context is incomplete (${state.researchDescriptionCount} descriptions, briefing path ${state.hasBriefingPath}, updated ${state.pageUpdatedValue})`);
+      if (researchRoutes.has(route) && (state.researchDescriptionCount < 4 || !state.hasBriefingPath || state.researchMapCount !== 5 || !/^\d{4}-\d{2}-\d{2}$/.test(state.pageUpdatedValue))) fail(route, width, `research catalogue context is incomplete (${state.researchDescriptionCount} descriptions, ${state.researchMapCount} map entries, briefing path ${state.hasBriefingPath}, updated ${state.pageUpdatedValue})`);
+      if (contactRoutes.has(route) && (state.actionRouteCount !== 4 || state.actionLinkCount !== 5)) fail(route, width, `contact action rail is incomplete (${state.actionRouteCount} routes, ${state.actionLinkCount} links)`);
       if (legacyCtaRoutes.has(route) && (!['flex', 'inline-flex'].includes(state.ctaButtonDisplay) || state.ctaButtonHeight < 43 || state.ctaButtonHeight > 45)) fail(route, width, `restored page CTA is not a 44px flex control (${state.ctaButtonDisplay}, ${state.ctaButtonHeight}px)`);
       if (['/en/', '/lt/'].includes(route) && !state.leadImageLinkName) fail(route, width, 'lead-story image link has no accessible name');
       if (width <= 1160) {
@@ -213,6 +229,121 @@ try {
   if (noScriptOutline.missingTargets.length) fail('/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/ (no JavaScript)', 390, `outline targets are missing: ${noScriptOutline.missingTargets.join(', ')}`);
   if (noScriptOutline.overflow > 1) fail('/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/ (no JavaScript)', 390, `page overflows horizontally by ${noScriptOutline.overflow}px`);
   await noScript.close();
+
+  const readingContext = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce', serviceWorkers: 'block' });
+  const readingPage = await readingContext.newPage();
+  const readingRoute = '/en/research/unipark-smishing-campaign-infrastructure/';
+  await readingPage.goto(`${baseUrl}${readingRoute}`, { waitUntil: 'networkidle' });
+  await readingPage.waitForFunction(() => !document.querySelector('.content-outline--desktop [data-outline-status]')?.hidden);
+  const initialReading = await readingPage.evaluate(() => ({
+    current: document.querySelector('.content-outline--desktop [data-outline-current]')?.textContent.trim(),
+    active: document.querySelectorAll('.content-outline--desktop a[aria-current="location"]').length,
+    headTop: document.querySelector('.article-head')?.getBoundingClientRect().top,
+    outlineTop: document.querySelector('.content-outline--desktop')?.getBoundingClientRect().top
+  }));
+  if (initialReading.active !== 1) fail(readingRoute, 1440, `reading map has ${initialReading.active} current links instead of 1`);
+  if (Math.abs((initialReading.headTop ?? 0) - (initialReading.outlineTop ?? 0)) > 2) fail(readingRoute, 1440, `article outline does not begin beside the title (${initialReading.headTop}/${initialReading.outlineTop})`);
+
+  const anchorLink = readingPage.locator('.content-outline--desktop [data-outline-link]').nth(4);
+  const anchorTarget = await anchorLink.getAttribute('href');
+  await anchorLink.click();
+  await readingPage.waitForTimeout(120);
+  const anchorGeometry = await readingPage.evaluate((targetSelector) => {
+    const target = targetSelector ? document.querySelector(targetSelector) : undefined;
+    const header = document.querySelector('.site-header');
+    return { targetTop: target?.getBoundingClientRect().top ?? -1, headerBottom: header?.getBoundingClientRect().bottom ?? 0 };
+  }, anchorTarget);
+  if (anchorGeometry.targetTop < anchorGeometry.headerBottom - 1) fail(readingRoute, 1440, `outline anchor landed under the sticky header (${JSON.stringify(anchorGeometry)})`);
+  await readingPage.evaluate(() => window.scrollTo(0, 0));
+  await readingPage.waitForTimeout(120);
+
+  const trackedHeading = readingPage.locator('.article-body h3[id]').nth(1);
+  const trackedLabel = (await trackedHeading.textContent())?.replace(/\s+/g, ' ').trim();
+  await trackedHeading.evaluate((heading) => {
+    const headerHeight = document.querySelector('.site-header')?.getBoundingClientRect().height ?? 0;
+    window.scrollTo(0, heading.getBoundingClientRect().top + window.scrollY - headerHeight - 48);
+  });
+  await readingPage.waitForTimeout(120);
+  const progressedReading = await readingPage.evaluate(() => ({
+    current: document.querySelector('.content-outline--desktop [data-outline-current]')?.textContent.trim(),
+    active: document.querySelectorAll('.content-outline--desktop a[aria-current="location"]').length,
+    past: document.querySelectorAll('.content-outline--desktop [data-outline-item].is-past').length,
+    next: document.querySelector('.content-outline--desktop [data-outline-next]')?.textContent.trim(),
+    value: document.querySelector('.content-outline--desktop [data-outline-progress]')?.getAttribute('aria-valuenow')
+  }));
+  if (progressedReading.current !== trackedLabel || progressedReading.active !== 1 || progressedReading.past < 1 || !progressedReading.next || Number(progressedReading.value) < 2) fail(readingRoute, 1440, `scroll-aware reading state is wrong (${JSON.stringify(progressedReading)}, expected ${trackedLabel})`);
+  await readingPage.evaluate(() => window.scrollTo(0, 0));
+  await readingPage.waitForTimeout(120);
+  const returnedCurrent = await readingPage.locator('.content-outline--desktop [data-outline-current]').textContent();
+  if (returnedCurrent?.trim() !== initialReading.current) fail(readingRoute, 1440, 'reading state did not move backward after scrolling to the beginning');
+
+  const longRoute = '/lt/tyrimai/infrastrukturos-pivoting-101/';
+  await readingPage.goto(`${baseUrl}${longRoute}`, { waitUntil: 'networkidle' });
+  const longHeading = readingPage.locator('.article-body h3[id]').nth(10);
+  const longHeadingLabel = (await longHeading.textContent())?.replace(/\s+/g, ' ').trim();
+  await longHeading.evaluate((heading) => {
+    const headerHeight = document.querySelector('.site-header')?.getBoundingClientRect().height ?? 0;
+    window.scrollTo(0, heading.getBoundingClientRect().top + window.scrollY - headerHeight - 48);
+  });
+  await readingPage.waitForTimeout(120);
+  const longState = await readingPage.evaluate(() => ({
+    current: document.querySelector('.content-outline--desktop [data-outline-current]')?.textContent.trim(),
+    visibleSubtitles: document.querySelectorAll('.content-outline--desktop .content-outline__depth-3').length,
+    visibleItems: document.querySelectorAll('.content-outline--desktop [data-outline-item]').length,
+    trackedTotal: Number(document.querySelector('.content-outline--desktop [data-outline-progress]')?.getAttribute('aria-valuemax')),
+    activeVisible: (() => {
+      const nav = document.querySelector('.content-outline--desktop [data-outline-nav]');
+      const active = document.querySelector('.content-outline--desktop [data-outline-item].is-current');
+      if (!nav || !active) return false;
+      const navRect = nav.getBoundingClientRect();
+      const activeRect = active.getBoundingClientRect();
+      return activeRect.top >= navRect.top - 1 && activeRect.bottom <= navRect.bottom + 1;
+    })()
+  }));
+  if (longState.current !== longHeadingLabel || longState.visibleSubtitles !== 0 || longState.trackedTotal <= longState.visibleItems || !longState.activeVisible) fail(longRoute, 1440, `condensed guide tracking is wrong (${JSON.stringify(longState)}, expected ${longHeadingLabel})`);
+  await readingContext.close();
+
+  const tableRoute = '/en/research/cra-article-14-vulnerability-incident-reporting-guide/';
+  const wideTableContext = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce', serviceWorkers: 'block' });
+  const wideTablePage = await wideTableContext.newPage();
+  await wideTablePage.goto(`${baseUrl}${tableRoute}`, { waitUntil: 'networkidle' });
+  const wideTableState = await wideTablePage.evaluate(() => {
+    const paragraph = document.querySelector('.article-body > p');
+    const region = document.querySelector('.article-body .table-scroll-region--wide');
+    return {
+      paragraphWidth: paragraph?.getBoundingClientRect().width ?? 0,
+      regionWidth: region?.getBoundingClientRect().width ?? 0,
+      regionOverflows: region ? region.scrollWidth > region.clientWidth + 1 : false,
+      dataLabel: region?.getAttribute('data-table-label'),
+      role: region?.getAttribute('role'),
+      tabIndex: region?.getAttribute('tabindex'),
+      documentOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
+    };
+  });
+  const desktopTableSemanticsMatch = wideTableState.regionOverflows
+    ? wideTableState.role === 'region' && wideTableState.tabIndex === '0'
+    : wideTableState.role === null && wideTableState.tabIndex === null;
+  if (wideTableState.paragraphWidth > 840 || wideTableState.regionWidth < wideTableState.paragraphWidth + 100 || !wideTableState.dataLabel || !desktopTableSemanticsMatch || wideTableState.documentOverflow > 1) fail(tableRoute, 1440, `wide evidence track is wrong (${JSON.stringify(wideTableState)})`);
+  await wideTableContext.close();
+
+  const mobileTableContext = await browser.newContext({ viewport: { width: 390, height: 900 }, reducedMotion: 'reduce', serviceWorkers: 'block' });
+  const mobileTablePage = await mobileTableContext.newPage();
+  await mobileTablePage.goto(`${baseUrl}${tableRoute}`, { waitUntil: 'networkidle' });
+  const mobileTableState = await mobileTablePage.locator('.article-body .table-scroll-region--wide').first().evaluate((region) => {
+    region.focus();
+    region.scrollLeft = 160;
+    const hint = region.querySelector('.table-scroll-hint');
+    return {
+      clientWidth: region.clientWidth,
+      scrollWidth: region.scrollWidth,
+      scrollLeft: region.scrollLeft,
+      focused: document.activeElement === region,
+      hintDisplay: hint ? getComputedStyle(hint).display : 'missing',
+      documentOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
+    };
+  });
+  if (mobileTableState.clientWidth > 390 || mobileTableState.scrollWidth <= mobileTableState.clientWidth || mobileTableState.scrollLeft <= 0 || !mobileTableState.focused || mobileTableState.hintDisplay === 'none' || mobileTableState.documentOverflow > 1) fail(tableRoute, 390, `mobile table region is not independently inspectable (${JSON.stringify(mobileTableState)})`);
+  await mobileTableContext.close();
 } finally {
   await browser.close();
   await new Promise((accept) => server.close(accept));
@@ -222,4 +353,4 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Responsive audit passed: ${routes.length} pages × ${widths.length} viewports plus no-JavaScript navigation; portfolio geometry, 64px heading cap and 320px overflow gate are intact.`);
+console.log(`Responsive audit passed: ${routes.length} pages × ${widths.length} viewports plus no-JavaScript navigation, scroll-aware reading maps and wide-table inspection.`);
