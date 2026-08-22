@@ -3,6 +3,9 @@
 # Jekyll is used only to render the Markdown publication into static files.
 # The complete presentation layer is original HECAVEX code in this repository.
 
+source: src
+disable_disk_cache: true
+
 lang: en
 timezone: Europe/Vilnius
 title: HECAVEX
@@ -202,15 +205,8 @@ defaults:
       research_version: "1.0"
       research_status: published
 exclude:
-  - docs
-  - tools
-  - test-results
-  - README.md
-  - LICENSE
-  - "package*.json"
-  - .stylelintrc.json
-  - assets/img/posts/2024-11-10-github/main/main_page.png
-  - assets/img/posts/2024-11-10-github/main/cover.png
+  # Lossless editorial masters belong outside the publishable source tree.
+  # These patterns are a final guardrail against accidentally shipping them.
   - assets/img/posts/substack/**/*.png
   - assets/img/posts/substack/**/*.jpg
   - assets/img/posts/substack/**/*.jpeg

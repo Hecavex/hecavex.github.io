@@ -2,9 +2,9 @@
 
 This repository publishes [hecavex.com](https://hecavex.com), my independent bilingual cyber threat intelligence publication. It contains investigations, technical assessments, Signal Briefs, commentary and the public record behind each research package.
 
-Jekyll turns the Markdown archive into static files; every visible interface is original HECAVEX code maintained in this repository. The presentation layer is built from the publication shell in `_layouts/publication.html`, focused components in `_includes`, and the CSS and JavaScript entry points in `assets/css` and `assets/js`.
+Jekyll turns the Markdown archive into static files; every visible interface is original HECAVEX code maintained in this repository. Publishable source is kept under `src`: the presentation layer is built from `src/_layouts/publication.html`, focused components in `src/_includes`, and the CSS and JavaScript entry points in `src/assets/css` and `src/assets/js`.
 
-The portfolio uses the Cold Signal design system: a dark analyst workspace, cyan action colour, green confirmation colour, amber warning colour, Inter for reading and IBM Plex Mono for identifiers and interface metadata. Font files are self-hosted under `assets/fonts`; no visitor request is sent to a font CDN.
+The portfolio uses the Cold Signal design system: a dark analyst workspace, cyan action colour, green confirmation colour, amber warning colour, Inter for reading and IBM Plex Mono for identifiers and interface metadata. Font files are self-hosted under `src/assets/fonts`; no visitor request is sent to a font CDN.
 
 ## Run locally
 
@@ -23,11 +23,11 @@ Jekyll writes the generated site to `_site`; do not edit that directory.
 
 English and Lithuanian posts live in matching folders:
 
-- `_posts/en/blogs/` and `_posts/lt/blogs/` for commentary
-- `_posts/en/bulletins/` and `_posts/lt/bulletins/` for Signal Briefs
-- `_posts/en/research/` and `_posts/lt/research/` for investigations and technical work
+- `src/_posts/en/blogs/` and `src/_posts/lt/blogs/` for commentary
+- `src/_posts/en/bulletins/` and `src/_posts/lt/bulletins/` for Signal Briefs
+- `src/_posts/en/research/` and `src/_posts/lt/research/` for investigations and technical work
 
-Start from the closest file in `_templates`. Paired translations use the same `translation_key`. Templates set both `draft: true` and `published: false`; keep both safeguards until the copy, citations, image descriptions and metadata have been checked, then change them to `draft: false` and `published: true` for release.
+Start from the closest file in `docs/templates`. Paired translations use the same `translation_key`. Templates set both `draft: true` and `published: false`; keep both safeguards until the copy, citations, image descriptions and metadata have been checked, then change them to `draft: false` and `published: true` for release.
 
 Primary research and technical assessments include a visible publication record with stable ID, version, evidence basis, methods, confidence, TLP marking and revision history. See [Editorial packages](docs/EDITORIAL-PACKAGES.md).
 
@@ -42,10 +42,10 @@ The generator renders deterministic, self-hosted 1200×630 PNG previews from eac
 ## Validate a release
 
 ```sh
-bundle exec ruby tools/validate_content.rb
+bundle exec ruby scripts/validate_content.rb
 npm test
 JEKYLL_ENV=production bundle exec jekyll build
-bundle exec ruby tools/audit_site.rb _site
+bundle exec ruby scripts/audit_site.rb _site
 npm run audit:responsive
 ```
 

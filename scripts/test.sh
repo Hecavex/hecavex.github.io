@@ -7,9 +7,9 @@ project_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$project_dir"
 site_dir="${SITE_DIR:-_site}"
 
-bundle exec ruby tools/validate_content.rb
+bundle exec ruby scripts/validate_content.rb
 npm test
 bundle exec jekyll clean
 JEKYLL_ENV=production bundle exec jekyll build --destination "$site_dir"
-bundle exec ruby tools/audit_site.rb "$site_dir"
-node tools/audit_responsive.mjs "$site_dir"
+bundle exec ruby scripts/audit_site.rb "$site_dir"
+node scripts/audit_responsive.mjs "$site_dir"

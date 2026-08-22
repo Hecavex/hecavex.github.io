@@ -10,7 +10,7 @@ errors = []
 warnings = []
 keys = {}
 
-Dir.glob("_posts/**/*.{md,markdown}").sort.each do |path|
+Dir.glob("src/_posts/**/*.{md,markdown}").sort.each do |path|
   raw = File.read(path, encoding: "UTF-8")
   match = raw.match(/\A---\s*\n(.*?)\n---/m)
   unless match
@@ -45,7 +45,7 @@ Dir.glob("_posts/**/*.{md,markdown}").sort.each do |path|
   errors << "#{path}: configured image requires alt text" if image.is_a?(Hash) && image["path"] && image["alt"].to_s.strip.empty?
   if key && lang
     expected_social = "/assets/img/social/#{key}-#{lang}.png"
-    social_file = expected_social.delete_prefix("/")
+    social_file = File.join("src", expected_social.delete_prefix("/"))
     errors << "#{path}: missing generated social card #{expected_social}" unless File.file?(social_file)
     if image.is_a?(Hash) && File.extname(image["path"].to_s).downcase == ".svg"
       errors << "#{path}: SVG hero must declare PNG social metadata #{expected_social}" unless image["social"] == expected_social
@@ -68,7 +68,7 @@ Dir.glob("_posts/**/*.{md,markdown}").sort.each do |path|
   end
 end
 
-runtime_sources = Dir.glob(["_includes/**/*", "_layouts/**/*", "assets/js/**/*", "_posts/**/*.{md,markdown}"]).select { |path| File.file?(path) }
+runtime_sources = Dir.glob(["src/_includes/**/*", "src/_layouts/**/*", "src/assets/js/**/*", "src/_posts/**/*.{md,markdown}"]).select { |path| File.file?(path) }
 prohibited_runtime_signatures = {
   "Mermaid CDN runtime" => %r{cdn\.jsdelivr\.net/npm/mermaid}i,
   "MathJax CDN runtime" => %r{cdn\.jsdelivr\.net/npm/mathjax|MathJax-script}i,
@@ -82,8 +82,8 @@ runtime_sources.each do |path|
 end
 
 %w[
-  assets/img/posts/2026-08-02-cra-article-14/cra-article-14-decision-tree-en.svg
-  assets/img/posts/2026-08-02-cra-article-14/cra-article-14-decision-tree-lt.svg
+  src/assets/img/posts/2026-08-02-cra-article-14/cra-article-14-decision-tree-en.svg
+  src/assets/img/posts/2026-08-02-cra-article-14/cra-article-14-decision-tree-lt.svg
 ].each do |diagram|
   unless File.file?(diagram)
     errors << "#{diagram}: static CRA decision tree is missing"

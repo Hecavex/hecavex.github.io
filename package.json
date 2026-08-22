@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "build": "npm test",
-    "lint:js": "node --check assets/js/site.js",
-    "lint:css": "stylelint assets/css/fonts.css assets/css/hecavex.css assets/css/landing.css",
-    "generate:social": "node tools/generate_social_cards.mjs",
-    "audit:responsive": "node tools/audit_responsive.mjs _site",
+    "lint:js": "node --check src/assets/js/site.js",
+    "lint:css": "stylelint src/assets/css/fonts.css src/assets/css/hecavex.css src/assets/css/landing.css",
+    "generate:social": "node scripts/generate_social_cards.mjs",
+    "audit:responsive": "node scripts/audit_responsive.mjs _site",
     "test": "npm run lint:js && npm run lint:css"
   },
   "devDependencies": {
