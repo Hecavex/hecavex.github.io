@@ -1,0 +1,43 @@
+---
+import type { Lang } from '../lib/site';
+
+export interface OutlineHeading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  lang: Lang;
+  headings: OutlineHeading[];
+}
+
+const { lang, headings } = Astro.props;
+const eyebrow = lang === 'lt' ? 'Šiame puslapyje' : 'On this page';
+const title = lang === 'lt' ? 'Turinys' : 'Contents';
+---
+<aside class="content-outline content-outline--desktop" aria-labelledby="content-outline-title">
+  <div class="content-outline__frame">
+    <header class="content-outline__head">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 id="content-outline-title">{title}</h2>
+    </header>
+    <nav aria-labelledby="content-outline-title">
+      <ol>
+        {headings.map((heading) => <li class:list={{ 'content-outline__depth-3': heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+      </ol>
+    </nav>
+  </div>
+</aside>
+
+<details class="content-outline content-outline--mobile">
+  <summary>
+    <span><span class="eyebrow">{eyebrow}</span><strong>{title}</strong></span>
+    <span class="content-outline__toggle" aria-hidden="true"></span>
+  </summary>
+  <nav aria-label={title}>
+    <ol>
+      {headings.map((heading) => <li class:list={{ 'content-outline__depth-3': heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+    </ol>
+  </nav>
+</details>

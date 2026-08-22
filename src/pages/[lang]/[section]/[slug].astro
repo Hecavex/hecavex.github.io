@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content';
+import ContentOutline from '../../../components/ContentOutline.astro';
 import PostCard from '../../../components/PostCard.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imagePath, labelForPost, slugify, type Post } from '../../../lib/site';
@@ -14,7 +15,7 @@ export async function getStaticPaths() {
 
 interface Props { post: Post; }
 const { post } = Astro.props as Props;
-const { Content } = await render(post.entry);
+const { Content, headings } = await render(post.entry);
 const data = post.entry.data as typeof post.entry.data & Record<string, unknown>;
 const translation = await findTranslation(post);
 const localized = await getLocalizedPosts(post.lang);
@@ -31,6 +32,14 @@ const methods = Array.isArray(data.methods) ? data.methods.map(String) : [];
 const findings = Array.isArray(data.key_findings) ? data.key_findings.map(String) : [];
 const updates = Array.isArray(data.updates) ? data.updates as Array<{ date: Date; note: string }> : [];
 const stableId = String(data.research_id ?? `HCVX-${post.translationKey.toUpperCase().replace(/[^A-Z0-9]+/g, '-')}`);
+const generatedOutlineHeadings = [
+  ...(findings.length > 0 ? [{ depth: 2, slug: 'findings-title', text: post.lang === 'lt' ? 'Ką rodo įrodymai' : 'What the evidence supports' }] : []),
+  ...(evidenceBearing ? [{ depth: 2, slug: 'record-title', text: post.lang === 'lt' ? 'Tyrimo ribos' : 'Research boundaries' }] : [])
+];
+const bodyOutlineHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+const includeSubheadings = generatedOutlineHeadings.length + bodyOutlineHeadings.length <= 40;
+const outlineHeadings = [...generatedOutlineHeadings, ...bodyOutlineHeadings.filter((heading) => includeSubheadings || heading.depth === 2)];
+const showOutline = data.toc !== false && outlineHeadings.length > 1;
 const canonical = new URL(post.url, Astro.site).href;
 ---
 <BaseLayout lang={post.lang} title={post.title} description={post.description} canonicalPath={post.url} alternatePath={translation?.url} image={social} imageAlt={alt || `${post.title} social preview`} type="Article" published={post.date} modified={post.updated ?? post.date}>
@@ -45,7 +54,8 @@ const canonical = new URL(post.url, Astro.site).href;
       {hero && <figure class="article-hero"><img src={hero} alt={alt} width={image?.hero_width ?? image?.width ?? 1200} height={image?.hero_height ?? image?.height ?? 630} loading="eager" fetchpriority="high" />{alt && <figcaption>{alt}</figcaption>}</figure>}
     </header>
 
-    <div class="article-grid">
+    <div class:list={['article-grid', { 'article-grid--with-outline': showOutline }]}>
+      {showOutline && <ContentOutline lang={post.lang} headings={outlineHeadings} />}
       <div class="article-body prose">
         {post.contentType === 'signal-brief' && <aside class="brief-record"><span>HECAVEX SIGNAL BRIEF · #{String(data.issue ?? '—')}</span><dl><div><dt>{post.lang === 'lt' ? 'Aprėptis' : 'Coverage'}</dt><dd>{String(data.coverage_start ?? '—')} — {String(data.coverage_end ?? '—')}</dd></div><div><dt>{post.lang === 'lt' ? 'Informacijos riba' : 'Information cut-off'}</dt><dd>{String(data.information_cutoff ?? '—')}</dd></div></dl></aside>}
         {findings.length > 0 && <section class="editorial-summary" aria-labelledby="findings-title"><p class="eyebrow">{post.lang === 'lt' ? 'Esminės išvados' : 'Key findings'}</p><h2 id="findings-title">{post.lang === 'lt' ? 'Ką rodo įrodymai' : 'What the evidence supports'}</h2><ul>{findings.map((finding) => <li>{finding}</li>)}</ul></section>}

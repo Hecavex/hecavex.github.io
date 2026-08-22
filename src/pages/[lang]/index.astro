@@ -39,7 +39,7 @@ const description = lang === 'lt'
     {lead && <section class="home-section" aria-labelledby="latest-title">
       <header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Naujausias darbas' : 'Latest work'}</p><h2 id="latest-title">{hx.latest_research}</h2></div><a href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.view_all} →</a></header>
       <article class="lead-story">
-        <a class="lead-story-image" href={lead.url} tabindex="-1" aria-hidden="true"><img src={imagePath(lead, 'thumbnail') ?? '/assets/img/brand/hecavex-mark.svg'} alt="" width="960" height="540" loading="eager" /></a>
+        <a class="lead-story-image" href={lead.url} aria-label={lead.title}><img src={imagePath(lead, 'thumbnail') ?? '/assets/img/brand/hecavex-mark.svg'} alt="" width="960" height="540" loading="eager" /></a>
         <div><p class="card-meta"><span>{labelForPost(lead)}</span><time datetime={lead.date.toISOString()}>{dateText(lead.date)}</time></p><h3><a href={lead.url}>{lead.cardTitle}</a></h3><p>{lead.description}</p><a href={lead.url}>{hx.read_more} →</a></div>
       </article>
       <div class="post-grid">{recent.map((post) => <PostCard {post} />)}</div>

@@ -13,7 +13,7 @@ Journalists and event organisers can review [speaking topics, biography and prev
 
 You can also contact Deividas through [LinkedIn](https://www.linkedin.com/in/deilis). Code and public projects are available on [GitHub](https://github.com/Hecavex).
 
-For website security issues, follow the process in the repository's `SECURITY.md`. Please do not send sensitive evidence through ordinary email.
+For website security issues, follow the [responsible disclosure policy](https://github.com/Hecavex/hecavex.github.io/security/policy). Please do not send sensitive evidence through ordinary email.
 
 <aside class="hx-page-cta hx-page-cta--compact" aria-label="Contact options">
   <div>

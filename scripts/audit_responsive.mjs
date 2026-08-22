@@ -37,7 +37,15 @@ await new Promise((accept) => server.listen(0, '127.0.0.1', accept));
 const address = server.address();
 const baseUrl = `http://127.0.0.1:${address.port}`;
 
-const routes = ['/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/en/projects/', '/en/about/', '/en/research/unipark-smishing-campaign-infrastructure/'];
+const routes = [
+  '/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/en/projects/',
+  '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/',
+  '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/'
+];
+const factRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
+const outlineRoutes = new Set(['/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/']);
+const researchRoutes = new Set(['/en/research/', '/lt/tyrimai/']);
+const legacyCtaRoutes = new Set(['/en/about/', '/lt/apie/', '/en/contact/', '/lt/kontaktai/']);
 const widths = [320, 390, 768, 1160, 1440];
 const failures = [];
 const browser = await chromium.launch({ executablePath, headless: true });
@@ -69,6 +77,10 @@ try {
         const rootStyle = getComputedStyle(root);
         const activeNetwork = document.querySelector('.portfolio-navigation a[aria-current="page"]');
         const dotStyle = activeNetwork ? getComputedStyle(activeNetwork, '::before') : undefined;
+        const desktopOutline = document.querySelector('.content-outline--desktop');
+        const mobileOutline = document.querySelector('.content-outline--mobile');
+        const outlineLinks = [...(desktopOutline?.querySelectorAll('a[href^="#"]') ?? [])];
+        const ctaButton = document.querySelector('.hx-page-cta .hx-button');
         const offscreen = [...document.querySelectorAll('main *, .site-header *')].filter((element) => {
           const style = getComputedStyle(element);
           if (style.display === 'none' || style.visibility === 'hidden' || style.position === 'fixed') return false;
@@ -93,7 +105,19 @@ try {
           bodyColor: bodyStyle.color,
           tokens: ['--bg-elevated', '--surface', '--surface-strong', '--line', '--line-strong', '--text-soft', '--muted', '--faint', '--cyan', '--cyan-bright'].map((token) => rootStyle.getPropertyValue(token).trim()),
           dot: dotStyle ? { width: dotStyle.width, height: dotStyle.height, marginRight: dotStyle.marginRight, color: dotStyle.backgroundColor } : undefined,
-          networkLabels: [...document.querySelectorAll('.portfolio-navigation a')].map((link) => link.textContent.trim())
+          networkLabels: [...document.querySelectorAll('.portfolio-navigation a')].map((link) => link.textContent.trim()),
+          pageFactCount: document.querySelectorAll('.page-facts > div').length,
+          desktopOutlineDisplay: desktopOutline ? getComputedStyle(desktopOutline).display : 'missing',
+          mobileOutlineDisplay: mobileOutline ? getComputedStyle(mobileOutline).display : 'missing',
+          outlineLinkCount: outlineLinks.length,
+          outlineSubtitleCount: outlineLinks.filter((link) => link.closest('li')?.classList.contains('content-outline__depth-3')).length,
+          missingOutlineTargets: outlineLinks.map((link) => decodeURIComponent(link.hash.slice(1))).filter((id) => !document.getElementById(id)),
+          researchDescriptionCount: document.querySelectorAll('.catalogue-section .section-head p:not(.eyebrow)').length,
+          hasBriefingPath: Boolean(document.querySelector('.briefing-path h2')),
+          pageUpdatedValue: document.querySelector('.page-facts > div:last-child dd')?.textContent.trim() ?? '',
+          ctaButtonHeight: ctaButton?.getBoundingClientRect().height ?? 0,
+          ctaButtonDisplay: ctaButton ? getComputedStyle(ctaButton).display : 'missing',
+          leadImageLinkName: document.querySelector('.lead-story-image')?.getAttribute('aria-label') ?? ''
         };
       }, width);
       if (state.shell !== 'v1') fail(route, width, 'portfolio shell marker is missing');
@@ -104,6 +128,18 @@ try {
       if (Math.abs(state.bodyFontSize - 15.2) > 0.05 || state.bodyColor !== 'rgb(182, 198, 207)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
       if (state.tokens.join('|') !== '#0b1117|#0b1117|#101923|#1e3440|#1e3440|#b6c6cf|#8397a3|#8397a3|#44c7dc|#44c7dc') fail(route, width, `shared Cold Signal tokens changed (${state.tokens.join('|')})`);
       if (state.dot && (Math.abs(Number.parseFloat(state.dot.width) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.height) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.marginRight) - 8.8) > 0.02 || state.dot.color !== 'rgb(68, 199, 220)')) fail(route, width, `active network dot geometry changed (${JSON.stringify(state.dot)})`);
+      if (factRoutes.has(route) && state.pageFactCount !== 4) fail(route, width, `page fact rail contains ${state.pageFactCount} records instead of 4`);
+      if (outlineRoutes.has(route)) {
+        if (state.outlineLinkCount < 2) fail(route, width, `content outline contains only ${state.outlineLinkCount} links`);
+        if (state.missingOutlineTargets.length) fail(route, width, `content outline has missing targets: ${state.missingOutlineTargets.join(', ')}`);
+        if (route.includes('unipark') && state.outlineSubtitleCount < 1) fail(route, width, 'research outline does not expose H3 subtitles');
+        if (width <= 1024) {
+          if (state.desktopOutlineDisplay !== 'none' || state.mobileOutlineDisplay === 'none') fail(route, width, `mobile outline mode is wrong (${state.desktopOutlineDisplay}/${state.mobileOutlineDisplay})`);
+        } else if (state.desktopOutlineDisplay === 'none' || state.mobileOutlineDisplay !== 'none') fail(route, width, `desktop outline mode is wrong (${state.desktopOutlineDisplay}/${state.mobileOutlineDisplay})`);
+      }
+      if (researchRoutes.has(route) && (state.researchDescriptionCount < 4 || !state.hasBriefingPath || !/^\d{4}-\d{2}-\d{2}$/.test(state.pageUpdatedValue))) fail(route, width, `research catalogue context is incomplete (${state.researchDescriptionCount} descriptions, briefing path ${state.hasBriefingPath}, updated ${state.pageUpdatedValue})`);
+      if (legacyCtaRoutes.has(route) && (!['flex', 'inline-flex'].includes(state.ctaButtonDisplay) || state.ctaButtonHeight < 43 || state.ctaButtonHeight > 45)) fail(route, width, `restored page CTA is not a 44px flex control (${state.ctaButtonDisplay}, ${state.ctaButtonHeight}px)`);
+      if (['/en/', '/lt/'].includes(route) && !state.leadImageLinkName) fail(route, width, 'lead-story image link has no accessible name');
       if (width <= 1160) {
         if (Math.abs(state.networkHeight - 64) > 1) fail(route, width, `mobile header is ${state.networkHeight}px instead of 64px`);
         if (state.productDisplay !== 'none') fail(route, width, 'desktop product row remains visible below 1160px');
@@ -159,6 +195,23 @@ try {
   if (noScriptState.overflow > 1) fail('/en/ (no JavaScript)', 390, 'page overflows horizontally');
   if (noScriptState.productLinks < 7 || noScriptState.networkLinks !== 5) fail('/en/ (no JavaScript)', 390, 'native details navigation is incomplete');
   if (!noScriptState.purpose) fail('/en/ (no JavaScript)', 390, 'page purpose is unavailable');
+
+  await page.goto(`${baseUrl}/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/`, { waitUntil: 'domcontentloaded' });
+  const noScriptOutline = await page.evaluate(() => {
+    const outline = document.querySelector('.content-outline--mobile');
+    const links = [...(outline?.querySelectorAll('a[href^="#"]') ?? [])];
+    return {
+      exists: Boolean(outline),
+      open: outline?.open ?? false,
+      links: links.length,
+      missingTargets: links.map((link) => decodeURIComponent(link.hash.slice(1))).filter((id) => !document.getElementById(id)),
+      overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
+    };
+  });
+  if (!noScriptOutline.exists || noScriptOutline.links < 2) fail('/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/ (no JavaScript)', 390, 'server-rendered outline is missing or empty');
+  if (noScriptOutline.open) fail('/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/ (no JavaScript)', 390, 'mobile outline should start collapsed');
+  if (noScriptOutline.missingTargets.length) fail('/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/ (no JavaScript)', 390, `outline targets are missing: ${noScriptOutline.missingTargets.join(', ')}`);
+  if (noScriptOutline.overflow > 1) fail('/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/ (no JavaScript)', 390, `page overflows horizontally by ${noScriptOutline.overflow}px`);
   await noScript.close();
 } finally {
   await browser.close();

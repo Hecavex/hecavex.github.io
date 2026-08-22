@@ -13,7 +13,7 @@ Dėl pranešimų konferencijose, interviu, ekspertinių komentarų, tinklalaidž
 
 Su Deividu taip pat galima susisiekti per [LinkedIn](https://www.linkedin.com/in/deilis). Kodas ir vieši projektai skelbiami [GitHub](https://github.com/Hecavex).
 
-Apie svetainės saugumo spragas praneškite pagal repozitorijos `SECURITY.md` aprašą. Jautrių duomenų nesiųskite įprastu el. paštu.
+Apie svetainės saugumo spragas praneškite pagal [atsakingo pažeidžiamumų atskleidimo tvarką](https://github.com/Hecavex/hecavex.github.io/security/policy). Jautrių duomenų nesiųskite įprastu el. paštu.
 
 <aside class="hx-page-cta hx-page-cta--compact" aria-label="Susisiekimo būdai">
   <div>

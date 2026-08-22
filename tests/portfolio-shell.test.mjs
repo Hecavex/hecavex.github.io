@@ -5,6 +5,7 @@ import { readFile } from 'node:fs/promises';
 const header = await readFile(new URL('../src/components/SiteHeader.astro', import.meta.url), 'utf8');
 const css = await readFile(new URL('../public/assets/css/hecavex.css', import.meta.url), 'utf8');
 const home = await readFile(new URL('../src/pages/[lang]/index.astro', import.meta.url), 'utf8');
+const outline = await readFile(new URL('../src/components/ContentOutline.astro', import.meta.url), 'utf8');
 
 test('header exposes the canonical cross-portfolio structural hooks', () => {
   for (const marker of ['data-portfolio-shell="v1"', 'portfolio-navigation', 'product-navigation', 'mobile-product-navigation', 'mobile-portfolio-navigation']) assert.match(header, new RegExp(marker));
@@ -33,6 +34,12 @@ test('portfolio geometry and heading cap match the v1 shell contract', () => {
   assert.match(css, /\.portfolio-navigation a\[aria-current="page"\]::before\s*\{[^}]*width:\s*0\.28rem[^}]*height:\s*0\.28rem[^}]*margin-right:\s*0\.55rem/s);
 });
 
-test('duplicate lead-story artwork is hidden from the accessibility tree', () => {
-  assert.match(home, /class="lead-story-image"[^>]*aria-hidden="true"/);
+test('lead-story artwork link has an accessible name', () => {
+  assert.match(home, /class="lead-story-image"[^>]*aria-label=\{lead\.title\}/);
+  assert.doesNotMatch(home, /class="lead-story-image"[^>]*aria-hidden="true"/);
+});
+
+test('Lithuanian content-outline labels remain correctly encoded', () => {
+  assert.match(outline, /Šiame puslapyje/);
+  assert.doesNotMatch(outline, /Å\s*?iame puslapyje/);
 });

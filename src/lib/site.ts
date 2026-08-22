@@ -137,7 +137,13 @@ export const imagePath = (post: Post, kind: 'hero' | 'thumbnail' | 'social' = 'h
 };
 
 export const imageAlt = (post: Post) => typeof post.image === 'object' ? post.image.alt : '';
-export const dateText = (date: Date) => date.toISOString().slice(0, 10);
+export const dateText = (date: Date) => {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Vilnius', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).formatToParts(date);
+  const value = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${value.year}-${value.month}-${value.day}`;
+};
 export const xmlEscape = (value: string) => value.replace(/[<>&"']/g, (character) => ({
   '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&apos;'
 })[character] ?? character);
