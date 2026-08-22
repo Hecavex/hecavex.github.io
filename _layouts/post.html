@@ -1,0 +1,43 @@
+---
+layout: publication
+panel_includes:
+  - article-outline
+tail_includes:
+  - related-posts
+  - article-navigation
+---
+<article class="hx-article{% if page.content_type %} hx-article--{{ page.content_type }}{% endif %}">
+  <header class="hx-article-head">
+    {% include edition-switcher.html context='article' %}
+    <p class="hx-eyebrow">{{ site.data.publication_classes[page.publication_class][page.lang] | default: site.data.content_types[page.content_type][page.lang] | default: 'HECAVEX Research' }}</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="post-desc">{{ page.description }}</p>{% endif %}
+    <div class="hx-article-meta">
+      <span>{% if page.lang == 'lt' %}Paskelbta{% else %}Published{% endif %} <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y-%m-%d' }}</time></span>
+      {% if page.last_modified_at and page.last_modified_at != page.date %}<span>{% if page.lang == 'lt' %}Atnaujinta{% else %}Updated{% endif %} <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: '%Y-%m-%d' }}</time></span>{% endif %}
+      <span>{% include reading-time.html content=content prompt=true %}</span>
+      <span>{% if page.lang == 'lt' %}Autorius{% else %}By{% endif %} <a href="{% if page.lang == 'lt' %}/lt/apie/{% else %}/en/about/{% endif %}">Deividas Lis</a></span>
+    </div>
+    {% include intelligence-meta.html %}
+    {% if page.image %}{% assign hero_image = page.image.hero | default: page.image.path | default: page.image %}<figure class="hx-article-hero"><img src="{{ hero_image }}" alt="{{ page.image.alt | default: '' | escape }}" width="{{ page.image.hero_width | default: page.image.width | default: 1200 }}" height="{{ page.image.hero_height | default: page.image.height | default: 630 }}" loading="eager" fetchpriority="high">{% if page.image.alt %}<figcaption>{{ page.image.alt }}</figcaption>{% endif %}</figure>{% endif %}
+  </header>
+  <div class="content hx-article-body">
+    {% include signal-brief-meta.html %}
+    {% include editorial-summary.html %}
+    {% include research-package.html %}
+    {% include series-nav.html %}
+    {% include provenance.html %}
+    {{ content }}
+  </div>
+  {% include update-history.html %}
+  {% include citation.html %}
+  {% assign has_translation = false %}{% for candidate in site.posts %}{% if candidate.translation_key == page.translation_key and candidate.lang != page.lang %}{% assign has_translation = true %}{% endif %}{% endfor %}
+  {% unless has_translation %}<p class="hx-translation-note">{{ site.data.hecavex[page.lang].translation_unavailable }}</p>{% endunless %}
+  {% include subscribe-panel.html %}
+  <footer class="hx-article-footer">
+    {% if page.categories.size > 0 %}<div class="hx-taxonomy-row"><strong>{% if page.lang == 'lt' %}Kategorijos{% else %}Categories{% endif %}</strong>{% for category in page.categories %}<a href="{% if page.lang == 'lt' %}/lt/kategorijos/{% else %}/en/categories/{% endif %}{{ category }}/">{{ site.data.taxonomy[category][page.lang] | default: category }}</a>{% endfor %}</div>{% endif %}
+    {% if page.tags.size > 0 %}<div class="hx-taxonomy-row"><strong>{% if page.lang == 'lt' %}Žymos{% else %}Tags{% endif %}</strong>{% for tag in page.tags %}<a href="{% if page.lang == 'lt' %}/lt/zymos/{% else %}/en/tags/{% endif %}{{ tag | slugify: 'latin' }}/">{{ tag }}</a>{% endfor %}</div>{% endif %}
+    {% include article-sharing.html %}
+    <p class="hx-content-license">{% if page.lang == 'lt' %}Jei nenurodyta kitaip, šios publikacijos autorinis tekstas platinamas pagal <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Cituojamai trečiųjų šalių medžiagai ir tyrimo artefaktams gali būti taikomos atskiros sąlygos.{% else %}Unless stated otherwise, the author's text in this publication is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Cited third-party material and research artefacts may have separate terms.{% endif %}</p>
+  </footer>
+</article>

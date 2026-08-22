@@ -1,0 +1,6 @@
+{% if page.content_type or page.confidence or page.tlp %}<dl class="hx-intel-meta">
+{% if page.publication_class %}<div><dt>{% if page.lang == 'lt' %}Publikacija{% else %}Publication{% endif %}</dt><dd>{{ site.data.publication_classes[page.publication_class][page.lang] | default: page.publication_class | replace: '-', ' ' | capitalize }}</dd></div>{% endif %}
+{% if page.content_type %}<div><dt>{% if page.lang == 'lt' %}Tipas{% else %}Type{% endif %}</dt><dd>{{ site.data.content_types[page.content_type][page.lang] | default: page.content_type | replace: '-', ' ' | capitalize }}</dd></div>{% endif %}
+{% if page.confidence %}<div><dt>{% if page.lang == 'lt' %}Pasitikėjimas{% else %}Confidence{% endif %}</dt><dd>{% if page.lang == 'lt' %}{% case page.confidence %}{% when 'high' %}Aukštas{% when 'moderate' %}Vidutinis{% when 'low' %}Žemas{% else %}{{ page.confidence }}{% endcase %}{% else %}{{ page.confidence | capitalize }}{% endif %}</dd></div>{% endif %}
+{% if page.tlp %}<div><dt>TLP</dt><dd class="hx-tlp hx-tlp-{{ page.tlp | downcase }}">{{ page.tlp | upcase }}</dd></div>{% endif %}
+</dl>{% endif %}

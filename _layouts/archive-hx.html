@@ -1,0 +1,4 @@
+---
+layout: publication
+---
+{% assign posts = site.posts | where: 'lang', page.lang %}<header class="hx-page-head"><h1>{{ page.title }}</h1><p>{{ page.description }}</p></header><ol class="hx-archive">{% for post in posts %}<li><time>{{ post.date | date: '%Y-%m-%d' }}</time><div><span class="hx-archive-class">{{ site.data.publication_classes[post.publication_class][page.lang] | default: site.data.content_types[post.content_type][page.lang] }}</span><a href="{{ post.url }}">{{ post.title }}</a></div></li>{% endfor %}</ol>

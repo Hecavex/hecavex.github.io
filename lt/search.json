@@ -1,0 +1,6 @@
+---
+layout: null
+permalink: /lt/search.json
+sitemap: false
+---
+[{% assign posts = site.posts | where: 'lang', 'lt' %}{% for post in posts %}{"title":{{ post.title | jsonify }},"url":{{ post.url | jsonify }},"categories":{{ post.categories | join: ', ' | jsonify }},"tags":{{ post.tags | join: ', ' | jsonify }},"date":{{ post.date | jsonify }},"content":{{ post.content | strip_html | normalize_whitespace | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]

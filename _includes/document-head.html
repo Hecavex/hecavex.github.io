@@ -1,0 +1,49 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#05080b">
+
+  {% assign document_language = page.lang | default: site.lang | default: 'en' %}
+  {% assign preview_source = site.social_preview_image %}
+  {% if document_language == 'lt' %}{% assign preview_source = '/assets/img/og/hecavex-default-lt.png' %}{% endif %}
+  {% if page.layout == 'post' and page.translation_key %}
+    {% capture preview_source %}/assets/img/social/{{ page.translation_key }}-{{ document_language }}.png{% endcapture %}
+  {% endif %}
+  {% if page.image.social %}{% assign preview_source = page.image.social %}{% endif %}
+  {% assign canonical_preview = preview_source | absolute_url %}
+  {%- capture generated_seo -%}{% seo title=false %}{%- endcapture -%}
+  {% assign generated_seo = generated_seo | strip_json_ld | strip_preview_metadata %}
+  {% capture default_locale %}<meta property="og:locale" content="{{ document_language }}" />{% endcapture %}
+  {% capture publication_locale %}<meta property="og:locale" content="{{ site.data.hecavex[document_language].locale }}" />{% endcapture %}
+  {% assign generated_seo = generated_seo | replace: default_locale, publication_locale %}
+  {{ generated_seo }}
+
+  <title>{% if page.seo_title %}{{ page.seo_title }}{% elsif page.layout == 'home' %}{{ site.title }} — {{ site.data.hecavex[document_language].descriptor }}{% else %}{{ page.title }} | {{ site.title }}{% endif %}</title>
+  {% include hreflang.html %}
+  {% if alternate %}<meta property="og:locale:alternate" content="{{ site.data.hecavex[alternate.lang].locale }}">{% endif %}
+  {% assign preview_alt = page.image.alt | default: page.title | default: site.title %}
+  <meta property="og:image" content="{{ canonical_preview }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ preview_alt | escape }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ canonical_preview }}">
+  <meta name="twitter:image:alt" content="{{ preview_alt | escape }}">
+  <meta name="robots" content="{{ page.robots | default: 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' }}">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  {% if page.layout == 'post' %}
+    <meta name="author" content="Deividas Lis">
+    <link rel="author" href="{% if document_language == 'lt' %}{{ '/lt/apie/' | absolute_url }}{% else %}{{ '/en/about/' | absolute_url }}{% endif %}">
+    {% assign primary_category = page.categories | first %}
+    {% if primary_category %}<meta property="article:section" content="{{ site.data.taxonomy[primary_category][document_language] | default: primary_category | escape }}">{% endif %}
+    {% for tag in page.tags %}<meta property="article:tag" content="{{ tag | escape }}">{% endfor %}
+  {% endif %}
+
+  {% include site-favicons.html %}
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="{{ '/assets/css/fonts.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/hecavex.css' | relative_url }}">
+  <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
+  {% include entity-schema.html %}
+  {% if jekyll.environment == 'production' %}{% include privacy-measurement.html %}{% endif %}
+</head>

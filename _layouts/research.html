@@ -1,0 +1,41 @@
+---
+layout: publication
+---
+{% assign localized_posts = site.posts | where: 'lang', page.lang %}
+{% assign primary = localized_posts | where: 'publication_class', 'primary-research' %}
+{% assign assessments = localized_posts | where: 'publication_class', 'technical-assessment' %}
+{% assign commentary = localized_posts | where: 'publication_class', 'commentary' %}
+{% assign briefings = localized_posts | where: 'publication_class', 'signal-brief' %}
+{% assign featured = localized_posts | where: 'featured', true %}
+<header class="hx-page-head hx-research-head">
+  <p class="hx-eyebrow">HECAVEX / {{ page.lang | upcase }}</p>
+  <h1>{{ page.title }}</h1>
+  <p>{{ page.description }}</p>
+  <nav class="hx-page-links" aria-label="{% if page.lang == 'lt' %}Publikacijų katalogas{% else %}Publication directory{% endif %}">
+    <a href="#primary">{% if page.lang == 'lt' %}Pirminiai tyrimai{% else %}Primary research{% endif %} · {{ primary.size }}</a>
+    <a href="#assessments">{% if page.lang == 'lt' %}Techniniai vertinimai{% else %}Technical assessments{% endif %} · {{ assessments.size }}</a>
+    <a href="#commentary">{% if page.lang == 'lt' %}Komentarai{% else %}Commentary{% endif %} · {{ commentary.size }}</a>
+    <a href="/{% if page.lang == 'lt' %}lt/apzvalgos{% else %}en/briefings{% endif %}/">Signal Brief · {{ briefings.size }}</a>
+  </nav>
+</header>
+{% if featured.size > 0 %}
+<section class="hx-start-here" aria-labelledby="hx-start-here-title">
+  <div class="hx-section-head"><div><p class="hx-eyebrow">{% if page.lang == 'lt' %}Atrinkta autoriaus{% else %}Selected by the author{% endif %}</p><h2 id="hx-start-here-title">{% if page.lang == 'lt' %}Pradėkite čia{% else %}Start here{% endif %}</h2><p class="hx-section-intro">{% if page.lang == 'lt' %}Trys darbai, parodantys Deivido Lis tyrimų spektrą: nuo techninės analizės iki sukčiavimo infrastruktūros ir informacinių operacijų.{% else %}Three pieces demonstrating the range of Deividas Lis's work, from technical analysis to fraud infrastructure and information operations.{% endif %}</p></div></div>
+  <div class="hx-start-grid">
+    {% for post in featured limit: 3 %}<a class="hx-start-item" href="{{ post.url }}"><span>{{ site.data.publication_classes[post.publication_class][page.lang] | default: site.data.content_types[post.content_type][page.lang] }}</span><strong>{{ post.card_title | default: post.title }}</strong><small>{{ post.description }}</small></a>{% endfor %}
+  </div>
+</section>
+{% endif %}
+<section class="hx-publication-section" id="primary" aria-labelledby="hx-primary-title">
+  <div class="hx-section-head"><div><p class="hx-eyebrow">{% if page.lang == 'lt' %}Originalus įrodymų darbas{% else %}Original evidence work{% endif %}</p><h2 id="hx-primary-title">{% if page.lang == 'lt' %}Pirminiai tyrimai{% else %}Primary research{% endif %}</h2><p class="hx-section-intro">{% if page.lang == 'lt' %}Autoriaus surinkta ir išanalizuota infrastruktūra, kodas, incidentų medžiaga ar kiti techniniai artefaktai.{% else %}First-party collection and analysis of infrastructure, code, incident material and other technical artefacts.{% endif %}</p></div></div>
+  {% include post-grid.html posts=primary %}
+</section>
+<section class="hx-publication-section" id="assessments" aria-labelledby="hx-assessments-title">
+  <div class="hx-section-head"><div><p class="hx-eyebrow">{% if page.lang == 'lt' %}Techninis vertinimas ir metodai{% else %}Technical judgement and methods{% endif %}</p><h2 id="hx-assessments-title">{% if page.lang == 'lt' %}Techniniai vertinimai{% else %}Technical assessments{% endif %}</h2><p class="hx-section-intro">{% if page.lang == 'lt' %}Incidentų analizė, techniniai paaiškinimai ir pakartojami praktiniai metodai, paremti cituojamais šaltiniais.{% else %}Incident analysis, technical explanation and reproducible practitioner methods grounded in cited sources.{% endif %}</p></div></div>
+  {% include post-grid.html posts=assessments %}
+</section>
+<section class="hx-publication-section" id="commentary" aria-labelledby="hx-commentary-title">
+  <div class="hx-section-head"><div><p class="hx-eyebrow">{% if page.lang == 'lt' %}Analitinė pozicija{% else %}Analytical position{% endif %}</p><h2 id="hx-commentary-title">{% if page.lang == 'lt' %}Komentarai{% else %}Commentary{% endif %}</h2><p class="hx-section-intro">{% if page.lang == 'lt' %}Autoriaus argumentai apie grėsmių žvalgybos praktiką, sprendimus ir analitinį amatą. Tai nėra pirminio tyrimo pakaitalas.{% else %}Author arguments on threat-intelligence practice, decisions and analytical tradecraft. These pieces are not presented as primary research.{% endif %}</p></div></div>
+  {% include post-grid.html posts=commentary %}
+</section>
+<aside class="hx-briefing-path"><div><p class="hx-eyebrow">Signal Brief</p><h2>{% if page.lang == 'lt' %}Trumpas aktualių signalų formatas{% else %}The concise current-signal format{% endif %}</h2><p>{% if page.lang == 'lt' %}Trumpi, laiku apriboti pažeidžiamumų, incidentų, kampanijų ir geopolitinių pokyčių vertinimai laikomi atskirame sraute.{% else %}Short, time-bounded assessments of vulnerabilities, incidents, campaigns and geopolitical developments live in a separate stream.{% endif %}</p></div><a href="/{% if page.lang == 'lt' %}lt/apzvalgos{% else %}en/briefings{% endif %}/">{% if page.lang == 'lt' %}Atverti Signalų apžvalgas{% else %}Open Signal Briefs{% endif %} →</a></aside>

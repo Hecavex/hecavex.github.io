@@ -1,0 +1,29 @@
+{% assign rail_language = page.lang | default: 'en' %}
+<aside id="publication-rail" class="site-sidebar" aria-label="{% if rail_language == 'lt' %}Pagrindinė navigacija{% else %}Primary navigation{% endif %}">
+  <button type="button" id="rail-close" class="sidebar-close" aria-label="{% if rail_language == 'lt' %}Uždaryti meniu{% else %}Close menu{% endif %}"><span aria-hidden="true">×</span></button>
+  <div class="sidebar-identity">
+    <a class="sidebar-brand" href="/{{ rail_language }}/" aria-label="HECAVEX — {{ site.data.hecavex[rail_language].home }}">
+      <img src="{{ '/assets/img/brand/hecavex-mark.svg' | relative_url }}" width="48" height="48" alt="">
+      <span><strong>HECAVEX</strong><small>{{ site.data.hecavex[rail_language].descriptor }}</small></span>
+    </a>
+    <p class="sidebar-byline"><a href="{% if rail_language == 'lt' %}/lt/apie/{% else %}/en/about/{% endif %}">{{ site.data.hecavex[rail_language].byline }}</a></p>
+  </div>
+  <nav aria-label="{% if rail_language == 'lt' %}Leidinio skyriai{% else %}Publication sections{% endif %}" class="sidebar-nav">
+    <ol>
+      {% for item in site.data.navigation[rail_language] %}
+        {% assign rail_active = false %}
+        {% if page.url == item.url %}{% assign rail_active = true %}{% endif %}
+        {% if item.key == 'briefings' and page.content_type == 'signal-brief' %}{% assign rail_active = true %}{% endif %}
+        {% if item.key == 'articles' and page.layout == 'post' and page.content_type != 'signal-brief' %}{% assign rail_active = true %}{% endif %}
+        <li{% if rail_active %} class="active"{% endif %}>
+          <a href="{{ item.url }}"{% if rail_active %} aria-current="page"{% endif %}><span aria-hidden="true">0{{ forloop.index }}</span><strong>{{ site.data.hecavex[rail_language][item.key] }}</strong></a>
+        </li>
+      {% endfor %}
+    </ol>
+  </nav>
+  <div class="sidebar-tools">
+    {% include edition-switcher.html context='sidebar' %}
+    {% include network-directory.html %}
+    <a class="sidebar-control sidebar-feed" href="/{{ rail_language }}/feed.xml"><span aria-hidden="true">↳</span> RSS</a>
+  </div>
+</aside>

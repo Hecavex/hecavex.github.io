@@ -1,0 +1,14 @@
+- key: home
+  url: /lt/
+- key: articles
+  url: /lt/tyrimai/
+- key: briefings
+  url: /lt/apzvalgos/
+- key: projects
+  url: /lt/projektai/
+- key: about
+  url: /lt/apie/
+- key: speaker
+  url: /lt/pranesejas/
+- key: contact
+  url: /lt/kontaktai/

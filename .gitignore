@@ -1,0 +1,23 @@
+# HECAVEX build and dependency state
+/.bundle/
+/.jekyll-cache/
+/.jekyll-metadata
+/_site/
+/node_modules/
+/vendor/
+*.gem
+
+# Generated or private local research material
+/_data/apt_notes_live.yml
+/_source_media/
+/_tmp_contact/
+/test-results/
+assets/img/posts/2024-11-10-github/main/main_page.png
+assets/img/posts/2024-11-10-github/main/cover.png
+
+# Local editor and operating-system files
+/.idea/
+/.vscode/
+*~
+.DS_Store
+Thumbs.db

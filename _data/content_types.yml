@@ -1,0 +1,24 @@
+investigation:
+  en: Investigation
+  lt: Tyrimas
+technical-analysis:
+  en: Technical analysis
+  lt: Techninė analizė
+incident-analysis:
+  en: Incident analysis
+  lt: Incidento analizė
+technical-guide:
+  en: Technical guide
+  lt: Techninis vadovas
+malware-analysis:
+  en: Malware analysis
+  lt: Kenkėjiškos programinės įrangos analizė
+commentary:
+  en: Commentary
+  lt: Komentaras
+threat-note:
+  en: Threat note
+  lt: Grėsmės pastaba
+signal-brief:
+  en: Signal brief
+  lt: Signalų apžvalga

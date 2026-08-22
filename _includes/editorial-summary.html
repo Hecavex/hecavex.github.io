@@ -1,0 +1,11 @@
+{% if page.key_findings or page.scope or page.limitations %}
+<section class="hx-brief" aria-labelledby="hx-brief-title">
+  <p class="hx-brief-label">{% if page.lang == 'lt' %}Analitinė santrauka{% else %}Analytical brief{% endif %}</p>
+  <h2 id="hx-brief-title">{% if page.lang == 'lt' %}Esminės išvados{% else %}Key findings{% endif %}</h2>
+  {% if page.key_findings %}<ul>{% for finding in page.key_findings %}<li>{{ finding }}</li>{% endfor %}</ul>{% endif %}
+  {% if page.scope or page.limitations %}<dl>
+    {% if page.scope %}<div><dt>{% if page.lang == 'lt' %}Apimtis{% else %}Scope{% endif %}</dt><dd>{{ page.scope }}</dd></div>{% endif %}
+    {% if page.limitations %}<div><dt>{% if page.lang == 'lt' %}Apribojimai{% else %}Limitations{% endif %}</dt><dd>{{ page.limitations }}</dd></div>{% endif %}
+  </dl>{% endif %}
+</section>
+{% endif %}

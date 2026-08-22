@@ -1,0 +1,85 @@
+terms:
+  - id: observation
+    term:
+      en: Observation
+      lt: Stebėjimas
+    definition:
+      en: A datum directly seen, collected or measured by HECAVEX or a named source at a stated time. An observation records what was present; by itself it does not establish intent, ownership or maliciousness.
+      lt: Duomuo, kurį nurodytu laiku tiesiogiai matė, surinko ar išmatavo HECAVEX arba įvardytas šaltinis. Stebėjimas fiksuoja tai, kas buvo matoma, tačiau savaime nenustato tikslo, savininko ar kenkėjiškumo.
+  - id: reported-fact
+    term:
+      en: Reported fact
+      lt: Šaltinio praneštas faktas
+    definition:
+      en: A factual claim accurately attributed to an external source. HECAVEX may assess the source and corroboration, but the label does not imply independent first-hand confirmation.
+      lt: Išorinio šaltinio faktinis teiginys, tiksliai priskirtas tam šaltiniui. HECAVEX gali vertinti šaltinį ir papildomą patvirtinimą, tačiau šis terminas nereiškia nepriklausomo tiesioginio patvirtinimo.
+  - id: inference
+    term:
+      en: Inference
+      lt: Išvada
+    definition:
+      en: A conclusion logically derived from one or more observations or reported facts but not directly observed. The supporting reasoning and plausible alternative explanations should remain visible.
+      lt: Iš vieno ar kelių stebėjimų arba šaltinių praneštų faktų logiškai išvedamas, bet tiesiogiai nestebėtas teiginys. Jo pagrindimas ir tikėtini alternatyvūs paaiškinimai turi likti matomi.
+  - id: assessment
+    term:
+      en: Assessment
+      lt: Analitinis vertinimas
+    definition:
+      en: An analyst's contextual judgment that combines evidence and inferences to answer an intelligence question. It identifies uncertainty, scope, time and confidence rather than presenting judgment as fact.
+      lt: Analitiko kontekstinis sprendimas, sujungiantis įrodymus ir išvadas tam, kad atsakytų į žvalgybinį klausimą. Jame nurodomi neapibrėžtumas, apimtis, laikas ir pasitikėjimas, o vertinimas nepateikiamas kaip faktas.
+  - id: candidate
+    term:
+      en: Candidate
+      lt: Kandidatas
+    definition:
+      en: An unconfirmed object selected for review because it met stated discovery criteria. A candidate can later be corroborated, remain unresolved or be closed as a false positive.
+      lt: Nepatvirtintas objektas, atrinktas peržiūrai, nes atitiko nurodytus aptikimo kriterijus. Vėliau kandidatas gali būti patvirtintas papildomais įrodymais, likti neišspręstas arba būti uždarytas kaip klaidingas teigiamas rezultatas.
+  - id: indicator
+    term:
+      en: Indicator
+      lt: Indikatorius
+    definition:
+      en: A time-bound observable—such as a domain, URL, IP address, file hash or certificate attribute—relevant to a specific case or hypothesis. It is not automatically malicious or suitable for permanent blocking.
+      lt: Su konkrečiu laiku susietas stebimas objektas, pavyzdžiui, domenas, URL, IP adresas, failo maiša ar sertifikato požymis, aktualus konkrečiam atvejui arba hipotezei. Jis nėra automatiškai kenkėjiškas ar tinkamas nuolatiniam blokavimui.
+  - id: confidence
+    term:
+      en: Confidence
+      lt: Pasitikėjimas
+    definition:
+      en: The analyst's expressed certainty that available evidence supports a specific conclusion. It is contextual and qualitative unless explicitly defined otherwise; it is not impact, source reliability or a universal probability of maliciousness.
+      lt: Analitiko išreikštas tikrumas, kad turimi įrodymai pagrindžia konkretų teiginį. Jei aiškiai nenurodyta kitaip, jis yra kontekstinis ir kokybinis; tai nėra poveikis, šaltinio patikimumas ar universali kenkėjiškumo tikimybė.
+  - id: maliciousness
+    term:
+      en: Maliciousness
+      lt: Kenkėjiškumas
+    definition:
+      en: An assessment of whether an object or activity was created, controlled or used to cause harm or gain unauthorized access. It must be kept separate from the strength of a brand match or discovery rule.
+      lt: Vertinimas, ar objektas arba veikla buvo sukurti, valdomi ar naudojami žalai padaryti arba neteisėtai prieigai gauti. Jį būtina atskirti nuo prekių ženklo atitikties ar aptikimo taisyklės stiprumo.
+  - id: validation
+    term:
+      en: Validation
+      lt: Patikrinimas
+    definition:
+      en: Documented checks of a candidate, claim, relationship or rule against additional evidence or expected behaviour. Validation states what was tested and found; it is not a permanent guarantee.
+      lt: Dokumentuoti kandidato, teiginio, ryšio ar taisyklės patikrinimai pagal papildomus įrodymus arba tikėtiną elgseną. Patikrinimas nurodo, kas ir kada buvo tikrinta bei rasta, tačiau nėra nuolatinė garantija.
+  - id: operational-status
+    term:
+      en: Operational status
+      lt: Operacinė būsena
+    definition:
+      en: The object's current observed lifecycle or technical state, such as resolving, serving content, parked, blocked, offline or unknown. Status can change and does not by itself determine maliciousness.
+      lt: Dabartinė stebima objekto gyvavimo ciklo arba techninė būsena, pavyzdžiui, veikia DNS, teikia turinį, yra parkuotas, užblokuotas, nepasiekiamas arba nežinomas. Būsena gali kisti ir savaime nenustato kenkėjiškumo.
+  - id: attribution
+    term:
+      en: Attribution
+      lt: Priskyrimas
+    definition:
+      en: A supported relationship between activity and an operator, cluster, organization or state sponsor. HECAVEX distinguishes source-reported attribution from its own assessment; shared infrastructure or tooling alone is insufficient.
+      lt: Įrodymais pagrįstas veiklos ryšys su operatoriumi, klasteriu, organizacija ar valstybiniu užsakovu. HECAVEX atskiria šaltinio praneštą priskyrimą nuo savo vertinimo; vien bendros infrastruktūros ar įrankio nepakanka.
+  - id: tlp
+    term:
+      en: Traffic Light Protocol (TLP)
+      lt: Šviesoforo protokolas (TLP)
+    definition:
+      en: FIRST's sharing protocol for communicating how recipients may distribute information. TLP is a handling instruction, not a secrecy classification, confidence level or maliciousness rating.
+      lt: FIRST dalijimosi protokolas, nurodantis, kaip gavėjai gali platinti informaciją. TLP yra informacijos tvarkymo taisyklė, o ne slaptumo žyma, pasitikėjimo lygis ar kenkėjiškumo įvertis.

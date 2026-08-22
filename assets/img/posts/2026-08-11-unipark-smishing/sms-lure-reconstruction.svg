@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1160" viewBox="0 0 1200 1160" role="img" aria-labelledby="title desc">
+  <title id="title">Reconstruction of the UNIPARK smishing message</title>
+  <desc id="desc">A redrawn and shortened version of the Lithuanian SMS supplied for this investigation, showing the sender, urgency, fake link and instruction to reply.</desc>
+  <rect width="1200" height="1160" fill="#090e13"/>
+  <rect x="150" y="70" width="900" height="1020" rx="62" fill="#1c1d20" stroke="#374250" stroke-width="3"/>
+  <circle cx="600" cy="156" r="58" fill="#5f587e"/>
+  <circle cx="600" cy="137" r="24" fill="#fafafa"/>
+  <path d="M550 198c12-34 88-34 100 0" fill="#fafafa"/>
+  <text x="600" y="250" fill="#f4f6f8" font-family="Arial,sans-serif" font-size="39" text-anchor="middle" font-weight="700">+63 951 976 1812</text>
+
+  <g font-family="Arial,sans-serif" font-size="31" fill="#f0f1f2">
+    <text x="220" y="330" font-weight="700">Unipark: prašymas atlikti mokėjimą</text>
+    <text x="220" y="400">Mūsų sistemoje vis dar nėra užfiksuotas</text>
+    <text x="220" y="444">mokėjimas už Jūsų transporto priemonės</text>
+    <text x="220" y="488">stovėjimą. Prašome atlikti mokėjimą kuo</text>
+    <text x="220" y="532">greičiau, kad išvengtumėte papildomų mokesčių.</text>
+    <text x="220" y="610">Įveskite savo transporto priemonės</text>
+    <text x="220" y="654">valstybinį registracijos numerį:</text>
+    <text x="220" y="720" fill="#79b8ff" font-family="Consolas,monospace" font-size="29">https://unipark.fmqr[.]ink/com</text>
+    <text x="220" y="800">Jei nuoroda neatsidaro, atsakykite į šią</text>
+    <text x="220" y="844">SMS žinutę raide "T", tada atidarykite ją</text>
+    <text x="220" y="888">iš naujo arba įklijuokite į Safari.</text>
+  </g>
+
+  <rect x="220" y="948" width="760" height="76" rx="10" fill="#25191d" stroke="#ff6259" stroke-width="2"/>
+  <text x="600" y="996" fill="#ff7269" font-family="Consolas,monospace" font-size="23" text-anchor="middle" font-weight="700">REDRAWN FROM THE SUPPLIED SCREENSHOT · URL DEFANGED</text>
+</svg>

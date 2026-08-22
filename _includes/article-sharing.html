@@ -1,0 +1,6 @@
+<div class="hx-share">
+  <strong>{% if page.lang == 'lt' %}Dalytis{% else %}Share{% endif %}</strong>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" target="_blank" rel="noopener">LinkedIn</a>
+  <a href="mailto:?subject={{ page.title | uri_escape }}&body={{ page.url | absolute_url | url_encode }}">Email</a>
+  <button id="copy-link" type="button" data-success="{% if page.lang == 'lt' %}Nukopijuota{% else %}Copied{% endif %}" hidden>{{ site.data.hecavex[page.lang].copy_link }}</button>
+</div>

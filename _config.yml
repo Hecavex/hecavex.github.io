@@ -1,0 +1,220 @@
+# HECAVEX publication configuration
+#
+# Jekyll is used only to render the Markdown publication into static files.
+# The complete presentation layer is original HECAVEX code in this repository.
+
+lang: en
+timezone: Europe/Vilnius
+title: HECAVEX
+tagline: Cyber Threat Intelligence and Digital Investigations
+description: >-
+  Independent cyber threat intelligence research, malware analysis, threat hunting, OSINT and digital investigations by researcher, former cybercrime investigator and public speaker Deividas Lis.
+url: "https://hecavex.com"
+baseurl: ""
+
+github:
+  username: Hecavex
+
+social:
+  name: HECAVEX
+  email: info@hecavex.com
+  links:
+    - https://hecavex.com/en/about/
+    - https://github.com/Hecavex
+    - https://www.linkedin.com/in/deilis
+
+webmaster_verifications:
+  google: kBQDrC0tYs0mKV9IA3q1585knge4C8mCLipK528VTnM
+
+logo: /assets/img/brand/hecavex-mark.svg
+social_preview_image: /assets/img/og/hecavex-default-en.png
+security_contact: info@hecavex.com
+toc: true
+
+# Jekyll ignores dot-prefixed paths unless explicitly included.
+include:
+  - .well-known
+
+# Thin generated taxonomy pages remain public but are not indexed.
+taxonomy_min_index_count: 2
+
+kramdown:
+  footnote_backlink: "&#8617;&#xfe0e;"
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+      start_line: 1
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      toc: true
+      permalink: /:lang/research/:title/
+  - scope:
+      path: "_posts/en"
+      type: posts
+    values:
+      lang: en
+      permalink: /en/research/:title/
+  - scope:
+      path: "_posts/lt"
+      type: posts
+    values:
+      lang: lt
+      permalink: /lt/tyrimai/:title/
+  - scope:
+      path: "_posts/en/blogs"
+      type: posts
+    values:
+      publication_class: commentary
+      research_version: "1.0"
+      research_status: published
+  - scope:
+      path: "_posts/lt/blogs"
+      type: posts
+    values:
+      publication_class: commentary
+      research_version: "1.0"
+      research_status: published
+  - scope:
+      path: "_posts/en/bulletins"
+      type: posts
+    values:
+      publication_class: signal-brief
+      research_version: "1.0"
+      research_status: published
+  - scope:
+      path: "_posts/lt/bulletins"
+      type: posts
+    values:
+      publication_class: signal-brief
+      research_version: "1.0"
+      research_status: published
+  - scope:
+      path: "_posts/en/research/investigations"
+      type: posts
+    values:
+      publication_class: primary-research
+      research_version: "1.0"
+      research_status: published
+      evidence_basis: "First-party collection and analysis supported by cited public sources."
+      methods: [source validation, infrastructure pivoting, analytical assessment]
+  - scope:
+      path: "_posts/lt/research/investigations"
+      type: posts
+    values:
+      publication_class: primary-research
+      research_version: "1.0"
+      research_status: published
+      evidence_basis: "Autoriaus surinkti ir išanalizuoti duomenys, papildyti cituojamais viešais šaltiniais."
+      methods: [šaltinių tikrinimas, infrastruktūros pivoting, analitinis vertinimas]
+  - scope:
+      path: "_posts/en/research/malware-analyses"
+      type: posts
+    values:
+      publication_class: primary-research
+      research_version: "1.0"
+      research_status: published
+      evidence_basis: "Static artefact analysis, code comparison and corroborating public-source evidence."
+      methods: [static analysis, code comparison, infrastructure correlation]
+  - scope:
+      path: "_posts/lt/research/malware-analyses"
+      type: posts
+    values:
+      publication_class: primary-research
+      research_version: "1.0"
+      research_status: published
+      evidence_basis: "Statinė artefaktų analizė, kodo palyginimas ir iš viešų šaltinių gautas papildomas kontekstas."
+      methods: [statinė analizė, kodo palyginimas, infrastruktūros koreliacija]
+  - scope:
+      path: "_posts/en/research/incident-analyses"
+      type: posts
+    values:
+      publication_class: technical-assessment
+      research_version: "1.0"
+      research_status: published
+      evidence_basis: "Documented incident reporting assessed against cited technical, legal and policy sources."
+      methods: [source review, incident analysis, impact assessment]
+  - scope:
+      path: "_posts/lt/research/incident-analyses"
+      type: posts
+    values:
+      publication_class: technical-assessment
+      research_version: "1.0"
+      research_status: published
+      evidence_basis: "Paskelbta incidento informacija vertinama remiantis cituojamais techniniais, teisiniais ir politikos šaltiniais."
+      methods: [šaltinių peržiūra, incidento analizė, poveikio vertinimas]
+  - scope:
+      path: "_posts/en/research/technical-analyses"
+      type: posts
+    values:
+      publication_class: technical-assessment
+      research_version: "1.0"
+      research_status: published
+      evidence_basis: "Technical analysis supported by cited primary and authoritative sources."
+      methods: [source validation, technical analysis, defensive assessment]
+  - scope:
+      path: "_posts/lt/research/technical-analyses"
+      type: posts
+    values:
+      publication_class: technical-assessment
+      research_version: "1.0"
+      research_status: published
+      evidence_basis: "Techninė analizė, paremta cituojamais pirminiais ir autoritetingais šaltiniais."
+      methods: [šaltinių tikrinimas, techninė analizė, gynybinis vertinimas]
+  - scope:
+      path: "_posts/en/research/technical-guides"
+      type: posts
+    values:
+      publication_class: technical-assessment
+      research_version: "1.0"
+      research_status: published
+      evidence_basis: "A reproducible practitioner method checked against cited primary and authoritative sources."
+      methods: [method reconstruction, source validation, practitioner review]
+  - scope:
+      path: "_posts/lt/research/technical-guides"
+      type: posts
+    values:
+      publication_class: technical-assessment
+      research_version: "1.0"
+      research_status: published
+      evidence_basis: "Pakartojamas praktinis metodas, patikrintas pagal cituojamus pirminius ir autoritetingus šaltinius."
+      methods: [metodo atkūrimas, šaltinių tikrinimas, praktinė peržiūra]
+  - scope:
+      path: "_posts/en/research/threat-notes"
+      type: posts
+    values:
+      publication_class: commentary
+      research_version: "1.0"
+      research_status: published
+  - scope:
+      path: "_posts/lt/research/threat-notes"
+      type: posts
+    values:
+      publication_class: commentary
+      research_version: "1.0"
+      research_status: published
+exclude:
+  - docs
+  - tools
+  - test-results
+  - README.md
+  - LICENSE
+  - "package*.json"
+  - .stylelintrc.json
+  - assets/img/posts/2024-11-10-github/main/main_page.png
+  - assets/img/posts/2024-11-10-github/main/cover.png
+  - assets/img/posts/substack/**/*.png
+  - assets/img/posts/substack/**/*.jpg
+  - assets/img/posts/substack/**/*.jpeg
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap

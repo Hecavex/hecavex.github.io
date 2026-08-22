@@ -1,0 +1,12 @@
+{% assign enable_toc = false %}
+{% if site.toc and page.toc %}
+  {% if page.content contains '<h2' or page.content contains '<h3' %}{% assign enable_toc = true %}{% endif %}
+{% endif %}
+{% if enable_toc %}
+  {% if page.lang == 'lt' %}{% assign outline_label = 'Turinys' %}{% else %}{% assign outline_label = 'Contents' %}{% endif %}
+  <section class="hx-toc" hidden>
+    <p class="hx-eyebrow">{% if page.lang == 'lt' %}Šiame puslapyje{% else %}On this page{% endif %}</p>
+    <h2>{{ outline_label }}</h2>
+    <nav id="article-outline" aria-label="{{ outline_label }}"></nav>
+  </section>
+{% endif %}

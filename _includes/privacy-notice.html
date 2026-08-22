@@ -1,0 +1,57 @@
+{% assign privacy_lang = page.lang | default: 'root' %}
+<aside class="hx-privacy-notice" id="hx-privacy-notice" aria-labelledby="hx-privacy-title" hidden>
+  <div>
+    <strong id="hx-privacy-title">
+      {% if privacy_lang == 'lt' %}Privatumas pagal dizainą{% elsif privacy_lang == 'en' %}Privacy by design{% else %}Privacy by design / Privatumas pagal dizainą{% endif %}
+    </strong>
+    <p>
+      {% if privacy_lang == 'lt' %}
+        HECAVEX nenaudoja reklaminių ar analitinių slapukų. Naršyklėje išsaugomi tik kalbos ir šio pranešimo pasirinkimai.
+      {% elsif privacy_lang == 'en' %}
+        HECAVEX uses no advertising or analytics cookies. Only language and this notice preference are stored in your browser.
+      {% else %}
+        HECAVEX uses no advertising or analytics cookies. Naršyklėje saugomi tik svetainės pasirinkimai.
+      {% endif %}
+    </p>
+    <nav aria-label="{% if privacy_lang == 'lt' %}Privatumo informacija{% else %}Privacy information{% endif %}">
+      {% if privacy_lang == 'lt' %}
+        <a href="/lt/privatumas/">Skaityti privatumo pranešimą</a>
+      {% elsif privacy_lang == 'en' %}
+        <a href="/en/privacy/">Read the privacy notice</a>
+      {% else %}
+        <a href="/en/privacy/" lang="en">Privacy</a>
+        <a href="/lt/privatumas/" lang="lt">Privatumas</a>
+      {% endif %}
+    </nav>
+  </div>
+  <button type="button" data-privacy-dismiss>
+    {% if privacy_lang == 'lt' %}Uždaryti{% elsif privacy_lang == 'en' %}Close{% else %}Close / Uždaryti{% endif %}
+  </button>
+</aside>
+<script>
+  (function () {
+    const notice = document.getElementById('hx-privacy-notice');
+    if (!notice) return;
+
+    const storageKey = 'hecavex-privacy-notice';
+    const noticeVersion = '2026-08-22';
+    let dismissed = false;
+
+    try {
+      dismissed = localStorage.getItem(storageKey) === noticeVersion;
+    } catch (_) {
+      dismissed = false;
+    }
+
+    if (!dismissed) notice.hidden = false;
+
+    notice.querySelector('[data-privacy-dismiss]').addEventListener('click', function () {
+      notice.hidden = true;
+      try {
+        localStorage.setItem(storageKey, noticeVersion);
+      } catch (_) {
+        /* The notice can still be dismissed for this page when storage is unavailable. */
+      }
+    });
+  })();
+</script>

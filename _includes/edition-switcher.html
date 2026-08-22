@@ -1,0 +1,40 @@
+{% assign edition_current = page.lang | default: site.lang | default: 'en' %}
+{% if edition_current == 'en' %}{% assign edition_other = 'lt' %}{% else %}{% assign edition_other = 'en' %}{% endif %}
+{% assign edition_translation = nil %}
+{% if page.translation_key %}
+  {% assign edition_documents = site.posts | concat: site.pages %}
+  {% for document in edition_documents %}
+    {% if document.translation_key == page.translation_key and document.lang == edition_other %}
+      {% assign edition_translation = document %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% assign edition_english_url = '/en/' %}
+{% assign edition_lithuanian_url = '/lt/' %}
+{% if edition_current == 'en' %}
+  {% assign edition_english_url = page.url %}
+  {% if edition_translation %}{% assign edition_lithuanian_url = edition_translation.url %}{% endif %}
+{% else %}
+  {% assign edition_lithuanian_url = page.url %}
+  {% if edition_translation %}{% assign edition_english_url = edition_translation.url %}{% endif %}
+{% endif %}
+
+{% if include.context == 'article' %}
+  {% if edition_translation %}
+    <a class="hx-translation-link" href="{{ edition_translation.url }}" lang="{{ edition_other }}" hreflang="{{ edition_other }}" data-language="{{ edition_other }}">
+      {% if edition_other == 'en' %}Read in English{% else %}Skaityti lietuviškai{% endif %} <span aria-hidden="true">→</span>
+    </a>
+  {% endif %}
+{% else %}
+  <details class="hx-language hx-language--{{ include.context }}">
+    <summary>
+      <span>{% if include.context == 'topbar' %}{{ edition_current | upcase }}{% else %}{{ site.data.hecavex[edition_current].language }} · {{ site.data.hecavex[edition_current].name }}{% endif %}</span>
+      <span aria-hidden="true">⌄</span>
+    </summary>
+    <div class="hx-language-menu">
+      <a href="{{ edition_english_url }}" lang="en" hreflang="en" data-language="en"{% if edition_current == 'en' %} aria-current="page"{% endif %}>English <small>EN</small></a>
+      <a href="{{ edition_lithuanian_url }}" lang="lt" hreflang="lt" data-language="lt"{% if edition_current == 'lt' %} aria-current="page"{% endif %}>Lietuvių <small>LT</small></a>
+    </div>
+  </details>
+{% endif %}
