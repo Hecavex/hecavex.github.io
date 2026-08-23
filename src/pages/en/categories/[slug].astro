@@ -1,0 +1,7 @@
+---
+import TaxonomyResults from '../../../components/TaxonomyResults.astro';
+import { getLocalizedPosts, taxonomy } from '../../../lib/site';
+export async function getStaticPaths() { const posts = await getLocalizedPosts('en'); return Object.entries(taxonomy).flatMap(([slug, labels]) => posts.some((post) => post.categories.includes(slug)) ? [{ params: { slug }, props: { slug, label: labels.en, posts: posts.filter((post) => post.categories.includes(slug)) } }] : []); }
+const { slug, label, posts } = Astro.props;
+---
+<TaxonomyResults lang="en" kind="category" {slug} {label} {posts} alternatePath={`/lt/kategorijos/${slug}/`} />

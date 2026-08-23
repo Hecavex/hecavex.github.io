@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { copy, dateText, getLocalizedPosts, imagePath, labelForPost, type Lang } from '../../lib/site';
+
+export function getStaticPaths() { return [{ params: { lang: 'en' } }, { params: { lang: 'lt' } }]; }
+const lang = Astro.params.lang as Lang;
+const posts = await getLocalizedPosts(lang);
+const research = posts.filter((post) => ['primary-research', 'technical-assessment'].includes(post.publicationClass));
+const briefings = posts.filter((post) => post.contentType === 'signal-brief');
+const lead = research[0];
+const recent = research.slice(1, 5);
+const latestBriefing = briefings[0];
+const hx = copy[lang];
+const alternatePath = lang === 'lt' ? '/en/' : '/lt/';
+const title = lang === 'lt' ? 'HECAVEX | Kibernetinių grėsmių žvalgyba' : 'HECAVEX | Cyber Threat Intelligence by Deividas Lis';
+const description = lang === 'lt'
+  ? 'Nepriklausomas Deivido Lis kibernetinių grėsmių žvalgybos leidinys.'
+  : 'Independent cyber threat intelligence research, malware analysis, threat hunting, OSINT and digital investigations by Deividas Lis.';
+---
+<BaseLayout {lang} {title} {description} canonicalPath={`/${lang}/`} {alternatePath} type="CollectionPage">
+  <div class="shell home-shell">
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="home-hero-copy">
+        <p class="eyebrow">HECAVEX / {lang.toUpperCase()} · {hx.edition}</p>
+        <h1 id="home-title">{hx.tagline}</h1>
+        <p class="hero-deck">{hx.supporting}</p>
+        <p>{lang === 'lt' ? 'Nepriklausomas Deivido Lis leidinys apie grėsmių žvalgybą, techninius tyrimus ir skaitmeninių grėsmių infrastruktūrą.' : 'An independent publication by Deividas Lis on threat intelligence, technical investigations and the infrastructure behind digital threats.'}</p>
+        <div class="hero-actions"><a class="button button--primary" href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.all_articles}</a><a href={lang === 'lt' ? '/lt/metodika/' : '/en/methodology/'}>{lang === 'lt' ? 'Kaip atliekami tyrimai' : 'How the research is done'} →</a></div>
+      </div>
+      <dl class="hero-index">
+        <div><dt>{lang === 'lt' ? 'Dėmesys' : 'Focus'}</dt><dd>CTI · OSINT · malware · fraud</dd></div>
+        <div><dt>{lang === 'lt' ? 'Leidėjas' : 'Publisher'}</dt><dd>Deividas Lis</dd></div>
+        <div><dt>{lang === 'lt' ? 'Prieiga' : 'Access'}</dt><dd>{lang === 'lt' ? 'Vieša · be registracijos' : 'Public · no account'}</dd></div>
+        <div><dt>{lang === 'lt' ? 'Atnaujinta' : 'Updated'}</dt><dd>{posts[0] ? dateText(posts[0].date) : '—'}</dd></div>
+      </dl>
+    </section>
+
+    {lead && <section class="home-section" aria-labelledby="latest-title">
+      <header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Naujausias darbas' : 'Latest work'}</p><h2 id="latest-title">{hx.latest_research}</h2></div><a href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.view_all} →</a></header>
+      <article class="lead-story">
+        <a class="lead-story-image" href={lead.url} aria-label={lead.title}><img src={imagePath(lead, 'thumbnail') ?? '/assets/img/brand/hecavex-mark.svg'} alt="" width="960" height="540" loading="eager" /></a>
+        <div><p class="card-meta"><span>{labelForPost(lead)}</span><time datetime={lead.date.toISOString()}>{dateText(lead.date)}</time></p><h3><a href={lead.url}>{lead.cardTitle}</a></h3><p>{lead.description}</p><a href={lead.url}>{hx.read_more} →</a></div>
+      </article>
+      <div class="post-grid">{recent.map((post) => <PostCard {post} />)}</div>
+    </section>}
+
+    <section class="home-signal-grid">
+      {latestBriefing && <div><header class="section-head"><div><p class="eyebrow">Signal Brief</p><h2>{hx.latest_briefing}</h2></div><a href={lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/'}>{hx.all_briefings} →</a></header><PostCard post={latestBriefing} prominent /></div>}
+      <aside class="radar-note"><p class="eyebrow">HECAVEX RADAR</p><h2>{lang === 'lt' ? 'Galimi apsimetimo domenai Lietuvoje' : 'Potential impersonation domains relevant to Lithuania'}</h2><p>{lang === 'lt' ? 'Viešas, tik skaitymui skirtas signalų sąrašas. Įrašai yra tyrimo kandidatai, o ne kenkėjiškumo nuosprendžiai.' : 'A public, read-only signal index. Listings are research candidates, not verdicts of maliciousness.'}</p><a class="button button--primary" href="https://radar.hecavex.com/">{lang === 'lt' ? 'Atverti Radar' : 'Open Radar'} ↗</a></aside>
+    </section>
+
+    <section class="network-section" aria-labelledby="network-title"><header class="section-head"><div><p class="eyebrow">HECAVEX NETWORK</p><h2 id="network-title">{lang === 'lt' ? 'Vienas leidinys. Kelios tyrimų erdvės.' : 'One publication. Several research surfaces.'}</h2></div><a href={lang === 'lt' ? '/lt/projektai/' : '/en/projects/'}>{hx.projects} →</a></header><div class="network-grid"><a href="https://apt.hecavex.com/"><span>01</span><strong>APT Notes</strong><small>{lang === 'lt' ? 'Struktūruotos grėsmių veikėjų pastabos' : 'Structured threat-actor notes'}</small></a><a href="https://labs.hecavex.com/"><span>02</span><strong>Labs</strong><small>{lang === 'lt' ? 'Naršyklėje veikiantys tyrimų įrankiai' : 'Browser-based research tools'}</small></a><a href="https://labs.hecavex.com/data/"><span>03</span><strong>Data</strong><small>{lang === 'lt' ? 'Cituojami tyrimų duomenų rinkiniai' : 'Citable research datasets'}</small></a></div></section>
+  </div>
+</BaseLayout>

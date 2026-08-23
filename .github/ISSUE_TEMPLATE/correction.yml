@@ -1,0 +1,47 @@
+name: Public correction
+description: Report a factual, translation, citation, or broken-public-reference problem without sensitive evidence.
+title: "Correction: "
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: Do not include credentials, victim data, private intelligence, active payloads, or undisclosed vulnerabilities. Use the private routes in the issue chooser when evidence is sensitive.
+  - type: input
+    id: publication
+    attributes:
+      label: Publication URL
+      placeholder: https://hecavex.com/en/...
+    validations:
+      required: true
+  - type: dropdown
+    id: correction_type
+    attributes:
+      label: Problem type
+      options:
+        - Factual statement
+        - Citation or public link
+        - Translation parity
+        - Date or version
+        - Formatting or accessibility text
+        - Other public correction
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What should be reviewed?
+      description: Quote only the minimum public text needed to locate the issue.
+    validations:
+      required: true
+  - type: textarea
+    id: public_sources
+    attributes:
+      label: Public supporting sources
+      description: Add canonical public links and relevant dates. A link is evidence provenance, not an instruction to copy its content.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I have not included credentials, personal data, private evidence, active malware, or an undisclosed vulnerability.
+          required: true

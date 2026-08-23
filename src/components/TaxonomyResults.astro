@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from './PageHeader.astro';
+import PostCard from './PostCard.astro';
+import { taxonomy, type Lang, type Post } from '../lib/site';
+interface Props { lang: Lang; kind: 'category' | 'tag'; slug: string; label: string; posts: Post[]; alternatePath?: string; }
+const { lang, kind, slug, label, posts, alternatePath } = Astro.props;
+const base = kind === 'category' ? (lang === 'lt' ? 'kategorijos' : 'categories') : (lang === 'lt' ? 'zymos' : 'tags');
+const canonicalPath = `/${lang}/${base}/${slug}/`;
+const heading = kind === 'category' ? (taxonomy[slug]?.[lang] ?? label) : label;
+const description = lang === 'lt' ? `HECAVEX publikacijos: ${heading}.` : `HECAVEX publications filed under ${heading}.`;
+---
+<BaseLayout {lang} title={heading} {description} {canonicalPath} {alternatePath} noindex={posts.length < 2} type="CollectionPage">
+  <div class="shell page-shell taxonomy-results">
+    <PageHeader {lang} title={heading} {description} eyebrow={kind === 'category' ? (lang === 'lt' ? 'KATEGORIJA' : 'CATEGORY') : (lang === 'lt' ? 'ŽYMA' : 'TAG')} />
+    <p class="result-count">{posts.length} {lang === 'lt' ? 'susijusios publikacijos' : posts.length === 1 ? 'related publication' : 'related publications'}</p>
+    <div class="post-grid">{posts.map((post) => <PostCard {post} />)}</div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1000" viewBox="0 0 1200 1000" role="img" aria-labelledby="title desc">
+  <title id="title">CRA Article 14 technical decision tree</title>
+  <desc id="desc">A signal is checked for product scope, classified as a vulnerability or incident, tested against evidence and severity thresholds, then moved into the 24-hour warning, 72-hour notification, final report and user-notification workflow.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05080b"/><stop offset="1" stop-color="#101923"/></linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#1e3440" stroke-width="1" opacity=".32"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#44c7dc"/></marker>
+    <style>
+      .node{fill:#0b1117;stroke:#1e3440;stroke-width:2}.decision{stroke:#ffc857}.action{stroke:#44c7dc}.outcome{stroke:#a2da68}.stop{stroke:#ff6b6b}.line{fill:none;stroke:#44c7dc;stroke-width:2;marker-end:url(#arrow)}.branch{fill:#8397a3;font:600 15px "IBM Plex Mono",monospace}.label{fill:#f2f8fb;font:700 18px Inter,Arial,sans-serif;text-anchor:middle}.small{fill:#b6c6cf;font:500 14px Inter,Arial,sans-serif;text-anchor:middle}.eyebrow{fill:#44c7dc;font:600 15px "IBM Plex Mono",monospace;letter-spacing:2px}.heading{fill:#f2f8fb;font:700 30px Inter,Arial,sans-serif}.note{fill:#8397a3;font:500 14px Inter,Arial,sans-serif}
+    </style>
+  </defs>
+  <rect width="1200" height="1000" fill="url(#bg)"/><rect width="1200" height="1000" fill="url(#grid)"/>
+  <text x="54" y="54" class="eyebrow">CRA ARTICLE 14 · TECHNICAL CONTROL FLOW</text>
+  <text x="54" y="92" class="heading">From signal to reportable awareness</text>
+
+  <path class="line" d="M600 180V210"/><path class="line" d="M600 280V320"/><path class="line" d="M520 390L275 440"/><path class="line" d="M680 390L925 440"/>
+  <path class="line" d="M275 510V550"/><path class="line" d="M275 620V660"/><path class="line" d="M275 730V770"/>
+  <path class="line" d="M925 510V575"/><path class="line" d="M925 645V715"/>
+  <path class="line" d="M600 280H880"/><path class="line" d="M275 840V875H600V900"/><path class="line" d="M925 785V875H600V900"/>
+
+  <rect class="node action" x="420" y="120" width="360" height="60" rx="4"/><text class="label" x="600" y="157">Signal received</text>
+  <rect class="node decision" x="420" y="210" width="360" height="70" rx="4"/><text class="label" x="600" y="239">In-scope connected product?</text><text class="small" x="600" y="261">Record the classification basis</text>
+  <rect class="node stop" x="880" y="215" width="260" height="60" rx="4"/><text class="label" x="1010" y="242">No</text><text class="small" x="1010" y="263">Close or monitor</text>
+  <text class="branch" x="614" y="309">YES</text><text class="branch" x="804" y="267">NO</text>
+  <rect class="node decision" x="420" y="320" width="360" height="70" rx="4"/><text class="label" x="600" y="349">Vulnerability or incident?</text><text class="small" x="600" y="371">Choose the evidential track</text>
+
+  <rect class="node" x="100" y="440" width="350" height="70" rx="4"/><text class="label" x="275" y="469">Vulnerability track</text><text class="small" x="275" y="491">Product containment and reachability</text>
+  <rect class="node decision" x="100" y="550" width="350" height="70" rx="4"/><text class="label" x="275" y="579">Contained and reachable?</text><text class="small" x="275" y="601">Affected build and code path verified</text>
+  <rect class="node decision" x="100" y="660" width="350" height="70" rx="4"/><text class="label" x="275" y="689">Reliable exploitation evidence?</text><text class="small" x="275" y="711">Telemetry or corroborated observations</text>
+  <rect class="node decision" x="100" y="770" width="350" height="70" rx="4"/><text class="label" x="275" y="799">Reasonable certainty reached?</text><text class="small" x="275" y="821">Document the awareness timestamp</text>
+
+  <rect class="node" x="750" y="440" width="350" height="70" rx="4"/><text class="label" x="925" y="469">Incident track</text><text class="small" x="925" y="491">Security impact or malicious code</text>
+  <rect class="node decision" x="750" y="575" width="350" height="70" rx="4"/><text class="label" x="925" y="604">CIA impact or malicious code?</text><text class="small" x="925" y="626">Actual or potential product impact</text>
+  <rect class="node decision" x="750" y="715" width="350" height="70" rx="4"/><text class="label" x="925" y="744">Severe with reasonable certainty?</text><text class="small" x="925" y="766">Preserve evidence and decision owner</text>
+
+  <rect class="node outcome" x="420" y="900" width="360" height="60" rx="4"/><text class="label" x="600" y="928">Start Article 14 reporting</text><text class="small" x="600" y="949">24 h warning → 72 h notification → final report</text>
+  <text class="note" x="54" y="979">If a threshold is not met, retain the rationale and continue proportionate evidence collection. Notify affected users where required.</text>
+</svg>

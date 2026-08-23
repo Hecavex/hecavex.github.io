@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { dateText, getPublicPosts, type Post } from '../lib/site';
+
+const posts = await getPublicPosts();
+const englishPosts = posts.filter((post) => post.lang === 'en');
+const latestResearch = englishPosts.find((post) => ['primary-research', 'technical-assessment'].includes(post.publicationClass));
+const latestBriefing = englishPosts.find((post) => post.contentType === 'signal-brief');
+const latestPublication = posts[0];
+const publishedWorks = new Set(posts.map((post) => post.translationKey)).size;
+const briefingCount = englishPosts.filter((post) => post.contentType === 'signal-brief').length;
+
+const lithuanianEdition = (post: Post | undefined) => post
+  ? posts.find((candidate) => candidate.translationKey === post.translationKey && candidate.lang === 'lt')
+  : undefined;
+
+const latestResearchLt = lithuanianEdition(latestResearch);
+const latestBriefingLt = lithuanianEdition(latestBriefing);
+
+const network = [
+  {
+    index: '01',
+    name: 'Radar',
+    href: 'https://radar.hecavex.com/',
+    description: 'Potential impersonation domains relevant to Lithuania. Candidates for review, not verdicts.'
+  },
+  {
+    index: '02',
+    name: 'APT Notes',
+    href: 'https://apt.hecavex.com/',
+    description: 'Source-backed threat-actor dossiers that preserve attribution context and uncertainty.'
+  },
+  {
+    index: '03',
+    name: 'Labs',
+    href: 'https://labs.hecavex.com/',
+    description: 'Inspectable browser workspaces for ATT&CK, infrastructure pivots and defensive assessment.'
+  },
+  {
+    index: '04',
+    name: 'Public data',
+    href: 'https://labs.hecavex.com/data/',
+    description: 'Citable datasets, schemas and versioned evidence bundles supporting published research.'
+  }
+];
+---
+<BaseLayout lang="en" title="HECAVEX | Cyber Threat Intelligence" description="Independent bilingual cyber threat intelligence research and digital investigations by Deividas Lis." canonicalPath="/" alternatePath="/lt/" languageAlternates={{ en: '/en/', lt: '/lt/' }} xDefaultPath="/" type="CollectionPage">
+  <div class="shell landing-portal">
+    <section class="home-hero landing-hero" aria-labelledby="portal-title">
+      <div class="home-hero-copy">
+        <p class="eyebrow">HECAVEX / INDEPENDENT RESEARCH</p>
+        <h1 id="portal-title">Independent research.<br /><span>Two editions.</span></h1>
+        <p class="hero-deck">Cyber threat intelligence, technical investigations and concise security briefings by Deividas Lis.</p>
+        <p>Original analysis, public research tools and structured data for people who need the evidence, confidence and limitations—not only another indicator list.</p>
+      </div>
+      <nav class="landing-edition-rail" aria-label="Choose a HECAVEX edition">
+        <a href="/en/">
+          <span>EN / ENGLISH</span>
+          <strong>English edition</strong>
+          <p>Investigations, technical analysis, Signal Briefs and methodology.</p>
+          <small>Open research →</small>
+        </a>
+        <a href="/lt/" lang="lt" hreflang="lt">
+          <span>LT / LIETUVIŲ</span>
+          <strong>Lietuviškas leidinys</strong>
+          <p>Tyrimai, techninė analizė, Signalų apžvalgos ir metodika.</p>
+          <small>Atverti tyrimus →</small>
+        </a>
+      </nav>
+    </section>
+
+    <dl class="landing-index" aria-label="HECAVEX publication index">
+      <div><dt>Published work <span lang="lt">/ Publikuota</span></dt><dd>{publishedWorks} bilingual records</dd></div>
+      <div><dt>Signal Briefs <span lang="lt">/ Apžvalgos</span></dt><dd>{briefingCount} issues per edition</dd></div>
+      <div><dt>Research surfaces <span lang="lt">/ Erdvės</span></dt><dd>5 connected projects</dd></div>
+      <div><dt>Latest update <span lang="lt">/ Atnaujinta</span></dt><dd>{latestPublication ? dateText(latestPublication.date) : '—'}</dd></div>
+    </dl>
+
+    <section class="landing-section" aria-labelledby="current-title">
+      <header class="section-head landing-section-head">
+        <div>
+          <p class="eyebrow">CURRENT DESK / DABAR</p>
+          <h2 id="current-title">Recently published and maintained.</h2>
+          <p>The same research record is available across the two editions.</p>
+        </div>
+      </header>
+      <div class="landing-current-grid">
+        {latestResearch && <article class="landing-current-card">
+          <p class="eyebrow">LATEST RESEARCH</p>
+          <h3><a href={latestResearch.url}>{latestResearch.cardTitle}</a></h3>
+          <p>{latestResearch.description}</p>
+          <footer>
+            <time datetime={latestResearch.date.toISOString()}>{dateText(latestResearch.date)}</time>
+            <nav aria-label={`Editions of ${latestResearch.title}`}>
+              <a href={latestResearch.url}>Read in English</a>
+              {latestResearchLt && <a href={latestResearchLt.url} lang="lt" hreflang="lt">Skaityti lietuviškai</a>}
+            </nav>
+          </footer>
+        </article>}
+        {latestBriefing && <article class="landing-current-card">
+          <p class="eyebrow">LATEST SIGNAL BRIEF</p>
+          <h3><a href={latestBriefing.url}>{latestBriefing.cardTitle}</a></h3>
+          <p>{latestBriefing.description}</p>
+          <footer>
+            <time datetime={latestBriefing.date.toISOString()}>{dateText(latestBriefing.date)}</time>
+            <nav aria-label={`Editions of ${latestBriefing.title}`}>
+              <a href={latestBriefing.url}>Read in English</a>
+              {latestBriefingLt && <a href={latestBriefingLt.url} lang="lt" hreflang="lt">Skaityti lietuviškai</a>}
+            </nav>
+          </footer>
+        </article>}
+        <aside class="landing-current-card landing-principles">
+          <p class="eyebrow">EDITORIAL RECORD / PRINCIPAI</p>
+          <h3>Evidence before a convenient story.</h3>
+          <p>Sources, confidence, uncertainty, limitations and material corrections stay visible beside the work.</p>
+          <footer>
+            <span>Independent · public · best effort</span>
+            <nav aria-label="Research methodology">
+              <a href="/en/methodology/">Methodology</a>
+              <a href="/lt/metodika/" lang="lt" hreflang="lt">Metodika</a>
+            </nav>
+          </footer>
+        </aside>
+      </div>
+    </section>
+
+    <section class="landing-section" aria-labelledby="network-title">
+      <header class="section-head landing-section-head">
+        <div>
+          <p class="eyebrow">HECAVEX NETWORK</p>
+          <h2 id="network-title">One research system. Several public surfaces.</h2>
+          <p>Move from discovery to context, interactive analysis and reusable evidence without leaving the same research record.</p>
+        </div>
+        <a href="/en/projects/">How the projects connect →</a>
+      </header>
+      <div class="network-grid landing-network-grid">
+        {network.map((project) => <a href={project.href}>
+          <span>{project.index}</span>
+          <strong>{project.name}</strong>
+          <small>{project.description}</small>
+        </a>)}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

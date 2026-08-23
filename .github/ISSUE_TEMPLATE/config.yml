@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Sensitive security report
+    url: https://github.com/Hecavex/hecavex.github.io/security/advisories/new
+    about: Report website vulnerabilities privately. Never attach credentials, private victim data, or active payloads to a public issue.
+  - name: Editorial contact
+    url: https://hecavex.com/en/contact/
+    about: Use the publication contact route for private corrections, media enquiries, or evidence that should not be public.

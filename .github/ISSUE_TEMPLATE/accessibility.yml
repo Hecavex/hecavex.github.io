@@ -1,0 +1,37 @@
+name: Accessibility problem
+description: Report a reproducible barrier on the public HECAVEX publication.
+title: "Accessibility: "
+labels: ["accessibility"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page URL
+      placeholder: https://hecavex.com/...
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and assistive technology
+      placeholder: Firefox 130, NVDA 2026.2, Windows 11
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps and observed barrier
+      description: Explain the action, expected result, and what happened instead. Do not include private data.
+    validations:
+      required: true
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      options:
+        - Blocks access to content or navigation
+        - Makes a task substantially harder
+        - Causes confusion or loss of context
+        - Visual or wording improvement
+    validations:
+      required: true

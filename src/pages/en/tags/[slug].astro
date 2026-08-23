@@ -1,0 +1,7 @@
+---
+import TaxonomyResults from '../../../components/TaxonomyResults.astro';
+import { getLocalizedPosts, slugify } from '../../../lib/site';
+export async function getStaticPaths() { const posts = await getLocalizedPosts('en'); const tags = new Map(posts.flatMap((post) => post.tags).map((tag) => [slugify(tag), tag])); return [...tags].map(([slug, label]) => ({ params: { slug }, props: { slug, label, posts: posts.filter((post) => post.tags.some((tag) => slugify(tag) === slug)) } })); }
+const { slug, label, posts } = Astro.props;
+---
+<TaxonomyResults lang="en" kind="tag" {slug} {label} {posts} />

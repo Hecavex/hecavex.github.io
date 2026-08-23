@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use HECAVEX research, cite the specific article or research release whenever possible."
+title: "HECAVEX: Cyber Threat Intelligence and Digital Investigations"
+type: website
+abstract: "The citable HECAVEX editorial publication and authored research corpus. Repository software is licensed separately under MIT; datasets and third-party evidence retain their stated terms."
+authors:
+  - family-names: "Lis"
+    given-names: "Deividas"
+    affiliation: "HECAVEX"
+    website: "https://hecavex.com/en/about/"
+repository-code: "https://github.com/Hecavex/hecavex.github.io"
+url: "https://hecavex.com/"
+license: "CC-BY-4.0"
+keywords:
+  - cyber threat intelligence
+  - threat hunting
+  - malware analysis
+  - OSINT
+  - cybercrime investigations
+  - Lithuania

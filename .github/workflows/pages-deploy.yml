@@ -1,0 +1,88 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
+
+      - name: Setup Node
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build and verify publication
+        run: npm run verify
+        env:
+          PUBLIC_HECAVEX_ANALYTICS_TOKEN: ${{ vars.HECAVEX_ANALYTICS_TOKEN }}
+
+      - name: Verify deployment essentials
+        run: |
+          test -f dist/.nojekyll
+          test -f dist/.well-known/security.txt
+          test -f dist/security.txt
+          test -f dist/sitemap.xml
+          test -f dist/en/feed.xml
+          test -f dist/lt/feed.xml
+          grep -Fq "Canonical: https://hecavex.com/.well-known/security.txt" dist/.well-known/security.txt
+          test "$(grep -o '<loc>' dist/sitemap.xml | wc -l)" -eq 128
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
+        with:
+          path: dist
+          include-hidden-files: true
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: build
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5
+
+      - name: Verify deployed security contact
+        run: |
+          site_url="${{ steps.deployment.outputs.page_url }}"
+          curl --fail --silent --show-error --retry 12 --retry-delay 10 --retry-all-errors \
+            "${site_url%/}/.well-known/security.txt" \
+            | grep -Fq "Contact: mailto:info@hecavex.com"

@@ -1,0 +1,20 @@
+---
+import { portfolio, type Lang } from '../lib/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const value = (field: unknown) => typeof field === 'object' && field && lang in field ? String((field as Record<string, unknown>)[lang]) : String(field ?? '');
+const projects = portfolio.projects.map((project, index) => ({
+  index,
+  links: Array.isArray(project.links) ? project.links as Array<Record<string, unknown>> : [],
+  project
+}));
+---
+<div class="project-directory">
+  {projects.map(({ project, index, links }) => (
+    <article class="project-record">
+      <header><span class="eyebrow">{String(index + 1).padStart(2, '0')} / {String(project.code)}</span><h2>{String(project.name)}</h2><span class="status-badge">{value(project.status)}</span></header>
+      <div class="project-copy"><div><h3>{lang === 'lt' ? 'Paskirtis' : 'Purpose'}</h3><p>{value(project.purpose)}</p></div><div><h3>{lang === 'lt' ? 'Kam skirta' : 'Audience'}</h3><p>{value(project.audience)}</p></div><div><h3>{lang === 'lt' ? 'Ryšys' : 'Relationship'}</h3><p>{value(project.relationship)}</p></div><div><h3>{lang === 'lt' ? 'Ribos' : 'Limitations'}</h3><p>{value(project.limitations)}</p></div></div>
+      <nav aria-label={`${String(project.name)} links`}>{links.map((link) => <a href={value(link.url)}>{value(link.label)} <span aria-hidden="true">↗</span></a>)}</nav>
+    </article>
+  ))}
+</div>

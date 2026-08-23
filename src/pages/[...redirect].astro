@@ -1,0 +1,16 @@
+---
+import { getPublicPosts } from '../lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getPublicPosts();
+  const redirects: Array<{ from: string; to: string; lang: string }> = [{ from: '/lt/research/', to: '/lt/tyrimai/', lang: 'lt' }];
+  for (const post of posts) for (const from of post.entry.data.redirect_from) redirects.push({ from, to: post.url, lang: post.lang });
+  return redirects.map((redirect) => ({ params: { redirect: redirect.from.replace(/^\//, '').replace(/\/$/, '') }, props: redirect }));
+}
+
+interface Props { from: string; to: string; lang: string; }
+const { to, lang } = Astro.props;
+const absoluteTarget = new URL(to, Astro.site);
+---
+<!doctype html>
+<html lang={lang}><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="robots" content="noindex,follow" /><meta http-equiv="refresh" content={`0; url=${absoluteTarget.href}`} /><link rel="canonical" href={absoluteTarget} /><title>{lang === 'lt' ? 'Publikacija perkelta' : 'This publication has moved'} | HECAVEX</title></head><body><p>{lang === 'lt' ? 'Publikacija perkelta.' : 'This publication has moved.'} <a href={to}>{lang === 'lt' ? 'Atverti naują adresą' : 'Continue to the new address'}</a>.</p></body></html>

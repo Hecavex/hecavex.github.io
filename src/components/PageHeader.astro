@@ -1,0 +1,23 @@
+---
+import type { Lang } from '../lib/site';
+import type { PageFact } from '../data/page-context';
+interface Props { lang: Lang; title: string; description: string; eyebrow?: string; facts?: PageFact[]; anchorId?: string; }
+const { lang, title, description, eyebrow = `HECAVEX / ${lang.toUpperCase()}`, facts = [], anchorId } = Astro.props;
+---
+<div id={anchorId} class:list={['page-intro', { 'page-intro--with-facts': facts.length > 0 }]} data-outline-heading={anchorId ? 'true' : undefined} data-outline-label={anchorId ? title : undefined}>
+  <header class="page-head">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    <p class="page-deck">{description}</p>
+  </header>
+  {facts.length > 0 && <dl class="page-facts">
+    {facts.map((fact) => <div>
+      <dt>{fact.label}</dt>
+      <dd>
+        {fact.links?.map((link, index) => <>{index > 0 && <span aria-hidden="true"> · </span>}<a href={link.href}>{link.label}</a></>)}
+        {!fact.links && fact.href && <a href={fact.href}>{fact.value}</a>}
+        {!fact.links && !fact.href && fact.value}
+      </dd>
+    </div>)}
+  </dl>}
+</div>

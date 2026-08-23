@@ -1,0 +1,90 @@
+---
+import type { OutlineItem } from '../data/page-context';
+import type { Lang } from '../lib/site';
+
+interface Props {
+  lang: Lang;
+  headings: OutlineItem[];
+  scopeId: string;
+  kind?: 'contents' | 'research-map';
+  condensed?: boolean;
+  topHref?: string;
+}
+
+const { lang, headings, scopeId, kind = 'contents', condensed = false, topHref = `#${headings[0]?.slug ?? 'main-content'}` } = Astro.props;
+const isMap = kind === 'research-map';
+const eyebrow = isMap
+  ? (lang === 'lt' ? 'Tyrimų žemėlapis' : 'Research map')
+  : (lang === 'lt' ? 'Šiame puslapyje' : 'On this page');
+const title = isMap
+  ? (lang === 'lt' ? 'Publikacijų katalogas' : 'Publication catalogue')
+  : (lang === 'lt' ? 'Turinys' : 'Contents');
+const progressLabel = isMap
+  ? (lang === 'lt' ? 'Katalogo skiltis' : 'Catalogue position')
+  : (lang === 'lt' ? 'Skaitymo eiga' : 'Reading position');
+const currentLabel = lang === 'lt' ? 'Dabar' : 'Current';
+const nextLabel = lang === 'lt' ? 'Toliau' : 'Up next';
+const completeLabel = lang === 'lt' ? 'Pabaiga' : 'End of page';
+const topLabel = lang === 'lt' ? 'Grįžti į pradžią' : 'Back to the beginning';
+const sectionCount = lang === 'lt' ? `Skyriai · ${headings.length}` : `${headings.length} sections`;
+const outlineKey = `${kind}-${scopeId}`;
+const titleId = `${outlineKey}-title`;
+---
+<aside
+  class:list={['content-outline', 'content-outline--desktop', { 'content-outline--condensed': condensed, 'content-outline--map': isMap }]}
+  aria-labelledby={titleId}
+  data-content-outline={outlineKey}
+  data-outline-scope={scopeId}
+>
+  <div class="content-outline__frame">
+    <header class="content-outline__head">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 id={titleId}>{title}</h2>
+      <div class="content-outline__status" data-outline-status hidden>
+        <div class="content-outline__status-line">
+          <span>{progressLabel}</span>
+          <strong data-outline-count>01 / {String(headings.length).padStart(2, '0')}</strong>
+        </div>
+        <div class="content-outline__progress" role="progressbar" aria-label={progressLabel} aria-valuemin="1" aria-valuemax={headings.length} aria-valuenow="1" data-outline-progress>
+          <span data-outline-progress-fill></span>
+        </div>
+        <dl class="content-outline__now-next">
+          <div><dt>{currentLabel}</dt><dd data-outline-current>{headings[0]?.text}</dd></div>
+          <div><dt>{nextLabel}</dt><dd data-outline-next>{headings[1]?.text ?? completeLabel}</dd></div>
+        </dl>
+      </div>
+    </header>
+    <nav aria-labelledby={titleId} data-outline-nav>
+      <ol>
+        {headings.map((heading, index) => <li class:list={{ 'content-outline__depth-3': heading.depth === 3 }} data-outline-item data-outline-slug={heading.slug}>
+          <a href={`#${heading.slug}`} data-outline-link>
+            <span class="content-outline__number">{String(index + 1).padStart(2, '0')}</span>
+            <span class="content-outline__copy"><strong>{heading.text}</strong>{heading.note && <small>{heading.note}</small>}</span>
+          </a>
+        </li>)}
+      </ol>
+    </nav>
+    <a class="content-outline__top" href={topHref}>{topLabel} <span aria-hidden="true">↑</span></a>
+  </div>
+</aside>
+
+<details
+  class:list={['content-outline', 'content-outline--mobile', { 'content-outline--condensed': condensed, 'content-outline--map': isMap }]}
+  data-content-outline={outlineKey}
+  data-outline-scope={scopeId}
+>
+  <summary>
+    <span><span class="eyebrow">{eyebrow}</span><strong data-outline-mobile-current>{title}</strong><small data-outline-mobile-count>{sectionCount}</small></span>
+    <span class="content-outline__toggle" aria-hidden="true"></span>
+  </summary>
+  <nav aria-label={title} data-outline-nav>
+    <ol>
+      {headings.map((heading, index) => <li class:list={{ 'content-outline__depth-3': heading.depth === 3 }} data-outline-item data-outline-slug={heading.slug}>
+        <a href={`#${heading.slug}`} data-outline-link>
+          <span class="content-outline__number">{String(index + 1).padStart(2, '0')}</span>
+          <span class="content-outline__copy"><strong>{heading.text}</strong>{heading.note && <small>{heading.note}</small>}</span>
+        </a>
+      </li>)}
+    </ol>
+  </nav>
+</details>

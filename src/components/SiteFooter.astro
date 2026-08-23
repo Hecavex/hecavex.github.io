@@ -1,0 +1,19 @@
+---
+import { networkNavigation, type Lang } from '../lib/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+---
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>HECAVEX RESEARCH</strong>
+      <span>{lang === 'lt' ? 'Nepriklausomi Deivido Lis kibernetinių grėsmių tyrimai.' : 'Independent cyber threat research by Deividas Lis.'}</span>
+    </div>
+    <nav aria-label={lang === 'lt' ? 'Poraštė' : 'Footer'}>
+      {networkNavigation.map((item) => <a href={item.href}>{item.name}</a>)}
+      <a href={lang === 'lt' ? '/lt/metodika/' : '/en/methodology/'}>{lang === 'lt' ? 'Metodika' : 'Methodology'}</a>
+      <a href={lang === 'lt' ? '/lt/privatumas/' : '/en/privacy/'}>{lang === 'lt' ? 'Privatumas' : 'Privacy'}</a>
+      <a href={lang === 'lt' ? '/lt/feed.xml' : '/en/feed.xml'}>RSS</a>
+    </nav>
+  </div>
+</footer>

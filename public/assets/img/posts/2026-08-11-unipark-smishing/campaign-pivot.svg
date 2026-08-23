@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="880" viewBox="0 0 1600 880" role="img" aria-labelledby="title desc">
+  <title id="title">Pivot from the UNIPARK lure to a wider parking phishing kit cluster</title>
+  <desc id="desc">The current domain shares exact assets with a prior UNIPARK clone and a core JavaScript hash seen across 126 hostnames impersonating multiple parking brands.</desc>
+  <rect width="1600" height="880" fill="#0a0f15"/>
+  <text x="90" y="78" fill="#ff6259" font-family="Consolas,monospace" font-size="22" font-weight="700" letter-spacing="4">INFRASTRUCTURE + KIT PIVOT</text>
+  <text x="90" y="135" fill="#f4f6f8" font-family="Arial,sans-serif" font-size="42" font-weight="700">One UNIPARK hostname was not one campaign asset</text>
+
+  <g transform="translate(90 220)" font-family="Arial,sans-serif">
+    <rect width="440" height="206" rx="18" fill="#1f161a" stroke="#ff6259" stroke-width="3"/>
+    <text x="30" y="48" fill="#ff8179" font-family="Consolas,monospace" font-size="18">SUPPLIED IOC</text>
+    <text x="30" y="94" fill="#f4f6f8" font-size="27" font-weight="700">unipark.fmqr[.]ink/com</text>
+    <text x="30" y="134" fill="#a8b6c3" font-size="19">Registered 10 Aug 2026</text>
+    <text x="30" y="168" fill="#a8b6c3" font-size="19">Now points to siena.nksc.lt</text>
+  </g>
+
+  <g transform="translate(90 515)" font-family="Arial,sans-serif">
+    <rect width="440" height="206" rx="18" fill="#121a24" stroke="#79b8ff" stroke-width="2"/>
+    <text x="30" y="48" fill="#79b8ff" font-family="Consolas,monospace" font-size="18">EXACT DEPLOYMENT CLONE</text>
+    <text x="30" y="94" fill="#f4f6f8" font-size="27" font-weight="700">unipark.fxqro[.]xin/com</text>
+    <text x="30" y="134" fill="#a8b6c3" font-size="19">Four primary JS/CSS hashes match</text>
+    <text x="30" y="168" fill="#a8b6c3" font-size="19">Public scan: 4 Aug 2026</text>
+  </g>
+
+  <g transform="translate(665 302)" font-family="Arial,sans-serif">
+    <circle cx="175" cy="140" r="170" fill="#111923" stroke="#e5aa44" stroke-width="3"/>
+    <circle cx="175" cy="140" r="132" fill="none" stroke="#34485a" stroke-width="2" stroke-dasharray="8 12"/>
+    <text x="175" y="92" fill="#e5aa44" font-family="Consolas,monospace" font-size="18" text-anchor="middle">SHARED CORE BUNDLE</text>
+    <text x="175" y="146" fill="#f4f6f8" font-size="42" text-anchor="middle" font-weight="700">163 scans</text>
+    <text x="175" y="186" fill="#f4f6f8" font-size="31" text-anchor="middle">126 hostnames</text>
+    <text x="175" y="224" fill="#9fb0bf" font-size="18" text-anchor="middle">30 Jun to 11 Aug 2026</text>
+    <text x="175" y="254" fill="#79b8ff" font-family="Consolas,monospace" font-size="16" text-anchor="middle">SHA-256 7068d7b0…8a2b</text>
+  </g>
+
+  <g transform="translate(1160 170)" font-family="Arial,sans-serif">
+    <rect width="350" height="116" rx="14" fill="#121a24" stroke="#405165"/>
+    <text x="28" y="48" fill="#f4f6f8" font-size="25" font-weight="700">RingGo</text>
+    <text x="28" y="82" fill="#a8b6c3" font-size="19">59 scan records</text>
+  </g>
+  <g transform="translate(1160 310)" font-family="Arial,sans-serif">
+    <rect width="350" height="116" rx="14" fill="#121a24" stroke="#405165"/>
+    <text x="28" y="48" fill="#f4f6f8" font-size="25" font-weight="700">EyeParking</text>
+    <text x="28" y="82" fill="#a8b6c3" font-size="19">55 scan records</text>
+  </g>
+  <g transform="translate(1160 450)" font-family="Arial,sans-serif">
+    <rect width="350" height="116" rx="14" fill="#121a24" stroke="#405165"/>
+    <text x="28" y="48" fill="#f4f6f8" font-size="25" font-weight="700">UNIPARK</text>
+    <text x="28" y="82" fill="#a8b6c3" font-size="19">3 earlier public scans</text>
+  </g>
+  <g transform="translate(1160 590)" font-family="Arial,sans-serif">
+    <rect width="350" height="116" rx="14" fill="#121a24" stroke="#405165"/>
+    <text x="28" y="48" fill="#f4f6f8" font-size="25" font-weight="700">Other parking brands</text>
+    <text x="28" y="82" fill="#a8b6c3" font-size="19">EasyPark, Q-Park, NCP...</text>
+  </g>
+
+  <g fill="none" stroke="#607b91" stroke-width="3">
+    <path d="M530 323C615 323 621 376 665 402"/>
+    <path d="M530 618C615 618 621 508 665 482"/>
+    <path d="M1010 363C1080 315 1100 228 1160 228"/>
+    <path d="M1010 412C1080 392 1100 368 1160 368"/>
+    <path d="M1010 465C1080 480 1100 508 1160 508"/>
+    <path d="M995 518C1072 570 1098 648 1160 648"/>
+  </g>
+  <g fill="#79b8ff"><circle cx="665" cy="402" r="6"/><circle cx="665" cy="482" r="6"/></g>
+  <text x="90" y="822" fill="#718395" font-family="Consolas,monospace" font-size="18">EXACT HASH LINKS THE SOFTWARE. IT DOES NOT, BY ITSELF, IDENTIFY A HUMAN OPERATOR.</text>
+</svg>
