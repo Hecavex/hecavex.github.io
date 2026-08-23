@@ -16,3 +16,8 @@ tron,TW4AgGnDc2Pk6YAynCtjCKzoKYWPg7nJe,replacement string,invalid,high,"Recovere
 http-etag,"""2c4f9056952481d2697d4e338b0caaf0""",cached malicious response,malicious-associated,high,"Observed by URLScan on 2026-07-30 with cf-cache-status HIT and age 245023"
 javascript-string,"var _k=[0x4d,0x33,0x77,0x54,0x77,0x30]",payload signature,malicious-associated,medium,"Six-byte XOR key M3wTw0; combine with other script indicators"
 domain,s2.adform.net,legitimate distribution hostname,context-only,high,"Do not block broadly; hunt only by incident time window and response hash"
+bitcoin,bc1qtrw0lkv2pxd43r4n3lppex5y3gp7j87vt6mq3w,pre-incident decoded cross-chain destination,malicious-associated,high,"Destination appears in seven linked Harbor and Bridgers calls; predates Adform and must not be treated as incident-loss proof"
+ethereum,0x2eD291DbbC89DdF142Bb265E848B20f0cb80704F,pre-incident collection relay,malicious-associated,high,"Directly funded by the embedded ETH seed during the earlier 18 July collection episode"
+ethereum,0x01a9bBd0548EF211d4e0c11fF4fFb2f744B1CC80,pre-incident conversion relay,malicious-associated,high,"Directly linked to the embedded ETH seed and invoked verified cross-chain routers"
+ethereum,0xaAA56521faBFE036E7A2cff721B3e37Dafff6dc9,post-incident native ETH storage address,malicious-associated,medium-high,"Received 5.499399595444390569 ETH from the embedded seed; beneficial owner remains unknown"
+ethereum,0x81A19D2E11eb6177f9FB09D8D033a415C5cEa501,post-incident fast relay,malicious-associated,high,"Forwarded linked ETH and stablecoins to a pooled address within 96 to 204 seconds"

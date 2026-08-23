@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Wallet activity before the Adform incident</title>
+  <desc id="desc">A timeline showing observed Bitcoin and Ethereum collection activity before the incident, an assessed common-control Bitcoin link, and the boundary between reused infrastructure and an unproven earlier campaign.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#070c11"/><stop offset="1" stop-color="#111a25"/></linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0L12 6L0 12Z" fill="#45c5dd"/></marker>
+    <marker id="assessed" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0L12 6L0 12Z" fill="#f2ad3d"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <path d="M0 4H1600" stroke="#45c5dd" stroke-width="8"/>
+  <g transform="translate(80 76)">
+    <text fill="#45c5dd" font-family="Consolas,monospace" font-size="20" font-weight="700" letter-spacing="4">PRE-INCIDENT WALLET REUSE · EVIDENCE MAP</text>
+    <text y="70" fill="#f4f6f8" font-family="Arial,sans-serif" font-size="48" font-weight="700">Reused collection infrastructure is not a reused campaign.</text>
+    <text y="116" fill="#9fb0c2" font-family="Arial,sans-serif" font-size="22">Solid cyan paths are public-ledger transfers. Dashed amber paths are analyst assessments.</text>
+  </g>
+
+  <g font-family="Arial,sans-serif">
+    <text x="82" y="264" fill="#f4f6f8" font-size="27" font-weight="700">BITCOIN · 3–21 JULY</text>
+    <g transform="translate(80 304)">
+      <rect width="300" height="156" rx="8" fill="#101923" stroke="#45c5dd"/>
+      <text x="24" y="38" fill="#45c5dd" font-family="Consolas,monospace" font-size="16">OBSERVED SEED</text>
+      <text x="24" y="82" fill="#f4f6f8" font-size="24" font-weight="700">bc1qmplg…rrls</text>
+      <text x="24" y="119" fill="#9fb0c2" font-size="18">active from 3 July</text>
+    </g>
+    <g transform="translate(495 304)">
+      <rect width="300" height="156" rx="8" fill="#101923" stroke="#45c5dd"/>
+      <text x="24" y="38" fill="#45c5dd" font-family="Consolas,monospace" font-size="16">19 JULY SWEEP</text>
+      <text x="24" y="82" fill="#f4f6f8" font-size="24" font-weight="700">0.12450000 BTC</text>
+      <text x="24" y="119" fill="#9fb0c2" font-size="18">56 seed UTXOs</text>
+    </g>
+    <g transform="translate(910 304)">
+      <rect width="300" height="156" rx="8" fill="#1e1a13" stroke="#f2ad3d" stroke-width="2"/>
+      <text x="24" y="38" fill="#f2ad3d" font-family="Consolas,monospace" font-size="16">ASSESSED LINK</text>
+      <text x="24" y="82" fill="#f4f6f8" font-size="23" font-weight="700">common-control merge</text>
+      <text x="24" y="119" fill="#9fb0c2" font-size="18">two-input heuristic</text>
+    </g>
+    <g transform="translate(1320 304)">
+      <rect width="200" height="156" rx="8" fill="#101923" stroke="#f2ad3d"/>
+      <text x="20" y="38" fill="#f2ad3d" font-family="Consolas,monospace" font-size="16">SERVICE EDGE</text>
+      <text x="20" y="79" fill="#f4f6f8" font-size="22" font-weight="700">public tag</text>
+      <text x="20" y="111" fill="#9fb0c2" font-size="17">label conflict:</text>
+      <text x="20" y="136" fill="#9fb0c2" font-size="17">KuCoin / Binance</text>
+    </g>
+    <path d="M380 382H475" stroke="#45c5dd" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M795 382H890" stroke="#f2ad3d" stroke-width="4" stroke-dasharray="12 10" marker-end="url(#assessed)"/>
+    <path d="M1210 382H1300" stroke="#45c5dd" stroke-width="4" marker-end="url(#arrow)"/>
+
+    <text x="82" y="548" fill="#f4f6f8" font-size="27" font-weight="700">ETHEREUM · 2–18 JULY</text>
+    <g transform="translate(80 588)">
+      <rect width="300" height="166" rx="8" fill="#101923" stroke="#45c5dd"/>
+      <text x="24" y="38" fill="#45c5dd" font-family="Consolas,monospace" font-size="16">OBSERVED SEED</text>
+      <text x="24" y="82" fill="#f4f6f8" font-size="23" font-weight="700">0xE798…c573</text>
+      <text x="24" y="121" fill="#9fb0c2" font-size="18">active from 2 July</text>
+    </g>
+    <g transform="translate(495 588)">
+      <rect width="430" height="166" rx="8" fill="#101923" stroke="#45c5dd"/>
+      <text x="24" y="38" fill="#45c5dd" font-family="Consolas,monospace" font-size="16">18 JULY COLLECTION BURST</text>
+      <text x="24" y="79" fill="#f4f6f8" font-size="22" font-weight="700">22.254 ETH · 15,258 USDT</text>
+      <text x="24" y="112" fill="#f4f6f8" font-size="22" font-weight="700">28,220 USDC received</text>
+      <text x="24" y="143" fill="#9fb0c2" font-size="17">canonical tokens; dust excluded</text>
+    </g>
+    <g transform="translate(1040 588)">
+      <rect width="480" height="166" rx="8" fill="#18171a" stroke="#ff6259"/>
+      <text x="24" y="38" fill="#ff8179" font-family="Consolas,monospace" font-size="16">ATTRIBUTION BOUNDARY</text>
+      <text x="24" y="78" fill="#f4f6f8" font-size="24" font-weight="700">Earlier acquisition mechanism: unknown</text>
+      <text x="24" y="116" fill="#9fb0c2" font-size="18">No independently documented earlier payload</text>
+      <text x="24" y="144" fill="#9fb0c2" font-size="18">or campaign matched the exact wallet.</text>
+    </g>
+    <path d="M380 671H475" stroke="#45c5dd" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M925 671H1020" stroke="#45c5dd" stroke-width="4" marker-end="url(#arrow)"/>
+  </g>
+  <rect x="80" y="810" width="1440" height="48" fill="#0d151f" stroke="#2b4052"/>
+  <text x="104" y="841" fill="#9fb0c2" font-family="Consolas,monospace" font-size="17">HIGH CONFIDENCE: WALLET REUSE · MEDIUM: BTC COMMON CONTROL · INSUFFICIENT: SAME EARLIER CAMPAIGN OR PERSON</text>
+</svg>
