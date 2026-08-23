@@ -96,6 +96,13 @@ try {
         const ctaButton = document.querySelector('.hx-page-cta .hx-button');
         const stylesheet = document.querySelector('link[href*="/assets/css/hecavex.css"]');
         const siteScript = document.querySelector('script[src*="/assets/js/site.js"]');
+        const oddResearchGrid = [...document.querySelectorAll('.catalogue-section .post-grid')]
+          .find((grid) => grid.querySelectorAll(':scope > .post-card').length % 2 === 1);
+        const oddResearchCards = oddResearchGrid
+          ? [...oddResearchGrid.querySelectorAll(':scope > .post-card')]
+          : [];
+        const oddResearchGridRect = oddResearchGrid?.getBoundingClientRect();
+        const oddResearchLastCardRect = oddResearchCards.at(-1)?.getBoundingClientRect();
         const offscreen = [...document.querySelectorAll('main *, .site-header *')].filter((element) => {
           const style = getComputedStyle(element);
           if (style.display === 'none' || style.visibility === 'hidden' || style.position === 'fixed') return false;
@@ -137,6 +144,13 @@ try {
           actionRouteCount: document.querySelectorAll('.page-action-rail li').length,
           actionLinkCount: document.querySelectorAll('.page-action-rail a').length,
           researchDescriptionCount: document.querySelectorAll('.catalogue-section .section-head p:not(.eyebrow)').length,
+          oddResearchCardCount: oddResearchCards.length,
+          oddResearchLastCardLeftGap: oddResearchGridRect && oddResearchLastCardRect
+            ? oddResearchLastCardRect.left - oddResearchGridRect.left
+            : -1,
+          oddResearchLastCardRightGap: oddResearchGridRect && oddResearchLastCardRect
+            ? oddResearchGridRect.right - oddResearchLastCardRect.right
+            : -1,
           hasBriefingPath: Boolean(document.querySelector('.briefing-path h2')),
           pageUpdatedValue: document.querySelector('.page-facts > div:last-child dd')?.textContent.trim() ?? '',
           ctaButtonHeight: ctaButton?.getBoundingClientRect().height ?? 0,
@@ -168,6 +182,12 @@ try {
         } else if (state.desktopOutlineDisplay === 'none' || state.mobileOutlineDisplay !== 'none') fail(route, width, `desktop outline mode is wrong (${state.desktopOutlineDisplay}/${state.mobileOutlineDisplay})`);
       }
       if (researchRoutes.has(route) && (state.researchDescriptionCount < 4 || !state.hasBriefingPath || state.researchMapCount !== 5 || !/^\d{4}-\d{2}-\d{2}$/.test(state.pageUpdatedValue))) fail(route, width, `research catalogue context is incomplete (${state.researchDescriptionCount} descriptions, ${state.researchMapCount} map entries, briefing path ${state.hasBriefingPath}, updated ${state.pageUpdatedValue})`);
+      if (researchRoutes.has(route)) {
+        const oddCardFillsGrid = state.oddResearchCardCount > 0
+          && Math.abs(state.oddResearchLastCardLeftGap - 1) <= 1
+          && Math.abs(state.oddResearchLastCardRightGap - 1) <= 1;
+        if (!oddCardFillsGrid) fail(route, width, `final odd research card does not fill its row (${state.oddResearchCardCount} cards, ${state.oddResearchLastCardLeftGap}px/${state.oddResearchLastCardRightGap}px edges)`);
+      }
       if (contactRoutes.has(route) && (state.actionRouteCount !== 4 || state.actionLinkCount !== 5)) fail(route, width, `contact action rail is incomplete (${state.actionRouteCount} routes, ${state.actionLinkCount} links)`);
       if (legacyCtaRoutes.has(route) && (!['flex', 'inline-flex'].includes(state.ctaButtonDisplay) || state.ctaButtonHeight < 43 || state.ctaButtonHeight > 45)) fail(route, width, `restored page CTA is not a 44px flex control (${state.ctaButtonDisplay}, ${state.ctaButtonHeight}px)`);
       if (signalRoutes.has(route)) {
@@ -333,10 +353,16 @@ try {
     const paragraph = document.querySelector('.article-body > p');
     const region = document.querySelector('.article-body .table-scroll-region--wide');
     const tableCell = region?.querySelector('td');
+    const paragraphRect = paragraph?.getBoundingClientRect();
+    const regionRect = region?.getBoundingClientRect();
     return {
-      paragraphWidth: paragraph?.getBoundingClientRect().width ?? 0,
+      paragraphWidth: paragraphRect?.width ?? 0,
+      paragraphLeft: paragraphRect?.left ?? 0,
+      paragraphRight: paragraphRect?.right ?? 0,
       paragraphAlign: paragraph ? getComputedStyle(paragraph).textAlign : '',
-      regionWidth: region?.getBoundingClientRect().width ?? 0,
+      regionWidth: regionRect?.width ?? 0,
+      regionLeft: regionRect?.left ?? 0,
+      regionRight: regionRect?.right ?? 0,
       regionOverflows: region ? region.scrollWidth > region.clientWidth + 1 : false,
       tableCellAlign: tableCell ? getComputedStyle(tableCell).textAlign : '',
       dataLabel: region?.getAttribute('data-table-label'),
@@ -348,7 +374,10 @@ try {
   const desktopTableSemanticsMatch = wideTableState.regionOverflows
     ? wideTableState.role === 'region' && wideTableState.tabIndex === '0'
     : wideTableState.role === null && wideTableState.tabIndex === null;
-  if (wideTableState.paragraphWidth > 840 || wideTableState.paragraphAlign !== 'justify' || wideTableState.regionWidth < wideTableState.paragraphWidth + 100 || wideTableState.tableCellAlign !== 'left' || !wideTableState.dataLabel || !desktopTableSemanticsMatch || wideTableState.documentOverflow > 1) fail(tableRoute, 1440, `wide evidence track or article alignment is wrong (${JSON.stringify(wideTableState)})`);
+  const desktopArticleEdgesMatch = Math.abs(wideTableState.paragraphLeft - wideTableState.regionLeft) <= 1
+    && Math.abs(wideTableState.paragraphRight - wideTableState.regionRight) <= 1
+    && Math.abs(wideTableState.paragraphWidth - wideTableState.regionWidth) <= 1;
+  if (!desktopArticleEdgesMatch || wideTableState.paragraphAlign !== 'justify' || wideTableState.tableCellAlign !== 'left' || !wideTableState.dataLabel || !desktopTableSemanticsMatch || wideTableState.documentOverflow > 1) fail(tableRoute, 1440, `wide evidence track or article alignment is wrong (${JSON.stringify(wideTableState)})`);
   await wideTableContext.close();
 
   const wideArticleRoute = '/en/research/adform-supply-chain-crypto-clipper/';

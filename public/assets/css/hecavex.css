@@ -793,7 +793,7 @@ main {
   background: var(--surface);
 }
 
-.related-posts .post-grid > .post-card:last-child:nth-child(odd) {
+.post-grid > .post-card:last-child:nth-child(odd) {
   grid-column: 1 / -1;
 }
 
@@ -1916,7 +1916,7 @@ body[data-language="lt"] .table-scroll-hint::before {
 }
 
 .article-body > :where(p, ul, ol, dl, blockquote, h2, h3, h4, hr) {
-  max-width: var(--reading);
+  max-width: none;
 }
 
 .article-body--wide > :where(p, ul, ol, dl, blockquote, h2, h3, h4, hr) {
