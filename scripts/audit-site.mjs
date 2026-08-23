@@ -5,6 +5,8 @@ import { extname, join, relative, resolve } from 'node:path';
 
 const root = resolve(process.argv[2] ?? 'dist');
 const failures = [];
+const analyticsToken = process.env.PUBLIC_HECAVEX_ANALYTICS_TOKEN?.trim() ?? '';
+const analyticsSource = 'https://static.cloudflareinsights.com/beacon.min.js';
 
 async function walk(directory) {
   const files = [];
@@ -30,6 +32,7 @@ function attr(tag, name) {
 }
 
 function stripMarkup(value) { return value.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim(); }
+function countOccurrences(value, needle) { return needle ? value.split(needle).length - 1 : 0; }
 
 function resolveLocal(raw, currentFile) {
   if (!raw || /^(?:mailto:|tel:|data:|javascript:|#)/i.test(raw) || raw.startsWith('//')) return undefined;
@@ -53,6 +56,18 @@ for (const file of htmlFiles) {
   const shellDocument = !route.startsWith('/assets/media/');
   const articleDocument = /class=["'][^"']*\barticle-body\b[^"']*\bprose\b/i.test(html);
   const noindex = /<meta\s+[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html);
+  const expectedAnalyticsReferences = shellDocument && analyticsToken ? 1 : 0;
+  const analyticsReferences = countOccurrences(html, analyticsSource);
+  if (analyticsReferences !== expectedAnalyticsReferences) failures.push(`${route}: expected ${expectedAnalyticsReferences} Cloudflare Web Analytics beacon reference${expectedAnalyticsReferences === 1 ? '' : 's'}, found ${analyticsReferences}`);
+  if (shellDocument && analyticsToken) {
+    const tokenReferences = countOccurrences(html, analyticsToken);
+    if (tokenReferences !== 1) failures.push(`${route}: expected one configured Cloudflare Web Analytics site-token reference, found ${tokenReferences}`);
+    const beaconIndex = html.indexOf(analyticsSource);
+    const bodyCloseIndex = html.toLowerCase().lastIndexOf('</body>');
+    if (beaconIndex < 0 || bodyCloseIndex < 0 || beaconIndex > bodyCloseIndex) failures.push(`${route}: analytics loader is not placed before the closing body tag`);
+    if (!/beacon\.type\s*=\s*['"]module['"]/.test(html)) failures.push(`${route}: analytics beacon is not created as a module script`);
+    if (!/doNotTrack/.test(html)) failures.push(`${route}: analytics loader is missing the Do Not Track gate`);
+  }
   if (/\{%|\{\{\s*(?:site|page|post)\./i.test(html)) failures.push(`${route}: unrendered template output remains`);
   const htmlTag = html.match(/<html\b[^>]*>/i)?.[0] ?? '';
   if (!attr(htmlTag, 'lang')) failures.push(`${route}: missing html lang`);

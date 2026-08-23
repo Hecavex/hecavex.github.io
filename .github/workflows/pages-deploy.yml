@@ -20,6 +20,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      # This is a public site tag embedded in the generated HTML, not an API credential.
+      PUBLIC_HECAVEX_ANALYTICS_TOKEN: ${{ vars.HECAVEX_ANALYTICS_TOKEN }}
     permissions:
       contents: read
       pages: read
@@ -44,11 +47,10 @@ jobs:
 
       - name: Build and verify publication
         run: npm run verify
-        env:
-          PUBLIC_HECAVEX_ANALYTICS_TOKEN: ${{ vars.HECAVEX_ANALYTICS_TOKEN }}
 
       - name: Verify deployment essentials
         run: |
+          test -n "${PUBLIC_HECAVEX_ANALYTICS_TOKEN:-}"
           test -f dist/.nojekyll
           test -f dist/.well-known/security.txt
           test -f dist/security.txt
@@ -57,6 +59,8 @@ jobs:
           test -f dist/lt/feed.xml
           grep -Fq "Canonical: https://hecavex.com/.well-known/security.txt" dist/.well-known/security.txt
           test "$(grep -o '<loc>' dist/sitemap.xml | wc -l)" -eq 128
+          test "$(grep -Foc 'https://static.cloudflareinsights.com/beacon.min.js' dist/index.html)" -eq 1
+          test "$(grep -Foc -- "$PUBLIC_HECAVEX_ANALYTICS_TOKEN" dist/index.html)" -eq 1
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5

@@ -3,33 +3,55 @@ layout: page
 lang: lt
 translation_key: privacy
 title: Privatumas
-description: HECAVEX privatumo ir analitikos politika.
+description: HECAVEX privatumo, naršyklės saugyklos ir lankomumo matavimo politika.
 permalink: /lt/privatumas/
 ---
 
-Atnaujinta 2026 m. rugpjūčio 22 d.
+Atnaujinta 2026 m. rugpjūčio 23 d.
 
-## Slapukai ir vietiniai pasirinkimai
+## Taikymo sritis
 
-HECAVEX nenaudoja reklaminių slapukų, rinkodaros pikselių ar sesijų įrašymo. Toliau aprašytas pasirenkamas apibendrintas lankomumo matavimas nenustato HECAVEX slapukų.
+Šis pranešimas apima viešą HECAVEX svetainių rinkinį: `hecavex.com`, `apt.hecavex.com`, `radar.hecavex.com` ir `labs.hecavex.com`. Kiekviena svetainė diegiama atskirai ir įkelia savo matavimo kodą.
 
-Kai pasirenkate kalbą arba uždarote privatumo pranešimą, šie pasirinkimai išsaugomi jūsų naršyklės vietinėje saugykloje (`localStorage`):
+Toliau aprašytas rankiniu būdu įdiegtas „Cloudflare Web Analytics“ matavimo kodas veikia visų keturių svetainių produkcinėse versijose. Jos naudoja tą pačią viešą svetainės žymą, todėl apibendrintus matavimus galima peržiūrėti kartu. Paspaudus svetainių rinkinio nuorodą kodas ar išsaugota būsena neperkeliami iš vienos svetainės į kitą; paskirties svetainė įkelia savo kodą. Labs taip pat turi atskirą, toliau aprašytą tik naršyklėje veikiančią darbo erdvę.
 
-- `hecavex-language` įsimena, ar pasirinkote lietuvių, ar anglų kalbą.
-- `hecavex-privacy-notice` įsimena, kad uždarėte svetainės privatumo pranešimą.
+## Slapukai ir naršyklės saugykla
 
-Šios reikšmės naudojamos tik jūsų aiškiai pasirinktiems svetainės sąsajos nustatymams išsaugoti. Jos lieka jūsų naršyklėje, nėra naudojamos jūsų tapatybei nustatyti ar veiklai sekti ir nėra perduodamos HECAVEX. Jas galite bet kada pašalinti naršyklėje ištrindami `hecavex.com` svetainės duomenis. Jas pašalinus bus tik atkurti atitinkami numatytieji nustatymai.
+Pagrindinė publikacija nenustato pirmosios šalies reklaminių ar analitikos slapukų, nenaudoja rinkodaros pikselių, neįrašinėja sesijų ir nekuria lankytojų paskyrų. Jos sąsaja šiuo metu nesaugo kalbos ar privatumo pranešimo pasirinkimų `localStorage`; ankstesnis tokių reikšmių aprašymas buvo pasenęs ir pašalintas.
 
-Svetainės apačioje rodomas pranešimas yra informacinis. Jame neprašoma sutikti su reklaminiais ar analitikos slapukais, nes tokie slapukai nenustatomi.
+[„Cloudflare“ RUM matavimo kodo dokumentacijoje nurodo](https://developers.cloudflare.com/speed/observatory/rum-beacon/), kad jos Web Analytics kodas neskaito ir nerašo slapukų, `localStorage`, `sessionStorage` ar IndexedDB ir naršyklėje nesaugo nuolatinio analitikos identifikatoriaus. Konkretaus puslapio matavimas sukuriamas atmintyje ir susijęs su tuo metu peržiūrimu puslapiu.
+
+HECAVEX Labs yra svetainių rinkinio išimtis. Jos ATT&CK darbo erdvė lankytojo įrenginio `localStorage` saugo pasirengimo vertinimus, incidentų laiko juostas, stebėjimų juodraščius ir jų darbo erdvės metaduomenis. Darbo erdvė šiuos duomenis naudoja vietoje ir išsaugotos darbo erdvės HECAVEX nesiunčia. Duomenys lieka, kol lankytojas juos išvalo Labs valdikliu arba pašalina svetainės duomenis naršyklėje.
+
+## „Cloudflare Web Analytics“
+
+Visos keturios produkcinės svetainės iš `static.cloudflareinsights.com` įkelia kliento pusėje veikiantį matavimo kodą. Jis „Cloudflare“ siunčia realių naudotojų puslapių veikimo ir apibendrintus lankomumo matavimus. Priklausomai nuo konkrečios svetainės pateikimo būdo, duomenys perduodami jos `/cdn-cgi/rum` adresu arba į `cloudflareinsights.com`.
+
+Matavimai gali apimti:
+
+- puslapių peržiūras, apsilankymus, hostą ir puslapio ar pirmojo puslapio kelią be užklausos parametrų;
+- naršyklės pateiktą nukreipiančios svetainės ar puslapio informaciją;
+- šalį, įrenginio tipą, naršyklę, operacinę sistemą ir navigacijos tipą;
+- puslapio įkėlimo, išteklių veikimo ir „Core Web Vitals“ matavimus.
+
+[„Cloudflare“ duomenų tvarkymo dokumentacijoje nurodo](https://developers.cloudflare.com/web-analytics/data-metrics/data-origin-and-collection/), kad gaunanti paslauga mato šaltinio IP adresą kaip įprasto HTTP duomenų perdavimo dalį, tačiau jį atmeta artimiausiame „Cloudflare“ duomenų centre ir nesaugo paslaugos pagrindinėse duomenų bazėse ar žurnaluose. „Cloudflare“ taip pat teigia, kad Web Analytics nekuria konkretaus žmogaus skaitmeninio atspaudo ir neseka jo skirtingose klientų svetainėse. Tai yra „Cloudflare“ pateiktas jos paslaugos aprašymas; „Cloudflare“ duomenų tvarkymui taikoma tuo metu galiojanti jos [privatumo politika](https://www.cloudflare.com/privacypolicy/).
+
+HECAVEX gautą apibendrintą suvestinę naudoja suprasti, kurie tyrimai skaitomi, kaip lankytojai juos pasiekia, ar neveikia navigacijos keliai ir kaip puslapiai veikia tikruose įrenginiuose. HECAVEX šių matavimų nenaudoja individualiems lankytojų profiliams kurti, reklamai rodyti ar sprendimams apie konkretų žmogų priimti.
+
+## Saugojimas ir prieiga
+
+„Cloudflare“ šiuo metu nurodo, kad neatrinkti matavimo kodo duomenys saugomi septynias dienas, o vėliau ilgesniam saugojimui apibendrinami iki maždaug dešimties procentų. Web Analytics duomenys „Cloudflare“ suvestinėje pasiekiami už praėjusius šešis mėnesius. Atsižvelgdama į duomenų kiekį ir filtrus, „Cloudflare“ suvestinės ar API užklausoms gali taikyti atranką.
+
+HECAVEX analitikos suvestinę gali pasiekti tik atitinkamos „Cloudflare“ paskyros įgalioti naudotojai. HECAVEX viešai neskelbia atskirų lankytojų matavimo kodo siunčiamų duomenų. Dėl tinklo maršrutizavimo „Cloudflare“ matavimus gali apdoroti kitoje šalyje ar regione nei yra lankytojas.
+
+## Kliento pusės matavimo blokavimas
+
+HECAVEX įkėlimo kodas neaktyvuoja analitikos, kai naršyklė perduoda `Do Not Track` reikšmę `1`. Matavimo kodą taip pat gali blokuoti naršyklės privatumo priemonės ir turinio blokatoriai. Šį kliento pusės matavimą galima sustabdyti išjungus „JavaScript“ šiai svetainei arba užblokavus užklausas į `static.cloudflareinsights.com` ir `cloudflareinsights.com`.
+
+Šios priemonės taikomos kliento pusėje veikiančiam Web Analytics kodui. Jos nesustabdo įprastų HTTP užklausų metaduomenų, kuriuos hostingo, DNS, CDN ar tinklo paslaugų teikėjas turi apdoroti svetainei pateikti ir apsaugoti. Tokie paslaugų teikėjai taiko savo duomenų saugojimo ir privatumo sąlygas.
 
 ## Išorinės nuorodos
 
 Straipsniuose gali būti nuorodų į išorinius šaltinius. Vien nuorodos pateikimas nereiškia, kad HECAVEX įkelia tų svetainių sekimo technologijas. Paspaudus išorinę nuorodą taikoma paskirties svetainės privatumo ir slapukų politika.
 
-Jei ateityje HECAVEX pradės naudoti nebūtiną sekimą ar trečiųjų šalių įterpinį, šis pranešimas bus atnaujintas, o teisės aktų reikalaujamas sutikimas bus gautas prieš aktyvuojant tokias technologijas.
-
-## Anoniminis lankomumo matavimas
-
-HECAVEX gali naudoti „Cloudflare Web Analytics“ apibendrintam puslapių naudojimui ir veikimui suprasti. Ši priemonė nenustato reklamos ar analitikos slapukų, nekuria HECAVEX vartotojo paskyros ir naršyklėje nesaugo analitikos identifikatoriaus. Matavimo kodas neaktyvuojamas, kai naršyklė perduoda „Do Not Track“ pasirinkimą.
-
-„Cloudflare“ gali apdoroti užklausos informaciją, reikalingą apibendrintai statistikai, įskaitant atvertą puslapį, apytikslę tinklo ir įrenginio informaciją, nukreipimo šaltinį bei veikimo matavimus. HECAVEX šiuos apibendrintus duomenis naudoja naudingiems tyrimams, neveikiantiems keliams ir lėtiems puslapiams nustatyti, o ne individualiems lankytojų profiliams kurti.
+Šis pranešimas bus atnaujintas prieš sąmoningai įjungiant naują esminę sekimo priemonę ar trečiosios šalies įterpinį. Privatumo klausimus ar pataisymus galima siųsti adresu [info@hecavex.com](mailto:info@hecavex.com).

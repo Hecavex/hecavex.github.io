@@ -1,6 +1,7 @@
 ---
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import CloudflareWebAnalytics from '../components/CloudflareWebAnalytics.astro';
 import type { Lang } from '../lib/site';
 
 interface Props {
@@ -54,7 +55,6 @@ const jsonLd = {
     pageNode
   ]
 };
-const measurementToken = import.meta.env.PUBLIC_HECAVEX_ANALYTICS_TOKEN?.trim() ?? '';
 const assetVersion = process.env.GITHUB_SHA?.slice(0, 12) ?? 'local';
 const assetQuery = `?v=${encodeURIComponent(assetVersion)}`;
 ---
@@ -99,16 +99,6 @@ const assetQuery = `?v=${encodeURIComponent(assetVersion)}`;
     <meta name="twitter:image" content={socialImage} />
     <meta name="twitter:image:alt" content={imageAlt} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    {measurementToken && <script is:inline define:vars={{ measurementToken }}>
-      (() => {
-        if (navigator.doNotTrack === '1' || window.doNotTrack === '1') return;
-        const beacon = document.createElement('script');
-        beacon.defer = true;
-        beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
-        beacon.dataset.cfBeacon = JSON.stringify({ token: measurementToken });
-        document.head.appendChild(beacon);
-      })();
-    </script>}
   </head>
   <body data-language={lang}>
     <a class="skip-link" href="#main-content">{lang === 'lt' ? 'Pereiti prie turinio' : 'Skip to content'}</a>
@@ -125,5 +115,6 @@ const assetQuery = `?v=${encodeURIComponent(assetVersion)}`;
       <div class="search-results" data-search-results aria-live="polite"></div>
     </dialog>
     <button class="back-to-top" type="button" data-back-to-top aria-label={lang === 'lt' ? 'Grįžti į viršų' : 'Back to top'}>↑</button>
+    <CloudflareWebAnalytics />
   </body>
 </html>

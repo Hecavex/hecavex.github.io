@@ -1,0 +1,14 @@
+---
+const measurementToken = import.meta.env.PUBLIC_HECAVEX_ANALYTICS_TOKEN?.trim() ?? '';
+---
+{measurementToken && <script is:inline define:vars={{ measurementToken }}>
+  (() => {
+    if (navigator.doNotTrack === '1' || window.doNotTrack === '1') return;
+    const beacon = document.createElement('script');
+    beacon.type = 'module';
+    beacon.defer = true;
+    beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    beacon.dataset.cfBeacon = JSON.stringify({ token: measurementToken });
+    document.body.appendChild(beacon);
+  })();
+</script>}
