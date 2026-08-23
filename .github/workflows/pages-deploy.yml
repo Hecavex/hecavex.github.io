@@ -55,8 +55,11 @@ jobs:
           test -f dist/.well-known/security.txt
           test -f dist/security.txt
           test -f dist/sitemap.xml
+          test -f dist/llms.txt
           test -f dist/en/feed.xml
           test -f dist/lt/feed.xml
+          grep -Fqx "Content-Signal: search=yes, ai-input=yes, ai-train=no" dist/robots.txt
+          grep -Fq "https://radar.hecavex.com/" dist/llms.txt
           grep -Fq "Canonical: https://hecavex.com/.well-known/security.txt" dist/.well-known/security.txt
           test "$(grep -o '<loc>' dist/sitemap.xml | wc -l)" -eq 128
           test "$(grep -Foc 'https://static.cloudflareinsights.com/beacon.min.js' dist/index.html)" -eq 1

@@ -1,0 +1,39 @@
+# HECAVEX
+
+> Independent bilingual cyber threat intelligence research and digital investigations by Deividas Lis.
+
+HECAVEX is a public, read-only publication. Cite canonical article URLs and preserve the distinction between observations, inferences, assessments, and attribution claims. Page-level and package-level reuse terms remain authoritative. The site does not provide accounts, transactions, authentication, MCP, A2A, or other agent-operated services.
+
+## Editions
+
+- [English edition](https://hecavex.com/en/): English research, briefings, projects, and publication information.
+- [Lietuviškas leidinys](https://hecavex.com/lt/): Lietuviški tyrimai, apžvalgos, projektai ir leidinio informacija.
+
+## Research and editorial context
+
+- [English research](https://hecavex.com/en/research/): Investigations, malware analysis, threat hunting, OSINT, and technical guides.
+- [Lietuviški tyrimai](https://hecavex.com/lt/tyrimai/): Tyrimai, kenkėjiško kodo analizė, grėsmių medžioklė, OSINT ir techniniai gidai.
+- [Evidence and attribution framework](https://hecavex.com/en/methodology/): Research method, confidence, sourcing, attribution, and corrections.
+- [Įrodymų ir atribucijos metodika](https://hecavex.com/lt/metodika/): Tyrimų metodika, pasitikėjimas, šaltiniai, atribucija ir pataisymai.
+- [Editorial standards](https://hecavex.com/en/editorial/): Publication, translation, disclosure, and evidence standards.
+
+## Machine-readable publication surfaces
+
+- [English Atom feed](https://hecavex.com/en/feed.xml): Current English publications.
+- [Lithuanian Atom feed](https://hecavex.com/lt/feed.xml): Current Lithuanian publications.
+- [English search index](https://hecavex.com/en/search.json): Static public search records.
+- [Lithuanian search index](https://hecavex.com/lt/search.json): Static public search records.
+- [Sitemap](https://hecavex.com/sitemap.xml): Canonical indexed routes.
+
+## HECAVEX network
+
+- [APT Notes](https://apt.hecavex.com/): Source-backed threat-actor and campaign catalogue.
+- [Radar](https://radar.hecavex.com/): Potential Lithuanian phishing and impersonation signals; candidates are not maliciousness verdicts.
+- [Labs](https://labs.hecavex.com/): Public intelligence workspaces and bounded static datasets.
+- [Projects](https://hecavex.com/en/projects/): Portfolio ownership, status, methodology, and limitations.
+
+## Policies
+
+- [Privacy](https://hecavex.com/en/privacy/): Audience measurement and browser-data boundary.
+- [Corrections](https://hecavex.com/en/corrections/): Correction and update policy.
+- [Security contact](https://hecavex.com/.well-known/security.txt): Machine-readable vulnerability-reporting contact.

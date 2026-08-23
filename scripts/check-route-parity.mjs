@@ -21,7 +21,7 @@ for (const route of expectedSitemap) if (!(await isFile(routeFile(route)))) fail
 const essentials = [
   '/404.html', '/en/404.html', '/lt/404.html',
   '/en/feed.xml', '/lt/feed.xml', '/en/briefings/feed.xml', '/lt/apzvalgos/feed.xml',
-  '/en/search.json', '/lt/search.json', '/robots.txt', '/security.txt', '/.well-known/security.txt', '/CNAME',
+  '/en/search.json', '/lt/search.json', '/robots.txt', '/llms.txt', '/security.txt', '/.well-known/security.txt', '/CNAME',
   '/assets/media/hecavex-media-kit-en.html', '/assets/media/hecavex-media-kit-lt.html',
   '/lt/research/',
   '/lt/research/registru-centro-duomenu-vagyste-kai/',
