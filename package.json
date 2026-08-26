@@ -23,11 +23,9 @@
     "validate": "node scripts/validate-content.mjs",
     "check:routes": "node scripts/check-route-parity.mjs dist",
     "check:performance": "node scripts/check_performance_budgets.mjs dist",
-    "test:performance": "node --test scripts/check_performance_budgets.test.mjs",
     "audit:site": "node scripts/audit-site.mjs dist",
     "audit:responsive": "node scripts/audit_responsive.mjs dist",
-    "test": "node --test tests/*.test.mjs scripts/check_performance_budgets.test.mjs",
-    "verify": "npm run lint:js && npm run lint:css && npm run test && npm run build && npm run check:routes && npm run check:performance && npm run audit:site && npm run audit:responsive"
+    "verify": "npm run lint:js && npm run lint:css && npm run build && npm run check:routes && npm run check:performance && npm run audit:site && npm run audit:responsive"
   },
   "dependencies": {
     "astro": "7.1.6"

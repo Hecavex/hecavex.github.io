@@ -166,7 +166,7 @@ try {
       if (state.overflow > 1) fail(route, width, `horizontal overflow is ${state.overflow}px (${state.offscreen.join(', ')})`);
       if (state.h1Size > 64.1) fail(route, width, `h1 exceeds 64px (${state.h1Size}px)`);
       if (state.markWidth < 33.5 || state.markWidth > 36.5) fail(route, width, `brand mark is ${state.markWidth}px rather than 34–36px`);
-      if (state.networkLabels.join('|') !== 'Research|Radar|APT Notes|Labs|Data') fail(route, width, 'network navigation order differs from the portfolio contract');
+      if (state.networkLabels.join('|') !== 'Research|Radar|APT Notes|Labs') fail(route, width, 'network navigation order differs from the portfolio contract');
       if (Math.abs(state.bodyFontSize - 15.2) > 0.05 || state.bodyColor !== 'rgb(182, 198, 207)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
       if (state.tokens.join('|') !== '#0b1117|#0b1117|#101923|#1e3440|#1e3440|#b6c6cf|#8397a3|#8397a3|#44c7dc|#44c7dc') fail(route, width, `shared Cold Signal tokens changed (${state.tokens.join('|')})`);
       if (state.dot && (Math.abs(Number.parseFloat(state.dot.width) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.height) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.marginRight) - 8.8) > 0.02 || state.dot.color !== 'rgb(68, 199, 220)')) fail(route, width, `active network dot geometry changed (${JSON.stringify(state.dot)})`);
@@ -226,7 +226,11 @@ try {
           const panelWidth = await page.locator('.mobile-navigation-panel').evaluate((node) => node.getBoundingClientRect().width);
           if (Math.abs(panelWidth - 288) > 1) fail(route, width, `mobile panel is ${panelWidth}px instead of 288px`);
         }
-        if ((await page.locator('.mobile-navigation[open] .mobile-portfolio-navigation a').count()) !== 5) fail(route, width, 'mobile network navigation does not contain five destinations');
+        const mobileNetworkLabels = (await page.locator('.mobile-navigation[open] .mobile-portfolio-navigation a').allTextContents())
+          .map((label) => label.trim());
+        if (mobileNetworkLabels.join('|') !== 'Research|Radar|APT Notes|Labs') {
+          fail(route, width, `mobile network navigation differs from the portfolio contract (${mobileNetworkLabels.join('|')})`);
+        }
         await page.keyboard.press('Escape');
         if (await page.locator('.mobile-navigation').evaluate((node) => node.open)) fail(route, width, 'Escape does not close mobile navigation');
       } else {
@@ -248,10 +252,16 @@ try {
     overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     productLinks: document.querySelectorAll('.mobile-navigation[open] .mobile-product-navigation a').length,
     networkLinks: document.querySelectorAll('.mobile-navigation[open] .mobile-portfolio-navigation a').length,
+    networkLabels: [...document.querySelectorAll('.mobile-navigation[open] .mobile-portfolio-navigation a')]
+      .map((link) => link.textContent.trim()),
     purpose: document.querySelector('main h1')?.textContent.trim() ?? ''
   }));
   if (noScriptState.overflow > 1) fail('/en/ (no JavaScript)', 390, 'page overflows horizontally');
-  if (noScriptState.productLinks < 7 || noScriptState.networkLinks !== 5) fail('/en/ (no JavaScript)', 390, 'native details navigation is incomplete');
+  if (
+    noScriptState.productLinks < 7
+    || noScriptState.networkLinks !== 4
+    || noScriptState.networkLabels.join('|') !== 'Research|Radar|APT Notes|Labs'
+  ) fail('/en/ (no JavaScript)', 390, 'native details navigation is incomplete');
   if (!noScriptState.purpose) fail('/en/ (no JavaScript)', 390, 'page purpose is unavailable');
 
   await page.goto(`${baseUrl}/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/`, { waitUntil: 'domcontentloaded' });

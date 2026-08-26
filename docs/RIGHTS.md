@@ -4,7 +4,7 @@ HECAVEX Research combines software, authored publications, research packages and
 
 ## Website software
 
-Original website code and templates in `src/`, `scripts/`, `tests/` and the original interface assets are licensed under the repository's [MIT License](../LICENSE). The MIT grant applies to software only; it does not turn the publication or its evidence archive into a website template or relicense the material described below.
+Original website code and templates in `src/`, `scripts/` and the original interface assets are licensed under the repository's [MIT License](../LICENSE). The MIT grant applies to software only; it does not turn the publication or its evidence archive into a website template or relicense the material described below.
 
 ## Authored publication text
 

@@ -95,9 +95,12 @@ for (const file of htmlFiles) {
   }
   if (!redirect && shellDocument) {
     if (!/<header\b[^>]*class=["'][^"']*site-header[^"']*["'][^>]*data-portfolio-shell=["']v1["']/i.test(html)) failures.push(`${route}: missing portfolio shell contract marker`);
+    if (!/<link\s+[^>]*rel=["']icon["'][^>]*href=["']\/favicon\.svg["']/i.test(html)) failures.push(`${route}: missing shared SVG favicon`);
+    if (!/<link\s+[^>]*rel=["']apple-touch-icon["'][^>]*href=["']\/apple-touch-icon\.png["']/i.test(html)) failures.push(`${route}: missing shared Apple touch icon`);
+    if (!/<link\s+[^>]*rel=["']manifest["'][^>]*href=["']\/site\.webmanifest["']/i.test(html)) failures.push(`${route}: missing origin web manifest`);
     const network = [...html.matchAll(/<nav\s+class=["']portfolio-navigation["'][\s\S]*?<\/nav>/gi)][0]?.[0] ?? '';
     let previous = -1;
-    for (const label of ['Research', 'Radar', 'APT Notes', 'Labs', 'Data']) {
+    for (const label of ['Research', 'Radar', 'APT Notes', 'Labs']) {
       const index = network.indexOf(`>${label}<`);
       if (index < previous || index < 0) failures.push(`${route}: portfolio navigation order is incorrect at ${label}`);
       previous = index;
@@ -132,6 +135,10 @@ for (const file of files.filter((path) => ['.xml', '.json', '.txt'].includes(ext
   if (/\{%|\{\{\s*(?:site|page|post)\./.test(source)) failures.push(`${relative(root, file)}: unrendered template syntax remains`);
   if (extname(file) === '.json') { try { JSON.parse(source); } catch (error) { failures.push(`${relative(root, file)}: invalid JSON (${error.message})`); } }
   if (extname(file) === '.xml' && !/^<\?xml[\s\S]*<(?:feed|urlset)\b/.test(source)) failures.push(`${relative(root, file)}: malformed XML document`);
+}
+
+for (const identityFile of ['favicon.svg', 'favicon.ico', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'site.webmanifest']) {
+  if (!(await isFile(join(root, identityFile)))) failures.push(`shared identity asset is missing: ${identityFile}`);
 }
 
 const css = await readFile(join(root, 'assets', 'css', 'hecavex.css'), 'utf8');

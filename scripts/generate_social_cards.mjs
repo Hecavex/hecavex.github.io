@@ -94,6 +94,7 @@ for (const file of postFiles) {
     label: isBrief
       ? (lang === 'lt' ? 'SIGNALŲ APŽVALGA' : 'SIGNAL BRIEF')
       : (lang === 'lt' ? 'HECAVEX TYRIMAS' : 'HECAVEX RESEARCH'),
+    edition: lang === 'lt' ? 'LT' : 'EN',
     lang,
     title,
     titleSize: titleSize(title)
@@ -136,11 +137,13 @@ for (const card of cards) {
       header{position:relative;display:flex;align-items:center;gap:22px;font:600 16px/1.3 "IBM Plex Mono",monospace;letter-spacing:.13em}.mark{width:48px;height:48px}.brand{font-family:Inter,sans-serif;font-size:23px;letter-spacing:.16em}.edition{margin-left:auto;padding:9px 12px;border:1px solid #1e3440;color:#b6c6cf;font-size:14px}
       main{position:relative;width:850px;margin-top:66px}.label{margin:0 0 18px;color:${accent};font:600 16px/1.2 "IBM Plex Mono",monospace;letter-spacing:.14em}.title{margin:0;font-size:${card.titleSize}px;line-height:1.03;letter-spacing:-.045em;text-wrap:balance}.meta{position:absolute;left:64px;right:64px;bottom:46px;display:flex;align-items:center;gap:24px;padding-top:20px;border-top:1px solid #1e3440;color:#8397a3;font:600 15px/1.2 "IBM Plex Mono",monospace;letter-spacing:.08em}.meta strong{color:#b6c6cf}.meta .url{margin-left:auto;color:${accent}}
     </style></head><body><article class="card"><div class="grid"></div><div class="axis"></div><div class="pulse"></div>
-      <header><svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 5v38M43 5v38M5 8l38 34M43 8L5 42" fill="none" stroke="#ff6b6b" stroke-width="3"/><circle cx="24" cy="24" r="3" fill="${accent}"/></svg><span class="brand">HECAVEX</span><span class="edition">${card.lang.toUpperCase()}</span></header>
+      <header><svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 5v38M43 5v38M5 8l38 34M43 8L5 42" fill="none" stroke="#ff6b6b" stroke-width="3"/><circle cx="24" cy="24" r="3" fill="${accent}"/></svg><span class="brand">HECAVEX</span><span class="edition">${card.edition}</span></header>
       <main><p class="label">${escapeHtml(card.label)}</p><h1 class="title">${escapeHtml(card.title)}</h1></main>
       <footer class="meta"><strong>${card.date}</strong><span>CTI · OSINT · DIGITAL INVESTIGATIONS</span><span class="url">HECAVEX.COM</span></footer>
     </article></body></html>`, { waitUntil: 'load' });
   await page.evaluate(() => document.fonts.ready);
+  const renderedEdition = await page.locator('.edition').textContent();
+  if (renderedEdition !== card.edition) throw new Error(`Social-card edition mismatch for ${card.filename}: expected ${card.edition}, found ${renderedEdition}`);
   await page.screenshot({ path: join(outputRoot, card.filename), type: 'png' });
 }
 

@@ -159,8 +159,7 @@ export const networkNavigation = [
   { name: 'Research', href: 'https://hecavex.com/en/research/' },
   { name: 'Radar', href: 'https://radar.hecavex.com/' },
   { name: 'APT Notes', href: 'https://apt.hecavex.com/' },
-  { name: 'Labs', href: 'https://labs.hecavex.com/' },
-  { name: 'Data', href: 'https://labs.hecavex.com/data/' }
+  { name: 'Labs', href: 'https://labs.hecavex.com/' }
 ] as const;
 
 export const productNavigation = {

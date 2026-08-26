@@ -4,7 +4,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { deflateSync } from 'node:zlib';
 
-const outputRoot = resolve(import.meta.dirname, '..', 'public', 'assets', 'img', 'favicons');
+const outputRoot = resolve(import.meta.dirname, '..', 'public');
 const checkOnly = process.argv.includes('--check');
 const sampleGrid = 4;
 const palette = {
@@ -141,12 +141,9 @@ function encodeIco(images) {
 
 const outputs = new Map();
 for (const [name, size] of [
-  ['favicon-16x16.png', 16],
-  ['favicon-32x32.png', 32],
-  ['favicon-96x96.png', 96],
   ['apple-touch-icon.png', 180],
-  ['web-app-manifest-192x192.png', 192],
-  ['web-app-manifest-512x512.png', 512],
+  ['icon-192.png', 192],
+  ['icon-512.png', 512],
 ]) {
   outputs.set(name, renderIcon(size));
 }

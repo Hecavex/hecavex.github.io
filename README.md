@@ -17,7 +17,7 @@ The production site is rendered as static HTML by Astro. It has no account syste
 - `src/data/` contains editorial labels, taxonomy, glossary and project records.
 - `public/assets/` contains self-hosted fonts, publication artwork, downloadable research records, CSS and browser JavaScript.
 - `docs/` records the publication classes, editorial templates, measurement boundary and performance budgets.
-- `tests/fixtures/production-sitemap-routes.txt` preserves the route contract from the website rebuild.
+- `scripts/production-sitemap-routes.txt` preserves the route contract from the website rebuild.
 
 Generated output in `dist/`, Astro caches and dependency directories are operational by-products and are not part of the publication record.
 

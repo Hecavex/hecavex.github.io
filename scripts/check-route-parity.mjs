@@ -4,7 +4,7 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import { extname, join, resolve } from 'node:path';
 
 const root = resolve(process.argv[2] ?? 'dist');
-const contractPath = resolve(import.meta.dirname, '..', 'tests', 'fixtures', 'production-sitemap-routes.txt');
+const contractPath = resolve(import.meta.dirname, 'production-sitemap-routes.txt');
 const expectedSitemap = new Set((await readFile(contractPath, 'utf8')).split(/\r?\n/).map((line) => line.trim()).filter(Boolean));
 const sitemap = await readFile(join(root, 'sitemap.xml'), 'utf8');
 const actualSitemap = new Set([...sitemap.matchAll(/<loc>https:\/\/hecavex\.com([^<]*)<\/loc>/g)].map((match) => match[1] || '/'));

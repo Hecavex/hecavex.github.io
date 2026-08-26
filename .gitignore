@@ -9,9 +9,6 @@
 !.env.example
 *.log
 
-# Generated local test material
-/test-results/
-
 # Local editor and operating-system files
 /.idea/
 /.vscode/
