@@ -96,8 +96,8 @@ projects:
           en: Source repository
           lt: Pirminio kodo saugykla
         url:
-          en: https://github.com/Hecavex/hecavex-radar
-          lt: https://github.com/Hecavex/hecavex-radar
+          en: https://github.com/Hecavex/radar.hecavex.com
+          lt: https://github.com/Hecavex/radar.hecavex.com
         kind: repo
 
   - id: apt-notes
