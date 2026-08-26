@@ -2,6 +2,13 @@
 title: "UNIPARK smishing: nuo vienos SMS iki 126 phishing hostų"
 card_title: "UNIPARK smishing: vienas domenas, gerokai didesnis phishing kit'as"
 description: "Pilnas UNIPARK vardu siųstos smishing žinutės CTI tyrimas: domeno rotacija, exact-hash pivotai, 126 susiję hostai, kortelės bei PIN rinkimas ir NKSC sinkhole."
+seo_title: "UNIPARK phishing SMS ir 126 susiję hostai"
+seo_keywords:
+  - "UNIPARK phishing SMS"
+  - "UNIPARK smishing"
+  - "parkavimo phishing"
+  - "mokėjimo kortelės duomenų vagystė"
+  - "phishing domenų infrastruktūra"
 date: 2026-08-11 11:30:00 +0300
 last_modified_at: 2026-08-14 10:30:00 +0300
 lang: lt

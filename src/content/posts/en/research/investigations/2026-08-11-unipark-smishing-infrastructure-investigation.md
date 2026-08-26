@@ -2,6 +2,13 @@
 title: "UNIPARK Smishing: From One SMS to 126 Phishing Hosts"
 card_title: "UNIPARK Smishing: One Domain, a Much Larger Phishing Kit"
 description: "A full CTI investigation into an UNIPARK smishing lure: domain rotation, exact-hash pivots, 126 related hosts, card and PIN collection, and an NKSC sinkhole."
+seo_title: "UNIPARK Smishing Campaign and Phishing Infrastructure"
+seo_keywords:
+  - "UNIPARK smishing campaign"
+  - "SMS phishing Lithuania"
+  - "payment phishing kit"
+  - "phishing infrastructure pivoting"
+  - "domain rotation"
 date: 2026-08-11 11:30:00 +0300
 last_modified_at: 2026-08-14 10:30:00 +0300
 lang: en

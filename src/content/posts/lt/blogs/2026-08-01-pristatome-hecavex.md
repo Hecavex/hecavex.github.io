@@ -2,6 +2,13 @@
 title: "Pristatome HECAVEX"
 card_title: "Pristatome HECAVEX"
 description: "Kodėl atsirado HECAVEX ir kaip šiame nepriklausomame grėsmių žvalgybos leidinyje bus vertinami įrodymai, neapibrėžtumas ir skaitmeniniai tyrimai."
+seo_title: "HECAVEX: kibernetinių grėsmių žvalgyba Lietuvoje"
+seo_keywords:
+  - "kibernetinių grėsmių žvalgyba Lietuvoje"
+  - "CTI Lietuva"
+  - "skaitmeniniai tyrimai"
+  - "nepriklausomas kibernetinio saugumo leidinys"
+  - "HECAVEX"
 date: 2026-08-01 12:00:00 +0300
 last_modified_at: 2026-08-14 12:00:00 +0300
 lang: lt

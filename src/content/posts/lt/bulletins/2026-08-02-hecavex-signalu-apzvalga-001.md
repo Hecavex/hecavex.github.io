@@ -1,6 +1,13 @@
 ---
 title: "Signalų apžvalga #1: išnaudojami tinklo įrenginiai, WordPress RCE grandinė ir DI vertinimo rizika"
 description: "Penki CVE, kuriuos verta prioritetizuoti, Hugging Face modelių vertinimo incidentas ir naujos Kibernetinio atsparumo akto gairės. Laikotarpis: 2026 m. liepos 20 d.–rugpjūčio 2 d."
+seo_title: "Aktyviai išnaudojami pažeidžiamumai 2026: apžvalga #1"
+seo_keywords:
+  - "aktyviai išnaudojami pažeidžiamumai 2026"
+  - "CISA KEV"
+  - "WordPress RCE"
+  - "tinklo įrenginių pažeidžiamumai"
+  - "DI modelių saugumas"
 date: 2026-08-02 20:00:00 +0300
 lang: lt
 translation_key: hecavex-signal-brief-001

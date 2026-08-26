@@ -1,6 +1,13 @@
 ---
 title: "The Centre of Registers Data Theft — Part 2"
 description: "Part two of the Centre of Registers data-theft analysis, examining stolen identity, legitimate access, and gaps in behavioural detection."
+seo_title: "Centre of Registers Data Theft: Identity and Detection Gaps"
+seo_keywords:
+  - "Centre of Registers data theft analysis"
+  - "stolen identity data"
+  - "legitimate account abuse"
+  - "behavioural detection"
+  - "identity security"
 date: 2026-06-02T07:23:26.412Z
 lang: en
 translation_key: substack-registru-centro-duomenu-vagyste-part

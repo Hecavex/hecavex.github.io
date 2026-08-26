@@ -2,6 +2,13 @@
 title: "One Scam Domain Is Rarely Alone: Using Pivoting to Trace Fraud Infrastructure"
 card_title: "One Scam Domain Is Rarely Alone"
 description: "A practical infrastructure-pivoting method for moving from one scam domain to related hosts, templates, and backend systems."
+seo_title: "Scam Domain Infrastructure Pivoting for Fraud Investigations"
+seo_keywords:
+  - "scam domain infrastructure pivoting"
+  - "related domain discovery"
+  - "DNS pivoting"
+  - "RDAP lookup"
+  - "fraud infrastructure analysis"
 date: 2026-06-03T15:09:38.327Z
 lang: en
 translation_key: substack-vienas-scam-domenas-retai-buna-vienas

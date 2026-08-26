@@ -22,6 +22,8 @@ const posts = defineCollection({
   schema: z.object({
     title: z.string(),
     card_title: z.string().optional(),
+    seo_title: z.string().optional(),
+    seo_keywords: z.array(z.string()).default([]),
     description: z.string(),
     date: z.coerce.date().optional(),
     last_modified_at: z.coerce.date().optional(),

@@ -2,6 +2,13 @@
 title: "Informacijos gamyklos prie Lietuvos sienos. Kaip Rusijos ir Baltarusijos informacinės operacijos veikia prieš Lietuvą, NATO ir Europą"
 card_title: "Informacijos gamyklos prie Lietuvos sienos"
 description: "Kaip Rusijos ir Baltarusijos informacinės operacijos kuria, lokalizuoja ir platina naratyvus prieš Lietuvą, NATO ir Europą."
+seo_title: "Rusijos ir Baltarusijos informacinės operacijos prieš Lietuvą"
+seo_keywords:
+  - "Rusijos ir Baltarusijos informacinės operacijos prieš Lietuvą"
+  - "dezinformacija Lietuvoje"
+  - "Kremliaus propaganda"
+  - "priešiški naratyvai NATO"
+  - "informacinis karas Baltijos šalims"
 date: 2026-06-21T14:02:43.549Z
 lang: lt
 translation_key: substack-informacijos-gamyklos-prie-lietuvos

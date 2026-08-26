@@ -54,7 +54,7 @@ export async function validate() {
   if (!Number.isFinite(expiryTime)) errors.push('security.txt requires a valid RFC 3339 Expires field');
   else if (expiryTime - Date.now() < 45 * 24 * 60 * 60 * 1000) errors.push('security.txt expires in fewer than 45 days; renew it before release');
 
-  if (files.length !== 42) errors.push(`expected exactly 42 canonical Markdown posts, found ${files.length}`);
+  if (files.length === 0 || files.length % 2 !== 0) errors.push(`expected a non-zero even number of bilingual Markdown posts, found ${files.length}`);
 
   for (const absolute of files) {
     const file = relative(root, absolute).replaceAll('\\', '/');

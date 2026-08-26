@@ -2,6 +2,13 @@
 title: "ClickFix. Kodėl šiuolaikiniai TA nebeieško pažeidžiamumų, o ieško žmonių"
 card_title: "ClickFix: kai užpuolikai medžioja žmones"
 description: "ClickFix kampanijų anatomija: kaip netikri patikrinimai paverčia vartotoją vykdymo mechanizmu ir ką turi matyti SOC bei CTI komandos."
+seo_title: "ClickFix ataka: PowerShell ir socialinė inžinerija"
+seo_keywords:
+  - "ClickFix ataka"
+  - "ClickFix PowerShell"
+  - "netikras CAPTCHA"
+  - "socialinės inžinerijos ataka"
+  - "žalingos komandos vykdymas"
 date: 2026-06-05T20:56:58.749Z
 lang: lt
 translation_key: substack-clickfix-kodel-siuolaikiniai-ta-nebeiesko

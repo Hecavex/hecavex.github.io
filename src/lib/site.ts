@@ -61,6 +61,8 @@ export interface Post {
   id: string;
   lang: Lang;
   title: string;
+  seoTitle?: string;
+  seoKeywords: string[];
   cardTitle: string;
   description: string;
   date: Date;
@@ -92,6 +94,8 @@ export const hydratePost = (entry: PostEntry): Post => {
     id: entry.id,
     lang,
     title: entry.data.title,
+    seoTitle: entry.data.seo_title,
+    seoKeywords: entry.data.seo_keywords,
     cardTitle: entry.data.card_title ?? entry.data.title,
     description: entry.data.description,
     date: entry.data.date ?? dateFromId(entry.id),

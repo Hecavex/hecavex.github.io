@@ -1,6 +1,13 @@
 ---
 title: "MFA Is Not a Panacea, and It's Time We Stopped Pretending It Is"
 description: "Why MFA is essential but insufficient against session theft, AiTM, token replay, OAuth abuse, and modern account takeover."
+seo_title: "MFA Bypass Through Adversary-in-the-Middle Phishing"
+seo_keywords:
+  - "MFA bypass with adversary-in-the-middle phishing"
+  - "session cookie theft"
+  - "token replay"
+  - "OAuth abuse"
+  - "phishing-resistant MFA"
 date: 2026-06-02T07:30:41.443Z
 lang: en
 translation_key: substack-mfa-nera-panaceja-ir-laikas-nustoti

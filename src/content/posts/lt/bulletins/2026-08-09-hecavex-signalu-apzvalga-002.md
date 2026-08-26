@@ -2,6 +2,13 @@
 title: "Signalų apžvalga #2: N-central perėmimas, TeamCity išnaudojimas ir viešos valdymo sistemos"
 card_title: "Signalų apžvalga #2: N-central, TeamCity ir viešos valdymo sistemos"
 description: "Penki aktyviai išnaudojami pažeidžiamumų prioritetai, Adform JavaScript supply-chain incidentas ir konkretūs patikrinimai gynėjams. Laikotarpis: 2026 m. rugpjūčio 3–9 d."
+seo_title: "N-central ir TeamCity pažeidžiamumai: apžvalga #2"
+seo_keywords:
+  - "N-central pažeidžiamumas 2026"
+  - "N-able N-central"
+  - "TeamCity pažeidžiamumas"
+  - "Langflow RCE"
+  - "Adform supply-chain ataka"
 date: 2026-08-09 12:00:00 +0300
 lang: lt
 translation_key: hecavex-signal-brief-002

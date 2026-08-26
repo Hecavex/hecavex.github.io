@@ -7,6 +7,9 @@ import type { Lang } from '../lib/site';
 interface Props {
   lang: Lang;
   title: string;
+  seoTitle?: string;
+  keywords?: string[];
+  articleSection?: string;
   description: string;
   canonicalPath: string;
   alternatePath?: string;
@@ -21,13 +24,14 @@ interface Props {
 }
 
 const {
-  lang, title, description, canonicalPath, alternatePath, languageAlternates, xDefaultPath = '/en/',
+  lang, title, seoTitle, keywords = [], articleSection, description, canonicalPath, alternatePath, languageAlternates, xDefaultPath = '/en/',
   image = `/assets/img/og/hecavex-default-${lang}.png`, imageAlt = `${title} social preview`,
   noindex = false, type = 'WebPage', published, modified
 } = Astro.props;
 const canonical = new URL(canonicalPath, Astro.site);
 const socialImage = new URL(image, Astro.site);
-const fullTitle = title.includes('HECAVEX') ? title : `${title} | HECAVEX`;
+const searchTitle = seoTitle ?? title;
+const fullTitle = searchTitle.includes('HECAVEX') ? searchTitle : `${searchTitle} | HECAVEX`;
 const pageId = `${canonical.href}#webpage`;
 const pageNode: Record<string, unknown> = {
   '@type': type,
@@ -43,6 +47,11 @@ const pageNode: Record<string, unknown> = {
 };
 if (published) pageNode.datePublished = published.toISOString();
 if (modified) pageNode.dateModified = modified.toISOString();
+if (type === 'Article') {
+  pageNode.headline = title;
+  if (keywords.length > 0) pageNode.keywords = keywords.join(', ');
+  if (articleSection) pageNode.articleSection = articleSection;
+}
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [

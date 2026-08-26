@@ -1,6 +1,13 @@
 ---
 title: "Registrų centro duomenų vagystė, kai \"čia tik duomenys\" staiga tampa nacionalinio saugumo klausimu."
 description: "Kodėl didelio masto Registrų centro duomenų vagystė nėra vien privatumo incidentas, o potencialus žvalgybos ir nacionalinio saugumo klausimas."
+seo_title: "Registrų centro duomenų vagystė ir nacionalinis saugumas"
+seo_keywords:
+  - "Registrų centro duomenų vagystė ir nacionalinis saugumas"
+  - "valstybės registrų duomenų nutekėjimas"
+  - "asmens duomenų saugumo pažeidimas"
+  - "žvalgybos rizika"
+  - "tapatybės duomenų vagystė"
 date: 2026-06-02T07:12:36.587Z
 lang: lt
 translation_key: substack-registru-centro-duomenu-vagyste-kai

@@ -2,6 +2,13 @@
 title: "Vienas scam domenas retai būna vienas. Kaip PIVOTING padeda atsekti sukčiavimo infrastruktūrą"
 card_title: "Vienas scam domenas retai būna vienas"
 description: "Praktinis infrastruktūros pivoting metodas, padedantis nuo vieno sukčiavimo domeno pereiti prie susijusių hostų, šablonų ir backend sistemų."
+seo_title: "Phishing domenų infrastruktūros tyrimas su OSINT"
+seo_keywords:
+  - "phishing domenų infrastruktūros tyrimas"
+  - "domenų pivoting"
+  - "DNS RDAP analizė"
+  - "susijusių domenų paieška"
+  - "sukčiavimo domenų OSINT"
 date: 2026-06-03T15:09:38.327Z
 lang: lt
 translation_key: substack-vienas-scam-domenas-retai-buna-vienas

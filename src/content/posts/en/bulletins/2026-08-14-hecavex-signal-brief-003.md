@@ -2,6 +2,13 @@
 title: "Signal Brief #3: exploited Metabase, private cyber operations and AI-assisted espionage"
 card_title: "Signal Brief #3: Metabase, private cyber operations and AI-assisted espionage"
 description: "Three exploited CVEs, two geopolitical cyber shifts, three breach and ransomware developments, and two espionage campaigns worth tracking. Coverage: 10–14 August 2026."
+seo_title: "Metabase Exploitation and AI-Assisted Espionage"
+seo_keywords:
+  - "Metabase vulnerability exploitation"
+  - "CISA KEV"
+  - "AI-assisted espionage"
+  - "Midnight Blizzard"
+  - "cyber threat briefing"
 date: 2026-08-14 11:45:00 +0300
 lang: en
 translation_key: hecavex-signal-brief-003

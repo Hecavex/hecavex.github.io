@@ -12,6 +12,13 @@ image:
   width: 577
   height: 433
 description: Why open-source collection and cyber threat intelligence are complementary disciplines, and how to turn public information into a defensible security decision.
+seo_title: "OSINT vs Cyber Threat Intelligence: From Collection to Decisions"
+seo_keywords:
+  - "OSINT vs cyber threat intelligence"
+  - "open-source intelligence"
+  - "CTI decision support"
+  - "intelligence requirements"
+  - "threat analysis"
 tags: [osint, cti, intelligence-requirements, analysis]
 author: deividas-lis
 content_type: commentary

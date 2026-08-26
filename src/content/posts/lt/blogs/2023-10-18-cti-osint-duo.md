@@ -2,6 +2,13 @@
 title: "OSINT renka. CTI padeda priimti sprendimą."
 card_title: "OSINT ir CTI nėra tas pats darbas"
 description: "Kodėl atvirųjų šaltinių rinkimas ir kibernetinių grėsmių žvalgyba yra susijusios, bet skirtingos disciplinos, ir kaip viešą informaciją paversti pagrįstu saugumo sprendimu."
+seo_title: "CTI ir OSINT skirtumai: nuo duomenų iki sprendimo"
+seo_keywords:
+  - "CTI ir OSINT skirtumai"
+  - "kas yra OSINT"
+  - "kibernetinių grėsmių žvalgyba"
+  - "žvalgybos reikalavimai"
+  - "OSINT analizė"
 date: 2023-10-18 14:00:00 +0300
 last_modified_at: 2026-08-23 12:00:00 +0300
 lang: lt

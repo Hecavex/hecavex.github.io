@@ -2,6 +2,13 @@
 title: "Information Factories on Lithuania's Border: How Russian and Belarusian Information Operations Target Lithuania, NATO, and Europe"
 card_title: "Information Factories on Lithuania’s Border"
 description: "How Russian and Belarusian information operations manufacture, localise, and distribute narratives targeting Lithuania, NATO, and Europe."
+seo_title: "Russian Disinformation Targeting Lithuania"
+seo_keywords:
+  - "Russian disinformation targeting Lithuania"
+  - "Belarusian information operations"
+  - "foreign information manipulation and interference"
+  - "NATO disinformation"
+  - "pro-Kremlin propaganda"
 date: 2026-06-21T14:02:43.549Z
 lang: en
 translation_key: substack-informacijos-gamyklos-prie-lietuvos

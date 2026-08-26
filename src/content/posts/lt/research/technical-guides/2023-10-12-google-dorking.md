@@ -1,6 +1,13 @@
 ---
 title: "OSINT galimybės: pažangioji „Google“ paieška"
 description: "Pažangūs „Google“ paieškos operatoriai padeda aptikti įprastoje paieškoje sunkiai randamą informaciją ir yra naudingi OSINT, saugumo tyrimams bei analizei."
+seo_title: "Google dorking OSINT: pažangūs paieškos operatoriai"
+seo_keywords:
+  - "Google dorking OSINT"
+  - "Google paieškos operatoriai"
+  - "pažangioji Google paieška"
+  - "OSINT paieška"
+  - "site ir filetype operatoriai"
 date: 2023-10-12 14:00:00 +0300
 last_modified_at: 2026-08-14 12:00:00 +0300
 lang: lt

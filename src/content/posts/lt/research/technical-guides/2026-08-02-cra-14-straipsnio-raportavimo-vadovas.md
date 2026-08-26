@@ -2,6 +2,13 @@
 title: "CRA 14 straipsnis: techninis pažeidžiamumų ir incidentų raportavimo vadovas"
 card_title: "CRA 14 straipsnio raportavimo vadovas"
 description: "Techninis pasirengimo CRA 14 straipsniui vadovas: aktyviai išnaudojami pažeidžiamumai, rimti produkto saugumo incidentai, 24 ir 72 valandų terminai, ENISA pranešimų procesas ir CTI vaidmuo."
+seo_title: "CRA 14 straipsnis: pranešimų terminai ir procesas"
+seo_keywords:
+  - "CRA 14 straipsnio pranešimai"
+  - "Kibernetinio atsparumo aktas"
+  - "aktyviai išnaudojamas pažeidžiamumas"
+  - "rimtas produkto saugumo incidentas"
+  - "24 ir 72 valandų terminai"
 date: 2026-08-02 14:15:00 +0300
 lang: lt
 translation_key: cra-article-14-reporting-guide

@@ -1,6 +1,13 @@
 ---
 title: "Registrų centro duomenų vagystė — Part 2"
 description: "Antroji Registrų centro duomenų vagystės analizės dalis apie pavogtos tapatybės, teisėtų prieigų ir aptikimo spragų reikšmę."
+seo_title: "Registrų centro duomenų vagystė: tapatybės rizika"
+seo_keywords:
+  - "Registrų centro duomenų vagystė"
+  - "Registrų centro duomenų nutekėjimas"
+  - "tapatybės vagystės rizika"
+  - "teisėtų prieigų piktnaudžiavimas"
+  - "asmens duomenų saugumo pažeidimas"
 date: 2026-06-02T07:23:26.412Z
 lang: lt
 translation_key: substack-registru-centro-duomenu-vagyste-part

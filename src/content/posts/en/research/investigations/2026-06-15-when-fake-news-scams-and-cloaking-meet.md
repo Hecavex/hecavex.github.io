@@ -1,6 +1,13 @@
 ---
 title: "When Fake News, Scams, and Cloaking All Meet in One Place"
 description: "An investigation into how fake news, investment fraud, and cloaking combine into a single victim-selection and monetisation infrastructure."
+seo_title: "Investment Scam Cloaking Infrastructure Investigation"
+seo_keywords:
+  - "investment scam cloaking infrastructure"
+  - "fake news investment fraud"
+  - "cloaked landing pages"
+  - "victim filtering"
+  - "Facebook investment scams"
 date: 2026-06-15T14:21:51.923Z
 lang: en
 translation_key: substack-kai-fake-news-scamai-ir-cloaking

@@ -2,6 +2,13 @@
 title: "CTI Pivoting 101: a professional analyst's field guide"
 card_title: "Pivoting 101: from one observable to a defensible cluster"
 description: "A professional, hypothesis-driven CTI pivoting guide covering evidence models, infrastructure and malware pivots, active-recon OPSEC, temporal analysis, clustering, confidence and attribution limits."
+seo_title: "Phishing Infrastructure Pivoting: A CTI Field Guide"
+seo_keywords:
+  - "phishing infrastructure pivoting"
+  - "URLScan hash pivoting"
+  - "DNS and RDAP pivots"
+  - "Certificate Transparency monitoring"
+  - "CTI threat hunting"
 date: 2026-08-13 18:00:00 +0300
 last_modified_at: 2026-08-14 16:00:00 +0300
 lang: en

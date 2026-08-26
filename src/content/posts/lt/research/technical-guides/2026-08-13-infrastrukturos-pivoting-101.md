@@ -2,6 +2,13 @@
 title: "CTI Pivoting 101: profesionalus analitiko lauko vadovas"
 card_title: "Pivoting 101: nuo vieno observable iki pagrįsto cluster'io"
 description: "Profesionalus, hypothesis-driven CTI pivoting vadovas: evidence model, infrastruktūros ir malware pivotai, active recon OPSEC, temporal analizė, clustering, confidence ir attribution ribos."
+seo_title: "CTI infrastruktūros pivoting: analitiko vadovas"
+seo_keywords:
+  - "CTI infrastruktūros pivoting"
+  - "threat intelligence pivoting"
+  - "DNS RDAP Certificate Transparency"
+  - "malware hash pivot"
+  - "attribution confidence"
 date: 2026-08-13 18:00:00 +0300
 last_modified_at: 2026-08-14 16:00:00 +0300
 lang: lt

@@ -2,6 +2,13 @@
 title: "Analitinis pasitikėjimas yra laukas, o ne jausmas"
 card_title: "Pasitikėjimas yra laukas"
 description: "Kaip HECAVEX atskiria šaltinio patikimumą, įrodymų stiprumą ir analitinį pasitikėjimą, neslėpdamas neapibrėžtumo po viena etikete."
+seo_title: "Analitinis pasitikėjimas CTI: šaltiniai ir įrodymai"
+seo_keywords:
+  - "analitinis pasitikėjimas CTI"
+  - "šaltinio patikimumas"
+  - "įrodymų stiprumas"
+  - "žvalgybos analizės pasitikėjimo lygis"
+  - "analitinis neapibrėžtumas"
 date: 2026-08-01 13:00:00 +0300
 last_modified_at: 2026-08-14 12:00:00 +0300
 lang: lt

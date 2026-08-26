@@ -1,6 +1,13 @@
 ---
 title: "Kai fake news, scamai ir cloaking susitinka vienoje vietoje."
 description: "Tyrimas, kaip netikros naujienos, investicinis sukčiavimas ir cloaking sujungiami į vieną aukų atrankos bei monetizavimo infrastruktūrą."
+seo_title: "Netikros naujienos ir investicinis sukčiavimas"
+seo_keywords:
+  - "investicinis sukčiavimas per netikras naujienas"
+  - "cloaking phishing"
+  - "Facebook investicinis sukčiavimas"
+  - "melagingos naujienos"
+  - "sukčiavimo infrastruktūra"
 date: 2026-06-15T14:21:51.923Z
 lang: lt
 translation_key: substack-kai-fake-news-scamai-ir-cloaking

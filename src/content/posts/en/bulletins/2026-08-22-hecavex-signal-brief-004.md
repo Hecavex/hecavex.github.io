@@ -2,6 +2,13 @@
 title: "Signal Brief #4: exposed PLCs, exploited Zimbra and trusted-platform phishing"
 card_title: "Signal Brief #4: exposed PLCs, Zimbra and trusted-platform phishing"
 description: "An active threat to exposed PLCs, nine known-exploited vulnerabilities, trusted-platform phishing, ransomware recovery fraud and a Lithuania pulse. Coverage: 14–22 August 2026."
+seo_title: "Siemens S7 PLC and Zimbra Vulnerabilities"
+seo_keywords:
+  - "Siemens S7 PLC and Zimbra vulnerabilities"
+  - "internet-exposed PLCs"
+  - "Zimbra exploitation"
+  - "trusted-platform phishing"
+  - "ransomware recovery fraud"
 date: 2026-08-22 00:30:00 +0300
 lang: en
 translation_key: hecavex-signal-brief-004

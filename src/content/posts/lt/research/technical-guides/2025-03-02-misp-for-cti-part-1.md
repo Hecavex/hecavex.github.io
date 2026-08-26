@@ -2,6 +2,13 @@
 title: "MISP grėsmių žvalgybai: diegimas, integracija ir automatizavimas [1 dalis]"
 card_title: "MISP grėsmių žvalgybai: diegimas ir automatizavimas"
 description: "Praktinis MISP diegimo su „Docker“, pagrindinių duomenų modelių, integracijų ir automatizavimo galimybių vadovas grėsmių žvalgybos komandoms."
+seo_title: "MISP diegimas su Docker grėsmių žvalgybai"
+seo_keywords:
+  - "MISP diegimas su Docker"
+  - "MISP grėsmių žvalgyba"
+  - "MISP integracija"
+  - "PyMISP automatizavimas"
+  - "grėsmių indikatorių mainai"
 date: 2025-03-02 14:00:00 +0300
 last_modified_at: 2026-08-14 12:00:00 +0300
 lang: lt

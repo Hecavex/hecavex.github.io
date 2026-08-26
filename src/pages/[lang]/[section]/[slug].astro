@@ -55,7 +55,7 @@ const sectionLabel = post.publicationClass === 'signal-brief'
   ? (post.lang === 'lt' ? 'Signalų apžvalgos' : 'Signal Briefs')
   : (post.lang === 'lt' ? 'Tyrimai' : 'Research');
 ---
-<BaseLayout lang={post.lang} title={post.title} description={post.description} canonicalPath={post.url} alternatePath={translation?.url} image={social} imageAlt={alt || `${post.title} social preview`} type="Article" published={post.date} modified={post.updated ?? post.date}>
+<BaseLayout lang={post.lang} title={post.title} seoTitle={post.seoTitle} keywords={post.seoKeywords.length > 0 ? post.seoKeywords : post.tags} articleSection={labelForPost(post)} description={post.description} canonicalPath={post.url} alternatePath={translation?.url} image={social} imageAlt={alt || `${post.title} social preview`} type="Article" published={post.date} modified={post.updated ?? post.date}>
   <article class="shell article-shell">
     <nav class="article-breadcrumb" aria-label={post.lang === 'lt' ? 'Publikacijos kelias' : 'Publication path'}>
       <a href={`/${post.lang}/`}>HECAVEX</a><span aria-hidden="true">/</span><a href={sectionPath}>{sectionLabel}</a><span aria-hidden="true">/</span><span aria-current="page">{post.title}</span>

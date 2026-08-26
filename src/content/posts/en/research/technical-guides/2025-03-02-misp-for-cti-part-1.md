@@ -12,6 +12,13 @@ image:
   width: 1300
   height: 500
 description: A practitioner guide to MISP deployment, data modelling, operating controls, integrations and introductory PyMISP automation for threat intelligence teams.
+seo_title: "MISP Threat Intelligence Deployment and PyMISP Automation"
+seo_keywords:
+  - "MISP threat intelligence deployment"
+  - "PyMISP automation"
+  - "MISP data model"
+  - "threat intelligence sharing"
+  - "IOC correlation"
 tags: [cti, misp, automation, pymisp]
 author: deividas-lis
 content_type: technical-guide

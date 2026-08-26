@@ -2,6 +2,13 @@
 title: "ClickFix: Why Modern Threat Actors No Longer Look for Vulnerabilities—they Look for People"
 card_title: "ClickFix: When Threat Actors Hunt People"
 description: "The anatomy of ClickFix campaigns: how fake verification prompts turn users into the execution mechanism and what SOC and CTI teams should detect."
+seo_title: "ClickFix Social Engineering: Attack Chain and Detection"
+seo_keywords:
+  - "ClickFix social engineering attack"
+  - "fake CAPTCHA malware"
+  - "PowerShell execution"
+  - "clipboard command execution"
+  - "ClickFix detection"
 date: 2026-06-05T20:56:58.749Z
 lang: en
 translation_key: substack-clickfix-kodel-siuolaikiniai-ta-nebeiesko

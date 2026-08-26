@@ -12,6 +12,13 @@ image:
   width: 593
   height: 356
 description: A practical method for building, recording and validating advanced search queries during OSINT and cyber threat intelligence investigations.
+seo_title: "Google Search Operators for OSINT Investigations"
+seo_keywords:
+  - "Google search operators for OSINT"
+  - "Google dorking"
+  - "advanced search queries"
+  - "site and filetype operators"
+  - "reproducible OSINT"
 tags: [osint, search, tradecraft, evidence]
 author: deividas-lis
 content_type: technical-guide

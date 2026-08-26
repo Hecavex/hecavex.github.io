@@ -2,6 +2,12 @@
 title: "Introducing HECAVEX"
 card_title: "Introducing HECAVEX"
 description: "Why HECAVEX exists and how this independent threat intelligence publication will approach evidence, uncertainty and digital investigations."
+seo_title: "HECAVEX: Independent Cyber Threat Intelligence Research"
+seo_keywords:
+  - "HECAVEX cyber threat intelligence research"
+  - "independent CTI publication"
+  - "digital investigations"
+  - "evidence-based threat analysis"
 date: 2026-08-01 12:00:00 +0300
 last_modified_at: 2026-08-14 12:00:00 +0300
 lang: en

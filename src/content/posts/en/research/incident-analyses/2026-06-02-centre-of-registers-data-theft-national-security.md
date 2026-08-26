@@ -1,6 +1,13 @@
 ---
 title: "The Centre of Registers Data Theft: When “It’s Just Data” Suddenly Becomes a National Security Issue"
 description: "Why large-scale theft from Lithuania's Centre of Registers is not merely a privacy incident but a potential intelligence and national-security issue."
+seo_title: "Lithuania Centre of Registers Data Theft and National Security"
+seo_keywords:
+  - "Lithuania Centre of Registers data theft"
+  - "national security data breach"
+  - "stolen government data"
+  - "identity data exposure"
+  - "intelligence risk"
 date: 2026-06-02T07:12:36.587Z
 lang: en
 translation_key: substack-registru-centro-duomenu-vagyste-kai

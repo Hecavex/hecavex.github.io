@@ -2,6 +2,13 @@
 title: "Analytical Confidence Is a Field, Not a Feeling"
 card_title: "Confidence Is a Field"
 description: "How HECAVEX separates source reliability, evidence strength and analytical confidence without using a label to hide uncertainty."
+seo_title: "Analytical Confidence in Threat Intelligence"
+seo_keywords:
+  - "analytical confidence in threat intelligence"
+  - "source reliability"
+  - "evidence strength"
+  - "intelligence confidence levels"
+  - "analytic uncertainty"
 date: 2026-08-01 13:00:00 +0300
 last_modified_at: 2026-08-14 12:00:00 +0300
 lang: en

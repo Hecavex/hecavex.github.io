@@ -2,6 +2,13 @@
 title: "Signalų apžvalga #4: atviri PLC, išnaudojamas Zimbra ir phishing per patikimas platformas"
 card_title: "Signalų apžvalga #4: atviri PLC, Zimbra ir phishing per patikimas platformas"
 description: "Aktyvi grėsmė viešiems PLC, devyni žinomi išnaudojami pažeidžiamumai, phishing per patikimas platformas, ransomware atkūrimo apgaulė ir Lietuvos pulsas. Laikotarpis: 2026 m. rugpjūčio 14–22 d."
+seo_title: "Zimbra pažeidžiamumas ir Siemens S7 atakos: apžvalga #4"
+seo_keywords:
+  - "Zimbra pažeidžiamumas 2026"
+  - "Siemens S7 PLC atakos"
+  - "aktyviai išnaudojami pažeidžiamumai"
+  - "phishing per patikimas platformas"
+  - "ransomware atkūrimo apgaulė"
 date: 2026-08-22 00:30:00 +0300
 lang: lt
 translation_key: hecavex-signal-brief-004

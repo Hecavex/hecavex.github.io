@@ -1,6 +1,13 @@
 ---
 title: "MFA nėra panacėja ir laikas nustoti apsimetinėti kad yra"
 description: "Kodėl MFA yra būtina, bet nepakankama apsauga nuo session theft, AiTM, token replay, OAuth abuse ir šiuolaikinio account takeover."
+seo_title: "MFA apėjimas: AiTM phishing ir sesijos vagystė"
+seo_keywords:
+  - "MFA apėjimas per AiTM phishing"
+  - "kelių veiksnių autentifikavimas"
+  - "sesijos token vagystė"
+  - "OAuth piktnaudžiavimas"
+  - "paskyros perėmimas"
 date: 2026-06-02T07:30:41.443Z
 lang: lt
 translation_key: substack-mfa-nera-panaceja-ir-laikas-nustoti
