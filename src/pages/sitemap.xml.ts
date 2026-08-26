@@ -6,6 +6,7 @@ export const GET: APIRoute = async () => {
   const pages = await getPages();
   const routes = new Map<string, Date | undefined>();
   routes.set('/', undefined);
+  routes.set('/data/', undefined);
   for (const page of pages) {
     if (page.data.sitemap === false || page.data.robots?.includes('noindex')) continue;
     routes.set(page.data.permalink, page.data.last_modified_at);

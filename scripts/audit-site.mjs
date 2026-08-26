@@ -100,7 +100,7 @@ for (const file of htmlFiles) {
     if (!/<link\s+[^>]*rel=["']manifest["'][^>]*href=["']\/site\.webmanifest["']/i.test(html)) failures.push(`${route}: missing origin web manifest`);
     const network = [...html.matchAll(/<nav\s+class=["']portfolio-navigation["'][\s\S]*?<\/nav>/gi)][0]?.[0] ?? '';
     let previous = -1;
-    for (const label of ['Research', 'Radar', 'APT Notes', 'Labs']) {
+    for (const label of ['Research', 'Radar', 'APT Notes', 'Labs', 'Data']) {
       const index = network.indexOf(`>${label}<`);
       if (index < previous || index < 0) failures.push(`${route}: portfolio navigation order is incorrect at ${label}`);
       previous = index;

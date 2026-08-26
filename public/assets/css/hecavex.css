@@ -1210,6 +1210,20 @@ main {
   grid-area: content;
 }
 
+.standard-page--article-prose > .prose {
+  width: 100%;
+  max-width: none;
+}
+
+@media (min-width: 681px) {
+  .standard-page--article-prose > .prose > :where(p, ul > li, ol > li, blockquote > p) {
+    text-align: justify;
+    text-align-last: left;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+}
+
 .standard-page--with-rail > .content-outline,
 .standard-page--with-rail > .page-action-rail {
   grid-area: rail;
@@ -1571,6 +1585,162 @@ main {
   color: var(--text-soft);
   font-size: 1rem;
   line-height: 1.76;
+}
+
+.data-catalogue {
+  max-width: 76rem;
+}
+
+.data-catalogue > .page-intro {
+  max-width: none;
+}
+
+.data-catalogue__boundary {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.65fr) minmax(0, 1.35fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+  margin-top: 2rem;
+  padding: 1.25rem;
+  border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--cyan);
+  background: var(--surface);
+}
+
+.data-catalogue__boundary h2 {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+}
+
+.data-catalogue__boundary > p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+.data-catalogue__section {
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+}
+
+.data-catalogue__section > .section-head > div {
+  max-width: 58rem;
+}
+
+.data-product-list {
+  display: grid;
+  gap: 1px;
+  margin-top: 1.5rem;
+  padding: 1px;
+  background: var(--line);
+}
+
+.data-product {
+  min-width: 0;
+  padding: clamp(1.1rem, 2.2vw, 1.5rem);
+  background: var(--surface);
+}
+
+.data-product__head {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr) minmax(12rem, 0.55fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.data-product__head > span {
+  color: var(--cyan);
+  font: 600 0.67rem var(--mono);
+}
+
+.data-product__head h3 {
+  margin: 0.25rem 0 0;
+  font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+}
+
+.data-product__head > p {
+  margin: 0;
+  color: var(--faint);
+  font: 500 0.62rem/1.5 var(--mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.data-product__description {
+  max-width: 76ch;
+  margin: 1rem 0 0 3.25rem;
+  color: var(--text-soft);
+  line-height: 1.65;
+}
+
+.data-product__links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 1.25rem 0 0 3.25rem;
+  padding: 1px;
+  background: var(--line);
+  list-style: none;
+}
+
+.data-product__links li {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 0.85rem;
+  background: var(--bg);
+}
+
+.data-product__links a {
+  font: 600 0.72rem/1.45 var(--mono);
+}
+
+.data-product__links small {
+  margin-top: 0.35rem;
+  color: var(--faint);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.data-catalogue__use {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.55fr) minmax(0, 1.45fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.data-catalogue__use h2 {
+  margin: 0.35rem 0 0;
+}
+
+.data-catalogue__use ol {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  padding: 1px;
+  background: var(--line);
+  list-style: none;
+  counter-reset: data-notes;
+}
+
+.data-catalogue__use li {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.65fr) minmax(0, 1.35fr);
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--surface);
+  counter-increment: data-notes;
+}
+
+.data-catalogue__use strong::before {
+  content: counter(data-notes, decimal-leading-zero) " / ";
+  color: var(--cyan);
+  font: 600 0.62rem var(--mono);
+}
+
+.data-catalogue__use span {
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .prose > :first-child {
@@ -2555,6 +2725,14 @@ body[data-language="lt"] .table-scroll-hint::before {
     grid-template-columns: minmax(0, 1.4fr) minmax(15rem, 0.6fr);
   }
 
+  .data-product__head {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+  }
+
+  .data-product__head > p {
+    grid-column: 2;
+  }
+
   .lead-story,
   .home-signal-grid {
     grid-template-columns: 1fr;
@@ -2678,6 +2856,21 @@ body[data-language="lt"] .table-scroll-hint::before {
 
   .hx-page-cta,
   .briefing-path {
+    grid-template-columns: 1fr;
+  }
+
+  .data-catalogue__boundary,
+  .data-catalogue__use,
+  .data-catalogue__use li {
+    grid-template-columns: 1fr;
+  }
+
+  .data-product__description,
+  .data-product__links {
+    margin-left: 0;
+  }
+
+  .data-product__links {
     grid-template-columns: 1fr;
   }
 

@@ -45,8 +45,8 @@ The production workflow requires the `HECAVEX_ANALYTICS_TOKEN` repository variab
 
 - [HECAVEX Radar](https://radar.hecavex.com) publishes screened potential phishing signals relevant to Lithuania.
 - [APT Notes](https://apt.hecavex.com) maintains structured, source-backed threat-actor research.
-- [HECAVEX Labs](https://labs.hecavex.com) exposes inspectable research workspaces and public datasets.
-- [HECAVEX Data](https://labs.hecavex.com/data/) provides citable research releases.
+- [HECAVEX Labs](https://labs.hecavex.com) exposes inspectable research workspaces and bounded datasets.
+- [HECAVEX Data](https://hecavex.com/data/) is the portfolio catalogue for public machine-readable releases.
 
 Each property deploys independently while sharing the Cold Signal visual, navigation and accessibility contract.
 

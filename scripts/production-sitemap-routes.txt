@@ -1,4 +1,5 @@
 /
+/data/
 /en/
 /en/about/
 /en/archive/

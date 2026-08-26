@@ -1,0 +1,122 @@
+---
+import PageHeader from '../../components/PageHeader.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const catalogues = [
+  {
+    index: '01',
+    id: 'radar',
+    name: 'HECAVEX Radar',
+    owner: 'Radar',
+    cadence: 'Automated, sampled collection',
+    description: 'Potential phishing and impersonation candidates relevant to Lithuania. Automated matches are observations for review, not maliciousness verdicts.',
+    links: [
+      { label: 'Dataset guide', detail: 'Human-readable contract and limitations', href: 'https://radar.hecavex.com/dataset/' },
+      { label: 'Current snapshot', detail: 'JSON · bounded dashboard view', href: 'https://radar.hecavex.com/data/radar.json' },
+      { label: 'Complete-set index', detail: 'JSON · deterministic shard directory', href: 'https://radar.hecavex.com/data/radar.index.json' },
+      { label: 'Observation STIX', detail: 'STIX 2.1 · observations, not block indicators', href: 'https://radar.hecavex.com/data/radar.stix.json' },
+      { label: 'Reviewed STIX', detail: 'STIX 2.1 · explicit analyst confirmations only', href: 'https://radar.hecavex.com/data/radar-reviewed.stix.json' },
+      { label: 'Release manifest', detail: 'JSON · files, schemas, digests and counts', href: 'https://radar.hecavex.com/data/feed-manifest.json' }
+    ]
+  },
+  {
+    index: '02',
+    id: 'apt-notes',
+    name: 'APT Notes',
+    owner: 'APT Notes',
+    cadence: 'Curated, release-versioned records',
+    description: 'Source-backed actor, campaign, software, technique and relationship records. The catalogue preserves source-specific attribution and review boundaries.',
+    links: [
+      { label: 'API catalogue', detail: 'JSON · canonical endpoint directory', href: 'https://apt.hecavex.com/api/index.json' },
+      { label: 'Actors', detail: 'JSON · public actor dossiers', href: 'https://apt.hecavex.com/api/actors.json' },
+      { label: 'Knowledge catalogue', detail: 'JSON · campaigns, software, tools and techniques', href: 'https://apt.hecavex.com/api/knowledge.json' },
+      { label: 'Relationships', detail: 'JSON · source-supported entity mappings', href: 'https://apt.hecavex.com/api/relationships.json' },
+      { label: 'Release version', detail: 'JSON · publication and schema state', href: 'https://apt.hecavex.com/api/version.json' },
+      { label: 'Relationship table', detail: 'CSV · flat relationship export', href: 'https://apt.hecavex.com/data/relationships.csv' }
+    ]
+  },
+  {
+    index: '03',
+    id: 'labs',
+    name: 'HECAVEX Labs',
+    owner: 'Labs',
+    cadence: 'Curated workspace releases',
+    description: 'Bounded datasets behind public research workspaces. Labs publishes only files listed in its deny-by-default public manifest.',
+    links: [
+      { label: 'Dataset catalogue', detail: 'JSON · dataset descriptions and update state', href: 'https://labs.hecavex.com/data/catalogue.json' },
+      { label: 'Publication manifest', detail: 'JSON · exact public-file allowlist', href: 'https://labs.hecavex.com/data/public-manifest.json' },
+      { label: 'Baltic Threat Atlas', detail: 'JSON · selected public observations', href: 'https://labs.hecavex.com/data/atlas/records.json' },
+      { label: 'Reviewed ATT&CK evidence', detail: 'JSON · source-linked mappings from APT Notes', href: 'https://labs.hecavex.com/data/attack/intelligence/reviewed-evidence.json' },
+      { label: 'Pivot cases', detail: 'JSON · public case-graph directory', href: 'https://labs.hecavex.com/data/pivots/cases.json' }
+    ]
+  }
+];
+---
+<BaseLayout
+  lang="en"
+  title="Public data catalogue"
+  description="Canonical directory of public machine-readable datasets maintained by HECAVEX Radar, APT Notes, and HECAVEX Labs."
+  canonicalPath="/data/"
+  xDefaultPath="/data/"
+  type="CollectionPage"
+>
+  <div class="shell page-shell data-catalogue">
+    <PageHeader
+      lang="en"
+      title="Public data catalogue"
+      description="A portfolio-level directory for public machine-readable records maintained by Radar, APT Notes, and Labs."
+      eyebrow="HECAVEX / DATA"
+    />
+
+    <aside class="data-catalogue__boundary" aria-labelledby="catalogue-boundary-title">
+      <div>
+        <p class="eyebrow">Publication boundary</p>
+        <h2 id="catalogue-boundary-title">One index, three canonical publishers</h2>
+      </div>
+      <p>This page does not copy or proxy the datasets. Each link opens the canonical file on the HECAVEX product that maintains its schema, provenance, update cycle, licence, and limitations.</p>
+    </aside>
+
+    <section class="data-catalogue__section" aria-labelledby="datasets-title">
+      <header class="section-head">
+        <div>
+          <p class="eyebrow">Machine-readable releases</p>
+          <h2 id="datasets-title">Current public catalogues</h2>
+          <p>Use the product-level documentation before integrating a distribution. A public file is not automatically a verdict, attribution claim, detection rule, or permission to redistribute upstream material.</p>
+        </div>
+      </header>
+
+      <div class="data-product-list">
+        {catalogues.map((catalogue) => <article id={catalogue.id} class="data-product">
+          <header class="data-product__head">
+            <span>{catalogue.index}</span>
+            <div>
+              <p class="eyebrow">Maintained by {catalogue.owner}</p>
+              <h3>{catalogue.name}</h3>
+            </div>
+            <p>{catalogue.cadence}</p>
+          </header>
+          <p class="data-product__description">{catalogue.description}</p>
+          <ul class="data-product__links">
+            {catalogue.links.map((link) => <li>
+              <a href={link.href}>{link.label} <span aria-hidden="true">↗</span></a>
+              <small>{link.detail}</small>
+            </li>)}
+          </ul>
+        </article>)}
+      </div>
+    </section>
+
+    <section class="data-catalogue__section data-catalogue__use" aria-labelledby="using-data-title">
+      <header>
+        <p class="eyebrow">Consumer notes</p>
+        <h2 id="using-data-title">Before using a dataset</h2>
+      </header>
+      <ol>
+        <li><strong>Read its local contract.</strong><span>Scope, freshness, confidence, retention and field semantics differ between products.</span></li>
+        <li><strong>Pin a release where reproducibility matters.</strong><span>Use the product version, manifest or digest instead of assuming that a live URL never changes.</span></li>
+        <li><strong>Preserve provenance and uncertainty.</strong><span>Do not turn a candidate, reported relationship or bounded observation into a stronger claim than its source supports.</span></li>
+        <li><strong>Check reuse terms.</strong><span>Code licences do not automatically relicense datasets, article text, screenshots or upstream provider material.</span></li>
+      </ol>
+    </section>
+  </div>
+</BaseLayout>

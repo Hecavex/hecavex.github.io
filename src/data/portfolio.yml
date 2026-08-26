@@ -189,8 +189,8 @@ projects:
           en: Data catalogue
           lt: Duomenų katalogas
         url:
-          en: https://labs.hecavex.com/data/
-          lt: https://labs.hecavex.com/data/
+          en: https://hecavex.com/data/
+          lt: https://hecavex.com/data/
         kind: data
       - label:
           en: Source repository
@@ -225,8 +225,8 @@ projects:
           en: Open data catalogue
           lt: Atverti duomenų katalogą
         url:
-          en: https://labs.hecavex.com/data/
-          lt: https://labs.hecavex.com/data/
+          en: https://hecavex.com/data/
+          lt: https://hecavex.com/data/
         kind: primary
       - label:
           en: Research bundle specification

@@ -37,6 +37,7 @@ const bodyOutlineHeadings = headings.filter((heading) => heading.depth === 2 || 
 const standardOutlineHeadings: OutlineItem[] = [{ depth: 2, slug: 'page-start', text: entry.data.title }, ...bodyOutlineHeadings];
 const showActionRail = entry.data.translation_key === 'contact';
 const showStandardOutline = !showActionRail && standardOutlineHeadings.length > 2;
+const useArticleWidthProse = entry.data.translation_key === 'about';
 const pageFacts = pageFactsFor(entry.data.translation_key, lang, posts[0] ? dateText(posts[0].date) : '—');
 const researchMap = researchMapFor(lang, {
   featured: featured.length,
@@ -79,7 +80,7 @@ const researchMap = researchMapFor(lang, {
     </> : entry.data.translation_key === 'portfolio-glossary' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} />
       <Glossary {lang} />
-    </> : <article id="standard-page-scope" class:list={['standard-page', { 'standard-page--with-rail': showStandardOutline || showActionRail }]}>
+    </> : <article id="standard-page-scope" class:list={['standard-page', { 'standard-page--with-rail': showStandardOutline || showActionRail, 'standard-page--article-prose': useArticleWidthProse }]}>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} facts={pageFacts} anchorId="page-start" />
       {showStandardOutline && <ContentOutline {lang} headings={standardOutlineHeadings} scopeId="standard-page-scope" condensed={standardOutlineHeadings.length > 40} />}
       {showActionRail && <PageActionRail {lang} routes={contactRoutesFor(lang)} />}

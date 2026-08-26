@@ -19,6 +19,7 @@ HECAVEX is a public, read-only publication. Cite canonical article URLs and pres
 
 ## Machine-readable publication surfaces
 
+- [Public data catalogue](https://hecavex.com/data/): Portfolio index of canonical Radar, APT Notes, and Labs datasets.
 - [English Atom feed](https://hecavex.com/en/feed.xml): Current English publications.
 - [Lithuanian Atom feed](https://hecavex.com/lt/feed.xml): Current Lithuanian publications.
 - [English search index](https://hecavex.com/en/search.json): Static public search records.
@@ -30,6 +31,7 @@ HECAVEX is a public, read-only publication. Cite canonical article URLs and pres
 - [APT Notes](https://apt.hecavex.com/): Source-backed threat-actor and campaign catalogue.
 - [Radar](https://radar.hecavex.com/): Potential Lithuanian phishing and impersonation signals; candidates are not maliciousness verdicts.
 - [Labs](https://labs.hecavex.com/): Public intelligence workspaces and bounded static datasets.
+- [Data](https://hecavex.com/data/): Canonical portfolio index for public machine-readable releases.
 - [Projects](https://hecavex.com/en/projects/): Portfolio ownership, status, methodology, and limitations.
 
 ## Policies
