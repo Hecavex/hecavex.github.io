@@ -34,7 +34,7 @@ key_findings:
   - "Ilgo Hostinger Pages hostname šablono paieška davė 562 stebėjimus ir 298 atskirus task domenus nuo 2026-03-25 iki 2026-08-23."
   - "2026-08-24 penki iš aštuonių deterministiškai parinktų Pages hostų vis dar pateikė tiksliai tą patį kenksmingą dokumentą ir tris žinomus script'us."
   - "Kodas iki dviejų kartų nuskaito ir Base64 užkoduoja vartotojo vardą bei slaptažodį, parodo tą pačią netikrą klaidą ir galiausiai nukreipia į teisėtą Hostinger Mail."
-  - "Exact hostname task paieška grąžino 298 vardus, o kitų vietinių pivot'ų final-page laukuose rastas dar vienas to paties šablono vardas; pilnas vietinis family union yra 299."
+  - "Exact hostname task paieška grąžino 298 vardus, o kitų vietinių pivot'ų final-page laukuose rastas dar vienas to paties šablono vardas pilnas vietinis family union yra 299."
   - "Atskiras hash-gated patikrinimas penkiuose exact-content hostuose nerado nė vieno valid ZIP archyvo: 25 fiksuoti candidate path'ai grąžino HTML."
   - "Vėlesniame vieno hosto fixed-path patikrinime devyni iš dešimties fiksuotų path'ų grąžino tikslų root dokumentą, todėl path-dependent browser elgsena gerai dera su Cloudflare Pages SPA fallback."
   - "Bendri parametrų vardai ir infrastruktūra rodo platesnę kit'o ar builder'io lineage, bet neįrodo, kad visus deployment'us valdė vienas žmogus ar grupė."
@@ -67,12 +67,12 @@ Kitaip tariant, puslapio vardai sukosi kaip vienkartiniai numeriai, bet po jais 
 
 Svarbiausia išvada iškart:
 
-- Hostinger šioje istorijoje yra **imituojamas brand'as**, o turimi duomenys nerodo jo sistemų kompromitavimo;
-- Cloudflare Pages ir Render yra paslaugų platformos, ne priskirti kampanijos dalyviai;
-- archyvuotas kodas aukštu confidence lygiu rodo credential collection elgseną;
-- 562 ar 467 URLScan įrašai **nėra aukos, apsilankymai ar sėkmingi credentials pateikimai**;
-- code reuse leidžia kalbėti apie kit'o lineage, bet ne apie vieną žmogų, šalį ar threat actor;
-- jokie credentials nebuvo pateikti ir credential receiver nebuvo kontaktuotas. Statinės analizės bei automatizuoto rinkimo metu campaign JavaScript nebuvo vykdomas ir nebuvo kontaktuotas nė vienas Render endpoint. Vėlesniame isolated-VM spot check puslapis buvo renderintas be formos duomenų, bet neišsaugotas HAR, todėl automatinio tracker kontakto atmesti negalima;
+- Hostinger šioje istorijoje yra **imituojamas brand'as**, o turimi duomenys nerodo jo sistemų kompromitavimo
+- Cloudflare Pages ir Render yra paslaugų platformos, ne priskirti kampanijos dalyviai
+- archyvuotas kodas aukštu confidence lygiu rodo credential collection elgseną
+- 562 ar 467 URLScan įrašai **nėra aukos, apsilankymai ar sėkmingi credentials pateikimai**
+- code reuse leidžia kalbėti apie kit'o lineage, bet ne apie vieną žmogų, šalį ar threat actor
+- jokie credentials nebuvo pateikti ir credential receiver nebuvo kontaktuotas. Statinės analizės bei automatizuoto rinkimo metu campaign JavaScript nebuvo vykdomas ir nebuvo kontaktuotas nė vienas Render endpoint. Vėlesniame isolated-VM spot check puslapis buvo renderintas be formos duomenų, bet neišsaugotas HAR, todėl automatinio tracker kontakto atmesti negalima
 - penkiuose exact-content hostuose buvo atliktas atskiras 30 GET ribos patikrinimas, tačiau nė vienas iš 25 fiksuotų ZIP path'ų nepateikė valid archyvo.
 
 ## Esminės išvados
@@ -94,7 +94,7 @@ Pradinis duomenų rinkinys buvo lokalus JavaScript Observatory surinkimas. Jame 
 
 Tada pivot'as buvo išplėstas dviem kryptimis:
 
-1. pagal visą hostname family;
+1. pagal visą hostname family
 2. pagal tikslų credential-harvesting JavaScript SHA-256.
 
 Rezultatas:
@@ -115,9 +115,9 @@ Rezultatas:
 | --- | --- | --- |
 | Archyvų analizė | URLScan JSON, response body, screenshot, hash ir redirect metadata | Jokio live formos pateikimo |
 | Statinė kodo analizė | HTML unwrap, JavaScript string table dekodavimas, formos ir callback'ų rekonstrukcija | Originalus JS nebuvo vykdomas |
-| Ribotas dabartinės būsenos patikrinimas | DNS, TLS, HEAD ir inert GET į aštuonių žinomų Pages hostų root; žinomi script path'ai tik penkiems exact-match hostams | Jokio renderinimo, POST, brute force, crawling, recursive path expansion, port scan ar Render endpoint kontakto |
+| Ribotas dabartinės būsenos patikrinimas | DNS, TLS, HEAD ir inert GET į aštuonių žinomų Pages hostų root žinomi script path'ai tik penkiems exact-match hostams | Jokio renderinimo, POST, brute force, crawling, recursive path expansion, port scan ar Render endpoint kontakto |
 | Fiksuotų archyvų vardų patikrinimas | Penki exact-root hostai, penki iš anksto nustatyti ZIP basename'ai, exact root-hash gate ir struktūrinė ZIP validacija | Jokio bendro wordlist'o, rekursijos, redirect sekimo, formos submit ar receiver kontakto |
-| Isolated-VM spot check | Manual browser stebėjimas atidarant bare project URL ir <code>/admin</code>, neįvedant ir nepateikiant jokių duomenų | Jokių credentials, plataus crawl, receiver test ar išsaugoto HAR; tai analyst observation, ne skaičiuojamas measurement |
+| Isolated-VM spot check | Manual browser stebėjimas atidarant bare project URL ir <code>/admin</code>, neįvedant ir nepateikiant jokių duomenų | Jokių credentials, plataus crawl, receiver test ar išsaugoto HAR tai analyst observation, ne skaičiuojamas measurement |
 | Fixed-path response check | Vienas anksčiau hash patvirtintas hostas, root-hash gate ir dešimt iš anksto fiksuotų nuoseklių GET su išjungtais redirect'ais | Jokio browser renderinimo, JavaScript vykdymo, bendro wordlist'o, rekursijos, query string, cookie ar receiver kontakto |
 
 Pradinis HTML buvo procentais užkoduotas dviem sluoksniais. Jis buvo išvyniotas kaip tekstas, ne atidarytas naršyklėje. JavaScript buvo nagrinėjamas baitais ir string table reikšmėmis. Tai svarbu, nes "tik trumpam paleiskim ir pažiūrėkim" yra labai geras būdas paversti tyrimą savu incidentu. Tada dar galima rašyti postmortem'ą apie tai, kaip analyst workstation tapo papildomu IOC. Labai edukaciška, bet šį kartą praleidau.
@@ -126,8 +126,8 @@ Tiesioginis dabartinės būsenos patikrinimas buvo atliktas tik tada, kai jau bu
 
 Kiekvienam iš aštuonių hostų buvo atlikta:
 
-- viena TLS sesija;
-- vienas <code>HEAD /</code>;
+- viena TLS sesija
+- vienas <code>HEAD /</code>
 - vienas riboto dydžio <code>GET /</code> be redirect sekimo ir be renderinimo.
 
 Tik penki hostai, kurių root body sutapo su žinomu kenksmingu dokumentu, gavo po vieną inert GET į tris jau archyve nustatytus kelius: <code>/jg.js</code>, <code>/js.js</code> ir <code>/js1.js</code>.
@@ -167,11 +167,11 @@ _3 pav. 2026-08-23 stebėjimas. Vizualus panašumas yra corroboration, o kenkėj
 
 Screenshot'uose numeriai žymi:
 
-1. kopijuotą Hostinger identitetą;
-2. email įvestį;
-3. password įvestį;
-4. login mygtuką, susietą su rinkimo flow;
-5. lokalizuotą marketingo tekstą;
+1. kopijuotą Hostinger identitetą
+2. email įvestį
+3. password įvestį
+4. login mygtuką, susietą su rinkimo flow
+5. lokalizuotą marketingo tekstą
 6. kopijuotą social proof elementą.
 
 Vien screenshot'as nepasako, kur keliauja duomenys. Jis parodo apgaulę. Tiksli duomenų kryptis nustatyta iš archyvuoto JavaScript ir request metadata.
@@ -207,7 +207,7 @@ Roundcube stiliaus ID nėra Hostinger kompromitavimo įrodymas. Tai greičiau ro
 
 Core script'as skaito du URL parametrus:
 
-- <code>coztrexx</code>;
+- <code>coztrexx</code>
 - <code>trexxcoz</code>.
 
 Abi reikšmės dekoduojamos iš Base64 ir sujungiamos su <code>@</code>. Taip gaunamas iš anksto užpildytas email adresas. Trečias parametras, <code>trexxx</code>, skaitomas tracker module'yje. Dar vienas vardas, <code>wfIUbh</code>, matomas istoriniuose task URL, bet jo funkcija išsaugotame Hostinger kode nenustatyta.
@@ -314,8 +314,8 @@ Vidinis counter'is pradeda nuo vieneto. Pirmas callback'as jį padidina iki dvie
 
 Tai leidžia kit'ui:
 
-- inicijuoti iki dviejų POST su credential poromis, jei vartotojas bando pakartotinai;
-- sukurti jausmą, kad pirmas password buvo tiesiog neteisingas;
+- inicijuoti iki dviejų POST su credential poromis, jei vartotojas bando pakartotinai
+- sukurti jausmą, kad pirmas password buvo tiesiog neteisingas
 - po visko nuvesti vartotoją į tikrą puslapį, kur jis gali pagalvoti, kad sistema tiesiog susitvarkė.
 
 Dark pattern'as labai paprastas. Pirma išsiunčiam pirmą credential bandymą, tada dar kartą paprašom "patikrinti slaptažodį", o pabaigoje parodom tikrą svetainę. Customer journey beveik idealus, jeigu customer yra nusikaltėlis.
@@ -362,10 +362,10 @@ Vienas sintetinis request'as naudojo tik built-in testines reikšmes:
 
 Loopback receiver užfiksavo:
 
-- metodą <code>POST</code>;
-- path <code>/capture</code>;
-- content type <code>application/x-www-form-urlencoded</code>;
-- laukus <code>ai</code>, <code>pg</code> ir <code>pr</code>;
+- metodą <code>POST</code>
+- path <code>/capture</code>
+- content type <code>application/x-www-form-urlencoded</code>
+- laukus <code>ai</code>, <code>pg</code> ir <code>pr</code>
 - body SHA-256 <code>2be964d49ba7e211ac4c4246cf40c66b1d107f7c7c29f95dab10bf93bfc34392</code>.
 
 Originalus campaign destination nebuvo kontaktuotas. Šitas testas neįrodo, kad remote receiver priima ar saugo duomenis. Jis įrodo, kad statinė request interpretacija gali būti atkartota lokaliai, nepaliekant fake credentials svetimoje sistemoje ir nesugadinant provider'io log'ų.
@@ -400,8 +400,8 @@ Jis matomas 467 grąžintuose URLScan stebėjimuose per 262 task domenus nuo 202
 
 Iš jų:
 
-- 465 task'ai prasidėjo Cloudflare Pages deployment'uose;
-- vienas task'as prasidėjo per <code>is[.]gd</code> shortener'į;
+- 465 task'ai prasidėjo Cloudflare Pages deployment'uose
+- vienas task'as prasidėjo per <code>is[.]gd</code> shortener'į
 - vienas task'as prasidėjo per <code>rb[.]gy</code> shortener'į.
 
 Ilgo Hostinger hostname family ir exact core persidengimas apima 462 stebėjimus. Likę penki yra du shortener task'ai ir trys Pages task'ai už tikslaus ilgo prefix pivot'o ribų.
@@ -450,8 +450,8 @@ Vienas rugpjūčio mėnesio pilnas rezultatas rodė Cloudflare 522 puslapį ir n
 | 2026-04-21 | Ankstyviausias išsaugotas current tracker hash | Endpoint'o pakeitimas nekeičiant pagrindinės flow logikos |
 | 2026-07-20 | Ankstyviausias grąžintas latest document hash match | Naujausia dokumento versija, tačiau paieška buvo truncated |
 | 2026-08-18 iki 2026-08-23 | Vietiniame subset 30 skenų ir 25 hostai | Discovery langas, ne kampanijos pradžia |
-| 2026-08-24 | Penki iš aštuonių hostų pateikė exact dokumentą ir script'us; du rodė Cloudflare warning, vienas 522 | Dalinis enforcement ir dalinis tolesnis prieinamumas ribotame sample |
-| 2026-08-24 17:48-17:53 | Penki exact-root hostai patikrinti penkiais fiksuotais ZIP basename'ais | 25 HTML response, nulis valid ZIP; siauras negative result |
+| 2026-08-24 | Penki iš aštuonių hostų pateikė exact dokumentą ir script'us du rodė Cloudflare warning, vienas 522 | Dalinis enforcement ir dalinis tolesnis prieinamumas ribotame sample |
+| 2026-08-24 17:48-17:53 | Penki exact-root hostai patikrinti penkiais fiksuotais ZIP basename'ais | 25 HTML response, nulis valid ZIP siauras negative result |
 
 Core hash pradžia 2025 m. gruodį ir ilgo hostname prefix'o pradžia 2026 m. kovą rodo kit'o tęstinumą per infrastruktūros naming pokytį. Tai nėra įrodymas, kad per visą laikotarpį veikė tas pats žmogus.
 
@@ -467,12 +467,12 @@ hostinger-mail-ewgjnwrkgnkrw-<24 mažosios a-z raidės>.pages.dev
 
 Pagrindiniame 298 task-hostname rinkinyje per 7 152 suffix pozicijas:
 
-- visi suffix'ai buvo tiksliai 24 simbolių;
-- naudotos visos 26 lotyniškos mažosios raidės;
-- vienos raidės dažnis svyravo nuo 249 iki 303;
-- išmatuota Shannon entropija buvo apie 4,6987 bitų simboliui;
-- teorinis maksimumas 26 raidžių abėcėlei yra apie 4,7004;
-- bendras chi-square prieš vienodą 26 raidžių pasiskirstymą buvo 17,27 su 25 laisvės laipsniais;
+- visi suffix'ai buvo tiksliai 24 simbolių
+- naudotos visos 26 lotyniškos mažosios raidės
+- vienos raidės dažnis svyravo nuo 249 iki 303
+- išmatuota Shannon entropija buvo apie 4,6987 bitų simboliui
+- teorinis maksimumas 26 raidžių abėcėlei yra apie 4,7004
+- bendras chi-square prieš vienodą 26 raidžių pasiskirstymą buvo 17,27 su 25 laisvės laipsniais
 - visi 298 suffix'ai buvo unikalūs.
 
 Pilname 299 vardų union entropija liko 4,6986, o chi-square 18,41. Gretimos raidės sutapo 3,55 proc. atvejų, kai uniform model tikėtųsi 3,85 proc. Pagal first-seen laiką išrikiuotų gretimų suffix'ų vidutinis Hamming distance buvo 23,044 iš 24, o uniform model tikėtųsi 23,077. First-seen laiko ir base-26 suffix reikšmės Pearson koreliacija buvo tik 0,110. Tai nėra formalus kriptografinio RNG testas, bet duomenyse nematyti paprasto counter'io, datos ar nuosekliai kintančio template.
@@ -566,15 +566,15 @@ Kad nereikėtų po fakto iš atminties gaminti labai patogios browser history, a
 
 | Patikrinti path'ai | HTTP rezultatas | Body rezultatas |
 | --- | --- | --- |
-| <code>/admin</code>, <code>/admin/</code>, <code>/login</code>, <code>/webmail</code>, <code>/auth</code>, <code>/mail</code>, <code>/robots.txt</code>, <code>/favicon.ico</code>, <code>/hecavex-path-control-20260824</code> | 200 <code>text/html</code> | 186 751 baitas; visuose devyniuose tikslus žinomas root SHA-256 |
-| <code>/index.html</code> | 308 į <code>/</code> | Tuščias body; redirect'as nesektas |
+| <code>/admin</code>, <code>/admin/</code>, <code>/login</code>, <code>/webmail</code>, <code>/auth</code>, <code>/mail</code>, <code>/robots.txt</code>, <code>/favicon.ico</code>, <code>/hecavex-path-control-20260824</code> | 200 <code>text/html</code> | 186 751 baitas visuose devyniuose tikslus žinomas root SHA-256 |
+| <code>/index.html</code> | 308 į <code>/</code> | Tuščias body redirect'as nesektas |
 
 Tai buvo **response comparison, ne active form interaction**: 11 GET kartu su root gate, dviejų sekundžių pauzė, jokių query parametrų, cookie, POST, recursion, bendro wordlist'o ar request į Render servisus. Rezultatas įrodo, kad Pages deployment'as unknown path'ams grąžino root dokumentą. Jis neatkuria to, ką konkrečiai vykdė vienas browser'is.
 
 Labiausiai pagrįstas paaiškinimas yra client-side parametrų gating ir SPA fallback kombinacija:
 
 1. **Bare root redirect, high confidence.** Pats root grąžino HTTP 200 be redirect header. Išsaugotas <code>js.js</code> tikisi validžių <code>coztrexx</code> bei <code>trexxcoz</code> reikšmių ir turi navigation į teisėtą Hostinger Mail, kai atkurtas mailbox neatitinka email pattern. <code>js1.js</code> turi atskirą fallback, kai nėra <code>trexxx</code>. Todėl direct root visit be campaign parametrų turi dingti iš klono taip, kaip ir buvo stebėta.
-2. **Unknown path lieka, plausible, bet dar ne fully proven.** HTML krauna <code>jg.js</code>, <code>js1.js</code> ir <code>js.js</code> per relative path'us. Serveris tiek <code>/admin</code>, tiek <code>/admin/</code> grąžino tą patį HTML. Iš slash-terminated URL tie script vardai resolve'inasi po <code>/admin/</code>; SPA fallback tada gali grąžinti HTML ten, kur browser tikėjosi JavaScript. Su <code>X-Content-Type-Options: nosniff</code> toks response neturėtų būti vykdomas kaip script'as, todėl redirect logika gali net neprasidėti. Tikslus address po browser normalizavimo, console output, asset request'ai, cache state ir MIME sprendimai nebuvo išsaugoti, todėl galutinei išvadai reikia HAR.
+2. **Unknown path lieka, plausible, bet dar ne fully proven.** HTML krauna <code>jg.js</code>, <code>js1.js</code> ir <code>js.js</code> per relative path'us. Serveris tiek <code>/admin</code>, tiek <code>/admin/</code> grąžino tą patį HTML. Iš slash-terminated URL tie script vardai resolve'inasi po <code>/admin/</code> SPA fallback tada gali grąžinti HTML ten, kur browser tikėjosi JavaScript. Su <code>X-Content-Type-Options: nosniff</code> toks response neturėtų būti vykdomas kaip script'as, todėl redirect logika gali net neprasidėti. Tikslus address po browser normalizavimo, console output, asset request'ai, cache state ir MIME sprendimai nebuvo išsaugoti, todėl galutinei išvadai reikia HAR.
 3. **Platformos enforcement realus, bet šitos rezultatų poros nepaaiškina.** Du kiti bounded hostai pateikė Cloudflare <code>Suspected Phishing</code> interstitial, o vienas grąžino 522. Tai gali paaiškinti warning ar nepasiekiamą hostą, bet ne aiškiai exact-content kode įrašytą navigaciją į legit Hostinger.
 
 Šiame case **nėra išsaugotų Evilginx įrodymų**. Turima implementacija yra static Pages clone su client-side POST destinations. Nefiksuotas reverse-proxy traffic, session-cookie relay, upstream Hostinger session, MFA relay ar Evilginx lure identifier. Query reikšmės įrodytos kaip mailbox personalization ir atskiras tracking token. Pavadinti jas Evilginx lure ID būtų labai patogu, tik tada evidence tektų vytis teiginį, o ne atvirkščiai. Taip pat nėra įrodymų, kad operatorius atpažino tyrėją ar specialiai blokavo VM. Pakeistas deployment, cache ar browser profile skirtumas lieka įmanomas, bet silpnesnis už elgseną, kuri jau aiškiai matoma išsaugotame kode.
@@ -613,7 +613,7 @@ Tai rodo, kad workflow nėra vien "sukurti, panaudoti, pamiršti". Bent dalis es
 
 Gynybinei komandai tai reiškia du dalykus:
 
-1. vieno URL takedown neišjungia deployment metodo;
+1. vieno URL takedown neišjungia deployment metodo
 2. senas žinomas hostas negali būti laikomas nekintančiu artefaktu, nes jo body gali būti pakeistas.
 
 ## DNS: 298 vardai resolve'inosi, bet tai nėra 298 aktyvūs phish'ai
@@ -691,10 +691,10 @@ Tai patvirtina, kad vardai resolve'inasi per Render ir Cloudflare shared infrast
 
 Tai yra realus mitigation signalas, bet ne visas takedown vaizdas:
 
-- warning galėjo būti įjungtas tik daliai projektų;
-- interstitial scan metu nepasako, kada jis atsirado;
-- DNS gali toliau veikti;
-- kitas projektas su tuo pačiu kit'u gali būti sukurtas po kelių minučių;
+- warning galėjo būti įjungtas tik daliai projektų
+- interstitial scan metu nepasako, kada jis atsirado
+- DNS gali toliau veikti
+- kitas projektas su tuo pačiu kit'u gali būti sukurtas po kelių minučių
 - penki to paties sample hostai vis dar pateikė exact malicious content.
 
 Abuse procese todėl reikalingas ne vien URL sąrašas, o cluster package: hostname gramatika, script ir document hash'ai, pirmas bei paskutinis stebėjimas, Render roles ir prašymas provider'iui pivot'inti vidiniais account bei deployment duomenimis.
@@ -705,10 +705,10 @@ Hostinger core yra stipriausias šio cluster'io indikatorius, tačiau dalis impl
 
 Išsaugotuose duomenyse kartojasi:
 
-- <code>trexxx</code>;
-- <code>trexxcoz</code>;
-- <code>coztrexx</code>;
-- <code>wfIUbh</code>;
+- <code>trexxx</code>
+- <code>trexxcoz</code>
+- <code>coztrexx</code>
+- <code>wfIUbh</code>
 - path marker <code>QOIUEWFHWYREFNFE2Pdf</code>.
 
 Pirmame siaurame pivot'ų pakete, kuriam buvo išsaugoti detalesni URLScan rezultatai, po deduplikavimo pagal URLScan UUID:
@@ -732,12 +732,12 @@ Per visus vietinius pivot'us Hostinger label turintys Pages vardai pasidalija į
 
 | Tier | Vardai | Ką rodo evidence |
 | --- | ---: | --- |
-| Confirmed main family | 299 | 298 exact task-query vardai ir vienas papildomas to paties ilgo prefix'o final-page vardas; fiksuotas <code>ewgjnwrkgnkrw</code>, 24 raidžių suffix ir Hostinger core kontekstas |
+| Confirmed main family | 299 | 298 exact task-query vardai ir vienas papildomas to paties ilgo prefix'o final-page vardas fiksuotas <code>ewgjnwrkgnkrw</code>, 24 raidžių suffix ir Hostinger core kontekstas |
 | Confirmed core precursor | 1 | <code>hostinger-uumivqkwcvvexhetvgxogfai[.]pages[.]dev</code>, exact credential-harvester hash nuo 2025-12-23, dar prieš ilgą 2026 m. kovo naming formą |
 | Weak context lead | 1 | <code>hostinger-update-ngainmpncpsketwbolthzknx[.]pages[.]dev</code>, ryšys tik per generic anti-inspection hash ir Hostinger title |
-| Grammar-only lead | 1 | <code>hostinger-wwckxewfyujojngbkjxdudnf[.]pages[.]dev</code>, platesnė path ir parametrų gramatika, bet ne exact Hostinger core; final title buvo <code>wtbbusiness</code> |
+| Grammar-only lead | 1 | <code>hostinger-wwckxewfyujojngbkjxdudnf[.]pages[.]dev</code>, platesnė path ir parametrų gramatika, bet ne exact Hostinger core final title buvo <code>wtbbusiness</code> |
 
-Tai reiškia, kad vietiniame evidence yra 301 Hostinger-labelled **task domain**. Iš jų 298 priklauso exact ilgam family; įtraukus vieną tik final-page rolėje matytą to paties šablono vardą, pilnas family union yra 299. Šių skaičių negalima sudėti į patogų "302 Hostinger campaign domains" sakinį. Du silpni lead'ai nėra patvirtinti family nariai.
+Tai reiškia, kad vietiniame evidence yra 301 Hostinger-labelled **task domain**. Iš jų 298 priklauso exact ilgam family įtraukus vieną tik final-page rolėje matytą to paties šablono vardą, pilnas family union yra 299. Šių skaičių negalima sudėti į patogų "302 Hostinger campaign domains" sakinį. Du silpni lead'ai nėra patvirtinti family nariai.
 
 Viename 2026-05-09 redirect chain taip pat matomas <code>hostingermailhrbgwnejfknewh[.]pythonanywhere[.]com</code> prieš Pages Hostinger puslapį. Tai delivery ar redirect infrastruktūros kontekstas, ne dar vienas Pages project-name generatoriaus output.
 
@@ -772,7 +772,7 @@ Visi 67 suffix'ai buvo unikalūs. Jų entropija buvo 4,6892 iš 4,7004 bitų sim
 
 ### Path marker'iai keitėsi, gramatika liko
 
-Užbaigto <code>task.url:"trexxcoz"</code> seto platesnė lineage analizė suskaičiavo 118 scan ID ir bent 15 sanitized task path variantų. Siauresnis reprodukuojamas hostname-analysis extractor'is iš jų paliko septynis vieno segmento 10-64 simbolių alphanumeric marker'ius; kitų path formų jis sąmoningai neskaičiuoja. Dažniausias <code>QOIUEWFHWYREFNFE2Pdf</code> variantas matomas 62 įrašuose nuo 2024-10-03 iki 2026-07-14. Jis kirto <code>update</code>, <code>adobe</code>, <code>excel</code>, <code>pdf</code>, <code>viewfile</code> ir vieną context-only <code>hostinger</code> prefix'ą.
+Užbaigto <code>task.url:"trexxcoz"</code> seto platesnė lineage analizė suskaičiavo 118 scan ID ir bent 15 sanitized task path variantų. Siauresnis reprodukuojamas hostname-analysis extractor'is iš jų paliko septynis vieno segmento 10-64 simbolių alphanumeric marker'ius kitų path formų jis sąmoningai neskaičiuoja. Dažniausias <code>QOIUEWFHWYREFNFE2Pdf</code> variantas matomas 62 įrašuose nuo 2024-10-03 iki 2026-07-14. Jis kirto <code>update</code>, <code>adobe</code>, <code>excel</code>, <code>pdf</code>, <code>viewfile</code> ir vieną context-only <code>hostinger</code> prefix'ą.
 
 Kiti variantai dera su kintančia builder gramatika, bet taip pat gali būti kelių nukopijuotų template variantų rezultatas:
 
@@ -781,7 +781,7 @@ Kiti variantai dera su kintančia builder gramatika, bet taip pat gali būti kel
 | <code>HEDBWFRHKJEBRHJBVOLDpd</code> | 8 | ankstesni 2024 m. lure'ai |
 | <code>DEWFHRGBKIFNVJDGNoffi</code> | 14 | <code>excel</code>, <code>update</code>, <code>viewfile</code> ir IPFS |
 | <code>UOJFREIGTJGBRDLKFMFDyah</code> | 6 | 2024-12 iki 2025-02 |
-| <code>GWEOJIGJHUWRGNJFDiddy</code> ir lowercase variantas | 4 + 1 | Uppercase forma per <code>adobe</code> ir <code>update</code>; lowercase forma per <code>dhl</code> |
+| <code>GWEOJIGJHUWRGNJFDiddy</code> ir lowercase variantas | 4 + 1 | Uppercase forma per <code>adobe</code> ir <code>update</code> lowercase forma per <code>dhl</code> |
 | <code>peugjherkjgrgvfdchoti</code> | 2 | retesnis variantas |
 
 Tai sustiprina reusable builder, kit convention ar service hipotezę. Šiame daliniame vietiniame rinkinyje exact Hostinger credential-harvester hash kituose brand'uose nerastas. Exact current ir legacy tracker hash rezultatai šiame rinkinyje taip pat liko Hostinger-associated. Cross-brand ryšys remiasi naming shape, path marker'iais, parametrų gramatika ir vienu plačiau pernaudotu legacy endpoint'u, o ne byte-identical Hostinger core.
@@ -790,7 +790,7 @@ Tai sustiprina reusable builder, kit convention ar service hipotezę. Šiame dal
 
 Viešuose šaltiniuose ta pati keturių parametrų gramatika ir ilgas path matomi anksčiau:
 
-- išsaugotas 2025-07-24 URLScan viešas stebėjimas rodo Excel/PDF tematiką, tą patį path, parametrus ir Render request;
+- išsaugotas 2025-07-24 URLScan viešas stebėjimas rodo Excel/PDF tematiką, tą patį path, parametrus ir Render request
 - išsaugotas 2025-09-16 URLScan viešas stebėjimas rodo short-link, Koyeb, Render ir Google final chain su ta pačia gramatika.
 
 Tiesioginės šių dviejų rezultatų nuorodos nepateikiamos, nes viešoje scan metadata yra potencialiai iš gavėjų gautų reikšmių. Generic URLScan homepage nuoroda nepatvirtina nė vieno stebėjimo, todėl čia paliktos tik datos ir publikavimui saugus analitinis kontekstas.
@@ -837,11 +837,11 @@ Task infrastruktūra apima Pages, PythonAnywhere, Koyeb, Surge ir shortener'ius.
 
 Tai yra tikras infrastruktūros arba konvencijos reuse. Bet vienas backend vardas per kelis brand'us gali reikšti:
 
-- vieną operatorių;
-- kit'o kūrėją ir daug klientų;
-- phishing-as-a-service;
-- perparduotą ar nukopijuotą paketą;
-- bendrą tracker servisą;
+- vieną operatorių
+- kit'o kūrėją ir daug klientų
+- phishing-as-a-service
+- perparduotą ar nukopijuotą paketą
+- bendrą tracker servisą
 - tiesiog ilgai pernaudojamą kodą.
 
 Vieši duomenys neleidžia patikimai pasirinkti vieno paaiškinimo. Todėl šiame tekste vartojamas "kit lineage" ir "deployment family", ne actor attribution.
@@ -905,7 +905,7 @@ T1566.002 ar T1204.001 šiame rinkinyje nėra tiesiogiai observed, nes neturime 
 | Hostname regex | <code>^hostinger-mail-ewgjnwrkgnkrw-[a-z]{24}\.pages\.dev$</code> | Stiprus observed deployment family indikatorius |
 | Root document SHA-256 | <code>728d235b2ad22aa3e0f9147f267256d06b80e5ebd7bd61daa1499c1ab6f50af5</code> | Aukšto tikslumo, bet version-specific |
 | Credential script SHA-256 | <code>9805613dfd2c4b09e3080d0fabbfb8476efff9cd57775481df5a523922b311c2</code> | Stipriausias elgsenos indikatorius iš išsaugoto rinkinio |
-| Credential receiver | <code>mohamedbinsalm[.]onrender[.]com</code> | Kode aiškiai nurodytas credentials POST destination; forma nebuvo pateikta ir šitas receiver nebuvo kontaktuotas |
+| Credential receiver | <code>mohamedbinsalm[.]onrender[.]com</code> | Kode aiškiai nurodytas credentials POST destination forma nebuvo pateikta ir šitas receiver nebuvo kontaktuotas |
 
 ### Tier 2: naudoti su kontekstu
 
@@ -940,10 +940,10 @@ Pirmas aukšto tikslumo kandidatas yra hostname regex:
 
 Jei toks hostas randamas DNS ar proxy log'uose, enrich'inimas turėtų tikrinti:
 
-1. ar HTTP response hash sutampa su root arba core;
-2. ar puslapis krauna <code>/js.js</code>, <code>/js1.js</code> ir <code>/jg.js</code>;
-3. ar request chain turi vieną iš Render destination;
-4. ar po task origin seka navigacija į teisėtą Hostinger Mail;
+1. ar HTTP response hash sutampa su root arba core
+2. ar puslapis krauna <code>/js.js</code>, <code>/js1.js</code> ir <code>/jg.js</code>
+3. ar request chain turi vieną iš Render destination
+4. ar po task origin seka navigacija į teisėtą Hostinger Mail
 5. ar query turi parametrų vardus, bet telemetry išsaugo jų reikšmes tik pagal organizacijos privacy taisykles.
 
 Nerekomenduoju saugoti ar dalintis pilnų personalizuotų query string vien tam, kad detection atrodytų turtingesnis. Parametro vardas dažnai pakankamas, o decoded email local-part jau gali būti PII.
@@ -960,12 +960,12 @@ AND
 
 Jei hash pasikeičia, naudinga structural paieška:
 
-- Hostinger brand literalas;
-- formos ID <code>rcmloginuser</code> ir <code>rcmloginpwd</code>;
-- <code>ai</code>, <code>pr</code> ir <code>pg</code> POST laukų kombinacija;
-- <code>btoa</code> taikymas abiems credentials laukams;
-- success ir error callback'uose tas pats <code>Login failed.</code> tekstas;
-- redirect į teisėtą Hostinger Mail po counter padidėjimo;
+- Hostinger brand literalas
+- formos ID <code>rcmloginuser</code> ir <code>rcmloginpwd</code>
+- <code>ai</code>, <code>pr</code> ir <code>pg</code> POST laukų kombinacija
+- <code>btoa</code> taikymas abiems credentials laukams
+- success ir error callback'uose tas pats <code>Login failed.</code> tekstas
+- redirect į teisėtą Hostinger Mail po counter padidėjimo
 - vienas iš tracker parametrų ir Render destination.
 
 Vienas <code>btoa</code>, password field ar jQuery AJAX yra visiškai normalūs web elementai. Reikia jų kombinacijos ir brand konteksto.
@@ -974,10 +974,10 @@ Vienas <code>btoa</code>, password field ar jQuery AJAX yra visiškai normalūs 
 
 URLScan paieškoje atskirkite:
 
-- <code>task.domain</code>, kuris rodo pradinį pateiktą campaign hostą;
-- <code>page.domain</code>, kuris po redirect gali būti teisėtas;
-- contacted <code>domain</code>, kuris rodo session metu paliestą infrastruktūrą;
-- response hash, kuris yra stipresnis už final title;
+- <code>task.domain</code>, kuris rodo pradinį pateiktą campaign hostą
+- <code>page.domain</code>, kuris po redirect gali būti teisėtas
+- contacted <code>domain</code>, kuris rodo session metu paliestą infrastruktūrą
+- response hash, kuris yra stipresnis už final title
 - scan timestamp, kuris yra vienas stebėjimas, ne registration ar delivery laikas.
 
 Paieškos rezultatus deduplikuokite pagal scan UUID ir task hostname atskirai. Tie du skaičiai atsako į skirtingus klausimus.
@@ -1068,8 +1068,8 @@ Paviršiuje domenai keičiasi. Po jais kodas keičiasi gerokai lėčiau. Būtent
 
 Taip pat tai yra geras priminimas, kodėl CTI tyrime reikia atskirti tris dalykus:
 
-1. **ką kodas daro**;
-2. **kaip infrastruktūra kartojasi**;
+1. **ką kodas daro**
+2. **kaip infrastruktūra kartojasi**
 3. **kas ją valdo**.
 
 Pirmus du šioje byloje galima pagrįsti gana stipriai. Trečiam reikia provider'io ar teisėsaugos duomenų. Jeigu trečią atsakymą sugalvotume vien iš random raidžių ir shared CDN IP, tai jau būtų ne threat intelligence, o fan fiction su IOC lentele.
@@ -1120,6 +1120,6 @@ Platformų ir reporting teiginiams naudoti pirminiai šaltiniai:
 16. [Cloudflare Pages: Serving Pages and SPA fallback](https://developers.cloudflare.com/pages/configuration/serving-pages/)
 17. [MITRE ATT&CK T1568.002: Dynamic Resolution, Domain Generation Algorithms](https://attack.mitre.org/techniques/T1568/002/)
 
-Du išsaugoti 2025-07-24 ir 2025-09-16 URLScan vieši stebėjimai naudoti tik implementation grammar kontekstui. Tiesioginės rezultatų nuorodos neviešinamos, nes public metadata yra potencialiai iš gavėjų gautų reikšmių; URLScan homepage sąmoningai nepateikiamas kaip šių įrašų citata.
+Du išsaugoti 2025-07-24 ir 2025-09-16 URLScan vieši stebėjimai naudoti tik implementation grammar kontekstui. Tiesioginės rezultatų nuorodos neviešinamos, nes public metadata yra potencialiai iš gavėjų gautų reikšmių URLScan homepage sąmoningai nepateikiamas kaip šių įrašų citata.
 
 Trečiųjų šalių klasifikacijos nėra naudojamos kaip savarankiškas vietinio malicious behavior įrodymas.

@@ -72,7 +72,7 @@ The most important boundaries are clear:
 - Archived code demonstrates credential-collection behavior with high confidence.
 - The 562 and 467 URLScan records are **not victims, visits, or successful credential submissions**.
 - Code reuse supports a kit-lineage assessment, not attribution to one person, country, or threat actor.
-- No credentials were submitted and the credential receiver was never contacted. Static and automated collection did not execute the campaign JavaScript or contact either Render endpoint. A later isolated-VM spot check rendered the page without form input; because no HAR was retained, automatic tracker contact cannot be excluded.
+- No credentials were submitted and the credential receiver was never contacted. Static and automated collection did not execute the campaign JavaScript or contact either Render endpoint. A later isolated-VM spot check rendered the page without form input because no HAR was retained, automatic tracker contact cannot be excluded.
 - A separate 30-GET bounded check was performed across five exact-content hosts, but none of the 25 fixed ZIP paths returned a valid archive.
 
 ## Key findings
@@ -94,7 +94,7 @@ The initial dataset came from a local JavaScript observation collection. It cont
 
 The pivot then expanded in two directions:
 
-1. across the full hostname family;
+1. across the full hostname family
 2. through the exact SHA-256 of the credential-harvesting JavaScript.
 
 The results were:
@@ -115,9 +115,9 @@ The investigation used six bounded layers:
 | --- | --- | --- |
 | Archive analysis | URLScan JSON, response bodies, screenshots, hashes, and redirect metadata | No live form submission |
 | Static code analysis | HTML unwrapping, JavaScript string-table decoding, and reconstruction of forms and callbacks | The original JavaScript was not executed |
-| Limited current-state check | DNS, TLS, HEAD, and inert GET requests to the roots of eight known Pages hosts; known script paths only for five exact-match hosts | No rendering, POST, brute force, crawling, recursive path expansion, port scanning, or contact with Render endpoints |
+| Limited current-state check | DNS, TLS, HEAD, and inert GET requests to the roots of eight known Pages hosts known script paths only for five exact-match hosts | No rendering, POST, brute force, crawling, recursive path expansion, port scanning, or contact with Render endpoints |
 | Fixed archive-name check | Five exact-root hosts, five predetermined ZIP basenames, an exact root-hash gate, and structural ZIP validation | No general wordlist, recursion, redirect following, form submission, or receiver contact |
-| Isolated-VM spot check | Manual browser observation of the bare project URL and <code>/admin</code>, without entering or submitting data | No credentials, broad crawl, receiver test, or retained HAR; this is an analyst observation, not a counted measurement |
+| Isolated-VM spot check | Manual browser observation of the bare project URL and <code>/admin</code>, without entering or submitting data | No credentials, broad crawl, receiver test, or retained HAR this is an analyst observation, not a counted measurement |
 | Fixed-path response check | One previously hash-confirmed host, one root-hash gate, and ten predetermined sequential GET requests with redirects disabled | No browser rendering, JavaScript execution, general wordlist, recursion, query strings, cookies, or receiver contact |
 
 The initial HTML was percent-encoded in two layers. It was unwrapped as text rather than opened in a browser. JavaScript was examined as bytes and decoded string-table values. That distinction matters because "let us run it for a moment and see" is an excellent way to turn an investigation into an incident. The next step is a postmortem explaining how the analyst workstation became an additional IOC. Very educational, but skipped this time.
@@ -126,8 +126,8 @@ The direct current-state check was performed only after exact document and asset
 
 Each of the eight hosts received:
 
-- one TLS session;
-- one <code>HEAD /</code> request;
+- one TLS session
+- one <code>HEAD /</code> request
 - one size-limited <code>GET /</code> request without redirects or rendering.
 
 Only the five hosts whose root body matched the known malicious document received one inert GET for each of three paths already identified in the archive: <code>/jg.js</code>, <code>/js.js</code>, and <code>/js1.js</code>.
@@ -163,15 +163,15 @@ _Figure 1. German URLScan observation from 2026-08-18. This is a sandbox screens
 _Figure 2. Portuguese variant from 2026-08-19. The UI localization changed while the collection mechanism remained the same._
 
 ![A second annotated URLScan screenshot of a German Hostinger phishing page with English analytical labels.](/assets/img/posts/2026-08-24-hostinger-pages-phishing/hostinger-login-german-02-en.png)
-_Figure 3. Observation from 2026-08-23. Visual similarity is corroboration; malicious behavior was established from code._
+_Figure 3. Observation from 2026-08-23. Visual similarity is corroboration malicious behavior was established from code._
 
 The annotations mark:
 
-1. the copied Hostinger identity;
-2. the email input;
-3. the password input;
-4. the login button wired into the collection flow;
-5. localized marketing text;
+1. the copied Hostinger identity
+2. the email input
+3. the password input
+4. the login button wired into the collection flow
+5. localized marketing text
 6. copied social-proof content.
 
 A screenshot does not show where the data travels. It shows the deception. The exact destination was determined from archived JavaScript and request metadata.
@@ -207,7 +207,7 @@ The Roundcube-style IDs do not indicate a Hostinger compromise. They more likely
 
 The core script reads two URL parameters:
 
-- <code>coztrexx</code>;
+- <code>coztrexx</code>
 - <code>trexxcoz</code>.
 
 Both values are decoded from Base64 and joined with <code>@</code> to produce a prefilled email address. A third parameter, <code>trexxx</code>, is read by the tracker module. Another name, <code>wfIUbh</code>, appears in historical task URLs, but its function was not established in the retained Hostinger code.
@@ -314,8 +314,8 @@ An internal counter starts at one. The first callback increases it to two. A sec
 
 This allows the kit to:
 
-- initiate as many as two POST requests containing credential pairs when a user retries;
-- suggest that the first password was simply incorrect;
+- initiate as many as two POST requests containing credential pairs when a user retries
+- suggest that the first password was simply incorrect
 - finally deliver the user to the legitimate page, where the system may appear to have corrected itself.
 
 The dark pattern is simple. Send the first credential attempt, ask the user to "check the password" once more, then display the real website. The customer journey is almost perfect if the customer is a criminal.
@@ -362,10 +362,10 @@ One synthetic request used only built-in test values:
 
 The loopback receiver recorded:
 
-- method <code>POST</code>;
-- path <code>/capture</code>;
-- content type <code>application/x-www-form-urlencoded</code>;
-- fields <code>ai</code>, <code>pg</code>, and <code>pr</code>;
+- method <code>POST</code>
+- path <code>/capture</code>
+- content type <code>application/x-www-form-urlencoded</code>
+- fields <code>ai</code>, <code>pg</code>, and <code>pr</code>
 - body SHA-256 <code>2be964d49ba7e211ac4c4246cf40c66b1d107f7c7c29f95dab10bf93bfc34392</code>.
 
 The original campaign destination was not contacted. This test does not show that the remote receiver accepts or retains data. It demonstrates that the static request interpretation can be reproduced locally without leaving fake credentials in somebody else's system or contaminating a provider's logs.
@@ -400,8 +400,8 @@ It appeared in 467 returned URLScan observations across 262 task domains from 20
 
 Of those records:
 
-- 465 tasks began on Cloudflare Pages deployments;
-- one task began through the <code>is[.]gd</code> shortener;
+- 465 tasks began on Cloudflare Pages deployments
+- one task began through the <code>is[.]gd</code> shortener
 - one task began through the <code>rb[.]gy</code> shortener.
 
 The overlap between the long Hostinger hostname family and the exact core contains 462 observations. The remaining five consist of two shortener tasks and three Pages tasks outside the exact long-prefix pivot.
@@ -450,8 +450,8 @@ One complete August result showed a Cloudflare 522 page and did not contain the 
 | 2026-04-21 | Earliest retained current tracker hash | Endpoint changed without changing the primary flow logic |
 | 2026-07-20 | Earliest returned latest-document hash match | Latest document version, although search output was truncated |
 | 2026-08-18 to 2026-08-23 | Local subset contains 30 scans and 25 hosts | Discovery window, not campaign start |
-| 2026-08-24 | Five of eight hosts served the exact document and scripts; two showed a Cloudflare warning and one returned 522 | Partial enforcement and partial continued availability within the bounded sample |
-| 2026-08-24 17:48 to 17:53 | Five exact-root hosts checked for five fixed ZIP basenames | 25 HTML responses and zero valid ZIP archives; a narrow negative result |
+| 2026-08-24 | Five of eight hosts served the exact document and scripts two showed a Cloudflare warning and one returned 522 | Partial enforcement and partial continued availability within the bounded sample |
+| 2026-08-24 17:48 to 17:53 | Five exact-root hosts checked for five fixed ZIP basenames | 25 HTML responses and zero valid ZIP archives a narrow negative result |
 
 The December 2025 core-hash start and March 2026 hostname-prefix start show continuity across a change in infrastructure naming. They do not prove that the same person operated the system throughout that period.
 
@@ -467,12 +467,12 @@ hostinger-mail-ewgjnwrkgnkrw-<24 lowercase a-z letters>.pages.dev
 
 Across the 7,152 suffix positions in the primary set of 298 task hostnames:
 
-- every suffix contained exactly 24 characters;
-- all 26 lowercase Latin letters appeared;
-- individual letter counts ranged from 249 to 303;
-- measured Shannon entropy was about 4.6987 bits per character;
-- the theoretical maximum for a 26-letter alphabet is about 4.7004;
-- the aggregate chi-square statistic against a uniform distribution was 17.27 with 25 degrees of freedom;
+- every suffix contained exactly 24 characters
+- all 26 lowercase Latin letters appeared
+- individual letter counts ranged from 249 to 303
+- measured Shannon entropy was about 4.6987 bits per character
+- the theoretical maximum for a 26-letter alphabet is about 4.7004
+- the aggregate chi-square statistic against a uniform distribution was 17.27 with 25 degrees of freedom
 - all 298 suffixes were unique.
 
 Across the full union of 299 names, entropy remained 4.6986 and chi-square was 18.41. Adjacent letters matched in 3.55 percent of positions, compared with 3.85 percent under a uniform model. The mean Hamming distance between chronologically adjacent suffixes was 23.044 of 24, compared with an expected 23.077. The Pearson correlation between first-seen time and the base-26 suffix value was only 0.110. These are not formal cryptographic RNG tests, but the output shows no obvious counter, date, or incrementing template.
@@ -549,7 +549,7 @@ Root results for the eight deterministically selected hosts were:
 | --- | ---: | --- |
 | Exact known malicious document | 5 | Body SHA-256 matched the decoded credential-harvester document |
 | Cloudflare "Suspected Phishing" interstitial | 2 | The platform displayed a protective warning at that moment |
-| Cloudflare 522 | 1 | A connection timeout was returned; content state remained unknown |
+| Cloudflare 522 | 1 | A connection timeout was returned content state remained unknown |
 
 Each of the five exact-match hosts then served the three known scripts. All 15 responses matched archived hashes:
 
@@ -569,18 +569,18 @@ To test the server-side part without inventing a browser history after the fact,
 
 | Requested paths | HTTP result | Body result |
 | --- | --- | --- |
-| <code>/admin</code>, <code>/admin/</code>, <code>/login</code>, <code>/webmail</code>, <code>/auth</code>, <code>/mail</code>, <code>/robots.txt</code>, <code>/favicon.ico</code>, <code>/hecavex-path-control-20260824</code> | 200 <code>text/html</code> | 186,751 bytes; exact known root SHA-256 for all nine |
-| <code>/index.html</code> | 308 to <code>/</code> | Empty body; redirects were not followed |
+| <code>/admin</code>, <code>/admin/</code>, <code>/login</code>, <code>/webmail</code>, <code>/auth</code>, <code>/mail</code>, <code>/robots.txt</code>, <code>/favicon.ico</code>, <code>/hecavex-path-control-20260824</code> | 200 <code>text/html</code> | 186,751 bytes exact known root SHA-256 for all nine |
+| <code>/index.html</code> | 308 to <code>/</code> | Empty body redirects were not followed |
 
 This was a **response comparison, not active form interaction**: 11 GET requests including the root gate, a two-second delay, no query parameters, no cookies, no POST, no recursion, no general wordlist, and no request to either Render service. It proves that the Pages deployment returned its root document for unknown paths. It does not reproduce what one browser executed.
 
 The most defensible explanation is a combination of client-side parameter gating and SPA fallback:
 
 1. **Bare root redirect, high confidence.** The root itself returned HTTP 200 with no redirect header. The captured <code>js.js</code> expects valid <code>coztrexx</code> and <code>trexxcoz</code> values and contains the navigation to legitimate Hostinger Mail when the reconstructed mailbox is invalid. <code>js1.js</code> has a separate fallback when <code>trexxx</code> is absent. A direct root visit without the intended lure parameters is therefore expected to leave the clone.
-2. **Unknown path remains, plausible but not fully proven.** The HTML loads <code>jg.js</code>, <code>js1.js</code>, and <code>js.js</code> through relative paths. The server returned the same HTML at both <code>/admin</code> and <code>/admin/</code>. From a slash-terminated URL, those script names resolve below <code>/admin/</code>; an SPA fallback can then return HTML where the browser expected JavaScript. With <code>X-Content-Type-Options: nosniff</code>, that response should not run as a script, so the redirect logic may never start. The exact address after browser normalization, console output, asset requests, cache state, and MIME decisions were not retained, so a HAR is required to turn this explanation into a finding.
+2. **Unknown path remains, plausible but not fully proven.** The HTML loads <code>jg.js</code>, <code>js1.js</code>, and <code>js.js</code> through relative paths. The server returned the same HTML at both <code>/admin</code> and <code>/admin/</code>. From a slash-terminated URL, those script names resolve below <code>/admin/</code> an SPA fallback can then return HTML where the browser expected JavaScript. With <code>X-Content-Type-Options: nosniff</code>, that response should not run as a script, so the redirect logic may never start. The exact address after browser normalization, console output, asset requests, cache state, and MIME decisions were not retained, so a HAR is required to turn this explanation into a finding.
 3. **Platform enforcement is real but does not explain this pair of results.** Two other bounded hosts served Cloudflare's <code>Suspected Phishing</code> interstitial and one returned 522. That can explain a warning or unavailable host, not the explicit navigation to legitimate Hostinger encoded in the exact-content sample.
 
-There is **no retained evidence of Evilginx** in this case. The preserved implementation is a static Pages clone with client-side POST destinations. No reverse-proxy traffic, session-cookie relay, upstream Hostinger session, MFA relay, or Evilginx lure identifier was observed. The query values are evidenced as mailbox personalization and a separate tracking token; calling them Evilginx lure IDs would turn a theory into a fact without doing the inconvenient evidence part. There is also no evidence that the operator identified the analyst or deliberately blocked the VM. A changed deployment, cache or browser-profile difference remains possible, but weaker than the behavior already present in the captured code.
+There is **no retained evidence of Evilginx** in this case. The preserved implementation is a static Pages clone with client-side POST destinations. No reverse-proxy traffic, session-cookie relay, upstream Hostinger session, MFA relay, or Evilginx lure identifier was observed. The query values are evidenced as mailbox personalization and a separate tracking token calling them Evilginx lure IDs would turn a theory into a fact without doing the inconvenient evidence part. There is also no evidence that the operator identified the analyst or deliberately blocked the VM. A changed deployment, cache or browser-profile difference remains possible, but weaker than the behavior already present in the captured code.
 
 ### Five ZIP names, five hosts, and zero ZIP archives
 
@@ -614,7 +614,7 @@ This shows that the workflow was not simply "create, use, forget". At least some
 
 For defenders, that has two consequences:
 
-1. taking down one URL does not remove the deployment method;
+1. taking down one URL does not remove the deployment method
 2. a known historical host cannot be treated as immutable because its body can change.
 
 ## DNS: 298 names resolved, but that is not 298 active phishing pages
@@ -692,10 +692,10 @@ Seventy historical URLScan observations ended at a Cloudflare suspected-phishing
 
 That is a real mitigation signal, but not a complete takedown view:
 
-- a warning may have been enabled for only part of the project set;
-- an interstitial at scan time does not say when it appeared;
-- DNS can continue to resolve;
-- another project using the same kit can appear minutes later;
+- a warning may have been enabled for only part of the project set
+- an interstitial at scan time does not say when it appeared
+- DNS can continue to resolve
+- another project using the same kit can appear minutes later
 - five hosts from the same sample still served exact malicious content.
 
 An effective abuse report therefore needs more than a URL list. It needs a cluster package containing hostname grammar, script and document hashes, first-seen and last-seen times, Render roles, and a request for the provider to pivot through internal account and deployment data.
@@ -706,10 +706,10 @@ The Hostinger core is the strongest indicator in this cluster, but parts of the 
 
 The retained data repeatedly contains:
 
-- <code>trexxx</code>;
-- <code>trexxcoz</code>;
-- <code>coztrexx</code>;
-- <code>wfIUbh</code>;
+- <code>trexxx</code>
+- <code>trexxcoz</code>
+- <code>coztrexx</code>
+- <code>wfIUbh</code>
 - path marker <code>QOIUEWFHWYREFNFE2Pdf</code>.
 
 In the first narrow pivot package for which detailed URLScan results were retained, deduplicated by URLScan UUID:
@@ -733,10 +733,10 @@ Across all local pivots, Pages names containing a Hostinger label fell into seve
 
 | Tier | Names | What the evidence shows |
 | --- | ---: | --- |
-| Confirmed main family | 299 | The 298 exact task-query names plus one same-prefix final-page name; fixed <code>ewgjnwrkgnkrw</code>, a 24-letter suffix, and Hostinger-core context |
+| Confirmed main family | 299 | The 298 exact task-query names plus one same-prefix final-page name fixed <code>ewgjnwrkgnkrw</code>, a 24-letter suffix, and Hostinger-core context |
 | Confirmed core precursor | 1 | <code>hostinger-uumivqkwcvvexhetvgxogfai[.]pages[.]dev</code>, with the exact credential-harvester hash from 2025-12-23, before the long March 2026 naming form |
 | Weak context lead | 1 | <code>hostinger-update-ngainmpncpsketwbolthzknx[.]pages[.]dev</code>, linked only through the generic anti-inspection hash and a Hostinger title |
-| Grammar-only lead | 1 | <code>hostinger-wwckxewfyujojngbkjxdudnf[.]pages[.]dev</code>, sharing broader path and parameter grammar but not the exact Hostinger core; its final title was <code>wtbbusiness</code> |
+| Grammar-only lead | 1 | <code>hostinger-wwckxewfyujojngbkjxdudnf[.]pages[.]dev</code>, sharing broader path and parameter grammar but not the exact Hostinger core its final title was <code>wtbbusiness</code> |
 
 The local evidence therefore contains 301 Hostinger-labelled **task domains**. Of these, 298 belong to the exact long family. Adding one same-pattern name seen only in a final-page role gives a complete family union of 299. These figures cannot be compressed into a convenient claim of "302 Hostinger campaign domains". Two weak leads are not confirmed family members.
 
@@ -773,7 +773,7 @@ This shape is a meaningful signal that a shared naming convention or compatible 
 
 ### Path markers changed while the grammar remained
 
-The completed <code>task.url:"trexxcoz"</code> set contained 118 scan IDs and at least 15 sanitized task-path variants. A narrower reproducible hostname-analysis extractor retained seven single-segment alphanumeric markers between 10 and 64 characters; it deliberately excludes other path forms. The most frequent marker, <code>QOIUEWFHWYREFNFE2Pdf</code>, appeared in 62 records from 2024-10-03 to 2026-07-14. It crossed <code>update</code>, <code>adobe</code>, <code>excel</code>, <code>pdf</code>, <code>viewfile</code>, and one context-only <code>hostinger</code> prefix.
+The completed <code>task.url:"trexxcoz"</code> set contained 118 scan IDs and at least 15 sanitized task-path variants. A narrower reproducible hostname-analysis extractor retained seven single-segment alphanumeric markers between 10 and 64 characters it deliberately excludes other path forms. The most frequent marker, <code>QOIUEWFHWYREFNFE2Pdf</code>, appeared in 62 records from 2024-10-03 to 2026-07-14. It crossed <code>update</code>, <code>adobe</code>, <code>excel</code>, <code>pdf</code>, <code>viewfile</code>, and one context-only <code>hostinger</code> prefix.
 
 Other variants are consistent with changing builder grammar, but could also result from several copied template versions:
 
@@ -782,7 +782,7 @@ Other variants are consistent with changing builder grammar, but could also resu
 | <code>HEDBWFRHKJEBRHJBVOLDpd</code> | 8 | Earlier 2024 lures |
 | <code>DEWFHRGBKIFNVJDGNoffi</code> | 14 | <code>excel</code>, <code>update</code>, <code>viewfile</code>, and IPFS |
 | <code>UOJFREIGTJGBRDLKFMFDyah</code> | 6 | 2024-12 to 2025-02 |
-| <code>GWEOJIGJHUWRGNJFDiddy</code> and lowercase variant | 4 + 1 | Uppercase form across <code>adobe</code> and <code>update</code>; lowercase form through <code>dhl</code> |
+| <code>GWEOJIGJHUWRGNJFDiddy</code> and lowercase variant | 4 + 1 | Uppercase form across <code>adobe</code> and <code>update</code> lowercase form through <code>dhl</code> |
 | <code>peugjherkjgrgvfdchoti</code> | 2 | Rarer variant |
 
 This strengthens the reusable-builder, kit-convention, or service hypothesis. The exact Hostinger credential-harvester hash was not found under other brands in this partial local set. Exact current and legacy tracker-hash results also remained Hostinger-associated. The cross-brand relationship rests on naming shape, path markers, parameter grammar, and one more broadly reused legacy endpoint, not a byte-identical Hostinger core.
@@ -791,7 +791,7 @@ This strengthens the reusable-builder, kit-convention, or service hypothesis. Th
 
 The same four-parameter grammar and long path appear earlier in public sources:
 
-- a retained URLScan public observation from 2025-07-24 shows an Excel/PDF theme, the same path and parameters, and a Render request;
+- a retained URLScan public observation from 2025-07-24 shows an Excel/PDF theme, the same path and parameters, and a Render request
 - a retained URLScan public observation from 2025-09-16 shows a short-link, Koyeb, Render, and Google final chain using the same grammar.
 
 The two direct result pages are not linked because their public scan metadata contains potentially recipient-derived values. A generic URLScan homepage link would not substantiate either observation, so only the dates and publication-safe analytical context are retained here.
@@ -838,11 +838,11 @@ Task infrastructure includes Pages, PythonAnywhere, Koyeb, Surge, and URL shorte
 
 This is genuine infrastructure or convention reuse. A single backend name across several brands could, however, represent:
 
-- one operator;
-- one kit developer and several customers;
-- phishing as a service;
-- a resold or copied package;
-- a shared tracking service;
+- one operator
+- one kit developer and several customers
+- phishing as a service
+- a resold or copied package
+- a shared tracking service
 - simply long-lived reused code.
 
 Public data cannot reliably choose among these explanations. This article therefore uses "kit lineage" and "deployment family", not actor attribution.
@@ -851,14 +851,14 @@ Public data cannot reliably choose among these explanations. This article theref
 
 | Level | Relationship | Assessment |
 | --- | --- | --- |
-| Exact | Core SHA-256 across 467 observations | Byte-identical credential and redirect logic; strongest family IOC |
+| Exact | Core SHA-256 across 467 observations | Byte-identical credential and redirect logic strongest family IOC |
 | Exact | Latest document SHA-256 | High-precision indicator for a specific version |
 | Exact | Current tracker SHA-256 across 452 observations | Byte-identical current tracker version |
 | Strong | Normalized structure of legacy and current trackers | Functionally equivalent module with a changed endpoint |
 | Strong | Seven stable resources in six complete samples | Reused UI and script bundle |
 | Medium | Current tracker domain or hash with Hostinger context | Useful only alongside stronger signals |
 | Weak | Legacy tracker endpoint alone | Cross-brand and cross-platform reuse, not operator proof |
-| Generic | Anti-inspection hash | Commodity behavior; never use alone |
+| Generic | Anti-inspection hash | Commodity behavior never use alone |
 
 This is the central analytical distinction in the investigation. **Byte-identical code is strong evidence of code lineage. It is not automatically strong evidence of human attribution.**
 
@@ -906,7 +906,7 @@ T1566.002 and T1204.001 are not directly observed because the dataset contains n
 | Hostname regex | <code>^hostinger-mail-ewgjnwrkgnkrw-[a-z]{24}\.pages\.dev$</code> | Strong indicator for the observed deployment family |
 | Root document SHA-256 | <code>728d235b2ad22aa3e0f9147f267256d06b80e5ebd7bd61daa1499c1ab6f50af5</code> | High precision but version-specific |
 | Credential script SHA-256 | <code>9805613dfd2c4b09e3080d0fabbfb8476efff9cd57775481df5a523922b311c2</code> | Strongest behavioral indicator in the retained set |
-| Credential receiver | <code>mohamedbinsalm[.]onrender[.]com</code> | Explicit credential POST destination in the code; no form was submitted and this receiver was not contacted |
+| Credential receiver | <code>mohamedbinsalm[.]onrender[.]com</code> | Explicit credential POST destination in the code no form was submitted and this receiver was not contacted |
 
 ### Tier 2: use with context
 
@@ -914,7 +914,7 @@ T1566.002 and T1204.001 are not directly observed because the dataset contains n
 | --- | --- | --- |
 | Current tracker SHA-256 | <code>563824f1917c8b2be9d54cc5b3c5dbcfd1b8cc9198039a3f54fe705d08ee6d5d</code> | Useful with Hostinger or form context |
 | Current tracker domain | <code>moyin-psp-12012026[.]onrender[.]com</code> | Tracking role, not credential receiver |
-| Parameters | <code>trexxx</code>, <code>trexxcoz</code>, <code>coztrexx</code> | Broader cross-brand grammar; insufficient individually |
+| Parameters | <code>trexxx</code>, <code>trexxcoz</code>, <code>coztrexx</code> | Broader cross-brand grammar insufficient individually |
 | Stable UI bundle | Five CSS hashes and the exact core | Useful for static-content clustering |
 
 ### Tier 3: weak or generic
@@ -922,7 +922,7 @@ T1566.002 and T1204.001 are not directly observed because the dataset contains n
 | Type | Value | Why it is weak |
 | --- | --- | --- |
 | Legacy tracker domain | <code>wfrgbfchkp[.]onrender[.]com</code> | Appears across many brands and platforms |
-| Legacy tracker SHA-256 | <code>b4f03187184e98f148b8fce890a35849a41f86aff938965138bf8a2346cf7d10</code> | Older version; use only with context |
+| Legacy tracker SHA-256 | <code>b4f03187184e98f148b8fce890a35849a41f86aff938965138bf8a2346cf7d10</code> | Older version use only with context |
 | Anti-inspection SHA-256 | <code>9201f2ee02b6b642504b09f95e61a57a2bcff43e23c7d737473229e2e4f7d503</code> | 5,079 URLScan observations across many different lures |
 | AS13335 or <code>pages.dev</code> | Shared platform | Far too broad and guaranteed to create false positives |
 | <code>onrender.com</code> | Shared platform | Render hosts many legitimate services |
@@ -941,10 +941,10 @@ The first high-precision candidate is the hostname expression:
 
 When such a host appears in DNS or proxy logs, enrichment should check:
 
-1. whether the HTTP response hash matches the known root document or core script;
-2. whether the page loads <code>/js.js</code>, <code>/js1.js</code>, and <code>/jg.js</code>;
-3. whether the request chain includes one of the Render destinations;
-4. whether navigation from the task origin ends at legitimate Hostinger Mail;
+1. whether the HTTP response hash matches the known root document or core script
+2. whether the page loads <code>/js.js</code>, <code>/js1.js</code>, and <code>/jg.js</code>
+3. whether the request chain includes one of the Render destinations
+4. whether navigation from the task origin ends at legitimate Hostinger Mail
 5. whether the query contains the parameter names, while retaining their values only under the organization's privacy policy.
 
 Full personalized query strings should not be retained or shared merely to make a detection look richer. A parameter name is often enough, while a decoded mailbox local part can already be personally identifiable information.
@@ -961,12 +961,12 @@ AND
 
 If the hashes change, a structural hunt can combine:
 
-- the Hostinger brand literal;
-- form IDs <code>rcmloginuser</code> and <code>rcmloginpwd</code>;
-- the combination of POST fields <code>ai</code>, <code>pr</code>, and <code>pg</code>;
-- <code>btoa</code> applied to both credential fields;
-- the same <code>Login failed.</code> string in success and error callbacks;
-- a redirect to legitimate Hostinger Mail after a counter increment;
+- the Hostinger brand literal
+- form IDs <code>rcmloginuser</code> and <code>rcmloginpwd</code>
+- the combination of POST fields <code>ai</code>, <code>pr</code>, and <code>pg</code>
+- <code>btoa</code> applied to both credential fields
+- the same <code>Login failed.</code> string in success and error callbacks
+- a redirect to legitimate Hostinger Mail after a counter increment
 - one tracker parameter and a Render destination.
 
 A single <code>btoa</code>, password field, or jQuery AJAX call is completely ordinary web behavior. The combination and brand context are what matter.
@@ -975,10 +975,10 @@ A single <code>btoa</code>, password field, or jQuery AJAX call is completely or
 
 In URLScan searches, separate:
 
-- <code>task.domain</code>, which identifies the originally submitted campaign host;
-- <code>page.domain</code>, which can become legitimate after a redirect;
-- contacted <code>domain</code>, which describes infrastructure reached during the session;
-- response hashes, which are stronger than a final title;
+- <code>task.domain</code>, which identifies the originally submitted campaign host
+- <code>page.domain</code>, which can become legitimate after a redirect
+- contacted <code>domain</code>, which describes infrastructure reached during the session
+- response hashes, which are stronger than a final title
 - the scan timestamp, which is one observation rather than registration or delivery time.
 
 Deduplicate results separately by scan UUID and task hostname. Those counts answer different questions.
@@ -1121,6 +1121,6 @@ Primary platform, reporting, and analytical references:
 16. [Cloudflare Pages: Serving Pages and SPA fallback](https://developers.cloudflare.com/pages/configuration/serving-pages/)
 17. [MITRE ATT&CK T1568.002: Dynamic Resolution, Domain Generation Algorithms](https://attack.mitre.org/techniques/T1568/002/)
 
-Two retained URLScan public observations dated 2025-07-24 and 2025-09-16 were used only for implementation-grammar context. Their direct result pages are withheld because the public metadata contains potentially recipient-derived values; the URLScan homepage is deliberately not presented as a citation for those records.
+Two retained URLScan public observations dated 2025-07-24 and 2025-09-16 were used only for implementation-grammar context. Their direct result pages are withheld because the public metadata contains potentially recipient-derived values the URLScan homepage is deliberately not presented as a citation for those records.
 
 Third-party classifications are not used as standalone proof of malicious behavior in the locally examined code.
