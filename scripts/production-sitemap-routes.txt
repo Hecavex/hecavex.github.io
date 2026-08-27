@@ -38,6 +38,7 @@
 /en/research/cti-osint-duo/
 /en/research/github-and-malware/
 /en/research/google-dorking/
+/en/research/hostinger-pages-phishing-infrastructure/
 /en/research/information-factories-on-lithuanias-border/
 /en/research/infrastructure-pivoting-101/
 /en/research/introducing-hecavex/
@@ -58,12 +59,14 @@
 /en/tags/dns/
 /en/tags/identity-security/
 /en/tags/infrastructure-pivoting/
+/en/tags/javascript/
 /en/tags/lithuania/
 /en/tags/methodology/
 /en/tags/osint/
 /en/tags/phishing/
 /en/tags/rdap/
 /en/tags/threat-hunting/
+/en/tags/urlscan/
 /lt/
 /lt/apie/
 /lt/apzvalgos/
@@ -99,6 +102,7 @@
 /lt/tyrimai/cti-osint-duo/
 /lt/tyrimai/github-and-malware/
 /lt/tyrimai/google-dorking/
+/lt/tyrimai/hostinger-pages-phishing-infrastrukturos-tyrimas/
 /lt/tyrimai/informacijos-gamyklos-prie-lietuvos/
 /lt/tyrimai/infrastrukturos-pivoting-101/
 /lt/tyrimai/kai-fake-news-scamai-ir-cloaking/
@@ -119,6 +123,7 @@
 /lt/zymos/dns/
 /lt/zymos/duomenu-vagyste/
 /lt/zymos/infrastructure-pivoting/
+/lt/zymos/javascript/
 /lt/zymos/kibernetinio-atsparumo-aktas/
 /lt/zymos/metodika/
 /lt/zymos/osint/
@@ -127,3 +132,4 @@
 /lt/zymos/registru-centras/
 /lt/zymos/supply-chain/
 /lt/zymos/threat-hunting/
+/lt/zymos/urlscan/

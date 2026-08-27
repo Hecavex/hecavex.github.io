@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"
+     role="img" aria-labelledby="title description">
+  <title id="title">Hostinger impersonation infrastructure evidence map</title>
+  <desc id="description">An abstract evidence map links randomized Pages project names, exact JavaScript hashes, separate collection services, and a legitimate final redirect.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05080b"/>
+      <stop offset="0.62" stop-color="#091116"/>
+      <stop offset="1" stop-color="#10161c"/>
+    </linearGradient>
+    <radialGradient id="signal" cx="75%" cy="24%" r="60%">
+      <stop offset="0" stop-color="#42d7ea" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#42d7ea" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#17313c" stroke-width="1" opacity="0.55"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0 0L0 6L9 3Z" fill="#42d7ea"/>
+    </marker>
+    <style>
+      .sans { font-family: Inter, Arial, sans-serif; }
+      .mono { font-family: "IBM Plex Mono", Consolas, monospace; }
+      .eyebrow { fill: #42d7ea; font-size: 17px; font-weight: 700; letter-spacing: 2.5px; }
+      .title { fill: #f2f8fb; font-size: 62px; font-weight: 700; letter-spacing: -2px; }
+      .muted { fill: #8da6b3; }
+      .panel { fill: #0a1218; stroke: #29424e; stroke-width: 2; }
+      .panel-cyan { fill: #08171c; stroke: #42d7ea; stroke-width: 2; }
+      .panel-red { fill: #171012; stroke: #ff6565; stroke-width: 2; }
+      .panel-green { fill: #0d1712; stroke: #75d98c; stroke-width: 2; }
+      .metric { fill: #f2f8fb; font-size: 42px; font-weight: 700; }
+      .metric-label { fill: #8da6b3; font-size: 14px; font-weight: 600; letter-spacing: 1.5px; }
+      .box-title { fill: #f2f8fb; font-size: 20px; font-weight: 700; }
+      .box-copy { fill: #9cb1bc; font-size: 15px; }
+      .code { fill: #c2d2da; font-size: 15px; }
+      .edge { fill: none; stroke: #42d7ea; stroke-width: 3; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#background)"/>
+  <rect width="1600" height="900" fill="url(#signal)"/>
+  <rect width="1600" height="900" fill="url(#grid)" opacity="0.48"/>
+  <path d="M0 7H1600" stroke="#42d7ea" stroke-width="7"/>
+
+  <g transform="translate(72 54)">
+    <path d="M0 0V42M38 0V42M0 3L38 39M38 3L0 39" fill="none" stroke="#ff6565" stroke-width="3"/>
+    <circle cx="19" cy="21" r="3.5" fill="#42d7ea"/>
+    <text x="60" y="18" class="mono eyebrow">HECAVEX / HX-JSO-2026-001</text>
+    <text x="60" y="42" class="mono muted" font-size="13" letter-spacing="1.4">HOSTINGER / PAGES.DEV / STATIC EVIDENCE</text>
+  </g>
+
+  <text x="72" y="185" class="sans title">ROTATING NAMES.</text>
+  <text x="72" y="250" class="sans title muted">STABLE CODE.</text>
+
+  <g transform="translate(72 302)">
+    <rect width="338" height="106" class="panel"/>
+    <text x="24" y="49" class="sans metric">298</text>
+    <text x="138" y="41" class="mono metric-label">TASK HOSTS</text>
+    <text x="138" y="66" class="mono code">2026-03-25 / 08-23</text>
+  </g>
+  <g transform="translate(426 302)">
+    <rect width="338" height="106" class="panel"/>
+    <text x="24" y="49" class="sans metric">299</text>
+    <text x="138" y="41" class="mono metric-label">LOCAL FAMILY UNION</text>
+    <text x="138" y="66" class="mono code">24 x [a-z]</text>
+  </g>
+  <g transform="translate(780 302)">
+    <rect width="338" height="106" class="panel"/>
+    <text x="24" y="49" class="sans metric">467</text>
+    <text x="138" y="41" class="mono metric-label">HASH OBSERVATIONS</text>
+    <text x="138" y="66" class="mono code">262 task hosts</text>
+  </g>
+  <g transform="translate(1134 302)">
+    <rect width="394" height="106" class="panel"/>
+    <text x="24" y="49" class="sans metric">0</text>
+    <text x="100" y="41" class="mono metric-label">VALID ZIP ARCHIVES</text>
+    <text x="100" y="66" class="mono code">25 fixed candidates</text>
+  </g>
+
+  <g transform="translate(72 496)">
+    <rect width="392" height="220" rx="3" class="panel-cyan"/>
+    <text x="24" y="38" class="mono eyebrow">01 / PROJECT NAME</text>
+    <text x="24" y="82" class="sans box-title">Cloudflare Pages</text>
+    <text x="24" y="116" class="mono code">hostinger-mail-ewgjnwrkgnkrw-</text>
+    <text x="24" y="143" class="mono code">[a-z]{24}.pages.dev</text>
+    <text x="24" y="184" class="sans box-copy">Automated naming shape</text>
+  </g>
+  <g transform="translate(558 496)">
+    <rect width="392" height="220" rx="3" class="panel-red"/>
+    <text x="24" y="38" class="mono eyebrow">02 / EXACT ARTEFACTS</text>
+    <text x="24" y="82" class="sans box-title">HTML + JavaScript</text>
+    <text x="24" y="116" class="mono code">document SHA-256</text>
+    <text x="24" y="143" class="mono code">js.js / js1.js / jg.js</text>
+    <text x="24" y="184" class="sans box-copy">Credential flow + tracking</text>
+  </g>
+  <g transform="translate(1044 496)">
+    <rect width="484" height="220" rx="3" class="panel-green"/>
+    <text x="24" y="38" class="mono eyebrow">03 / SPLIT SERVICES</text>
+    <text x="24" y="82" class="sans box-title">Render POST + final redirect</text>
+    <text x="24" y="116" class="mono code">Base64 != encryption</text>
+    <text x="24" y="143" class="mono code">302 -&gt; mail.hostinger.com</text>
+    <text x="24" y="184" class="sans box-copy">Impersonated brand, not compromised</text>
+  </g>
+
+  <path d="M464 606H558" class="edge"/>
+  <path d="M950 606H1044" class="edge"/>
+
+  <g transform="translate(72 790)">
+    <rect width="1456" height="58" fill="#081116" stroke="#29424e"/>
+    <text x="24" y="36" class="mono muted" font-size="14" letter-spacing="1.1">OBSERVATION != VICTIM  /  CODE LINEAGE != OPERATOR ATTRIBUTION  /  SHARED PLATFORM != PROVIDER COMPROMISE</text>
+  </g>
+</svg>

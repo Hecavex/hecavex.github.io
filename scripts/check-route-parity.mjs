@@ -12,7 +12,7 @@ const failures = [];
 
 for (const route of expectedSitemap) if (!actualSitemap.has(route)) failures.push(`sitemap dropped ${route}`);
 for (const route of actualSitemap) if (!expectedSitemap.has(route)) failures.push(`sitemap added unreviewed route ${route}`);
-if (actualSitemap.size !== 129) failures.push(`sitemap must contain exactly 129 routes, found ${actualSitemap.size}`);
+if (actualSitemap.size !== 135) failures.push(`sitemap must contain exactly 135 routes, found ${actualSitemap.size}`);
 
 const routeFile = (route) => route === '/' ? join(root, 'index.html') : route.endsWith('/') ? join(root, route.slice(1), 'index.html') : join(root, route.slice(1));
 async function isFile(path) { try { return (await stat(path)).isFile(); } catch { return false; } }
@@ -35,7 +35,7 @@ const essentials = [
 for (const route of essentials) if (!(await isFile(routeFile(route)))) failures.push(`missing compatibility route ${route}`);
 
 async function countDirectories(path) { return (await readdir(path, { withFileTypes: true })).filter((entry) => entry.isDirectory()).length; }
-for (const [path, expected] of [['en/tags', 105], ['lt/zymos', 101], ['en/categories', 12], ['lt/kategorijos', 12]]) {
+for (const [path, expected] of [['en/tags', 110], ['lt/zymos', 106], ['en/categories', 12], ['lt/kategorijos', 12]]) {
   const actual = await countDirectories(join(root, path));
   if (actual !== expected) failures.push(`${path} route count changed: expected ${expected}, found ${actual}`);
 }
@@ -51,10 +51,10 @@ async function walk(directory) {
 }
 const files = await walk(root);
 const htmlCount = files.filter((file) => extname(file) === '.html').length;
-if (htmlCount !== 319) failures.push(`document surface changed: expected 319 HTML files, found ${htmlCount}`);
+if (htmlCount !== 331) failures.push(`document surface changed: expected 331 HTML files, found ${htmlCount}`);
 
 if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log('Route parity passed: 129 indexed URLs, 319 HTML artifacts, all taxonomy routes, feeds, search, 404, redirects and security endpoints preserved.');
+console.log('Route parity passed: 135 indexed URLs, 331 HTML artifacts, all taxonomy routes, feeds, search, 404, redirects and security endpoints preserved.');
