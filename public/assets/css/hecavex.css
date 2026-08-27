@@ -2062,8 +2062,8 @@ body[data-language="lt"] .table-scroll-hint::before {
 
 .article-hero img {
   width: 100%;
-  max-height: 42rem;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   border: 1px solid var(--line-strong);
 }
 
