@@ -8,6 +8,7 @@
 /en/briefings/2026-08-09/
 /en/briefings/2026-08-14/
 /en/briefings/2026-08-22/
+/en/briefings/2026-08-30/
 /en/categories/
 /en/categories/data-breaches/
 /en/categories/fraud-scams/
@@ -74,6 +75,7 @@
 /lt/apzvalgos/2026-08-09/
 /lt/apzvalgos/2026-08-14/
 /lt/apzvalgos/2026-08-22/
+/lt/apzvalgos/2026-08-30/
 /lt/archyvas/
 /lt/dabar/
 /lt/kategorijos/

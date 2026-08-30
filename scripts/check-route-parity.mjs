@@ -12,7 +12,7 @@ const failures = [];
 
 for (const route of expectedSitemap) if (!actualSitemap.has(route)) failures.push(`sitemap dropped ${route}`);
 for (const route of actualSitemap) if (!expectedSitemap.has(route)) failures.push(`sitemap added unreviewed route ${route}`);
-if (actualSitemap.size !== 135) failures.push(`sitemap must contain exactly 135 routes, found ${actualSitemap.size}`);
+if (actualSitemap.size !== 137) failures.push(`sitemap must contain exactly 137 routes, found ${actualSitemap.size}`);
 
 const routeFile = (route) => route === '/' ? join(root, 'index.html') : route.endsWith('/') ? join(root, route.slice(1), 'index.html') : join(root, route.slice(1));
 async function isFile(path) { try { return (await stat(path)).isFile(); } catch { return false; } }
@@ -51,10 +51,10 @@ async function walk(directory) {
 }
 const files = await walk(root);
 const htmlCount = files.filter((file) => extname(file) === '.html').length;
-if (htmlCount !== 331) failures.push(`document surface changed: expected 331 HTML files, found ${htmlCount}`);
+if (htmlCount !== 333) failures.push(`document surface changed: expected 333 HTML files, found ${htmlCount}`);
 
 if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log('Route parity passed: 135 indexed URLs, 331 HTML artifacts, all taxonomy routes, feeds, search, 404, redirects and security endpoints preserved.');
+console.log('Route parity passed: 137 indexed URLs, 333 HTML artifacts, all taxonomy routes, feeds, search, 404, redirects and security endpoints preserved.');
