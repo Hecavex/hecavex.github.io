@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-labelledby="title desc">
+  <title id="title">How redirects and cloaking change what an SMS link shows</title>
+  <desc id="desc">A defensive diagram shows a short link passing through redirects and a conditional gate that can return a benign decoy, an interstitial or a phishing page, with an evidence checklist for comparing observations.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05080b"/><stop offset="1" stop-color="#101923"/></linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#1e3440" opacity=".3"/></pattern>
+    <marker id="cyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0l10 5-10 5z" fill="#44c7dc"/></marker>
+    <marker id="amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0l10 5-10 5z" fill="#ffc857"/></marker>
+    <style>
+      .eyebrow{font:700 15px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:2px;fill:#44c7dc}.heading{font:800 38px Inter,Segoe UI,Arial,sans-serif;fill:#f2f7fa}.sub{font:500 18px Inter,Segoe UI,Arial,sans-serif;fill:#96aab7}.head{font:800 20px Inter,Segoe UI,Arial,sans-serif;fill:#eff5f8}.body{font:500 15px Inter,Segoe UI,Arial,sans-serif;fill:#b2c1ca}.mono{font:600 14px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#9bb0bd}.box{fill:#0b1218;stroke:#2a424e;stroke-width:2}.safe{stroke:#99dc68}.warn{stroke:#ffc857}.risk{stroke:#ff6b6b}.assess{stroke:#44c7dc}.dash{stroke-dasharray:7 6}.line{fill:none;stroke:#44c7dc;stroke-width:2.5;marker-end:url(#cyan)}.branch{fill:none;stroke:#ffc857;stroke-width:2;marker-end:url(#amber)}
+    </style>
+  </defs>
+  <rect width="1400" height="900" fill="url(#bg)"/><rect width="1400" height="900" fill="url(#grid)"/><path d="M0 3H1400" stroke="#44c7dc" stroke-width="6"/>
+  <text x="60" y="62" class="eyebrow">REDIRECTS / CONDITIONAL DELIVERY / OBSERVATION BOUNDARIES</text>
+  <text x="60" y="112" class="heading">One URL can produce different pages</text>
+  <text x="60" y="145" class="sub">A scanner result describes one request at one time. Redirects and conditional delivery can make another observer see something else.</text>
+
+  <path class="line" d="M315 292H405"/><path class="line" d="M665 292H755"/>
+  <g transform="translate(60 220)"><rect class="box" width="255" height="144" rx="4"/><text x="22" y="34" class="eyebrow">01 / MESSAGE</text><text x="22" y="70" class="head">Defanged short link</text><text x="22" y="100" class="mono">hxxps://go[.]example/84F2</text><text x="22" y="126" class="body">Original token preserved</text></g>
+  <g transform="translate(405 220)"><rect class="box warn" width="260" height="144" rx="4"/><text x="22" y="34" class="eyebrow" fill="#ffc857">02 / REDIRECT</text><text x="22" y="70" class="head">Destination changes</text><text x="22" y="100" class="mono">HTTP status + Location</text><text x="22" y="126" class="body">There may be several hops</text></g>
+  <g transform="translate(755 205)"><rect class="box assess" width="300" height="174" rx="4"/><text x="22" y="34" class="eyebrow">03 / CONDITIONAL GATE</text><text x="22" y="70" class="head">Request context assessed</text><text x="22" y="101" class="body">Examples: device class, region,</text><text x="22" y="126" class="body">referral context, time or prior visit.</text><text x="22" y="153" class="mono">MECHANISM CATEGORY — NOT ATTRIBUTION</text></g>
+
+  <path class="branch" d="M1055 250H1120V466H1148"/><path class="branch" d="M1055 292H1100V606H1148"/><path class="branch" d="M1055 334H1080V746H1148"/>
+  <g transform="translate(1148 408)"><rect class="box safe" width="210" height="116" rx="4"/><text x="18" y="31" class="eyebrow" fill="#99dc68">OUTCOME A</text><text x="18" y="64" class="head">Benign decoy</text><text x="18" y="91" class="body">News, search or error</text></g>
+  <g transform="translate(1148 548)"><rect class="box warn" width="210" height="116" rx="4"/><text x="18" y="27" class="eyebrow" fill="#ffc857">OUTCOME B</text><text x="18" y="58" class="head">Interstitial</text><text x="18" y="84" class="body">Challenge or</text><text x="18" y="104" class="body">holding page</text></g>
+  <g transform="translate(1148 688)"><rect class="box risk" width="210" height="116" rx="4"/><text x="18" y="31" class="eyebrow" fill="#ff6b6b">OUTCOME C</text><text x="18" y="64" class="head">Brand clone</text><text x="18" y="91" class="body">Login or payment lure</text></g>
+
+  <g transform="translate(60 438)">
+    <rect class="box dash" width="970" height="366" rx="4"/>
+    <text x="28" y="42" class="eyebrow">WHAT TO RECORD — NOT HOW TO BYPASS THE GATE</text>
+    <g transform="translate(28 74)"><rect class="box" width="430" height="100"/><text x="20" y="34" class="head">Redirect chain</text><text x="20" y="63" class="body">Timestamp · status · Location host · hop order</text><text x="20" y="86" class="mono">PRESERVE DEFANGED VALUES</text></g>
+    <g transform="translate(484 74)"><rect class="box" width="430" height="100"/><text x="20" y="34" class="head">Response identity</text><text x="20" y="63" class="body">Final URL · title · body hash · screenshot</text><text x="20" y="86" class="mono">COMPARE LIKE WITH LIKE</text></g>
+    <g transform="translate(28 202)"><rect class="box" width="430" height="100"/><text x="20" y="34" class="head">Collection conditions</text><text x="20" y="63" class="body">Tool · vantage · time · limitations · consent</text><text x="20" y="86" class="mono">NO PERSONAL SESSION</text></g>
+    <g transform="translate(484 202)"><rect class="box" width="430" height="100"/><text x="20" y="34" class="head">Analytical statement</text><text x="20" y="63" class="body">Observed, inferred or unknown — with confidence</text><text x="20" y="86" class="mono">DIFFERENT ≠ PROOF OF CLOAKING</text></g>
+  </g>
+  <text x="60" y="862" class="body">A clean scanner page does not prove safety. A different page does not, by itself, prove intent or identify an operator.</text>
+</svg>

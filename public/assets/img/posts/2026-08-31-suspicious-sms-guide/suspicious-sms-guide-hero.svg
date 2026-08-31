@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Suspicious SMS link analysis</title>
+  <desc id="desc">A defensive illustration of a suspicious mobile message being preserved, defanged, parsed and assessed without opening the link.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05080b"/><stop offset=".58" stop-color="#0b1219"/><stop offset="1" stop-color="#10212a"/></linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#111c25"/><stop offset="1" stop-color="#080d12"/></linearGradient>
+    <pattern id="grid" width="52" height="52" patternUnits="userSpaceOnUse"><path d="M52 0H0V52" fill="none" stroke="#213641" stroke-width="1" opacity=".34"/></pattern>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0l10 5-10 5z" fill="#44c7dc"/></marker>
+    <style>
+      .eyebrow{font:700 18px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:3px;fill:#44c7dc}.title{font:800 72px Inter,Segoe UI,Arial,sans-serif;fill:#f3f7fa}.muted{font:500 20px Inter,Segoe UI,Arial,sans-serif;fill:#8fa7b7}.mono{font:600 17px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#b9cad4}.panel{fill:#0a1117;stroke:#29404b;stroke-width:2}.safe{fill:#0e1b1b;stroke:#99dc68;stroke-width:2}.warn{fill:#1c1710;stroke:#ffc857;stroke-width:2}.risk{fill:#1d1113;stroke:#ff6b6b;stroke-width:2}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/>
+  <path d="M0 4H1600" stroke="#44c7dc" stroke-width="8"/>
+
+  <g transform="translate(92 86)">
+    <text class="eyebrow" x="0" y="0">HECAVEX / DEFENSIVE FIELD GUIDE</text>
+    <text class="title" x="0" y="90">SMS / LINK / SIGNAL</text>
+    <text class="muted" x="4" y="135">PRESERVE  ·  DEFANG  ·  PARSE  ·  VERIFY</text>
+  </g>
+
+  <g transform="translate(104 282)">
+    <rect x="0" y="0" width="430" height="490" rx="42" fill="#070b0f" stroke="#45606f" stroke-width="3"/>
+    <rect x="24" y="24" width="382" height="442" rx="26" fill="url(#screen)" stroke="#203541"/>
+    <rect x="165" y="10" width="100" height="8" rx="4" fill="#45606f"/>
+    <circle cx="55" cy="74" r="21" fill="#263844"/><path d="M45 74h20M55 64v20" stroke="#9bb0bd" stroke-width="2"/>
+    <text x="88" y="70" class="mono" fill="#eef5f8">DELIVERY</text>
+    <text x="88" y="93" class="mono" font-size="13" fill="#7f98a7">Unknown sender</text>
+    <rect x="50" y="132" width="307" height="190" rx="20" fill="#15232d" stroke="#2e4654"/>
+    <text x="75" y="172" class="mono">Delivery failed.</text>
+    <text x="75" y="205" class="mono">Confirm within 30 min:</text>
+    <text x="75" y="247" font-family="ui-monospace,Consolas,monospace" font-size="17" font-weight="700" fill="#ffc857">hxxps://parcel-check</text>
+    <text x="75" y="273" font-family="ui-monospace,Consolas,monospace" font-size="17" font-weight="700" fill="#ffc857">[.]example/t/84F2</text>
+    <rect x="50" y="348" width="307" height="66" rx="8" fill="#0c171a" stroke="#99dc68"/>
+    <circle cx="78" cy="381" r="8" fill="#99dc68" filter="url(#glow)"/>
+    <text x="100" y="387" class="mono" fill="#d9e8df">NOT OPENED</text>
+  </g>
+
+  <path d="M568 520H680" fill="none" stroke="#44c7dc" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <g transform="translate(704 278)">
+    <rect class="panel" width="790" height="498" rx="4"/>
+    <text class="eyebrow" x="38" y="52">CONTROLLED ANALYSIS</text>
+    <line x1="38" y1="74" x2="752" y2="74" stroke="#29404b"/>
+
+    <g transform="translate(38 112)">
+      <rect class="safe" width="332" height="126" rx="3"/>
+      <text x="22" y="34" class="eyebrow" fill="#99dc68">01 / PRESERVE</text>
+      <text x="22" y="70" class="mono" fill="#eef5f8">message · sender · time</text>
+      <text x="22" y="99" class="mono" fill="#eef5f8">screenshot · exact text</text>
+    </g>
+    <g transform="translate(420 112)">
+      <rect class="safe" width="332" height="126" rx="3"/>
+      <text x="22" y="34" class="eyebrow" fill="#99dc68">02 / DEFANG</text>
+      <text x="22" y="70" class="mono" fill="#eef5f8">https → hxxps</text>
+      <text x="22" y="99" class="mono" fill="#eef5f8">. → [.]</text>
+    </g>
+    <g transform="translate(38 278)">
+      <rect class="warn" width="332" height="126" rx="3"/>
+      <text x="22" y="34" class="eyebrow" fill="#ffc857">03 / PARSE</text>
+      <text x="22" y="70" class="mono" fill="#eef5f8">host · path · query</text>
+      <text x="22" y="99" class="mono" fill="#eef5f8">redirect boundary</text>
+    </g>
+    <g transform="translate(420 278)">
+      <rect class="risk" width="332" height="126" rx="3"/>
+      <text x="22" y="34" class="eyebrow" fill="#ff6b6b">04 / VERIFY</text>
+      <text x="22" y="70" class="mono" fill="#eef5f8">official channel first</text>
+      <text x="22" y="99" class="mono" fill="#eef5f8">public tools ≠ verdict</text>
+    </g>
+  </g>
+
+  <g transform="translate(104 834)"><text class="eyebrow" x="0" y="0">SAFE EXAMPLE · RESERVED DOMAIN · NO LIVE INFRASTRUCTURE CONTACTED</text></g>
+</svg>

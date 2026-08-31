@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1050" viewBox="0 0 1400 1050" role="img" aria-labelledby="title desc">
+  <title id="title">Keturių lygių įtartinos SMS nuorodos tikrinimo eiga</title>
+  <desc id="desc">Gynybinė darbo eiga prasideda žinutės išsaugojimu ir analize be tinklo, tęsiama nepriklausomu prekės ženklo patikrinimu bei pasyviomis užklausomis, o izoliuotas atvėrimas paliekamas tik pasirengusiems ir įgaliotiems analitikams.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05080b"/><stop offset="1" stop-color="#101923"/></linearGradient>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#1e3440" opacity=".3"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0l10 5-10 5z" fill="#44c7dc"/></marker>
+    <style>
+      .eyebrow{font:700 15px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:2px;fill:#44c7dc}.heading{font:800 38px Inter,Segoe UI,Arial,sans-serif;fill:#f2f7fa}.sub{font:500 18px Inter,Segoe UI,Arial,sans-serif;fill:#96aab7}.step{font:800 24px Inter,Segoe UI,Arial,sans-serif;fill:#f0f5f8}.body{font:500 16px Inter,Segoe UI,Arial,sans-serif;fill:#b2c1ca}.mono{font:600 14px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#8fa8b7}.box{fill:#0b1218;stroke:#2a424e;stroke-width:2}.safe{stroke:#99dc68}.warn{stroke:#ffc857}.risk{stroke:#ff6b6b}.line{fill:none;stroke:#44c7dc;stroke-width:3;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1400" height="1050" fill="url(#bg)"/><rect width="1400" height="1050" fill="url(#grid)"/><path d="M0 3H1400" stroke="#44c7dc" stroke-width="6"/>
+  <text x="62" y="62" class="eyebrow">PROPORCINGA ANALIZĖ / SUSTOKITE TIES ŽEMIAUSIU PAKANKAMU LYGIU</text>
+  <text x="62" y="112" class="heading">Saugi įtartinos nuorodos tikrinimo eiga</text>
+  <text x="62" y="147" class="sub">Daugumai gavėjų pakanka 1–2 lygių. 3–4 lygiai didina privatumo ir operacinę riziką, todėl jiems reikia tikslo ir ribų.</text>
+
+  <path class="line" d="M700 306V346"/><path class="line" d="M700 500V540"/><path class="line" d="M700 694V734"/>
+  <g transform="translate(90 202)">
+    <rect class="box safe" width="1220" height="104" rx="4"/>
+    <rect width="118" height="104" fill="#102017"/><text x="59" y="47" text-anchor="middle" class="eyebrow" fill="#99dc68">LYGIS</text><text x="59" y="78" text-anchor="middle" class="step">01</text>
+    <text x="150" y="39" class="step">Išsaugokite ir išskaidykite be tinklo</text>
+    <text x="150" y="70" class="body">Išsaugokite žinutę, siuntėją, laiką ir ekrano kopiją. Saugiai nukopijavę neutralizuokite ir atskirkite hostą, kelią bei užklausą.</text>
+    <text x="150" y="94" class="mono">JOKIO TINKLO KONTAKTO · JOKIO VIEŠO PATEIKIMO · IŠSAUGOKITE ORIGINALĄ</text>
+  </g>
+  <g transform="translate(90 396)">
+    <rect class="box safe" width="1220" height="104" rx="4"/>
+    <rect width="118" height="104" fill="#102017"/><text x="59" y="47" text-anchor="middle" class="eyebrow" fill="#99dc68">LYGIS</text><text x="59" y="78" text-anchor="middle" class="step">02</text>
+    <text x="150" y="39" class="step">Patikrinkite nepriklausomai</text>
+    <text x="150" y="70" class="body">Atverkite oficialią programėlę, patys įveskite žinomą svetainę arba skambinkite patvirtintu numeriu. Patikrinkite, ar įvykis tikras.</text>
+    <text x="150" y="94" class="mono">NEATSAKYKITE · NENAUDOKITE ŽINUTĖS NUORODOS AR TELEFONO NUMERIO</text>
+  </g>
+  <g transform="translate(90 590)">
+    <rect class="box warn" width="1220" height="104" rx="4"/>
+    <rect width="118" height="104" fill="#211a0f"/><text x="59" y="47" text-anchor="middle" class="eyebrow" fill="#ffc857">LYGIS</text><text x="59" y="78" text-anchor="middle" class="step">03</text>
+    <text x="150" y="39" class="step">Rinkite pasyvų kontekstą įvertinę privatumą</text>
+    <text x="150" y="70" class="body">Neatverdami puslapio tikrinkite viešą registracijos, DNS, sertifikatų ir reputacijos kontekstą. Fiksuokite laiką ir aprėptį.</text>
+    <text x="150" y="94" class="mono">UŽKLAUSA GALI ATSKLEISTI URL AR ŽYMĄ · REZULTATO NEBUVIMAS ≠ SAUGU</text>
+  </g>
+  <g transform="translate(90 784)">
+    <rect class="box risk" width="1220" height="104" rx="4"/>
+    <rect width="118" height="104" fill="#211115"/><text x="59" y="47" text-anchor="middle" class="eyebrow" fill="#ff6b6b">LYGIS</text><text x="59" y="78" text-anchor="middle" class="step">04</text>
+    <text x="150" y="39" class="step">Kontroliuojamas atvėrimas — tik analitikams</text>
+    <text x="150" y="70" class="body">Naudokite izoliuotą vienkartinę aplinką be asmeninės sesijos. Neveskite prisijungimų, mokėjimo duomenų ar vienkartinių kodų.</text>
+    <text x="150" y="94" class="mono">ĮGALIOJIMAS · IZOLIACIJA · TINKLO KONTROLĖ · ĮRODYMŲ IŠSAUGOJIMAS · SUSTOJIMO SĄLYGA</text>
+  </g>
+
+  <g transform="translate(90 935)"><rect x="0" y="0" width="580" height="67" fill="#0e1b1b" stroke="#99dc68"/><text x="24" y="29" class="eyebrow" fill="#99dc68">TOKIO ĮVYKIO NELAUKĖTE</text><text x="24" y="53" class="body">Išsaugoję įrodymus praneškite, blokuokite ir pašalinkite.</text></g>
+  <g transform="translate(730 935)"><rect x="0" y="0" width="580" height="67" fill="#1d1113" stroke="#ff6b6b"/><text x="24" y="29" class="eyebrow" fill="#ff6b6b">SUVESTI DUOMENYS AR ĮDIEGTA PROGRAMA</text><text x="24" y="53" class="body">Pereikite prie incidento valdymo, analizės nebetęskite.</text></g>
+</svg>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1050" viewBox="0 0 1400 1050" role="img" aria-labelledby="title desc">
+  <title id="title">Four-level workflow for checking a suspicious SMS link</title>
+  <desc id="desc">A defensive workflow progresses from preserving and parsing a message, through independent brand verification and passive checks, to isolated retrieval reserved for trained and authorised analysts.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05080b"/><stop offset="1" stop-color="#101923"/></linearGradient>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#1e3440" opacity=".3"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0l10 5-10 5z" fill="#44c7dc"/></marker>
+    <style>
+      .eyebrow{font:700 15px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:2px;fill:#44c7dc}.heading{font:800 38px Inter,Segoe UI,Arial,sans-serif;fill:#f2f7fa}.sub{font:500 18px Inter,Segoe UI,Arial,sans-serif;fill:#96aab7}.step{font:800 24px Inter,Segoe UI,Arial,sans-serif;fill:#f0f5f8}.body{font:500 16px Inter,Segoe UI,Arial,sans-serif;fill:#b2c1ca}.mono{font:600 14px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#8fa8b7}.box{fill:#0b1218;stroke:#2a424e;stroke-width:2}.safe{stroke:#99dc68}.warn{stroke:#ffc857}.risk{stroke:#ff6b6b}.line{fill:none;stroke:#44c7dc;stroke-width:3;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1400" height="1050" fill="url(#bg)"/><rect width="1400" height="1050" fill="url(#grid)"/><path d="M0 3H1400" stroke="#44c7dc" stroke-width="6"/>
+  <text x="62" y="62" class="eyebrow">PROPORTIONATE ANALYSIS / STOP AT THE LOWEST SUFFICIENT LEVEL</text>
+  <text x="62" y="112" class="heading">A safe suspicious-link workflow</text>
+  <text x="62" y="147" class="sub">Most recipients need Levels 1–2. Levels 3–4 add privacy and operational risk, so they require a reason and a boundary.</text>
+
+  <path class="line" d="M700 306V346"/><path class="line" d="M700 500V540"/><path class="line" d="M700 694V734"/>
+  <g transform="translate(90 202)">
+    <rect class="box safe" width="1220" height="104" rx="4"/>
+    <rect width="118" height="104" fill="#102017"/><text x="59" y="47" text-anchor="middle" class="eyebrow" fill="#99dc68">LEVEL</text><text x="59" y="78" text-anchor="middle" class="step">01</text>
+    <text x="150" y="39" class="step">Preserve and parse offline</text>
+    <text x="150" y="70" class="body">Save the message, sender, time and screenshot. Copy only if safe, defang, then separate host, path and query.</text>
+    <text x="150" y="94" class="mono">NO NETWORK CONTACT · NO PUBLIC SUBMISSION · KEEP THE ORIGINAL</text>
+  </g>
+  <g transform="translate(90 396)">
+    <rect class="box safe" width="1220" height="104" rx="4"/>
+    <rect width="118" height="104" fill="#102017"/><text x="59" y="47" text-anchor="middle" class="eyebrow" fill="#99dc68">LEVEL</text><text x="59" y="78" text-anchor="middle" class="step">02</text>
+    <text x="150" y="39" class="step">Verify independently</text>
+    <text x="150" y="70" class="body">Open the official app, type the known site yourself or call a verified number. Check whether the claimed event exists.</text>
+    <text x="150" y="94" class="mono">DO NOT REPLY · DO NOT USE THE MESSAGE LINK OR PHONE NUMBER</text>
+  </g>
+  <g transform="translate(90 590)">
+    <rect class="box warn" width="1220" height="104" rx="4"/>
+    <rect width="118" height="104" fill="#211a0f"/><text x="59" y="47" text-anchor="middle" class="eyebrow" fill="#ffc857">LEVEL</text><text x="59" y="78" text-anchor="middle" class="step">03</text>
+    <text x="150" y="39" class="step">Use passive context with a privacy check</text>
+    <text x="150" y="70" class="body">Inspect public registration, DNS, certificate and reputation context without fetching the page. Record timestamps and coverage.</text>
+    <text x="150" y="94" class="mono">A LOOKUP CAN DISCLOSE THE URL OR TOKEN · ABSENCE OF A HIT ≠ SAFE</text>
+  </g>
+  <g transform="translate(90 784)">
+    <rect class="box risk" width="1220" height="104" rx="4"/>
+    <rect width="118" height="104" fill="#211115"/><text x="59" y="47" text-anchor="middle" class="eyebrow" fill="#ff6b6b">LEVEL</text><text x="59" y="78" text-anchor="middle" class="step">04</text>
+    <text x="150" y="39" class="step">Controlled retrieval — analysts only</text>
+    <text x="150" y="70" class="body">Use an isolated, disposable environment with no personal session. Do not enter credentials, payment data or one-time codes.</text>
+    <text x="150" y="94" class="mono">AUTHORITY · ISOLATION · EGRESS CONTROL · EVIDENCE PRESERVATION · STOP CONDITION</text>
+  </g>
+
+  <g transform="translate(90 935)"><rect x="0" y="0" width="580" height="67" fill="#0e1b1b" stroke="#99dc68"/><text x="24" y="29" class="eyebrow" fill="#99dc68">NO EXPECTED EVENT</text><text x="24" y="53" class="body">Report, block and delete after evidence is preserved.</text></g>
+  <g transform="translate(730 935)"><rect x="0" y="0" width="580" height="67" fill="#1d1113" stroke="#ff6b6b"/><text x="24" y="29" class="eyebrow" fill="#ff6b6b">DATA ENTERED OR APP INSTALLED</text><text x="24" y="53" class="body">Move to incident response; do not continue investigating.</text></g>
+</svg>

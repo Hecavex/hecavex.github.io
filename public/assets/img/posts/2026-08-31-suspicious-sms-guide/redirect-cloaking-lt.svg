@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-labelledby="title desc">
+  <title id="title">Kaip peradresavimai ir cloaking keičia SMS nuorodos rodomą puslapį</title>
+  <desc id="desc">Gynybinė schema rodo trumpąją nuorodą, peradresavimų grandinę ir sąlyginį vartą, galintį pateikti neutralų puslapį, tarpinį ekraną arba phishing puslapį, bei nurodo, kokius įrodymus lyginti.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05080b"/><stop offset="1" stop-color="#101923"/></linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#1e3440" opacity=".3"/></pattern>
+    <marker id="cyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0l10 5-10 5z" fill="#44c7dc"/></marker>
+    <marker id="amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0l10 5-10 5z" fill="#ffc857"/></marker>
+    <style>
+      .eyebrow{font:700 15px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:2px;fill:#44c7dc}.heading{font:800 38px Inter,Segoe UI,Arial,sans-serif;fill:#f2f7fa}.sub{font:500 18px Inter,Segoe UI,Arial,sans-serif;fill:#96aab7}.head{font:800 20px Inter,Segoe UI,Arial,sans-serif;fill:#eff5f8}.body{font:500 15px Inter,Segoe UI,Arial,sans-serif;fill:#b2c1ca}.mono{font:600 14px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#9bb0bd}.box{fill:#0b1218;stroke:#2a424e;stroke-width:2}.safe{stroke:#99dc68}.warn{stroke:#ffc857}.risk{stroke:#ff6b6b}.assess{stroke:#44c7dc}.dash{stroke-dasharray:7 6}.line{fill:none;stroke:#44c7dc;stroke-width:2.5;marker-end:url(#cyan)}.branch{fill:none;stroke:#ffc857;stroke-width:2;marker-end:url(#amber)}
+    </style>
+  </defs>
+  <rect width="1400" height="900" fill="url(#bg)"/><rect width="1400" height="900" fill="url(#grid)"/><path d="M0 3H1400" stroke="#44c7dc" stroke-width="6"/>
+  <text x="60" y="62" class="eyebrow">PERADRESAVIMAI / SĄLYGINIS PATEIKIMAS / STEBĖJIMO RIBOS</text>
+  <text x="60" y="112" class="heading">Tas pats URL gali rodyti skirtingus puslapius</text>
+  <text x="60" y="145" class="sub">Skenerio rezultatas aprašo vieną užklausą vienu metu. Peradresavimai ir sąlyginis pateikimas kitam stebėtojui gali parodyti ką kita.</text>
+
+  <path class="line" d="M315 292H405"/><path class="line" d="M665 292H755"/>
+  <g transform="translate(60 220)"><rect class="box" width="255" height="144" rx="4"/><text x="22" y="34" class="eyebrow">01 / ŽINUTĖ</text><text x="22" y="70" class="head">Neutralizuota nuoroda</text><text x="22" y="100" class="mono">hxxps://go[.]example/84F2</text><text x="22" y="126" class="body">Trumpoji žyma išsaugota</text></g>
+  <g transform="translate(405 220)"><rect class="box warn" width="260" height="144" rx="4"/><text x="22" y="34" class="eyebrow" fill="#ffc857">02 / PERADRESAVIMAS</text><text x="22" y="70" class="head">Paskirties vieta keičiasi</text><text x="22" y="100" class="mono">HTTP būsena + Location</text><text x="22" y="126" class="body">Gali būti keli žingsniai</text></g>
+  <g transform="translate(755 205)"><rect class="box assess" width="300" height="174" rx="4"/><text x="22" y="34" class="eyebrow">03 / SĄLYGINIS VARTAS</text><text x="22" y="70" class="head">Vertinamas užklausos kontekstas</text><text x="22" y="101" class="body">Pavyzdžiai: įrenginio klasė, regionas,</text><text x="22" y="126" class="body">šaltinio kontekstas, laikas ar ankstesnis vizitas.</text><text x="22" y="153" class="mono">KLASĖ ≠ VEIKĖJO PRISKYRIMAS</text></g>
+
+  <path class="branch" d="M1055 250H1120V466H1148"/><path class="branch" d="M1055 292H1100V606H1148"/><path class="branch" d="M1055 334H1080V746H1148"/>
+  <g transform="translate(1148 408)"><rect class="box safe" width="210" height="116" rx="4"/><text x="18" y="27" class="eyebrow" fill="#99dc68">REZULTATAS A</text><text x="18" y="58" class="head">Neutralus puslapis</text><text x="18" y="84" class="body">Naujienos, paieška</text><text x="18" y="104" class="body">ar klaida</text></g>
+  <g transform="translate(1148 548)"><rect class="box warn" width="210" height="116" rx="4"/><text x="18" y="27" class="eyebrow" fill="#ffc857">REZULTATAS B</text><text x="18" y="58" class="head">Tarpinis ekranas</text><text x="18" y="84" class="body">Patikra arba laukimo</text><text x="18" y="104" class="body">puslapis</text></g>
+  <g transform="translate(1148 688)"><rect class="box risk" width="210" height="116" rx="4"/><text x="18" y="23" class="eyebrow" fill="#ff6b6b">REZULTATAS C</text><text x="18" y="48" class="head">Prekės ženklo</text><text x="18" y="70" class="head">kopija</text><text x="18" y="94" class="body">Prisijungimo / mokėjimo</text><text x="18" y="112" class="body">masalas</text></g>
+
+  <g transform="translate(60 438)">
+    <rect class="box dash" width="970" height="366" rx="4"/>
+    <text x="28" y="42" class="eyebrow">KĄ FIKSUOTI — NE KAIP APEITI VARTĄ</text>
+    <g transform="translate(28 74)"><rect class="box" width="430" height="100"/><text x="20" y="34" class="head">Peradresavimų grandinė</text><text x="20" y="63" class="body">Laikas · būsena · Location hostas · žingsnių tvarka</text><text x="20" y="86" class="mono">IŠSAUGOKITE NEUTRALIZUOTAS REIKŠMES</text></g>
+    <g transform="translate(484 74)"><rect class="box" width="430" height="100"/><text x="20" y="34" class="head">Atsako tapatybė</text><text x="20" y="63" class="body">Galutinis URL · antraštė · turinio hash · ekrano kopija</text><text x="20" y="86" class="mono">LYGINKITE VIENODAS SĄLYGAS</text></g>
+    <g transform="translate(28 202)"><rect class="box" width="430" height="100"/><text x="20" y="34" class="head">Rinkimo sąlygos</text><text x="20" y="63" class="body">Įrankis · tinklo taškas · laikas · ribos · sutikimas</text><text x="20" y="86" class="mono">JOKIOS ASMENINĖS SESIJOS</text></g>
+    <g transform="translate(484 202)"><rect class="box" width="430" height="100"/><text x="20" y="34" class="head">Analitinė išvada</text><text x="20" y="63" class="body">Išvada + patikimumas: stebėta, išvesta ar nežinoma</text><text x="20" y="86" class="mono">SKIRTUMAS ≠ CLOAKING ĮRODYMAS</text></g>
+  </g>
+  <text x="60" y="862" class="body">Švarus skenerio puslapis neįrodo saugumo. Skirtingas puslapis savaime neįrodo ketinimo ir neidentifikuoja operatoriaus.</text>
+</svg>
