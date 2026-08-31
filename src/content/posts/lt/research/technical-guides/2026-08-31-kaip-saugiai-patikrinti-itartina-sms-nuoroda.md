@@ -24,8 +24,8 @@ tlp: clear
 categories: [fraud-scams, social-engineering, tradecraft]
 tags: [SMS, smishing, phishing, scam, URL, defang, redirects, cloaking, NKSC, incident response, Lithuania]
 featured: false
-draft: true
-published: false
+draft: false
+published: true
 toc: true
 comments: false
 prose_width: wide

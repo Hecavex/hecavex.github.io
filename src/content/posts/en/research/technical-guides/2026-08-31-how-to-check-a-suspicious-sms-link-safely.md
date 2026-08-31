@@ -23,8 +23,8 @@ tlp: clear
 categories: [fraud-scams, social-engineering, tradecraft]
 tags: [suspicious SMS, smishing, phishing, short URLs, redirect chains, cloaking, incident response, Lithuania]
 featured: false
-draft: true
-published: false
+draft: false
+published: true
 toc: true
 comments: false
 prose_width: wide
