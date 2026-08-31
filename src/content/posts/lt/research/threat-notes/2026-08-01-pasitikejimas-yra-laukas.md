@@ -34,6 +34,8 @@ Analitinis pasitikėjimas nusako, kaip gerai turimi įrodymai pagrindžia konkre
 
 HECAVEX naudoja žemą, vidutinį ir aukštą pasitikėjimą tada, kai tai suteikia skaitytojui papildomos informacijos. Etiketė nepakeičia įrodymų, prielaidų, alternatyvų ir spragų.
 
+Svarbus ir aplinkinis workflow: [OSINT rinkimas ir CTI sprendimų palaikymas yra skirtingos funkcijos](/lt/tyrimai/cti-osint-duo/), o [MISP turi išsaugoti provenance bei confidence](/lt/tyrimai/misp-for-cti-part-1/), ne suplakti visus importuotus objektus į vienodą tikrumą.
+
 ## Trys skirtingi klausimai
 
 Praktikoje į vieną žodį dažnai suplakami trys vertinimai:

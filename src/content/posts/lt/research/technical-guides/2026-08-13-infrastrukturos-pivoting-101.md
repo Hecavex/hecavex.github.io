@@ -1,8 +1,8 @@
 ---
-title: "CTI Pivoting 101: profesionalus analitiko lauko vadovas"
-card_title: "Pivoting 101: nuo vieno observable iki pagrįsto cluster'io"
-description: "Profesionalus, hypothesis-driven CTI pivoting vadovas: evidence model, infrastruktūros ir malware pivotai, active recon OPSEC, temporal analizė, clustering, confidence ir attribution ribos."
-seo_title: "CTI infrastruktūros pivoting: analitiko vadovas"
+title: "Phishing infrastruktūros pivoting: DNS, URLScan, TLS ir hash'ai"
+card_title: "Infrastruktūros pivoting su DNS, URLScan ir hash'ais"
+description: "Praktinis CTI vadovas apie pivoting per DNS, RDAP, URLScan, TLS, JavaScript hash'us ir laiko juostas, nepaverčiant koreliacijos nepagrįsta attribution."
+seo_title: "Phishing infrastruktūros pivoting: CTI vadovas"
 seo_keywords:
   - "CTI infrastruktūros pivoting"
   - "threat intelligence pivoting"
@@ -71,6 +71,8 @@ decision need
 Jeigu procesas prasideda nuo "įmesk domeną į visus portalus", tai dar enrichment. Enrichment yra naudingas, bet jis nėra visas pivoting.
 
 Šis vadovas skirtas CTI, incident response, fraud, malware ir security research analitikams. Jis yra originalus ir vendor-neutral. Įrankių UI keičiasi. Analitinis modelis turi išgyventi ilgiau negu nemokamas API planas.
+
+Trumpesniam įvadui pradėkite nuo paaiškinimo, [kodėl vienas scam domenas retai būna vienas](/lt/tyrimai/vienas-scam-domenas-retai-buna-vienas/). [Hostinger phishing kit'o tyrimas](/lt/tyrimai/hostinger-pages-phishing-infrastrukturos-tyrimas/) parodo didesnio masto exact-hash ir deployment-name pivot, o [HECAVEX Radar](https://radar.hecavex.com/lt/) automatinį kandidatų aptikimą aiškiai atskiria nuo analitinių išvadų.
 
 ![Hypothesis-led CTI pivoting ciklas nuo intelligence requirement iki sprendimo arba pagrįsto stop](/assets/img/posts/2026-08-13-pivoting-101/analytical-control-loop.svg)
 

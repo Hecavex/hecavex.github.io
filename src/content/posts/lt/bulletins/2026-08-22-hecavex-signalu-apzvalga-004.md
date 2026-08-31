@@ -2,6 +2,7 @@
 title: "Signalų apžvalga #4: atviri PLC, išnaudojamas Zimbra ir phishing per patikimas platformas"
 card_title: "Signalų apžvalga #4: atviri PLC, Zimbra ir phishing per patikimas platformas"
 description: "Aktyvi grėsmė viešiems PLC, devyni žinomi išnaudojami pažeidžiamumai, phishing per patikimas platformas, ransomware atkūrimo apgaulė ir Lietuvos pulsas. Laikotarpis: 2026 m. rugpjūčio 14–22 d."
+seo_description: "Gynėjams skirta apžvalga apie viešus PLC, devynis išnaudojamus pažeidžiamumus, patikimų platformų phishing ir Lietuvos incidentus."
 seo_title: "Zimbra pažeidžiamumas ir Siemens S7 atakos: apžvalga #4"
 seo_keywords:
   - "Zimbra pažeidžiamumas 2026"
@@ -135,6 +136,8 @@ Tai skirtingi pažeidžiamumai su ta pačia architektūrine pamoka: `localhost`,
 ### Teisėtas Google Doc talpino užkrėtimo workflow
 
 Huntress aprašė po DEF CON prasidėjusį kontaktą: užpuolikas per X tiesiogines žinutes naudojo netikrą konferencijos planavimo pretekstą. Jis pateikė Google Doc, kurio Apps Script sidebar rodė ClickFix tipo instrukcijas ir rankinio atsisiuntimo variantą. Antras kelias imitavo DocSend diegimo programą. Huntress macOS kelyje stebėjo AMOS infostealer, o Windows kelyje – NetSupport RAT, Ledger wallet implant ir srautą perimantį proxy.
+
+Nukopijuojamų komandų mechaniką išsamiau nagrinėja [ClickFix atakos grandinės ir aptikimo analizė](/lt/tyrimai/clickfix-kodel-siuolaikiniai-ta-nebeiesko/). Jei follow-on veikla pasiekia identity sesijas, o ne tik endpoint, papildomą containment scope aprašo [MFA, session theft ir token replay analizė](/lt/tyrimai/mfa-nera-panaceja-ir-laikas-nustoti/).
 
 Tai vienas ištirtas kontaktas, ne įrodymas, kad kiekvienas konferencijos follow-up ar Google dokumentas yra kenksmingas. Gynybinė išvada siauresnė ir ilgiau galiojanti: teisėtas domenas gali talpinti dokumentą ir skriptą, kuriuose veikia pati ataka. Vien domeno reputacija šio skirtumo neparodys.
 

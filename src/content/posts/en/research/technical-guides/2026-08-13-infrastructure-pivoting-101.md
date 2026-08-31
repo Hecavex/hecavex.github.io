@@ -1,8 +1,8 @@
 ---
-title: "CTI Pivoting 101: a professional analyst's field guide"
-card_title: "Pivoting 101: from one observable to a defensible cluster"
-description: "A professional, hypothesis-driven CTI pivoting guide covering evidence models, infrastructure and malware pivots, active-recon OPSEC, temporal analysis, clustering, confidence and attribution limits."
-seo_title: "Phishing Infrastructure Pivoting: A CTI Field Guide"
+title: "Infrastructure Pivoting for CTI: DNS, URLScan, TLS and Hashes"
+card_title: "Infrastructure Pivoting with DNS, URLScan and Hashes"
+description: "A practical CTI guide to pivoting across DNS, RDAP, URLScan, TLS, JavaScript hashes and timelines without turning correlations into unsupported attribution."
+seo_title: "CTI Infrastructure Pivoting: DNS, URLScan and Hashes"
 seo_keywords:
   - "phishing infrastructure pivoting"
   - "URLScan hash pivoting"
@@ -71,6 +71,8 @@ decision need
 Putting a domain into several portals is enrichment. Enrichment is useful, but it is not the complete practice of pivoting.
 
 This guide is written for CTI, incident-response, fraud, malware and security-research analysts. It is original and vendor-neutral. Interfaces change. Analytical discipline should survive longer than a free API tier.
+
+For a shorter conceptual introduction, start with [why one scam domain is rarely alone](/en/research/one-scam-domain-is-rarely-alone/). The [Hostinger phishing-kit investigation](/en/research/hostinger-pages-phishing-infrastructure/) demonstrates an exact-hash and deployment-name pivot at larger scale, while [HECAVEX Radar](https://radar.hecavex.com/) keeps automated discovery separate from analytical conclusions.
 
 ![Hypothesis-led CTI pivoting cycle from an intelligence requirement to a decision or a justified stop](/assets/img/posts/2026-08-13-pivoting-101/analytical-control-loop.svg)
 

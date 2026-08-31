@@ -70,6 +70,8 @@ source_url: https://deivlis.substack.com/p/informacijos-gamyklos-prie-lietuvos
 
 *Phishing’e žmogus spaudžia nuorodą, nes gauna “sąskaitą faktūrą“. Informacinėje operacijoje žmogus spaudžia share, nes gauna “valdžia slepia tiesą“. Skirtumas tik tas, kad pirmu atveju nuteka slaptažodis, o antru sveikas protas.*
 
+[Facebook cloaking tyrimas](/lt/tyrimai/kai-fake-news-scamai-ir-cloaking/) parodo finansinio sukčiavimo pusę, kurioje taip pat naudojami cloned media, tikslinis platinimas ir skirtingas turinys skirtingiems lankytojams. Tai naudingas palyginimo kontekstas, ne įrodymas, kad čia aprašytas informacines operacijas valdo tie patys operatoriai.
+
 ---
 
 ## Kodėl Lietuva yra patogus taikinys

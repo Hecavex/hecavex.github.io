@@ -1,15 +1,16 @@
 ---
 import { dateText, imagePath, labelForPost, type Post } from '../lib/site';
-interface Props { post: Post; prominent?: boolean; }
-const { post, prominent = false } = Astro.props;
+interface Props { post: Post; prominent?: boolean; eyebrow?: string; }
+const { post, prominent = false, eyebrow } = Astro.props;
 const thumbnail = imagePath(post, 'thumbnail');
+const actionLabel = post.lang === 'lt' ? 'Skaityti' : 'Read analysis';
 ---
 <article class:list={['post-card', { 'post-card--prominent': prominent }]}>
   {thumbnail && <a class="post-card-image" href={post.url} tabindex="-1" aria-hidden="true"><img src={thumbnail} alt="" width="640" height="360" loading={prominent ? 'eager' : 'lazy'} /></a>}
   <div class="post-card-copy">
-    <p class="card-meta"><span>{labelForPost(post)}</span><time datetime={post.date.toISOString()}>{dateText(post.date)}</time></p>
+    <p class="card-meta"><span>{eyebrow ?? labelForPost(post)}</span><time datetime={post.date.toISOString()}>{dateText(post.date)}</time></p>
     <h3><a href={post.url}>{post.cardTitle}</a></h3>
     <p>{post.description}</p>
-    <span class="card-action">{post.lang === 'lt' ? 'Skaityti' : 'Read analysis'} <span aria-hidden="true">→</span></span>
+    <a class="card-action" href={post.url} aria-label={`${actionLabel}: ${post.title}`}>{actionLabel} <span aria-hidden="true">→</span></a>
   </div>
 </article>

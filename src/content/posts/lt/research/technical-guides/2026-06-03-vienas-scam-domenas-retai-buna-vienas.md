@@ -58,6 +58,8 @@ Už vieno scam linko dažnai slepiasi **redirection chain, tracking parametrai, 
 
 Kitaip tariant, vienas scam domenas nereiškia, kad jau pabaiga. Sakyčiau tai yra **įėjimo taškas į infrastruktūros analizę.**
 
+Vėlesnis [Hostinger phishing kit'o tyrimas](/lt/tyrimai/hostinger-pages-phishing-infrastrukturos-tyrimas/) šį principą parodo per pasikartojantį JavaScript ir šimtus vienkartinių projektų vardų. [Infrastruktūros pivoting lauko vadovas](/lt/tyrimai/infrastrukturos-pivoting-101/) formalizuoja evidence workflow, o [HECAVEX Radar](https://radar.hecavex.com/lt/) skelbia atrinktus galimo apsimetimo Lietuvos prekių ženklais kandidatus kaip lead'us, ne verdict'us.
+
 APWG savo 2025 m. pirmo ketvirčio phishing activity report summary nurodė daugiau nei 1 mln. stebėtų phishing atakų per ketvirtį, o online payment ir financial /banking sektoriai kartu sudarė 30,9%. Toje pačioje APWG santraukoje taip pat pažymėta, kad nusikaltėliai kasdien siunčia milijonus laiškų su QR kodais, vedančiais į phishing puslapius ar malware. Tai nėra tik “user awareness” problema, o sakyčiau yra infrastruktūros, operacijų, telemetrijos ir threat intelligence problema.(https://www.apwg.org/trendsreports/)
 
 Pagal įdėją nuo šito taško prasideda sukčiavimų infrastruktūros pivoting.

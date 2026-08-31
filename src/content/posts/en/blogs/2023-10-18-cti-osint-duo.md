@@ -39,6 +39,8 @@ OSINT is a collection discipline. It provides methods for finding, preserving an
 
 That distinction is not academic. It determines whether a team produces intelligence or an expensive pile of links.
 
+A practical workflow can begin with [reproducible Google search operators](/en/research/google-dorking/), evaluate claims using [explicit analytical-confidence rules](/en/research/confidence-is-a-field/), and preserve structured observations in [MISP without mistaking the platform for the intelligence process](/en/research/misp-for-cti-part-1/).
+
 ## Collection starts with a requirement
 
 "Monitor ransomware" is not an intelligence requirement. It has no protected asset, decision, time horizon or threshold for action.

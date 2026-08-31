@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
-import { copy, dateText, getLocalizedPosts, imagePath, labelForPost, type Lang } from '../../lib/site';
+import { copy, dateText, findPage, getLocalizedPosts, imagePath, labelForPost, type Lang, type Post } from '../../lib/site';
 
 export function getStaticPaths() { return [{ params: { lang: 'en' } }, { params: { lang: 'lt' } }]; }
 const lang = Astro.params.lang as Lang;
@@ -13,12 +13,22 @@ const recent = research.slice(1, 5);
 const latestBriefing = briefings[0];
 const hx = copy[lang];
 const alternatePath = lang === 'lt' ? '/en/' : '/lt/';
-const title = lang === 'lt' ? 'HECAVEX | Kibernetinių grėsmių žvalgyba' : 'HECAVEX | Cyber Threat Intelligence by Deividas Lis';
-const description = lang === 'lt'
-  ? 'Nepriklausomas Deivido Lis kibernetinių grėsmių žvalgybos leidinys.'
-  : 'Independent cyber threat intelligence research, malware analysis, threat hunting, OSINT and digital investigations by Deividas Lis.';
+const homePage = await findPage(`/${lang}/`);
+if (!homePage) throw new Error(`Missing ${lang} homepage content record`);
+const title = homePage.data.title;
+const seoTitle = homePage.data.seo_title;
+const description = homePage.data.seo_description ?? homePage.data.description;
+const topicDefinitions = [
+  { key: 'substack-vienas-scam-domenas-retai-buna-vienas', en: 'Phishing and scams', lt: 'Phishing ir apgaulės' },
+  { key: 'infrastructure-pivoting-101-unipark', en: 'Infrastructure', lt: 'Infrastruktūra' },
+  { key: 'adform-supply-chain-crypto-clipper', en: 'Malware and supply chain', lt: 'Kenkėjiškas kodas ir tiekimo grandinė' },
+  { key: 'cra-article-14-reporting-guide', en: 'CTI and regulation', lt: 'CTI ir reguliavimas' }
+] as const;
+const topicPosts = topicDefinitions
+  .map((topic) => ({ topic, post: posts.find((post) => post.translationKey === topic.key) }))
+  .filter((item): item is { topic: (typeof topicDefinitions)[number]; post: Post } => Boolean(item.post));
 ---
-<BaseLayout {lang} {title} {description} canonicalPath={`/${lang}/`} {alternatePath} type="CollectionPage">
+<BaseLayout {lang} {title} {seoTitle} {description} canonicalPath={`/${lang}/`} {alternatePath} type="CollectionPage">
   <div class="shell home-shell">
     <section class="home-hero" aria-labelledby="home-title">
       <div class="home-hero-copy">
@@ -43,6 +53,11 @@ const description = lang === 'lt'
         <div><p class="card-meta"><span>{labelForPost(lead)}</span><time datetime={lead.date.toISOString()}>{dateText(lead.date)}</time></p><h3><a href={lead.url}>{lead.cardTitle}</a></h3><p>{lead.description}</p><a href={lead.url}>{hx.read_more} →</a></div>
       </article>
       <div class="post-grid">{recent.map((post) => <PostCard {post} />)}</div>
+    </section>}
+
+    {topicPosts.length > 0 && <section class="home-section" aria-labelledby="topic-title">
+      <header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Temų keliai' : 'Research paths'}</p><h2 id="topic-title">{lang === 'lt' ? 'Pradėkite nuo temos' : 'Explore by topic'}</h2><p>{lang === 'lt' ? 'Atrinkti, nuolat vertingi tyrimai apie phishing, infrastruktūrą, kenkėjišką kodą ir CTI praktiką.' : 'Selected evergreen research on phishing, infrastructure, malware and practical threat intelligence.'}</p></div><a href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.view_all} →</a></header>
+      <div class="post-grid">{topicPosts.map(({ topic, post }) => <PostCard {post} eyebrow={topic[lang]} />)}</div>
     </section>}
 
     <section class="home-signal-grid">

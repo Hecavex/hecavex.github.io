@@ -2,6 +2,7 @@
 title: "Signal Brief #5: exploited developer platforms, AI control planes and camera exposure"
 card_title: "Signal Brief #5: developer platforms, AI control planes and exposed cameras"
 description: "Eleven additions to CISA KEV, attacks on AI gateways and orchestration services, camera exposure guidance and a Lithuania phishing report. Coverage: 22–30 August 2026."
+seo_description: "A defensive briefing on eleven CISA KEV additions, attacks on AI services, exposed cameras and a Lithuanian marketplace phishing case."
 seo_title: "Gitea, ownCloud and AI Gateway Attacks | Brief #5"
 seo_keywords:
   - "Gitea CVE-2026-60004 exploitation"
@@ -210,6 +211,8 @@ The guidance cites Russian use of internet-accessible cameras for intelligence c
 Panevėžys police recorded a report on 26 August involving a person born in 2008 who had advertised an item on Facebook. A supposed buyer contacted the seller, who followed a possibly fake webpage link and entered bank details. The victim later reported a EUR 1,490 loss.
 
 The police summary establishes the reported sequence and loss. It does not identify the domain, phishing kit, beneficiary, authentication flow or a wider campaign. Those missing fields matter. Marketplace phishing often succeeds because the conversation begins inside a familiar platform and moves the seller to an external "payment" or "delivery" page at the moment a transaction feels expected.
+
+The practical investigation path is covered in [One Scam Domain Is Rarely Alone](/en/research/one-scam-domain-is-rarely-alone/). Where social advertising, cloned media and visitor selection are involved, the [Facebook cloaking investigation](/en/research/when-fake-news-scams-and-cloaking-meet/) provides separate comparative context without asserting that this police report belongs to that campaign.
 
 **Do now:** treat buyer-supplied payment and delivery links as hostile until independently verified. Sellers should open the bank or marketplace through a saved application or manually typed address, never through the conversation link. For investigation, preserve the full chat export, exact URL, page screenshots, SMS or app prompts, beneficiary and transaction identifiers, and browser history before deciding how credentials or approval were captured.
 

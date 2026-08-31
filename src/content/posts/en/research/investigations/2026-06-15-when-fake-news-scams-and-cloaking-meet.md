@@ -1,7 +1,7 @@
 ---
-title: "When Fake News, Scams, and Cloaking All Meet in One Place"
-description: "An investigation into how fake news, investment fraud, and cloaking combine into a single victim-selection and monetisation infrastructure."
-seo_title: "Investment Scam Cloaking Infrastructure Investigation"
+title: "Facebook Cloaking Investigation: Fake News and Investment Scam Infrastructure"
+description: "An investigation of how Facebook cloaking, fake news and investment scams combine into one victim-selection, redirect and monetisation infrastructure."
+seo_title: "Facebook Cloaking and Investment Scam Infrastructure"
 seo_keywords:
   - "investment scam cloaking infrastructure"
   - "fake news investment fraud"
@@ -38,6 +38,8 @@ source_url: https://deivlis.substack.com/p/kai-fake-news-scamai-ir-cloaking
 *WeRedirect APT is the label Debunk.org gave this operation. I am not convinced by the "APT" part: the infrastructure, operators, cloaking and advertising farms make it persistent and organised, but "financially motivated threat actor" or "persistent scam operation" is more precise. Fraudsters targeting Lithuania and other European countries created cloned news portals, fake Facebook accounts and investment-scam landing pages, then used cloaking to serve different content to different visitors. Part I of Debunk.org's report identified 93 Facebook accounts, 81 brand-impersonation pages, 568 fake ads and 7.5 million impressions; more than 5.1 million impressions reached Lithuanian users across Facebook and other Meta platforms. (Debunk.org, 2023 Part I)*
 
 *The most important technical point is that the same URL is not the same proof, aka one person can see an empty page, another a bad one, and a person from Lithuania (with the right device, language, referrer and IP reputation) can see a fake Delfi/LRT/Ignitis investment page. Debunk part 3 described that WeRedirect used geolocation/IP-based redirection, different URL path variants, low-quality pages and selected content accordingly (Debunk.org, 2023 Part III)*
+
+The separate [information-factories investigation](/en/research/information-factories-on-lithuanias-border/) examines how cloned media, coordinated distribution and narrative laundering operate in influence campaigns. The infrastructure patterns can overlap, but financial fraud and information operations remain different analytical claims and should not be merged without evidence.
 
 ---
 

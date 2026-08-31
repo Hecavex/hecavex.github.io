@@ -1,7 +1,7 @@
 ---
-title: "Kai fake news, scamai ir cloaking susitinka vienoje vietoje."
-description: "Tyrimas, kaip netikros naujienos, investicinis sukčiavimas ir cloaking sujungiami į vieną aukų atrankos bei monetizavimo infrastruktūrą."
-seo_title: "Netikros naujienos ir investicinis sukčiavimas"
+title: "Facebook cloaking tyrimas: netikros naujienos ir investicinio sukčiavimo infrastruktūra"
+description: "Tyrimas, kaip Facebook cloaking, netikros naujienos ir investicinis sukčiavimas sujungiami į vieną aukų atrankos, redirect ir monetizavimo infrastruktūrą."
+seo_title: "Facebook cloaking ir investicinio sukčiavimo infrastruktūra"
 seo_keywords:
   - "investicinis sukčiavimas per netikras naujienas"
   - "cloaking phishing"
@@ -40,6 +40,8 @@ source_url: https://deivlis.substack.com/p/kai-fake-news-scamai-ir-cloaking
 *WeRedirect APT (tik nežinau kodėl čia pavadinta APT, kai realiai neatitinka APT sąvokos, nors iš vienos pusės kompanija turi infrastruktūrą, operatorius, cloaking, reklamų fermas, čia labiau tinka APT-like, persistent scam operation ar koks organized fraud actor na dar priliptų financially motivated threat actor) yra Debunk.org suteiktas pavadinimas kompanijai, kurioje sukčiai Lietuvoje ir kitose Europos šalyse kūrė klonuotus naujienų portalus, netikras Facebook paskyras, investicinių scamų landing pages ir naudojo cloaking, kad skirtingiems lankytojams būtų rodomas skirtingas turinys. Debunk.org part I nurodė 93 Facebook paskyras, 81 brand impersonation puslapius, 568 fake ads ir 7.5 mln. impressions, iš kurių daugiau nei 5.1 mln. parodymų teko Lietuvos Facebook vartotojams ir kitoms meta platformoms. (Debunk.org, 2023 Part I)*
 
 *Svarbiausias techninis kampas, kad tas pats URL nėra tas pats įrodymas aka vienas žmogus gali matyt tuščią puslapį, kitas blogą, o žmogus iš Lietuvos (su tinkamu įrenginiu, kalba, referreriu ir IP reputacija) mato fake Delfi/LRT/Ignitis investicinį puslapį. Debunk part 3 aprašė, kad WeRedirect naudojo geolocation/IP-based redirection, skirtingus URL path variantus, low-quality puslapius ir pagal tai parinkdavo turinį (Debunk.org, 2023 Part III)*
+
+Atskiras [informacijos gamyklų prie Lietuvos tyrimas](/lt/tyrimai/informacijos-gamyklos-prie-lietuvos/) nagrinėja, kaip cloned media, koordinuotas platinimas ir narrative laundering veikia influence kampanijose. Infrastruktūros modeliai gali persidengti, bet finansinis sukčiavimas ir informacinės operacijos lieka skirtingi analitiniai teiginiai, kurių be įrodymų suplakti negalima.
 
 ---
 

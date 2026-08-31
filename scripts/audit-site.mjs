@@ -79,6 +79,18 @@ for (const file of htmlFiles) {
     if (!canonical) failures.push(`${route}: missing canonical`);
     else if (canonicalOwners.has(canonical)) failures.push(`${route}: duplicate canonical also used by ${canonicalOwners.get(canonical)}`);
     else canonicalOwners.set(canonical, route);
+    const hreflangLinks = (html.match(/<link\b[^>]*>/gi) ?? [])
+      .filter((tag) => attr(tag, 'rel').toLowerCase() === 'alternate' && attr(tag, 'hreflang'));
+    const hreflangMap = new Map();
+    for (const tag of hreflangLinks) {
+      const language = attr(tag, 'hreflang').toLowerCase();
+      const href = attr(tag, 'href');
+      if (hreflangMap.has(language)) failures.push(`${route}: duplicate hreflang ${language}`);
+      else hreflangMap.set(language, href);
+    }
+    if (!hreflangMap.has('x-default')) failures.push(`${route}: missing hreflang x-default`);
+    const rootLanguageSelector = route === '/index.html' && canonical === 'https://hecavex.com/';
+    if (!rootLanguageSelector && hreflangMap.has('en') && hreflangMap.has('lt') && hreflangMap.get('x-default') !== hreflangMap.get('en')) failures.push(`${route}: bilingual x-default must resolve to the English counterpart`);
     for (const property of ['og:title', 'og:description', 'og:url', 'og:image', 'og:image:width', 'og:image:height', 'og:image:alt']) if (!new RegExp(`<meta\\s+[^>]*property=["']${property.replace(':', '\\:')}["'][^>]*content=["'][^"']+`, 'i').test(html)) failures.push(`${route}: missing ${property}`);
     for (const name of ['twitter:card', 'twitter:title', 'twitter:description', 'twitter:image', 'twitter:image:alt']) if (!new RegExp(`<meta\\s+[^>]*(?:name|property)=["']${name.replace(':', '\\:')}["'][^>]*content=["'][^"']+`, 'i').test(html)) failures.push(`${route}: missing ${name}`);
     if ((html.match(/<main\b/gi) ?? []).length !== 1) failures.push(`${route}: expected one main landmark`);
@@ -88,8 +100,19 @@ for (const file of htmlFiles) {
     else {
       try {
         const graph = JSON.parse(graphSource)['@graph'];
-        const ids = new Set(Array.isArray(graph) ? graph.map((node) => node['@id']).filter(Boolean) : []);
+        const nodes = Array.isArray(graph) ? graph : [];
+        const ids = new Set(nodes.map((node) => node['@id']).filter(Boolean));
         for (const id of ['https://hecavex.com/#organization', 'https://hecavex.com/#deividas-lis', 'https://hecavex.com/#website', 'https://apt.hecavex.com/#website', 'https://labs.hecavex.com/#website', 'https://radar.hecavex.com/#website']) if (!ids.has(id)) failures.push(`${route}: JSON-LD is missing ${id}`);
+        const organization = nodes.find((node) => node['@id'] === 'https://hecavex.com/#organization');
+        if (!organization?.logo?.url || !organization?.logo?.width || !organization?.logo?.height) failures.push(`${route}: Organization JSON-LD is missing a complete publisher logo`);
+        if (articleDocument) {
+          const article = nodes.find((node) => node['@type'] === 'Article');
+          if (!article?.mainEntityOfPage) failures.push(`${route}: Article JSON-LD is missing mainEntityOfPage`);
+          if (article?.isAccessibleForFree !== true) failures.push(`${route}: Article JSON-LD must declare isAccessibleForFree`);
+          if (!article?.image?.url) failures.push(`${route}: Article JSON-LD is missing its image`);
+          const breadcrumb = nodes.find((node) => node['@type'] === 'BreadcrumbList');
+          if (!breadcrumb || !Array.isArray(breadcrumb.itemListElement) || breadcrumb.itemListElement.length < 2) failures.push(`${route}: Article JSON-LD is missing a complete BreadcrumbList`);
+        }
       } catch (error) { failures.push(`${route}: invalid JSON-LD (${error.message})`); }
     }
   }

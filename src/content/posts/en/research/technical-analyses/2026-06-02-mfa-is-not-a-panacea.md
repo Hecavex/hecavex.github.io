@@ -41,6 +41,8 @@ source_url: https://deivlis.substack.com/p/mfa-nera-panaceja-ir-laikas-nustoti
 
 *Therefore, the serious answer to account takeover in 2026 is not "enable MFA". I would say the answer is layered defense. Phishing-resistant authentication, endpoint protection, token protection, session controls, OAuth app governance, sign-in monitoring, IR playbooks and fast containment. In other words, not LinkedIn comments from "wannabe Ethical hacker" or those "Cybersecurity specialists" (where the media claim not to have worked with cyber security in their life), but a real defense.*
 
+The [Centre of Registers incident analysis](/en/research/centre-of-registers-data-theft-national-security/) and its [identity-focused second part](/en/research/centre-of-registers-data-theft-part-2/) show why this distinction matters in practice: activity performed through a trusted account can look normal until identity, session, device and data-access evidence are correlated.
+
 ---
 
 ## **Why we have an MFA is not a strategy**

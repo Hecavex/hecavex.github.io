@@ -46,6 +46,8 @@ Tikriausiai esate girdėję sakant, kad internete nepavyko rasti informacijos ap
 
 Viena iš paiešką išplečiančių technikų vadinama **„Google dorking“**, arba pažangiąja „Google“ paieška. Ji gali būti naudinga ir kasdien, ir atliekant struktūruotą OSINT tyrimą.
 
+Tai yra platesnio [OSINT ir CTI workflow rinkimo sluoksnis](/lt/tyrimai/cti-osint-duo/). Prieš paieškos rezultatui tampant pagrįsta išvada, jo šaltinį ir įrodymus dar reikia įvertinti pagal [aiškų analitinio pasitikėjimo modelį](/lt/tyrimai/pasitikejimas-yra-laukas/).
+
 ## Kas yra pažangioji „Google“ paieška
 
 Tai pažangių paieškos operatorių naudojimas konkrečiai, įprastais būdais sunkiau aptinkamai informacijai rasti. Kitaip tariant, tinkamai suformuota užklausa nurodo paieškos sistemai ne tik ko ieškoti, bet ir kur bei kokiu formatu to ieškoti.

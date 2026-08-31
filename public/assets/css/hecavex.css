@@ -836,6 +836,11 @@ main {
   margin-top: auto;
   color: var(--cyan-bright);
   font: 600 0.64rem var(--mono);
+  text-decoration: none;
+}
+
+.card-action:hover {
+  color: var(--green);
 }
 
 .home-signal-grid {

@@ -47,6 +47,8 @@ Advanced search is often introduced as a list of "Google dorks". That is useful 
 
 The same method works for threat actors, malware reports, exposed documentation, corporate records, infrastructure references and historical mentions. The search engine is only one collection surface.
 
+This is the collection layer of the broader [OSINT-to-CTI workflow](/en/research/cti-osint-duo/). A result still needs source and evidence assessment using an [explicit analytical-confidence model](/en/research/confidence-is-a-field/) before it becomes a defensible conclusion.
+
 ## Start with a research question
 
 Suppose the question is: *What credible public reporting described Rhysida ransomware activity against healthcare organizations during a defined period?*

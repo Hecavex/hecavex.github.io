@@ -49,6 +49,8 @@ Prie šio apibrėžimo reikia vieno įspėjimo: MISP nėra visa žvalgybos progr
 
 Taktinės CTI darbe MISP gali tapti labai naudingu įrankiu. Grėsmių veikėjai dažnai pakartotinai naudoja infrastruktūrą, technikas ir indikatorius, todėl patikimas dalijimasis žvalgyba leidžia gynėjams veikti kartu. Platforma standartizuoja duomenis, palengvina jų paiešką, praturtinimą ir sąsajų tarp skirtingų įvykių aptikimą.
 
+Šis atskyrimas remiasi platesniu [OSINT rinkimo ir CTI sprendimų palaikymo modeliu](/lt/tyrimai/cti-osint-duo/). Dalijantis event ir attribute, [analitinio pasitikėjimo paaiškinimas](/lt/tyrimai/pasitikejimas-yra-laukas/) parodo, kodėl source reliability, evidence strength ir attribution confidence turi likti atskiri laukai.
+
 ![Lengvas intarpas: Boratas sako „nice“](/assets/img/posts/2025-03-02-misp-part-1/blog/borat-nice.jpg)
 
 Šiame straipsnyje aptariami:

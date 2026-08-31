@@ -49,6 +49,8 @@ That description needs one warning attached to it: MISP is not an intelligence p
 
 Threat actors reuse infrastructure and techniques, so shared observations can give defenders useful context. MISP helps security operations teams, threat hunters and researchers exchange that material in a structured form, search it and identify repeated attributes across events. Correlation is a starting point for analysis. It is not proof that two incidents share an operator.
 
+That separation follows the broader [OSINT collection and CTI decision-support model](/en/research/cti-osint-duo/). When events and attributes are shared, the [analytical-confidence note](/en/research/confidence-is-a-field/) explains why source reliability, evidence strength and attribution confidence must remain distinct fields.
+
 ![Borat saying nice, used as a light-hearted aside](/assets/img/posts/2025-03-02-misp-part-1/blog/borat-nice.jpg)
 
 In this post, we will explore:

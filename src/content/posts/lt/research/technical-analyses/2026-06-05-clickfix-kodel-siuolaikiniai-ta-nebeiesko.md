@@ -1,8 +1,8 @@
 ---
-title: "ClickFix. Kodėl šiuolaikiniai TA nebeieško pažeidžiamumų, o ieško žmonių"
-card_title: "ClickFix: kai užpuolikai medžioja žmones"
-description: "ClickFix kampanijų anatomija: kaip netikri patikrinimai paverčia vartotoją vykdymo mechanizmu ir ką turi matyti SOC bei CTI komandos."
-seo_title: "ClickFix ataka: PowerShell ir socialinė inžinerija"
+title: "ClickFix atakos: netikri CAPTCHA patikrinimai, PowerShell ir aptikimas"
+card_title: "ClickFix: nuo netikro CAPTCHA iki PowerShell"
+description: "Kaip ClickFix atakos netikrais CAPTCHA patikrinimais priverčia auką paleisti PowerShell ir kokius aptikimo bei reagavimo signalus turi matyti SOC."
+seo_title: "ClickFix atakos: CAPTCHA, PowerShell ir aptikimas"
 seo_keywords:
   - "ClickFix ataka"
   - "ClickFix PowerShell"

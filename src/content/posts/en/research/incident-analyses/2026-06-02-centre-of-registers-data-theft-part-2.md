@@ -41,6 +41,8 @@ source_url: https://deivlis.substack.com/p/registru-centro-duomenu-vagyste-part
 
 *In my last blog, I wrote that the Registry Center incident should not be seen as another "data leak". We are talking about more than 600 thousand. potentially copied records of the Register of Real Estate and Legal Entities, which can be useful not only for fraudsters, but also for intelligence context, social engineering and hybrid operations. The main point was a very simple aka modern attack often looks not like a "hacked system" but like a legitimate user doing very illegal things.*
 
+Read [part one for the national-security and intelligence context](/en/research/centre-of-registers-data-theft-national-security/). For the identity layer behind this scenario, [the MFA analysis explains why a stolen session or token can outlive a successful sign-in challenge](/en/research/mfa-is-not-a-panacea/).
+
 ---
 
 ## **Latest known information for today**

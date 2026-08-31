@@ -34,6 +34,8 @@ Analytical confidence describes how well the available evidence supports an asse
 
 HECAVEX uses low, moderate and high confidence when a label adds useful context. The label is never a substitute for showing the evidence, assumptions, alternatives and gaps behind it.
 
+The surrounding workflow matters too: [OSINT collection and CTI decision support are different functions](/en/research/cti-osint-duo/), and [MISP must preserve provenance and confidence](/en/research/misp-for-cti-part-1/) rather than flatten every imported object into the same certainty.
+
 ## Three questions that should not be collapsed
 
 Analysts frequently compress different judgements into one confidence word:

@@ -2,6 +2,7 @@
 title: "Signalų apžvalga #5: išnaudojamos kūrimo platformos, DI valdymo sluoksniai ir internetu pasiekiamos kameros"
 card_title: "Signalų apžvalga #5: kūrimo platformos, DI valdymo sluoksniai ir internetu pasiekiamos kameros"
 description: "Vienuolika naujų CISA KEV įrašų, atakos prieš DI gateway ir orchestration servisus, kamerų saugumo rekomendacijos ir Lietuvos phishing atvejis. Laikotarpis: 2026 m. rugpjūčio 22–30 d."
+seo_description: "Apžvalga apie vienuolika CISA KEV papildymų, atakas prieš DI servisus, viešas kameras ir Lietuvos marketplace phishing atvejį."
 seo_title: "Gitea, ownCloud ir DI gateway atakos | Apžvalga #5"
 seo_keywords:
   - "Gitea CVE-2026-60004 išnaudojimas"
@@ -210,6 +211,8 @@ Rekomendacijose minima, kad Rusijos veikėjai internetu pasiekiamas kameras naud
 Rugpjūčio 26 d. Panevėžio policija užfiksavo 2008 m. gimusio žmogaus pranešimą. Jis Facebook buvo paskelbęs apie parduodamą daiktą. Tariamas pirkėjas susisiekė su pardavėju, kuris paspaudė galimai netikro puslapio nuorodą ir suvedė banko duomenis. Vėliau nukentėjusysis pranešė apie 1 490 eurų nuostolį.
 
 Policijos suvestinė patvirtina praneštą seką ir nuostolį. Ji neįvardija domeno, phishing kit, beneficiary, autentifikacijos flow ar platesnės kampanijos. Šie trūkstami laukai svarbūs. Marketplace phishing dažnai suveikia todėl, kad pokalbis prasideda pažįstamoje platformoje, o pardavėjas į išorinį "mokėjimo" arba "pristatymo" puslapį nuvedamas tuo metu, kai sandoris atrodo laukiamas.
+
+Praktinis tyrimo kelias pateiktas tekste [Vienas scam domenas retai būna vienas](/lt/tyrimai/vienas-scam-domenas-retai-buna-vienas/). Kai naudojamos socialinės reklamos, cloned media ir lankytojų atranka, atskirą palyginimo kontekstą pateikia [Facebook cloaking tyrimas](/lt/tyrimai/kai-fake-news-scamai-ir-cloaking/), bet tai nėra teiginys, kad šis policijos pranešimas priklauso tai kampanijai.
 
 **Ką daryti dabar:** pirkėjo atsiųstas mokėjimo ir pristatymo nuorodas laikyti nepatikimomis, kol jos nepatikrintos nepriklausomai. Pardavėjas banką arba marketplace turėtų atidaryti per išsaugotą aplikaciją ar ranka įvestą adresą, ne per pokalbio nuorodą. Tyrimui išsaugoti visą chat export, tikslų URL, puslapio screenshots, SMS arba app prompt, beneficiary ir transaction identifiers bei naršyklės istoriją dar prieš nusprendžiant, kaip buvo surinkti credentials ar patvirtinimas.
 

@@ -47,6 +47,8 @@ Lietuvoje pradėtas ikiteisminis tyrimas dėl galimo neteisėto prisijungimo pri
 
 Kalbame apie duomenis, kurie gali padėti išsiaiškinti žmonių turtą, įmonių struktūras, ryšius, adresus, nuosavybę ir verslus. Tokie duomenys patampa labai labai.. naudingi sukčiavimui, socialinei inžinerijai, taikinių profiliavimui ir žvalgybai.
 
+[Antroje šio tyrimo dalyje](/lt/tyrimai/registru-centro-duomenu-vagyste-part/) nagrinėjama, kaip teisėtos paskyros gali paversti neteisėtą veiklą operaciškai normalia. Identity kontrolės problema atskirai išskleista [MFA apėjimo, session theft ir token replay analizėje](/lt/tyrimai/mfa-nera-panaceja-ir-laikas-nustoti/).
+
 Viešai patvirtintos atribucijos kol kas nėra. Todėl sakyti “padarė rusai” būtų per anksti. Bet sakyti, kad tokia versija yra nereali, būtų... irgi ne labai gerai.
 
 Ypač kai tyrimo duomenys leidžia įtarti, kad dalis neteisėtų prisijungimų ir bandymų prisijungti buvo vykdyti iš užsienio valstybės ir per kitų institucijų administruojamas sistemas. Viešai taip pat nurodyta, kad galėjo būti pasinaudota vieno Nekilnojamojo turto registro duomenų gavėjo vartotojų prisijungimo duomenimis (tas pats source kaip ir aukščiau).

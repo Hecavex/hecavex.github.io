@@ -45,6 +45,8 @@ A pre-trial investigation has been launched in Lithuania regarding possible ille
 
 We're talking about data that can help uncover people's assets, corporate structures, connections, addresses, properties and businesses. Such data becomes very very.. useful for phishing, social engineering, target profiling and intelligence.
 
+The [second part of this investigation](/en/research/centre-of-registers-data-theft-part-2/) examines how legitimate accounts can make unauthorised activity look operationally normal. The identity-control problem is explored separately in [the analysis of MFA bypass, session theft and token replay](/en/research/mfa-is-not-a-panacea/).
+
 There is no publicly confirmed attribution yet. Therefore, it would be premature to say "the Russians did it". But to say that such a version is unrealistic would be... not very good either.
 
 Especially when the research data suggests that some of the illegal logins and login attempts were carried out from a foreign country and through systems administered by other institutions. It has also been publicly stated that the user login data of one Real Estate Register data recipient could have been used (same source as above).

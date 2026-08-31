@@ -47,7 +47,7 @@ const researchMap = researchMapFor(lang, {
   briefings: briefings.length
 });
 ---
-<BaseLayout {lang} {title} description={entry.data.description} canonicalPath={entry.data.permalink} {alternatePath} noindex={entry.data.robots?.includes('noindex')} type="CollectionPage">
+<BaseLayout {lang} {title} description={entry.data.seo_description ?? entry.data.description} canonicalPath={entry.data.permalink} {alternatePath} noindex={entry.data.robots?.includes('noindex')} type="CollectionPage">
   <div class="shell page-shell">
     {layout === 'research' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} facts={pageFacts} anchorId="page-start" />

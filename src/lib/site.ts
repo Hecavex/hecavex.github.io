@@ -62,6 +62,7 @@ export interface Post {
   lang: Lang;
   title: string;
   seoTitle?: string;
+  seoDescription?: string;
   seoKeywords: string[];
   cardTitle: string;
   description: string;
@@ -95,6 +96,7 @@ export const hydratePost = (entry: PostEntry): Post => {
     lang,
     title: entry.data.title,
     seoTitle: entry.data.seo_title,
+    seoDescription: entry.data.seo_description,
     seoKeywords: entry.data.seo_keywords,
     cardTitle: entry.data.card_title ?? entry.data.title,
     description: entry.data.description,
@@ -124,6 +126,61 @@ export const getPublicPosts = async () => {
 
 export const getLocalizedPosts = async (lang: Lang) => (await getPublicPosts()).filter((post) => post.lang === lang);
 export const findTranslation = async (post: Post) => (await getPublicPosts()).find((candidate) => candidate.translationKey === post.translationKey && candidate.lang !== post.lang);
+
+const postSeries = (post: Post) => {
+  const data = post.entry.data as typeof post.entry.data & { series?: unknown; series_key?: unknown };
+  const value = data.series_key ?? data.series;
+  return typeof value === 'string' && value.trim() ? value.trim() : undefined;
+};
+
+const postSeriesPart = (post: Post) => {
+  const data = post.entry.data as typeof post.entry.data & { series_part?: unknown; issue?: unknown };
+  const value = data.series_part ?? data.issue;
+  return typeof value === 'number' && Number.isFinite(value) ? value : undefined;
+};
+
+const normalizedTerms = (values: string[]) => new Set(values.map((value) => slugify(value)).filter(Boolean));
+const intersectionSize = (left: Set<string>, right: Set<string>) => [...left].filter((value) => right.has(value)).length;
+
+export const relatedPostsFor = (post: Post, candidates: Post[], limit = 3) => {
+  const categories = normalizedTerms(post.categories);
+  const tags = normalizedTerms(post.tags);
+  const series = postSeries(post);
+  return candidates
+    .filter((candidate) => candidate.url !== post.url)
+    .map((candidate) => {
+      const sharedCategories = intersectionSize(categories, normalizedTerms(candidate.categories));
+      const sharedTags = intersectionSize(tags, normalizedTerms(candidate.tags));
+      const sameSeries = Boolean(series && postSeries(candidate) === series);
+      const score = (sameSeries ? 100 : 0)
+        + sharedCategories * 12
+        + sharedTags * 4
+        + (candidate.contentType === post.contentType ? 8 : 0)
+        + (candidate.publicationClass === post.publicationClass ? 4 : 0);
+      return { candidate, score, distance: Math.abs(candidate.date.valueOf() - post.date.valueOf()) };
+    })
+    .filter(({ score }) => score > 0)
+    .sort((left, right) => right.score - left.score || left.distance - right.distance || right.candidate.date.valueOf() - left.candidate.date.valueOf())
+    .slice(0, limit)
+    .map(({ candidate }) => candidate);
+};
+
+const sequenceOrder = (left: Post, right: Post) => right.date.valueOf() - left.date.valueOf()
+  || (postSeriesPart(right) ?? 0) - (postSeriesPart(left) ?? 0)
+  || left.url.localeCompare(right.url);
+
+export const postNeighboursFor = (post: Post, candidates: Post[]) => {
+  const series = postSeries(post);
+  const sameSeries = series ? candidates.filter((candidate) => postSeries(candidate) === series) : [];
+  const sameTypeAndClass = candidates.filter((candidate) => candidate.contentType === post.contentType && candidate.publicationClass === post.publicationClass);
+  const sameClass = candidates.filter((candidate) => candidate.publicationClass === post.publicationClass);
+  const sequence = (sameSeries.length > 1 ? sameSeries : sameTypeAndClass.length > 1 ? sameTypeAndClass : sameClass).sort(sequenceOrder);
+  const position = sequence.findIndex((candidate) => candidate.url === post.url);
+  return {
+    newer: position > 0 ? sequence[position - 1] : undefined,
+    older: position >= 0 && position < sequence.length - 1 ? sequence[position + 1] : undefined
+  };
+};
 
 export const getPages = async () => getCollection('pages');
 export const findPage = async (permalink: string) => (await getPages()).find((page) => normalizePath(page.data.permalink) === normalizePath(permalink));

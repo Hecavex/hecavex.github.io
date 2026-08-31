@@ -4,7 +4,7 @@ import ContentOutline from '../../../components/ContentOutline.astro';
 import PostCard from '../../../components/PostCard.astro';
 import type { OutlineItem } from '../../../data/page-context';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imagePath, labelForPost, slugify, type Post } from '../../../lib/site';
+import { dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imagePath, labelForPost, postNeighboursFor, relatedPostsFor, slugify, type Post } from '../../../lib/site';
 
 export async function getStaticPaths() {
   const posts = await getPublicPosts();
@@ -20,10 +20,8 @@ const { Content, headings } = await render(post.entry);
 const data = post.entry.data as typeof post.entry.data & Record<string, unknown>;
 const translation = await findTranslation(post);
 const localized = await getLocalizedPosts(post.lang);
-const position = localized.findIndex((candidate) => candidate.url === post.url);
-const newer = position > 0 ? localized[position - 1] : undefined;
-const older = position >= 0 && position < localized.length - 1 ? localized[position + 1] : undefined;
-const related = localized.filter((candidate) => candidate.url !== post.url && candidate.categories.some((category) => post.categories.includes(category))).slice(0, 3);
+const { newer, older } = postNeighboursFor(post, localized);
+const related = relatedPostsFor(post, localized);
 const evidenceBearing = ['investigation', 'malware-analysis', 'incident-analysis', 'technical-analysis', 'technical-guide'].includes(post.contentType);
 const hero = imagePath(post, 'hero');
 const social = imagePath(post, 'social');
@@ -55,7 +53,7 @@ const sectionLabel = post.publicationClass === 'signal-brief'
   ? (post.lang === 'lt' ? 'Signalų apžvalgos' : 'Signal Briefs')
   : (post.lang === 'lt' ? 'Tyrimai' : 'Research');
 ---
-<BaseLayout lang={post.lang} title={post.title} seoTitle={post.seoTitle} keywords={post.seoKeywords.length > 0 ? post.seoKeywords : post.tags} articleSection={labelForPost(post)} description={post.description} canonicalPath={post.url} alternatePath={translation?.url} image={social} imageAlt={alt || `${post.title} social preview`} type="Article" published={post.date} modified={post.updated ?? post.date}>
+<BaseLayout lang={post.lang} title={post.title} seoTitle={post.seoTitle} keywords={post.seoKeywords.length > 0 ? post.seoKeywords : post.tags} articleSection={labelForPost(post)} description={post.seoDescription ?? post.description} canonicalPath={post.url} alternatePath={translation?.url} image={social} imageAlt={alt || `${post.title} social preview`} type="Article" published={post.date} modified={post.updated ?? post.date} breadcrumbs={[{ name: 'HECAVEX', path: `/${post.lang}/` }, { name: sectionLabel, path: sectionPath }, { name: post.title, path: post.url }]}>
   <article class="shell article-shell">
     <nav class="article-breadcrumb" aria-label={post.lang === 'lt' ? 'Publikacijos kelias' : 'Publication path'}>
       <a href={`/${post.lang}/`}>HECAVEX</a><span aria-hidden="true">/</span><a href={sectionPath}>{sectionLabel}</a><span aria-hidden="true">/</span><span aria-current="page">{post.title}</span>

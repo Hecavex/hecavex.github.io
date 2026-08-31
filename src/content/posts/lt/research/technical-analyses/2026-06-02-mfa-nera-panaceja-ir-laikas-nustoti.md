@@ -43,6 +43,8 @@ source_url: https://deivlis.substack.com/p/mfa-nera-panaceja-ir-laikas-nustoti
 
 *Todėl rimtas atsakymas į account takeover 2026 metais nėra “įjunkit MFA”. Sakyčiau atsakymas yra layered defense. Phishing-resistant authentication, endpoint protection, token protection, session controls, OAuth app governance, sign-in monitoring, IR playbooks ir greitas containment’as. Kitaip tariant, ne LinkedIn komentarai iš “wannabe Ethical hacker” ar tų “Kibernetio saugumo specialistų” (kur ten žiniasklaidoj reiškiasi nedirbę gyvenime su kibernetiniu saugumu), o reali gynyba.*
 
+[Registrų centro incidento analizė](/lt/tyrimai/registru-centro-duomenu-vagyste-kai/) ir jos [identity sluoksniui skirta antra dalis](/lt/tyrimai/registru-centro-duomenu-vagyste-part/) parodo, kodėl šis skirtumas svarbus praktiškai: per patikimą paskyrą vykdoma veikla gali atrodyti normali, kol nesukoreliuojami identity, session, įrenginio ir duomenų prieigos įrodymai.
+
 ---
 
 ## **Kodėl turime MFA nėra strategija**

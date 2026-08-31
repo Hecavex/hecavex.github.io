@@ -1,8 +1,8 @@
 ---
-title: "ClickFix: Why Modern Threat Actors No Longer Look for Vulnerabilities—they Look for People"
-card_title: "ClickFix: When Threat Actors Hunt People"
-description: "The anatomy of ClickFix campaigns: how fake verification prompts turn users into the execution mechanism and what SOC and CTI teams should detect."
-seo_title: "ClickFix Social Engineering: Attack Chain and Detection"
+title: "ClickFix Attacks Explained: Fake CAPTCHA, PowerShell and Detection"
+card_title: "ClickFix: Fake CAPTCHA to PowerShell"
+description: "How ClickFix attacks use fake CAPTCHA prompts and copied commands to make victims launch PowerShell, with practical SOC detection and response signals."
+seo_title: "ClickFix Attacks: Fake CAPTCHA, PowerShell and Detection"
 seo_keywords:
   - "ClickFix social engineering attack"
   - "fake CAPTCHA malware"

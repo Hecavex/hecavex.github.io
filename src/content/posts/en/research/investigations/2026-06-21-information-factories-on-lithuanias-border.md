@@ -68,6 +68,8 @@ source_url: https://deivlis.substack.com/p/informacijos-gamyklos-prie-lietuvos
 
 *In phishing, a person clicks on a link because they receive an "invoice". In an information operation, a person presses share because he receives "the government hides the truth". The only difference is that the password is leaked in the first case, and common sense in the second.*
 
+The [Facebook cloaking investigation](/en/research/when-fake-news-scams-and-cloaking-meet/) follows the financial-fraud side of cloned media, targeted distribution and different content for different visitors. It is useful comparative context, not evidence that the influence operations described here share the same operators.
+
 ---
 
 ## Why Lithuania is a convenient target

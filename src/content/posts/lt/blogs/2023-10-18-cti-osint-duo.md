@@ -2,6 +2,7 @@
 title: "OSINT renka. CTI padeda priimti sprendimą."
 card_title: "OSINT ir CTI nėra tas pats darbas"
 description: "Kodėl atvirųjų šaltinių rinkimas ir kibernetinių grėsmių žvalgyba yra susijusios, bet skirtingos disciplinos, ir kaip viešą informaciją paversti pagrįstu saugumo sprendimu."
+seo_description: "Kuo skiriasi OSINT rinkimas ir CTI analizė bei kaip viešą informaciją paversti aiškiai pagrįstu kibernetinio saugumo sprendimu."
 seo_title: "CTI ir OSINT skirtumai: nuo duomenų iki sprendimo"
 seo_keywords:
   - "CTI ir OSINT skirtumai"
@@ -38,6 +39,8 @@ OSINT ir kibernetinių grėsmių žvalgyba dažnai minimos viename sakinyje taip
 OSINT yra rinkimo disciplina. Ji suteikia metodus viešai ir komerciškai prieinamai informacijai rasti, išsaugoti bei įvertinti. CTI yra sprendimų palaikymo funkcija. Ji sujungia aktualius įrodymus, įskaitant, bet neapsiribojant OSINT, kad sumažintų neapibrėžtumą priimant konkretų saugumo sprendimą.
 
 Šis skirtumas nėra akademinis. Nuo jo priklauso, ar komanda kuria žvalgybą, ar tik brangią nuorodų krūvą.
+
+Praktinis workflow gali prasidėti nuo [pakartojamų „Google“ paieškos operatorių](/lt/tyrimai/google-dorking/), teiginius vertinti pagal [aiškias analitinio pasitikėjimo taisykles](/lt/tyrimai/pasitikejimas-yra-laukas/) ir struktūruotus stebėjimus saugoti [MISP, nepainiojant platformos su pačiu žvalgybos procesu](/lt/tyrimai/misp-for-cti-part-1/).
 
 ## Rinkimas prasideda nuo reikalavimo
 

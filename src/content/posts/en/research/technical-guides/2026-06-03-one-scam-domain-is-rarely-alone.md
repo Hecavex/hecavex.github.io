@@ -56,6 +56,8 @@ They often hide behind one scam link **redirection chain, tracking parameters, l
 
 In other words, finding one scam domain does not mean the work is over. It is an **entry point into infrastructure analysis.**
 
+The later [Hostinger phishing-kit investigation](/en/research/hostinger-pages-phishing-infrastructure/) shows this principle against repeated JavaScript and hundreds of disposable project names. The [infrastructure-pivoting field guide](/en/research/infrastructure-pivoting-101/) formalises the evidence workflow, while [HECAVEX Radar](https://radar.hecavex.com/) publishes sampled Lithuanian brand-impersonation candidates as leads rather than verdicts.
+
 APWG's summary of phishing activity in the first quarter of 2025 recorded more than one million monitored phishing attacks. Online payment and financial or banking targets together accounted for 30.9%. The same summary noted that criminals send millions of emails every day containing QR codes that lead to phishing pages or malware. This is not merely a "user awareness" problem. It is an infrastructure, operations, telemetry and threat-intelligence problem. (<https://www.apwg.org/trendsreports/>.)
 
 According to the deposit, the pivoting of the fraud infrastructure starts from this point.

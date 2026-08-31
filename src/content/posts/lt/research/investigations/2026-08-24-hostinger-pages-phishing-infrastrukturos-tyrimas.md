@@ -1,7 +1,7 @@
 ---
 title: "298 Cloudflare Pages task domenai ir vienas stabilus phishing kit'as"
 card_title: "Hostinger imitavimo infrastruktūra: 298 Pages task domenai"
-description: "Ilgas Hostinger tematika sukurto credential-harvesting kit'o tyrimas: klonuota sąsaja, tikslus JavaScript reuse, automatizuoti Pages projektai, atskiri Render rinktuvai ir ribos tarp kit lineage bei operatoriaus attribution."
+description: "Hostinger phishing kit'o tyrimas: 298 Cloudflare Pages task domenai, pakartotinai naudotas JavaScript, Render rinktuvai ir aiškios attribution ribos."
 seo_title: "Hostinger phishing kampanija: 298 apsimetimo domenai"
 seo_keywords:
   - "Hostinger phishing kampanija"
@@ -64,6 +64,8 @@ hostinger-mail-ewgjnwrkgnkrw-<24 mažosios raidės>.pages.dev
 Vienas toks domenas dar galėtų būti eilinis phishing puslapis. Problema ta, kad vienas labai greitai tapo 25, tada 298, o po HTML ir JavaScript palyginimo paaiškėjo, kad čia ne vien vizualiai panašūs klonai. Tarp deployment'ų kartojosi tas pats credential-harvesting kodas, tas pats UI bundle, tie patys formos laukai, ta pati netikros klaidos logika ir atskiri Render servisai credentials bei tracking duomenims.
 
 Kitaip tariant, puslapio vardai sukosi kaip vienkartiniai numeriai, bet po jais esantis mechanizmas buvo stebėtinai stabilus. Phishing infrastruktūroje tai nėra romantika. Tai tiesiog normaliai veikianti deployment pipeline, tik produkto roadmap'e vietoje "improve onboarding" yra "surinkti dar vieną slaptažodį".
+
+Tyrime taikomas tas pats principas, kuris pristatytas tekste [Vienas scam domenas retai būna vienas](/lt/tyrimai/vienas-scam-domenas-retai-buna-vienas/) ir formalizuotas [infrastruktūros pivoting lauko vadove](/lt/tyrimai/infrastrukturos-pivoting-101/). Atskirai [HECAVEX Radar](https://radar.hecavex.com/lt/) skelbia atrinktus Lietuvos impersonation kandidatus discovery tikslams; jis nėra šiame tyrime pateiktų skaičių šaltinis ir nepaverčia kandidato verdict'u.
 
 Svarbiausia išvada iškart:
 

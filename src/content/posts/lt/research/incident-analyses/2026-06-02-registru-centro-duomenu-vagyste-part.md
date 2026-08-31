@@ -43,6 +43,8 @@ source_url: https://deivlis.substack.com/p/registru-centro-duomenu-vagyste-part
 
 *Praeitame bloge rašiau, kad Registrų centro incidentas neturėtų būti vertinamas kaip eilinis “duomenų nutekėjimas”. Kalbame apie daugiau nei 600 tūkst. galimai nukopijuotų Nekilnojamojo turto ir Juridinių asmenų registro įrašų, kurie gali būti naudingi ne tik sukčiams, bet ir žvalgybiniam kontekstui, socialinei inžinerijai bei hibridinėms operacijoms. Svarbiausia mintis buvo labai paprasta aka moderni ataka dažnai atrodo ne kaip “nulaužta sistema”, o kaip teisėtas naudotojas, darantis labai neteisėtus dalykus.*
 
+[Pirmoje dalyje pateiktas nacionalinio saugumo ir žvalgybos kontekstas](/lt/tyrimai/registru-centro-duomenu-vagyste-kai/). Šio scenarijaus identity sluoksnį papildo [MFA analizė, aiškinanti, kodėl pavogta sesija ar token gali apeiti pakartotinį prisijungimo patikrinimą](/lt/tyrimai/mfa-nera-panaceja-ir-laikas-nustoti/).
+
 ---
 
 ## **Šiai dienai naujausia žinoma informacija**

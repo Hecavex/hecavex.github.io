@@ -1,7 +1,7 @@
 ---
 title: "298 Cloudflare Pages Task Domains and One Stable Phishing Kit"
 card_title: "Hostinger impersonation infrastructure across 298 Pages task domains"
-description: "A detailed investigation of a Hostinger-themed credential-harvesting kit: a cloned interface, exact JavaScript reuse, automated Pages projects, separate Render collectors, and the boundary between code lineage and operator attribution."
+description: "A Hostinger phishing kit investigation covering 298 Cloudflare Pages task domains, reused JavaScript, Render collectors and carefully bounded attribution."
 seo_title: "Hostinger Phishing Campaign Across Cloudflare Pages"
 seo_keywords:
   - "Hostinger phishing campaign"
@@ -64,6 +64,8 @@ hostinger-mail-ewgjnwrkgnkrw-<24 lowercase letters>.pages.dev
 One such domain could have been an ordinary phishing page. The problem was that one quickly became 25, then 298. Comparing their HTML and JavaScript showed that these were not merely similar-looking clones. The same credential-harvesting code, UI bundle, form fields, fake-error logic, and separate Render services for credentials and tracking data recurred across deployments.
 
 In other words, the page names rotated like disposable numbers, while the mechanism beneath them remained surprisingly stable. This is not romance in phishing infrastructure. It is a functioning deployment pipeline whose product roadmap replaces "improve onboarding" with "collect another password".
+
+The investigation applies the same principle introduced in [One Scam Domain Is Rarely Alone](/en/research/one-scam-domain-is-rarely-alone/) and formalised in the [infrastructure-pivoting field guide](/en/research/infrastructure-pivoting-101/). Separately, [HECAVEX Radar](https://radar.hecavex.com/) publishes sampled Lithuanian impersonation candidates for discovery; it is not the source of the counts in this investigation and does not turn a candidate into a verdict.
 
 The most important boundaries are clear:
 

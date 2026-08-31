@@ -66,6 +66,8 @@ export async function validate() {
     }
     if (!allowedLanguages.has(data.lang)) errors.push(`${file}: lang must be en or lt`);
     for (const field of ['title', 'description', 'translation_key']) if (!String(data[field] ?? '').trim()) errors.push(`${file}: missing ${field}`);
+    const searchDescription = String(data.seo_description ?? data.description ?? '').trim();
+    if (searchDescription.length > 160) errors.push(`${file}: effective search description exceeds 160 characters (${searchDescription.length}); add a concise seo_description`);
     if (!allowedTypes.has(String(data.content_type))) errors.push(`${file}: missing or invalid content_type`);
     if (evidenceTypes.has(data.content_type)) {
       for (const field of ['key_findings', 'scope', 'limitations']) if (!data[field] || (Array.isArray(data[field]) && !data[field].length)) errors.push(`${file}: evidence-bearing publication missing ${field}`);

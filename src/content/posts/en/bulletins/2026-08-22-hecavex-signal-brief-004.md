@@ -2,6 +2,7 @@
 title: "Signal Brief #4: exposed PLCs, exploited Zimbra and trusted-platform phishing"
 card_title: "Signal Brief #4: exposed PLCs, Zimbra and trusted-platform phishing"
 description: "An active threat to exposed PLCs, nine known-exploited vulnerabilities, trusted-platform phishing, ransomware recovery fraud and a Lithuania pulse. Coverage: 14–22 August 2026."
+seo_description: "A defensive briefing on exposed PLCs, nine exploited vulnerabilities, trusted-platform phishing, recovery fraud and Lithuanian incidents."
 seo_title: "Siemens S7 PLC and Zimbra Vulnerabilities"
 seo_keywords:
   - "Siemens S7 PLC and Zimbra vulnerabilities"
@@ -137,6 +138,8 @@ These are different bugs with the same architectural lesson: `localhost`, a deve
 Huntress documented a post-DEF CON approach that began in X direct messages with a fake conference-planning pretext. The actor supplied a Google Doc whose Apps Script sidebar presented ClickFix-style instructions and a manual download option. A second route imitated a DocSend installer. Huntress observed an AMOS infostealer on the macOS path and NetSupport RAT, a Ledger wallet implant and a traffic-intercepting proxy on the Windows path.
 
 This is one investigated interaction, not evidence that every conference follow-up or Google document is malicious. The defensive point is narrower and more durable: a legitimate domain can host the document and script that performs the attack. Domain reputation alone will miss that distinction.
+
+For the mechanics behind copied-command lures, see the full [ClickFix attack-chain and detection analysis](/en/research/clickfix-why-modern-threat-actors-hunt-people/). If the follow-on activity reaches identity sessions rather than only the endpoint, the [MFA, session-theft and token-replay analysis](/en/research/mfa-is-not-a-panacea/) covers the additional containment scope.
 
 **Do now:** tell users and help desks that a shared document should never instruct them to paste commands into a terminal or Run dialog. Preserve the complete message thread, document URL, script and download chain when reporting it. Correlate browser, endpoint and identity activity; a phishing-domain feed is only one layer of that investigation.
 
