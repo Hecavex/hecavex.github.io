@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">HECAVEX Radar August 2026 baseline</title>
+  <desc id="desc">A coverage-aware dashboard showing 130 sampled impersonation candidates, 18 represented brands, two corroborated records and the boundary between signals and verdicts.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05080b"/><stop offset=".58" stop-color="#0a1218"/><stop offset="1" stop-color="#10242c"/></linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#1d3742" stroke-width="1" opacity=".4"/></pattern>
+    <style>
+      .eyebrow{font:700 18px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:3px;fill:#43c9dc}.title{font:800 66px Inter,Segoe UI,Arial,sans-serif;fill:#f2f7fa}.deck{font:500 22px Inter,Segoe UI,Arial,sans-serif;fill:#91a9b8}.number{font:800 60px Inter,Segoe UI,Arial,sans-serif;fill:#f2f7fa}.label{font:700 16px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:1.5px;fill:#91a9b8}.small{font:600 16px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#bdd0d9}.panel{fill:#0a1117;stroke:#29414d;stroke-width:2}.cyan{fill:#0b1b21;stroke:#43c9dc;stroke-width:2}.lime{fill:#101b16;stroke:#9fdd6c;stroke-width:2}.amber{fill:#1d1810;stroke:#ffc857;stroke-width:2}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/><path d="M0 4H1600" stroke="#43c9dc" stroke-width="8"/>
+  <g transform="translate(92 86)">
+    <text class="eyebrow" y="0">HECAVEX RADAR / AUGUST 2026 BASELINE</text>
+    <text class="title" y="88">SIGNALS IN CONTEXT.</text>
+    <text class="title" y="164" fill="#91a9b8">COVERAGE BESIDE COUNTS.</text>
+    <text class="deck" y="218">Sampled Lithuanian brand-impersonation discovery · cutoff 30 Aug 2026 17:20 UTC</text>
+  </g>
+  <g transform="translate(92 350)">
+    <g><rect class="cyan" width="330" height="178"/><text class="number" x="28" y="80">130</text><text class="label" x="28" y="119">CURRENT CANDIDATES</text><text class="small" x="28" y="149">not maliciousness verdicts</text></g>
+    <g transform="translate(354)"><rect class="panel" width="330" height="178"/><text class="number" x="28" y="80">18 / 46</text><text class="label" x="28" y="119">BRANDS REPRESENTED</text><text class="small" x="28" y="149">registry is non-exhaustive</text></g>
+    <g transform="translate(708)"><rect class="lime" width="330" height="178"/><text class="number" x="28" y="80">2</text><text class="label" x="28" y="119">CORROBORATED RECORDS</text><text class="small" x="28" y="149">128 name-only candidates</text></g>
+    <g transform="translate(1062)"><rect class="amber" width="330" height="178"/><text class="number" x="28" y="80">0%</text><text class="label" x="28" y="119">ANALYST REVIEW COVERAGE</text><text class="small" x="28" y="149">precision not estimated</text></g>
+  </g>
+  <g transform="translate(92 570)">
+    <rect class="panel" width="1392" height="216"/>
+    <text class="eyebrow" x="28" y="46">COLLECTION WINDOW</text>
+    <line x1="28" y1="70" x2="1364" y2="70" stroke="#29414d"/>
+    <text class="small" x="28" y="111">CERTSTREAM</text><text class="small" x="210" y="111" fill="#f2f7fa">122 records · 62.78% 24h listening coverage</text>
+    <text class="small" x="28" y="149">URLSCAN</text><text class="small" x="210" y="149" fill="#f2f7fa">9 records · 65 queries · one partial/backlog query</text>
+    <text class="small" x="28" y="187">BOUNDARY</text><text class="small" x="210" y="187" fill="#ffc857">discovery ≠ prevalence · match ≠ attribution · absence ≠ safety</text>
+  </g>
+  <text class="eyebrow" x="92" y="850">PUBLIC AGGREGATE · REPRODUCIBLE CUTOFF · RETENTION AND FRESHNESS DISCLOSED</text>
+</svg>

@@ -127,6 +127,11 @@ export const getPublicPosts = async () => {
 export const getLocalizedPosts = async (lang: Lang) => (await getPublicPosts()).filter((post) => post.lang === lang);
 export const findTranslation = async (post: Post) => (await getPublicPosts()).find((candidate) => candidate.translationKey === post.translationKey && candidate.lang !== post.lang);
 
+export const latestContentUpdate = (posts: Post[]) => posts.reduce<Date | undefined>((latest, post) => {
+  const candidate = post.updated ?? post.date;
+  return !latest || candidate.valueOf() > latest.valueOf() ? candidate : latest;
+}, undefined);
+
 const postSeries = (post: Post) => {
   const data = post.entry.data as typeof post.entry.data & { series?: unknown; series_key?: unknown };
   const value = data.series_key ?? data.series;

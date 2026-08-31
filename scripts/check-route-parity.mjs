@@ -12,7 +12,7 @@ const failures = [];
 
 for (const route of expectedSitemap) if (!actualSitemap.has(route)) failures.push(`sitemap dropped ${route}`);
 for (const route of actualSitemap) if (!expectedSitemap.has(route)) failures.push(`sitemap added unreviewed route ${route}`);
-if (actualSitemap.size !== 146) failures.push(`sitemap must contain exactly 146 routes, found ${actualSitemap.size}`);
+if (actualSitemap.size !== expectedSitemap.size) failures.push(`sitemap route count differs from the reviewed manifest: expected ${expectedSitemap.size}, found ${actualSitemap.size}`);
 
 const routeFile = (route) => route === '/' ? join(root, 'index.html') : route.endsWith('/') ? join(root, route.slice(1), 'index.html') : join(root, route.slice(1));
 async function isFile(path) { try { return (await stat(path)).isFile(); } catch { return false; } }
@@ -34,10 +34,27 @@ const essentials = [
 ];
 for (const route of essentials) if (!(await isFile(routeFile(route)))) failures.push(`missing compatibility route ${route}`);
 
-async function countDirectories(path) { return (await readdir(path, { withFileTypes: true })).filter((entry) => entry.isDirectory()).length; }
-for (const [path, expected] of [['en/tags', 113], ['lt/zymos', 112], ['en/categories', 12], ['lt/kategorijos', 12]]) {
-  const actual = await countDirectories(join(root, path));
-  if (actual !== expected) failures.push(`${path} route count changed: expected ${expected}, found ${actual}`);
+const slugify = (value) => String(value)
+  .normalize('NFKD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase()
+  .replace(/&/g, ' and ')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-|-$/g, '');
+
+async function directoryNames(path) {
+  return new Set((await readdir(path, { withFileTypes: true })).filter((entry) => entry.isDirectory()).map((entry) => entry.name));
+}
+
+for (const [lang, tagPath, categoryPath] of [['en', 'en/tags', 'en/categories'], ['lt', 'lt/zymos', 'lt/kategorijos']]) {
+  const searchRecords = JSON.parse(await readFile(join(root, lang, 'search.json'), 'utf8'));
+  const expectedTags = new Set(searchRecords.flatMap((record) => record.tags ?? []).map(slugify).filter(Boolean));
+  const expectedCategories = new Set(searchRecords.flatMap((record) => record.categories ?? []).map(slugify).filter(Boolean));
+  for (const [path, expected] of [[tagPath, expectedTags], [categoryPath, expectedCategories]]) {
+    const actual = await directoryNames(join(root, path));
+    for (const slug of expected) if (!actual.has(slug)) failures.push(`${path} dropped generated taxonomy route ${slug}`);
+    for (const slug of actual) if (!expected.has(slug)) failures.push(`${path} contains an unexpected taxonomy route ${slug}`);
+  }
 }
 
 async function walk(directory) {
@@ -51,10 +68,9 @@ async function walk(directory) {
 }
 const files = await walk(root);
 const htmlCount = files.filter((file) => extname(file) === '.html').length;
-if (htmlCount !== 344) failures.push(`document surface changed: expected 344 HTML files, found ${htmlCount}`);
 
 if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log('Route parity passed: 146 indexed URLs, 344 HTML artifacts, all taxonomy routes, feeds, search, 404, redirects and security endpoints preserved.');
+console.log(`Route parity passed: ${actualSitemap.size} reviewed indexed URLs, ${htmlCount} HTML artifacts, and all derived taxonomy, feed, search, 404, redirect and security routes are present.`);

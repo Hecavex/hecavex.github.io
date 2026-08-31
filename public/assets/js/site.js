@@ -23,6 +23,11 @@
   const searchResults = document.querySelector('[data-search-results]');
   let searchIndex;
 
+  const normalizeSearchText = (value) => String(value ?? '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLocaleLowerCase(language);
+
   const openSearch = () => {
     if (!(dialog instanceof HTMLDialogElement)) return;
     dialog.showModal();
@@ -45,12 +50,12 @@
 
   const renderSearch = async () => {
     if (!(searchInput instanceof HTMLInputElement) || !searchResults) return;
-    const query = searchInput.value.trim().toLocaleLowerCase(language);
+    const query = normalizeSearchText(searchInput.value.trim());
     searchResults.replaceChildren();
     if (query.length < 2) return;
     try {
       const index = await loadSearch();
-      const matches = index.filter((item) => `${item.title} ${item.description} ${item.categories.join(' ')} ${item.tags.join(' ')} ${item.content}`.toLocaleLowerCase(language).includes(query)).slice(0, 10);
+      const matches = index.filter((item) => normalizeSearchText(item.searchText).includes(query)).slice(0, 10);
       if (!matches.length) {
         const empty = document.createElement('p');
         empty.textContent = language === 'lt' ? 'Rezultatų nerasta.' : 'No results found.';

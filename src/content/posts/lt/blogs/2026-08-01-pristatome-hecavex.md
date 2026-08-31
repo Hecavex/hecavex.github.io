@@ -36,7 +36,7 @@ Leidinį kuria ir redaguoja **Deividas Lis**, kibernetinių grėsmių žvalgybos
 
 ## Ką tirsime
 
-Publikacijose bus nagrinėjama infrastruktūra, elgsena ir žmonių kuriamos sistemos, susijusios su fišingu, sukčiavimu, kenkėjiška programine įranga, informacinėmis operacijomis ir kitomis skaitmeninėmis grėsmėmis. Vieni tekstai bus išsamūs tyrimai, kiti – trumpos žvalgybos pastabos, nebandančios vieno pastebėjimo išpūsti iki visos kampanijos.
+Publikacijose bus nagrinėjama infrastruktūra, elgsena ir žmonių kuriamos sistemos, susijusios su phishing, sukčiavimu, kenkėjiška programine įranga, informacinėmis operacijomis ir kitomis skaitmeninėmis grėsmėmis. Vieni tekstai bus išsamūs tyrimai, kiti – trumpos žvalgybos pastabos, nebandančios vieno pastebėjimo išpūsti iki visos kampanijos.
 
 <aside class="hx-callout key-finding"><strong>Redakcinis įsipareigojimas</strong>Patvirtinti faktai, kitų paskelbti teiginiai ir analitiniai vertinimai bus aiškiai atskirti. Pasitikėjimo lygis nebus paliekamas vien tono interpretacijai.</aside>
 

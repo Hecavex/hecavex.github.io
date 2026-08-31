@@ -250,6 +250,8 @@ Respond to the action that occurred, not only to the message category.
 | transferred money | contact the bank immediately because a payment may still be stoppable; then report the crime to police |
 | replied or called but shared no secrets | stop contact; preserve the conversation; expect follow-up attempts using what the sender learned |
 
+If banking details, a card, Smart-ID, Mobile-ID or a payment were involved, follow the dedicated [post-phishing emergency response guide](/en/research/what-to-do-after-entering-banking-details-on-phishing-page/). It puts the bank, session containment and evidence-preservation actions in time order.
+
 The [Bank of Lithuania's victim guidance](https://www.lb.lt/en/sfi-information-for-users) places the payment provider first because it may still be able to stop some transactions. Card theft requires rapid blocking. Police reporting follows with the preserved evidence.
 
 For authentication apps, never approve a request you did not initiate. [Smart-ID explains](https://www.smart-id.com/security/pin-codes/) that PIN1 is used for authentication while PIN2 authorises operations or signatures; the displayed operation and control code must match what you intentionally started.

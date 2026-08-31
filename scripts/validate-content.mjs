@@ -6,6 +6,7 @@ import { parse } from 'yaml';
 
 const root = resolve(import.meta.dirname, '..');
 const postsRoot = join(root, 'src', 'content', 'posts');
+const pagesRoot = join(root, 'src', 'content', 'pages');
 const publicRoot = join(root, 'public');
 const allowedLanguages = new Set(['en', 'lt']);
 const allowedCategories = new Set(['threat-intelligence', 'investigations', 'fraud-scams', 'osint', 'malware', 'social-engineering', 'ai-security', 'information-operations', 'tradecraft', 'commentary', 'identity-security', 'data-breaches', 'security-briefings']);
@@ -45,6 +46,7 @@ export async function validate() {
   const warnings = [];
   const keys = new Map();
   const files = (await walk(postsRoot)).filter((path) => ['.md', '.markdown'].includes(extname(path))).sort();
+  const pageFiles = (await walk(pagesRoot)).filter((path) => extname(path) === '.md').sort();
 
   const securityPaths = [join(publicRoot, 'security.txt'), join(publicRoot, '.well-known', 'security.txt')];
   const securityDocuments = await Promise.all(securityPaths.map((path) => readFile(path, 'utf8')));
@@ -108,6 +110,37 @@ export async function validate() {
     }
   }
 
+  const pageKeys = new Map();
+  for (const absolute of pageFiles) {
+    const file = relative(root, absolute).replaceAll('\\', '/');
+    const data = frontMatter(await readFile(absolute, 'utf8'), file, errors);
+    if (!allowedLanguages.has(data.lang)) errors.push(`${file}: lang must be en or lt`);
+    for (const field of ['layout', 'title', 'description', 'translation_key', 'permalink']) {
+      if (!String(data[field] ?? '').trim()) errors.push(`${file}: missing ${field}`);
+    }
+    if (typeof data.permalink === 'string' && !data.permalink.startsWith(`/${data.lang}/`)) {
+      errors.push(`${file}: localized page permalink must start with /${data.lang}/`);
+    }
+    const pair = `${data.translation_key}:${data.lang}`;
+    if (pageKeys.has(pair)) errors.push(`${file}: duplicate page translation_key ${data.translation_key} for ${data.lang}`);
+    pageKeys.set(pair, { file, data });
+  }
+
+  for (const key of new Set([...pageKeys.keys()].map((value) => value.split(':')[0]))) {
+    const languages = ['en', 'lt'].filter((lang) => pageKeys.has(`${key}:${lang}`));
+    if (languages.length !== 2) {
+      errors.push(`${key}: every localized static page requires an English and Lithuanian edition; found ${languages.join(', ') || 'none'}`);
+      continue;
+    }
+    const en = pageKeys.get(`${key}:en`);
+    const lt = pageKeys.get(`${key}:lt`);
+    for (const field of ['layout', 'last_modified_at', 'sitemap', 'robots']) {
+      if (JSON.stringify(en.data[field] ?? null) !== JSON.stringify(lt.data[field] ?? null)) {
+        errors.push(`${key}: page ${field} differs between ${en.file} and ${lt.file}`);
+      }
+    }
+  }
+
   for (const diagram of [
     'assets/img/posts/2026-08-02-cra-article-14/cra-article-14-decision-tree-en.svg',
     'assets/img/posts/2026-08-02-cra-article-14/cra-article-14-decision-tree-lt.svg'
@@ -123,8 +156,8 @@ export async function validate() {
 
   for (const message of warnings) console.warn(`WARNING: ${message}`);
   if (errors.length) throw new Error(`Content validation failed:\n- ${[...new Set(errors)].join('\n- ')}`);
-  console.log(`Content validation passed (${files.length} public localized posts; ${keys.size} unique language records).`);
-  return { postCount: files.length, languageRecords: keys.size, warnings };
+  console.log(`Content validation passed (${files.length} public localized posts; ${pageFiles.length} localized static pages; ${keys.size + pageKeys.size} language records).`);
+  return { postCount: files.length, pageCount: pageFiles.length, languageRecords: keys.size + pageKeys.size, warnings };
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === resolve(import.meta.filename)) {

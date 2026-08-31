@@ -8,7 +8,7 @@ import PostCard from '../../components/PostCard.astro';
 import ProjectDirectory from '../../components/ProjectDirectory.astro';
 import { contactRoutesFor, pageFactsFor, researchMapFor, type OutlineItem } from '../../data/page-context';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { dateText, getPages, getLocalizedPosts, languagePairPath, slugify, taxonomy, type Lang, type PageEntry } from '../../lib/site';
+import { dateText, getPages, getLocalizedPosts, languagePairPath, latestContentUpdate, slugify, taxonomy, type Lang, type PageEntry } from '../../lib/site';
 
 export async function getStaticPaths() {
   const pages = await getPages();
@@ -38,7 +38,8 @@ const standardOutlineHeadings: OutlineItem[] = [{ depth: 2, slug: 'page-start', 
 const showActionRail = entry.data.translation_key === 'contact';
 const showStandardOutline = !showActionRail && standardOutlineHeadings.length > 2;
 const useArticleWidthProse = entry.data.translation_key === 'about';
-const pageFacts = pageFactsFor(entry.data.translation_key, lang, posts[0] ? dateText(posts[0].date) : '—');
+const latestUpdate = latestContentUpdate(posts);
+const pageFacts = pageFactsFor(entry.data.translation_key, lang, latestUpdate ? dateText(latestUpdate) : '—');
 const researchMap = researchMapFor(lang, {
   featured: featured.length,
   primary: primary.length,

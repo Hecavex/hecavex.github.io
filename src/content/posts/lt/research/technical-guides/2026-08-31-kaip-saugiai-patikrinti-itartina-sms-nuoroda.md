@@ -64,7 +64,7 @@ Gera naujiena paprasta: **daugumai žmonių visai nereikia atverti SMS nuorodos,
 
 Jos neturi susimaišyti. Žmogui, norinčiam sužinoti, ar tikrai vėluoja jo siunta, nereikia namuose statytis phishing laboratorijos.
 
-<aside class="hx-callout warning"><strong>Jeigu jau suvedėte duomenis</strong>Nebetęskite nuorodos analizės, jei pateikėte banko, kortelės ar prisijungimo duomenis, patvirtinote Smart-ID ar kitą MFA užklausą, pervedėte pinigų arba įdiegėte programą. Pereikite tiesiai prie incidento valdymo veiksmų šiame vadove.</aside>
+<aside class="hx-callout warning"><strong>Jeigu jau suvedėte duomenis</strong>Nebetęskite nuorodos analizės, jei pateikėte banko, kortelės ar prisijungimo duomenis, patvirtinote Smart-ID ar kitą MFA užklausą, pervedėte pinigų arba įdiegėte programą. Pereikite tiesiai prie [veiksmų po phishing incidento](/lt/tyrimai/ka-daryti-suvedus-banko-duomenis-phishing-puslapyje/).</aside>
 
 ## 30 sekundžių patikra prieš bet kokį paspaudimą
 
@@ -210,7 +210,7 @@ Nenaudokite SMS pateikto telefono numerio, atsakymo adreso ar "pagalbos" mygtuko
 
 - ar domenas turi jau egzistuojantį RDAP įrašą ir kada registruotas
 - ar viešuose Certificate Transparency duomenyse matyti sertifikatų vardai
-- ar paieškos sistemoje, HECAVEX Radar ar kituose **jau surinktuose** šaltiniuose yra tas pats hostas
+- ar paieškos sistemoje, [HECAVEX Radar](https://radar.hecavex.com/lt/) ar kituose **jau surinktuose** šaltiniuose yra tas pats hostas
 - ar saugumo paslauga jau turi rezultatą tam pačiam URL ar domenui
 - ar organizacija paskelbė perspėjimą apie kampaniją.
 
@@ -294,6 +294,8 @@ Vien nuorodos atvėrimas nereiškia, kad telefonas automatiškai perimtas. Povei
 | patvirtinote Smart-ID, OTP, mokėjimą ar naują įrenginį | nedelsdami skambinkite bankui ar paskyros valdytojui, pasakykite tikslų patvirtinimo tekstą ir laiką, inicijuokite policijos pranešimą | nepasikliaukite vien slaptažodžio pakeitimu, nes sesija ar operacija jau galėjo būti patvirtinta |
 | atsisiuntėte failą, bet neatvėrėte | neatverkite, išsaugokite pavadinimą ir šaltinį, darbo įrenginyje perduokite IT pagal procedūrą | nekelkite privataus failo į viešą skenerį neįvertinę duomenų atskleidimo |
 | įdiegėte programą, profilį ar suteikėte Accessibility, Device Admin ar nuotolinės prieigos teises | atjunkite įrenginį nuo tinklo, kitu patikimu kanalu kreipkitės į IT ar kvalifikuotą pagalbą, iš kito įrenginio apsaugokite paskyras | nenaudokite galimai paveikto įrenginio bankui ar slaptažodžių keitimui, kol jis neįvertintas |
+
+Jei atskleidėte banko duomenis, kortelę, Smart-ID, Mobile-ID ar patvirtinote mokėjimą, naudokite atskirą [skubų veiksmų po phishing gidą](/lt/tyrimai/ka-daryti-suvedus-banko-duomenis-phishing-puslapyje/). Jame banko, sesijų ribojimo ir įrodymų išsaugojimo veiksmai sudėti pagal laiką.
 
 [Lietuvos bankas nukentėjusiems rekomenduoja](https://www.lb.lt/lt/pakliuvau-sukciams-ka-daryti) nutraukti bendravimą su sukčiais, nedelsiant kreiptis į mokėjimo paslaugų teikėją, kortelės duomenų vagystės atveju ją skubiai blokuoti ir informuoti policiją. Banko numerį imkite iš kortelės, oficialios programėlės arba pačių atvertos svetainės, ne iš gautos SMS.
 

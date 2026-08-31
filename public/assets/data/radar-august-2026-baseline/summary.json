@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "dataset": "hecavex-radar-august-2026-baseline",
+  "publishedAt": "2026-08-31T15:40:00Z",
+  "sourceCutoff": "2026-08-30T17:20:26.330Z",
+  "scope": "A reproducible aggregate of the current HECAVEX Radar candidate view at the stated cutoff.",
+  "semantics": {
+    "unit": "deduplicated current candidate record",
+    "candidate": "A domain or URL retained by the public discovery heuristic for review; not a maliciousness verdict.",
+    "corroborated": "A record supported by more than a name-only match under the source snapshot's evidence-tier rules.",
+    "nonClaims": [
+      "This is not a measure of phishing prevalence in Lithuania.",
+      "A brand count is not a victim count, incident count or loss estimate.",
+      "Absence from the snapshot is not evidence that a domain or URL is safe."
+    ]
+  },
+  "currentView": {
+    "candidates": 130,
+    "uniqueDomains": 130,
+    "status": {
+      "suspected": 130
+    },
+    "evidenceTier": {
+      "nameOnly": 128,
+      "corroborated": 2
+    },
+    "reviewState": {
+      "unreviewed": 129,
+      "needsReview": 1,
+      "reviewed": 0,
+      "reviewCoveragePercent": 0,
+      "precisionEstimate": null
+    },
+    "enrichment": {
+      "hostingObserved": 8,
+      "screenshotAvailable": 9,
+      "referenceUrlAvailable": 9,
+      "hashEvidenceAvailable": 5
+    },
+    "matchScore": {
+      "minimum": 85,
+      "maximum": 100,
+      "mean": 95.47
+    }
+  },
+  "brandRegistry": {
+    "registeredBrands": 46,
+    "representedBrands": 18,
+    "scope": "Public, community-maintained and non-exhaustive.",
+    "candidateCounts": {
+      "DHL": 53,
+      "Revolut": 17,
+      "Telia": 9,
+      "Vinted": 9,
+      "VMI": 6,
+      "DPD": 4,
+      "Smart-ID": 4,
+      "Bitė": 4,
+      "MAXIMA": 4,
+      "Tele2": 3,
+      "Swedbank": 3,
+      "ESO": 3,
+      "SEB": 3,
+      "ERGO": 2,
+      "Luminor": 2,
+      "Bigbank": 2,
+      "Artea": 1,
+      "BTA": 1
+    }
+  },
+  "sourceRecords": {
+    "CertStream": 122,
+    "URLScan": 9,
+    "HECAVEX": 1,
+    "note": "Source record counts are not additive because a deduplicated candidate can retain evidence from more than one source."
+  },
+  "collectionHealth": {
+    "certstream24h": {
+      "healthyAttempts": 113,
+      "listeningCoveragePercent": 62.78,
+      "matches": 80,
+      "newArchiveRecords": 47
+    },
+    "certstream7d": {
+      "healthyAttempts": 405,
+      "listeningCoveragePercent": 31.18,
+      "matches": 208,
+      "newArchiveRecords": 125
+    },
+    "latestCertstreamAttempt": {
+      "durationSeconds": 480,
+      "messages": 147776,
+      "dnsNames": 237041,
+      "matches": 1,
+      "newArchiveRecords": 1
+    },
+    "urlscanCheckpoint": {
+      "queries": 65,
+      "complete": 64,
+      "partialOrBacklog": 1
+    },
+    "crtShSearch": {
+      "state": "provider-timeout"
+    }
+  },
+  "dailyLastSeen": {
+    "2026-08-21": 4,
+    "2026-08-22": 2,
+    "2026-08-23": 1,
+    "2026-08-25": 3,
+    "2026-08-27": 15,
+    "2026-08-28": 24,
+    "2026-08-29": 41,
+    "2026-08-30": 40
+  },
+  "retention": {
+    "eventDetailDays": 30,
+    "dailySummaryDays": 730
+  },
+  "sourceArtifacts": [
+    {
+      "name": "radar.json",
+      "generatedAt": "2026-08-30T17:09:36.018Z",
+      "bytes": 113912,
+      "sha256": "dcce36b0a6c540cbcb8b38a33fdd4a0deb951b4fe69f7dd9d9eafc590983cce2"
+    },
+    {
+      "name": "pipeline-health.json",
+      "generatedAt": "2026-08-30T17:20:26.330Z",
+      "bytes": 4604,
+      "sha256": "28063e261a0a8174617dba6d5064b9f68b2367f7f3be1c03304c408c224057d7"
+    }
+  ]
+}

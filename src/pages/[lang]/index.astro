@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
-import { copy, dateText, findPage, getLocalizedPosts, imagePath, labelForPost, type Lang, type Post } from '../../lib/site';
+import { copy, dateText, findPage, getLocalizedPosts, imagePath, labelForPost, latestContentUpdate, type Lang, type Post } from '../../lib/site';
 
 export function getStaticPaths() { return [{ params: { lang: 'en' } }, { params: { lang: 'lt' } }]; }
 const lang = Astro.params.lang as Lang;
@@ -12,6 +12,7 @@ const lead = research[0];
 const recent = research.slice(1, 5);
 const latestBriefing = briefings[0];
 const hx = copy[lang];
+const latestUpdate = latestContentUpdate(posts);
 const alternatePath = lang === 'lt' ? '/en/' : '/lt/';
 const homePage = await findPage(`/${lang}/`);
 if (!homePage) throw new Error(`Missing ${lang} homepage content record`);
@@ -19,7 +20,7 @@ const title = homePage.data.title;
 const seoTitle = homePage.data.seo_title;
 const description = homePage.data.seo_description ?? homePage.data.description;
 const topicDefinitions = [
-  { key: 'substack-vienas-scam-domenas-retai-buna-vienas', en: 'Phishing and scams', lt: 'Phishing ir apgaulės' },
+  { key: 'suspicious-sms-link-safety-guide', en: 'Phishing and scams', lt: 'Phishing ir apgaulės' },
   { key: 'infrastructure-pivoting-101-unipark', en: 'Infrastructure', lt: 'Infrastruktūra' },
   { key: 'adform-supply-chain-crypto-clipper', en: 'Malware and supply chain', lt: 'Kenkėjiškas kodas ir tiekimo grandinė' },
   { key: 'cra-article-14-reporting-guide', en: 'CTI and regulation', lt: 'CTI ir reguliavimas' }
@@ -42,7 +43,7 @@ const topicPosts = topicDefinitions
         <div><dt>{lang === 'lt' ? 'Dėmesys' : 'Focus'}</dt><dd>CTI · OSINT · malware · fraud</dd></div>
         <div><dt>{lang === 'lt' ? 'Leidėjas' : 'Publisher'}</dt><dd>Deividas Lis</dd></div>
         <div><dt>{lang === 'lt' ? 'Prieiga' : 'Access'}</dt><dd>{lang === 'lt' ? 'Vieša · be registracijos' : 'Public · no account'}</dd></div>
-        <div><dt>{lang === 'lt' ? 'Atnaujinta' : 'Updated'}</dt><dd>{posts[0] ? dateText(posts[0].date) : '—'}</dd></div>
+        <div><dt>{lang === 'lt' ? 'Atnaujinta' : 'Updated'}</dt><dd>{latestUpdate ? dateText(latestUpdate) : '—'}</dd></div>
       </dl>
     </section>
 
@@ -62,7 +63,7 @@ const topicPosts = topicDefinitions
 
     <section class="home-signal-grid">
       {latestBriefing && <div><header class="section-head"><div><p class="eyebrow">Signal Brief</p><h2>{hx.latest_briefing}</h2></div><a href={lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/'}>{hx.all_briefings} →</a></header><PostCard post={latestBriefing} prominent /></div>}
-      <aside class="radar-note"><p class="eyebrow">HECAVEX RADAR</p><h2>{lang === 'lt' ? 'Galimi apsimetimo domenai Lietuvoje' : 'Potential impersonation domains relevant to Lithuania'}</h2><p>{lang === 'lt' ? 'Viešas, tik skaitymui skirtas signalų sąrašas. Įrašai yra tyrimo kandidatai, o ne kenkėjiškumo nuosprendžiai.' : 'A public, read-only signal index. Listings are research candidates, not verdicts of maliciousness.'}</p><a class="button button--primary" href="https://radar.hecavex.com/">{lang === 'lt' ? 'Atverti Radar' : 'Open Radar'} ↗</a></aside>
+      <aside class="radar-note"><p class="eyebrow">HECAVEX RADAR</p><h2>{lang === 'lt' ? 'Galimi apsimetimo domenai Lietuvoje' : 'Potential impersonation domains relevant to Lithuania'}</h2><p>{lang === 'lt' ? 'Viešas, tik skaitymui skirtas signalų sąrašas. Įrašai yra tyrimo kandidatai, o ne kenkėjiškumo nuosprendžiai.' : 'A public, read-only signal index. Listings are research candidates, not verdicts of maliciousness.'}</p><a class="button button--primary" href={lang === 'lt' ? 'https://radar.hecavex.com/lt/' : 'https://radar.hecavex.com/'}>{lang === 'lt' ? 'Atverti Radar' : 'Open Radar'} ↗</a></aside>
     </section>
 
     <section class="network-section" aria-labelledby="network-title"><header class="section-head"><div><p class="eyebrow">HECAVEX NETWORK</p><h2 id="network-title">{lang === 'lt' ? 'Vienas leidinys. Kelios tyrimų erdvės.' : 'One publication. Several research surfaces.'}</h2></div><a href={lang === 'lt' ? '/lt/projektai/' : '/en/projects/'}>{hx.projects} →</a></header><div class="network-grid"><a href="https://apt.hecavex.com/"><span>01</span><strong>APT Notes</strong><small>{lang === 'lt' ? 'Struktūruotos grėsmių veikėjų pastabos' : 'Structured threat-actor notes'}</small></a><a href="https://labs.hecavex.com/"><span>02</span><strong>Labs</strong><small>{lang === 'lt' ? 'Naršyklėje veikiantys tyrimų įrankiai' : 'Browser-based research tools'}</small></a><a href="/data/"><span>03</span><strong>{lang === 'lt' ? 'Duomenų katalogas' : 'Public data'}</strong><small>{lang === 'lt' ? 'Cituojami tyrimų duomenų rinkiniai' : 'Citable research datasets'}</small></a></div></section>

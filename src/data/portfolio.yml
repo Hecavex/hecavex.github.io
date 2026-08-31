@@ -63,7 +63,7 @@ projects:
       lt: Rodo neseniai pastebėtus domenus ir URL adresus, galinčius apsimesti Lietuvai aktualiais prekių ženklais, pateikiant nukenksmintus indikatorius ir aiškias įrodymų ribas.
     audience:
       en: Lithuanian security teams, brand-protection staff, researchers and informed users investigating possible phishing infrastructure.
-      lt: Lietuvos saugumo komandos, prekių ženklų apsaugos specialistai, tyrėjai ir informuoti naudotojai, tikrinantys galimą fišingo infrastruktūrą.
+      lt: Lietuvos saugumo komandos, prekių ženklų apsaugos specialistai, tyrėjai ir informuoti naudotojai, tikrinantys galimą phishing infrastruktūrą.
     relationship:
       en: Radar is the discovery and candidate layer. Strong clusters can become HECAVEX investigations, be explored in Labs and link to relevant APT Notes entities only when evidence supports that relationship.
       lt: Radar yra aptikimo ir kandidatų sluoksnis. Stiprūs klasteriai gali tapti HECAVEX tyrimais, būti nagrinėjami Labs ir siejami su APT Notes objektais tik tuomet, kai ryšį pagrindžia įrodymai.
@@ -76,14 +76,14 @@ projects:
           lt: Atverti Radar
         url:
           en: https://radar.hecavex.com/
-          lt: https://radar.hecavex.com/
+          lt: https://radar.hecavex.com/lt/
         kind: primary
       - label:
           en: Methodology
           lt: Metodika
         url:
           en: https://radar.hecavex.com/methodology/
-          lt: https://radar.hecavex.com/methodology/
+          lt: https://radar.hecavex.com/lt/metodologija/
         kind: method
       - label:
           en: Public JSON

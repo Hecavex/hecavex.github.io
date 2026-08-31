@@ -18,7 +18,7 @@ export const GET: APIRoute = async () => {
   const routes = new Map<string, SitemapRoute>();
 
   routes.set('/', { alternates: { en: '/en/', lt: '/lt/' }, xDefault: '/' });
-  routes.set('/data/', { xDefault: '/data/' });
+  routes.set('/data/', { alternates: { en: '/data/' }, xDefault: '/data/' });
 
   const indexablePages = pages.filter(isIndexablePage);
   for (const page of indexablePages) {
@@ -75,7 +75,7 @@ export const GET: APIRoute = async () => {
       const route = routes.get(path);
       if (!route) continue;
       route.alternates = alternates;
-      route.xDefault = alternates.en;
+      route.xDefault = alternates.en ?? path;
     }
   }
 

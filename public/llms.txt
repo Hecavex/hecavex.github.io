@@ -17,6 +17,17 @@ HECAVEX is a public, read-only publication. Cite canonical article URLs and pres
 - [Įrodymų ir atribucijos metodika](https://hecavex.com/lt/metodika/): Tyrimų metodika, pasitikėjimas, šaltiniai, atribucija ir pataisymai.
 - [Editorial standards](https://hecavex.com/en/editorial/): Publication, translation, disclosure, and evidence standards.
 
+## Practical defensive guides and current baseline
+
+- [Suspicious SMS link safety guide](https://hecavex.com/en/research/how-to-check-a-suspicious-sms-link-safely/) / [Įtartinos SMS nuorodos patikra](https://hecavex.com/lt/tyrimai/kaip-saugiai-patikrinti-itartina-sms-nuoroda/)
+- [Post-phishing banking response](https://hecavex.com/en/research/what-to-do-after-entering-banking-details-on-phishing-page/) / [Veiksmai suvedus banko duomenis](https://hecavex.com/lt/tyrimai/ka-daryti-suvedus-banko-duomenis-phishing-puslapyje/)
+- [Fake marketplace buyer phishing](https://hecavex.com/en/research/fake-marketplace-buyer-phishing/) / [Netikro marketplace pirkėjo phishing](https://hecavex.com/lt/tyrimai/netikras-marketplace-pirkejas-phishing/)
+- [Facebook cloaking explained](https://hecavex.com/en/research/facebook-cloaking-explained/) / [Facebook cloaking paaiškinimas](https://hecavex.com/lt/tyrimai/facebook-cloaking-kaip-slepiami-puslapiai/)
+- [T1187 Forced Authentication](https://hecavex.com/en/research/t1187-forced-authentication-detection-mitigation/) / [T1187 aptikimas ir apsauga](https://hecavex.com/lt/tyrimai/t1187-forced-authentication-aptikimas-apsauga/)
+- [Evilginx detection](https://hecavex.com/en/research/evilginx-detection/) / [Evilginx aptikimas](https://hecavex.com/lt/tyrimai/evilginx-aptikimas/)
+- [Certificate Transparency brand monitoring](https://hecavex.com/en/research/certificate-transparency-brand-monitoring/) / [Certificate Transparency prekių ženklų stebėjimas](https://hecavex.com/lt/tyrimai/certificate-transparency-prekiu-zenklu-stebejimas/)
+- [Radar August 2026 baseline](https://hecavex.com/en/research/lithuania-phishing-infrastructure-radar-august-2026/) / [Radar 2026 m. rugpjūčio apžvalga](https://hecavex.com/lt/tyrimai/phishing-infrastruktura-lietuvoje-radar-2026-rugpjutis/)
+
 ## Machine-readable publication surfaces
 
 - [Public data catalogue](https://hecavex.com/data/): Portfolio index of canonical Radar, APT Notes, and Labs datasets.

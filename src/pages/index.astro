@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { dateText, getPublicPosts, type Post } from '../lib/site';
+import { dateText, getPublicPosts, latestContentUpdate, type Post } from '../lib/site';
 
 const posts = await getPublicPosts();
 const englishPosts = posts.filter((post) => post.lang === 'en');
 const latestResearch = englishPosts.find((post) => ['primary-research', 'technical-assessment'].includes(post.publicationClass));
 const latestBriefing = englishPosts.find((post) => post.contentType === 'signal-brief');
-const latestPublication = posts[0];
+const latestUpdate = latestContentUpdate(posts);
 const publishedWorks = new Set(posts.map((post) => post.translationKey)).size;
 const briefingCount = englishPosts.filter((post) => post.contentType === 'signal-brief').length;
 
@@ -73,7 +73,7 @@ const network = [
       <div><dt>Published work <span lang="lt">/ Publikuota</span></dt><dd>{publishedWorks} bilingual records</dd></div>
       <div><dt>Signal Briefs <span lang="lt">/ Apžvalgos</span></dt><dd>{briefingCount} issues per edition</dd></div>
       <div><dt>Research surfaces <span lang="lt">/ Erdvės</span></dt><dd>5 connected projects</dd></div>
-      <div><dt>Latest update <span lang="lt">/ Atnaujinta</span></dt><dd>{latestPublication ? dateText(latestPublication.date) : '—'}</dd></div>
+      <div><dt>Latest update <span lang="lt">/ Atnaujinta</span></dt><dd>{latestUpdate ? dateText(latestUpdate) : '—'}</dd></div>
     </dl>
 
     <section class="landing-section" aria-labelledby="current-title">

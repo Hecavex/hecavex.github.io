@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Emergency response paths after banking data is entered on a phishing page</title>
+  <desc id="desc">A dark HECAVEX-style decision panel routes exposed card, banking authentication, session, transfer, and device risks toward immediate bank contact, containment, evidence preservation, and reporting.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05080b"/>
+      <stop offset="1" stop-color="#101923"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#18303b" stroke-width="1" opacity=".42"/>
+    </pattern>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0L8 4L0 8Z" fill="#44c7dc"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="34" y="34" width="1532" height="832" fill="url(#grid)" stroke="#244450"/>
+  <path d="M34 34H1566" stroke="#44c7dc" stroke-width="6"/>
+
+  <text x="88" y="102" fill="#44c7dc" font-family="ui-monospace, monospace" font-size="18" font-weight="700" letter-spacing="3">HECAVEX / INCIDENT DECISION</text>
+  <text x="88" y="174" fill="#f4f8fb" font-family="Arial, sans-serif" font-size="52" font-weight="700">PHISHING INPUT IS A TIMER.</text>
+  <text x="88" y="224" fill="#9db6c5" font-family="Arial, sans-serif" font-size="26">Contain the exposed asset before investigating the page.</text>
+
+  <g font-family="ui-monospace, monospace">
+    <rect x="86" y="292" width="300" height="116" fill="#111b24" stroke="#ff6b6b" stroke-width="2"/>
+    <circle cx="122" cy="330" r="10" fill="#ff6b6b" filter="url(#glow)"/>
+    <text x="148" y="337" fill="#ffb4b4" font-size="17" font-weight="700" letter-spacing="2">STOP CONTACT</text>
+    <text x="118" y="376" fill="#d7e3ea" font-size="18">No new approvals</text>
+
+    <rect x="456" y="292" width="300" height="116" fill="#111b24" stroke="#ffc857" stroke-width="2"/>
+    <circle cx="492" cy="330" r="10" fill="#ffc857"/>
+    <text x="518" y="337" fill="#ffe3a0" font-size="17" font-weight="700" letter-spacing="2">CALL BANK</text>
+    <text x="488" y="376" fill="#d7e3ea" font-size="18">Official channel</text>
+
+    <rect x="826" y="292" width="300" height="116" fill="#111b24" stroke="#44c7dc" stroke-width="2"/>
+    <circle cx="862" cy="330" r="10" fill="#44c7dc"/>
+    <text x="888" y="337" fill="#8ae5f2" font-size="17" font-weight="700" letter-spacing="2">CONTAIN</text>
+    <text x="858" y="376" fill="#d7e3ea" font-size="18">Account + device</text>
+
+    <rect x="1196" y="292" width="300" height="116" fill="#111b24" stroke="#99dc68" stroke-width="2"/>
+    <circle cx="1232" cy="330" r="10" fill="#99dc68"/>
+    <text x="1258" y="337" fill="#c7f1a9" font-size="17" font-weight="700" letter-spacing="2">PRESERVE</text>
+    <text x="1228" y="376" fill="#d7e3ea" font-size="18">Evidence + report</text>
+  </g>
+
+  <g fill="none" stroke="#44c7dc" stroke-width="3" marker-end="url(#arrow)">
+    <path d="M386 350H446"/><path d="M756 350H816"/><path d="M1126 350H1186"/>
+  </g>
+
+  <text x="88" y="486" fill="#7f9aaa" font-family="ui-monospace, monospace" font-size="15" letter-spacing="2">EXPOSED ASSET / RESPONSE PATH</text>
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(88 526)"><rect width="270" height="164" rx="2" fill="#0b141a" stroke="#36505b"/><text x="24" y="42" fill="#f4f8fb" font-size="24" font-weight="700">CARD</text><text x="24" y="79" fill="#9db6c5" font-size="18">freeze / replace</text><text x="24" y="112" fill="#9db6c5" font-size="18">review authorisations</text><path d="M24 135H246" stroke="#ffc857" stroke-width="3"/></g>
+    <g transform="translate(377 526)"><rect width="270" height="164" rx="2" fill="#0b141a" stroke="#36505b"/><text x="24" y="42" fill="#f4f8fb" font-size="24" font-weight="700">AUTH</text><text x="24" y="79" fill="#9db6c5" font-size="18">password / PIN / OTP</text><text x="24" y="112" fill="#9db6c5" font-size="18">revoke + re-enrol</text><path d="M24 135H246" stroke="#ff6b6b" stroke-width="3"/></g>
+    <g transform="translate(666 526)"><rect width="270" height="164" rx="2" fill="#0b141a" stroke="#36505b"/><text x="24" y="42" fill="#f4f8fb" font-size="24" font-weight="700">SESSION</text><text x="24" y="79" fill="#9db6c5" font-size="18">sign out all sessions</text><text x="24" y="112" fill="#9db6c5" font-size="18">review trusted devices</text><path d="M24 135H246" stroke="#44c7dc" stroke-width="3"/></g>
+    <g transform="translate(955 526)"><rect width="270" height="164" rx="2" fill="#0b141a" stroke="#36505b"/><text x="24" y="42" fill="#f4f8fb" font-size="24" font-weight="700">TRANSFER</text><text x="24" y="79" fill="#9db6c5" font-size="18">recall immediately</text><text x="24" y="112" fill="#9db6c5" font-size="18">record transaction ID</text><path d="M24 135H246" stroke="#ffc857" stroke-width="3"/></g>
+    <g transform="translate(1244 526)"><rect width="252" height="164" rx="2" fill="#0b141a" stroke="#36505b"/><text x="24" y="42" fill="#f4f8fb" font-size="24" font-weight="700">DEVICE</text><text x="24" y="79" fill="#9db6c5" font-size="18">isolate + inspect</text><text x="24" y="112" fill="#9db6c5" font-size="18">remove persistence</text><path d="M24 135H228" stroke="#99dc68" stroke-width="3"/></g>
+  </g>
+
+  <rect x="88" y="744" width="1408" height="74" fill="#0b141a" stroke="#244450"/>
+  <text x="120" y="790" fill="#d7e3ea" font-family="ui-monospace, monospace" font-size="17" letter-spacing="1">BANK FIRST  /  OFFICIAL CHANNEL  /  CLEAN DEVICE  /  EVIDENCE WITHOUT REVISITING</text>
+</svg>

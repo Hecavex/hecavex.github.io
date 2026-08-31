@@ -1,7 +1,24 @@
 ---
 import TaxonomyResults from '../../../components/TaxonomyResults.astro';
 import { getLocalizedPosts, slugify } from '../../../lib/site';
-export async function getStaticPaths() { const posts = await getLocalizedPosts('en'); const tags = new Map(posts.flatMap((post) => post.tags).map((tag) => [slugify(tag), tag])); return [...tags].map(([slug, label]) => ({ params: { slug }, props: { slug, label, posts: posts.filter((post) => post.tags.some((tag) => slugify(tag) === slug)) } })); }
-const { slug, label, posts } = Astro.props;
+export async function getStaticPaths() {
+  const [posts, alternatePosts] = await Promise.all([getLocalizedPosts('en'), getLocalizedPosts('lt')]);
+  const tags = new Map(posts.flatMap((post) => post.tags).map((tag) => [slugify(tag), tag]));
+  const alternateCounts = new Map<string, number>();
+  for (const tag of alternatePosts.flatMap((post) => post.tags)) {
+    const slug = slugify(tag);
+    alternateCounts.set(slug, (alternateCounts.get(slug) ?? 0) + 1);
+  }
+  return [...tags].map(([slug, label]) => ({
+    params: { slug },
+    props: {
+      slug,
+      label,
+      posts: posts.filter((post) => post.tags.some((tag) => slugify(tag) === slug)),
+      alternatePath: (alternateCounts.get(slug) ?? 0) >= 2 ? `/lt/zymos/${slug}/` : undefined
+    }
+  }));
+}
+const { slug, label, posts, alternatePath } = Astro.props;
 ---
-<TaxonomyResults lang="en" kind="tag" {slug} {label} {posts} />
+<TaxonomyResults lang="en" kind="tag" {slug} {label} {posts} {alternatePath} />

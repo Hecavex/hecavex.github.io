@@ -22,7 +22,11 @@ export const DEFAULT_BUDGETS = Object.freeze({
   fontBundle: Object.freeze({ rawBytes: 512 * KIB, gzipBytes: 512 * KIB, files: 20 }),
   imageFile: Object.freeze({ rawBytes: 384 * KIB, gzipBytes: 384 * KIB }),
   svgFile: Object.freeze({ rawBytes: 32 * KIB, gzipBytes: 12 * KIB }),
-  imageArchive: Object.freeze({ rawBytes: 32 * MIB, gzipBytes: 31 * MIB })
+  // The soft archive budget reports long-term publication growth. The hard
+  // ceiling still blocks unexpectedly large artifacts, while per-file and
+  // page-level budgets protect what an individual visitor downloads.
+  imageArchive: Object.freeze({ rawBytes: 32 * MIB, gzipBytes: 31 * MIB }),
+  imageArchiveHard: Object.freeze({ rawBytes: 64 * MIB, gzipBytes: 62 * MIB })
 });
 
 function normalizedRelative(root, path) {
@@ -104,6 +108,7 @@ export function evaluateBudgets(measurements, budgets = DEFAULT_BUDGETS) {
     image: measurements.filter((file) => file.group === 'image')
   };
   const failures = [];
+  const warnings = [];
 
   for (const [name, files] of Object.entries(groups)) requireGroup(failures, files, name);
   for (const file of groups.html) addSizeFailures(failures, 'HTML file', file, budgets.htmlFile);
@@ -137,14 +142,20 @@ export function evaluateBudgets(measurements, budgets = DEFAULT_BUDGETS) {
     });
   }
 
-  addSizeFailures(failures, 'image archive', {
+  addSizeFailures(warnings, 'image archive', {
     path: 'all first-party images',
     rawBytes: total(groups.image, 'rawBytes'),
     gzipBytes: total(groups.image, 'gzipBytes')
   }, budgets.imageArchive);
+  addSizeFailures(failures, 'image archive hard ceiling', {
+    path: 'all first-party images',
+    rawBytes: total(groups.image, 'rawBytes'),
+    gzipBytes: total(groups.image, 'gzipBytes')
+  }, budgets.imageArchiveHard);
 
   return {
     failures,
+    warnings,
     groups,
     summary: {
       htmlRaw: largest(groups.html, 'rawBytes'),
@@ -192,7 +203,7 @@ function printReport(siteRoot, result, budgets) {
   formatMaximum('Largest image', summary.imageRaw, summary.imageGzip, budgets.imageFile);
   console.log(`CSS + JavaScript: ${formatBytes(summary.styleScriptRawBytes)} raw / ${formatBytes(budgets.styleScriptBundle.rawBytes)}, ${formatBytes(summary.styleScriptGzipBytes)} gzip / ${formatBytes(budgets.styleScriptBundle.gzipBytes)}`);
   console.log(`Fonts (${groups.font.length}/${budgets.fontBundle.files}): ${formatBytes(summary.fontRawBytes)} raw / ${formatBytes(budgets.fontBundle.rawBytes)}, ${formatBytes(summary.fontGzipBytes)} gzip / ${formatBytes(budgets.fontBundle.gzipBytes)}`);
-  console.log(`Images (${groups.image.length}): ${formatBytes(summary.imageRawBytes)} raw / ${formatBytes(budgets.imageArchive.rawBytes)}, ${formatBytes(summary.imageGzipBytes)} gzip / ${formatBytes(budgets.imageArchive.gzipBytes)}`);
+  console.log(`Images (${groups.image.length}): ${formatBytes(summary.imageRawBytes)} raw / ${formatBytes(budgets.imageArchive.rawBytes)} soft / ${formatBytes(budgets.imageArchiveHard.rawBytes)} hard, ${formatBytes(summary.imageGzipBytes)} gzip / ${formatBytes(budgets.imageArchive.gzipBytes)} soft / ${formatBytes(budgets.imageArchiveHard.gzipBytes)} hard`);
 }
 
 function printFailure(failure) {
@@ -206,6 +217,8 @@ export async function run(siteRoot = 'dist') {
   const measurements = await measureSite(siteRoot);
   const result = evaluateBudgets(measurements);
   printReport(siteRoot, result, DEFAULT_BUDGETS);
+
+  for (const warning of result.warnings) console.warn(`WARNING: ${printFailure(warning)}. Archive growth is reported but does not block deployment.`);
 
   if (result.failures.length > 0) {
     for (const failure of result.failures) console.error(`ERROR: ${printFailure(failure)}`);

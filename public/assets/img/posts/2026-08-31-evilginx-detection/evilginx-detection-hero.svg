@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Reverse-proxy phishing detection evidence map</title>
+  <desc id="desc">A HECAVEX diagram showing a user, a deceptive reverse proxy, a legitimate identity provider, and the lure, web and identity telemetry defenders correlate to detect session theft.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#070d13"/><stop offset="1" stop-color="#10262d"/></linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#193743" stroke-width="1"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#42d6e8"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)" opacity=".45"/>
+  <rect x="56" y="48" width="1488" height="804" fill="none" stroke="#315461" stroke-width="2"/><rect x="56" y="48" width="1488" height="8" fill="#42d6e8"/>
+  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace"><text x="96" y="112" font-size="22" letter-spacing="4" fill="#42d6e8">HECAVEX / IDENTITY DEFENCE</text><text x="96" y="148" font-size="17" letter-spacing="2" fill="#8eb0bd">REVERSE-PROXY PHISHING · SESSION-TOKEN THEFT</text></g>
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="700"><text x="96" y="245" font-size="74" fill="#f4f8fa">EVILGINX DETECTION</text><text x="96" y="318" font-size="53" fill="#91adba">THE LOGIN CAN SUCCEED AND STILL BE HOSTILE.</text></g>
+  <g fill="#0a151c" stroke-width="3"><rect x="96" y="408" width="300" height="166" stroke="#98df62"/><rect x="650" y="382" width="300" height="218" stroke="#ff7481"/><rect x="1204" y="408" width="300" height="166" stroke="#42d6e8"/></g>
+  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="18" letter-spacing="2"><text x="124" y="450" fill="#42d6e8">01 / USER</text><text x="678" y="424" fill="#ff7481">02 / PROXY</text><text x="1232" y="450" fill="#42d6e8">03 / IDP</text></g>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#f4f8fa"><text x="124" y="505" font-size="29" font-weight="700">Browser session</text><text x="124" y="542" font-size="20" fill="#a8c0c9">Follows the lure</text><text x="678" y="480" font-size="29" font-weight="700">Deceptive hostname</text><text x="678" y="519" font-size="20" fill="#a8c0c9">Relays the real sign-in</text><text x="678" y="555" font-size="20" fill="#a8c0c9">Observes session material</text><text x="1232" y="505" font-size="29" font-weight="700">Legitimate service</text><text x="1232" y="542" font-size="20" fill="#a8c0c9">Issues valid session</text></g>
+  <path d="M396 491h234" stroke="#42d6e8" stroke-width="4" marker-end="url(#arrow)"/><path d="M950 491h234" stroke="#42d6e8" stroke-width="4" marker-end="url(#arrow)"/><path d="M1184 548H970" stroke="#f3c653" stroke-width="3" marker-end="url(#arrow)"/><path d="M630 548H416" stroke="#f3c653" stroke-width="3" marker-end="url(#arrow)"/>
+  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="18"><rect x="96" y="674" width="1408" height="90" fill="#09151c" stroke="#315461" stroke-width="2"/><text x="128" y="728" fill="#dce9ed">LURE TELEMETRY</text><text x="500" y="728" fill="#dce9ed">DOMAIN + HTTP</text><text x="846" y="728" fill="#dce9ed">SIGN-IN + TOKEN</text><text x="1216" y="728" fill="#dce9ed">MAILBOX + APPS</text></g>
+  <text x="96" y="812" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="15" fill="#7897a3" letter-spacing="2">VALID TLS ≠ TRUSTED BRAND · MFA SUCCESS ≠ TRUSTED SESSION · CORRELATE BEFORE ATTRIBUTING</text>
+</svg>

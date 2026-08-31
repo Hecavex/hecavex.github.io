@@ -22,6 +22,7 @@ async function isFile(path) { try { return (await stat(path)).isFile(); } catch 
 const files = await walk(root);
 const htmlFiles = files.filter((file) => extname(file) === '.html');
 const canonicalOwners = new Map();
+const hreflangByCanonical = new Map();
 let wideTableClasses = 0;
 let promptClasses = 0;
 let tableRegions = 0;
@@ -91,6 +92,7 @@ for (const file of htmlFiles) {
     if (!hreflangMap.has('x-default')) failures.push(`${route}: missing hreflang x-default`);
     const rootLanguageSelector = route === '/index.html' && canonical === 'https://hecavex.com/';
     if (!rootLanguageSelector && hreflangMap.has('en') && hreflangMap.has('lt') && hreflangMap.get('x-default') !== hreflangMap.get('en')) failures.push(`${route}: bilingual x-default must resolve to the English counterpart`);
+    if (canonical) hreflangByCanonical.set(canonical, hreflangMap);
     for (const property of ['og:title', 'og:description', 'og:url', 'og:image', 'og:image:width', 'og:image:height', 'og:image:alt']) if (!new RegExp(`<meta\\s+[^>]*property=["']${property.replace(':', '\\:')}["'][^>]*content=["'][^"']+`, 'i').test(html)) failures.push(`${route}: missing ${property}`);
     for (const name of ['twitter:card', 'twitter:title', 'twitter:description', 'twitter:image', 'twitter:image:alt']) if (!new RegExp(`<meta\\s+[^>]*(?:name|property)=["']${name.replace(':', '\\:')}["'][^>]*content=["'][^"']+`, 'i').test(html)) failures.push(`${route}: missing ${name}`);
     if ((html.match(/<main\b/gi) ?? []).length !== 1) failures.push(`${route}: expected one main landmark`);
@@ -162,6 +164,43 @@ for (const file of files.filter((path) => ['.xml', '.json', '.txt'].includes(ext
 
 for (const identityFile of ['favicon.svg', 'favicon.ico', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'site.webmanifest']) {
   if (!(await isFile(join(root, identityFile)))) failures.push(`shared identity asset is missing: ${identityFile}`);
+}
+
+const sitemapSource = await readFile(join(root, 'sitemap.xml'), 'utf8');
+for (const block of sitemapSource.match(/<url>[\s\S]*?<\/url>/g) ?? []) {
+  const canonical = block.match(/<loc>([^<]+)<\/loc>/)?.[1];
+  if (!canonical) continue;
+  const htmlAlternates = hreflangByCanonical.get(canonical);
+  if (!htmlAlternates) {
+    failures.push(`sitemap canonical has no indexable HTML owner: ${canonical}`);
+    continue;
+  }
+  const sitemapAlternates = new Map(
+    [...block.matchAll(/<xhtml:link\s+[^>]*hreflang="([^"]+)"[^>]*href="([^"]+)"\s*\/>/g)]
+      .map((match) => [match[1].toLowerCase(), match[2]])
+  );
+  for (const language of new Set([...sitemapAlternates.keys(), ...htmlAlternates.keys()])) {
+    const expected = sitemapAlternates.get(language);
+    const actual = htmlAlternates.get(language);
+    if (expected !== actual) failures.push(`${canonical}: sitemap/HTML hreflang ${language} mismatch (${expected ?? 'missing'} vs ${actual ?? 'missing'})`);
+  }
+}
+
+for (const lang of ['en', 'lt']) {
+  const records = JSON.parse(await readFile(join(root, lang, 'search.json'), 'utf8'));
+  if (!Array.isArray(records) || records.length === 0) failures.push(`${lang}/search.json: search index is empty`);
+  for (const [index, record] of records.entries()) {
+    if (!String(record.searchText ?? '').trim()) failures.push(`${lang}/search.json: record ${index} is missing precomputed searchText`);
+    if (!Array.isArray(record.keywords)) failures.push(`${lang}/search.json: record ${index} is missing SEO keyword search fields`);
+    if (Object.hasOwn(record, 'content')) failures.push(`${lang}/search.json: record ${index} still exposes the legacy unprocessed content field`);
+  }
+}
+
+for (const feedPath of ['en/feed.xml', 'lt/feed.xml', 'en/briefings/feed.xml', 'lt/apzvalgos/feed.xml']) {
+  const feed = await readFile(join(root, feedPath), 'utf8');
+  const updates = [...feed.matchAll(/<updated>([^<]+)<\/updated>/g)].map((match) => Date.parse(match[1]));
+  if (updates.length < 2 || updates.some((value) => !Number.isFinite(value))) failures.push(`${feedPath}: invalid or empty Atom update chronology`);
+  else if (updates[0] !== Math.max(...updates.slice(1))) failures.push(`${feedPath}: feed-level updated timestamp is not the newest entry update`);
 }
 
 const css = await readFile(join(root, 'assets', 'css', 'hecavex.css'), 'utf8');
