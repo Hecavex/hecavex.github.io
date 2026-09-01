@@ -29,7 +29,7 @@
     "verify": "npm run lint:js && npm run lint:css && npm run build && npm run check:routes && npm run check:performance && npm run audit:site && npm run audit:responsive"
   },
   "dependencies": {
-    "astro": "7.1.6"
+    "astro": "7.2.9"
   },
   "devDependencies": {
     "@astrojs/check": "latest",
