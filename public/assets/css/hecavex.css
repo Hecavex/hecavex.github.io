@@ -29,11 +29,17 @@
   --sans: inter, ui-sans-serif, system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", "Cascadia Code", "SFMono-Regular", consolas, monospace;
   --content: 94rem;
-  --reading: 78ch;
+  --reading: 72ch;
   --reading-wide: 64rem;
   --network-row: 4rem;
   --product-row: 3.25rem;
   --header-offset: 7.25rem;
+  --page-space-top: clamp(3.25rem, 5vw, 4.75rem);
+  --page-space-bottom: clamp(4rem, 8vw, 8rem);
+  --major-section-space: clamp(3.5rem, 7vw, 6.5rem);
+  --page-title-size: clamp(2.4rem, 3.6vw, 3.25rem);
+  --display-title-size: clamp(2.5rem, 4.2vw, 4rem);
+  --section-title-size: clamp(1.45rem, 2.4vw, 2rem);
 }
 
 * {
@@ -114,7 +120,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  font-size: var(--section-title-size);
 }
 
 h3 {
@@ -525,8 +531,8 @@ main {
 }
 
 main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found) {
-  padding-top: clamp(3.25rem, 5vw, 4.75rem);
-  padding-bottom: clamp(4rem, 8vw, 8rem);
+  padding-top: var(--page-space-top);
+  padding-bottom: var(--page-space-bottom);
 }
 
 .home-hero {
@@ -557,7 +563,8 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 .home-hero h1 {
   max-width: 18ch;
   margin: 0.45rem 0 0.65rem;
-  font-size: clamp(2.5rem, 4.2vw, 3.25rem);
+  font-size: var(--page-title-size);
+  line-height: 1;
 }
 
 .hero-deck {
@@ -702,7 +709,7 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 .network-section,
 .catalogue-section,
 .related-posts {
-  padding-top: clamp(3.5rem, 7vw, 6.5rem);
+  padding-top: var(--major-section-space);
 }
 
 .section-head {
@@ -927,7 +934,7 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 
 .page-intro--with-facts .page-head h1 {
   max-width: none;
-  font-size: clamp(2.4rem, 3.6vw, 3.25rem);
+  font-size: var(--page-title-size);
   line-height: 1;
   text-wrap: balance;
 }
@@ -2741,7 +2748,7 @@ main :is(.home-hero, .page-intro--with-facts) {
 }
 
 .home-shell .home-hero {
-  min-height: 26rem;
+  min-height: 21rem;
   grid-template-columns: minmax(0, 1.7fr) minmax(18rem, 0.6fr);
 }
 
@@ -2751,13 +2758,13 @@ main :is(.home-hero, .page-intro--with-facts) {
 
 .home-shell .home-hero h1 {
   max-width: 15ch;
-  font-size: clamp(2.8rem, 5.4vw, 4.8rem);
-  line-height: 0.98;
+  font-size: var(--page-title-size);
+  line-height: 1;
 }
 
 .home-shell .hero-deck {
   max-width: 52rem;
-  font-size: clamp(1.08rem, 1.5vw, 1.3rem);
+  font-size: clamp(1.04rem, 1.4vw, 1.15rem);
 }
 
 .home-shell .hero-index div {
@@ -2894,8 +2901,8 @@ main .network-grid span {
 }
 
 main .page-head h1 {
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
-  line-height: 0.98;
+  font-size: var(--page-title-size);
+  line-height: 1;
 }
 
 main :is(.content-outline__frame, .content-outline--mobile, .page-action-rail) {
@@ -2910,8 +2917,8 @@ main :is(.content-outline__frame, .content-outline--mobile, .page-action-rail) {
 
 .article-shell .article-head h1 {
   max-width: 18ch;
-  font-size: clamp(2.8rem, 5vw, 4.75rem);
-  line-height: 0.98;
+  font-size: var(--display-title-size);
+  line-height: 1;
 }
 
 .article-shell .article-signals {
@@ -3295,7 +3302,7 @@ main :is(.button, .hx-button):not(.button--primary, .hx-button--primary):hover {
 
 .data-catalogue .page-head h1 {
   max-width: 18ch;
-  font-size: clamp(2.65rem, 4.25vw, 3.8rem);
+  font-size: var(--page-title-size);
 }
 
 .data-catalogue .data-catalogue__boundary {
@@ -3303,7 +3310,7 @@ main :is(.button, .hx-button):not(.button--primary, .hx-button--primary):hover {
 }
 
 .data-catalogue .data-catalogue__section {
-  margin-top: clamp(3rem, 5vw, 4.5rem);
+  margin-top: var(--major-section-space);
 }
 
 .data-catalogue .data-product-list {
@@ -3545,7 +3552,7 @@ main :is(.button, .hx-button):not(.button--primary, .hx-button--primary):hover {
 
   .home-hero h1,
   .landing-portal h1 {
-    font-size: clamp(2.4rem, 12vw, 3.5rem);
+    font-size: var(--page-title-size);
   }
 
   .hero-index {

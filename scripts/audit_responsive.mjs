@@ -55,6 +55,10 @@ const researchRoutes = new Set(['/en/research/', '/lt/tyrimai/']);
 const contactRoutes = new Set(['/en/contact/', '/lt/kontaktai/']);
 const catalogueIntroRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
 const briefingRoutes = new Set(['/en/briefings/', '/lt/apzvalgos/']);
+const standardizedPageTitleRoutes = new Set([
+  '/data/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/',
+  '/en/projects/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/'
+]);
 const legacyCtaRoutes = new Set(['/en/about/', '/lt/apie/', '/en/contact/', '/lt/kontaktai/']);
 const signalRoutes = new Set(['/en/briefings/2026-08-22/', '/lt/apzvalgos/2026-08-22/']);
 const widths = [320, 390, 768, 1160, 1440];
@@ -80,6 +84,7 @@ try {
         const product = document.querySelector('.product-bar');
         const mark = document.querySelector('.brand img');
         const h1 = document.querySelector('h1');
+        const h1Style = h1 ? getComputedStyle(h1) : undefined;
         const hero = document.querySelector('.home-hero');
         const heroRect = hero?.getBoundingClientRect();
         const utility = document.querySelector('.header-utilities');
@@ -91,6 +96,7 @@ try {
         const desktopOutline = document.querySelector('.content-outline--desktop');
         const mobileOutline = document.querySelector('.content-outline--mobile');
         const outlineLinks = [...(desktopOutline?.querySelectorAll('a[href^="#"]') ?? [])];
+        const documentIds = new Set([...document.querySelectorAll('[id]')].map((element) => element.id));
         const signalEntry = document.querySelector('.hx-signal-entry');
         const signalFacts = signalEntry?.querySelector('dl');
         const signalFactItems = [...(signalFacts?.children ?? [])];
@@ -139,7 +145,8 @@ try {
           menuTriggerHeight: menuTrigger?.getBoundingClientRect().height ?? 0,
           utilityWidth: utility?.getBoundingClientRect().width ?? 0,
           markWidth: mark?.getBoundingClientRect().width ?? 0,
-          h1Size: h1 ? Number.parseFloat(getComputedStyle(h1).fontSize) : 0,
+          h1Size: h1Style ? Number.parseFloat(h1Style.fontSize) : 0,
+          h1LineHeight: h1Style ? Number.parseFloat(h1Style.lineHeight) : 0,
           heroHeight: hero?.getBoundingClientRect().height ?? 0,
           heroChildOverflow: heroRect ? Math.max(0, ...[...hero.children].map((child) => child.getBoundingClientRect().bottom - heroRect.bottom)) : 0,
           bodyFontSize: Number.parseFloat(bodyStyle.fontSize),
@@ -152,7 +159,7 @@ try {
           mobileOutlineDisplay: mobileOutline ? getComputedStyle(mobileOutline).display : 'missing',
           outlineLinkCount: outlineLinks.length,
           outlineSubtitleCount: outlineLinks.filter((link) => link.closest('li')?.classList.contains('content-outline__depth-3')).length,
-          missingOutlineTargets: outlineLinks.map((link) => decodeURIComponent(link.hash.slice(1))).filter((id) => !document.getElementById(id)),
+          missingOutlineTargets: outlineLinks.map((link) => decodeURIComponent(link.hash.slice(1))).filter((id) => !documentIds.has(id)),
           outlineStatusVisible: desktopOutline ? !desktopOutline.querySelector('[data-outline-status]')?.hidden : false,
           signalEntryCount: document.querySelectorAll('.hx-signal-entry').length,
           signalEntryBorder: signalEntry ? getComputedStyle(signalEntry).borderLeftWidth : '0px',
@@ -197,9 +204,19 @@ try {
           versionedAssets: Boolean(stylesheet?.getAttribute('href')?.match(/\?v=[^&]+$/) && siteScript?.getAttribute('src')?.match(/\?v=[^&]+$/))
         };
       }, width);
+      if (outlineRoutes.has(route) && state.missingOutlineTargets.length) {
+        await page.reload({ waitUntil: 'networkidle' });
+        state.missingOutlineTargets = await page.evaluate(() => {
+          const outline = document.querySelector('.content-outline--desktop');
+          const documentIds = new Set([...document.querySelectorAll('[id]')].map((element) => element.id));
+          return [...(outline?.querySelectorAll('a[href^="#"]') ?? [])]
+            .map((link) => decodeURIComponent(link.hash.slice(1)))
+            .filter((id) => !documentIds.has(id));
+        });
+      }
       if (state.shell !== 'v2') fail(route, width, 'portfolio shell marker is missing');
       if (state.overflow > 1) fail(route, width, `horizontal overflow is ${state.overflow}px (${state.offscreen.join(', ')})`);
-      if (state.h1Size > 80.1) fail(route, width, `h1 exceeds 80px (${state.h1Size}px)`);
+      if (state.h1Size > 64.1) fail(route, width, `h1 exceeds the 64px display ceiling (${state.h1Size}px)`);
       if (state.markWidth < 33.5 || state.markWidth > 36.5) fail(route, width, `brand mark is ${state.markWidth}px rather than 34–36px`);
       if (state.networkLabels.join('|') !== 'Research|Radar|APT Notes|Labs|Data') fail(route, width, 'network navigation order differs from the portfolio contract');
       if (Math.abs(state.bodyFontSize - 15.2) > 0.05 || state.bodyColor !== 'rgb(236, 233, 225)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
@@ -229,6 +246,10 @@ try {
         if (width >= 900 && Math.abs(state.pageIntroHeight - 336) > 1) fail(route, width, `desktop fact intro is ${state.pageIntroHeight}px instead of 336px`);
         if (state.h1Size > 52.1) fail(route, width, `fact intro h1 exceeds the shared 52px scale (${state.h1Size}px)`);
       }
+      if (standardizedPageTitleRoutes.has(route)) {
+        if (state.h1Size > 52.1) fail(route, width, `standard page h1 exceeds the shared 52px scale (${state.h1Size}px)`);
+        if (Math.abs(state.h1LineHeight - state.h1Size) > 0.3) fail(route, width, `standard page h1 line-height differs from its font size (${state.h1LineHeight}px/${state.h1Size}px)`);
+      }
       if (briefingRoutes.has(route)) {
         if (width > 680 && (!state.briefingCardsShareRow || state.briefingImageWidth > state.briefingListWidth * 0.51)) fail(route, width, `briefing catalogue is not a two-column card grid (${state.briefingImageWidth}px image/${state.briefingListWidth}px list)`);
         if (width <= 680 && state.briefingCardsShareRow) fail(route, width, 'briefing catalogue remains two-column on a narrow screen');
@@ -255,7 +276,7 @@ try {
         if (Math.abs(state.utilityWidth - 144) > 1) fail(route, width, `desktop utility is ${state.utilityWidth}px instead of 9rem`);
       }
       if (['/en/', '/lt/'].includes(route) && width === 1440) {
-        if (state.heroHeight > 430.5) fail(route, width, `home hero exceeds 430px (${state.heroHeight}px)`);
+        if (state.heroHeight > 400.5) fail(route, width, `home hero exceeds the shared 400px ceiling (${state.heroHeight}px)`);
         if (state.heroChildOverflow > 1) fail(route, width, `home hero child overflows its panel by ${state.heroChildOverflow}px`);
       }
 
