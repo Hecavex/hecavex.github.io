@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
   <title id="title">HECAVEX Signal Brief</title>
   <desc id="desc">Abstract cyber threat signal map with a radar grid, connected indicators and an analytical pulse.</desc>
-  <rect width="1200" height="630" fill="#111416"/>
-  <circle cx="900" cy="315" r="270" fill="#171B1D" stroke="#30383B"/>
+  <rect width="1200" height="630" fill="#ECE9E1"/>
+  <circle cx="900" cy="315" r="270" fill="#ECE9E1" stroke="#30383B"/>
   <g fill="none" stroke="#55b9b1" stroke-opacity=".35"><circle cx="900" cy="315" r="92"/><circle cx="900" cy="315" r="178"/><circle cx="900" cy="315" r="264"/><path d="M636 315h528M900 51v528M713 128l374 374M1087 128L713 502"/></g>
   <path d="M56 346h196l34-88 58 184 62-252 76 245 56-126h126l37-63 55 169 50-100h358" fill="none" stroke="#86b77e" stroke-width="8" stroke-linejoin="round"/>
-  <g fill="#111416" stroke="#d2aa62" stroke-width="5"><circle cx="286" cy="258" r="13"/><circle cx="482" cy="435" r="13"/><circle cx="701" cy="246" r="13"/></g>
+  <g fill="#ECE9E1" stroke="#d2aa62" stroke-width="5"><circle cx="286" cy="258" r="13"/><circle cx="482" cy="435" r="13"/><circle cx="701" cy="246" r="13"/></g>
   <g fill="#55b9b1"><circle cx="900" cy="315" r="15"/><circle cx="1032" cy="202" r="9"/><circle cx="997" cy="433" r="9"/></g>
   <path d="M1032 202L900 315l97 118" fill="none" stroke="#55b9b1" stroke-width="4" stroke-dasharray="10 10"/>
   <path d="M72 76h92l28 28-28 28H72z" fill="#55b9b1" opacity=".95"/>

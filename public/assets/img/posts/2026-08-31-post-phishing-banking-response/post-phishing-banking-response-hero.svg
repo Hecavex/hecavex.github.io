@@ -5,17 +5,17 @@
     <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M0 0 12 6 0 12Z" fill="#55b9b1"/></marker>
     <style>
       .sans{font-family:Inter,Arial,sans-serif}.mono{font-family:'IBM Plex Mono',Consolas,monospace}
-      .title{font:700 52px Inter,Arial,sans-serif;fill:#ece9e1;letter-spacing:-1.5px}
-      .subtitle{font:400 25px Inter,Arial,sans-serif;fill:#8d969a}
-      .eyebrow{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:#55b9b1;letter-spacing:3px}
-      .node-title{font:700 28px Inter,Arial,sans-serif;fill:#ece9e1}
-      .node-copy{font:400 20px Inter,Arial,sans-serif;fill:#8d969a}
-      .node-code{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:#55b9b1}
-      .note{font:500 19px Inter,Arial,sans-serif;fill:#8d969a}
+      .title{font:700 52px Inter,Arial,sans-serif;fill:#151719;letter-spacing:-1.5px}
+      .subtitle{font:400 25px Inter,Arial,sans-serif;fill:#30383b}
+      .eyebrow{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:#151719;letter-spacing:3px}
+      .node-title{font:700 28px Inter,Arial,sans-serif;fill:#151719}
+      .node-copy{font:400 20px Inter,Arial,sans-serif;fill:#30383b}
+      .node-code{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:#151719}
+      .note{font:500 19px Inter,Arial,sans-serif;fill:#30383b}
     </style>
   </defs>
-  <rect width="1600" height="900" fill="#111416"/>
+  <rect width="1600" height="900" fill="#ece9e1"/>
   <path d="M0 8H1600" stroke="#55b9b1" stroke-width="8"/>
   <text x="72" y="62" class="eyebrow">HECAVEX / EDITORIAL RESEARCH VISUAL</text>
-  <g transform="translate(170 210)"><circle cx="300" cy="240" r="220" fill="#1d2326" stroke="#d2aa62" stroke-width="12"/><path d="M300 90V240L406 310" fill="none" stroke="#d2aa62" stroke-width="18" stroke-linecap="round"/></g><path d="M730 450H930" stroke="#55b9b1" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(980 180)"><path d="M220 0 420 96v206c0 148-100 248-200 300C120 550 20 450 20 302V96Z" fill="#1d2326" stroke="#86b77e" stroke-width="12"/><path d="m126 294 70 72 126-154" fill="none" stroke="#86b77e" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g transform="translate(170 210)"><circle cx="300" cy="240" r="220" fill="#ece9e1" stroke="#d2aa62" stroke-width="12"/><path d="M300 90V240L406 310" fill="none" stroke="#d2aa62" stroke-width="18" stroke-linecap="round"/></g><path d="M730 450H930" stroke="#55b9b1" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(980 180)"><path d="M220 0 420 96v206c0 148-100 248-200 300C120 550 20 450 20 302V96Z" fill="#ece9e1" stroke="#86b77e" stroke-width="12"/><path d="m126 294 70 72 126-154" fill="none" stroke="#86b77e" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/></g>
 </svg>

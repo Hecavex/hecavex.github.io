@@ -6,42 +6,42 @@
       <path d="M0 0l10 5-10 5z" fill="#55B9B1"/>
     </marker>
   </defs>
-  <rect width="1600" height="900" fill="#111416"/>
+  <rect width="1600" height="900" fill="#ECE9E1"/>
   <path d="M0 760C260 665 425 820 675 713S1134 610 1600 736" fill="none" stroke="#30383B" stroke-width="2"/>
   <path d="M0 795C310 701 449 849 702 749S1167 653 1600 779" fill="none" stroke="#30383B" stroke-width="2"/>
 
   <g transform="translate(116 108)">
-    <text x="0" y="0" fill="#55B9B1" font-family="Consolas,monospace" font-size="23" font-weight="700" letter-spacing="5">SMISHING · CTI INVESTIGATION</text>
-    <text x="0" y="90" fill="#ECE9E1" font-family="Arial,sans-serif" font-size="78" font-weight="700">Parking payment lure.</text>
-    <text x="0" y="178" fill="#ECE9E1" font-family="Arial,sans-serif" font-size="78" font-weight="700">Reusable phishing kit.</text>
-    <text x="0" y="240" fill="#8D969A" font-family="Arial,sans-serif" font-size="28">One Lithuanian SMS opened a much larger infrastructure cluster.</text>
+    <text x="0" y="0" fill="#151719" font-family="Consolas,monospace" font-size="23" font-weight="700" letter-spacing="5">SMISHING · CTI INVESTIGATION</text>
+    <text x="0" y="90" fill="#151719" font-family="Arial,sans-serif" font-size="78" font-weight="700">Parking payment lure.</text>
+    <text x="0" y="178" fill="#151719" font-family="Arial,sans-serif" font-size="78" font-weight="700">Reusable phishing kit.</text>
+    <text x="0" y="240" fill="#30383B" font-family="Arial,sans-serif" font-size="28">One Lithuanian SMS opened a much larger infrastructure cluster.</text>
   </g>
 
   <g transform="translate(122 470)">
-    <rect width="382" height="218" fill="#171B1D" stroke="#30383B" stroke-width="2"/>
+    <rect width="382" height="218" fill="#ECE9E1" stroke="#30383B" stroke-width="2"/>
     <circle cx="44" cy="44" r="16" fill="#D06C65"/>
-    <text x="76" y="52" fill="#ECE9E1" font-family="Arial,sans-serif" font-size="24" font-weight="700">+63 mobile sender</text>
-    <text x="34" y="104" fill="#8D969A" font-family="Arial,sans-serif" font-size="21">"UNIPARK payment missing"</text>
-    <text x="34" y="142" fill="#8D969A" font-family="Arial,sans-serif" font-size="21">Reply first. Open in Safari.</text>
-    <text x="34" y="185" fill="#55B9B1" font-family="Consolas,monospace" font-size="20">unipark.fmqr[.]ink/com</text>
+    <text x="76" y="52" fill="#151719" font-family="Arial,sans-serif" font-size="24" font-weight="700">+63 mobile sender</text>
+    <text x="34" y="104" fill="#30383B" font-family="Arial,sans-serif" font-size="21">"UNIPARK payment missing"</text>
+    <text x="34" y="142" fill="#30383B" font-family="Arial,sans-serif" font-size="21">Reply first. Open in Safari.</text>
+    <text x="34" y="185" fill="#151719" font-family="Consolas,monospace" font-size="20">unipark.fmqr[.]ink/com</text>
   </g>
 
   <g transform="translate(609 470)">
-    <rect width="382" height="218" fill="#171B1D" stroke="#30383B" stroke-width="2"/>
+    <rect width="382" height="218" fill="#ECE9E1" stroke="#30383B" stroke-width="2"/>
     <circle cx="44" cy="44" r="16" fill="#D2AA62"/>
-    <text x="76" y="52" fill="#ECE9E1" font-family="Arial,sans-serif" font-size="24" font-weight="700">Cloned payment flow</text>
-    <text x="34" y="104" fill="#8D969A" font-family="Arial,sans-serif" font-size="21">Plate → identity → card</text>
-    <text x="34" y="142" fill="#8D969A" font-family="Arial,sans-serif" font-size="21">OTP → card PIN</text>
-    <text x="34" y="185" fill="#D06C65" font-family="Consolas,monospace" font-size="20">AES-CBC over /console</text>
+    <text x="76" y="52" fill="#151719" font-family="Arial,sans-serif" font-size="24" font-weight="700">Cloned payment flow</text>
+    <text x="34" y="104" fill="#30383B" font-family="Arial,sans-serif" font-size="21">Plate → identity → card</text>
+    <text x="34" y="142" fill="#30383B" font-family="Arial,sans-serif" font-size="21">OTP → card PIN</text>
+    <text x="34" y="185" fill="#151719" font-family="Consolas,monospace" font-size="20">AES-CBC over /console</text>
   </g>
 
   <g transform="translate(1096 470)">
-    <rect width="382" height="218" fill="#171B1D" stroke="#30383B" stroke-width="2"/>
+    <rect width="382" height="218" fill="#ECE9E1" stroke="#30383B" stroke-width="2"/>
     <circle cx="44" cy="44" r="16" fill="#55B9B1"/>
-    <text x="76" y="52" fill="#ECE9E1" font-family="Arial,sans-serif" font-size="24" font-weight="700">Campaign pivot</text>
-    <text x="34" y="104" fill="#8D969A" font-family="Arial,sans-serif" font-size="21">163 public scan records</text>
-    <text x="34" y="142" fill="#8D969A" font-family="Arial,sans-serif" font-size="21">126 unique hostnames</text>
-    <text x="34" y="185" fill="#55B9B1" font-family="Consolas,monospace" font-size="20">same core bundle hash</text>
+    <text x="76" y="52" fill="#151719" font-family="Arial,sans-serif" font-size="24" font-weight="700">Campaign pivot</text>
+    <text x="34" y="104" fill="#30383B" font-family="Arial,sans-serif" font-size="21">163 public scan records</text>
+    <text x="34" y="142" fill="#30383B" font-family="Arial,sans-serif" font-size="21">126 unique hostnames</text>
+    <text x="34" y="185" fill="#151719" font-family="Consolas,monospace" font-size="20">same core bundle hash</text>
   </g>
 
   <path d="M504 578H609" stroke="#55B9B1" stroke-width="4" marker-end="url(#arrow)"/>
@@ -50,6 +50,6 @@
   <circle cx="1044" cy="578" r="7" fill="#55B9B1"/>
 
   <g transform="translate(122 790)">
-    <text fill="#8D969A" font-family="Consolas,monospace" font-size="20" letter-spacing="2">HECAVEX · 11 AUG 2026 · STATIC ANALYSIS / PASSIVE PIVOTING</text>
+    <text fill="#30383B" font-family="Consolas,monospace" font-size="20" letter-spacing="2">HECAVEX · 11 AUG 2026 · STATIC ANALYSIS / PASSIVE PIVOTING</text>
   </g>
 </svg>

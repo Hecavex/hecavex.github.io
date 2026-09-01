@@ -207,7 +207,7 @@ const css = await readFile(join(root, 'assets', 'css', 'hecavex.css'), 'utf8');
 for (const [token, pattern] of [
   ['content width', /--content:\s*94rem/], ['network row', /--network-row:\s*4rem/], ['product row', /--product-row:\s*3\.25rem/],
   ['desktop header offset', /--header-offset:\s*7\.25rem/], ['mark size', /\.brand img\s*\{[^}]*width:\s*2\.25rem/s],
-  ['product link height', /\.product-navigation a\s*\{[^}]*min-height:\s*3\.25rem/s], ['1160px collapse', /@media \(max-width:\s*1160px\)/],
+  ['product link height', /\.product-navigation a\s*\{[^}]*min-height:\s*3\.25rem/s], ['1160px collapse', /@media \((?:max-width:\s*1160px|width\s*<=\s*1160px)\)/],
   ['display heading', /font-size:\s*clamp\(2\.5rem,\s*5vw,\s*4rem\)/]
 ]) if (!pattern.test(css)) failures.push(`portfolio CSS contract missing ${token}`);
 

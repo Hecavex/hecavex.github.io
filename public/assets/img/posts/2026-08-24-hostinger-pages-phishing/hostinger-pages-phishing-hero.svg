@@ -10,28 +10,28 @@
     <style>
       .sans { font-family: Inter, Arial, sans-serif; }
       .mono { font-family: "IBM Plex Mono", Consolas, monospace; }
-      .eyebrow { fill: #55B9B1; font-size: 17px; font-weight: 700; letter-spacing: 2.5px; }
-      .title { fill: #ECE9E1; font-size: 62px; font-weight: 700; letter-spacing: -2px; }
-      .muted { fill: #8D969A; }
-      .panel { fill: #171B1D; stroke: #30383B; stroke-width: 2; }
-      .panel-cyan { fill: #1D2326; stroke: #55B9B1; stroke-width: 2; }
-      .panel-red { fill: #1D2326; stroke: #D06C65; stroke-width: 2; }
-      .panel-green { fill: #1D2326; stroke: #86B77E; stroke-width: 2; }
-      .metric { fill: #ECE9E1; font-size: 42px; font-weight: 700; }
-      .metric-label { fill: #8D969A; font-size: 14px; font-weight: 600; letter-spacing: 1.5px; }
-      .box-title { fill: #ECE9E1; font-size: 20px; font-weight: 700; }
-      .box-copy { fill: #8D969A; font-size: 15px; }
-      .code { fill: #ECE9E1; font-size: 15px; }
+      .eyebrow { fill: #151719; font-size: 17px; font-weight: 700; letter-spacing: 2.5px; }
+      .title { fill: #151719; font-size: 62px; font-weight: 700; letter-spacing: -2px; }
+      .muted { fill: #30383B; }
+      .panel { fill: #ECE9E1; stroke: #30383B; stroke-width: 2; }
+      .panel-cyan { fill: #ECE9E1; stroke: #55B9B1; stroke-width: 2; }
+      .panel-red { fill: #ECE9E1; stroke: #D06C65; stroke-width: 2; }
+      .panel-green { fill: #ECE9E1; stroke: #86B77E; stroke-width: 2; }
+      .metric { fill: #151719; font-size: 42px; font-weight: 700; }
+      .metric-label { fill: #30383B; font-size: 14px; font-weight: 600; letter-spacing: 1.5px; }
+      .box-title { fill: #151719; font-size: 20px; font-weight: 700; }
+      .box-copy { fill: #30383B; font-size: 15px; }
+      .code { fill: #151719; font-size: 15px; }
       .edge { fill: none; stroke: #55B9B1; stroke-width: 3; marker-end: url(#arrow); }
     </style>
   </defs>
 
-  <rect width="1600" height="900" fill="#111416"/>
+  <rect width="1600" height="900" fill="#ECE9E1"/>
   <path d="M0 7H1600" stroke="#55B9B1" stroke-width="7"/>
 
   <g transform="translate(72 54)">
     <path d="M0 0V42M38 0V42M0 3L38 39M38 3L0 39" fill="none" stroke="#55B9B1" stroke-width="3"/>
-    <circle cx="19" cy="21" r="3.5" fill="#ECE9E1"/>
+    <circle cx="19" cy="21" r="3.5" fill="#151719"/>
     <text x="60" y="18" class="mono eyebrow">HECAVEX / HX-JSO-2026-001</text>
     <text x="60" y="42" class="mono muted" font-size="13" letter-spacing="1.4">HOSTINGER / PAGES.DEV / STATIC EVIDENCE</text>
   </g>

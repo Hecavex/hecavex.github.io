@@ -7,12 +7,15 @@ const root = resolve(import.meta.dirname, '..');
 const imageRoot = join(root, 'public', 'assets', 'img', 'posts');
 
 const palette = {
-  bg: '#111416',
-  panel: '#171b1d',
-  panelStrong: '#1d2326',
+  // Authored editorial figures live on the same warm paper as the article.
+  // Graphite remains available to the site chrome, but using it as the full
+  // canvas made every thumbnail read as an indistinguishable black tile.
+  bg: '#ece9e1',
+  panel: '#ece9e1',
+  panelStrong: '#ece9e1',
   line: '#30383b',
-  muted: '#8d969a',
-  text: '#ece9e1',
+  muted: '#30383b',
+  text: '#151719',
   cyan: '#55b9b1',
   green: '#86b77e',
   amber: '#d2aa62',
@@ -35,10 +38,10 @@ function shell(width, height, body, label = 'HECAVEX / DEFENSIVE RESEARCH', titl
       .sans{font-family:Inter,Arial,sans-serif}.mono{font-family:'IBM Plex Mono',Consolas,monospace}
       .title{font:700 52px Inter,Arial,sans-serif;fill:${palette.text};letter-spacing:-1.5px}
       .subtitle{font:400 25px Inter,Arial,sans-serif;fill:${palette.muted}}
-      .eyebrow{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:${palette.cyan};letter-spacing:3px}
+      .eyebrow{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:${palette.text};letter-spacing:3px}
       .node-title{font:700 28px Inter,Arial,sans-serif;fill:${palette.text}}
       .node-copy{font:400 20px Inter,Arial,sans-serif;fill:${palette.muted}}
-      .node-code{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:${palette.cyan}}
+      .node-code{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:${palette.text}}
       .note{font:500 19px Inter,Arial,sans-serif;fill:${palette.muted}}
     </style>
   </defs>

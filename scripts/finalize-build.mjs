@@ -2,11 +2,23 @@
 
 import { readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { extname, join, resolve } from 'node:path';
+import { transform } from 'lightningcss';
 import { applyArticleImagePolicy } from '../src/lib/html-image-policy.mjs';
 import { buildImageDimensionMap } from '../src/lib/image-dimensions.mjs';
 
 const root = resolve(process.argv[2] ?? 'dist');
 await writeFile(join(root, '.nojekyll'), '', 'utf8');
+
+// Public styles remain readable and lintable in source control. Compress only
+// the deploy artifact so the publication keeps its strict transfer budgets.
+const stylesheet = join(root, 'assets', 'css', 'hecavex.css');
+const stylesheetSource = await readFile(stylesheet);
+const { code: minifiedStylesheet } = transform({
+  filename: stylesheet,
+  code: stylesheetSource,
+  minify: true,
+});
+await writeFile(stylesheet, minifiedStylesheet);
 
 // Astro treats the localized 404 documents as regular static pages. Keep the
 // historic `.html` URLs as exact files in addition to their generated source.
@@ -38,4 +50,4 @@ for (const file of await htmlFiles(root)) {
   imagePolicyDocuments += 1;
 }
 
-console.log(`Finalized GitHub Pages artifact (.nojekyll, localized 404 compatibility files, ${imageDimensions.size} intrinsic image records and ${imagePolicyDocuments} article image-policy documents).`);
+console.log(`Finalized GitHub Pages artifact (.nojekyll, minified publication CSS, localized 404 compatibility files, ${imageDimensions.size} intrinsic image records and ${imagePolicyDocuments} article image-policy documents).`);
