@@ -42,6 +42,7 @@ const routes = [
   '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/',
   '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
   '/en/research/cra-article-14-vulnerability-incident-reporting-guide/', '/lt/tyrimai/infrastrukturos-pivoting-101/',
+  '/en/research/adform-supply-chain-crypto-clipper/', '/lt/tyrimai/adform-supply-chain-crypto-clipper/',
   '/en/briefings/2026-08-22/', '/lt/apzvalgos/2026-08-22/'
 ];
 const factRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
@@ -53,8 +54,9 @@ const outlineRoutes = new Set([
 ]);
 const researchRoutes = new Set(['/en/research/', '/lt/tyrimai/']);
 const contactRoutes = new Set(['/en/contact/', '/lt/kontaktai/']);
-const catalogueIntroRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
+const catalogueIntroRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
 const briefingRoutes = new Set(['/en/briefings/', '/lt/apzvalgos/']);
+const recordFooterRoutes = new Set(['/en/research/adform-supply-chain-crypto-clipper/', '/lt/tyrimai/adform-supply-chain-crypto-clipper/']);
 const standardizedPageTitleRoutes = new Set([
   '/data/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/',
   '/en/projects/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/'
@@ -127,7 +129,13 @@ try {
           ? [...oddResearchGrid.querySelectorAll(':scope > .post-card')]
           : [];
         const oddResearchGridRect = oddResearchGrid?.getBoundingClientRect();
-        const oddResearchLastCardRect = oddResearchCards.at(-1)?.getBoundingClientRect();
+        const oddResearchLastCard = oddResearchCards.at(-1);
+        const oddResearchLastCardRect = oddResearchLastCard?.getBoundingClientRect();
+        const oddResearchLastCardStyle = oddResearchLastCard ? getComputedStyle(oddResearchLastCard) : undefined;
+        const articleShell = document.querySelector('.article-shell');
+        const articleShellRect = articleShell?.getBoundingClientRect();
+        const articleShellStyle = articleShell ? getComputedStyle(articleShell) : undefined;
+        const recordSections = [...document.querySelectorAll('.article-shell > :is(.update-history, .citation-block, .article-footer)')];
         const offscreen = [...document.querySelectorAll('main *, .site-header *')].filter((element) => {
           const style = getComputedStyle(element);
           if (style.display === 'none' || style.visibility === 'hidden' || style.position === 'fixed') return false;
@@ -177,6 +185,17 @@ try {
           oddResearchLastCardRightGap: oddResearchGridRect && oddResearchLastCardRect
             ? oddResearchGridRect.right - oddResearchLastCardRect.right
             : -1,
+          oddResearchLastCardBorders: oddResearchLastCardStyle
+            ? [oddResearchLastCardStyle.borderTopWidth, oddResearchLastCardStyle.borderRightWidth, oddResearchLastCardStyle.borderBottomWidth, oddResearchLastCardStyle.borderLeftWidth]
+            : [],
+          articleShellInnerWidth: articleShellRect && articleShellStyle
+            ? articleShellRect.width
+              - Number.parseFloat(articleShellStyle.paddingLeft)
+              - Number.parseFloat(articleShellStyle.paddingRight)
+              - Number.parseFloat(articleShellStyle.borderLeftWidth)
+              - Number.parseFloat(articleShellStyle.borderRightWidth)
+            : 0,
+          recordSectionWidths: recordSections.map((section) => section.getBoundingClientRect().width),
           hasBriefingPath: Boolean(document.querySelector('.briefing-path h2')),
           pageUpdatedValue: document.querySelector('.page-facts > div:last-child dd')?.textContent.trim() ?? '',
           ctaButtonHeight: ctaButton?.getBoundingClientRect().height ?? 0,
@@ -239,12 +258,18 @@ try {
           && Math.abs(state.oddResearchLastCardLeftGap - 1) <= 1
           && Math.abs(state.oddResearchLastCardRightGap - 1) <= 1;
         if (!oddCardFillsGrid) fail(route, width, `final odd research card does not fill its row (${state.oddResearchCardCount} cards, ${state.oddResearchLastCardLeftGap}px/${state.oddResearchLastCardRightGap}px edges)`);
+        if (state.oddResearchLastCardBorders.join('|') !== '1px|1px|1px|1px') fail(route, width, `final odd research card is not fully enclosed (${state.oddResearchLastCardBorders.join('/')})`);
       }
       if (contactRoutes.has(route) && (state.actionRouteCount !== 4 || state.actionLinkCount !== 5)) fail(route, width, `contact action rail is incomplete (${state.actionRouteCount} routes, ${state.actionLinkCount} links)`);
       if (catalogueIntroRoutes.has(route)) {
         if (Math.abs(state.pageIntroWidth - state.pageShellInnerWidth) > 1) fail(route, width, `fact intro width differs from the catalogue shell (${state.pageIntroWidth}px/${state.pageShellInnerWidth}px)`);
         if (width >= 900 && Math.abs(state.pageIntroHeight - 336) > 1) fail(route, width, `desktop fact intro is ${state.pageIntroHeight}px instead of 336px`);
         if (state.h1Size > 52.1) fail(route, width, `fact intro h1 exceeds the shared 52px scale (${state.h1Size}px)`);
+      }
+      if (recordFooterRoutes.has(route)) {
+        const fullWidthRecordSections = state.recordSectionWidths.length === 3
+          && state.recordSectionWidths.every((sectionWidth) => Math.abs(sectionWidth - state.articleShellInnerWidth) <= 1);
+        if (!fullWidthRecordSections) fail(route, width, `article record footer does not span the article frame (${state.recordSectionWidths.join('/')}px versus ${state.articleShellInnerWidth}px)`);
       }
       if (standardizedPageTitleRoutes.has(route)) {
         if (state.h1Size > 52.1) fail(route, width, `standard page h1 exceeds the shared 52px scale (${state.h1Size}px)`);
@@ -276,7 +301,7 @@ try {
         if (Math.abs(state.utilityWidth - 144) > 1) fail(route, width, `desktop utility is ${state.utilityWidth}px instead of 9rem`);
       }
       if (['/en/', '/lt/'].includes(route) && width === 1440) {
-        if (state.heroHeight > 400.5) fail(route, width, `home hero exceeds the shared 400px ceiling (${state.heroHeight}px)`);
+        if (Math.abs(state.heroHeight - 377) > 1) fail(route, width, `home hero differs from the shared 377px frame (${state.heroHeight}px)`);
         if (state.heroChildOverflow > 1) fail(route, width, `home hero child overflows its panel by ${state.heroChildOverflow}px`);
       }
 

@@ -37,6 +37,7 @@
   --page-space-top: clamp(3.25rem, 5vw, 4.75rem);
   --page-space-bottom: clamp(4rem, 8vw, 8rem);
   --major-section-space: clamp(3.5rem, 7vw, 6.5rem);
+  --frame-product-hero: clamp(21rem, 26.2vw, 23.5625rem);
   --page-title-size: clamp(2.4rem, 3.6vw, 3.25rem);
   --display-title-size: clamp(2.5rem, 4.2vw, 4rem);
   --section-title-size: clamp(1.45rem, 2.4vw, 2rem);
@@ -1240,20 +1241,6 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 
 .standard-page--with-rail > .prose {
   grid-area: content;
-}
-
-.standard-page--article-prose > .prose {
-  width: 100%;
-  max-width: none;
-}
-
-@media (min-width: 681px) {
-  .standard-page--article-prose > .prose > :where(p, ul > li, ol > li, blockquote > p) {
-    text-align: justify;
-    text-align-last: left;
-    text-justify: inter-word;
-    hyphens: auto;
-  }
 }
 
 .standard-page--with-rail > .content-outline,
@@ -2708,8 +2695,9 @@ body[data-language="lt"] .table-scroll-hint::before {
   --muted: var(--rule);
   --faint: var(--rule);
 
-  border-inline: 1px solid var(--rule);
+  border-inline: 0;
   background: var(--paper);
+  box-shadow: inset 1px 0 var(--rule), inset -1px 0 var(--rule);
   color: var(--text-soft);
   color-scheme: light;
 }
@@ -2743,17 +2731,17 @@ body[data-language="lt"] .table-scroll-hint::before {
 }
 
 main :is(.home-hero, .page-intro--with-facts) {
-  border-top-width: 4px;
+  border-top-width: 3px;
   background: var(--paper);
 }
 
 .home-shell .home-hero {
-  min-height: 21rem;
+  min-height: var(--frame-product-hero);
   grid-template-columns: minmax(0, 1.7fr) minmax(18rem, 0.6fr);
 }
 
 .home-shell .home-hero-copy {
-  padding: clamp(1.75rem, 3vw, 3rem);
+  padding: clamp(1.75rem, 3vw, 2.15rem) clamp(1.75rem, 3vw, 3rem);
 }
 
 .home-shell .home-hero h1 {
@@ -2819,15 +2807,6 @@ main .post-card {
 
 .post-card:nth-child(odd) {
   border-right: 1px solid var(--line);
-}
-
-.post-grid > .post-card:last-child,
-.post-grid > .post-card:nth-last-child(2):nth-child(odd) {
-  border-bottom: 0;
-}
-
-main .post-grid > .post-card:last-child:nth-child(odd) {
-  border-right: 0;
 }
 
 main .post-card-copy {
@@ -2999,6 +2978,15 @@ main :is(.content-outline__frame, .content-outline--mobile, .page-action-rail) {
   border-right: 0;
   border-left: 0;
   background: transparent;
+}
+
+.article-shell :is(.update-history, .citation-block, .article-footer, .translation-note) {
+  width: 100%;
+  max-width: none;
+}
+
+.article-shell :is(.update-history, .citation-block, .translation-note) > :is(p, ol) {
+  max-width: var(--reading-wide);
 }
 
 .article-shell .article-navigation {
