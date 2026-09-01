@@ -49,7 +49,7 @@ Kalbame apie duomenis, kurie gali padėti išsiaiškinti žmonių turtą, įmoni
 
 [Antroje šio tyrimo dalyje](/lt/tyrimai/registru-centro-duomenu-vagyste-part/) nagrinėjama, kaip teisėtos paskyros gali paversti neteisėtą veiklą operaciškai normalia. Identity kontrolės problema atskirai išskleista [MFA apėjimo, session theft ir token replay analizėje](/lt/tyrimai/mfa-nera-panaceja-ir-laikas-nustoti/).
 
-Viešai patvirtintos atribucijos kol kas nėra. Todėl sakyti “padarė rusai” būtų per anksti. Bet sakyti, kad tokia versija yra nereali, būtų... irgi ne labai gerai.
+Viešai patvirtintos atribucijos kol kas nėra. Todėl sakyti "padarė rusai" būtų per anksti. Bet sakyti, kad tokia versija yra nereali, būtų... irgi ne labai gerai.
 
 Ypač kai tyrimo duomenys leidžia įtarti, kad dalis neteisėtų prisijungimų ir bandymų prisijungti buvo vykdyti iš užsienio valstybės ir per kitų institucijų administruojamas sistemas. Viešai taip pat nurodyta, kad galėjo būti pasinaudota vieno Nekilnojamojo turto registro duomenų gavėjo vartotojų prisijungimo duomenimis (tas pats source kaip ir aukščiau).
 
@@ -77,7 +77,7 @@ Microsoft taip pat aprašė Rusijai siejamą **Void Blizzard / Laundry Bear**, k
 
 .***Kitaip tariant APT nebūtinai prasideda nuo nulaužto palydovo NASA.***
 
-Kartais tai prasideda nuo pavogto slaptažodžio. Kartais nuo phishing laiško. Kartais nuo neprižiūrėtos prieigos. Kartais nuo sistemos, kurią visi žinojo, kad reikia sutvarkyti, bet kažkaip visada buvo “kitą ketvirtį” ir oops tas 7.8 CVSS ar prieš dvi dienas praneštas CVSS 10 palauks.
+Kartais tai prasideda nuo pavogto slaptažodžio. Kartais nuo phishing laiško. Kartais nuo neprižiūrėtos prieigos. Kartais nuo sistemos, kurią visi žinojo, kad reikia sutvarkyti, bet kažkaip visada buvo "kitą ketvirtį" ir oops tas 7.8 CVSS ar prieš dvi dienas praneštas CVSS 10 palauks.
 
 ## **Kaip tai galima sudėlioti per Diamond Model (smagumo dalis CTI)**
 
@@ -89,11 +89,11 @@ Diamond Model of Intrusion Analysis incidentą vertina per keturis kampus t.y. *
 
 **Capability (metodai / galimybės)** - Kol kas viešai kalbama apie galimą neteisėtą prisijungimą, pasinaudojimą vartotojų prisijungimo duomenimis ir masinį registro išrašų formavimą. Tai labai dera su tuo, ką dažnai matome realiose kampanijose. Kartais pakanka prieigos, teisėtų funkcijų ir per mažai kontrolės.
 
-**Infrastructure (infrastruktūra)** -Viešai nurodyta, kad dalis veiksmų galėjo būti vykdyti iš užsienio valstybės ir per kitų institucijų administruojamas sistemas, atakose dažnai naudojama ne “tiesioginė” infrastruktūra, o tarpiniai šuoliai, kompromituotos sistemos, teisėtos paskyros ar trečiųjų šalių prieigos.
+**Infrastructure (infrastruktūra)** -Viešai nurodyta, kad dalis veiksmų galėjo būti vykdyti iš užsienio valstybės ir per kitų institucijų administruojamas sistemas, atakose dažnai naudojama ne "tiesioginė" infrastruktūra, o tarpiniai šuoliai, kompromituotos sistemos, teisėtos paskyros ar trečiųjų šalių prieigos.
 
-**Adversary (veikėjas)** - Čia reikia būti atsargiems (CTI remiasi tik tūrimais duomenimis jei ką..). Viešos atribucijos nėra (pakolkas). Tačiau dėl taikinio pobūdžio, geopolitinio konteksto ir panašių APT TTPs, rusiškų arba rusakalbių kibernetinių grupuočių versija yra realistiška tyrimo kryptis (tikėtina). Bet atribucija nėra “man atrodo”. Atribucija yra logai, infrastruktūra, TTP, prieigų keliai, forensic analyzės ir žvalgybinis kontekstas.
+**Adversary (veikėjas)** - Čia reikia būti atsargiems (CTI remiasi tik tūrimais duomenimis jei ką..). Viešos atribucijos nėra (pakolkas). Tačiau dėl taikinio pobūdžio, geopolitinio konteksto ir panašių APT TTPs, rusiškų arba rusakalbių kibernetinių grupuočių versija yra realistiška tyrimo kryptis (tikėtina). Bet atribucija nėra "man atrodo". Atribucija yra logai, infrastruktūra, TTP, prieigų keliai, forensic analyzės ir žvalgybinis kontekstas.
 
-Šiaip Linkedin’e visi gali būt žvalgybos analitikais, bet tik iki pirmo klausymo “o kur įrodymai”?
+Šiaip Linkedin’e visi gali būt žvalgybos analitikais, bet tik iki pirmo klausymo "o kur įrodymai"?
 
 ![Deimanto modelis sieja priešininką, infrastruktūrą, gebėjimus ir auką.](/assets/img/posts/substack/registru-centro-duomenu-vagyste-kai/05.webp)
 
@@ -103,17 +103,17 @@ Lockheed Martin Cyber Kill Chain modelis padeda incidentą vertinti kaip seką t
 
 **Reconnaissance** - Ar buvo naudoti pavogti prisijungimo duomenys? Ar buvo password spraying? Ar buvo phishing? Ar veikta per trečiųjų šalių prieigas? Ar naudotos kitų institucijų sistemos kaip tarpinis kelias?
 
-**Exploitation -** Ar TAs pasinaudojo tik teisėtomis funkcijomis su neteisėtai gauta prieiga, ar buvo ir techninis pažeidžiamumas? Tai labai svarbus skirtumas. Nes viena yra “nulaužė sistemą”, kita yra kai sako “prisijungė kaip teisėtas naudotojas, tik tas naudotojas neturėjo būti jis”.
+**Exploitation -** Ar TAs pasinaudojo tik teisėtomis funkcijomis su neteisėtai gauta prieiga, ar buvo ir techninis pažeidžiamumas? Tai labai svarbus skirtumas. Nes viena yra "nulaužė sistemą", kita yra kai sako "prisijungė kaip teisėtas naudotojas, tik tas naudotojas neturėjo būti jis".
 
 **Persistence -** Ar buvo bandyta išlaikyti prieigą? Ar buvo kuriami nauji naudotojai, keičiami slaptažodžiai, teisės, API prieigos, sesijos ar autentifikavimo mechanizmai?
 
 **Command & Control -** Ar buvo techninė kontrolės infrastruktūra? Ar veikla vyko per įprastus protokolus ir teisėtas sistemas, kad atrodytų kaip normalus naudojimas?
 
-**Actions on Objectives -** Galutinis tikslas, panašu, buvo duomenų nuskaitymas / kopijavimas. Ir čia svarbiausias klausimas turėtų būt ar tai buvo vienkartinis duomenų “nusiurbimas”, ar ilgesnė, lėtesnė, sunkiau pastebima veikla?
+**Actions on Objectives -** Galutinis tikslas, panašu, buvo duomenų nuskaitymas / kopijavimas. Ir čia svarbiausias klausimas turėtų būt ar tai buvo vienkartinis duomenų "nusiurbimas", ar ilgesnė, lėtesnė, sunkiau pastebima veikla?
 
 ***Nes blogiausias scenarijus dažnai nėra tas, kai kažkas labai garsiai įsilaužia.***
 
-***Blogiausias scenarijus yra tas, kai kažkas tyliai naudojasi prieiga ilgą laiką, o organizacija sužino tik tada, kai klausimas jau nebe “ar įvyko”, o “kiek išėjo”***
+***Blogiausias scenarijus yra tas, kai kažkas tyliai naudojasi prieiga ilgą laiką, o organizacija sužino tik tada, kai klausimas jau nebe "ar įvyko", o "kiek išėjo"***
 
 ![Cyber Kill Chain etapai nuo žvalgybos iki tikslo įgyvendinimo.](/assets/img/posts/substack/registru-centro-duomenu-vagyste-kai/06.webp)
 
@@ -121,7 +121,7 @@ Lockheed Martin Cyber Kill Chain modelis padeda incidentą vertinti kaip seką t
 
 Elementarūs dalykai..
 
-**Gyventojams** tai tikrinti informaciją tik oficialiuose šaltiniuose, nespausti įtartinų nuorodų (prisimenu Citybee leak’ą, kai kažkas vesdavo savo duomenis... nu cmon), neatskleisti prisijungimo duomenų telefonu ar el. paštu, neskubėti vykdyti “labai skubių” prašymų, naudoti MFA ir stebėti banko sąskaitas bei galimus naujus įsipareigojimus.
+**Gyventojams** tai tikrinti informaciją tik oficialiuose šaltiniuose, nespausti įtartinų nuorodų (prisimenu Citybee leak’ą, kai kažkas vesdavo savo duomenis... nu cmon), neatskleisti prisijungimo duomenų telefonu ar el. paštu, neskubėti vykdyti "labai skubių" prašymų, naudoti MFA ir stebėti banko sąskaitas bei galimus naujus įsipareigojimus.
 
 **Įmonėms** tai klasika, kaip visad tik truputi smarkiau ruoštis įtikinamesnėms socialinės inžinerijos atakoms. Ypač prieš buhalteriją (MiTM), administraciją, vadovus, teisininkus, NT, tiekėjus ir klientų aptarnavimą.
 
@@ -129,6 +129,6 @@ Institucijoms (manau čia nereik aiškint, bet..) žiūrėti ne tik į vieną in
 
 Kas turi priegą? Kodėl turi prieigą? Kada paskutinį kartą ji peržiūrta? Ar prisijungimai stebimi? Ar masinis duomenų nuskaitymas kelia alert’us SOC’ui ir jis keliasi 2h nakties šeštadieni? Ar Third-party turi MFA? Ar įmanoma aptikti, kad teisėta paskyra staiga pradeda siurbt duomenys, ir kokie alert’ai turi būt, kad SOC’as keltųsi 2h nakties tikrint?
 
-Elementarus priegos monotiringas, auditai, third-party kontrolės, incidentų valdymas / aptikimas...ir visiem labai smagus klausimas “Kas iš tikrųjų turi priegą prie mūsų sistemų?”.
+Elementarus priegos monotiringas, auditai, third-party kontrolės, incidentų valdymas / aptikimas...ir visiem labai smagus klausimas "Kas iš tikrųjų turi priegą prie mūsų sistemų?".
 
-Nes jaučiu.. bus tokių įmonių kur “Signalizaciją įdėjome tik po vagystės” (nu šits nepadeda..)
+Nes jaučiu.. bus tokių įmonių kur "Signalizaciją įdėjome tik po vagystės" (nu šits nepadeda..)

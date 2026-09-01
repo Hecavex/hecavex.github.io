@@ -64,7 +64,7 @@ updates:
 
 ### CVE-2026-60004: repository write tampa komandų vykdymu Gitea serveryje
 
-<dl><div><dt>Svarbiausios prielaidos</dt><dd>Git 2.32+, įjungtas diffpatch route, rašymui ir vykdymui tinkamas laikinasis katalogas</dd></div><div><dt>Reikalinga prieiga</dt><dd>Repository write; atvira registracija tik panaikina iš anksto turimos paskyros poreikį</dd></div></dl>
+<dl><div><dt>Svarbiausios prielaidos</dt><dd>Git 2.32+, įjungtas diffpatch route, rašymui ir vykdymui tinkamas laikinasis katalogas</dd></div><div><dt>Reikalinga prieiga</dt><dd>Repository write, o atvira registracija tik panaikina iš anksto turimos paskyros poreikį</dd></div></dl>
 
 Rugpjūčio 25 d. CISA CVE-2026-60004 įtraukė į KEV. Gitea pranešime aprašytas code-injection kelias, kuriame užpuoliko valdomas patch turinys gali įrašyti vykdomą Git hook į laikiną bare clone. Rašydamas index, Git paleidžia hook ir leidžia vykdyti savavališkas shell komandas Gitea operacinės sistemos naudotojo teisėmis.
 

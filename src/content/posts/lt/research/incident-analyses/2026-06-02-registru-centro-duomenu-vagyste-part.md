@@ -41,7 +41,7 @@ source_url: https://deivlis.substack.com/p/registru-centro-duomenu-vagyste-part
 
 ## **Recap iš pirmojo blogo**
 
-*Praeitame bloge rašiau, kad Registrų centro incidentas neturėtų būti vertinamas kaip eilinis “duomenų nutekėjimas”. Kalbame apie daugiau nei 600 tūkst. galimai nukopijuotų Nekilnojamojo turto ir Juridinių asmenų registro įrašų, kurie gali būti naudingi ne tik sukčiams, bet ir žvalgybiniam kontekstui, socialinei inžinerijai bei hibridinėms operacijoms. Svarbiausia mintis buvo labai paprasta aka moderni ataka dažnai atrodo ne kaip “nulaužta sistema”, o kaip teisėtas naudotojas, darantis labai neteisėtus dalykus.*
+*Praeitame bloge rašiau, kad Registrų centro incidentas neturėtų būti vertinamas kaip eilinis "duomenų nutekėjimas". Kalbame apie daugiau nei 600 tūkst. galimai nukopijuotų Nekilnojamojo turto ir Juridinių asmenų registro įrašų, kurie gali būti naudingi ne tik sukčiams, bet ir žvalgybiniam kontekstui, socialinei inžinerijai bei hibridinėms operacijoms. Svarbiausia mintis buvo labai paprasta aka moderni ataka dažnai atrodo ne kaip "nulaužta sistema", o kaip teisėtas naudotojas, darantis labai neteisėtus dalykus.*
 
 [Pirmoje dalyje pateiktas nacionalinio saugumo ir žvalgybos kontekstas](/lt/tyrimai/registru-centro-duomenu-vagyste-kai/). Šio scenarijaus identity sluoksnį papildo [MFA analizė, aiškinanti, kodėl pavogta sesija ar token gali apeiti pakartotinį prisijungimo patikrinimą](/lt/tyrimai/mfa-nera-panaceja-ir-laikas-nustoti/).
 
@@ -53,7 +53,7 @@ Per paskutines dienas atsirado kelios labai svarbios detalės, kurios incidentą
 
 Viešai jau patvirtinta, kad šimtai tūkstančių **Registrų centro duomenų buvo pavogti pasinaudojant Migracijos departamento paskyromis**. Lietuvos kriminalinės policijos biuro vadovas Arūnas Maskoliūnas žurnalistams tiesiogiai patvirtino, kad informacija apie Migracijos departamento paskyras yra teisinga. (**<https://www.lrytas.lt/lietuvosdiena/aktualijos/2026/05/26/news/po-skandalo-registru-centre-teisesaugos-zinia-del-migracijos-departamento-42580533>**, **<https://www.15min.lt/naujiena/aktualu/skandalas-registru-centre-nelegaliai-nusiurbti-daugiau-nei-600-tukst-duomenu-55-2689370>**)
 
-Šioje vietoje.. atsiranda labai svarbus dalykas, kad preliminariai visa istorija jau atrodo ne kaip daug kas soc. medijoje (dažniausiai Facebook, nes ten nu labai daug susirenka žmonių suprantančių IT saugumą ir t.t.) rėkė, kad “nulaužė Registrų centrą”, o labiau pereinama į “kažkas gavo teisėtą prieigą ir pradėjo elgtis labai neteisėtai”.
+Šioje vietoje.. atsiranda labai svarbus dalykas, kad preliminariai visa istorija jau atrodo ne kaip daug kas soc. medijoje (dažniausiai Facebook, nes ten nu labai daug susirenka žmonių suprantančių IT saugumą ir t.t.) rėkė, kad "nulaužė Registrų centrą", o labiau pereinama į "kažkas gavo teisėtą prieigą ir pradėjo elgtis labai neteisėtai".
 
 Ir čia prasideda jau nemaloniausia kibernetinio saugumo dalis, nes šiuolaikinės atakos dažnai (sakyčiau per daug dažnai) atrodo labai.. normaliai (pažiūrint per RC prizmę, ar MD), kaip pvz.:
 
@@ -77,14 +77,14 @@ Grįžtant atagal.. tai reiškia, kad tyrimas tikėtina jau kurį laiką analizu
 
 Ir čia jau atsiranda smagesnis CTI aspektas.. Asmeniškai monitorinant rusakalbius forumus, Telegram kanalus, dark web marketplace’us (pavadinkim lai taip) ir Discord kanalus.. praktiškai nesimato aktyvaus RC duomenų dump’ų reklamavimo ar pardavinėjimo, kas yra gan neįprasta.
 
-Jei tai būtų klasikinė “financial motivated” duomenų vagystė, tai labaiii tikėtina, jau matytumėm:
+Jei tai būtų klasikinė "financial motivated" duomenų vagystė, tai labaiii tikėtina, jau matytumėm:
 
-- “database for sale” postus.
+- "database for sale" postus.
 - sample dump’us
 - prieigų aukcijonus.
 - initial access brokerių bandymus perparduot priegas.
-- “exclusive access” pasiūlymus
-- ir Telegram kanalus su “Lithuania DB leak” hype.
+- "exclusive access" pasiūlymus
+- ir Telegram kanalus su "Lithuania DB leak" hype.
 
 *(aišku nesakau, kad visus forumus, visus Telegram, Discord kanalus žinau ir visus stebiu, bet pagrindiniuose tylu)*
 
@@ -100,7 +100,7 @@ APT grupės dažniau renkasi tyliai rinkti informaciją, išlaikyt prieigą, vei
 
 Pagal jau turimą informaciją (2026-05-26 dienos), vienas realistiškiausių scenarijų atrodo kompromituotos institucijos arba third-party paskyros (na šitas jau patvirtintas galimai).
 
-Čia jau ne Holivudo filmas kur hackeris sėdi ir “Im in”, nereikia “zero day”, nereikia “super duper malware” ar tebunie palydovo nulaužimo.. šiuo atvėju užtenka vieno žmogus.
+Čia jau ne Holivudo filmas kur hackeris sėdi ir "Im in", nereikia "zero day", nereikia "super duper malware" ar tebunie palydovo nulaužimo.. šiuo atvėju užtenka vieno žmogus.
 
 Vienas iš **galimų scenarijų** ką sugalvoju atrodo taip (na čia toks klasikinis labiau), kad darbuotojas gauna **phishing** laišką (valstybinėse įdomu ar kas vykdo phishing mokymus.. ar ne, žinant apie seimą tai tikrai ne). Laiškas pats tikėtina atrodo taip:
 
@@ -109,15 +109,15 @@ Vienas iš **galimų scenarijų** ką sugalvoju atrodo taip (na čia toks klasik
 - Institucijos sitema.
 - Teams kvietimas.
 - SharePoint dokumentas.
-- “saugumo atnaujinimas”.
+- "saugumo atnaujinimas".
 
 Na žmogelis nemokytas, paspaudžia nuorodą -> suveda prisijungimus -> galbūt patvirtina MFA/2FA (ar dar kokį velnią) -> perduoda duomenis.
 
-Čia gal toks .. sakyčiau organizacijoms dalykas.. ir supratimas, kad turint MFA tai dar nereiškia, kad “esame saugūs”
+Čia gal toks .. sakyčiau organizacijoms dalykas.. ir supratimas, kad turint MFA tai dar nereiškia, kad "esame saugūs"
 
 ![Prisijungimo bei vartotojo elgsenos duomenys nagrinėjami ieškant pavogtos tapatybės požymių.](/assets/img/posts/substack/registru-centro-duomenu-vagyste-part/04.webp)
 
-**Kitas scenarijus yra infostealeriai.** Čia jau yra truputi rimtesnė problema, nes jie yra vienas iš svarbiausių ekosistemos dalių pavadinkim “underground’e” *(nesakysiu per daug čia, bet patikrinau kiek galimai valstybinių institucijų turi nuleakintus prisijungimų duomenis, sesijas hijackintas.. tai daug).*
+**Kitas scenarijus yra infostealeriai.** Čia jau yra truputi rimtesnė problema, nes jie yra vienas iš svarbiausių ekosistemos dalių pavadinkim "underground’e" *(nesakysiu per daug čia, bet patikrinau kiek galimai valstybinių institucijų turi nuleakintus prisijungimų duomenis, sesijas hijackintas.. tai daug).*
 
 **Apie infostealerius jei trumpai tai jie vagia:**
 
@@ -128,14 +128,14 @@ Na žmogelis nemokytas, paspaudžia nuorodą -> suveda prisijungimus -> galbūt 
 - Aktyvias sesija.
 - Autentifikacijos artefaktus.
 
-Na ir tada užpuolikas (ar tas kas nusiperka) gaune ne patį “nulaužimą”, o visą pavadinkim tai darbuotojo “skaitmeninį identitetą”, o ką tai reiškia?
+Na ir tada užpuolikas (ar tas kas nusiperka) gaune ne patį "nulaužimą", o visą pavadinkim tai darbuotojo "skaitmeninį identitetą", o ką tai reiškia?
 
 - Outlook atrodo teisėtas.
 - SharePoint atrodo teisėtas.
 - OneDrive atrodo teisėtas.
 - Teams atrodo teisėtas.
 
-Ką sistema mato.. tai “login successful”, bet nesupranta kas prisijungė.. ar Zosė ten iš finansų ar Saša iš Maskvos.
+Ką sistema mato.. tai "login successful", bet nesupranta kas prisijungė.. ar Zosė ten iš finansų ar Saša iš Maskvos.
 
 Kartais blogiausia ataka atrodo kaip normalus darbuotojas, nebent Zosė yra labai pavyzdinga darbuotoja ir keliasi 3 val. nakties, kad pasidomėtų šimtais tūkstančių registro išrašų (nes nu darbo tai daug), arba Zosė nori tapt MVP ketvirčio.
 
@@ -151,7 +151,7 @@ Jei hackeriai pavagia:
 - OAuth tokenus.
 - Aktyvias M365 sesijas.
 
-Daugumoje atvėjų jis gali naudotis sistema kaip teisėtas naudotojas t.y. be slaptažodžio, be papildomo login prompt’o, be “I’m in” filmų momento.
+Daugumoje atvėjų jis gali naudotis sistema kaip teisėtas naudotojas t.y. be slaptažodžio, be papildomo login prompt’o, be "I’m in" filmų momento.
 
 Pažiūrėjus į M365 aplinką ir gavus Outlook arba SharePoint priegą galima:
 
@@ -165,7 +165,7 @@ Pažiūrėjus į M365 aplinką ir gavus Outlook arba SharePoint priegą galima:
 
 ![Sesijos užgrobimo aptikimo skydelis išryškina neįprastą autentifikuotą veiklą.](/assets/img/posts/substack/registru-centro-duomenu-vagyste-part/06.webp)
 
-**Toliau jau labai svarbus scenarijus – „low and slow“.**
+**Toliau jau labai svarbus scenarijus – "low and slow".**
 
 Jei duomenys buvo traukiami:
 
@@ -175,7 +175,7 @@ Jei duomenys buvo traukiami:
 - Naudojant teisėtas paskyras.
 - Iš įprastų sistemų.
 
-visa veikla jau atrodo kaip normali veikla, tada problema tampa ne “ar buvo antivirusinė?” (šitą pavogiau iš Facebook komentarų), o ar buvo stebima naudotojų elgsema, ar buvo matomos anomalijos, ar buvo matomas masinis registro išrašų formavimas, ar buvo stebimi Outlook / Sharepoint aktyvimai, ar sistema suprato, kad paskyra pradėjo elgtis kaip pavadinkim “duomenų siurblys”.
+visa veikla jau atrodo kaip normali veikla, tada problema tampa ne "ar buvo antivirusinė?" (šitą pavogiau iš Facebook komentarų), o ar buvo stebima naudotojų elgsema, ar buvo matomos anomalijos, ar buvo matomas masinis registro išrašų formavimas, ar buvo stebimi Outlook / Sharepoint aktyvimai, ar sistema suprato, kad paskyra pradėjo elgtis kaip pavadinkim "duomenų siurblys".
 
 ![Plati incidento laiko juosta koreliuoja vartotojo, duomenų ir infrastruktūros įvykius.](/assets/img/posts/substack/registru-centro-duomenu-vagyste-part/07.webp)
 
@@ -185,14 +185,14 @@ visa veikla jau atrodo kaip normali veikla, tada problema tampa ne “ar buvo an
 
 | Taktika | Technika | Vertinimas |
 | --- | --- | --- |
-| **Initial Access** | T1566 – Phishing | Galimos fiktyvios „Microsoft“ ar institucijų prisijungimo nuorodos. |
+| **Initial Access** | T1566 – Phishing | Galimos fiktyvios "Microsoft" ar institucijų prisijungimo nuorodos. |
 | **Initial Access** | T1078 – Valid Accounts | Kompromituotos teisėtos paskyros. |
 | **Credential Access** | T1555 – Credentials from Password Stores | Informacijos vagių kenkėjiškas kodas galėjo rinkti naršyklės prisijungimo duomenis ir prieigos raktus. |
-| **Credential Access** | T1539 – Steal Web Session Cookie | Galimas „Microsoft 365“ sesijų perėmimas. |
+| **Credential Access** | T1539 – Steal Web Session Cookie | Galimas "Microsoft 365" sesijų perėmimas. |
 | **Defense Evasion** | T1550 – Use Alternate Authentication Material | Prieigos raktų, slapukų ir aktyvių sesijų naudojimas. |
-| **Collection** | T1114 – Email Collection | „Outlook“ ar „Exchange“ laiškų rinkimas. |
-| **Collection** | T1213 – Data from Information Repositories | „SharePoint“, registrų ir kitų saugyklų duomenų rinkimas. |
-| **Persistence** | T1098 – Account Manipulation | „OAuth“ programos, laiškų persiuntimas, papildomos sesijos ir delegacijos. |
+| **Collection** | T1114 – Email Collection | "Outlook" ar "Exchange" laiškų rinkimas. |
+| **Collection** | T1213 – Data from Information Repositories | "SharePoint", registrų ir kitų saugyklų duomenų rinkimas. |
+| **Persistence** | T1098 – Account Manipulation | "OAuth" programos, laiškų persiuntimas, papildomos sesijos ir delegacijos. |
 {: .hx-table-wide }
 
 ![MITRE ATT&CK aprėpties matrica parodo aptikimo spragas skirtingose taktikose.](/assets/img/posts/substack/registru-centro-duomenu-vagyste-part/08.webp)
@@ -232,6 +232,6 @@ Bet kai:
 - Tylų elgesį cybercrime forumuose.
 - ir jokio aktyvaus dump pardavinėjimo.
 
-APT arba žvalgybinio pobūdžio scenarijus pradeda atrodyti daug realistiškiau nei klasikinė “greitai parduokim DB” istorija.
+APT arba žvalgybinio pobūdžio scenarijus pradeda atrodyti daug realistiškiau nei klasikinė "greitai parduokim DB" istorija.
 
 ![Tapatybės atakos ekosistema jungia pradinę prieigą, sesiją, duomenis ir poveikį.](/assets/img/posts/substack/registru-centro-duomenu-vagyste-part/09.webp)

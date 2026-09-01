@@ -64,7 +64,7 @@ That distinction matters. A critical score describes potential impact under defi
 
 ### CVE-2026-60004: a repository write becomes Gitea command execution
 
-<dl><div><dt>Key prerequisites</dt><dd>Git 2.32+, enabled diffpatch route, writable and executable temporary filesystem</dd></div><div><dt>Required access</dt><dd>Repository write; open registration only removes the need for a pre-existing account</dd></div></dl>
+<dl><div><dt>Key prerequisites</dt><dd>Git 2.32+, enabled diffpatch route, writable and executable temporary filesystem</dd></div><div><dt>Required access</dt><dd>Repository write, while open registration only removes the need for a pre-existing account</dd></div></dl>
 
 CISA added CVE-2026-60004 to KEV on 25 August. Gitea's advisory describes a code-injection path in which attacker-controlled patch content can place an executable Git hook inside a temporary bare clone. Git then invokes the hook while writing the index, executing arbitrary shell commands as the Gitea operating-system user.
 

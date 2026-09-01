@@ -41,7 +41,7 @@ scope: "Gynėjams aktualūs pokyčiai, paskelbti arba į CISA KEV įtraukti 2026
 limitations: "Tai prioritetizavimo apžvalga, ne visas grėsmių kraštovaizdis. Į JAV orientuota informacija neįrodo taikymosi į Lietuvą, o pavieniai policijos pranešimai neįrodo bendros kampanijos ar techninės pristatymo grandinės."
 key_findings:
   - "Pasiekiamumas išlieka svarbiausiu kintamuoju: PLC, pašto serverius, su tapatybe susijusius servisus ir valdymo sistemas reikia vertinti pagal jų pasiekiamumą bei vaidmenį, ne pagal pažįstamą produkto pavadinimą."
-  - "Lokalūs DI ir data-science servisai nėra izoliuoti vien todėl, kad juos savo kompiuteryje paleido programuotojas; naršyklė ir server-side užklausos gali peržengti tokią numanomą ribą."
+  - "Lokalūs DI ir data-science servisai nėra izoliuoti vien todėl, kad juos savo kompiuteryje paleido programuotojas. Naršyklė ir server-side užklausos gali peržengti tokią numanomą ribą."
   - "Atakos logika gali veikti teisėtoje bendradarbiavimo platformoje, todėl domeno reputaciją būtina papildyti naršyklės, endpoint ir identity įrodymais."
 image:
   path: /assets/img/series/hecavex-signal-brief.svg
@@ -50,7 +50,7 @@ image:
   thumbnail: /assets/img/series/hecavex-signal-brief.svg
 updates:
   - date: 2026-08-23
-    note: "Patikslinta imtinio laikotarpio pradžia į rugpjūčio 14 d.; informacijos riba ir vertinti įvykiai nepasikeitė."
+    note: "Patikslinta imtinio laikotarpio pradžia į rugpjūčio 14 d. Informacijos riba ir vertinti įvykiai nepasikeitė."
   - date: 2026-08-22
     note: "Pirmoji publikacija. Informacijos riba – 00:15 EEST."
 ---
@@ -64,7 +64,7 @@ updates:
 
 ### Viešai pasiekiami Siemens S7 PLC yra aktyvus taikinys
 
-<dl><div><dt>Įrodymai</dt><dd>Rugpjūčio 19 d. bendras CISA, NSA, FBI, DOE ir EPA pranešimas</dd></div><div><dt>Stebėta apimtis</dt><dd>Veikla prieš JAV įrenginius; pasiekiamumu paremta schema aktuali ir plačiau</dd></div></dl>
+<dl><div><dt>Įrodymai</dt><dd>Rugpjūčio 19 d. bendras CISA, NSA, FBI, DOE ir EPA pranešimas</dd></div><div><dt>Stebėta apimtis</dt><dd>Veikla prieš JAV įrenginius. Pasiekiamumu paremta schema aktuali ir plačiau</dd></div></dl>
 
 Institucijos praneša apie žvalgybą ir pajėgumų kūrimą prieš internetu pasiekiamus arba silpnai segmentuotus Siemens S7 PLC. Operatoriai naudoja su DI pagalba parengtus skriptus, paremtus `snap7.dll` ir `python-snap7`, pateikia juos kaip teisėtus stebėjimo įrankius ir per S7comm dirba su valdiklių atmintimi, konfigūracija bei ladder logic. Pranešimas apima S7-200, S7-300, S7-400, S7-1200 ir S7-1500 šeimas ir įspėja, kad platesnė veikla prieš PLC neapsiriboja Siemens.
 
@@ -86,7 +86,7 @@ Tai **neįrodo taikymosi į Lietuvos organizacijas**. Lietuvos gamybos, energeti
 
 Rugpjūčio 21 d. CISA CVE-2026-73570 įtraukė į KEV. Katalogo įrašas aprašo neautentifikuotą užpuoliką, kuris specialiai suformuotomis SMTP užklausomis gali pasiekti savavališkų komandų vykdymą Zimbra naudotojo teisėmis. Zimbra nurodo, kad pažeidžiamumas yra SNMP stebėjimo komponente, kai įjungti pranešimai, ir 10.1.20 pateikia kaip pataisytą release.
 
-**Ką daryti dabar:** patikrinti įdiegtą bei palaikomą šaką pagal naujausias Zimbra rekomendacijas ir pereiti į pataisytą release. Išsaugoti MTA, mailbox ir OS logus iki jų rotacijos; tikrinti Zimbra paskyros paleistus child process, naujus failus, scheduled tasks ir outbound connections. Jei pažeidžiamas servisas buvo pasiekiamas, upgrade atsako į remediation, bet ne į compromise klausimą.
+**Ką daryti dabar:** patikrinti įdiegtą bei palaikomą šaką pagal naujausias Zimbra rekomendacijas ir pereiti į pataisytą release. Išsaugoti MTA, mailbox ir OS logus iki jų rotacijos. Tikrinti Zimbra paskyros paleistus child process, naujus failus, scheduled tasks ir outbound connections. Jei pažeidžiamas servisas buvo pasiekiamas, upgrade atsako į remediation, bet ne į compromise klausimą.
 
 <p class="hx-signal-source"><a href="https://www.cisa.gov/news-events/alerts/2026/08/21/cisa-adds-one-known-exploited-vulnerability-catalog">CISA pranešimas apie išnaudojimą →</a> · <a href="https://wiki.zimbra.com/wiki/Zimbra_Security_Advisories">Zimbra saugumo pranešimas →</a> · <a href="https://blog.zimbra.com/2026/07/patch-release-update-zimbra-10-1-20/">10.1.20 release pranešimas →</a></p>
 </section>
@@ -100,12 +100,12 @@ Rugpjūčio 18 d. CISA į KEV įtraukė keturis pažeidžiamumus su aktyvaus iš
 
 - **CVE-2026-33824 — Microsoft IKE:** double-free klaida, galinti leisti nuotolinį kodo vykdymą. Patikrinkite, kur pasiekiamas IKE servisas, ir įdiekite atitinkamą Microsoft atnaujinimą.
 - **CVE-2026-55040 — Microsoft SharePoint:** silpna autentifikacija, galinti leisti tinklo užpuolikui apeiti saugumo funkciją. Pirmiausia tvarkykite pasiekiamą on-premises SharePoint ir peržiūrėkite autentifikacijos bei administravimo pakeitimus.
-- **CVE-2026-59310 — VMware vCenter:** path traversal pažeidžiamumas Syslog serveryje. Broadcom teigia, kad tinklo prieigą prie vCenter turintis užpuolikas gali vykdyti savavališką kodą; gamintojo pranešime pateiktos pataisytos versijos, workaround nėra.
+- **CVE-2026-59310 — VMware vCenter:** path traversal pažeidžiamumas Syslog serveryje. Broadcom teigia, kad tinklo prieigą prie vCenter turintis užpuolikas gali vykdyti savavališką kodą. Gamintojo pranešime pateiktos pataisytos versijos, workaround nėra.
 - **CVE-2026-65400 — macOS Screen Sharing:** Apple nurodo, kad tinklo užpuolikas gali autentifikuotis Screen Sharing be galiojančių prisijungimo duomenų. Atnaujinkite paveiktas macOS sistemas, o nereikalingą Screen Sharing išjunkite arba apribokite.
 
 Rugpjūčio 20 d. CISA papildomai įtraukė TrueConf Server pažeidžiamumus **CVE-2026-72529** ir **CVE-2026-72530**. Pirmasis leidžia TCP/4307 pasiekiančiam neautentifikuotam užpuolikui iškviesti kritinę funkciją ir vykdyti skriptą. Antrasis gali paversti kodo vykdymą izoliuotoje aplinkoje komandomis pačioje hosto OS. TrueConf kaip pataisytas versijas nurodo 5.3.9, 5.4.9 ir 5.5.5.
 
-**Ką daryti dabar:** kiekvieną CVE susieti su realiu produktu, savininku, versija, tinklo keliu ir sistemos vaidmeniu. Pirmiausia taisyti pasiekiamas sistemas, tada atskirai spręsti, ar ankstesnis pasiekiamumas reikalauja kompromitavimo tyrimo. CISA terminai privalomi atitinkamoms JAV federalinėms institucijoms; kitoms organizacijoms prioritetą turėtų nustatyti išnaudojimo įrodymai, pasiekiamumas ir sistemos reikšmė.
+**Ką daryti dabar:** kiekvieną CVE susieti su realiu produktu, savininku, versija, tinklo keliu ir sistemos vaidmeniu. Pirmiausia taisyti pasiekiamas sistemas, tada atskirai spręsti, ar ankstesnis pasiekiamumas reikalauja kompromitavimo tyrimo. CISA terminai privalomi atitinkamoms JAV federalinėms institucijoms. Kitoms organizacijoms prioritetą turėtų nustatyti išnaudojimo įrodymai, pasiekiamumas ir sistemos reikšmė.
 
 <p class="hx-signal-source"><a href="https://www.cisa.gov/news-events/alerts/2026/08/18/cisa-adds-four-known-exploited-vulnerabilities-catalog">CISA keturių įrašų pranešimas →</a> · <a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2026-33824">Microsoft IKE pranešimas →</a> · <a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-55040">Microsoft SharePoint pranešimas →</a> · <a href="https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/SecurityAdvisories/0/38017">Broadcom VMSA-2026-0006 →</a> · <a href="https://support.apple.com/en-us/148170">Apple saugumo pranešimas →</a> · <a href="https://www.cisa.gov/news-events/alerts/2026/08/20/cisa-adds-two-known-exploited-vulnerabilities-catalog">CISA TrueConf pranešimas →</a> · <a href="https://trueconf.com/blog/news/security-fixes-updates-and-advisories">TrueConf pažeidžiamumų lentelė →</a></p>
 </section>
@@ -115,7 +115,7 @@ Rugpjūčio 20 d. CISA papildomai įtraukė TrueConf Server pažeidžiamumus **C
 <section class="hx-signal-entry hx-signal-entry--high" markdown="1">
 <p class="hx-signal-label">AUKŠTAS PRIORITETAS · ŽINOMAS IŠNAUDOJIMAS · KŪRIMO SERVISAI</p>
 
-### Ray ir MLflow laužo prielaidą, kad „lokalus“ reiškia „izoliuotas“
+### Ray ir MLflow laužo prielaidą, kad "lokalus" reiškia "izoliuotas"
 
 Rugpjūčio 17 d. CISA įtraukė Ray pažeidžiamumą **CVE-2025-62593**. Projekto pranešime aprašomas DNS rebinding kelias: Firefox arba Safari naudojančio programuotojo lokalus Ray servisas gali tapti nuotolinio kodo vykdymo taikiniu po apsilankymo kenksmingame puslapyje ar parodytos malicious reklamos. Paveiktos ankstesnės nei 2.52.0 Ray versijos.
 
@@ -141,7 +141,7 @@ Nukopijuojamų komandų mechaniką išsamiau nagrinėja [ClickFix atakos grandin
 
 Tai vienas ištirtas kontaktas, ne įrodymas, kad kiekvienas konferencijos follow-up ar Google dokumentas yra kenksmingas. Gynybinė išvada siauresnė ir ilgiau galiojanti: teisėtas domenas gali talpinti dokumentą ir skriptą, kuriuose veikia pati ataka. Vien domeno reputacija šio skirtumo neparodys.
 
-**Ką daryti dabar:** naudotojams ir help desk aiškiai pasakyti, kad bendrinamas dokumentas neturi prašyti kopijuoti komandų į terminalą ar Run dialogą. Pranešant apie atvejį išsaugoti visą žinučių grandinę, dokumento URL, skriptą ir atsisiuntimo kelią. Koreliuoti naršyklės, endpoint ir identity veiklą; phishing domenų feed yra tik vienas tyrimo sluoksnis.
+**Ką daryti dabar:** naudotojams ir help desk aiškiai pasakyti, kad bendrinamas dokumentas neturi prašyti kopijuoti komandų į terminalą ar Run dialogą. Pranešant apie atvejį išsaugoti visą žinučių grandinę, dokumento URL, skriptą ir atsisiuntimo kelią. Koreliuoti naršyklės, endpoint ir identity veiklą. Phishing domenų feed yra tik vienas tyrimo sluoksnis.
 
 <p class="hx-signal-source"><a href="https://www.huntress.com/blog/defcon-phishing-google-doc-malware">Huntress atvejo analizė →</a></p>
 </section>
@@ -149,13 +149,13 @@ Tai vienas ištirtas kontaktas, ne įrodymas, kad kiekvienas konferencijos follo
 <section class="hx-signal-entry hx-signal-entry--watch" markdown="1">
 <p class="hx-signal-label">STEBĖTI · RANSOMWARE · ANTRINIS EXTORTION</p>
 
-### Nekviesta „duomenų atkūrimo įmonė“ gali būti įsilaužimo dalis
+### Nekviesta "duomenų atkūrimo įmonė" gali būti įsilaužimo dalis
 
 GuidePoint praneša apie kelis ransomware atvejus, kuriuose **Ransom Busters** vardu veikianti persona susisiekė su aukomis dar iki viešo incidento paskelbimo ir už 20 000–60 000 JAV dolerių siūlė atkurti arba ištrinti pavogtus duomenis. Dviejų atvejų forensics parodė sutampančius reconnaissance, exfiltration, remote-management ir persistence sprendimus. GuidePoint su vidutiniu confidence vertina, kad tai yra per kelias ransomware-as-a-service operacijas dirbantis affiliate, o ne nepriklausoma atkūrimo įmonė.
 
-Tai GuidePoint vertinimas; vieši įrodymai nepatvirtina, kad už kiekvieno nekviesto atkūrimo pasiūlymo stovi tas pats operatorius. Jie patvirtina kitą dalyką: žinutė su neviešomis incidento detalėmis yra įrodymas, o ne customer support.
+Tai GuidePoint vertinimas. Vieši įrodymai nepatvirtina, kad už kiekvieno nekviesto atkūrimo pasiūlymo stovi tas pats operatorius. Jie patvirtina kitą dalyką: žinutė su neviešomis incidento detalėmis yra įrodymas, o ne customer support.
 
-**Ką daryti dabar:** išsaugoti žinutę, headers, mokėjimo instrukcijas ir pateiktus proof-of-data; kontaktą perduoti jau incidentą valdančiam incident-response, teisiniam ir teisėsaugos procesui. Neperkelti pokalbio į nevaldomą kanalą ir nelaikyti mokėjimo įrodymu, kad nebeliks kitos duomenų kopijos.
+**Ką daryti dabar:** išsaugoti žinutę, headers, mokėjimo instrukcijas ir pateiktus proof-of-data. Kontaktą perduoti jau incidentą valdančiam incident-response, teisiniam ir teisėsaugos procesui. Neperkelti pokalbio į nevaldomą kanalą ir nelaikyti mokėjimo įrodymu, kad nebeliks kitos duomenų kopijos.
 
 <p class="hx-signal-source"><a href="https://www.guidepointsecurity.com/blog/beware-ransom-busters/">GuidePoint Ransom Busters analizė →</a></p>
 </section>
@@ -178,6 +178,6 @@ Praktinė pamoka čia yra apie įrodymus: pranešimai apie nuostolius parodo ža
 
 ## Esmė
 
-Skubiausiame sąraše yra vieši PLC, Zimbra ir tie šios savaitės KEV produktai, kurie iš tikrųjų veikia jūsų aplinkoje. Platesnis signalas – „vidinis“ ir „patikimas“ yra sąlyginės būsenos. Naršyklė gali pasiekti lokalų development servisą, žinoma dokumentų platforma gali talpinti kenksmingą logiką, o tariama atkūrimo įmonė gali būti dar vienas extortion kelias.
+Skubiausiame sąraše yra vieši PLC, Zimbra ir tie šios savaitės KEV produktai, kurie iš tikrųjų veikia jūsų aplinkoje. Platesnis signalas – "vidinis" ir "patikimas" yra sąlyginės būsenos. Naršyklė gali pasiekti lokalų development servisą, žinoma dokumentų platforma gali talpinti kenksmingą logiką, o tariama atkūrimo įmonė gali būti dar vienas extortion kelias.
 
 Įrodymų kategorijų nesuplakite. JAV taikymasis vien dėl panašumo netampa taikymusi į Lietuvą, o du Lietuvos sukčiavimo pranešimai netampa kampanija todėl, kad pasirodė tą pačią savaitę. Prioritetizuokite tai, kas pasiekiama, išsaugokite tai, kas gali parodyti kelią, ir aiškiai įvardykite, kas dar nežinoma.

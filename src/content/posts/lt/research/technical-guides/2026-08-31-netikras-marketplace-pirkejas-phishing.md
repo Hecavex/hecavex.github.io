@@ -29,7 +29,7 @@ toc: true
 comments: false
 prose_width: wide
 scope: "Pardavėjui skirtas gynybinis Marketplace phishing vadovas apie pokalbio perkėlimą į išorinį kurjerio, mokėjimo ar autentifikacijos puslapį, prevenciją, įrodymus ir reagavimą Lietuvoje."
-limitations: "Marketplace funkcijos ir pranešimo sąsajos gali keistis. Įtartina žinutė, išorinė nuoroda ar nauja paskyra savaime neįrodo fraud; vadove vertinamas transakcijos kelias ir prašomas veiksmas, o ne atribucuojamas operatorius."
+limitations: "Marketplace funkcijos ir pranešimo sąsajos gali keistis. Įtartina žinutė, išorinė nuoroda ar nauja paskyra savaime neįrodo fraud. Vadove vertinamas transakcijos kelias ir prašomas veiksmas, o ne atribucuojamas operatorius."
 methods:
   - "Oficialių prekyviečių ir autentifikacijos tiekėjo rekomendacijų peržiūra"
   - "Lietuvos policijos pranešimo peržiūra"
@@ -39,7 +39,7 @@ evidence_basis: "2026 m. rugpjūčio 26 d. Panevėžio policijos pranešimas, ap
 key_findings:
   - "Svarbiausia riba yra perėjimas iš pažįstamo Marketplace pokalbio į pirkėjo atsiųstą išorinį mokėjimo, kurjerio ar pagalbos puslapį."
   - "Norint gauti pinigus per įprastą platformos procesą, pardavėjui nereikia pirkėjo nuorodoje pateikti kortelės, interneto banko ar Smart-ID duomenų."
-  - "Smart-ID, Mobile-ID ar OTP patvirtinimas yra konkretus veiksmas, o ne bendrinis tapatybės testas; tekstas, suma ir gavėjas turi atitikti savarankiškai pradėtą operaciją."
+  - "Smart-ID, Mobile-ID ar OTP patvirtinimas yra konkretus veiksmas, o ne bendrinis tapatybės testas. Tekstas, suma ir gavėjas turi atitikti savarankiškai pradėtą operaciją."
   - "Suvedus duomenis ar ką nors patvirtinus, pirmiausia reikia oficialiu kanalu susisiekti su banku, o pokalbio, URL ir transakcijos įrodymus išsaugoti pranešimui."
 image:
   path: /assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-buyer-phishing-hero.svg
@@ -52,13 +52,13 @@ image:
 
 ## 30 sekundžių taisyklė pardavėjui
 
-Pirkėjas sako, kad prekė puiki, nesidera ir pristatymu jau pasirūpino. Jums belieka atverti kurjerio nuorodą, „priimti mokėjimą“ ir patvirtinti kortelę arba banką. Puslapis atrodo pažįstamas, laikmatis tiksi, žmogus laukia atsakymo.
+Pirkėjas sako, kad prekė puiki, nesidera ir pristatymu jau pasirūpino. Jums belieka atverti kurjerio nuorodą, "priimti mokėjimą" ir patvirtinti kortelę arba banką. Puslapis atrodo pažįstamas, laikmatis tiksi, žmogus laukia atsakymo.
 
 Sustokite ties perėjimu į išorinį puslapį.
 
 <aside class="hx-callout warning"><strong>Nenaudokite pirkėjo atsiųstos nuorodos pinigams gauti.</strong>Marketplace atverkite per jau įdiegtą programėlę arba pačių įvestą adresą. Patikrinkite, ar joje iš tikrųjų yra pardavimas, mokėjimas ir pristatymo instrukcija. Išoriniame puslapyje neveskite kortelės, interneto banko ar Smart-ID duomenų. Jeigu jau pateikėte duomenis ar ką nors patvirtinote, nutraukite bendravimą ir nedelsdami skambinkite bankui oficialiu numeriu.</aside>
 
-Netikro Marketplace pirkėjo phishing suveikia todėl, kad pradžia atrodo visiškai normali. Paskelbta tikra prekė. Pardavėjas tikisi žinučių. Tada tariamas pirkėjas vieną svarbų žingsnį – mokėjimą, pristatymą, paskyros patvirtinimą ar „pagalbą“ – perkelia už platformos patikimo proceso ribų.
+Netikro Marketplace pirkėjo phishing suveikia todėl, kad pradžia atrodo visiškai normali. Paskelbta tikra prekė. Pardavėjas tikisi žinučių. Tada tariamas pirkėjas vieną svarbų žingsnį – mokėjimą, pristatymą, paskyros patvirtinimą ar "pagalbą" – perkelia už platformos patikimo proceso ribų.
 
 [HECAVEX Signalų apžvalgoje #5](/lt/apzvalgos/2026-08-30/) pateikta Lietuvos policijos pranešta bendra seka: žmogus Facebook paskelbė parduodamą daiktą, tariamas pirkėjas su juo susisiekė, pardavėjas atvėrė galimai netikrą puslapį ir suvedė banko duomenis, o vėliau pranešė apie 1 490 eurų nuostolį. Policijos suvestinė neįvardija URL, phishing kit ar autentifikacijos eigos. Šis vadovas tų trūkstamų faktų neprideda. Jis paaiškina pasikartojantį gynybinį modelį.
 
@@ -68,15 +68,35 @@ Netikro Marketplace pirkėjo phishing suveikia todėl, kad pradžia atrodo visi�
 
 1. **Tikras skelbimas sukuria kontekstą.** Pardavėjas laukia pirkėjo ir pristatymo sprendimo.
 2. **Pirkėjas parašo labai greitai.** Jis gali nesidomėti preke, iškart sutikti su kaina arba tvirtinti, kad jau sumokėjo.
-3. **Pokalbyje atsiranda išorinis procesas.** Neva kurjeriui, mokėjimo paslaugai, bankui ar Marketplace „pagalbai“ reikia pardavėjo veiksmo.
+3. **Pokalbyje atsiranda išorinis procesas.** Neva kurjeriui, mokėjimo paslaugai, bankui ar Marketplace "pagalbai" reikia pardavėjo veiksmo.
 4. **Nuoroda arba QR kodas išveda iš platformos.** Jis gali ateiti pokalbyje, SMS, el. paštu arba kaip paveikslėlis.
 5. **Išorinis puslapis prašo to, ko tikras pardavimas neturėtų reikalauti.** Tai gali būti kortelės duomenys, interneto banko prisijungimas, paskyros slaptažodis, vienkartinis kodas ar autentifikacijos patvirtinimas.
 6. **Skuba neleidžia patikrinti savarankiškai.** Mokėjimas tuoj baigs galioti, kurjeris laukia, užsakymas bus atšauktas arba paskyra užblokuota.
-7. **Duomenis gavęs žmogus tęsia pokalbį.** Pirmas bandymas neva nepavyko, todėl prašoma kitos kortelės, dar vieno patvirtinimo arba „grąžinimo“ procedūros.
+7. **Duomenis gavęs žmogus tęsia pokalbį.** Pirmas bandymas neva nepavyko, todėl prašoma kitos kortelės, dar vieno patvirtinimo arba "grąžinimo" procedūros.
 
 Kiekvienas etapas atskirai gali skambėti logiškai. Visa grandinė parodo riziką: **Marketplace pasitikėjimas panaudojamas svetainei, kurios Marketplace nekontroliuoja, patvirtinti**.
 
-## Kodėl pardavėjo prašoma „patvirtinti“ mokėjimą
+![Netikro Marketplace pirkėjo perėjimas nuo patikimos platformos pokalbio į išorinį mokėjimo ar tapatybės duomenų rinkimo puslapį](/assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-handoff-chain-lt.svg)
+
+*Schema: Esminė saugumo riba peržengiama tada, kai pirkėjas mokėjimą ar pristatymą iškelia už Marketplace ribų.*
+
+## Modeliuokite transakciją, ne pirkėjo istoriją
+
+Tyrėjas turėtų atskirti penkis objektus, kuriuos pokalbis bando sujungti:
+
+| Objektas | Autoritetingas šaltinis | Gynybinis klausimas |
+|---|---|---|
+| skelbimas ir pirkėjo kontaktas | Marketplace programėlė | ar profilis ir pokalbis egzistuoja platformos įraše? |
+| užsakymas | Marketplace order būsena | ar be atsiųstos nuorodos matomas order ID, prekė, pirkėjas ir statusas? |
+| pristatymas | savarankiškai pasiekta Marketplace arba kurjerio sistema | ar platforma sukūrė šią siuntą ir lipduką? |
+| mokėjimas ar išmoka | Marketplace ir banko ledger | ar pinigai laukia, gauti, grąžinti, ar jų nėra? |
+| autentifikacija | banko, el. pašto arba Marketplace identity telemetrija | koks prisijungimas, mokėjimas ar paskyros pakeitimas iš tikrųjų patvirtintas? |
+
+Pirkėjas valdo pokalbį. Marketplace valdo savo order būseną. Bankas valdo paskyrą ir mokėjimo būseną. Kurjeris valdo siuntos įrašą. Patikra turi kreiptis tiesiai į autoritetingą šaltinį, o ne į pirkėjo parinktą screenshot ar svetainę.
+
+Phishing puslapis šiuos objektus sujungia į vieną vizualią seką. Jis teigia, kad Marketplace užsakymas egzistuoja, kurjeris laukia, mokėjimas finansuotas, o bankui reikia autentifikacijos. Puslapis gali imituoti visas keturias sistemas, nors nekontroliuoja nė vieno jų ledger.
+
+## Kodėl pardavėjo prašoma "patvirtinti" mokėjimą
 
 Norint gauti pinigus, paprastai nereikia atskleisti apsaugos priemonių, naudojamų pinigams išleisti. Teisėta Marketplace gali prašyti paskyros nustatymų, tapatybės patikros ar išmokėjimo duomenų savo programėlėje. Tai nėra tas pats, kas nepažįstamo žmogaus puslapis, prašantis:
 
@@ -84,7 +104,7 @@ Norint gauti pinigus, paprastai nereikia atskleisti apsaugos priemonių, naudoja
 - interneto banko naudotojo ID ar slaptažodžio
 - PIN kodų arba OTP
 - Smart-ID ar Mobile-ID patvirtinimo
-- nedidelio „aktyvavimo“, „draudimo“ ar „kurjerio“ mokėjimo
+- nedidelio "aktyvavimo", "draudimo" ar "kurjerio" mokėjimo
 - el. pašto credentials užsakymui atlaisvinti
 - nuotolinės pagalbos programos.
 
@@ -116,7 +136,7 @@ Kortelės numeris, galiojimo data ir CVV gali būti panaudoti mokėjimams, kuriu
 
 ### Interneto banko prisijungimas
 
-Naudotojo ID, asmens kodas ar slaptažodis gali atverti banko prisijungimo eigą. Net jei užpuolikui dar reikia papildomo faktoriaus, credentials laikykite kompromituotais. Susisiekite su banku, vykdykite jo nurodytus containment veiksmus ir iš patikimo įrenginio pakeiskite visur pakartotą slaptažodį. Nenaudokite phishing puslapio „atšaukimo“ ar „refund“ mygtuko.
+Naudotojo ID, asmens kodas ar slaptažodis gali atverti banko prisijungimo eigą. Net jei užpuolikui dar reikia papildomo faktoriaus, credentials laikykite kompromituotais. Susisiekite su banku, vykdykite jo nurodytus containment veiksmus ir iš patikimo įrenginio pakeiskite visur pakartotą slaptažodį. Nenaudokite phishing puslapio "atšaukimo" ar "refund" mygtuko.
 
 ### Marketplace ar el. pašto slaptažodis
 
@@ -135,11 +155,11 @@ Viena rašybos klaida neįrodo scam, o sklandi lietuvių kalba nepatvirtina teis
 - pirkėjas be klausimų sutinka su neįprastai didele kaina
 - jis primygtinai renkasi už skelbimo ribų veikiantį kurjerį ar mokėjimą
 - pokalbis perkeliamas į SMS, el. paštą, WhatsApp ar kitą paslaugą
-- pinigams „gauti“ būtina išorinė nuoroda arba QR kodas
+- pinigams "gauti" būtina išorinė nuoroda arba QR kodas
 - puslapis prašo mokesčio, lėšų atrakinimo ar refund patvirtinimo
 - pirkėjas prašo el. pašto, telefono ar banko duomenų, kuriuos paprastai valdo platforma
 - skuba pakeičia oficialioje programėlėje matomą užsakymo būseną
-- „support“ pasiekiamas tik per pirkėjo nuorodą
+- "support" pasiekiamas tik per pirkėjo nuorodą
 - po kiekvienos tariamos klaidos prašoma dar vieno duomens ar patvirtinimo.
 
 Sena paskyra, profilio nuotrauka, įvertinimas ar draugiškas bendravimas gali sumažinti įtarimą, bet nepatvirtina išorinio hosto. Paskyra gali būti nauja, nukopijuota, nupirkta arba kompromituota. Vertinkite prašomą veiksmą, o ne istorijos užtikrintumą.
@@ -157,11 +177,24 @@ Saugiausias pardavėjo procesas yra tyčia nuobodus:
 
 Tikras pirkėjas gali palaukti, kol patikrinsite mokėjimą. Tikras užsakymas lieka matomas ir be pirkėjo nuorodos. Prarasti vieną pardavimą pigiau negu perduoti nepažįstamajam autentifikacijos kelią.
 
-## Išsaugokite įrodymus prieš blokuodami paskyrą
+## Sudarykite įvykių ledger prieš blokuodami paskyrą
 
 Nebendraukite ilgiau vien tam, kad surinktumėte daugiau įrodymų. Išsaugokite tai, kas jau gauta, tada praneškite ir blokuokite.
 
-Naudinga išsaugoti:
+Seką saugokite kaip įvykių ledger. Vėliau parašytas pasakojimas neturi pakeisti timestamp.
+
+| Įvykis | Minimalūs laukai | Tikėtinas šaltinis |
+|---|---|---|
+| skelbimas sukurtas | skelbimo ID, prekė, kaina, paskyra, UTC laikas | Marketplace įrašas |
+| pirkėjas parašė | profilio ID ar URL, message ID, pilna žinutė, UTC laikas | chat export arba nuoseklūs screenshots |
+| perduotas išorinis kelias | tikslus URL ar QR paveikslas, kanalas, message ID, UTC laikas | chat, SMS ar el. paštas |
+| pasiektas puslapis | pradinio URL hash, galutinis URL, browser history laikas, screenshot, downloads | naršyklės ir įrenginio telemetrija |
+| suvesti duomenys | suvestų laukų klasės, bet ne slaptos reikšmės, UTC laikas | nukentėjusiojo paaiškinimas ir autorizuota browser telemetrija |
+| autentifikacijos prašymas | paslauga, veiksmas, kontrolinis kodas, suma, gavėjas, UTC laikas | Smart-ID, Mobile-ID ar banko programėlės įrašas |
+| mokėjimo įvykis | transakcijos ID, statusas, suma, gavėjas, paskyra, UTC laikas | banko ledger ir perspėjimas |
+| containment | kortelės blokavimas, sesijos atšaukimas, slaptažodžio keitimas, pranešimo ID, UTC laikas | banko, platformos ir incidento įrašas |
+
+Naudinga papildomai išsaugoti:
 
 - visą chat export arba nuoseklias ekrano kopijas, ne vieną iškirptą žinutę
 - profilio vardą, profilio URL ar nario ID ir skelbimo URL
@@ -176,6 +209,14 @@ Naudinga išsaugoti:
 - Marketplace, bankui, NKSC ir policijai pateiktų pranešimų informaciją.
 
 Neviešinkite aukos el. pašto, telefono, užsakymo token, kortelės skaitmenų ar transakcijos ID. Tvarkingame evidence pakete privati incidento medžiaga atskiriama nuo sanitizuoto indikatoriaus, kuriuo galima dalytis su saugumo komanda.
+
+Chat export, screenshot ir browser history failų hash skaičiuokite jiems patekus į case saugyklą. Originalus laikykite read-only ir užrašykite, kas bei kada juos surinko. Pokalbio screenshot naudingas, tačiau platformos export su stabiliais ID ir timestamp yra stipresnis, jei tokia funkcija prieinama. Jei export nėra, naudokite nuoseklius kadrus su matomu paskyros kontekstu ir laiku.
+
+Organizacijos valdomame įrenginyje secure web gateway, DNS, endpoint, browser ir identity įrašus koreliuokite pagal naudotoją ir UTC laiką. Redirect hostas gali likti web telemetrijoje, autentifikacija identity loguose, o mokėjimas tik banko ledger. Nė viena sistema neturi visos grandinės.
+
+![Marketplace phishing įrodymų žurnalas, pagal identifikatorius ir laiką sujungiantis pokalbį, žiniatinklio kelią ir finansinius įrašus](/assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-evidence-ledger-lt.svg)
+
+*Schema: Vienas žurnalas sulygiuoja skirtingus identifikatorius ir laikrodžius, bet neapsimeta, kad visa seka matoma viename šaltinyje.*
 
 ## Skubūs veiksmai suvedus duomenis ar patvirtinus operaciją
 
@@ -193,6 +234,10 @@ Neviešinkite aukos el. pašto, telefono, užsakymo token, kortelės skaitmenų 
 
 Nesigėdykite paspaudimo. Tikslus laikas yra vertingesnis už gražesnę istoriją. Bankui arba saugumo komandai pasakykite, kas tiksliai įvyko, įskaitant patvirtinimus, kurie atrodė nesėkmingi.
 
+![Reagavimo į Marketplace phishing šakos po paspaudimo, kortelės atskleidimo, autentifikacijos, mokėjimo ar įrenginio paveikimo](/assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-response-branches-lt.svg)
+
+*Schema: Pirmas veiksmas priklauso nuo atskleisto turto ir atliekamas dar prieš papildomą puslapio tyrimą.*
+
 ## Kur pranešti Lietuvoje
 
 Kiekvieną sluoksnį perduokite šaliai, kuri gali jame veikti:
@@ -205,11 +250,27 @@ Kiekvieną sluoksnį perduokite šaliai, kuri gali jame veikti:
 
 [HECAVEX Radar](https://radar.hecavex.com/lt/) gali rodyti atrinktus Lietuvos prekių ženklų impersonation kandidatus, tačiau tai nėra pagalbos nukentėjusiems ar automatinio verdikto paslauga. Tai, kad domeno Radar nėra, neįrodo jo saugumo.
 
+## False-positive kontrolė ir praktinis patvirtinimas
+
+Atsargus pirkėjas, išorinis kurjeris ir prašymas naudoti platformos funkciją gali būti teisėti. Nevadinkite žmogaus sukčiumi vien todėl, kad paskyra nauja, kalba netaisyklinga ar transakcija skubi.
+
+Workflow tikrinkite per nepriklausomą būseną:
+
+1. be atsiųstos nuorodos atverkite Marketplace programėlę ir raskite order ID
+2. patikrinkite mokėjimo statusą Marketplace ledger ir, jei aktualu, banko ledger
+3. kurjerį pasiekite per oficialią programėlę arba ranka įvestą domeną ir raskite siuntą
+4. palyginkite prašomą veiksmą su platformos paskelbtu procesu
+5. patikrinkite, ar autentifikacijos prašymas atitinka pardavėjo savarankiškai pradėtą veiksmą.
+
+Case laikykite didelės rizikos, kai pirkėjo kelias yra vienintelė vieta, kur egzistuoja užsakymas, pristatymas ar mokėjimas, ypač jei prašoma paslapties arba patvirtinimo. Phishing incidentą laikykite patvirtintu, kai išsaugotas turinys apsimeta paslauga ir prašo credentials, kortelės duomenų ar nesusijusio patvirtinimo. Finansinį poveikį patvirtinkite tik banko arba mokėjimo paslaugos įrašu.
+
+Teisėta išorinė paslauga automatiškai nepatvirtina pirkėjo. Open redirect, kompromituota svetainė ar išnaudota forma gali įtraukti atpažįstamą domeną į grandinę. Ir atvirkščiai, naujas domenas yra kontekstas, bet ne įrodymas. Prašoma transakcija ir autoritetingi ledger turi didesnį svorį negu domeno amžius ar vizualinė kokybė.
+
 ## Ko vienas pranešimas nepatvirtina
 
 Pokalbis ir phishing puslapis gali patvirtinti praneštą kelią bei prašytą veiksmą. Jie automatiškai neįrodo platesnės kampanijos, operatoriaus šalies, paskyros savininko, Marketplace ar kurjerio kompromitavimo ir bendro aukų skaičiaus. Shared hosting, populiarus puslapio šablonas ar tas pats mokėjimo logotipas atribucijai nepakankami.
 
-Naudokite tikslią kalbą: „tariamas pirkėjas atsiuntė“, „pardavėjas pranešė“, „puslapis prašė“, „banko įspėjime nurodyta“ ir „nenustatyta“. Atskirkite Marketplace paskyrą, redirect paslaugą, galutinį puslapį, mokėjimo gavėją ir juos valdantį asmenį. Jie gali būti susiję, bet kiekvieną ryšį turi parodyti įrodymai.
+Naudokite tikslią kalbą: "tariamas pirkėjas atsiuntė", "pardavėjas pranešė", "puslapis prašė", "banko įspėjime nurodyta" ir "nenustatyta". Atskirkite Marketplace paskyrą, redirect paslaugą, galutinį puslapį, mokėjimo gavėją ir juos valdantį asmenį. Jie gali būti susiję, bet kiekvieną ryšį turi parodyti įrodymai.
 
 ## Pardavėjo kontrolinis sąrašas
 
@@ -217,7 +278,7 @@ Naudokite tikslią kalbą: „tariamas pirkėjas atsiuntė“, „pardavėjas pr
 - [ ] Pristatymo instrukciją pateikė platforma, ne vien pirkėjas.
 - [ ] Išoriniame puslapyje nevesti kortelės, banko, el. pašto ar Marketplace credentials.
 - [ ] Autentifikacijos prašymas nepatvirtintas, jei jo savarankiškai nepradėjote ir visiškai nesupratote.
-- [ ] Pirkėjo nuoroda ar QR kodas nenaudoti pinigams „gauti“.
+- [ ] Pirkėjo nuoroda ar QR kodas nenaudoti pinigams "gauti".
 - [ ] Įtartinas pokalbis, profilis, URL ir laikas išsaugoti prieš blokavimą.
 - [ ] Atskleisti finansiniai duomenys ar patvirtinimai nedelsiant pranešti bankui.
 - [ ] Marketplace ir NKSC gavo jiems svarbius phishing įrodymus.

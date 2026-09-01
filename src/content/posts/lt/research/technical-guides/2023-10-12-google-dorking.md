@@ -1,6 +1,6 @@
 ---
-title: "OSINT galimybės: pažangioji „Google“ paieška"
-description: "Pažangūs „Google“ paieškos operatoriai padeda aptikti įprastoje paieškoje sunkiai randamą informaciją ir yra naudingi OSINT, saugumo tyrimams bei analizei."
+title: "OSINT galimybės: pažangioji \"Google\" paieška"
+description: "Pažangūs \"Google\" paieškos operatoriai padeda aptikti įprastoje paieškoje sunkiai randamą informaciją ir yra naudingi OSINT, saugumo tyrimams bei analizei."
 seo_title: "Google dorking OSINT: pažangūs paieškos operatoriai"
 seo_keywords:
   - "Google dorking OSINT"
@@ -20,7 +20,7 @@ confidence: high
 tlp: clear
 image:
   path: /assets/img/posts/2023-10-11-google-dorking/main/1_img.png
-  alt: "„Google“ paieškos langas, iliustruojantis pažangiąsias OSINT užklausas"
+  alt: "\"Google\" paieškos langas, iliustruojantis pažangiąsias OSINT užklausas"
   width: 593
   height: 356
 featured: false
@@ -42,13 +42,13 @@ updates:
 
 ## Įvadas
 
-Tikriausiai esate girdėję sakant, kad internete nepavyko rasti informacijos apie konkretų žmogų ar temą. Paieškos sistemos – „Google“, „Bing“, „Yahoo!“, „Yandex“ ir kitos – yra vartai į milžinišką informacijos kiekį, tačiau paprasta užklausa ne visada nuveda ten, kur reikia.
+Tikriausiai esate girdėję sakant, kad internete nepavyko rasti informacijos apie konkretų žmogų ar temą. Paieškos sistemos – "Google", "Bing", "Yahoo!", "Yandex" ir kitos – yra vartai į milžinišką informacijos kiekį, tačiau paprasta užklausa ne visada nuveda ten, kur reikia.
 
-Viena iš paiešką išplečiančių technikų vadinama **„Google dorking“**, arba pažangiąja „Google“ paieška. Ji gali būti naudinga ir kasdien, ir atliekant struktūruotą OSINT tyrimą.
+Viena iš paiešką išplečiančių technikų vadinama **"Google dorking"**, arba pažangiąja "Google" paieška. Ji gali būti naudinga ir kasdien, ir atliekant struktūruotą OSINT tyrimą.
 
 Tai yra platesnio [OSINT ir CTI workflow rinkimo sluoksnis](/lt/tyrimai/cti-osint-duo/). Prieš paieškos rezultatui tampant pagrįsta išvada, jo šaltinį ir įrodymus dar reikia įvertinti pagal [aiškų analitinio pasitikėjimo modelį](/lt/tyrimai/pasitikejimas-yra-laukas/).
 
-## Kas yra pažangioji „Google“ paieška
+## Kas yra pažangioji "Google" paieška
 
 Tai pažangių paieškos operatorių naudojimas konkrečiai, įprastais būdais sunkiau aptinkamai informacijai rasti. Kitaip tariant, tinkamai suformuota užklausa nurodo paieškos sistemai ne tik ko ieškoti, bet ir kur bei kokiu formatu to ieškoti.
 
@@ -58,7 +58,7 @@ Tai pažangių paieškos operatorių naudojimas konkrečiai, įprastais būdais 
 
 ### Informacijos aptikimas
 
-Tarkime, saugumo tyrėjas ieško viešai prieinamų dokumentų apie „Hive“ išpirkos reikalavimo paslaugą. Galima pradėti nuo:
+Tarkime, saugumo tyrėjas ieško viešai prieinamų dokumentų apie "Hive" išpirkos reikalavimo paslaugą. Galima pradėti nuo:
 
 ```text
 intext:"Hive RaaS"
@@ -82,9 +82,9 @@ Užklausą galima papildyti konkrečios industrijos terminais ar produktų pavad
 
 ## Praktinis pavyzdys
 
-Tarkime, norime rasti naujesnės informacijos apie „Rhysida RaaS“. Paprasta paieška pateikia daug rezultatų:
+Tarkime, norime rasti naujesnės informacijos apie "Rhysida RaaS". Paprasta paieška pateikia daug rezultatų:
 
-![Pradiniai „Google“ paieškos rezultatai](/assets/img/posts/2023-10-11-google-dorking/blog_images/2_img.png)
+![Pradiniai "Google" paieškos rezultatai](/assets/img/posts/2023-10-11-google-dorking/blog_images/2_img.png)
 
 Pridėjus pažangius operatorius rezultatai tampa tikslesni:
 
@@ -152,7 +152,7 @@ Jei rezultatas vėliau bus naudojamas tyrime ar analitiniame vertinime, vien nuo
 |---|---|
 | Tyrimo klausimas | Kokią hipotezę ar sprendimą tikrina užklausa |
 | Užklausa | Tiksli paieškos sistemai pateikta eilutė |
-| Paieškos sistema | „Google“, „Bing“ ar kitas indeksas |
+| Paieškos sistema | "Google", "Bing" ar kitas indeksas |
 | Paieškos laikas | Data, laikas ir laiko juosta |
 | Rezultato URL | Pirminis puslapis, o ne paieškos rezultatų puslapis |
 | Išsaugojimas | Vietinė kopija, archyvo nuoroda ar ekrano kopija, kai tai teisėta |
@@ -164,7 +164,7 @@ Paieškos sistemos rodomas rezultatų skaičius retai tinka kaip patikimas matav
 
 Rezultatas tampa naudingas tik patikrinus pirminį puslapį. Kas jį paskelbė? Kada? Ar pateikiami pirminiai dokumentai? Ar puslapis nebuvo pakeistas? Ar teiginį patvirtina kitas, nepriklausomas šaltinis?
 
-Čia ir atsiranda skirtumas tarp „radau per Google“ ir normaliai dokumentuoto OSINT darbo. Paieškos sistema padeda rasti pradines kryptis. Įrodymų vertinimo už analitiką ji neatlieka.
+Čia ir atsiranda skirtumas tarp "radau per Google" ir normaliai dokumentuoto OSINT darbo. Paieškos sistema padeda rasti pradines kryptis. Įrodymų vertinimo už analitiką ji neatlieka.
 
 ## Dažniausios klaidos
 

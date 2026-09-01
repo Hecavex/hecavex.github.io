@@ -65,7 +65,7 @@ One such domain could have been an ordinary phishing page. The problem was that 
 
 In other words, the page names rotated like disposable numbers, while the mechanism beneath them remained surprisingly stable. This is not romance in phishing infrastructure. It is a functioning deployment pipeline whose product roadmap replaces "improve onboarding" with "collect another password".
 
-The investigation applies the same principle introduced in [One Scam Domain Is Rarely Alone](/en/research/one-scam-domain-is-rarely-alone/) and formalised in the [infrastructure-pivoting field guide](/en/research/infrastructure-pivoting-101/). Separately, [HECAVEX Radar](https://radar.hecavex.com/) publishes sampled Lithuanian impersonation candidates for discovery; it is not the source of the counts in this investigation and does not turn a candidate into a verdict.
+The investigation applies the same principle introduced in [One Scam Domain Is Rarely Alone](/en/research/one-scam-domain-is-rarely-alone/) and formalised in the [infrastructure-pivoting field guide](/en/research/infrastructure-pivoting-101/). Separately, [HECAVEX Radar](https://radar.hecavex.com/) publishes sampled Lithuanian impersonation candidates for discovery. It is not the source of the counts in this investigation and does not turn a candidate into a verdict.
 
 The most important boundaries are clear:
 

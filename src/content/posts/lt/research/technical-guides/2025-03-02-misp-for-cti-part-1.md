@@ -1,7 +1,7 @@
 ---
 title: "MISP grėsmių žvalgybai: diegimas, integracija ir automatizavimas [1 dalis]"
 card_title: "MISP grėsmių žvalgybai: diegimas ir automatizavimas"
-description: "Praktinis MISP diegimo su „Docker“, pagrindinių duomenų modelių, integracijų ir automatizavimo galimybių vadovas grėsmių žvalgybos komandoms."
+description: "Praktinis MISP diegimo su \"Docker\", pagrindinių duomenų modelių, integracijų ir automatizavimo galimybių vadovas grėsmių žvalgybos komandoms."
 seo_title: "MISP diegimas su Docker grėsmių žvalgybai"
 seo_keywords:
   - "MISP diegimas su Docker"
@@ -34,7 +34,7 @@ key_findings:
   - MISP gali būti naudinga dalijimosi ir koreliacijos platforma, bet ji nepakeičia rinkimo reikalavimų, šaltinių vertinimo ir žvalgybos rengimo proceso.
   - Produkcinę vertę lemia duomenų modelis, platinimo taisyklės, galiojimas, prieigos kontrolė, priežiūra ir patikrintas atkūrimas, o ne vien veikiantis konteineris.
   - API automatizavimas turi išsaugoti kilmę ir pasitikėjimą, o kiekvienas importuotas indikatorius neturi automatiškai tapti blokavimo sprendimu.
-scope: MISP diegimo principai, duomenų modelis, eksploatavimo kontrolės ir įvadinis „PyMISP“ automatizavimas CTI komandoms.
+scope: MISP diegimo principai, duomenų modelis, eksploatavimo kontrolės ir įvadinis "PyMISP" automatizavimas CTI komandoms.
 limitations: Tikslūs diegimo kintamieji ir palaikomos integracijos keičiasi tarp versijų. Prieš produkcinį naudojimą komandas reikia tikrinti pagal konkrečios versijos oficialią MISP dokumentaciją.
 updates:
   - date: 2026-08-14
@@ -51,13 +51,13 @@ Taktinės CTI darbe MISP gali tapti labai naudingu įrankiu. Grėsmių veikėjai
 
 Šis atskyrimas remiasi platesniu [OSINT rinkimo ir CTI sprendimų palaikymo modeliu](/lt/tyrimai/cti-osint-duo/). Dalijantis event ir attribute, [analitinio pasitikėjimo paaiškinimas](/lt/tyrimai/pasitikejimas-yra-laukas/) parodo, kodėl source reliability, evidence strength ir attribution confidence turi likti atskiri laukai.
 
-![Lengvas intarpas: Boratas sako „nice“](/assets/img/posts/2025-03-02-misp-part-1/blog/borat-nice.jpg)
+![Lengvas intarpas: Boratas sako "nice"](/assets/img/posts/2025-03-02-misp-part-1/blog/borat-nice.jpg)
 
 Šiame straipsnyje aptariami:
 
-- MISP privalumai ir trūkumai;
-- diegimas naudojant „Docker“;
-- pagrindiniai naudojimo scenarijai;
+- MISP privalumai ir trūkumai.
+- diegimas naudojant "Docker".
+- pagrindiniai naudojimo scenarijai.
 - integravimo ir automatizavimo galimybės.
 
 ## MISP privalumai ir trūkumai
@@ -68,9 +68,9 @@ Taktinės CTI darbe MISP gali tapti labai naudingu įrankiu. Grėsmių veikėjai
 
 2. **Atvirasis kodas.** Nėra licencijos mokesčio, platformą galima valdyti savo infrastruktūroje, modifikuoti ir integruoti į jau veikiančius procesus.
 
-3. **Struktūruotas duomenų modelis.** MISP palaiko STIX, „OpenIOC“, taksonomijas ir objektų šablonus. Indikatoriai saugomi kaip įvykių atributai, o bendri atributai automatiškai koreliuojami.
+3. **Struktūruotas duomenų modelis.** MISP palaiko STIX, "OpenIOC", taksonomijas ir objektų šablonus. Indikatoriai saugomi kaip įvykių atributai, o bendri atributai automatiškai koreliuojami.
 
-4. **API ir automatizavimas.** REST API bei „PyMISP“ biblioteka leidžia automatizuoti masinį importą, eksportą, paiešką ir ryšius su SIEM, IDS/IPS ar EDR platformomis.
+4. **API ir automatizavimas.** REST API bei "PyMISP" biblioteka leidžia automatizuoti masinį importą, eksportą, paiešką ir ryšius su SIEM, IDS/IPS ar EDR platformomis.
 
 ### Trūkumai
 
@@ -82,20 +82,20 @@ Taktinės CTI darbe MISP gali tapti labai naudingu įrankiu. Grėsmių veikėjai
 
 4. **Integracijų sudėtingumas.** Dalis jungčių reikalauja individualių scenarijų ar papildomų komponentų, ypač sudėtingoje saugumo architektūroje.
 
-## Diegimas su „Docker“
+## Diegimas su "Docker"
 
-Konteineriai supaprastina pradinį diegimą, nes pagrindinė programa, duomenų bazė ir priklausomybės pateikiamos kaip suderinti komponentai. Toliau naudojamas [oficialus MISP „Docker“ projektas](https://github.com/MISP/misp-docker); prieš produkcinį diegimą komandas būtina patikrinti pagal pasirinktą release.
+Konteineriai supaprastina pradinį diegimą, nes pagrindinė programa, duomenų bazė ir priklausomybės pateikiamos kaip suderinti komponentai. Toliau naudojamas [oficialus MISP "Docker" projektas](https://github.com/MISP/misp-docker). Prieš produkcinį diegimą komandas būtina patikrinti pagal pasirinktą release.
 
 ### Reikalavimai
 
-- „Docker Engine“ ir „Docker Compose“ palaikomoje „Linux“ sistemoje;
-- keli gigabaitai RAM ir pakankamai vietos augančiai duomenų bazei;
-- laisvi TCP 80/443 prievadai, jei sąsaja bus pasiekiama iš išorės;
+- "Docker Engine" ir "Docker Compose" palaikomoje "Linux" sistemoje.
+- keli gigabaitai RAM ir pakankamai vietos augančiai duomenų bazei.
+- laisvi TCP 80/443 prievadai, jei sąsaja bus pasiekiama iš išorės.
 - TLS, atsarginių kopijų ir prieigos kontrolės planas prieš produkcinį naudojimą.
 
 ### Diegimo veiksmai
 
-1. **Klonuokite oficialią MISP „Docker“ saugyklą.**
+1. **Klonuokite oficialią MISP "Docker" saugyklą.**
 
    ```bash
    git clone https://github.com/MISP/misp-docker.git
@@ -127,11 +127,11 @@ Konteineriai supaprastina pradinį diegimą, nes pagrindinė programa, duomenų 
 
    Administravimo dalyje nustatykite organizacijos vardą, bazinį URL, el. pašto bei foninių užduočių parametrus, duomenų srautus, naudotojus ir platinimo taisykles.
 
-<aside class="hx-callout warning"><strong>Saugumo pastaba</strong>Produkcinei MISP sistemai neužtenka „paleisti konteinerį“. Apribokite administravimo prieigą, naudokite patikimą TLS, saugokite API raktus, reguliariai atnaujinkite vaizdus ir tikrinkite atsarginių kopijų atkūrimą.</aside>
+<aside class="hx-callout warning"><strong>Saugumo pastaba</strong>Produkcinei MISP sistemai neužtenka "paleisti konteinerį". Apribokite administravimo prieigą, naudokite patikimą TLS, saugokite API raktus, reguliariai atnaujinkite vaizdus ir tikrinkite atsarginių kopijų atkūrimą.</aside>
 
 ### Trikčių diagnostika
 
-- **Versijų nesuderinamumas:** atnaujinkite „Docker“ ir „Compose“, tada patikrinkite projekto palaikomas versijas.
+- **Versijų nesuderinamumas:** atnaujinkite "Docker" ir "Compose", tada patikrinkite projekto palaikomas versijas.
 - **Prievadų konfliktai:** įsitikinkite, kad 80 ir 443 prievadų nenaudoja kita paslauga.
 - **Žurnalai:** klaidas tikrinkite komanda `docker compose logs <service>`.
 - **Foninės užduotys:** jei koreliacija ar importas nevyksta, patikrinkite darbuotojų procesus ir eiles.
@@ -140,34 +140,34 @@ Konteineriai supaprastina pradinį diegimą, nes pagrindinė programa, duomenų 
 
 ### 1. Žvalgybos rinkimas ir praturtinimas
 
-- indikatoriai iš atvirų, komercinių ir partnerių šaltinių;
-- WHOIS, reputacijos ir kitų kontekstinių duomenų pridėjimas;
+- indikatoriai iš atvirų, komercinių ir partnerių šaltinių.
+- WHOIS, reputacijos ir kitų kontekstinių duomenų pridėjimas.
 - automatinė koreliacija ir greitas perėjimas tarp susijusių atributų.
 
 ### 2. Dalijimasis grėsmių informacija
 
-- bendradarbiavimas su ISAC, CERT ir patikimais partneriais;
-- įvykių sinchronizavimas tarp MISP instancijų;
-- matomumo valdymas platinimo lygiais ir dalijimosi grupėmis;
+- bendradarbiavimas su ISAC, CERT ir patikimais partneriais.
+- įvykių sinchronizavimas tarp MISP instancijų.
+- matomumo valdymas platinimo lygiais ir dalijimosi grupėmis.
 - TLP ir kitų taksonomijų naudojimas informacijai valdyti.
 
 ### 3. Automatizavimas ir reagavimas į incidentus
 
-- indikatorių importas ir eksportas per REST API ar „PyMISP“;
-- aptikimo bei blokavimo sąrašų perdavimas į SIEM, IDS/IPS ar EDR;
+- indikatorių importas ir eksportas per REST API ar "PyMISP".
+- aptikimo bei blokavimo sąrašų perdavimas į SIEM, IDS/IPS ar EDR.
 - incidentų duomenų koreliacija su istoriniais MISP įvykiais.
 
 ### 4. Integracija su kitais įrankiais
 
-„TheHive“, „Splunk“ ir kitos platformos turi oficialias arba bendruomenės kuriamas MISP jungtis. Tai leidžia perduoti kontekstą į incidentų valdymo procesą ir iš jo grąžinti patvirtintus rezultatus.
+"TheHive", "Splunk" ir kitos platformos turi oficialias arba bendruomenės kuriamas MISP jungtis. Tai leidžia perduoti kontekstą į incidentų valdymo procesą ir iš jo grąžinti patvirtintus rezultatus.
 
-## API ir „PyMISP“
+## API ir "PyMISP"
 
-„PyMISP“ yra „Python“ klientas MISP API. Juo galima:
+"PyMISP" yra "Python" klientas MISP API. Juo galima:
 
-- masiškai pridėti indikatorius iš srautų ar CSV;
-- ieškoti įvykių ir atributų;
-- automatizuoti koreliacijos bei praturtinimo užduotis;
+- masiškai pridėti indikatorius iš srautų ar CSV.
+- ieškoti įvykių ir atributų.
+- automatizuoti koreliacijos bei praturtinimo užduotis.
 - kurti individualius duomenų apdorojimo procesus.
 
 ### Paprastas pavyzdys
@@ -197,10 +197,10 @@ Nenaudokite `ssl=False` produkcijoje vien tam, kad apeitumėte sertifikato klaid
 
 ## Ryšiai su kitomis platformomis
 
-- **„TheHive“** – incidentų ir bylų valdymo platforma, su kuria MISP gali keistis indikatoriais bei kontekstu.
-- **„OpenCTI“** – atvirojo kodo platforma, orientuota į platesnį žinių grafą, objektų ryšius ir strateginį kontekstą. Ji gali papildyti, bet nebūtinai pakeisti MISP.
+- **"TheHive"** – incidentų ir bylų valdymo platforma, su kuria MISP gali keistis indikatoriais bei kontekstu.
+- **"OpenCTI"** – atvirojo kodo platforma, orientuota į platesnį žinių grafą, objektų ryšius ir strateginį kontekstą. Ji gali papildyti, bet nebūtinai pakeisti MISP.
 - **SIEM ir SOAR** – MISP indikatoriai gali būti perduodami aptikimui ir reagavimo orkestravimui, tačiau prieš blokavimą reikalingi kokybės bei galiojimo filtrai.
-- **„Elasticsearch“ / ELK** – eksportas gali padėti išplėsti paiešką, vizualizaciją ir koreliaciją.
+- **"Elasticsearch" / ELK** – eksportas gali padėti išplėsti paiešką, vizualizaciją ir koreliaciją.
 
 ## Išvada
 
@@ -215,4 +215,4 @@ Tačiau pati platforma nėra žvalgybos procesas. Vertę sukuria aiškus duomen�
 - Prižiūrima MISP instancija gali tapti svarbiu CTI, SOC ar CERT informacijos centru.
 - Produkcinis diegimas reikalauja saugumo, atsarginių kopijų ir duomenų kokybės valdymo – ne vien veikiančių konteinerių.
 
-Kitoje dalyje verta išsamiau palyginti MISP ir „OpenCTI“ duomenų modelius bei parodyti, kur šios platformos papildo viena kitą.
+Kitoje dalyje verta išsamiau palyginti MISP ir "OpenCTI" duomenų modelius bei parodyti, kur šios platformos papildo viena kitą.

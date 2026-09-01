@@ -60,7 +60,7 @@ Todėl šis vadovas neieško vieno stebuklingo header'io, kuris visada reiškia 
 
 <aside class="hx-callout warning"><strong>Gynybinė riba</strong>Čia nėra diegimo, phishlet sintaksės, lure kūrimo, credential interception, proxy konfigūracijos ar evasion instrukcijų. Netikrinkite įtartino puslapio pateikdami tikrus ar testinius prisijungimo duomenis. Saugokite įrodymus ir naudokite autorizuotas kontrolės priemones.</aside>
 
-## Reverse proxy pakeičia „fake login page“ sąvoką
+## Reverse proxy pakeičia "fake login page" sąvoką
 
 Supaprastintas AiTM phishing procesas atrodo taip:
 
@@ -71,9 +71,38 @@ Supaprastintas AiTM phishing procesas atrodo taip:
 5. po sėkmingo proceso teisėta paslauga išduoda session medžiagą
 6. tarpininkas gali stebėti proxied flow pasiekiamus artefaktus, o attacker'is – bandyti juos replay'inti kitame kontekste.
 
-[Microsoft 2022 m. analizė](https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/) aprašė su Evilginx2 siejamas kampanijas, kurios taikėsi į daugiau kaip 10 000 organizacijų, ir vėlesnę mailbox prieigą bei payment fraud. Teisinga išvada nėra „MFA bevertė“. MFA sustabdo didelę dalį password-only atakų. Problema ta, kad bearer session, gauta _po_ sėkmingo MFA, tampa kitu autentifikavimo objektu.
+[Microsoft 2022 m. analizė](https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/) aprašė su Evilginx2 siejamas kampanijas, kurios taikėsi į daugiau kaip 10 000 organizacijų, ir vėlesnę mailbox prieigą bei payment fraud. Teisinga išvada nėra "MFA bevertė". MFA sustabdo didelę dalį password-only atakų. Problema ta, kad bearer session, gauta _po_ sėkmingo MFA, tampa kitu autentifikavimo objektu.
 
-HECAVEX straipsnyje [MFA nėra panacėja](/lt/tyrimai/mfa-nera-panaceja-ir-laikas-nustoti/) atskiriamas slaptažodis, MFA faktorius ir autentifikuota sesija. Šias tris vertybes saugo ne visiškai tos pačios kontrolės, o incidento metu negalima jų suplakti į bendrą „credentials“ žodį.
+![Reverse-proxy phishing užklausų kelias nuo vartotojo naršyklės per tarpininką iki teisėto tapatybės teikėjo](/assets/img/posts/2026-08-31-evilginx-detection/evilginx-request-path-lt.svg)
+
+*Schema: Naršyklė autentifikuojasi per nepatvirtintą origin, nors tapatybės teikėjas gali užbaigti teisėtą prisijungimą.*
+
+### Dvi TLS sesijos nesukuria vieno patikimo origin
+
+Vartotojo browser TLS sesiją užbaigia deceptive hostname. Tarpininkas atskirai patikrina ir pasiekia teisėtą identity provider. [RFC 9525](https://www.rfc-editor.org/rfc/rfc9525.html) tiksliai aprašo TLS suteikiamą savybę: certificate identity tikrinama pagal service identity, kurį tikisi pasiekti klientas. Jei pradinis adresas yra phishing nuoroda, TLS gali saugiai prijungti browser prie neteisingos programos. Padlock apsaugo tą ryšį nuo pasyvaus perėmimo, bet nesuteikia hostname teisės atstovauti nukopijuotam brand.
+
+HTTP origin sudaro scheme, host ir port. Pagal [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html) kiekvieną redirect destination reikia vertinti kaip atskirą origin. Reverse proxy gali perrašyti `Location` ir puslapio nuorodas taip, kad browser toliau kreiptųsi į deceptive origin, o upstream ryšys sektų teisėtą autentifikavimo flow.
+
+Cookie terminai taip pat turi būti tikslūs. Pagal [RFC 6265](https://www.rfc-editor.org/info/rfc6265/) browser cookie riboja host arba domain bei path. Browser paprasčiausiai nepriima teisėto provider host-only cookie kaip nesusijusio phishing domeno cookie. Proxy gali matyti upstream `Set-Cookie` atsakymą, laikyti server-side session state, perrašyti cookie atributus, kai tai leidžia programa, ir savo origin išduoti atskirą browser-side būseną. Kuris artefaktas eksponuojamas, priklauso nuo programos ir autentifikavimo flow.
+
+OpenID Connect Authorization Code Flow atveju browser perduoda authorization code relying party, o relying party įprastai keičia jį į token tiesioginiu backchannel ryšiu su token endpoint. Todėl [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html) nepagrindžia bendro teiginio, kad kiekvienas proxied login atskleidžia visus ID token, access token ir refresh token. Reverse proxy gali gauti credential, browser matomą cookie, code ar application session medžiagą, bet konkretų artefaktą turi patvirtinti telemetrija ir programos architektūra.
+
+Bearer savybė paaiškina, kodėl tai svarbu. [RFC 6750](https://www.rfc-editor.org/rfc/rfc6750.html) bearer token apibrėžia kaip artefaktą, kurį gali panaudoti kiekvienas jo turėtojas. [OAuth 2.0 Security Best Current Practice](https://www.rfc-editor.org/rfc/rfc9700.html) rekomenduoja sender-constrained ir audience-restricted access token, kai tai įmanoma. Browser session cookie, Entra sign-in session token, OAuth access token, refresh token ir OIDC ID token nėra tas pats. Prieš pasirinkdami containment įvardykite, kuris asset iš tikrųjų stebėtas.
+
+HECAVEX straipsnyje [MFA nėra panacėja](/lt/tyrimai/mfa-nera-panaceja-ir-laikas-nustoti/) atskiriamas slaptažodis, MFA faktorius ir autentifikuota sesija. Šias tris vertybes saugo ne visiškai tos pačios kontrolės, o incidento metu negalima jų suplakti į bendrą "credentials" žodį.
+
+## Prieš teigdami session theft įvertinkite įrodymų pakopą
+
+| Pakopa | Stebėjimas | Pagrįsta išvada |
+| --- | --- | --- |
+| 0 | rastas deceptive URL arba certificate | egzistuoja kandidatė infrastruktūra |
+| 1 | delivery arba click telemetrija susieja vartotoją su tuo origin | vartotojas buvo nukreiptas į kelią |
+| 2 | web ir identity laikas rodo autentifikavimą per nepatvirtintą origin | proxied authentication yra tikėtinas |
+| 3 | application flow patvirtina tarpininko galimybę matyti konkretų session artefaktą | session exposure yra tikėtina ir artefaktą galima įvardyti |
+| 4 | tas pats session ar token panaudotas kitame kontekste be tikėtino autentifikavimo | replay arba session misuse yra pagrįstas |
+| 5 | mailbox, file, OAuth arba admin veiksmai susieti su ta session | patvirtintas post-authentication impact |
+
+Cloned page screenshot nėra antra pakopa. Successful MFA event nėra ketvirta pakopa. Location anomaly neįrodo replay. Severity turi didėti jungiant nepriklausomus įrodymus, o ne dėl populiaraus tool pavadinimo.
 
 ## Trys tiesos plokštumos
 
@@ -86,6 +115,10 @@ Reverse-proxy phishing retai turi vieną universalią signatūrą. Patikimas det
 | identity ir impact | ar autentifikavimas ir paskyros naudojimas nukrypo nuo vartotojo konteksto | sign-in bei risk log'ai, token ir session įvykiai, device claims, mailbox audit, OAuth grants, MFA pakeitimai, downloads, admin veiksmai |
 
 Šis skirstymas saugo nuo overclaiming. Įtartinas domenas be recipient interaction yra infrastruktūros signalas. Successful sign-in po click'o yra stipriau, bet dar neįrodo token theft. Replay primenantis prisijungimas, po kurio sukuriama inbox rule ir trinami išsiųsti laiškai, jau yra gerokai aiškesnė incidento grandinė.
+
+![Reverse-proxy phishing įrodymų koreliacija tarp išorinės infrastruktūros, tapatybės telemetrijos ir programų veiklos](/assets/img/posts/2026-08-31-evilginx-detection/evilginx-signal-correlation-lt.svg)
+
+*Schema: Reverse-proxy vertinimas stiprėja, kai laike sutampa nepriklausomi žiniatinklio, tapatybės ir programų signalai.*
 
 ### Išsaugokite tikslų vartotojo kelią
 
@@ -101,7 +134,7 @@ Address bar lieka vienu svarbiausių signalų, nes proxy reikia savo pasiekiamo 
 
 Ieškokite registruojamo domeno, kuris nepriklauso organizacijai, brand žodžio subdomain'e, vizualiai panašių simbolių, neseniai atsiradusio DNS, neįprastų nameserver'ių ir su imituojama paslauga nesusijusio hosting. Redirector ir final proxy gali naudoti skirtingus domenus ar provider'ius.
 
-Nė vienas požymis nėra verdict. Naujas domenas gali priklausyti teisėtam projektui, o commodity cloud vienodai aptarnauja normalų ir abusive turinį. Lyginkite su identity ir application owner patvirtintais known-good hostname, ne su tuo, kaip „Microsoft login“ atrodo Google paieškoje.
+Nė vienas požymis nėra verdict. Naujas domenas gali priklausyti teisėtam projektui, o commodity cloud vienodai aptarnauja normalų ir abusive turinį. Lyginkite su identity ir application owner patvirtintais known-good hostname, ne su tuo, kaip "Microsoft login" atrodo Google paieškoje.
 
 Certificate Transparency ir passive DNS gali atskleisti gretimus vardus, bet pivoting turi likti pririštas prie įrodymo. [HECAVEX infrastruktūros pivoting vadovas](/lt/tyrimai/infrastrukturos-pivoting-101/) atskiria exact match, pagrįstą sąsają ir spekuliatyvų išplėtimą.
 
@@ -109,7 +142,11 @@ Certificate Transparency ir passive DNS gali atskleisti gretimus vardus, bet piv
 
 Galiojantis HTTPS sertifikatas patvirtina, kad naršyklė priėmė sertifikatą tam hostname pagal savo trust taisykles. Jis nepatvirtina, kad hostname priklauso puslapyje rodomam brand'ui. Vertinkite certificate names, issuance time ir ryšį su DNS chronologija. Sertifikatas, išduotas prieš pat targeted delivery, gali sustiprinti timeline, bet issuer nėra Evilginx signature.
 
-Certificate Transparency puikiai tinka discovery bei chronology ir blogai tinka automatiniam „malicious“ verdict. Tą pačią candidate-versus-verdict ribą taiko [HECAVEX Radar metodologija](https://radar.hecavex.com/lt/metodologija/).
+Certificate Transparency puikiai tinka discovery bei chronology ir blogai tinka automatiniam "malicious" verdict. Tą pačią candidate-versus-verdict ribą taiko [HECAVEX Radar metodologija](https://radar.hecavex.com/lt/metodologija/).
+
+[RFC 9162](https://www.rfc-editor.org/rfc/rfc9162.html) Certificate Transparency apibrėžia kaip append-only certificates bei precertificates publikavimo ir audito mechanizmą. Logged certificate arba SCT padeda nustatyti issuance chronology ir atrasti domeną. Jis neįrodo, kad monitor aptiko abuse, kad certificate buvo naudotas konkrečioje vartotojo TLS sesijoje ar kad CA jį revoke'ino. Certificate names ir validity koreliuokite su passive DNS, recipient telemetrija bei tiksliai stebėtu TLS handshake.
+
+Domain-validated certificate išdavimo metu CA pagal [CA/Browser Forum Baseline Requirements](https://cabforum.org/working-groups/server/baseline-requirements/about/) patvirtina registrant arba control of FQDN. Tai naudingas hostname control įrodymas, bet ne teisė atstovauti puslapyje kopijuojamą organizaciją.
 
 ### HTTP ir puslapio elgsena
 
@@ -125,9 +162,19 @@ Keli vertingi, bet neunikalūs clues:
 
 Tokie požymiai pasitaiko ir teisėtoje federation, application proxy, WAF, CDN ar marketing redirect infrastruktūroje. Lyginkite su patvirtinta architektūra. Iš vieno favicon ar header neidentifikuokite framework'o.
 
+HTTP faktus fiksuokite kaip observations, ne kaip signature. Įrašykite response status, redirect target, `Location`, `Set-Cookie` vardus ir atributus, CSP, HSTS, HTML hash, script origin, favicon hash ir stebėjimo laiką. Nepublikuokite recipient-specific query ar gyvų session identifier. Header, favicon, cookie name, ASN, hosting provider ir certificate issuer yra keičiami bei bendri teisėtoms paslaugoms. Jų vertė atsiranda iš signalų sutapimo ir chronologijos.
+
 ## Identity telemetrija parodo, ar signalas tapo incidentu
 
 Vertingiausi įrodymai dažnai atsiranda tada, kai phishing puslapis jau išjungtas. Microsoft [token theft playbook](https://learn.microsoft.com/en-us/security/operations/token-theft-playbook) rekomenduoja Entra sign-in ir audit log'us, Office activity bei risk detections. Juos saugokite greitai, nes retention priklauso nuo workload ir licencijos.
+
+Pradėkite nuo nekintamų identifier ir laiko. Entra sign-in įrašuose išsaugokite `createdDateTime`, user, `appId`, resource, `ipAddress`, location, `deviceDetail`, `clientAppUsed`, `isInteractive`, `correlationId`, status, Conditional Access rezultatą ir risk laukus. [Microsoft sign-in log laukų vadovas](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-in-log-activity-details) perspėja, kad IP geolocation yra best effort, o authentication details pradžioje gali būti nepilni, kol log'ai agreguojami.
+
+Kai prieinama, [Microsoft Graph beta sign-in schema](https://learn.microsoft.com/en-us/graph/api/resources/signin?view=graph-rest-beta) prideda `sessionId`, `uniqueTokenIdentifier`, `originalRequestId`, `ipAddressFromResourceProvider`, `authenticationDetails`, `incomingTokenType` ir token-protection status. Tai beta schema, o interactive event nėra visa identity istorija. Saugokite raw export ir aiškiai įtraukite non-interactive event tipus, jei collection būdas to reikalauja.
+
+Delivery pusėje [Defender XDR `UrlClickEvents`](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-urlclickevents-table) gali išlaikyti pilną clicked URL, account, workload, `NetworkMessageId`, click action, threat state click metu, IP address, click-through rezultatą ir URL chain. Microsoft pažymi, kad kai kurių Drafts arba Sent kontekstų click ne visada galima sujungti su email lentele per `NetworkMessageId`. Failed join reiškia trūkstamą sąsają, o ne įrodymą, kad laiško nebuvo.
+
+Sudarykite timeline su bent trimis laikrodžiais: message delivery ir click, interactive authentication, vėlesnė token arba application veikla. Normalizuokite time zone, išlaikykite raw timestamp ir žinomą ingestion delay. Click IP bei endpoint device lyginkite su identity-provider vaizdu. Per proxied authentication identity provider gali matyti proxy egress, o ne vartotojo viešą IP. Vėlesnis replay gali naudoti tą pačią infrastruktūrą, artimą residential proxy arba visai kitą tinklą.
 
 ### Authentication ir session signalai
 
@@ -140,6 +187,10 @@ Su vartotojo nurodytu click bei login laiku koreliuokite:
 - kitos application prieigą ta pačia identity netrukus po lure.
 
 Impossible travel gali padėti, bet nėra būtina ar pakankama sąlyga. VPN, mobile network ir global proxy kuria teisėtus location pokyčius. Attacker'is taip pat gali naudoti geografiškai artimą infrastruktūrą. Device identity, token properties, applications seka ir follow-on action dažnai vertingesni nei vien atstumas.
+
+[Microsoft Entra risk detections](https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks) apima Attacker in the Middle, anomalous token, token issuer anomaly, unfamiliar sign-in properties, anonymous IP, atypical travel ir suspicious browser signalus. Jie turi skirtingą precision ir licensing reikalavimus, todėl yra tyrimo leads, ne vienodi verdict. Microsoft aiškiai perspėja, kad low ir medium anomalous-token detections turi aukštesnį false-positive dažnį. Saugokite risk type, level, state, detection time bei linked sign-in.
+
+Successful MFA detail patvirtina, kad authentication ceremony buvo užbaigta. Jis neįrodo, kad browser naudojo patvirtintą origin arba gauta session liko vartotojo kontrolėje. Successful Conditional Access patvirtina tik tai, kad įvertintos policy su turimais claim praėjo. Tai nėra benign verdict. Blank arba unmanaged `deviceDetail` gali būti svarbus, bet teisėti klientai taip pat gali neturėti device laukų, o User-Agent gali būti pakeistas.
 
 ### Post-access signalai
 
@@ -154,6 +205,10 @@ Microsoft AiTM ir BEC tyrimuose kartojasi mailbox search, inbox ar forwarding ru
 - invoice ar payment thread access bei pakeistus mokėjimo duomenis.
 
 Vieno požymio nebuvimas account'o neišteisina. Attacker'is gali sesiją panaudoti trumpai, parduoti, palaukti arba pasirinkti kitą application.
+
+Kai platforma tai leidžia, koreliuokite įtartiną `sessionId` tarp sign-in ir application veiklos. Microsoft [Defender XDR session-cookie tyrimo rekomendacijos](https://learn.microsoft.com/en-us/defender-xdr/session-cookie-theft-alert) siūlo lyginti laiką, geografinį kontekstą ir sekti tos sesijos veiksmus per `AadSignInEventsBeta` bei `CloudAppEvents`. High confidence atsiranda iš kombinacijos: session arba token reuse, neatitinkantis device ar client kontekstas, nėra tikėtino fresh authentication ir tuo pačiu session vyksta jautri veikla.
+
+Microsoft 365 aplinkoje saugokite Unified Audit Log įrašus apie `New-InboxRule`, `UpdateInboxRules`, `Set-InboxRule`, mailbox reads bei searches, sends, forwarding, deletion ir admin pokyčius. Pagal [Microsoft application-permission audit vadovą](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/app-perms-audit-logs) peržiūrėkite Entra audit veiklas `Consent to application`, `Add delegated permission grant` ir `Add app role assignment to the service principal`. OAuth persistence nėra būtina Evilginx dalis. Tai atskiras post-compromise teiginys, kuriam reikalingas konkretus event.
 
 ## Detection modelis, kuris išgyvena framework update
 
@@ -186,15 +241,19 @@ CISA rekomenduoja phishing-resistant MFA ir FIDO/WebAuthn nurodo kaip plačiai p
 
 Svarbi savybė yra origin binding: authenticator ceremony pririšama prie teisėto origin, o vartotojui neduodamas per tarpininką perrašomas kodas. Pradėkite nuo administratorių ir high-risk user'ių, tada plėskite pagal device bei recovery pasirengimą. Break-glass account'ai turi būti griežtai valdomi ir stebimi.
 
+[WebAuthn Level 3](https://www.w3.org/TR/webauthn-3/) public-key credential apriboja relying-party identifier ir reikalauja, kad relying party patikrintų origin bei RP ID. Teisėtam relying party registruotas credential neautentifikuos nesusijusio deceptive origin. Būtent ši protokolo savybė sukuria phishing resistance. Ji stipresnė už prašymą vartotojui pastebėti vizualų skirtumą ir už vienkartinį kodą, kurį galima realiu laiku persiųsti.
+
 ### Device ir session kontrolės
 
 Kur palaikoma, jautriai prieigai reikalaukite managed arba compliant device, naudokite risk-based Conditional Access ir įvertinkite token protection ar binding. Tai sluoksniai su konkrečia coverage, o ne marketingo checkbox'ai. Reikia patikrinti klientus, legacy protokolus ir recovery flow.
+
+[Microsoft Entra Token Protection](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-token-protection) gali supported sign-in session token kriptografiškai susieti su device. Coverage nėra universali. Native app palaikymas platesnis, o browser apsauga tebėra ribota konkrečioms programoms, browser, device ir scenarijams. Diekite report-only režimu, tikrinkite interactive bei non-interactive sign-in ir įvardykite konkretų apsaugotą resource, o ne teikite, kad visi browser cookies jau device-bound.
 
 Jautriems veiksmams reikalaukite fresh phishing-resistant authentication, ribokite persistentiškas sesijas, stebėkite MFA method, OAuth grant ir device pokyčius. Legacy authentication, negalinti tenkinti modernių kontrolės priemonių, turi būti išjungta arba aiškiai izoliuota.
 
 ### Delivery ir web kontrolės
 
-Inbound nuorodas galima detonuoti ar rewrite'inti patvirtintomis security paslaugomis, bet originalus evidence turi likti. Authentication-shaped puslapius ant naujų ar uncategorised domenų kelkite aukščiau. Vartotojams aiškinkite, kad address bar, password manager origin match ir security-key prompt yra stipresni signalai už logotipą. Reporting kelias turi vienu veiksmu perduoti originalų laišką defender'iui, ne liepti žmogui pačiam „patikrinti, ar virusas“.
+Inbound nuorodas galima detonuoti ar rewrite'inti patvirtintomis security paslaugomis, bet originalus evidence turi likti. Authentication-shaped puslapius ant naujų ar uncategorised domenų kelkite aukščiau. Vartotojams aiškinkite, kad address bar, password manager origin match ir security-key prompt yra stipresni signalai už logotipą. Reporting kelias turi vienu veiksmu perduoti originalų laišką defender'iui, ne liepti žmogui pačiam "patikrinti, ar virusas".
 
 ## Containment ir įrodymų išsaugojimas
 
@@ -210,6 +269,23 @@ Jei vartotojas autentifikavosi per įtariamą reverse proxy, kol neįrodyta kita
 
 Neprašykite vartotojo dar kartą atverti puslapio. Nepateikite credential bandydami patvirtinti proxy. Nesitikėkite, kad domenas liks gyvas. Recipient ir identity-provider telemetrija paprastai išlieka vertingesnė už vėlesnį public scan.
 
+Microsoft [user access revocation vadovas](https://learn.microsoft.com/en-us/entra/identity/users/users-revoke-access) atskiria identity-provider access ir refresh token nuo application išduodamo browser session cookie. Entra negali tiesiogiai revoke'inti third-party application valdomo cookie. Susisiekite su application owner, revoke'inkite arba deprovision'inkite application session, kai tai palaikoma, ir įvertinkite token lifetime bei propagation delay. Fiksuokite, kada kiekvienas containment veiksmas pradėtas ir kada prieiga realiai nustojo veikti.
+
+![Sesijos izoliavimo seka, pradedama sesijų atšaukimu ir prieigos ribojimu prieš slaptažodžio keitimą bei poveikio peržiūrą](/assets/img/posts/2026-08-31-evilginx-detection/evilginx-session-containment-lt.svg)
+
+*Schema: Sesijos ir programos pasitikėjimas atšaukiami prieš atkuriant slaptažodį, nes kiekvienas artefaktas turi atskirą gyvavimo laiką.*
+
+## Gynybos kelią tikrinkite neoperuodami phishing proxy
+
+1. Sukurkite sintetinius lure, click, sign-in, risk ir cloud-activity įrašus su bendrais test identifier. Patikrinkite, ar correlation išsaugo event time, ingestion time, user, device, application, session bei evidence level.
+2. Išbandykite patvirtintą phishing reporting kelią su nekenksmingu vidiniu URL. Originalus laiškas, headers, rewritten URL, click duomenys ir analyst ticket turi likti susieti.
+3. Phishing-resistant authentication ir Conditional Access pradėkite report-only režimu pagal [Microsoft deployment rekomendacijas](https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-deploy-phishing-resistant-passwordless-authentication). Matuokite pasirengimą pagal user ir device porą, įtraukite recovery bei break-glass procesus.
+4. Surenkite incident-response tabletop su sintetine compromised session. Išmatuokite account block, Entra session revocation, application-side session invalidation, mailbox bei OAuth review ir evidence export laiką.
+5. Įtartinus URL submit'inkite tik per organizacijos patvirtintą security produktą arba controlled detonation service. Pirmiausia tikrinkite pasyvią infrastruktūrą, redaguokite recipient token ir fiksuokite, ar rezultatas buvo tik lookup, ar naujas submission.
+6. Patikrinkite, ar analitikas gali parašyti `not observed`, kai telemetrijos nėra. Tokio rezultato negalima paversti `did not happen`.
+
+Validacijai nediekite Evilginx, nekurkite phishlet, nepateikite credential ir neproxy'inkite tikros identity-provider session. Kontrolės tikslą galima patikrinti sintetine telemetrija, nekenksmingu reporting flow, policy evaluation ir containment laiko matavimu.
+
 ## Threat context be attribution pagal įrankį
 
 APT Notes [Evilginx įrašas](https://apt.hecavex.com/tools/evilginx/) sieja software su source-backed procedūromis. [Star Blizzard](https://apt.hecavex.com/actors/star-blizzard/) ir [Void Blizzard](https://apt.hecavex.com/actors/void-blizzard/) dossier dokumentuoja viešai aprašytą naudojimą prieš Europos, NATO bei Ukrainos tematikos taikinius. Atskiras [Adversary-in-the-Middle technikos įrašas](https://apt.hecavex.com/techniques/adversary-in-the-middle/) saugo elgseną nesuplakdamas jos su actor identity.
@@ -220,10 +296,16 @@ Evilginx primenanti elgsena nepriskiria incidento nė vienam actor'iui. Open-sou
 
 - [MITRE ATT&CK: evilginx2, S9003](https://attack.mitre.org/software/S9003/)
 - [MITRE ATT&CK: Adversary-in-the-Middle, T1557](https://attack.mitre.org/techniques/T1557/)
+- [OpenID Foundation: OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)
+- [IETF: OAuth 2.0 Security Best Current Practice, RFC 9700](https://www.rfc-editor.org/rfc/rfc9700.html)
+- [W3C: Web Authentication Level 3](https://www.w3.org/TR/webauthn-3/)
 - [Microsoft Security: From cookie theft to BEC](https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/)
 - [Microsoft Security: Detecting and mitigating a multi-stage AiTM phishing and BEC campaign](https://www.microsoft.com/en-us/security/blog/2023/06/08/detecting-and-mitigating-a-multi-stage-aitm-phishing-and-bec-campaign/)
 - [Microsoft Security: Token tactics](https://www.microsoft.com/en-us/security/blog/2022/11/16/token-tactics-how-to-prevent-detect-and-respond-to-cloud-token-theft/)
 - [Microsoft Learn: Token theft playbook](https://learn.microsoft.com/en-us/security/operations/token-theft-playbook)
+- [Microsoft Learn: sign-in log activity details](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-in-log-activity-details)
+- [Microsoft Learn: Entra risk detections](https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks)
+- [Microsoft Learn: revoke user access](https://learn.microsoft.com/en-us/entra/identity/users/users-revoke-access)
 - [Microsoft Learn: Conditional Access authentication strengths](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-strengths)
 - [CISA: More than a Password](https://www.cisa.gov/ncas/tips/st05-012)
 

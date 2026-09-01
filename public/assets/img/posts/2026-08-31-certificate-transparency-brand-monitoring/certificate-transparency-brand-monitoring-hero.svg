@@ -1,44 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title id="title">Certificate Transparency brand monitoring evidence pipeline</title>
-  <desc id="desc">A dark HECAVEX-style pipeline turns public certificate log entries into normalised DNS names, explainable brand similarity signals, bounded enrichment, and versioned GitHub publication without declaring domains malicious.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Certificate Transparency monitoring</title>
+  <desc id="desc">A public certificate entry moves into a review queue</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#05080b"/><stop offset="1" stop-color="#101923"/></linearGradient>
-    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#18303b" opacity=".42"/></pattern>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#44c7dc"/></marker>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05090d"/><stop offset="1" stop-color="#0b1820"/></linearGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#25414d" stroke-width="1" opacity=".28"/></pattern>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M0 0 12 6 0 12Z" fill="#43d3e8"/></marker>
+    <style>
+      .sans{font-family:Inter,Arial,sans-serif}.mono{font-family:'IBM Plex Mono',Consolas,monospace}
+      .title{font:700 52px Inter,Arial,sans-serif;fill:#f4f8fa;letter-spacing:-1.5px}
+      .subtitle{font:400 25px Inter,Arial,sans-serif;fill:#89a2af}
+      .eyebrow{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:#43d3e8;letter-spacing:3px}
+      .node-title{font:700 28px Inter,Arial,sans-serif;fill:#f4f8fa}
+      .node-copy{font:400 20px Inter,Arial,sans-serif;fill:#89a2af}
+      .node-code{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:#43d3e8}
+      .note{font:500 19px Inter,Arial,sans-serif;fill:#89a2af}
+    </style>
   </defs>
-  <rect width="1600" height="900" fill="url(#bg)"/><rect x="34" y="34" width="1532" height="832" fill="url(#grid)" stroke="#244450"/><path d="M34 34H1566" stroke="#44c7dc" stroke-width="6"/>
-  <text x="88" y="102" fill="#44c7dc" font-family="ui-monospace, monospace" font-size="18" font-weight="700" letter-spacing="3">HECAVEX / PUBLIC SIGNAL PIPELINE</text>
-  <text x="88" y="174" fill="#f4f8fb" font-family="Arial, sans-serif" font-size="52" font-weight="700">CERTIFICATE OBSERVATION ≠ VERDICT</text>
-  <text x="88" y="224" fill="#9db6c5" font-family="Arial, sans-serif" font-size="26">Collect names. Explain matches. Preserve uncertainty.</text>
-
-  <g font-family="ui-monospace, monospace">
-    <g transform="translate(88 300)"><rect width="260" height="150" fill="#0b141a" stroke="#44c7dc" stroke-width="2"/><text x="26" y="42" fill="#8ae5f2" font-size="16" letter-spacing="2">01 / CT LOG</text><text x="26" y="86" fill="#f4f8fb" font-size="24" font-weight="700">PUBLIC ENTRY</text><text x="26" y="121" fill="#9db6c5" font-size="16">certificate + precert</text></g>
-    <g transform="translate(388 300)"><rect width="260" height="150" fill="#0b141a" stroke="#44c7dc" stroke-width="2"/><text x="26" y="42" fill="#8ae5f2" font-size="16" letter-spacing="2">02 / PARSE</text><text x="26" y="86" fill="#f4f8fb" font-size="24" font-weight="700">SAN NAMES</text><text x="26" y="121" fill="#9db6c5" font-size="16">wildcard / IDN / dedupe</text></g>
-    <g transform="translate(688 300)"><rect width="260" height="150" fill="#0b141a" stroke="#ffc857" stroke-width="2"/><text x="26" y="42" fill="#ffe3a0" font-size="16" letter-spacing="2">03 / SCORE</text><text x="26" y="86" fill="#f4f8fb" font-size="24" font-weight="700">HEURISTICS</text><text x="26" y="121" fill="#9db6c5" font-size="16">exact / affix / fuzzy</text></g>
-    <g transform="translate(988 300)"><rect width="260" height="150" fill="#0b141a" stroke="#99dc68" stroke-width="2"/><text x="26" y="42" fill="#c7f1a9" font-size="16" letter-spacing="2">04 / ENRICH</text><text x="26" y="86" fill="#f4f8fb" font-size="24" font-weight="700">CONTEXT</text><text x="26" y="121" fill="#9db6c5" font-size="16">DNS / RDAP / archives</text></g>
-    <g transform="translate(1288 300)"><rect width="224" height="150" fill="#0b141a" stroke="#44c7dc" stroke-width="2"/><text x="24" y="42" fill="#8ae5f2" font-size="16" letter-spacing="2">05 / PUBLISH</text><text x="24" y="86" fill="#f4f8fb" font-size="22" font-weight="700">GITHUB</text><text x="24" y="121" fill="#9db6c5" font-size="16">versioned evidence</text></g>
-  </g>
-  <g fill="none" stroke="#44c7dc" stroke-width="3" marker-end="url(#arrow)"><path d="M348 375H378"/><path d="M648 375H678"/><path d="M948 375H978"/><path d="M1248 375H1278"/></g>
-
-  <g font-family="Arial, sans-serif">
-    <rect x="88" y="520" width="430" height="220" fill="#0b141a" stroke="#36505b"/>
-    <text x="118" y="566" fill="#44c7dc" font-size="18" font-weight="700" letter-spacing="2">OBSERVED</text>
-    <text x="118" y="611" fill="#f4f8fb" font-size="25" font-weight="700">A logged DNS name</text>
-    <text x="118" y="652" fill="#9db6c5" font-size="19">Timestamp · issuer · SAN · log</text>
-    <text x="118" y="694" fill="#9db6c5" font-size="19">Auditable, not a maliciousness claim</text>
-
-    <rect x="585" y="520" width="430" height="220" fill="#0b141a" stroke="#36505b"/>
-    <text x="615" y="566" fill="#ffc857" font-size="18" font-weight="700" letter-spacing="2">INFERRED</text>
-    <text x="615" y="611" fill="#f4f8fb" font-size="25" font-weight="700">A brand-like pattern</text>
-    <text x="615" y="652" fill="#9db6c5" font-size="19">Rule ID · tokens · similarity</text>
-    <text x="615" y="694" fill="#9db6c5" font-size="19">Explainable and reproducible</text>
-
-    <rect x="1082" y="520" width="430" height="220" fill="#0b141a" stroke="#36505b"/>
-    <text x="1112" y="566" fill="#99dc68" font-size="18" font-weight="700" letter-spacing="2">ASSESSED</text>
-    <text x="1112" y="611" fill="#f4f8fb" font-size="25" font-weight="700">A candidate for review</text>
-    <text x="1112" y="652" fill="#9db6c5" font-size="19">Context · limits · analyst state</text>
-    <text x="1112" y="694" fill="#9db6c5" font-size="19">Never automatic attribution</text>
-  </g>
-  <rect x="88" y="780" width="1424" height="44" fill="#111b24" stroke="#244450"/>
-  <text x="112" y="808" fill="#d7e3ea" font-family="ui-monospace, monospace" font-size="16" letter-spacing="1">LOGGED NAME  →  EXPLAINED MATCH  →  BOUNDED CONTEXT  →  REVIEWABLE RECORD</text>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)" opacity=".5"/>
+  <path d="M0 8H1600" stroke="#43d3e8" stroke-width="8"/>
+  <text x="72" y="62" class="eyebrow">HECAVEX / EDITORIAL RESEARCH VISUAL</text>
+  <circle cx="800" cy="450" r="320" fill="none" stroke="#25414d" stroke-width="3"/><circle cx="800" cy="450" r="220" fill="none" stroke="#25414d" stroke-width="2" stroke-dasharray="14 18"/><g transform="translate(330 235)"><rect width="350" height="430" rx="28" fill="#0d1b24" stroke="#43d3e8" stroke-width="8"/><path d="M60 100H286M60 164H286M60 228H226" stroke="#89a2af" stroke-width="20" stroke-linecap="round"/><rect x="58" y="294" width="228" height="74" rx="18" fill="none" stroke="#9fdf65" stroke-width="7"/><text x="172" y="344" text-anchor="middle" class="node-title">SAN</text></g><path d="M720 450H930" stroke="#43d3e8" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(980 270)"><rect width="290" height="360" rx="28" fill="#0a141b" stroke="#ffc857" stroke-width="8"/><path d="M52 84H238M52 150H238M52 216H238M52 282H190" stroke="#ffc857" stroke-width="14" stroke-linecap="round"/></g>
 </svg>

@@ -56,11 +56,11 @@ Traditional phishing often presents a copied form and sends whatever the user en
 
 [MITRE ATT&CK describes evilginx2 as S9003](https://attack.mitre.org/software/S9003/), an open-source adversary-in-the-middle framework capable of proxying a legitimate web service and intercepting credentials, authentication tokens and session cookies. The product name is useful threat context, but defenders should design for the behaviour class. Different frameworks, private modifications and managed phishing services can produce the same outcome.
 
-This guide therefore does not answer “how do I fingerprint one Evilginx version?” It answers the more durable question: **what evidence shows that an authentication journey was relayed through a deceptive origin and that the resulting identity session may have left the user's control?**
+This guide therefore does not answer "how do I fingerprint one Evilginx version?" It answers the more durable question: **what evidence shows that an authentication journey was relayed through a deceptive origin and that the resulting identity session may have left the user's control?**
 
 <aside class="hx-callout warning"><strong>Defensive boundary</strong>This guide contains no installation steps, phishlet syntax, lure generation, credential interception, proxy configuration or evasion instructions. Do not reproduce a live authentication flow to test a suspicious site. Preserve evidence and use authorised controls.</aside>
 
-## A reverse proxy changes what “fake page” means
+## A reverse proxy changes what "fake page" means
 
 In a simplified AiTM phishing flow:
 
@@ -73,7 +73,36 @@ In a simplified AiTM phishing flow:
 
 [Microsoft's 2022 investigation](https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/) documented Evilginx2-linked campaigns targeting more than 10,000 organisations and described subsequent mailbox access and payment fraud. The key lesson is not that MFA is useless. MFA still blocks large classes of password-only attack. The lesson is that a bearer session obtained _after_ successful MFA can become a different authentication problem.
 
+![Reverse-proxy phishing request path from the user's browser through an intermediary to the legitimate identity provider](/assets/img/posts/2026-08-31-evilginx-detection/evilginx-request-path-en.svg)
+
+*Figure: The browser authenticates through an unapproved origin while the identity provider can still complete a valid sign-in.*
+
+### Two TLS connections do not create one trusted origin
+
+The victim's browser terminates TLS at the deceptive hostname. The intermediary separately validates and connects to the legitimate identity provider. [RFC 9525](https://www.rfc-editor.org/rfc/rfc9525.html) is precise about the property TLS provides: the certificate identity is checked against the service identity the client expects. If the starting input is a phishing hyperlink, TLS can securely connect the browser to the wrong application. The padlock protects that connection from passive interception. It does not transfer the copied brand's authority to the hostname.
+
+HTTP origin is the scheme, host, and port tuple. Every redirect destination must be evaluated as a separate origin under [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html). A reverse proxy can rewrite `Location` values and page references so that the browser continues to address the deceptive origin while the upstream connection follows the legitimate authentication flow.
+
+Cookie language also needs precision. Under [RFC 6265](https://www.rfc-editor.org/info/rfc6265/), browser cookies are scoped by host or domain and path. The browser does not simply accept a legitimate-provider host-only cookie as a cookie for an unrelated phishing domain. A proxy can observe upstream `Set-Cookie` responses, retain server-side session state, rewrite cookie attributes where the application allows it, and issue separate browser-side state for its own origin. Which artifact is exposed depends on the application and flow.
+
+In OpenID Connect Authorization Code Flow, the browser carries an authorization code back to the relying party, while the relying party normally exchanges that code with the token endpoint over a direct backchannel. [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html) therefore does not support the blanket claim that every proxied login exposes every ID token, access token, and refresh token. A reverse proxy may obtain credentials, browser-visible cookies, codes, or application session material, but the actual artifact must be established from telemetry and application architecture.
+
+Bearer semantics explain why the distinction matters. [RFC 6750](https://www.rfc-editor.org/rfc/rfc6750.html) defines a bearer token as usable by whoever possesses it. [OAuth 2.0 Security Best Current Practice](https://www.rfc-editor.org/rfc/rfc9700.html) recommends sender-constrained and audience-restricted access tokens where possible. A browser session cookie, an Entra sign-in session token, an OAuth access token, a refresh token, and an OIDC ID token are not interchangeable. Record which asset was observed before choosing containment.
+
 The related HECAVEX article [MFA Is Not a Panacea](/en/research/mfa-is-not-a-panacea/) explains this boundary in depth. A password, an MFA factor and an authenticated session are different assets. Controls and incident actions must name the asset they protect.
+
+## Grade the evidence before calling it session theft
+
+| Level | Observation | Defensible conclusion |
+| --- | --- | --- |
+| 0 | a deceptive URL or certificate is found | candidate infrastructure exists |
+| 1 | delivery or click telemetry links the user to that origin | the user was exposed to the journey |
+| 2 | web and identity timestamps show authentication through the unapproved origin | a proxied authentication event is likely |
+| 3 | the intermediary's opportunity to observe a specific session artifact is supported by the application flow | session exposure is plausible and the artifact can be named |
+| 4 | the same session or token is redeemed from inconsistent context without the expected authentication | replay or session misuse is supported |
+| 5 | mailbox, file, OAuth, or administrative actions are tied to that session | post-authentication impact is confirmed |
+
+A cloned page screenshot is not level 2. A successful MFA event is not level 4. A location anomaly is not proof of replay. Severity should rise as independent evidence joins the chain, not because the tool name is fashionable.
 
 ## Detect across three truth planes
 
@@ -86,6 +115,10 @@ Reverse-proxy phishing rarely gives one universal signature. Reliable detection 
 | identity and impact | whether authentication and later account use departed from the user's normal context | sign-in and risk logs, token/session events, device claims, mailbox audit, OAuth grants, MFA changes, downloads and administrative actions |
 
 The planes also protect the analysis from overclaiming. A suspicious domain without a target interaction is infrastructure evidence. A successful sign-in after a click is stronger, but it is not automatically token theft. A replay-like sign-in followed by mailbox rule creation and email deletion is a much more consequential chain.
+
+![Reverse-proxy phishing evidence correlation across edge infrastructure, identity telemetry and workload activity](/assets/img/posts/2026-08-31-evilginx-detection/evilginx-signal-correlation-en.svg)
+
+*Figure: A reverse-proxy assessment becomes stronger when independent web, identity and workload signals converge in time.*
 
 ### Preserve the exact journey
 
@@ -111,6 +144,10 @@ A valid HTTPS certificate proves that the presented certificate was accepted for
 
 Certificate Transparency is especially useful for discovery and chronology. It is not a maliciousness feed. That is the same candidate-versus-verdict boundary used by [HECAVEX Radar methodology](https://radar.hecavex.com/methodology/).
 
+[RFC 9162](https://www.rfc-editor.org/rfc/rfc9162.html) defines Certificate Transparency as an append-only publication and auditing mechanism for certificates and precertificates. A logged certificate or SCT supports issuance chronology and domain discovery. It does not show that a monitor detected abuse, that the certificate was used in the recipient's session, or that the CA has revoked it. Correlate certificate names and validity with passive DNS, recipient telemetry, and the exact observed TLS handshake.
+
+For domain-validated certificates, the issuing process establishes control of the requested FQDN at issuance under the [CA/Browser Forum Baseline Requirements](https://cabforum.org/working-groups/server/baseline-requirements/about/). That is useful evidence of hostname control, not authorisation to represent the organisation copied by the page.
+
 ### HTTP and page-behaviour observations
 
 Potential clues include:
@@ -125,9 +162,19 @@ Potential clues include:
 
 These behaviours can also occur in legitimate federation, application proxies, WAFs, CDNs and marketing redirectors. Compare them to the organisation's approved architecture. Do not label a framework from one header or favicon.
 
+Capture HTTP facts as observations, not signatures. Record response status, redirect target, `Location`, `Set-Cookie` names and attributes, CSP, HSTS, HTML hash, script origins, favicon hash, and observation time. Do not publish recipient-specific query strings or live session identifiers. Headers, favicons, cookie names, ASN, hosting provider, and certificate issuer are mutable and shared by legitimate services. Their value comes from convergence and chronology.
+
 ## Identity telemetry is where the incident becomes visible
 
 The most valuable evidence may appear after the phishing page has disappeared. Microsoft's [token-theft playbook](https://learn.microsoft.com/en-us/security/operations/token-theft-playbook) recommends access to Entra sign-in and audit logs, Office activity and relevant risk detections. Preserve them quickly because retention differs by licence and workload.
+
+Start with immutable identifiers and clocks. In Entra sign-in records preserve `createdDateTime`, user, `appId`, resource, `ipAddress`, location, `deviceDetail`, `clientAppUsed`, `isInteractive`, `correlationId`, status, Conditional Access result, and risk fields. [Microsoft's sign-in log field guide](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-in-log-activity-details) cautions that IP geolocation is best effort and authentication details can initially be incomplete while logs aggregate.
+
+Where available, the [Microsoft Graph beta sign-in resource](https://learn.microsoft.com/en-us/graph/api/resources/signin?view=graph-rest-beta) adds fields such as `sessionId`, `uniqueTokenIdentifier`, `originalRequestId`, `ipAddressFromResourceProvider`, `authenticationDetails`, `incomingTokenType`, and token-protection status. This is a beta schema and interactive events are not the whole identity history. Preserve the raw export and explicitly request non-interactive event types when the collection method requires it.
+
+On the delivery side, [Defender XDR `UrlClickEvents`](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-urlclickevents-table) can retain the full clicked URL, account, workload, `NetworkMessageId`, click action, threat state at click time, IP address, click-through result, and URL chain. Microsoft notes that clicks from some Drafts or Sent contexts cannot always be joined to email tables by `NetworkMessageId`. A failed join is therefore missing linkage, not proof that no message existed.
+
+Build a timeline with at least three clocks: message delivery and click, interactive authentication, and later token or application activity. Normalize time zones, retain raw timestamps, and record known ingestion delay. Compare the click IP and endpoint device to the identity-provider view. During proxied authentication the identity provider may see the proxy egress rather than the victim's public IP. Later replay can use the same infrastructure, nearby residential proxy space, or a completely different network.
 
 ### Authentication and session signals
 
@@ -140,6 +187,10 @@ Correlate the click and user-reported authentication time with:
 - attempts to access a different application using the same identity shortly after the lure.
 
 Impossible-travel detections can help, but they are neither necessary nor sufficient. Corporate VPNs, mobile networks and global proxies generate location changes. A replay may also occur from infrastructure close to the victim. Device identity, token properties, application sequence and follow-on actions often carry more weight than distance alone.
+
+[Microsoft Entra risk detections](https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks) include Attacker in the Middle, anomalous token, token issuer anomaly, unfamiliar sign-in properties, anonymous IP, atypical travel, and suspicious browser signals. They are investigation leads with different precision and licensing requirements. Microsoft specifically warns that low and medium anomalous-token detections have a higher false-positive rate. Preserve the risk type, level, state, detection time, and linked sign-in rather than translating every risk event into confirmed theft.
+
+A successful MFA detail proves that an authentication ceremony completed. It does not establish that the browser used an approved origin or that the resulting session remained with the user. A successful Conditional Access result proves that evaluated policies passed with the available claims. It is not a benign verdict. Likewise, a blank or unmanaged `deviceDetail` can be important, but device fields may be missing for valid clients and user agents are mutable.
 
 ### Post-access signals
 
@@ -154,6 +205,10 @@ Microsoft reporting on AiTM and BEC repeatedly identifies activity such as mailb
 - payment-thread access, altered invoices or lookalike reply chains.
 
 The absence of one item does not clear the account. An attacker may use the session briefly, sell it, wait, or target a different application.
+
+Correlate the suspicious `sessionId` across sign-in and application activity when the platform exposes it. Microsoft's [Defender XDR session-cookie investigation guidance](https://learn.microsoft.com/en-us/defender-xdr/session-cookie-theft-alert) recommends comparing time and geography and tracing actions performed in that session across `AadSignInEventsBeta` and `CloudAppEvents`. High confidence comes from conjunction: session or token reuse, inconsistent device or client context, no expected fresh authentication, and sensitive activity in the same session.
+
+For Microsoft 365, retain Unified Audit Log records for `New-InboxRule`, `UpdateInboxRules`, `Set-InboxRule`, mailbox reads and searches, sends, forwarding, deletion, and administrative changes. Review Entra audit activities such as `Consent to application`, `Add delegated permission grant`, and `Add app role assignment to the service principal` using [Microsoft's application-permission audit guidance](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/app-perms-audit-logs). OAuth persistence is not inherent to Evilginx. It is a separate post-compromise claim that needs its own event.
 
 ## A detection model that survives framework changes
 
@@ -186,9 +241,13 @@ CISA recommends phishing-resistant MFA and identifies FIDO/WebAuthn as the widel
 
 The security property matters: the authenticator binds the ceremony to the legitimate origin rather than giving the user a transferable code to enter through an intermediary. Roll out to administrators and high-risk users first, then expand with measured device and recovery readiness. Keep break-glass accounts tightly controlled and monitored.
 
+[WebAuthn Level 3](https://www.w3.org/TR/webauthn-3/) scopes a public-key credential to a relying-party identifier and requires the relying party to validate origin and RP ID. A credential registered for the legitimate relying party will not authenticate an unrelated deceptive origin. This is the protocol property behind phishing resistance. It is stronger than asking users to notice visual differences and stronger than a one-time code that can be relayed in real time.
+
 ### Device and session controls
 
 Where the application and platform support it, require managed or compliant devices for sensitive access, apply risk-based conditional access, and evaluate token protection or binding. These are layers, not slogans. Coverage, supported clients, legacy protocols and recovery paths need testing.
+
+[Microsoft Entra Token Protection](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-token-protection) can bind supported sign-in session tokens to a device. Coverage is not universal. Native-app support is broader, while browser protection remains limited to selected applications, browsers, devices, and scenarios. Deploy in report-only mode, verify interactive and non-interactive sign-in effects, and describe the exact protected resource instead of claiming all browser cookies are device-bound.
 
 Restrict persistent sessions and require fresh phishing-resistant authentication for sensitive actions. Monitor changes to MFA methods, OAuth grants and devices. Disable legacy authentication that cannot satisfy modern controls.
 
@@ -210,6 +269,23 @@ If a user authenticated through a suspected reverse proxy, assume that password 
 
 Do not ask the user to revisit the page. Do not submit credentials to confirm the proxy. Do not depend on the site remaining online. Recipient telemetry and identity-provider logs are usually more durable than a later public scan.
 
+Microsoft's [revoke user access guidance](https://learn.microsoft.com/en-us/entra/identity/users/users-revoke-access) distinguishes identity-provider access and refresh tokens from application-issued browser session cookies. Entra cannot directly revoke a cookie issued and controlled by a third-party application. Contact the application owner, revoke or deprovision the application session where supported, and account for token lifetime and propagation delay. Record when each containment action was issued and when access was actually denied.
+
+![Session containment sequence beginning with revocation and access restriction before credential reset and impact review](/assets/img/posts/2026-08-31-evilginx-detection/evilginx-session-containment-en.svg)
+
+*Figure: Session and application trust are revoked before password restoration because each artefact has a separate lifetime.*
+
+## Validate the defensive path without operating a phishing proxy
+
+1. Create synthetic lure, click, sign-in, risk, and cloud-activity records with shared test identifiers. Confirm the correlation preserves event time, ingestion time, user, device, application, session, and evidence level.
+2. Exercise the approved phishing-reporting path with a harmless internal URL. Verify that the original message, headers, rewritten URL, click data, and analyst ticket remain linked.
+3. Pilot phishing-resistant authentication and Conditional Access in report-only mode using [Microsoft's deployment guidance](https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-deploy-phishing-resistant-passwordless-authentication). Measure readiness by user and device, including recovery and break-glass handling.
+4. Run an incident-response tabletop with a synthetic compromised session. Time account block, Entra session revocation, application-side session invalidation, mailbox and OAuth review, and evidence export.
+5. Submit suspicious URLs only through the organisation's approved security product or controlled detonation service. Query passive infrastructure before submission, redact recipient tokens, and record whether a result was looked up or newly submitted.
+6. Confirm that analysts can state `not observed` when telemetry is absent. They must not convert it to `did not happen`.
+
+Do not deploy Evilginx, create a phishlet, submit credentials, or proxy a real identity-provider session for validation. The control objective can be tested with synthetic telemetry, harmless reporting flows, policy evaluation, and containment timing.
+
 ## Threat context without tool-based attribution
 
 APT Notes records [Evilginx](https://apt.hecavex.com/tools/evilginx/) as supporting software and links it to source-backed procedures. The [Star Blizzard](https://apt.hecavex.com/actors/star-blizzard/) and [Void Blizzard](https://apt.hecavex.com/actors/void-blizzard/) dossiers describe reported use against European, NATO and Ukraine-related targets. The supporting [Adversary-in-the-Middle technique record](https://apt.hecavex.com/techniques/adversary-in-the-middle/) preserves the behaviour separately from actor identity.
@@ -220,10 +296,16 @@ Finding Evilginx-like behaviour does not attribute an incident to either actor. 
 
 - [MITRE ATT&CK: evilginx2, S9003](https://attack.mitre.org/software/S9003/)
 - [MITRE ATT&CK: Adversary-in-the-Middle, T1557](https://attack.mitre.org/techniques/T1557/)
+- [OpenID Foundation: OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)
+- [IETF: OAuth 2.0 Security Best Current Practice, RFC 9700](https://www.rfc-editor.org/rfc/rfc9700.html)
+- [W3C: Web Authentication Level 3](https://www.w3.org/TR/webauthn-3/)
 - [Microsoft Security: From cookie theft to BEC](https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/)
 - [Microsoft Security: Detecting and mitigating a multi-stage AiTM phishing and BEC campaign](https://www.microsoft.com/en-us/security/blog/2023/06/08/detecting-and-mitigating-a-multi-stage-aitm-phishing-and-bec-campaign/)
 - [Microsoft Security: Token tactics](https://www.microsoft.com/en-us/security/blog/2022/11/16/token-tactics-how-to-prevent-detect-and-respond-to-cloud-token-theft/)
 - [Microsoft Learn: Token theft playbook](https://learn.microsoft.com/en-us/security/operations/token-theft-playbook)
+- [Microsoft Learn: sign-in log activity details](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-in-log-activity-details)
+- [Microsoft Learn: Entra risk detections](https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks)
+- [Microsoft Learn: revoke user access](https://learn.microsoft.com/en-us/entra/identity/users/users-revoke-access)
 - [Microsoft Learn: Conditional Access authentication strengths](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-strengths)
 - [CISA: More than a Password](https://www.cisa.gov/ncas/tips/st05-012)
 

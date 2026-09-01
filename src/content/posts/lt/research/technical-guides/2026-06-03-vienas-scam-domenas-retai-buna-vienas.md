@@ -23,7 +23,7 @@ categories: ["fraud-scams", "tradecraft"]
 tags: ["pivoting", "sukčiavimo infrastruktūra", "RDAP", "DNS", "OSINT"]
 featured: true
 scope: "Pasyvaus infrastruktūros tyrimo ir susijusių objektų koreliavimo metodika."
-limitations: "Bendras hostingas, sertifikatai ar analitikos ID savaime neįrodo bendro valdymo; išvadoms reikia kelių sutampančių signalų."
+limitations: "Bendras hostingas, sertifikatai ar analitikos ID savaime neįrodo bendro valdymo. Išvadoms reikia kelių sutampančių signalų."
 key_findings:
   - "Galutinis URL dažnai slepia vertingesnius backend ir peradresavimo indikatorius."
   - "Favicon, DOM, TLS, DNS ir form action sutapimai padeda plėsti tyrimą."
@@ -60,19 +60,19 @@ Kitaip tariant, vienas scam domenas nereiškia, kad jau pabaiga. Sakyčiau tai y
 
 Vėlesnis [Hostinger phishing kit'o tyrimas](/lt/tyrimai/hostinger-pages-phishing-infrastrukturos-tyrimas/) šį principą parodo per pasikartojantį JavaScript ir šimtus vienkartinių projektų vardų. [Infrastruktūros pivoting lauko vadovas](/lt/tyrimai/infrastrukturos-pivoting-101/) formalizuoja evidence workflow, o [HECAVEX Radar](https://radar.hecavex.com/lt/) skelbia atrinktus galimo apsimetimo Lietuvos prekių ženklais kandidatus kaip lead'us, ne verdict'us.
 
-APWG savo 2025 m. pirmo ketvirčio phishing activity report summary nurodė daugiau nei 1 mln. stebėtų phishing atakų per ketvirtį, o online payment ir financial /banking sektoriai kartu sudarė 30,9%. Toje pačioje APWG santraukoje taip pat pažymėta, kad nusikaltėliai kasdien siunčia milijonus laiškų su QR kodais, vedančiais į phishing puslapius ar malware. Tai nėra tik “user awareness” problema, o sakyčiau yra infrastruktūros, operacijų, telemetrijos ir threat intelligence problema.(https://www.apwg.org/trendsreports/)
+APWG savo 2025 m. pirmo ketvirčio phishing activity report summary nurodė daugiau nei 1 mln. stebėtų phishing atakų per ketvirtį, o online payment ir financial /banking sektoriai kartu sudarė 30,9%. Toje pačioje APWG santraukoje taip pat pažymėta, kad nusikaltėliai kasdien siunčia milijonus laiškų su QR kodais, vedančiais į phishing puslapius ar malware. Tai nėra tik "user awareness" problema, o sakyčiau yra infrastruktūros, operacijų, telemetrijos ir threat intelligence problema.(https://www.apwg.org/trendsreports/)
 
 Pagal įdėją nuo šito taško prasideda sukčiavimų infrastruktūros pivoting.
 
-Ne nuo *“ar šitas URL blogas”*?
+Ne nuo *"ar šitas URL blogas"*?
 
-O nuo *“Kiek dar tos pačios sukčiavimo operacijos paviršiaus mes dar nematome”*.
+O nuo *"Kiek dar tos pačios sukčiavimo operacijos paviršiaus mes dar nematome"*.
 
 ---
 
 ## Kas yra infrastructure pivoting?
 
-*(Na galim pavadint šiuo atvėju “Kas yra scam infrastructure pivoting?”)*
+*(Na galim pavadint šiuo atvėju "Kas yra scam infrastructure pivoting?")*
 
 Jei taip gražiai kalbant tai Infrastructure pivoting yra CTI metodas, ***kai nuo vieno žinomo artefakto sistemingai judama prie susijusių objektų, kol susiformuoja platesnis infrastruktūros vaizdas.***
 
@@ -134,7 +134,7 @@ We identified 23 related domains, 3 redirectors, 2 collection endpoints,
 Confidence: medium-high.
 ```
 
-Šitoje vietoje jau atsiranda ne “paprastas blokavimas”, o šioks toks intelligence gathering.
+Šitoje vietoje jau atsiranda ne "paprastas blokavimas", o šioks toks intelligence gathering.
 
 ---
 
@@ -393,7 +393,7 @@ Same registrar + same nameserver + same pDNS window + same favicon + same collec
 
 ## Ketvirtas etapas. DNS ir passive DNS
 
-Toliau keliaujama link DNS ir passive DNS t.y. *“Kur domenas rodo dabar ir kur rodė ankščiau”.*
+Toliau keliaujama link DNS ir passive DNS t.y. *"Kur domenas rodo dabar ir kur rodė ankščiau".*
 
 **Aktyvus DNS:**
 
@@ -446,13 +446,13 @@ tą patį collection endpoint
 
 tada IP tampa naudingu pivot tašku infrastruktūroje.
 
-**Pateiksiu tokį principą** ***(na kaip pavadinsim taip nepagadinsim)*****:** *“DNS ryšys be konteksto yra triukšmas. DNS ryšys su laiko, vizualinio, backend ir template reuse kontekstu tampa stipriu intelligence”*.
+**Pateiksiu tokį principą** ***(na kaip pavadinsim taip nepagadinsim)*****:** *"DNS ryšys be konteksto yra triukšmas. DNS ryšys su laiko, vizualinio, backend ir template reuse kontekstu tampa stipriu intelligence"*.
 
 ---
 
 ## Penktas etapas. IP, ASN ir hosting context
 
-IP analizė turi atsakyt ne į klausimą *“ar IP blogas?”*, bet turi atsakyt į:
+IP analizė turi atsakyt ne į klausimą *"ar IP blogas?"*, bet turi atsakyt į:
 
 ```
 Ar šitas IP yra operacijos dalis, shared hosting triukšmas, CDN sluoksnis ar trumpalaikis scam deployment?
@@ -508,17 +508,17 @@ same form action backend
 same campaign timing
 ```
 
-Labaiii dažna klaida ką tenka matytm, tai kad *“Visi domenai yra tame pačiame ASN, vadinasi jie susiję”.*
+Labaiii dažna klaida ką tenka matytm, tai kad *"Visi domenai yra tame pačiame ASN, vadinasi jie susiję".*
 
 Tai tiesiog populiarus ir pigus VPS providers.
 
-As asmeniškai formuluoju kažkaip panašiai *“ASN overlap is a weak contextual signal. It becomes more meaningful only when combined with stronger indicators such as shared TLS certificate, same backend endpoint, same page template, same redirect chain or same temporal activity window”.*
+As asmeniškai formuluoju kažkaip panašiai *"ASN overlap is a weak contextual signal. It becomes more meaningful only when combined with stronger indicators such as shared TLS certificate, same backend endpoint, same page template, same redirect chain or same temporal activity window".*
 
 ---
 
 ## Šeštas etapas. TLS certificate pivoting
 
-Asmeniškai laikau TLS sertifikatus vienu iš geresnių pivoting “sluoksnių”, bet tik tada kai nėra painiojami unikalūs cert’ai su shared CDN certais.
+Asmeniškai laikau TLS sertifikatus vienu iš geresnių pivoting "sluoksnių", bet tik tada kai nėra painiojami unikalūs cert’ai su shared CDN certais.
 
 Censys certificate host history endpointas grąžina host observations pagal sertifikatą, todėl galima matyti, ant kokių hostų konkretus certificate fingerprint buvo stebėtas. Tai naudinga threat hunting ir timeline generation scenarijams. (https://docs.censys.com/reference/v3-threathunting-get-host-observations-with-certificate)
 
@@ -621,7 +621,7 @@ Ar po submit vartotojas redirectinamas į legit puslapį?
 Ar page title ir HTML comments rodo tą patį kitą?
 ```
 
-“Form action” labai geras pivot taškas, nes vartotojas gali matyt vieną domeną, bet credential arba payment data gali būt siunčiami į visai kitą backendą.
+"Form action" labai geras pivot taškas, nes vartotojas gali matyt vieną domeną, bet credential arba payment data gali būt siunčiami į visai kitą backendą.
 
 ```
 <form method="POST" action="https://api-collect-secure[.]example/submit">
@@ -929,7 +929,7 @@ Kai kurie domenai gali būti false positive.
 Vien feed hit nėra infrastruktūros analizė.
 ```
 
-Geresnis feed’ų naudojimas tai *“feed\_hit = supporting evidence”*, o ne *“feed\_hit = final intelligence product”.* Kitaip tariant.. feed’as sako, kad kažkas buvo pastebėta, o pivoting su kuo tai susiję.
+Geresnis feed’ų naudojimas tai *"feed\_hit = supporting evidence"*, o ne *"feed\_hit = final intelligence product".* Kitaip tariant.. feed’as sako, kad kažkas buvo pastebėta, o pivoting su kuo tai susiję.
 
 ---
 
@@ -952,7 +952,7 @@ law enforcement package
 customer warning
 ```
 
-Tekę matyt abuse report tokių "*“Hello, this domain is scam. Please remove it”* *(damn reddit what are you doing)*.
+Tekę matyt tokių abuse report'ų: *"Hello, this domain is scam. Please remove it"* *(damn reddit what are you doing)*.
 
 **Geriausias abuse report’as sakyčiau toks** ***(aišku ne visi provideriai priima kaip abuse report, nes jiem dar reik kažkokių nepaaiškiniamų dalykų, arba ten tiesiog sėdi žmonės prie abuse report’ų, kurie išvis niekur nesigaudo.. bet anyway..):***
 
@@ -985,7 +985,7 @@ Requested action:
 
 ## Keturioliktas etapas. False positive rizikos.
 
-Ne kiekvienas domenas su žodžiu "*“payment”* yra scam.  
+Ne kiekvienas domenas su žodžiu "payment" yra scam.\
 Ne kiekvienas naujai registruotas domenas yra blogas.  
 Ne kiekvienas shared hosting IP rodo bendrą operaciją.  
 Ne kiekvienas panašus puslapis yra phishing.

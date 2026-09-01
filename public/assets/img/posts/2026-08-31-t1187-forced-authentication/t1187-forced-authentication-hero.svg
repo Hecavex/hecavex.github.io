@@ -1,43 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title id="title">T1187 forced authentication defensive evidence map</title>
-  <desc id="desc">A HECAVEX diagram showing an untrusted resource reference leading to an outbound authentication attempt, with endpoint, network and identity evidence feeding a defensive response.</desc>
+  <title id="title">Forced-authentication detection</title>
+  <desc id="desc">A crafted document can trigger an authentication path that defenders must observe</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071017"/><stop offset="1" stop-color="#10242c"/></linearGradient>
-    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#193743" stroke-width="1"/></pattern>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#42d6e8"/></marker>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05090d"/><stop offset="1" stop-color="#0b1820"/></linearGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#25414d" stroke-width="1" opacity=".28"/></pattern>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M0 0 12 6 0 12Z" fill="#43d3e8"/></marker>
+    <style>
+      .sans{font-family:Inter,Arial,sans-serif}.mono{font-family:'IBM Plex Mono',Consolas,monospace}
+      .title{font:700 52px Inter,Arial,sans-serif;fill:#f4f8fa;letter-spacing:-1.5px}
+      .subtitle{font:400 25px Inter,Arial,sans-serif;fill:#89a2af}
+      .eyebrow{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:#43d3e8;letter-spacing:3px}
+      .node-title{font:700 28px Inter,Arial,sans-serif;fill:#f4f8fa}
+      .node-copy{font:400 20px Inter,Arial,sans-serif;fill:#89a2af}
+      .node-code{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:#43d3e8}
+      .note{font:500 19px Inter,Arial,sans-serif;fill:#89a2af}
+    </style>
   </defs>
   <rect width="1600" height="900" fill="url(#bg)"/>
-  <rect width="1600" height="900" fill="url(#grid)" opacity=".45"/>
-  <rect x="56" y="48" width="1488" height="804" fill="none" stroke="#315461" stroke-width="2"/>
-  <rect x="56" y="48" width="1488" height="8" fill="#42d6e8"/>
-  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" fill="#42d6e8">
-    <text x="96" y="112" font-size="22" letter-spacing="4">HECAVEX / DEFENSIVE TECHNICAL GUIDE</text>
-    <text x="96" y="148" font-size="17" fill="#8eb0bd" letter-spacing="2">MITRE ATT&amp;CK T1187 · CREDENTIAL ACCESS</text>
-  </g>
-  <g font-family="Arial, Helvetica, sans-serif" font-weight="700">
-    <text x="96" y="245" font-size="70" fill="#f4f8fa">FORCED AUTHENTICATION</text>
-    <text x="96" y="318" font-size="54" fill="#91adba">DETECT THE CHAIN, NOT A SINGLE EVENT.</text>
-  </g>
-  <g fill="#0a151c" stroke-width="3">
-    <rect x="96" y="410" width="350" height="176" stroke="#f3c653"/>
-    <rect x="624" y="410" width="350" height="176" stroke="#42d6e8"/>
-    <rect x="1152" y="410" width="350" height="176" stroke="#98df62"/>
-  </g>
-  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="19" fill="#42d6e8" letter-spacing="2">
-    <text x="124" y="454">01 / TRIGGER</text><text x="652" y="454">02 / EGRESS</text><text x="1180" y="454">03 / EVIDENCE</text>
-  </g>
-  <g font-family="Arial, Helvetica, sans-serif" fill="#f4f8fa">
-    <text x="124" y="504" font-size="29" font-weight="700">Untrusted reference</text><text x="124" y="543" font-size="21" fill="#a8c0c9">Message, document, shortcut</text>
-    <text x="652" y="504" font-size="29" font-weight="700">Authentication attempt</text><text x="652" y="543" font-size="21" fill="#a8c0c9">SMB or WebDAV to remote host</text>
-    <text x="1180" y="504" font-size="29" font-weight="700">Correlated telemetry</text><text x="1180" y="543" font-size="21" fill="#a8c0c9">Host + network + identity</text>
-  </g>
-  <path d="M446 498H604" stroke="#42d6e8" stroke-width="4" marker-end="url(#arrow)"/><path d="M974 498h158" stroke="#42d6e8" stroke-width="4" marker-end="url(#arrow)"/>
-  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="18">
-    <rect x="96" y="660" width="1406" height="96" fill="#09151c" stroke="#315461" stroke-width="2"/>
-    <circle cx="132" cy="708" r="8" fill="#98df62"/><text x="154" y="715" fill="#dce9ed">BLOCK UNNEEDED EGRESS</text>
-    <circle cx="528" cy="708" r="8" fill="#42d6e8"/><text x="550" y="715" fill="#dce9ed">AUDIT NTLM</text>
-    <circle cx="806" cy="708" r="8" fill="#f3c653"/><text x="828" y="715" fill="#dce9ed">CORRELATE ORIGIN</text>
-    <circle cx="1190" cy="708" r="8" fill="#ff7481"/><text x="1212" y="715" fill="#dce9ed">CONTAIN EXPOSURE</text>
-  </g>
-  <text x="96" y="812" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="15" fill="#7897a3" letter-spacing="2">OBSERVATION ≠ CAPTURE · OUTBOUND NTLM ≠ CONFIRMED COMPROMISE · CORRELATION DEFINES PRIORITY</text>
+  <rect width="1600" height="900" fill="url(#grid)" opacity=".5"/>
+  <path d="M0 8H1600" stroke="#43d3e8" stroke-width="8"/>
+  <text x="72" y="62" class="eyebrow">HECAVEX / EDITORIAL RESEARCH VISUAL</text>
+  <g transform="translate(160 210)"><path d="M0 0H360L500 140V520H0Z" fill="#0d1b24" stroke="#ffc857" stroke-width="10"/><path d="M360 0V140H500" fill="none" stroke="#ffc857" stroke-width="10"/><path d="M80 240H410M80 320H350" stroke="#f4f8fa" stroke-width="20" stroke-linecap="round"/></g><path d="M720 450H940" stroke="#43d3e8" stroke-width="12" marker-end="url(#arrow)"/><path d="M760 500c54 0 54 82 108 82s54-164 108-164 54 164 108 164 54-82 108-82" fill="none" stroke="#43d3e8" stroke-width="10"/><g transform="translate(1090 210)"><path d="M220 0 420 96v206c0 148-100 248-200 300C120 550 20 450 20 302V96Z" fill="#0d1b24" stroke="#ff6b6b" stroke-width="12"/><path d="M142 226H298M142 300H298" stroke="#ff6b6b" stroke-width="20" stroke-linecap="round"/></g>
 </svg>

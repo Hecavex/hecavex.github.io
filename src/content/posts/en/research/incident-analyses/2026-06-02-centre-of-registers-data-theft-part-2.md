@@ -163,7 +163,7 @@ After looking at the M365 environment and getting access to Outlook or SharePoin
 
 ![Session-hijacking detection dashboard highlights anomalous authenticated activity.](/assets/img/posts/substack/registru-centro-duomenu-vagyste-part/06.webp)
 
-**Next, the “low and slow” scenario is very important.**
+**Next, the "low and slow" scenario is very important.**
 
 If data was pulled:
 

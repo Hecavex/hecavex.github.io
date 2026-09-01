@@ -37,6 +37,38 @@ function frontMatter(source, file, errors) {
   }
 }
 
+function proseStyleViolations(source) {
+  const violations = [];
+  const curlyDoubleQuote = /[\u201c\u201d\u201e]/u;
+  let fence = null;
+
+  for (const [index, line] of source.split(/\r?\n/).entries()) {
+    const fenceMatch = line.match(/^\s*(`{3,}|~{3,})/);
+    if (fenceMatch) {
+      const marker = fenceMatch[1][0];
+      if (fence === marker) fence = null;
+      else if (fence === null) fence = marker;
+      continue;
+    }
+    if (fence !== null) continue;
+
+    const proseOnly = line
+      .replace(/`+[^`]*`+/g, '')
+      .replace(/(!?)\[([^\]]*)\]\([^)]*\)/g, '$1[$2]()')
+      .replace(/<[^>]+>/g, '')
+      .replace(/https?:\/\/[^\s<>'"]+/g, '')
+      .replace(/&(?:#\d+|#x[\da-f]+|[a-z][\da-z]+);/gi, '');
+    if (curlyDoubleQuote.test(proseOnly)) {
+      violations.push({ line: index + 1, message: 'use ASCII double quotes instead of typographic quotation marks' });
+    }
+    if (proseOnly.includes(';')) {
+      violations.push({ line: index + 1, message: 'replace prose semicolons with a full stop, comma, or separate sentence' });
+    }
+  }
+
+  return violations;
+}
+
 async function exists(path) {
   try { await access(path); return true; } catch { return false; }
 }
@@ -45,6 +77,7 @@ export async function validate() {
   const errors = [];
   const warnings = [];
   const keys = new Map();
+  const referencedPostSvgs = new Set();
   const files = (await walk(postsRoot)).filter((path) => ['.md', '.markdown'].includes(extname(path))).sort();
   const pageFiles = (await walk(pagesRoot)).filter((path) => extname(path) === '.md').sort();
 
@@ -62,6 +95,9 @@ export async function validate() {
     const file = relative(root, absolute).replaceAll('\\', '/');
     const source = await readFile(absolute, 'utf8');
     const data = frontMatter(source, file, errors);
+    for (const violation of proseStyleViolations(source)) {
+      errors.push(`${file}:${violation.line}: ${violation.message}`);
+    }
     if (data.draft === true) {
       if (data.published !== false) errors.push(`${file}: draft posts must also set published: false`);
       continue;
@@ -81,7 +117,14 @@ export async function validate() {
     if (data.image && typeof data.image === 'object' && data.image.path && !String(data.image.alt ?? '').trim()) errors.push(`${file}: configured image requires alt text`);
     const social = `/assets/img/social/${data.translation_key}-${data.lang}.png`;
     if (!(await exists(join(publicRoot, social.slice(1))))) errors.push(`${file}: missing generated social card ${social}`);
-    if (data.image && typeof data.image === 'object' && extname(String(data.image.path)).toLowerCase() === '.svg' && data.image.social !== social) errors.push(`${file}: SVG hero must declare PNG social metadata ${social}`);
+    if (data.image && typeof data.image === 'object' && extname(String(data.image.path)).toLowerCase() === '.svg') {
+      if (data.image.social !== social) errors.push(`${file}: SVG hero must declare PNG social metadata ${social}`);
+      referencedPostSvgs.add(String(data.image.path));
+    }
+    for (const match of source.matchAll(/!\[([^\]]*)\]\((\/assets\/img\/[^)\s]+\.svg)\)/g)) {
+      if (!match[1].trim()) errors.push(`${file}: inline SVG ${match[2]} requires descriptive alt text`);
+      referencedPostSvgs.add(match[2]);
+    }
     if (data.mermaid || /^```mermaid\s*$/m.test(source)) errors.push(`${file}: Mermaid runtime is unsupported; use a local static SVG`);
     if (data.math) errors.push(`${file}: mathematics runtime flags are unsupported; publish static accessible notation`);
     if (data.lang === 'lt' && String(data.permalink ?? '').startsWith('/lt/research/')) errors.push(`${file}: Lithuanian canonical URLs must use /lt/tyrimai/`);
@@ -108,6 +151,17 @@ export async function validate() {
     for (const field of ['path', 'thumbnail']) {
       if (JSON.stringify(en.data.image?.[field] ?? null) !== JSON.stringify(lt.data.image?.[field] ?? null)) errors.push(`${key}: image.${field} differs between language editions`);
     }
+  }
+
+  for (const publicPath of referencedPostSvgs) {
+    const path = join(publicRoot, publicPath.replace(/^\/+/, ''));
+    if (!(await exists(path))) {
+      errors.push(`${publicPath}: referenced post SVG is missing`);
+      continue;
+    }
+    const svg = await readFile(path, 'utf8');
+    if (!/<title\b[^>]*>.+?<\/title>/s.test(svg)) errors.push(`${publicPath}: accessible SVG title is missing`);
+    if (!/<desc\b[^>]*>.+?<\/desc>/s.test(svg)) errors.push(`${publicPath}: accessible SVG description is missing`);
   }
 
   const pageKeys = new Map();

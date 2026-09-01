@@ -21,7 +21,7 @@ categories: ["fraud-scams", "tradecraft"]
 tags: ["pivoting", "fraud infrastructure", "RDAP", "DNS", "OSINT"]
 featured: true
 scope: "A methodology for passive infrastructure research and correlation of related objects."
-limitations: "Shared hosting, certificates, or analytics IDs do not prove common control on their own; conclusions require multiple converging signals."
+limitations: "Shared hosting, certificates, or analytics IDs do not prove common control on their own. Conclusions require multiple converging signals."
 key_findings:
   - "The final URL often hides more valuable backend and redirect indicators."
   - "Favicon, DOM, TLS, DNS, and form-action overlaps help expand an investigation."
@@ -74,7 +74,7 @@ And from *"How much more surface of the same fraud operation we have yet to see"
 
 If, so to speak, Infrastructure pivoting is a CTI method, ***where one systematically moves from one known artifact to related objects until a broader view of the infrastructure emerges.***
 
-There are plenty of possible starting points; here are a few:
+There are plenty of possible starting points. Here are a few:
 
 #### Key points
 
@@ -950,7 +950,7 @@ law enforcement package
 customer warning
 ```
 
-I've seen abuse reports like this"*"Hello, this domain is scam. Please remove it"* *(damn reddit what are you doing)*.
+I've seen abuse reports like this: *"Hello, this domain is scam. Please remove it"* *(damn reddit what are you doing)*.
 
 **I would say the best abuse report is this** ***(of course, not all providers accept it as an abuse report, because they still need some unexplained things, or people just sit there with abuse reports that don't get caught anywhere.. but anyway..):***
 
@@ -983,7 +983,7 @@ Requested action:
 
 ## Fourteenth stage. False positive risk.
 
-Not every domain with the word "*payment* is a scam.  
+Not every domain with the word "payment" is a scam.\
 Not every newly registered domain is bad.  
 Not every shared hosting IP shows a shared transaction.  
 Not every similar page is phishing.

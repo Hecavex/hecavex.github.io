@@ -39,11 +39,11 @@ image:
 
 ## Techninis scenarijus: kada pažeidžiamumo signalas tampa reguliaciniu klausimu
 
-Situacija tokia: gamintojo PSIRT gauna signalą *(arba intel’į, jei taip paprasčiau)*, kad trečiosios šalies komponento pažeidžiamumas gali būti aktyviai išnaudojamas. Komponentas aptinkamas trijose palaikomose produkto versijose, dviejose senesnėse firmware šakose ir nuo cloud’o priklausančioje funkcijoje, kurią naudoja tik dalis diegimų. Viešai jau yra exploit kodas, internete suaktyvėjo pažeidžiamų sistemų paieška, o vienas klientas atsiuntė nepilnus logus su neįprastu child process paleidimu. Kitaip sakant, signalų jau ne vienas, bet automatinio atsakymo „reportinam“ vis dar nėra.
+Situacija tokia: gamintojo PSIRT gauna signalą *(arba intel’į, jei taip paprasčiau)*, kad trečiosios šalies komponento pažeidžiamumas gali būti aktyviai išnaudojamas. Komponentas aptinkamas trijose palaikomose produkto versijose, dviejose senesnėse firmware šakose ir nuo cloud’o priklausančioje funkcijoje, kurią naudoja tik dalis diegimų. Viešai jau yra exploit kodas, internete suaktyvėjo pažeidžiamų sistemų paieška, o vienas klientas atsiuntė nepilnus logus su neįprastu child process paleidimu. Kitaip sakant, signalų jau ne vienas, bet automatinio atsakymo "reportinam" vis dar nėra.
 
-Čia jau neužtenka pasakyti „radom CVE, patchinam“. Gamintojas turi nustatyti, kuriuose produkto build’uose yra pažeidžiamas kodas, ar atitinkamas code path’as pasiekiamas ir atvertas, ar stebėta veikla iš tiesų yra piktavališkas jo produkto išnaudojimas ir kada turimų įrodymų pakanka pradėti skaičiuoti **CRA 14 straipsnyje** nustatytą pranešimo terminą.
+Čia jau neužtenka pasakyti "radom CVE, patchinam". Gamintojas turi nustatyti, kuriuose produkto build’uose yra pažeidžiamas kodas, ar atitinkamas code path’as pasiekiamas ir atvertas, ar stebėta veikla iš tiesų yra piktavališkas jo produkto išnaudojimas ir kada turimų įrodymų pakanka pradėti skaičiuoti **CRA 14 straipsnyje** nustatytą pranešimo terminą.
 
-Ir čia prasideda ta nepatogi pilkoji zona tarp techninio fakto ir teisinės ribos. Komponento atitiktis gali pradėti skubų triage, bet nebūtinai reiškia, kad gamintojas jau sužinojo apie praneštiną įvykį. Kita vertus, laukti, kol klientas atsiųs tobulą forensic paketą ir dar kas nors garsiai pasakys „taip, mus nulaužė“, irgi būtų per aukšta riba. Organizacijai reikia apginamo metodo konkretaus produkto išnaudojamumui, įrodymų kokybei ir tam awareness timestamp’ui, kai pasiekiamas **pagrįstas tikrumo laipsnis**, įvertinti. Nuo to momento iki pirmojo pranešimo lieka ne daugiau kaip 24 valandos *(laikrodis, deja, dėl savaitgalio nesustoja)*.
+Ir čia prasideda ta nepatogi pilkoji zona tarp techninio fakto ir teisinės ribos. Komponento atitiktis gali pradėti skubų triage, bet nebūtinai reiškia, kad gamintojas jau sužinojo apie praneštiną įvykį. Kita vertus, laukti, kol klientas atsiųs tobulą forensic paketą ir dar kas nors garsiai pasakys "taip, mus nulaužė", irgi būtų per aukšta riba. Organizacijai reikia apginamo metodo konkretaus produkto išnaudojamumui, įrodymų kokybei ir tam awareness timestamp’ui, kai pasiekiamas **pagrįstas tikrumo laipsnis**, įvertinti. Nuo to momento iki pirmojo pranešimo lieka ne daugiau kaip 24 valandos *(laikrodis, deja, dėl savaitgalio nesustoja)*.
 
 Nuo **2026 m. rugsėjo 11 d.** gamintojai privalės pranešti apie aktyviai išnaudojamus pažeidžiamumus, esančius produktuose su skaitmeniniais elementais, ir apie rimtus incidentus, darančius poveikį tokių produktų saugumui. Pranešimai teikiami pagal tvarką, apimančią paskirtą koordinuojančią reagavimo į kompiuterių saugumo incidentus tarnybą, ENISA ir bendrą pranešimų teikimo platformą (angl. *Single Reporting Platform*, SRP).
 
@@ -87,7 +87,7 @@ Praktiškai naudinga laiko seka prasideda nuo įrodymų, o ne nuo bendro CRA dat
 | Pateikta taisomoji arba rizikos mažinimo priemonė | Pradedamas galutinės pažeidžiamumo ataskaitos terminas | Pataisos, apėjimo būdo ir ištaisymo įrodymai |
 {: .hx-table-wide }
 
-`signal_received_at` nebūtinai lygu `awareness`. Nepatikrinto pranešimo gavimas pradeda skubų triage, o gamintojas laikomas sužinojusiu tada, kai pradinis vertinimas suteikia pagrįstą tikrumo laipsnį, kad pranešimo sąlygos tenkinamos. Ir ne, „mes vis dar vertinam“ negali tapti begaliniu snooze mygtuku terminui atidėti.
+`signal_received_at` nebūtinai lygu `awareness`. Nepatikrinto pranešimo gavimas pradeda skubų triage, o gamintojas laikomas sužinojusiu tada, kai pradinis vertinimas suteikia pagrįstą tikrumo laipsnį, kad pranešimo sąlygos tenkinamos. Ir ne, "mes vis dar vertinam" negali tapti begaliniu snooze mygtuku terminui atidėti.
 
 Rimto incidento galutinės ataskaitos terminas skiriasi: ji pateikiama per vieną mėnesį nuo 72 valandų pranešimo. Aktyviai išnaudojamo pažeidžiamumo galutinė ataskaita pateikiama per 14 dienų nuo tada, kai tampa prieinama taisomoji arba rizikos mažinimo priemonė.
 
@@ -104,7 +104,7 @@ Pagrįstas tikrumas nėra nei pirmas random tweet’as, nei 200 puslapių forens
 | `product_relevance_at` | Paveiktas komponentas, versija ar incidentas susietas su į taikymo sritį patenkančiu produktu |
 | `exploitability_assessed_at` | Įvertintas pasiekiamumas, atvertis ir būtinos išnaudojimo sąlygos |
 | `reasonable_certainty_at` | Pasiekta įrodymų riba ir patvirtintas sprendimo pagrindimas |
-| `article14_clock_started_at` | Oficialiai užfiksuota pranešimo termino pradžia; paprastai sutampa su pagrįsto tikrumo momentu |
+| `article14_clock_started_at` | Oficialiai užfiksuota pranešimo termino pradžia. Paprastai sutampa su pagrįsto tikrumo momentu |
 | `early_warning_submitted_at` | Pateiktas 24 valandų ankstyvasis perspėjimas |
 | `notification_submitted_at` | Pateiktas 72 valandų pranešimas |
 | `mitigation_available_at` | Pateikta taisomoji arba rizikos mažinimo priemonė |
@@ -116,7 +116,7 @@ Pagrįstas tikrumas nėra nei pirmas random tweet’as, nei 200 puslapių forens
 
 ## Konkretaus produkto išnaudojamumas
 
-SBOM atsako į klausimą „ar komponentas yra?“. Jis neatsako į klausimą „ar jau reportinam?“ *(būtų patogu, bet ne)*.
+SBOM atsako į klausimą "ar komponentas yra?". Jis neatsako į klausimą "ar jau reportinam?" *(būtų patogu, bet ne)*.
 
 14 straipsnio vertinimui taip pat reikia paveiktų produkto versijų, komponento pasiekiamumo, atverties vykdymo metu, įjungtų funkcijų, būtinų išnaudojimo sąlygų, konkrečiam produktui taikomų piktavališko išnaudojimo įrodymų, kompensuojamųjų kontrolės priemonių ir sužinojimo laiko žymos. Pasirengimas 14 straipsniui priklauso nuo to, ar organizacija per kelias valandas gali susieti pažeidžiamumą su paveiktais rinkiniais, įdiegtomis versijomis, nuotolinio duomenų apdorojimo priklausomybėmis, palaikomomis versijomis, klientų grupėmis ir išnaudojimo įrodymais.
 
@@ -302,7 +302,7 @@ Valdytojas, teikiantis tik netechninę pagalbą, vertinamas kitaip nei tas, kuri
 
 14 straipsnis nuo **2026 m. rugsėjo 11 d.** taikomas į taikymo sritį patenkantiems produktams, įskaitant produktus, pateiktus rinkai iki visiško CRA taikymo 2027 m. gruodžio 11 d. Todėl būtina turėti patikimus jau klientų aplinkose esančių produktų pateikimo rinkai, versijų ir diegimo įrašus.
 
-Palaikymo laikotarpis nustato, kiek laiko gamintojas veiksmingai tvarko pažeidžiamumus, ir turi atspindėti pagrįstai tikėtiną naudojimo trukmę, numatytąją paskirtį, naudotojų lūkesčius, priklausomybes ir rinkos praktiką. Paprastai jis trunka bent penkerius metus, nebent pagrįstai tikimasi, kad produktas bus naudojamas trumpiau; ilgiau naudoti skirtam produktui gali reikėti ilgesnio laikotarpio. Pabaigos data turi būti atskleista įsigyjant, o kai techniškai įmanoma, naudotojai turi būti informuoti apie palaikymo pabaigą.
+Palaikymo laikotarpis nustato, kiek laiko gamintojas veiksmingai tvarko pažeidžiamumus, ir turi atspindėti pagrįstai tikėtiną naudojimo trukmę, numatytąją paskirtį, naudotojų lūkesčius, priklausomybes ir rinkos praktiką. Paprastai jis trunka bent penkerius metus, nebent pagrįstai tikimasi, kad produktas bus naudojamas trumpiau. Ilgiau naudoti skirtam produktui gali reikėti ilgesnio laikotarpio. Pabaigos data turi būti atskleista įsigyjant, o kai techniškai įmanoma, naudotojai turi būti informuoti apie palaikymo pabaigą.
 
 Pranešimo pareigos gali išlikti ir pasibaigus deklaruotam palaikymo laikotarpiui, net jei pažeidžiamumų tvarkymo pareigos nebetaikomos taip pat.
 
@@ -329,7 +329,7 @@ Jei programinės įrangos versija iš esmės pakeičiama ir pateikiama rinkai, j
 
 ## Techninės parengties modelis
 
-Pasirengimas 14 straipsniui realiai yra data correlation ir evidence problema. „Turim SBOM“, „turim SIEM“ ir „Legal turi šabloną“ dar nereiškia, kad turim veikiantį procesą. Svarbu, ar visi šie gabalai pakankamai greitai sukuria vieną apginamą sprendimą, leidžiantį pateikti pranešimą ir apsaugoti naudotojus.
+Pasirengimas 14 straipsniui realiai yra data correlation ir evidence problema. "Turim SBOM", "turim SIEM" ir "Legal turi šabloną" dar nereiškia, kad turim veikiantį procesą. Svarbu, ar visi šie gabalai pakankamai greitai sukuria vieną apginamą sprendimą, leidžiantį pateikti pranešimą ir apsaugoti naudotojus.
 
 | Gebėjimų sritis | Klausimas, į kurį organizacija turi atsakyti | Pagrindiniai įrodymai |
 | --- | --- | --- |
@@ -345,7 +345,7 @@ Veiklos rodikliai turėtų sekti įrodymų vartus: laikas iki pirminio vertinimo
 
 ## Išvada
 
-Jei viską sutrauktume į vieną sakinį: CRA 14 straipsnis pažeidžiamumo signalą paverčia konkrečiam produktui skirtu, įrodymais pagrįstu sprendimu. Gamintojas turi susieti komponentų ir build’ų duomenis, reachability, runtime exposure, išnaudojimo įrodymus, incidento poveikį, klientų aprėptį ir teisinį vertinimą. Svarbiausia nesupainioti „kažkur internete tai jau exploitina“ su „patikimai žinom, kad tai taikoma mūsų produktui“.
+Jei viską sutrauktume į vieną sakinį: CRA 14 straipsnis pažeidžiamumo signalą paverčia konkrečiam produktui skirtu, įrodymais pagrįstu sprendimu. Gamintojas turi susieti komponentų ir build’ų duomenis, reachability, runtime exposure, išnaudojimo įrodymus, incidento poveikį, klientų aprėptį ir teisinį vertinimą. Svarbiausia nesupainioti "kažkur internete tai jau exploitina" su "patikimai žinom, kad tai taikoma mūsų produktui".
 
 Kritinė laiko žyma yra momentas, kai pradinis vertinimas suteikia pagrįstą tikrumo laipsnį. Tam nereikia nei laukti nepriekaištingo grėsmės veikėjo priskyrimo, nei kiekvieną viešą išnaudojimo kodą laikyti praneštinu įvykiu. Reikia atsekamo techninio pagrindimo, paremto paveiktu produktu ir patikimais įrodymais.
 

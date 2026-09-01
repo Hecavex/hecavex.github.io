@@ -47,11 +47,11 @@ Atskiras [informacijos gamyklų prie Lietuvos tyrimas](/lt/tyrimai/informacijos-
 
 ## Kas yra Cloacking CTI kontekste
 
-Cloaking phishing ir malvertising kontekste yra turinio pateikimo kontrolė pagal tam tikras lankytojo savybes. Security scanneriui, ad reviewer’iui, cloud sandbox’ui arba tyrėjui *(researcheriui arba kaip pavadinsi taip nepagadinsi)* parodomas “normalus” puslapis. Vartotojui į kurį taikomasi rodomas phishing, scam, crypto drainer, fake investment platforma, malware landing page, arba kažkoks fake installer. Varonis 2026 m. aprašytas 1Campaign atvėjis parodo, kad lygiai toks pats modelis vyksta ir Google Ads ekosistemoje t.y. realus varototoajs mato scam turinį, o ad platformos revieweriai ir automatizuoti scanneriai mato blank page, arba harmless page. (Varonis, 2026)
+Cloaking phishing ir malvertising kontekste yra turinio pateikimo kontrolė pagal tam tikras lankytojo savybes. Security scanneriui, ad reviewer’iui, cloud sandbox’ui arba tyrėjui *(researcheriui arba kaip pavadinsi taip nepagadinsi)* parodomas "normalus" puslapis. Vartotojui į kurį taikomasi rodomas phishing, scam, crypto drainer, fake investment platforma, malware landing page, arba kažkoks fake installer. Varonis 2026 m. aprašytas 1Campaign atvėjis parodo, kad lygiai toks pats modelis vyksta ir Google Ads ekosistemoje t.y. realus varototoajs mato scam turinį, o ad platformos revieweriai ir automatizuoti scanneriai mato blank page, arba harmless page. (Varonis, 2026)
 
-HUMAN Security 2025 m. malvertising analizėje cloaking pateikė kaip “split personality” reklamos modelį, kuris yra tas toks pat, kaip ir 1Campaign. (HUMAN Security, 2025)
+HUMAN Security 2025 m. malvertising analizėje cloaking pateikė kaip "split personality" reklamos modelį, kuris yra tas toks pat, kaip ir 1Campaign. (HUMAN Security, 2025)
 
-ZeroFox nurodo tipinius cloaked phishing kit požymius: JavaScript rendering reikalavimas, User-Agent filtering, timing delays, IP blocklists, geo-blocking ir domain rotation/DGA. Taip pat pamini, kad phishing kits dažnai blokuoja web crawlerius, resercherius, botus ir kitus kas “nepageidaujami”. (ZeroFox, 2023)
+ZeroFox nurodo tipinius cloaked phishing kit požymius: JavaScript rendering reikalavimas, User-Agent filtering, timing delays, IP blocklists, geo-blocking ir domain rotation/DGA. Taip pat pamini, kad phishing kits dažnai blokuoja web crawlerius, resercherius, botus ir kitus kas "nepageidaujami". (ZeroFox, 2023)
 
 Nuuuuu aš čia dar irgi įsikišiu *(kas kitas jei ne šuo pats sau pasilaižys…),* kai dar buvau NordVPN ThreatProtection’e rašėm ir mes šiek tiek apie cloaking ir gaudėm 2024 m. *(mano komanda rašė…likom tik NordVPN experts.. sad).* (NordVPN, 2024)
 
@@ -71,7 +71,7 @@ Nuuuuu aš čia dar irgi įsikišiu *(kas kitas jei ne šuo pats sau pasilaižys
 | JavaScript rendering gate | Turinys sugeneruojamas tik su JS, cookies, localStorage, timers | Static scanner mato tuščią HTML | Naudoti Playwright/Chrome su HAR ir screenshots |
 | Headless/browser fingerprint detection | Tikrina `navigator.webdriver`, plugins, fonts, WebGL, canvas, screen size | Automation gauna fasadą | Lyginti real browser ir headless rezultatus |
 | Referer / ad-click gating | Tikra versija rodoma tik atėjus iš Meta/Google ad click | Tiesioginis URL atidarymas neveikia | Rinkti pilną ad URL su parametrais, refereriu ir redirect chain |
-| Cookie/session gating | Pirmas apsilankymas rodo vieną turinį, pakartotinis kitą | Po kelių tyrimų puslapis „užsidaro“ | Naudoti švarias sesijas, naujus profilius, fiksuoti pirmą hitą |
+| Cookie/session gating | Pirmas apsilankymas rodo vieną turinį, pakartotinis kitą | Po kelių tyrimų puslapis "užsidaro" | Naudoti švarias sesijas, naujus profilius, fiksuoti pirmą hitą |
 | Time delay | Scam turinys atsiranda po 5–30 s arba po scroll/click | Greitas scanneris nespėja pamatyti | Ilginti wait time, fiksuoti DOM pokyčius |
 | Path-based landers | Tas pats domenas turi daug lokalizuotų `/lander/lt...`, `/lander/se...` kelių | Vienas path neveikia, kitas rodo scam | Enumeruoti tik iš viešai matomų pathų, lyginti struktūrą |
 | Shield pages | Pradinis landeris atrodo kaip low-quality news/gossip page | Scanneris mato pseudo portalą | Žiūrėti JS, redirect initiators, form actions, hidden links |
@@ -92,7 +92,7 @@ Tai sugaudyt, kurioje vietoje prasileidai… Uhhh smagumėlis.
 
 ---
 
-## Kaip saugiai “decloakint” ir pasiekt tikrą phishing/scam turinį
+## Kaip saugiai "decloakint" ir pasiekt tikrą phishing/scam turinį
 
 Jei trumpai, tai pagrindas surinkt IOCs, screenshot’us, cloaking mechanizmą. Nevedam realių duomenų, nieko neperkam, nespaudžiam download, nevykdom payload’ų.. Neinteractinam su operatoriais daugiau nei reikia, kad pasitvirtint phishing’ą/scam’ą, jei formos reikalauja telefono numerio, banko kortelės duomenų nu nevedam aišku savo ar kieno kito *(realiai čia suveikia dummy duomenys dažnu atveju)*. Užfiksavom form fields, endpoint’us, DOM, screenshot’us ir network request’us.. and We are done.
 
@@ -189,10 +189,10 @@ with sync_playwright() as p:
         browser.close()
 ```
 
-*(neskriauskit dėl “mandro” python script’o, aš ne developeris..ai jo..ir čia nėra universalus decoderis tinkantis viskam, situacija situacijai nėra lygi)*
+*(neskriauskit dėl "mandro" python script’o, aš ne developeris..ai jo..ir čia nėra universalus decoderis tinkantis viskam, situacija situacijai nėra lygi)*
 
 **Matrix-based decloacking**  
-Vienas iš praktiškiausių būdų *(aš manau.. mano nuomonė)* yra ne “atidariau URL ir pažiūrėjau”, o susidaryt testavimui matricą, kitaip sakant.. tas pats URL turi būt patikrintas per kelis profilius, skirtumai tarp atsakymų jau gali būt įrodymu, kad vyksta content decision logic.
+Vienas iš praktiškiausių būdų *(aš manau.. mano nuomonė)* yra ne "atidariau URL ir pažiūrėjau", o susidaryt testavimui matricą, kitaip sakant.. tas pats URL turi būt patikrintas per kelis profilius, skirtumai tarp atsakymų jau gali būt įrodymu, kad vyksta content decision logic.
 
 **Papraščiau tariant (imant Lietuvą):**
 
@@ -267,7 +267,7 @@ Kitaip sakant.. IOCs miršta, o TTP gyvena toliau.
 
 Viršuje jau išvardinau pagrindines technikas mandrame table, o dabar einam prie kaip kas kur ką.
 
-Čia mistikos nelabai daug yra, cloacking nėra kažkoks super elitinis “APT Magic”, tai žemiški *(ir daug ko naudojami)* web kontrolės sluoksniai tik sujungti į vieną decision varykliuką.
+Čia mistikos nelabai daug yra, cloacking nėra kažkoks super elitinis "APT Magic", tai žemiški *(ir daug ko naudojami)* web kontrolės sluoksniai tik sujungti į vieną decision varykliuką.
 
 **Geo/IP based cloacking.**  
 Serveris tikrina, iš kokios šalies ateina lankytojas. Jei lankytojas iš Lietuvos *(čia visur imsiu Lietuvą, lengviau suprąst bus)* tai jam rodomas fake Delfi / Ignitis / Orlen / Investment puslapis. Jei lankytojas iš JAV ar kokio cloud datacenterio jam rodomas blank puslapis, harmless blogas arba low-quality random puslapis.
@@ -279,7 +279,7 @@ Serveris tikrina, iš kokios šalies ateina lankytojas. Jei lankytojas iš Lietu
 Jei IP atrodo kaip analitiko arba scannerio aplinka tai rodomos harmless turinys.  
 Jei IP atrodo kaip residential arba mobile user’is tai rodomas tikras puslapis.
 
-Dėl to vien “patikrinau per VPS” dažnai reiškia, kad “patikrinau taip, kaip attacker’is tikėjosi, kad tikrins researcheris”.
+Dėl to vien "patikrinau per VPS" dažnai reiškia, kad "patikrinau taip, kaip attacker’is tikėjosi, kad tikrins researcheris".
 
 **User-Agent filtering**  
 Čia jau klasika. Serveris arba JavaScript žiūri ar lankytojas ateina su realistišku Chrome/Safari/Firefox User-Agent ar su ***curl, python-requests, HeadlessChrome, GoogleBot, BingBot, facebookexternalhit, Go-http-client*** ir panašūs mandri pavadinimai.
@@ -329,7 +329,7 @@ mouse movement
 touch support
 ```
 
-Jei jau puslapis “mato”, kad browseris headless arba “per daug švarus”, gali rody fake puslapį, todėl čia jau tiklas nėra “nulaužiam” cloaking’ą, o susikuriam kelis skirtingus rinkimo profilius ir dokumentuojam, kaip turinys keičiasi pagal aplinkas.
+Jei jau puslapis "mato", kad browseris headless arba "per daug švarus", gali rody fake puslapį, todėl čia jau tiklas nėra "nulaužiam" cloaking’ą, o susikuriam kelis skirtingus rinkimo profilius ir dokumentuojam, kaip turinys keičiasi pagal aplinkas.
 
 Čia nereik jau patapt developeriu automatizacijos magistru ir kurt kažkokius stealth bypass framework’us kaip scammerių QA. Reliai užtenka emuliuoti realaus vartotojo sąlygas ir rinkt skirtumus.
 
@@ -464,7 +464,7 @@ Praktiškai tyrimas gali atrodyt taip:
 11. Reportinam platformai / brandui / CERT-LT / OpenPhish / ScamAdvisor / GSB ar dar kažkam
 ```
 
-Mano akim čia labai paprastas flow ir truputi atskiria "aš radau scam puslapį” nuo “aš atlikau tyrimą ir nustačiau, kad čia scam”.
+Mano akim čia labai paprastas flow ir truputi atskiria "aš radau scam puslapį" nuo "aš atlikau tyrimą ir nustačiau, kad čia scam".
 
 ![Įtartino peradresavimo grandinė nuo reklamos ir sutrumpintos nuorodos iki sukčiavimo puslapio.](/assets/img/posts/substack/kai-fake-news-scamai-ir-cloaking/06.webp)
 
@@ -627,9 +627,9 @@ Kaip gi be truputi streso ir kaip gi organizacijoms duodamos rizikos.
 
 **Pirma**. Reputacinė. Jei vartotojas mato tavo logotipą fake investicinėje reklamoje, jam nebūtinai aišku, kad tu nesi kaltas. Brand impersonation visada kerta per pasitikėjimą.
 
-**Antra.** Klientų apsauga. Bankai, energetikos įmonės, kurjeriai, valstybės institucijos ir žiniasklaida dažnai tampa tokio tipo scamų “pasitikėjimo donorais”. Sukčius neturi kurti pasitikėjimo nuo nulio. Jis tiesiog pavagia tavo brandą.
+**Antra.** Klientų apsauga. Bankai, energetikos įmonės, kurjeriai, valstybės institucijos ir žiniasklaida dažnai tampa tokio tipo scamų "pasitikėjimo donorais". Sukčius neturi kurti pasitikėjimo nuo nulio. Jis tiesiog pavagia tavo brandą.
 
-**Trečia.** Incident response ribos. Daug organizacijų vis dar galvoja, kad jei incidentas nevyksta jų infrastruktūroje, tai “ne mūsų incidentas”. Techniškai gal ir taip. Reputaciškai jau nebe.
+**Trečia.** Incident response ribos. Daug organizacijų vis dar galvoja, kad jei incidentas nevyksta jų infrastruktūroje, tai "ne mūsų incidentas". Techniškai gal ir taip. Reputaciškai jau nebe.
 
 **Ketvirta.** Jei tavo brand monitoring vendor tikrina URL iš vieno cloud regiono, jis gali nematyti cloaked turinio. Tada gauni gražią ataskaitą, kad viskas švaru, o vartotojai tuo metu pildo fake investment formas.
 

@@ -102,7 +102,7 @@ JetBrains now reports active and attempted exploitation against unpatched server
 
 ### CVE-2026-8037: Progress Kemp LoadMaster
 
-<dl><div><dt>Affected surface</dt><dd>LoadMaster GA 7.2.63.1 and earlier; LTSF 7.2.54.17 and earlier</dd></div><div><dt>Attack result</dt><dd>Pre-authentication command injection</dd></div></dl>
+<dl><div><dt>Affected surface</dt><dd>LoadMaster GA 7.2.63.1 and earlier, plus LTSF 7.2.54.17 and earlier</dd></div><div><dt>Attack result</dt><dd>Pre-authentication command injection</dd></div></dl>
 
 The vulnerability permits arbitrary command execution through unsanitised input in multiple command endpoints. Load balancers live in a particularly useful part of the network: externally reachable, trusted and positioned in front of applications defenders actually care about.
 
@@ -132,7 +132,7 @@ Apache states that an error in the CVE-2026-29146 fix allowed EncryptInterceptor
 
 ### Adform's shared JavaScript became a crypto clipper
 
-The compromised `trackpoint-async.js` did not need to install malware on every visitor. While an affected page was open, the appended code could replace Bitcoin and Ethereum addresses in page text, form fields and clipboard-related events. My analysis recovered four payload variants and found 83 exact-hash observations across 59 hosts. Fifty-five hosts received at least one variant containing valid replacement wallets; four only received the early variant with invalid address strings.
+The compromised `trackpoint-async.js` did not need to install malware on every visitor. While an affected page was open, the appended code could replace Bitcoin and Ethereum addresses in page text, form fields and clipboard-related events. My analysis recovered four payload variants and found 83 exact-hash observations across 59 hosts. Fifty-five hosts received at least one variant containing valid replacement wallets. Four only received the early variant with invalid address strings.
 
 **Do now:** identify where the script was loaded, search cached and edge-served responses beyond the central incident window, preserve affected JavaScript and browser evidence, and review cryptocurrency workflows that trusted browser-rendered addresses. A clean origin response today does not prove every intermediary cache was clean yesterday.
 

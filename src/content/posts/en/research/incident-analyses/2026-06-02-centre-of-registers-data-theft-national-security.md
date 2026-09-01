@@ -1,5 +1,5 @@
 ---
-title: "The Centre of Registers Data Theft: When “It’s Just Data” Suddenly Becomes a National Security Issue"
+title: "The Centre of Registers Data Theft: When \"It’s Just Data\" Suddenly Becomes a National Security Issue"
 description: "Why large-scale theft from Lithuania's Centre of Registers is not merely a privacy incident but a potential intelligence and national-security issue."
 seo_title: "Lithuania Centre of Registers Data Theft and National Security"
 seo_keywords:
@@ -29,7 +29,7 @@ series_key: centre-of-registers-data-theft
 series_part: 1
 image:
   path: /assets/img/posts/substack/registru-centro-duomenu-vagyste-kai/01.webp
-  alt: "The Centre of Registers Data Theft: When “It’s Just Data” Suddenly Becomes a National Security Issue"
+  alt: "The Centre of Registers Data Theft: When \"It’s Just Data\" Suddenly Becomes a National Security Issue"
   thumbnail: /assets/img/posts/substack/registru-centro-duomenu-vagyste-kai/01-card.webp
   width: 1280
   height: 719
@@ -119,7 +119,7 @@ The Lockheed Martin Cyber ​​Kill Chain model helps to assess an incident as 
 
 Elementary things..
 
-**For residents:** check information against official sources; do not click suspicious links; do not disclose login details by phone or email; slow down when a request is "very urgent"; use MFA; and monitor bank accounts and potential new liabilities. I still remember the CityBee leak and people entering their details—come on.
+**For residents:** check information against official sources. Do not click suspicious links. Do not disclose login details by phone or email. Slow down when a request is "very urgent". Use MFA. And monitor bank accounts and potential new liabilities. I still remember the CityBee leak and people entering their details—come on.
 
 **For companies:** prepare for more convincing social-engineering attacks, especially against accounting, administration, management, legal, HR, suppliers and customer service.
 

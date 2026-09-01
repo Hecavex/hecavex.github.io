@@ -40,11 +40,11 @@ OSINT yra rinkimo disciplina. Ji suteikia metodus viešai ir komerciškai priein
 
 Šis skirtumas nėra akademinis. Nuo jo priklauso, ar komanda kuria žvalgybą, ar tik brangią nuorodų krūvą.
 
-Praktinis workflow gali prasidėti nuo [pakartojamų „Google“ paieškos operatorių](/lt/tyrimai/google-dorking/), teiginius vertinti pagal [aiškias analitinio pasitikėjimo taisykles](/lt/tyrimai/pasitikejimas-yra-laukas/) ir struktūruotus stebėjimus saugoti [MISP, nepainiojant platformos su pačiu žvalgybos procesu](/lt/tyrimai/misp-for-cti-part-1/).
+Praktinis workflow gali prasidėti nuo [pakartojamų "Google" paieškos operatorių](/lt/tyrimai/google-dorking/), teiginius vertinti pagal [aiškias analitinio pasitikėjimo taisykles](/lt/tyrimai/pasitikejimas-yra-laukas/) ir struktūruotus stebėjimus saugoti [MISP, nepainiojant platformos su pačiu žvalgybos procesu](/lt/tyrimai/misp-for-cti-part-1/).
 
 ## Rinkimas prasideda nuo reikalavimo
 
-„Stebėti ransomware“ nėra žvalgybos reikalavimas. Jame nėra saugomo turto, sprendimo, laiko horizonto ar veiksmų slenksčio.
+"Stebėti ransomware" nėra žvalgybos reikalavimas. Jame nėra saugomo turto, sprendimo, laiko horizonto ar veiksmų slenksčio.
 
 Naudingesnis reikalavimas atrodytų taip:
 
@@ -71,11 +71,11 @@ Išorinis pranešimas duoda užuominą. Turto kontekstas, telemetrija ir operaci
 
 Stiprus darbas su viešais šaltiniais gali atskleisti:
 
-- viešai aprašytų įsilaužimo grupių vardų bei ryšių persidengimą;
-- domenus, sertifikatus, hostingo modelius ir pakartotinai naudojamą web turinį;
-- kelių tyrėjų aprašytas malware galimybes bei pristatymo kelius;
-- taikymosi modelius, matomus aukų pranešimuose ir teisiniuose dokumentuose;
-- pažeidžiamumų išnaudojimo laiko juostas;
+- viešai aprašytų įsilaužimo grupių vardų bei ryšių persidengimą.
+- domenus, sertifikatus, hostingo modelius ir pakartotinai naudojamą web turinį.
+- kelių tyrėjų aprašytas malware galimybes bei pristatymo kelius.
+- taikymosi modelius, matomus aukų pranešimuose ir teisiniuose dokumentuose.
+- pažeidžiamumų išnaudojimo laiko juostas.
 - naratyvus ir jų platinimo infrastruktūrą informacinėse operacijose.
 
 OSINT taip pat kuria spąstus. Tiekėjų vardų sistemos persidengia netiksliai. Vieši indikatoriai greitai sensta. Nukopijuotas teiginys gali atrodyti nepriklausomai patvirtintas, kai jį pakartoja dešimt svetainių. Paieškoje geriau matoma tai, kas populiaru ir indeksuojama, o ne tai, kas reprezentatyvu.
@@ -118,4 +118,4 @@ Indikatoriai gali padėti sukurti tokį rezultatą. Jie neturi tapti visu rezult
 
 CTI analitikas turi mokėti dirbti su OSINT, nes savarankiškas rinkimas ir tikrinimas mažina priklausomybę nuo tiekėjų santraukų. Tačiau vien OSINT įgūdžiai darbo žvalgyba nepaverčia. Darbas baigtas tik tada, kai surinkta informacija įvertinta kontekste ir sumažina neapibrėžtumą žmogui, galinčiam veikti.
 
-Todėl naudinga pora nėra įrankių „dinamiškas duetas“. Tai disciplinuota grandinė nuo klausimo prie įrodymo ir sprendimo. Nutraukus bet kurią grandį, komanda arba ieško be tikslo, arba vertina be faktų.
+Todėl naudinga pora nėra įrankių "dinamiškas duetas". Tai disciplinuota grandinė nuo klausimo prie įrodymo ir sprendimo. Nutraukus bet kurią grandį, komanda arba ieško be tikslo, arba vertina be faktų.

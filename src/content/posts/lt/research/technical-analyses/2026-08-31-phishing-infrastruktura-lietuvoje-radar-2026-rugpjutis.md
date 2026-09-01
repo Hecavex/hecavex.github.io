@@ -38,7 +38,7 @@ methods:
 evidence_basis: "2026 m. rugpjūčio 30 d. sukurti vieši radar.json ir pipeline-health.json įrašai, peržiūrėtas Radar prekių ženklų registras ir paskelbta metodologija."
 research_bundle: /assets/data/radar-august-2026-baseline/README.md
 key_findings:
-  - "Nustatytu laiku buvo 130 deduplikuotų dabartinių kandidatų, susietų su 18 iš 46 registro prekių ženklų; šis pasiskirstymas aprašo heuristinį vaizdą, o ne phishing paplitimą Lietuvoje."
+  - "Nustatytu laiku buvo 130 deduplikuotų dabartinių kandidatų, susietų su 18 iš 46 registro prekių ženklų. Šis pasiskirstymas aprašo heuristinį vaizdą, o ne phishing paplitimą Lietuvoje."
   - "Pagal suvestinės įrodymų lygių taisykles tik du įrašai buvo patvirtinti papildomu šaltiniu, 128 liko vien pavadinimo kandidatai ir nė vienas nebuvo galutinai peržiūrėtas analitiko."
   - "Didžiąją dalį įrašų pateikė CertStream, tačiau 24 valandų klausymosi aprėptis siekė 62,78 %, o septynių dienų – 31,18 %, todėl neapdoroti dienos skaičiai netinka trendų ar dažnio teiginiams."
   - "Ši bazinė apžvalga naudinga kaip aptikimo eilė tik tada, kai prie kiekvieno skaičiaus matomi šaltinis, laikas, priežasties kodai, įrodymų lygis, naujumas ir peržiūros būsena."
@@ -80,6 +80,14 @@ Matavimo vienetas yra **deduplikuotas dabartinis Radar kandidato įrašas**, o n
 | įrašai su ekrano kopija arba šaltinio nuoroda | 9 | buvo susijęs viešas stebėjimas |
 | įrašai su hash įrodymais | 5 | išsaugotas atsako ar artefakto hash |
 
+![Trys įrodymų lygiai: 128 tik pavadinimu paremti kandidatai, du papildomai pagrįsti įrašai ir nė vienos užbaigtos analitiko peržiūros](/assets/img/posts/2026-08-31-radar-august-baseline/radar-evidence-profile-lt.svg)
+
+*1 pav. Aptikimo lygis yra plačiausias, o stipresnių įrodymų lygiai gerokai siauresni. Schema rodo įrašų būseną nustatytu laiku, o ne kenkėjiškumo tikimybę.*
+
+Santykiai leidžia tiksliau pamatyti įrodymų spragą. Papildomai pagrįsti įrašai sudarė **1,54 %** dabartinio vaizdo. Viešą ekrano kopiją arba šaltinio nuorodą turėjo **6,92 %**, hostingo kontekstą **6,15 %**, o išsaugotą hash **3,85 %** įrašų. Šios kategorijos persidengia, todėl jų negalima sudėti. Dar svarbiau, kad nėra nė vienos užbaigtos peržiūros. Be pažymėtos peržiūros imties negalima skaičiuoti stebimo precision, false-positive dažnio, sensitivity ar specificity.
+
+Čia atsiranda du skirtingi inžineriniai klausimai. **Prioriteto kokybė** klausia, ar aukščiau eilėje esantys įrašai analitikui naudingesni už žemiau esančius. **Klasifikavimo kokybė** klausia, kaip dažnai galutinis sprendimas sutampa su peržiūrėta ground truth. Dabartiniai Radar duomenys leidžia tikrinti pirmą klausimą. Antrajam dar nėra peržiūrėto denominator'iaus. Būsimoje kokybės ataskaitoje reikėtų skelbti stratifikuotą imtį pagal ženklą, balo intervalą, priežasties kodą, šaltinį ir įrodymų lygį, o ne peržiūrėti vien akivaizdžiausius įrašus.
+
 Visų dabartinių eilučių būsena buvo `suspected`. Ji žymi darbo eigos etapą, o ne išvadą, kad visi 130 domenų yra kenkėjiški. Radar [metodologija](https://radar.hecavex.com/lt/metodologija/) ir [duomenų sutartis](https://radar.hecavex.com/lt/duomenys/) sąmoningai atskiria etapus: rinkimas sukuria lead'us, enrichment prideda kontekstą, o peržiūrėtai išvadai reikia aiškaus analitiko sprendimo.
 
 Dėl tos pačios priežasties balas nepakeičia verdict'o. Atitikimo balai buvo nuo 85 iki 100, vidurkis – 95,47. Jie parodo atitikimo stiprumą pagal konkrečią heuristiką. Tai nėra 85–100 % phishing tikimybė, numatoma žala ar analitiko pasitikėjimas.
@@ -100,7 +108,13 @@ Dėl tos pačios priežasties balas nepakeičia verdict'o. Atitikimo balai buvo 
 | Luminor | 2 | Bigbank | 2 |
 | Artea | 1 | BTA | 1 |
 
+![Penki su galimais prekių ženklais susietų kandidatų skaičiai rugpjūčio duomenų pjūvyje, daugiausia siejami su DHL ir Revolut](/assets/img/posts/2026-08-31-radar-august-baseline/radar-brand-distribution-lt.svg)
+
+*2 pav. Kandidatų koncentracija išlaikytame vaizde. Tai su galimais prekių ženklais susieti detektoriaus atitikmenys, o ne išmatuotos atakų, aukų ar kampanijų dalys.*
+
 Akivaizdžiausias skaičius yra 53 DHL kandidatai. Tikslesnė analitinė išvada daug siauresnė: **DHL siejami pavadinimo pattern'ai buvo ypač dažni šiame išlaikytame vaizde**. Galimi keli paaiškinimai. Realios kampanijos apimtis galėjo būti didesnė. Registre esantys terminai galėjo atitikti produktyvų automatinio vardų kūrimo pattern'ą. Viena domenų serija galėjo išpūsti vienos šeimos skaičių. Saugojimo langas galėjo vieną kampaniją išlaikyti ilgiau. Kitas ženklas galėjo būti imituojamas kompromituotose svetainėse, socialiniuose tinkluose, shortener'iuose, IP adresuose arba naudojant registre nesančius žodžius.
+
+DHL sudarė **40,77 %** išlaikytų kandidatų. Keturios didžiausios grupės, DHL, Revolut, Telia ir Vinted, sudarė **88 iš 130 įrašų, arba 67,69 %**. Tokia koncentracija naudinga skirstant enrichment darbą, nes kelios vardų šeimos gali užimti didžiąją eilės dalį. Jos nepakanka kampanijų paplitimui nustatyti. Vienas automatinio vardų kūrimo pattern'as gali sukurti daug sertifikatų vardų, o didelės žalos kampanija kompromituotuose teisėtuose puslapiuose gali nepatekti nė karto.
 
 [Radar prekių ženklų registras](https://radar.hecavex.com/lt/prekes-zenklai/) yra vieša pradinė aprėptis, ne visų Lietuvos organizacijų surašymas. 46 jo įrašuose saugomi oficialūs domenai ir atpažįstami pavadinimai, padedantys mažinti akivaizdžius klaidingus atitikmenis. Detektorius neras termino, kurio nestebi, o domenų vardų detektorius nepamatys ženklo, esančio tik puslapio turinyje. Lygindami skaičius be registro ir šaltinių dizaino, rinkimo šališkumą paverstume klaidingu reitingu.
 
@@ -119,7 +133,7 @@ Priežasties kodai paaiškina, kodėl įrašai pateko į eilę. Dažniausi buvo 
 - neaktyvus ar parked domenas gali atrodyti įtartinai, nors nerodo phishing turinio
 - kompromituota teisėta infrastruktūra gali rodyti phishing, nors jos hostas atrodo įprastas.
 
-Todėl Radar reikia peržiūros eilės, o ne žalio ir raudono pranašo. Nustatytu laiku **129 įrašai buvo neperžiūrėti, vienam reikėjo peržiūros**. Užbaigtos peržiūros aprėptis buvo 0 %, tad observed precision įverčio nebuvo. Teiginys „130 kandidatų“ yra pagrįstas. Teiginys „130 phishing domenų“ – ne.
+Todėl Radar reikia peržiūros eilės, o ne žalio ir raudono pranašo. Nustatytu laiku **129 įrašai buvo neperžiūrėti, vienam reikėjo peržiūros**. Užbaigtos peržiūros aprėptis buvo 0 %, tad observed precision įverčio nebuvo. Teiginys "130 kandidatų" yra pagrįstas. Teiginys "130 phishing domenų" – ne.
 
 ## Rinkimo būklė keičia dienos skaičių reikšmę
 
@@ -132,11 +146,15 @@ Platesnio lango aprėptis buvo nepilna:
 | ankstesnės 24 valandos | 113 | 62,78 % | 80 | 47 |
 | ankstesnės 7 dienos | 405 | 31,18 % | 208 | 125 |
 
+![CertStream, URLScan ir vietinės peržiūros aprėpties palyginimas rugpjūčio nustatytu laiku](/assets/img/posts/2026-08-31-radar-august-baseline/radar-source-coverage-lt.svg)
+
+*3 pav. Kiekvienas šaltinis atsako į kitą klausimą. Sertifikato vardo stebėjimo, viešo puslapio stebėjimo ir analitiko peržiūros negalima sujungti į vieną bendrą "aprėpties" procentą.*
+
 Aprėptis čia reiškia sėkmingų bandymų atstovaujamą numatyto klausymosi laiko dalį, o ne stebėtą visos pasaulio sertifikatų ekosistemos dalį. 31,18 % septynių dienų reikšmė reiškia, kad neapdorotų dienos kandidatų skaičių negalima laikyti stabiliu dažniu. Augimą gali lemti daugiau atitinkančių vardų, geresnis rinktuvo veikimas, sertifikatų išdavimo laikas, šaltinio atsigavimas arba keli veiksniai kartu.
 
-Retuose `lastSeen` duomenyse buvo keturi kandidatai rugpjūčio 21 d., du – 22 d., vienas – 23 d., trys – 25 d., 15 – 27 d., 24 – 28 d., 41 – 29 d. ir 40 – 30 d. Praleistos datos nereiškia „phishing nebuvo“. Tai dabartinių išlaikytų eilučių pasiskirstymas, ne pilna dienos įvykių seka, o rinkimo aprėptis skyrėsi.
+Retuose `lastSeen` duomenyse buvo keturi kandidatai rugpjūčio 21 d., du – 22 d., vienas – 23 d., trys – 25 d., 15 – 27 d., 24 – 28 d., 41 – 29 d. ir 40 – 30 d. Praleistos datos nereiškia "phishing nebuvo". Tai dabartinių išlaikytų eilučių pasiskirstymas, ne pilna dienos įvykių seka, o rinkimo aprėptis skyrėsi.
 
-URLScan pateikė devynis dabartinius įrašus. Checkpoint'as turėjo 65 užklausas: 64 užbaigtos, viena dalinė arba eilėje. URLScan yra viešų stebėjimų šaltinis su savo submit'intų puslapių populiacija ir matomumo ribomis, o ne atsitiktinė interneto imtis. crt.sh paieškos kelias baigėsi provider timeout, nors CertStream liko sveikas. Dėl to šaltinių būsenos ir turi būti rodomos atskirai, o ne paslėptos po vienu „sync pavyko“ badge'u.
+URLScan pateikė devynis dabartinius įrašus. Checkpoint'as turėjo 65 užklausas: 64 užbaigtos, viena dalinė arba eilėje. URLScan yra viešų stebėjimų šaltinis su savo submit'intų puslapių populiacija ir matomumo ribomis, o ne atsitiktinė interneto imtis. crt.sh paieškos kelias baigėsi provider timeout, nors CertStream liko sveikas. Dėl to šaltinių būsenos ir turi būti rodomos atskirai, o ne paslėptos po vienu "sync pavyko" badge'u.
 
 ## Ką šis langas leidžia teigti
 
@@ -169,7 +187,7 @@ URLScan pateikė devynis dabartinius įrašus. Checkpoint'as turėjo 65 užklaus
 
 ## Kaip šią bazę naudoti gynybai
 
-Prekių ženklo savininkui naudingiausia ne blokuoti visas 130 eilučių. Kandidatus verta lyginti su oficialiais domenais, klientams matomais pavadinimais, dabartinėmis kampanijomis ir vidine telemetrija; tada pirmiausia tikrinti įrašus su viešu turiniu, atsako hash, įtartinu hostingu, nauja registracija ar vartotojo pranešimu. Teisiniam ar abuse procesui tikslūs URL ir įrodymai saugomi privačiai, o viešinama tik būtina, defanginta informacija.
+Prekių ženklo savininkui naudingiausia ne blokuoti visas 130 eilučių. Kandidatus verta lyginti su oficialiais domenais, klientams matomais pavadinimais, dabartinėmis kampanijomis ir vidine telemetrija. Tada pirmiausia tikrinti įrašus su viešu turiniu, atsako hash, įtartinu hostingu, nauja registracija ar vartotojo pranešimu. Teisiniam ar abuse procesui tikslūs URL ir įrodymai saugomi privačiai, o viešinama tik būtina, defanginta informacija.
 
 SOC komandai Radar gali praturtinti pranešimą arba pradėti retrospektyvią paiešką. To paties hosto radimas DNS, proxy, el. pašto, SMS pranešimų ar identity log'uose yra stipresnis už viešą kandidatą. Tada incidento klausimas tampa konkretus: kuris vartotojas gavo nuorodą, kas išsisprendė, koks atsakas grįžo, kokie duomenys buvo įvesti ir koks autentifikavimo ar mokėjimo įvykis sekė?
 
@@ -191,7 +209,14 @@ Kita bazinė apžvalga turėtų lyginti palyginamus dalykus:
 6. įtraukti pataisymų bei atšaukimų poveikį
 7. neskaičiuoti dažnio, kol denominator'ius ir stebėjimo procesas nėra stabilūs.
 
-Taigi rugpjūčio rezultatas nėra „Lietuvoje buvo 130 phishing domenų“. Tikslesnė ir naudingesnė išvada: **imtinė, aprėptį rodanti aptikimo sistema nustatytu laiku išlaikė 130 peržiūros kandidatų, daugumą tik su pavadinimo įrodymais**. To pakanka enrichment prioritetams ir būsimam matavimui. To nepakanka dirbtiniam užtikrintumui.
+Taigi rugpjūčio rezultatas nėra "Lietuvoje buvo 130 phishing domenų". Tikslesnė ir naudingesnė išvada: **imtinė, aprėptį rodanti aptikimo sistema nustatytu laiku išlaikė 130 peržiūros kandidatų, daugumą tik su pavadinimo įrodymais**. To pakanka enrichment prioritetams ir būsimam matavimui. To nepakanka dirbtiniam užtikrintumui.
+
+Kitoje bazinėje apžvalgoje keturi kokybės matai būtų vertingesni už dar didesnį antraštės skaičių:
+
+- **peržiūros yield pagal balo intervalą**, skaičiuojamas kaip kenkėjiškais arba pagal politiką reikšmingais pripažintų įrašų dalis tarp visų tame intervale peržiūrėtų įrašų
+- **laikas iki enrichment**, matuojamas nuo pirmo stebėjimo iki pirmo nepriklausomo viešo turinio, tinklo arba analitiko įrodymo
+- **dubliuotų šeimų spaudimas**, kartu skelbiant įrašų ir suklasterintų vardų pattern'ų skaičių, kad vienas generatorius neatrodytų kaip daugybė nesusijusių kampanijų
+- **pagal aprėptį normalizuotas įvykių tankis**, skelbiamas tik langams, pasiekusiems nustatytą minimalią klausymosi ribą, ir visada kartu su stebėtu klausymosi denominator'iumi.
 
 ## Šaltiniai ir duomenys
 

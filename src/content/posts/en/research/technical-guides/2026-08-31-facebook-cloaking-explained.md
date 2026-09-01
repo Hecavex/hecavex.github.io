@@ -56,7 +56,7 @@ A person clicks a sponsored Facebook post and sees a cloned news article, an inv
 
 That is the practical problem behind **Facebook cloaking**. The entry URL is not a complete description of what the server will deliver. A redirector, server rule or client-side script evaluates context and selects a response. The harmful part may appear only after an advertising click, in a selected country, on a particular class of device, during a limited time window or on the first visit.
 
-Google's official [spam policy defines cloaking](https://developers.google.com/search/docs/essentials/spam-policies#cloaking) as presenting different content to users and search engines with an intent to manipulate or mislead. The same documentation distinguishes malicious redirection from normal redirects used for moves, localisation and authenticated navigation. For threat intelligence, that distinction matters: **different content is an observation; deceptive intent is an assessment that needs context**.
+Google's official [spam policy defines cloaking](https://developers.google.com/search/docs/essentials/spam-policies#cloaking) as presenting different content to users and search engines with an intent to manipulate or mislead. The same documentation distinguishes malicious redirection from normal redirects used for moves, localisation and authenticated navigation. For threat intelligence, that distinction matters. **Different content is an observation. Deceptive intent is an assessment that needs context.**
 
 The longer [HECAVEX Facebook cloaking investigation](/en/research/when-fake-news-scams-and-cloaking-meet/) documents a real investment-scam ecosystem built around cloned media, advertising traffic and conditional delivery. This guide has a narrower purpose. It explains the mechanism, the questions a defender should ask and the evidence that can support an answer without becoming a playbook for defeating the operator's controls.
 
@@ -75,6 +75,27 @@ A request reaches a web service with more context than the visible URL. Some con
 | automation indicators | incomplete browser behaviour or characteristics associated with tools | bot management and fraud prevention | automated review may receive a challenge, blank page or substitute content |
 
 None of these fields is inherently malicious. Banks use risk-based authentication. Shops localise prices. Advertising platforms measure campaigns. Content-delivery networks block abusive automation. The question is not whether a page varies. It is **whether variation is being used to conceal a materially different and harmful destination from reviewers, brands or potential victims**.
+
+## Model the request path before naming the mechanism
+
+The visible URL is only the first object. A defensible record separates the route into layers because each layer has different telemetry and a different owner.
+
+| Layer | Evidence object | Useful fields | What it can establish |
+|---|---|---|---|
+| platform entry | advert, Page, post, message or library record | platform ID, creative, visible destination, timestamp | the claimed entry point and presentation |
+| outbound request | browser request leaving the platform | exact URL, method, `Referer`, user agent, cookies sent, time | what the client requested |
+| server redirect | HTTP response | status, `Location`, response headers, body hash, responder IP | where one server instructed the client to go |
+| client navigation | browser-executed transition | initiating script, meta refresh, navigation timing, target URL | what browser-side code caused |
+| rendered response | final document and subresources | final URL, title, screenshot, DOM hash, response hashes, form action | what that observer received |
+| user action | form, download or authentication event | fields displayed, destination, time, endpoint observed by authorised telemetry | the requested or completed action |
+
+The HTTP `Referer` field can disclose the referring URI, subject to privacy and referrer-policy controls, as specified by [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html#field.referer). Modern browsers can also send Fetch Metadata headers that describe request context such as site relationship, mode and destination. The [W3C Fetch Metadata specification](https://www.w3.org/TR/fetch-metadata/) defines those signals for server-side request isolation. Their presence explains what a service could evaluate. It does not prove which field a particular operator used.
+
+Keep DNS and TLS observations separate from HTTP behaviour. A hostname can change address while serving the same document. A shared edge IP can serve unrelated customers. A certificate can prove that a key was presented for a name at a time, not that a specific page was delivered. Request-path claims require request-path evidence.
+
+![Controlled comparison of one URL showing how recorded requests can produce separate response observations](/assets/img/posts/2026-08-31-facebook-cloaking-explained/cloaking-request-comparison-en.svg)
+
+*Figure: A response difference is defensible only when the request context and every changed collection variable are recorded.*
 
 ## Clean response and victim response are analytical labels
 
@@ -129,7 +150,7 @@ For every retained observation, record:
 - source of the observation: victim device, enterprise telemetry, advertising library or third-party archive
 - visibility and privacy level if a third-party service was used.
 
-The [urlscan API documentation](https://urlscan.io/docs/api/) confirms that scans can vary by country, user agent and referrer, and warns that public scans are public records. Those controls explain collection context; they are not an invitation to impersonate victims or defeat a site's gates. Search existing observations first, remove personal data and use the lowest visibility compatible with the authorised purpose.
+The [urlscan API documentation](https://urlscan.io/docs/api/) confirms that scans can vary by country, user agent and referrer, and warns that public scans are public records. Those controls explain collection context. They are not an invitation to impersonate victims or defeat a site's gates. Search existing observations first, remove personal data and use the lowest visibility compatible with the authorised purpose.
 
 ### 3. Keep the chain, not only the last screenshot
 
@@ -139,34 +160,79 @@ HTTP redirects are normal. [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.htm
 advert → tracking URL → redirector → conditional response → final page
 ```
 
-Do not flatten that sequence into “Facebook hosted the phishing page” or “the shortener is the attacker”. A service can be abused without being compromised, and the final page can change after the first report.
+Do not flatten that sequence into "Facebook hosted the phishing page" or "the shortener is the attacker". A service can be abused without being compromised, and the final page can change after the first report.
 
 ### 4. Hash artefacts that can be preserved lawfully
 
-A screenshot is useful for brand abuse. A document or script hash is useful for exact reuse. A favicon, form field set or path pattern may help discover related material. State what the match means. An exact file hash can support code reuse; it does not automatically prove common ownership because kits, templates and compromised sites can be shared.
+A screenshot is useful for brand abuse. A document or script hash is useful for exact reuse. A favicon, form field set or path pattern may help discover related material. State what the match means. An exact file hash can support code reuse. It does not automatically prove common ownership because kits, templates and compromised sites can be shared.
 
 For the wider relationship model, use [Infrastructure Pivoting 101](/en/research/infrastructure-pivoting-101/). It separates a search result, a confirmed technical relationship, cluster membership and attribution instead of giving them one convenient label.
 
-## Comparing responses without building a bypass recipe
+## A reproducible comparison protocol
 
-The defensive comparison asks whether authorised evidence already demonstrates materially different delivery. It does not require defeating every gate.
+The purpose of comparison is to test a bounded proposition such as "two preserved observations of the same entry URL returned materially different content within the stated window". It is not to force the server to reveal hidden content.
 
-Build a small comparison table from available observations:
+### Define the case and collection authority
 
-| Field | Observation A | Observation B | What can be said |
+Assign a case ID, owner, collection purpose, legal authority, start and stop time, retention class and abort conditions. Record whether each item came from a victim report, enterprise proxy, browser history, platform library, hosting provider or public archive. Do not mix a victim-provided screenshot and a fresh analyst request under one label.
+
+### Freeze a comparison manifest
+
+For each observation, retain a machine-readable manifest beside the evidence:
+
+```text
+case_id
+observation_id
+source_type
+collected_at_utc
+original_url_sha256
+request_method
+final_url
+http_status_sequence
+response_sha256
+dom_sha256
+screenshot_sha256
+browser_family
+network_context_class
+referrer_state
+cookie_state
+javascript_state
+collector_version
+notes_and_unknowns
+```
+
+Store the exact sensitive URL in the restricted case record and hash it. Use a redacted, defanged value in an ordinary report. Hashes protect integrity and allow exact comparison, but they do not make sensitive URLs safe to publish.
+
+![Cloaking capture manifest preserving case identity, collection context, request record and response hashes](/assets/img/posts/2026-08-31-facebook-cloaking-explained/cloaking-capture-manifest-en.svg)
+
+*Figure: The manifest is collected before interpretation so another reviewer can reconstruct the comparison.*
+
+### Compare like with like
+
+First compare observations that share the same original URL, time window and collection class. Then state every uncontrolled variable. A victim mobile browser and a public cloud scanner differ in network, client, referral state, cookie history and likely time. That pair can prove a response difference. It cannot isolate the deciding variable.
+
+| Field | Observation A | Observation B | Supported statement |
 |---|---|---|---|
-| time | 10:15 UTC | 10:22 UTC | both fall inside the same short window |
 | source | enterprise report | public archive | provenance differs |
-| final host | `news.example` | `brand.example` | the paths ended at different hosts |
-| content | cloned article | harmless brand page | materially different responses were observed |
-| response hash | hash A | hash B | the preserved documents were not identical |
-| unknowns | referral state | cookie state | cause of the difference is not established |
+| original URL hash | same | same | the recorded entry value matches exactly |
+| final host | `news.example` | `brand.example` | the routes ended at different hosts |
+| content | cloned article | harmless brand page | materially different responses were preserved |
+| response hash | hash A | hash B | the saved documents are not identical |
+| uncontrolled state | referral known | cookie state unknown | the deciding rule is not isolated |
 
-That last row is essential. If several variables changed, the cause cannot be assigned to country, IP, device or referrer alone. “Conditional delivery observed” can be a strong statement. “The operator detects researchers by this exact rule” is a stronger claim and requires stronger evidence.
+If several variables changed, do not assign causality to country, IP, device or referrer. "Conditional delivery observed" may be well supported. "The operator detects researchers using this exact rule" is a separate claim that requires controlled evidence unavailable in many public cases.
 
-Do not repeatedly visit a recipient-specific link, alter parameters, automate interaction or attempt to defeat a challenge merely to make the harmful page appear. Those actions can disclose the investigation, change a one-time token, create new records, expose personal data or cross an authorisation boundary. A missing page is a limitation to report, not a technical contest to win.
+![Evidence boundary for a cloaking comparison separating constants, changed variables and preserved outputs](/assets/img/posts/2026-08-31-facebook-cloaking-explained/cloaking-evidence-boundary-en.svg)
 
-## Distinguish cloaking from ordinary variation
+*Figure: The comparison can establish different outputs without identifying which uncontrolled variable caused them.*
+
+### Preserve negative results
+
+A timeout, challenge, `403`, empty body or redirect to a legitimate site is part of the dataset. Record resolver outcome, connection state, status, content length and collection time. Do not silently discard clean or failed observations because they weaken the preferred explanation.
+
+Do not repeatedly visit a recipient-specific link, alter parameters, automate interaction or defeat a challenge to make harmful content appear. Those actions can disclose the investigation, consume a one-time token, expose personal data or cross an authorisation boundary. A missing page is a limitation, not a contest.
+
+## False-positive controls for ordinary variation
 
 Several benign systems can create apparently inconsistent screenshots:
 
@@ -180,7 +246,29 @@ Several benign systems can create apparently inconsistent screenshots:
 
 To assess deception, combine response differences with purpose and context. Stronger evidence includes a harmful form or download, impersonated branding, a misleading advert-to-page mismatch, recipient-specific tokens, confirmed credential or payment collection, repeated exact artefacts and a consistent chain from the campaign entry point.
 
-The separate [information-factories investigation](/en/research/information-factories-on-lithuanias-border/) is also an important boundary. Cloned media and coordinated distribution can support influence operations, financial fraud or both. Similar presentation does not justify collapsing them into one actor or mission. Name the observed behaviour first; attribute only when evidence supports attribution.
+Before calling the pattern cloaking, test the explanations that require less malicious intent:
+
+- compare cache headers, age and CDN response identifiers where retained
+- determine whether one observation was authenticated and the other anonymous
+- check whether language, consent, age or regional availability explains the page
+- verify whether the campaign expired or enforcement occurred between observations
+- distinguish a platform warning page from the destination response
+- compare complete response or DOM hashes rather than visual similarity alone
+- confirm that the original URL, including its path and token, is actually identical.
+
+The separate [information-factories investigation](/en/research/information-factories-on-lithuanias-border/) defines another analytical boundary. Cloned media and coordinated distribution can support influence operations, financial fraud or both. Similar presentation does not justify collapsing them into one actor or mission. Name the observed behaviour first. Attribute only when evidence supports attribution.
+
+## Practical defensive validation
+
+Treat a cloaking assessment as supported when three elements are present:
+
+1. a preserved entry relationship connects the advert, message or platform object to the request path
+2. at least one preserved response contains the harmful or materially deceptive function
+3. a comparison or rule artefact supports conditional delivery, with uncontrolled variables and benign alternatives stated.
+
+If only the harmful response exists, report a phishing or scam page associated with the entry point, not necessarily cloaking. If only two different benign responses exist, report variation. If the route is reconstructed from separate public observations, label it as a reconstruction and retain the timestamps that constrain it.
+
+For enterprise validation, correlate browser history, secure web gateway, DNS, endpoint and identity telemetry by user and UTC time. A redirect chain can be reconstructed from proxy events even after the page disappears. A submitted credential or completed authentication needs identity and incident-response telemetry, not another screenshot.
 
 ## What brand, advertising and security teams should retain
 
@@ -206,7 +294,7 @@ Cloaking evidence can show that two observers received different material and th
 - why a specific observer received a clean response
 - whether the content will remain available tomorrow.
 
-Use time-bounded language: “observed at”, “reported by”, “preserved response”, “candidate relationship” and “not established”. Those phrases are not weakness. They make the report reusable after the infrastructure changes.
+Use time-bounded language: "observed at", "reported by", "preserved response", "candidate relationship" and "not established". Those phrases make the report reusable after the infrastructure changes.
 
 ## Defender checklist
 
@@ -226,9 +314,10 @@ Use time-bounded language: “observed at”, “reported by”, “preserved re
 1. [Google Search Central: spam policies, cloaking and sneaky redirects](https://developers.google.com/search/docs/essentials/spam-policies)
 2. [RFC 9110: HTTP redirection semantics](https://www.rfc-editor.org/rfc/rfc9110.html#name-redirection-3xx)
 3. [urlscan.io API documentation and scan-visibility guidance](https://urlscan.io/docs/api/)
-4. [Meta Help Center: tips for shopping safely](https://www.facebook.com/help/123884166448529/)
-5. [HECAVEX: Facebook cloaking, fake news and investment-scam infrastructure](/en/research/when-fake-news-scams-and-cloaking-meet/)
-6. [HECAVEX: Information factories on Lithuania's border](/en/research/information-factories-on-lithuanias-border/)
-7. [HECAVEX: Infrastructure Pivoting 101](/en/research/infrastructure-pivoting-101/)
+4. [W3C: Fetch Metadata Request Headers](https://www.w3.org/TR/fetch-metadata/)
+5. [Meta Help Center: tips for shopping safely](https://www.facebook.com/help/123884166448529/)
+6. [HECAVEX: Facebook cloaking, fake news and investment-scam infrastructure](/en/research/when-fake-news-scams-and-cloaking-meet/)
+7. [HECAVEX: Information factories on Lithuania's border](/en/research/information-factories-on-lithuanias-border/)
+8. [HECAVEX: Infrastructure Pivoting 101](/en/research/infrastructure-pivoting-101/)
 
 _This guide is defensive. It describes how to preserve and interpret evidence already available to an authorised investigator. It does not instruct readers to bypass access controls, reproduce a victim identity or evade platform review._

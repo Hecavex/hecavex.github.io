@@ -65,7 +65,7 @@ Vienas toks domenas dar galėtų būti eilinis phishing puslapis. Problema ta, k
 
 Kitaip tariant, puslapio vardai sukosi kaip vienkartiniai numeriai, bet po jais esantis mechanizmas buvo stebėtinai stabilus. Phishing infrastruktūroje tai nėra romantika. Tai tiesiog normaliai veikianti deployment pipeline, tik produkto roadmap'e vietoje "improve onboarding" yra "surinkti dar vieną slaptažodį".
 
-Tyrime taikomas tas pats principas, kuris pristatytas tekste [Vienas scam domenas retai būna vienas](/lt/tyrimai/vienas-scam-domenas-retai-buna-vienas/) ir formalizuotas [infrastruktūros pivoting lauko vadove](/lt/tyrimai/infrastrukturos-pivoting-101/). Atskirai [HECAVEX Radar](https://radar.hecavex.com/lt/) skelbia atrinktus Lietuvos impersonation kandidatus discovery tikslams; jis nėra šiame tyrime pateiktų skaičių šaltinis ir nepaverčia kandidato verdict'u.
+Tyrime taikomas tas pats principas, kuris pristatytas tekste [Vienas scam domenas retai būna vienas](/lt/tyrimai/vienas-scam-domenas-retai-buna-vienas/) ir formalizuotas [infrastruktūros pivoting lauko vadove](/lt/tyrimai/infrastrukturos-pivoting-101/). Atskirai [HECAVEX Radar](https://radar.hecavex.com/lt/) skelbia atrinktus Lietuvos impersonation kandidatus discovery tikslams. Jis nėra šiame tyrime pateiktų skaičių šaltinis ir nepaverčia kandidato verdict'u.
 
 Svarbiausia išvada iškart:
 

@@ -104,7 +104,7 @@ Pažeidžiamumas gali leisti ankstesnio įsilaužimo metu sukurtai kenksmingai s
 
 <dl><div><dt>Atakos kelias</dt><dd>SQL injection ir interpretavimo neatitikimas</dd></div><div><dt>Rezultatas</dt><dd>Nuotolinis kodo vykdymas be autentifikacijos</dd></div></dl>
 
-CISA teigia, kad abu pažeidžiamumai numatytoje konfigūracijoje gali būti sujungti į autentifikacijos nereikalaujančią nuotolinio kodo vykdymo grandinę. **Pavyzdys:** vieša WordPress svetainė, kuri atrodo „tik informacinė“, vis tiek gali tapti vykdomąja infrastruktūra, peradresavimo mazgu ar keliu į gretimus hostingo resursus.
+CISA teigia, kad abu pažeidžiamumai numatytoje konfigūracijoje gali būti sujungti į autentifikacijos nereikalaujančią nuotolinio kodo vykdymo grandinę. **Pavyzdys:** vieša WordPress svetainė, kuri atrodo "tik informacinė", vis tiek gali tapti vykdomąja infrastruktūra, peradresavimo mazgu ar keliu į gretimus hostingo resursus.
 
 **Ką daryti:** atnaujinti WordPress Core, inventorizuoti visas viešai pasiekiamas instaliacijas – taip, įskaitant seniai pamirštus kampanijų puslapius – ir ieškoti netikėtų duomenų bazės pakeitimų, naujų naudotojų, modifikuotų įskiepių ar viešai pasiekiamų failų.
 
@@ -120,7 +120,7 @@ CISA teigia, kad abu pažeidžiamumai numatytoje konfigūracijoje gali būti suj
 
 OpenAI ir Hugging Face paskelbė, kad apribotoje vertinimo aplinkoje veikę modeliai išnaudojo iki tol nežinomą Artifactory proxy pažeidžiamumą, išplėtė prieigą ir galiausiai kompromitavo Hugging Face produkcinę aplinką, kad pasiektų benchmark atsakymus. Abi organizacijos incidentą suvaldė ir tyrė.
 
-Praktinė išvada platesnė už vieną testą: **pajėgių modelių vertinimo infrastruktūrai reikia tokios pačios izoliacijos, minimalių teisių, stebėsenos ir priešiško testavimo kaip bet kuriai nepatikimo kodo vykdymo aplinkai.** „Čia tik testas“ išlieka vienu brangesnių sakinių saugumo srityje.
+Praktinė išvada platesnė už vieną testą: **pajėgių modelių vertinimo infrastruktūrai reikia tokios pačios izoliacijos, minimalių teisių, stebėsenos ir priešiško testavimo kaip bet kuriai nepatikimo kodo vykdymo aplinkai.** "Čia tik testas" išlieka vienu brangesnių sakinių saugumo srityje.
 
 <p class="hx-signal-source"><a href="https://openai.com/index/hugging-face-model-evaluation-security-incident/">OpenAI incidento ataskaita ir atnaujinimai →</a></p>
 </section>

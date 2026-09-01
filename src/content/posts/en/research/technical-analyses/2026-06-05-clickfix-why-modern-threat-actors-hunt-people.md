@@ -21,7 +21,7 @@ categories: ["malware", "social-engineering"]
 tags: ["ClickFix", "initial access", "PowerShell", "social engineering"]
 featured: true
 scope: "Analysis of ClickFix execution chains, infrastructure, detection opportunities, and organisational risk."
-limitations: "Campaign tooling and commands evolve; the examples are not an exhaustive catalogue of ClickFix variants."
+limitations: "Campaign tooling and commands evolve. The examples are not an exhaustive catalogue of ClickFix variants."
 key_findings:
   - "Success depends on a convincing instruction rather than a software vulnerability."
   - "Browser-to-shell behaviour provides stronger detection signals than isolated domains."
@@ -70,7 +70,7 @@ In reality, all of these things are important.
 
 But.. when looking at comments or discussions *(eye directly on the Registry Center incident)..* the discussion comments look like we are still trying to win the 2018 war with TAs in 2026.
 
-When dealing with CTI *(well, at least those who do CTI outside of Lithuania)* ClickFix has not been such a niche thing for a long time. Microsoft, Proofpoint, ESET, Rapid7 and other researchers have described different use cases for ClickFix between 2024 and 2026, from TA571 and ClearFake to Booking.com impersonation campaigns, WordPress compromises, infostealer delivery and large-scale TDS-driven operations. (Proofpoint, 2024; Microsoft, 2025; ESET, 2025; Rapid7, 2026)
+When dealing with CTI *(well, at least those who do CTI outside of Lithuania)* ClickFix has not been such a niche thing for a long time. Microsoft, Proofpoint, ESET, Rapid7 and other researchers have described different use cases for ClickFix between 2024 and 2026, from TA571 and ClearFake to Booking.com impersonation campaigns, WordPress compromises, infostealer delivery and large-scale TDS-driven operations. (Proofpoint 2024, Microsoft 2025, ESET 2025 and Rapid7 2026)
 
 And what is happening in Lithuania?
 
@@ -153,7 +153,7 @@ Okay ClickFix is ​​not effective because users are stupid *(here's a very ch
 
 ClickFix exploits exactly that. He attacks a person through routine, and as many know routine is a very powerful weapon.
 
-The internet literally taught us to click "I'm not a robot" for years, but TA just added a few new steps to it *“Windows + R” → “CTRL + V” → “Enter” →* *Congratulations*.. now you really are not a robot, but simply running malware.
+The internet literally taught us to click "I'm not a robot" for years, but TA just added a few new steps to it *"Windows + R" → "CTRL + V" → "Enter" →* *Congratulations*.. now you really are not a robot, but simply running malware.
 
 ESET described this phenomenon very precisely in its H1 2025 report *"users have become accustomed to various forms of reCAPTCHA, so few question a new type of challenge, even if it asks them to copy and run something on their device" (*ESET, 2025).
 
@@ -196,7 +196,7 @@ Therefore, talking about ClickFix only as "fake CAPTCHA phishing" is too narrow,
 
 So that ClickFix does not seem like a theoretical threat, it is worth looking at real campaigns.
 
-Proofpoint described one of the earliest publicly documented ClickFix-type techniques in 2024. TA571 sent HTML attachments that mimicked Microsoft Word. The page claimed that the Word Online extension was missing and offered a "How to fix" button. Clicking it copied a PowerShell command; the user then initiated the infection chain. Proofpoint reported that TA571 had used the technique since 1 March 2024 in a campaign of more than 100,000 messages targeting thousands of organisations globally. (Proofpoint, 2024)
+Proofpoint described one of the earliest publicly documented ClickFix-type techniques in 2024. TA571 sent HTML attachments that mimicked Microsoft Word. The page claimed that the Word Online extension was missing and offered a "How to fix" button. Clicking it copied a PowerShell command. The user then initiated the infection chain. Proofpoint reported that TA571 had used the technique since 1 March 2024 in a campaign of more than 100,000 messages targeting thousands of organisations globally. (Proofpoint, 2024)
 
 In the ClearFake samples, Proofpoint saw compromised websites, malicious JavaScript, EtherHiding via Binance Smart Chain contracts, Keitaro's TDS filtering, and a multi-step PowerShell chain. In one chain, PowerShell flushed the DNS cache, cleared the clipboard, displayed a decoy message, downloaded additional PowerShell scripts, performed a WMI-based sandbox / VM check based on system temperature data, and then led to an AES-encrypted PowerShell and a ZIP package with legitimate signed executables and trojanized DLL side-loading *(I hate DLL side-loading.. just me).*(Proofpoint, 2024)
 
@@ -464,7 +464,7 @@ Access broker monetization.
 Attribution-lite clustering based on technical artifacts.
 ```
 
-This is intelligence of greater value because it helps not only to react, but also to predict *(well, I like to say "Hey guys, these are just assumptions that we have right now.. let's see how it the line)*.
+This is intelligence of greater value because it helps not only to react, but also to predict *(well, I like to say "Hey guys, these are just assumptions that we have right now.. let's see how it the line")*.
 
 **And this is the main difference between reporting and intelligence.**
 
@@ -548,11 +548,11 @@ This is where security leadership begins.. not anymore ***"what hash to block?"*
 
 **This is a much more important question.**
 
-Some organisations have expensive EDR, XDR, SIEM, SOAR, TIP and several other acronyms that look nice in the budget. Then somebody sees a fake CAPTCHA and becomes an initial-access enabler in 15 seconds. The technology is not worthless; those controls are necessary. ClickFix simply reminds us that the human is still a privileged component of the system—and usually the least controlled. *(I shudder at the thought of BYOD.)*
+Some organisations have expensive EDR, XDR, SIEM, SOAR, TIP and several other acronyms that look nice in the budget. Then somebody sees a fake CAPTCHA and becomes an initial-access enabler in 15 seconds. The technology is not worthless. Those controls are necessary. ClickFix simply reminds us that the human is still a privileged component of the system—and usually the least controlled. *(I shudder at the thought of BYOD.)*
 
 CISOs should look at ClickFix as a test ie. not only the endpoint test, but the security culture test, the awareness maturity test, the privileged execution control test, the identity resilience test, the incident response maturity test.
 
-If an organisation's only answer to ClickFix is "let's put the IOC in the SIEM", sorry, but it has failed the exam. Grade: two out of ten. *(The school maths exams were this week; apparently cybersecurity also has resits.)*
+If an organisation's only answer to ClickFix is "let's put the IOC in the SIEM", sorry, but it has failed the exam. Grade: two out of ten. *(The school maths exams were this week. Apparently cybersecurity also has resits.)*
 
 ![A panel discusses why ClickFix is an access-control problem, not merely a SOC problem.](/assets/img/posts/substack/clickfix-kodel-siuolaikiniai-ta-nebeiesko/13.webp)
 

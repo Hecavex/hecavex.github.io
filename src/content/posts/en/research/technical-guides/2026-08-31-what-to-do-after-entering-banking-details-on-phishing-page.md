@@ -38,7 +38,7 @@ methods:
 evidence_basis: "Current official guidance from the Bank of Lithuania, Lithuania's National Cyber Security Centre, Smart-ID, the UK National Cyber Security Centre and relevant HECAVEX investigations."
 key_findings:
   - "The first call should usually be to the bank or payment provider through an independently verified channel, because payment blocking and recall become harder with time."
-  - "The response must follow the exposed asset: card data, online-banking credentials, reused passwords, an approval factor, an authenticated session, a transfer, and installed software are different incidents."
+  - "The response must follow the exposed asset. Card data, online-banking credentials, reused passwords, an approval factor, an authenticated session, a transfer, and installed software are different incidents."
   - "Changing a password alone does not necessarily terminate stolen sessions, revoke trusted devices, reverse payments, or remove software installed on the device."
   - "Preserve the message, URL and transaction evidence without revisiting the phishing page or delaying containment."
 image:
@@ -60,7 +60,11 @@ Use a different, trusted device if possible. Open the bank's official app, type 
 
 The [Bank of Lithuania's victim guidance](https://www.lb.lt/lt/pakliuvau-sukciams-ka-daryti) puts the payment provider first because it may still be able to stop a transfer, block a card or restrict the account. Its separate [payment-recall statement](https://www.lb.lt/lt/naujienos/lietuvos-bankas-finansu-istaigos-turi-aktyviai-ir-greitai-reaguoti-i-klientu-prasymus-atsaukti-mokejimo-operacijas) stresses that quick handling is critical. A report does not guarantee recovery, but delay can close options.
 
-### Tell the bank the event, not only “I was phished”
+![First-hour banking incident response ordered by stopping loss, stopping access and preserving evidence](/assets/img/posts/2026-08-31-post-phishing-banking-response/banking-first-hour-en.svg)
+
+*Figure: The first hour is an ordering model, not a guaranteed recovery window.*
+
+### Tell the bank the event, not only "I was phished"
 
 Prepare a short factual description:
 
@@ -73,22 +77,42 @@ Prepare a short factual description:
 - whether money moved, a beneficiary was added, account details changed, or a new trusted device appeared
 - whether an app, browser extension, configuration profile, remote-support tool or file was installed.
 
-That distinction changes the bank's response. “I opened a link” and “I approved a €1,900 transfer with PIN2” are not the same incident.
+That distinction changes the bank's response. "I opened a link" and "I approved a EUR 1,900 transfer with PIN2" are not the same incident.
 
 ## Match the action to what was exposed
 
 | What happened | Immediate action | What remains at risk |
 | --- | --- | --- |
 | Link opened, no data entered and nothing installed | close it, preserve the message, verify the claim through the official channel, watch for follow-up | tracking, later social engineering or an unnoticed download |
-| Card number, expiry and CVV entered | ask the issuer to freeze/block and replace the card; review authorisations and wallet enrolments | card-not-present payments, small verification charges, delayed attempts |
-| Online-banking ID or password entered | secure online banking through the bank; change the password from a clean device; revoke sessions and trusted devices if available | login attempts, profile changes, beneficiary creation, session reuse |
-| A reused password entered | change it first on the affected high-value account, then everywhere it was reused; use unique passwords | credential stuffing against email, shops, social media and work accounts |
-| Smart-ID PIN, Mobile-ID PIN, OTP or push approval supplied | contact the bank and identity/authentication provider; review exactly what was approved; block/re-enrol if instructed | a completed login, account change, signature or payment; not merely a leaked code |
+| Card number, expiry and CVV entered | ask the issuer to freeze or block and replace the card, then review authorisations and wallet enrolments | card-not-present payments, small verification charges, delayed attempts |
+| Online-banking ID or password entered | secure online banking through the bank, change the password from a clean device, and revoke sessions and trusted devices if available | login attempts, profile changes, beneficiary creation, session reuse |
+| A reused password entered | change it first on the affected high-value account, then everywhere it was reused, and use unique passwords | credential stuffing against email, shops, social media and work accounts |
+| Smart-ID PIN, Mobile-ID PIN, OTP or push approval supplied | contact the bank and authentication provider, review exactly what was approved, and block or re-enrol if instructed | a completed login, account change, signature or payment, not merely a leaked code |
 | Logged-in session may have been captured | sign out all sessions, revoke remembered devices/tokens and review security events | continued access even after a password change |
-| Transfer or card payment completed | ask the provider to stop/recall it immediately; preserve transaction ID, payee, amount and timestamp; report to police | onward transfer, cash-out and recovery fraud |
+| Transfer or card payment completed | ask the provider to stop or recall it immediately, preserve transaction ID, payee, amount and timestamp, and report to police | onward transfer, cash-out and recovery fraud |
 | App, profile, extension or remote-access tool installed | disconnect the device from networks, stop using it for banking, contact IT/security or a qualified responder | credential capture, persistence, screen control and theft of new passwords |
 
-This is why a generic “change your password” answer is incomplete. Password reset does not automatically replace a card, recall a transfer, invalidate every session or remove persistence from a device.
+This is why a generic "change your password" answer is incomplete. Password reset does not automatically replace a card, recall a transfer, invalidate every session or remove persistence from a device.
+
+![Banking phishing exposure classes mapping card data, credentials and sessions to different containment actions](/assets/img/posts/2026-08-31-post-phishing-banking-response/banking-exposure-classes-en.svg)
+
+*Figure: Containment follows the asset that crossed the trust boundary, not a generic phishing label.*
+
+## Preserve evidence through the containment sequence
+
+Evidence preservation is not a reason to delay the bank call. The correct sequence protects volatile facts while closing the attacker's access:
+
+1. **Stop new authorisations.** End the call or chat, reject pending prompts and disconnect a remotely controlled device from networks.
+2. **Open an independent channel.** From a known-clean device, contact the bank using the card, official app or an address typed independently.
+3. **Record the live financial state.** Note pending and completed operations, beneficiaries, wallet enrolments, contact-detail changes and the bank's incident reference.
+4. **Ask the bank to contain bank-controlled artefacts.** These may include the card, online-banking access, active sessions, trusted devices, pending transfers and newly registered beneficiaries.
+5. **Contain linked identity accounts.** Secure email, mobile-provider and reused-password accounts after the bank has protected the immediate payment path.
+6. **Preserve the phishing evidence.** Export or screenshot the original message, timestamps and transaction context without loading the URL again.
+7. **Escalate device evidence.** If software or a profile was installed, preserve the device state for IT or an incident responder before factory reset or cleanup where practical.
+
+This order prevents two common evidence failures. The first is spending an hour investigating a domain while a transfer leaves the account. The second is resetting or wiping a device before an organisational responder can determine whether persistence, remote control or credential theft occurred.
+
+Maintain two timelines. The **attack timeline** records message receipt, link opening, credential entry, prompts and transactions. The **response timeline** records bank contact, blocks, password changes, session revocation, reports and device actions. Use timezone-qualified timestamps. Do not infer that a transaction visible after the click was caused by the page unless the bank or other evidence establishes that relationship.
 
 ## Card details: replacement is safer than watching and hoping
 
@@ -102,35 +126,55 @@ Change the banking password through the bank's official application or address, 
 
 If the same password protected email, change the email password too. Email is often the recovery path for other accounts. Then replace the password everywhere else it was reused. Start with banking, email, government, work, cloud storage and mobile-provider accounts. Use a password manager to create a unique password for each service.
 
-Changing the password on the phishing page, or through a link subsequently sent by the same “support agent”, does not contain the incident. Return to a channel obtained independently.
+Changing the password on the phishing page, or through a link subsequently sent by the same "support agent", does not contain the incident. Return to a channel obtained independently.
 
 ## Smart-ID, OTP and MFA approvals: identify the transaction you authorised
 
-An authentication factor is not a universal safety stamp. An adversary-in-the-middle page can relay a real login and ask the victim to complete a real approval. The relevant question is not “did MFA succeed?” but “which operation did that approval authorise?” Our analysis of [why MFA is not a panacea](/en/research/mfa-is-not-a-panacea/) explains how relayed sessions and approvals can defeat simplistic assumptions.
+An authentication factor is not a universal safety stamp. An adversary-in-the-middle page can relay a real login and ask the victim to complete a real approval. The relevant question is not "did MFA succeed?" but "which operation did that approval authorise?" Our analysis of [why MFA is not a panacea](/en/research/mfa-is-not-a-panacea/) explains how relayed sessions and approvals can defeat simplistic assumptions.
 
 [Smart-ID's scam guidance](https://www.smart-id.com/security/scams/) says never to share PINs and advises contacting the bank and police when accounts or authentication devices may have been accessed. If an unexpected request appears, reject it. Compare the verification code, service name and transaction details on the phone with the action you personally initiated. PIN1 is generally used for authentication and PIN2 for signing, but the displayed transaction context is what matters.
 
-If PINs were entered into a fake page, an unsolicited request was approved, or repeated requests continue, contact both the bank and Smart-ID support and follow their blocking or re-enrolment instructions. Do not “approve once more to cancel”. A second approval is another authorised action.
+If PINs were entered into a fake page, an unsolicited request was approved, or repeated requests continue, contact both the bank and Smart-ID support and follow their blocking or re-enrolment instructions. Do not "approve once more to cancel". A second approval is another authorised action.
 
 ## Session theft can survive a password reset
 
 Some phishing flows proxy the genuine site and capture the authenticated session after the victim completes MFA. Others persuade the victim to enrol a device or hand over a recovery code. In these cases the attacker may possess a session cookie or trusted-device token rather than the reusable password.
 
-Use the service's “sign out everywhere” or session-revocation function, remove unknown devices, regenerate recovery codes and inspect recent security events. Ask the bank whether it can invalidate online-banking sessions centrally. If email or a mobile account was involved, revoke sessions there as well. The visible phishing page may disappear while the stolen session remains usable.
+Use the service's "sign out everywhere" or session-revocation function, remove unknown devices, regenerate recovery codes and inspect recent security events. Ask the bank whether it can invalidate online-banking sessions centrally. If email or a mobile account was involved, revoke sessions there as well. The visible phishing page may disappear while the stolen session remains usable.
+
+### Classify the authentication artefact before claiming containment
+
+A response team should distinguish at least five artefact classes:
+
+| Artefact | Typical attacker capability | Containment control to verify |
+| --- | --- | --- |
+| reusable password or static customer identifier | repeat a primary authentication attempt | credential reset and failed-login review |
+| OTP, PIN or approval bound to one transaction | complete the relayed operation if still valid | bank-side operation review and factor-provider action |
+| bearer session cookie or access token | act as the already-authenticated user until expiry or revocation | server-side session/token revocation |
+| trusted-device or refresh token | obtain new sessions without repeating the original login | remove device trust and revoke refresh grants |
+| recovery code, email or mobile recovery access | reset credentials and re-establish persistence | regenerate recovery material and secure recovery channels |
+
+[NIST SP 800-63B's session guidance](https://pages.nist.gov/800-63-4/sp800-63b/session/) treats the session secret as a bearer credential and requires session termination controls. That is the technical reason a password reset and session revocation are separate verification steps. A user-interface message saying "password changed" is not evidence that every active cookie, mobile token or delegated grant was invalidated.
+
+For each control, capture the result rather than only the action. Record that the bank confirmed online access was blocked, that the trusted-device list was reviewed, or that all sessions showed a new start time. If the service exposes no user-facing revocation, ask the bank or provider what it invalidated centrally.
+
+![Session containment sequence from bank contact and revocation through account review and monitoring](/assets/img/posts/2026-08-31-post-phishing-banking-response/banking-session-containment-en.svg)
+
+*Figure: Active trust is revoked before credentials are restored because a stolen session can outlive a password.*
 
 ## Transfers: request a stop or recall immediately
 
 Contact the provider before spending time on screenshots, WHOIS records or a public URL scan. Give the transaction ID, amount, currency, beneficiary, time and the receiving institution if visible. Ask whether the payment is pending, can be stopped, or can be recalled through the receiving institution. Follow the bank's fraud-team instructions and obtain a case/reference number.
 
-Preserve the confirmation screen and statement entry. Do not contact the beneficiary using details supplied by the attacker. Do not pay a “recovery agent” who promises guaranteed retrieval. Victims are frequently targeted again by people claiming to be a bank, police officer, lawyer or blockchain recovery specialist.
+Preserve the confirmation screen and statement entry. Do not contact the beneficiary using details supplied by the attacker. Do not pay a "recovery agent" who promises guaranteed retrieval. Victims are frequently targeted again by people claiming to be a bank, police officer, lawyer or blockchain recovery specialist.
 
 ## Installed apps, profiles and remote-access tools
 
-If the page told you to install an application, APK, browser extension, configuration profile, certificate, “security update” or remote-support tool, treat the device as potentially compromised. Disconnect it from Wi-Fi and mobile data. Do not use it to change passwords or contact the bank if another device is available.
+If the page told you to install an application, APK, browser extension, configuration profile, certificate, "security update" or remote-support tool, treat the device as potentially compromised. Disconnect it from Wi-Fi and mobile data. Do not use it to change passwords or contact the bank if another device is available.
 
 Record the app/file name, download source, installation time and permissions shown. For a work device, contact the employer's IT or security team immediately rather than attempting cleanup. For a personal device, obtain qualified support or follow the platform vendor's recovery guidance, including removal of unknown device-management profiles and a reset where necessary. A superficial uninstall may not prove that all access was removed.
 
-The [UK NCSC phishing recovery guidance](https://www.ncsc.gov.uk/section/respond-recover/phishing) similarly separates simple clicks from exposed passwords, banking information and installed software, recommending a full antivirus scan after installation and escalation to organisational IT for work devices. Its reporting links are UK-specific; Lithuanian reporting routes are below.
+The [UK NCSC phishing recovery guidance](https://www.ncsc.gov.uk/section/respond-recover/phishing) similarly separates simple clicks from exposed passwords, banking information and installed software, recommending a full antivirus scan after installation and escalation to organisational IT for work devices. Its reporting links are UK-specific. Lithuanian reporting routes are below.
 
 ## Preserve useful evidence without revisiting the page
 
@@ -140,7 +184,7 @@ Containment comes first, but a compact evidence package helps the bank, police a
 - receipt time and timezone
 - the exact original URL privately, plus a defanged copy for sharing
 - screenshots of the message, phishing page and approval screen already captured
-- calls and messages from the purported “bank employee”
+- calls and messages from the purported "bank employee"
 - transaction IDs, payees, amounts and account alerts
 - names and hashes of downloaded files if a responder can collect them safely
 - bank, police and NKSC reference numbers.
@@ -162,7 +206,19 @@ The same evidence can support several reports, but each organisation has a diffe
 
 For at least the following days, review bank activity, card authorisations, account-contact changes, new payees, password-reset messages, Smart-ID or banking-app prompts, unfamiliar devices and mobile-service changes. Turn on transaction and login alerts. Watch email because it can be used to reset other services.
 
-Keep the case numbers and a timeline of actions. If an account was secured and an attacker calls claiming that the incident is still open, end the call and contact the institution independently. Legitimate staff do not need a PIN, OTP or new approval to “return” stolen money.
+Keep the case numbers and a timeline of actions. If an account was secured and an attacker calls claiming that the incident is still open, end the call and contact the institution independently. Legitimate staff do not need a PIN, OTP or new approval to "return" stolen money.
+
+Use explicit closure checks rather than assuming that quiet means safe:
+
+- the bank confirms the affected card or online access state
+- no unauthorised pending operation remains unexplained
+- all sessions and trusted devices have been reviewed after containment
+- email and mobile recovery channels show no unauthorised change
+- no further unsolicited authentication request appears
+- a potentially compromised device has been assessed or rebuilt under an appropriate recovery plan
+- police, NKSC, employer and bank reference numbers are attached to the same timeline.
+
+Continue monitoring after a replacement card or password arrives. Delayed merchant presentment, reused personal data and recovery fraud can appear later. A closed phishing site does not close the account incident.
 
 The most important principle is simple: **respond to the exposed asset, not to the appearance of the phishing page**. Bank first, contain authentication and sessions, isolate an affected device, preserve evidence, and report through official channels.
 

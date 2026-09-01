@@ -76,6 +76,27 @@ Web užklausa turi daugiau konteksto negu adreso juostoje matomas URL. Dalį duo
 
 Nė vienas iš šių laukų nėra savaime kenkėjiškas. Bankai naudoja rizika paremtą autentifikaciją, parduotuvės lokalizuoja kainas, reklamos sistemos matuoja kampanijas, o CDN blokuoja žalingą automatizavimą. Klausimas yra ne vien tai, ar puslapis kinta. Reikia nustatyti, **ar kaita naudojama nuo tikrintojų, prekės ženklo ar galimų aukų nuslėpti iš esmės kitokią ir žalingą paskirtį**.
 
+## Pirmiausia modeliuokite request kelią
+
+Matomas URL yra tik pirmas objektas. Audituojamas įrašas turi atskirti kelio sluoksnius, nes kiekvienas jų turi kitokią telemetriją ir kitą valdytoją.
+
+| Sluoksnis | Įrodymo objektas | Naudingi laukai | Ką galima pagrįsti |
+|---|---|---|---|
+| platformos pradžia | reklama, Page, įrašas, žinutė ar bibliotekos įrašas | platformos ID, creative, matoma paskirtis, laikas | pradžios taško pateikimą ir teiginį |
+| išeinanti užklausa | iš platformos išeinanti naršyklės užklausa | tikslus URL, metodas, `Referer`, user agent, išsiųsti slapukai, laikas | ko paprašė klientas |
+| serverio redirect | HTTP atsakas | statusas, `Location`, antraštės, body hash, atsakiusio serverio IP | kur vienas serveris nurodė eiti klientui |
+| kliento navigacija | naršyklėje įvykdytas perėjimas | inicijavęs script, meta refresh, navigacijos laikas, paskirties URL | kokį perėjimą sukėlė kliento pusės kodas |
+| pateiktas atsakymas | galutinis dokumentas ir subresources | galutinis URL, title, screenshot, DOM ir atsakų hash, form action | ką gavo konkretus stebėtojas |
+| naudotojo veiksmas | forma, failas ar autentifikacijos įvykis | rodyti laukai, paskirtis, laikas, autorizuotoje telemetrijoje matytas endpoint | kokio veiksmo prašyta arba kas atlikta |
+
+HTTP `Referer` laukas gali perduoti ankstesnio resurso URI tiek, kiek leidžia privatumo ir referrer-policy kontrolė. Tai apibrėžia [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html#field.referer). Šiuolaikinės naršyklės taip pat gali siųsti Fetch Metadata antraštes, aprašančias request kontekstą, pavyzdžiui, svetainių ryšį, režimą ir paskirtį. Šiuos signalus serverio request izoliacijai apibrėžia [W3C Fetch Metadata specifikacija](https://www.w3.org/TR/fetch-metadata/). Jų buvimas parodo, ką paslauga galėjo vertinti. Jis neįrodo, kurį lauką naudojo konkretus operatorius.
+
+DNS ir TLS stebėjimus laikykite atskirai nuo HTTP elgsenos. Hostas gali pakeisti IP, bet grąžinti tą patį dokumentą. Shared edge IP gali aptarnauti nesusijusius klientus. Sertifikatas gali parodyti, kad tam tikru metu vardui pateiktas raktas, bet ne tai, koks puslapis pateiktas. Request kelio teiginiams reikia request kelio įrodymų.
+
+![Kontroliuojamas vieno URL palyginimas, parodantis, kaip užfiksuotos užklausos gali grąžinti skirtingus atsakymus](/assets/img/posts/2026-08-31-facebook-cloaking-explained/cloaking-request-comparison-lt.svg)
+
+*Schema: Atsakymų skirtumas pagrindžiamas tik tada, kai išsaugotas užklausos kontekstas ir kiekvienas pakeistas rinkimo kintamasis.*
+
 ## Švarus ir aukai skirtas atsakymas yra analitinės etiketės
 
 **Švarus atsakymas** – tai konkretaus stebėtojo gautas nekenksmingas, nepasiekiamas arba tikrosios paskirties neatspindintis turinys. Tai gali būti:
@@ -139,7 +160,7 @@ HTTP peradresavimai yra normali web dalis. [RFC 9110](https://www.rfc-editor.org
 reklama → matavimo URL → redirect → sąlyginis atsakymas → galutinis puslapis
 ```
 
-Nepaverskite šios sekos teiginiu „Facebook laikė phishing puslapį“ arba „shortener yra užpuolikas“. Paslauga gali būti išnaudojama jos nesukompromitavus, o galutinis puslapis gali pasikeisti jau po pirmo pranešimo.
+Nepaverskite šios sekos teiginiu "Facebook laikė phishing puslapį" arba "shortener yra užpuolikas". Paslauga gali būti išnaudojama jos nesukompromitavus, o galutinis puslapis gali pasikeisti jau po pirmo pranešimo.
 
 ### 4. Skaičiuokite teisėtai išsaugotų artefaktų hash
 
@@ -147,24 +168,71 @@ Ekrano kopija naudinga apsimetimui prekės ženklu parodyti. Dokumento ar JavaSc
 
 Platesnį ryšių modelį pateikia [Infrastructure Pivoting 101](/lt/tyrimai/infrastrukturos-pivoting-101/). Jame paieškos rezultatas, patvirtintas techninis ryšys, cluster narystė ir atribucija paliekami keturiais skirtingais lygiais.
 
-## Atsakymų palyginimas neturi tapti bypass receptu
+## Atkartojamas palyginimo protokolas
 
-Gynybinis palyginimas klausia, ar patvirtinti jau turimi įrodymai rodo iš esmės skirtingą pateikimą. Tam nereikia nugalėti kiekvieno filtro.
+Palyginimas turi patikrinti ribotą teiginį, pavyzdžiui, "du to paties pradinio URL stebėjimai nurodytame laiko lange grąžino iš esmės skirtingą turinį". Tikslas nėra priversti serverį parodyti slepiamą puslapį.
 
-| Laukas | Stebėjimas A | Stebėjimas B | Ką galima teigti |
+### Apibrėžkite case ir rinkimo teisę
+
+Užrašykite case ID, savininką, rinkimo tikslą, teisės pagrindą, pradžios bei pabaigos laiką, retention klasę ir abort sąlygas. Nurodykite, ar objektas gautas iš aukos pranešimo, organizacijos proxy, naršyklės istorijos, platformos bibliotekos, hosting tiekėjo ar viešo archyvo. Aukos screenshot ir naujos analitiko užklausos nevadinkite vienu stebėjimu.
+
+### Užfiksuokite palyginimo manifestą
+
+Prie kiekvieno stebėjimo laikykite machine-readable manifestą:
+
+```text
+case_id
+observation_id
+source_type
+collected_at_utc
+original_url_sha256
+request_method
+final_url
+http_status_sequence
+response_sha256
+dom_sha256
+screenshot_sha256
+browser_family
+network_context_class
+referrer_state
+cookie_state
+javascript_state
+collector_version
+notes_and_unknowns
+```
+
+Tikslų jautrų URL laikykite ribotoje case saugykloje ir apskaičiuokite jo hash. Į paprastą ataskaitą dėkite redacted ir defangintą reikšmę. Hash padeda tikrinti vientisumą ir exact match, tačiau nepaverčia jautraus URL saugiu viešinti.
+
+![Cloaking rinkimo manifestas, išsaugantis bylos tapatybę, rinkimo kontekstą, užklausą ir atsakymo hash](/assets/img/posts/2026-08-31-facebook-cloaking-explained/cloaking-capture-manifest-lt.svg)
+
+*Schema: Manifestas surenkamas prieš interpretaciją, kad kitas analitikas galėtų atkurti palyginimą.*
+
+### Lyginkite palyginamus objektus
+
+Pirmiausia lyginkite stebėjimus, kurių pradinis URL, laiko langas ir rinkimo klasė sutampa. Tada aiškiai nurodykite visus nekontroliuotus kintamuosius. Aukos mobilioji naršyklė ir viešas cloud scanner skiriasi tinklu, klientu, referral būsena, slapukų istorija ir tikėtina laiku. Tokia pora gali parodyti atsakymų skirtumą, bet ne izoliuoti sprendžiantį kintamąjį.
+
+| Laukas | Stebėjimas A | Stebėjimas B | Pagrįstas teiginys |
 |---|---|---|---|
-| laikas | 10:15 UTC | 10:22 UTC | abu stebėjimai patenka į trumpą bendrą langą |
-| šaltinis | organizacijos pranešimas | viešas archyvas | kilmė skiriasi |
-| galutinis hostas | `news.example` | `brand.example` | grandinės baigėsi skirtinguose hostuose |
+| šaltinis | organizacijos pranešimas | viešas archyvas | provenance skiriasi |
+| pradinio URL hash | sutampa | sutampa | įrašyta pradžios reikšmė yra identiška |
+| galutinis hostas | `news.example` | `brand.example` | keliai baigėsi skirtinguose hostuose |
 | turinys | klonuotas straipsnis | tikras prekės ženklo puslapis | išsaugoti iš esmės skirtingi atsakymai |
 | atsako hash | hash A | hash B | dokumentai nėra identiški |
-| nežinomieji | referral būsena | slapukų būsena | skirtumo priežastis nenustatyta |
+| nekontroliuota būsena | referral žinomas | slapukai nežinomi | sprendimo taisyklė neizoliuota |
 
-Paskutinė eilutė svarbiausia. Kai vienu metu pasikeitė keli kintamieji, priežasties negalima priskirti vien šaliai, IP, įrenginiui ar referrer. „Stebėtas sąlyginis pateikimas“ gali būti tvirtas teiginys. „Operatorius tyrėjus aptinka pagal būtent šią taisyklę“ yra daug stipresnis teiginys, kuriam reikia stipresnių įrodymų.
+Kai vienu metu pasikeitė keli kintamieji, priežasties nepriskirkite vien šaliai, IP, įrenginiui ar referrer. "Stebėtas sąlyginis pateikimas" gali būti tvirtas teiginys. "Operatorius tyrėjus aptinka pagal būtent šią taisyklę" yra atskiras teiginys, kuriam daugelyje viešų case neužtenka kontroliuotų įrodymų.
 
-Nekartokite gavėjui unikalaus URL, nekeiskite parametrų, neautomatizuokite sąveikos ir nebandykite apeiti challenge vien tam, kad pasirodytų žalingas puslapis. Tokie veiksmai gali išduoti tyrimą, panaudoti vienkartinį token, sukurti naujų įrašų, paviešinti asmens duomenis arba peržengti leidimo ribą. Dingęs puslapis yra praneština ribota aplinkybė, o ne techninis konkursas.
+![Cloaking palyginimo įrodymų riba, atskirianti pastovius duomenis, pakeistus kintamuosius ir išsaugotus rezultatus](/assets/img/posts/2026-08-31-facebook-cloaking-explained/cloaking-evidence-boundary-lt.svg)
 
-## Cloaking reikia skirti nuo įprastos turinio kaitos
+*Schema: Palyginimas gali pagrįsti skirtingus rezultatus, bet nepasako, kuris nekontroliuotas kintamasis juos sukėlė.*
+
+### Išsaugokite neigiamus rezultatus
+
+Timeout, challenge, `403`, tuščias body ar redirect į teisėtą svetainę yra duomenų rinkinio dalis. Užrašykite resolver rezultatą, ryšio būseną, statusą, turinio ilgį ir laiką. Neišmeskite švarių ar nepavykusių stebėjimų vien todėl, kad jie silpnina pasirinktą paaiškinimą.
+
+Nekartokite gavėjui unikalaus URL, nekeiskite parametrų, neautomatizuokite sąveikos ir neapeikite challenge vien tam, kad pasirodytų žalingas puslapis. Tokie veiksmai gali išduoti tyrimą, panaudoti vienkartinį token, paviešinti asmens duomenis arba peržengti leidimo ribą. Dingęs puslapis yra tyrimo apribojimas, o ne konkursas.
+
+## False-positive kontrolė įprastai turinio kaitai
 
 Iš pažiūros nesutampančias ekrano kopijas gali sukurti ir teisėtos sistemos:
 
@@ -178,7 +246,29 @@ Iš pažiūros nesutampančias ekrano kopijas gali sukurti ir teisėtos sistemos
 
 Apgaulę vertinkite pagal skirtumą, tikslą ir kontekstą kartu. Stipresni įrodymai yra žalinga forma ar failas, nukopijuotas prekės ženklas, neatitinkantis reklamos pažadas, gavėjui unikalus token, patvirtintas credentials arba mokėjimo rinkimas, pakartotinai sutampantys artefaktai ir nuosekli grandinė nuo reklamos iki galutinio puslapio.
 
-Atskiras [informacijos gamyklų prie Lietuvos tyrimas](/lt/tyrimai/informacijos-gamyklos-prie-lietuvos/) padeda išlaikyti dar vieną ribą. Klonuota žiniasklaida ir koordinuotas platinimas gali būti naudojami informacinėms operacijoms, finansiniam scam arba abiem tikslams. Panaši išvaizda neleidžia visko priskirti vienam veikėjui ar misijai. Pirmiausia įvardykite elgesį, o atribuciją pateikite tik tada, kai ją palaiko įrodymai.
+Prieš pavadindami modelį cloaking, patikrinkite mažiau kenkėjiškos intencijos reikalaujančius paaiškinimus:
+
+- palyginkite cache antraštes, amžių ir CDN response ID, jei jie išsaugoti
+- nustatykite, ar vienas stebėjimas buvo authenticated, o kitas anonymous
+- patikrinkite, ar skirtumo nepaaiškina kalba, consent, amžiaus arba regiono kontrolė
+- patikrinkite, ar tarp stebėjimų nesibaigė kampanija ir neįvyko enforcement
+- atskirkite platformos warning puslapį nuo destination atsako
+- lyginkite pilną response arba DOM hash, ne vien vizualinį panašumą
+- patvirtinkite, kad pradinis URL su path ir token iš tikrųjų identiškas.
+
+Atskiras [informacijos gamyklų prie Lietuvos tyrimas](/lt/tyrimai/informacijos-gamyklos-prie-lietuvos/) nustato dar vieną analitinę ribą. Klonuota žiniasklaida ir koordinuotas platinimas gali būti naudojami informacinėms operacijoms, finansiniam scam arba abiem tikslams. Panaši išvaizda neleidžia visko priskirti vienam veikėjui ar misijai. Pirmiausia įvardykite elgesį. Atribuciją pateikite tik tada, kai ją palaiko įrodymai.
+
+## Praktinis gynybinis patvirtinimas
+
+Cloaking vertinimą laikykite pagrįstu, kai yra trys elementai:
+
+1. išsaugotas pradžios ryšys, jungiantis reklamą, žinutę ar platformos objektą su request keliu
+2. bent vienas išsaugotas atsakas, turintis žalingą arba iš esmės apgaulingą funkciją
+3. palyginimas arba taisyklės artefaktas, palaikantis sąlyginį pateikimą, kartu nurodant nekontroliuotus kintamuosius ir teisėtas alternatyvas.
+
+Jei turite tik žalingą atsakymą, praneškite apie su pradžios tašku susietą phishing ar scam puslapį, bet nebūtinai apie cloaking. Jei turite tik du skirtingus nepavojingus atsakymus, praneškite apie variaciją. Jei kelias rekonstruotas iš atskirų viešų stebėjimų, vadinkite jį rekonstrukcija ir išsaugokite jo laiko ribas.
+
+Organizacijos aplinkoje browser history, secure web gateway, DNS, endpoint ir identity telemetriją koreliuokite pagal naudotoją ir UTC laiką. Proxy įvykiai gali atkurti redirect grandinę net tada, kai puslapis jau dingęs. Suvestiems credentials ar užbaigtai autentifikacijai reikia identity ir incident response telemetrijos, ne dar vieno screenshot.
 
 ## Ką turėtų išsaugoti prekės ženklo, reklamos ir saugumo komandos
 
@@ -204,7 +294,7 @@ Cloaking įrodymai gali parodyti, kad du stebėtojai gavo skirtingą medžiagą 
 - kodėl konkretus stebėtojas gavo švarų atsakymą
 - ar turinys dar veiks rytoj.
 
-Naudokite laiku apribotą kalbą: „stebėta“, „pranešė“, „išsaugotas atsakas“, „galimas ryšys“ ir „nenustatyta“. Tai ne silpnumas. Tokį pranešimą galima naudoti ir tada, kai infrastruktūra jau pasikeitė.
+Naudokite laiku apribotą kalbą: "stebėta", "pranešė", "išsaugotas atsakas", "galimas ryšys" ir "nenustatyta". Tokį pranešimą galima naudoti ir tada, kai infrastruktūra jau pasikeitė.
 
 ## Gynybinis kontrolinis sąrašas
 
@@ -224,9 +314,10 @@ Naudokite laiku apribotą kalbą: „stebėta“, „pranešė“, „išsaugota
 1. [Google Search Central: spam politika, cloaking ir apgaulingi redirect](https://developers.google.com/search/docs/essentials/spam-policies)
 2. [RFC 9110: HTTP peradresavimo semantika](https://www.rfc-editor.org/rfc/rfc9110.html#name-redirection-3xx)
 3. [urlscan.io API dokumentacija ir skenų matomumo rekomendacijos](https://urlscan.io/docs/api/)
-4. [Meta Help Center: saugaus apsipirkimo patarimai](https://www.facebook.com/help/123884166448529/)
-5. [HECAVEX: Facebook cloaking, netikros naujienos ir investicinio scam infrastruktūra](/lt/tyrimai/kai-fake-news-scamai-ir-cloaking/)
-6. [HECAVEX: Informacijos gamyklos prie Lietuvos](/lt/tyrimai/informacijos-gamyklos-prie-lietuvos/)
-7. [HECAVEX: Infrastructure Pivoting 101](/lt/tyrimai/infrastrukturos-pivoting-101/)
+4. [W3C: Fetch Metadata Request Headers](https://www.w3.org/TR/fetch-metadata/)
+5. [Meta Help Center: saugaus apsipirkimo patarimai](https://www.facebook.com/help/123884166448529/)
+6. [HECAVEX: Facebook cloaking, netikros naujienos ir investicinio scam infrastruktūra](/lt/tyrimai/kai-fake-news-scamai-ir-cloaking/)
+7. [HECAVEX: Informacijos gamyklos prie Lietuvos](/lt/tyrimai/informacijos-gamyklos-prie-lietuvos/)
+8. [HECAVEX: Infrastructure Pivoting 101](/lt/tyrimai/infrastrukturos-pivoting-101/)
 
 _Šis vadovas yra gynybinis. Jame aiškinama, kaip išsaugoti ir vertinti įgaliotam tyrėjui jau prieinamus įrodymus. Jis nemoko apeiti prieigos kontrolės, atkartoti aukos tapatybės ar išvengti platformos tikrinimo._

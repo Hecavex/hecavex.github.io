@@ -105,14 +105,14 @@ Neutralised sharing copy:
 hxxps://parcel-check[.]invalid/track?id=REDACTED
 ```
 
-The `.invalid` name above is reserved for examples by [IANA](https://www.iana.org/help/example-domains); it is not a real campaign host. Defanging is a safety control, not a verdict. It does not make a real address harmless, and the exact original remains the canonical evidence.
+The `.invalid` name above is reserved for examples by [IANA](https://www.iana.org/help/example-domains). It is not a real campaign host. Defanging is a safety control, not a verdict. It does not make a real address harmless, and the exact original remains the canonical evidence.
 
-If copying a link on the phone could open a preview, do not experiment with press-and-hold menus. Take a screenshot and move the analysis to a controlled device, or manually transcribe only the hostname. Never forward the live message to a friend “to see what happens”.
+If copying a link on the phone could open a preview, do not experiment with press-and-hold menus. Take a screenshot and move the analysis to a controlled device, or manually transcribe only the hostname. Never forward the live message to a friend "to see what happens".
 
 ![Controlled browser capture showing an exact URL retained privately, a defanged sharing copy and fields parsed without a network request](/assets/img/posts/2026-08-31-suspicious-sms-guide/controlled-defang-en.png)
 _Original HECAVEX capture, 31 August 2026. The demonstration used an IANA-reserved name and performed no DNS, HTTP or third-party request._
 
-## 3. Parse the URL; do not visually guess the brand
+## 3. Parse the URL. Do not visually guess the brand
 
 A URL has defined components. The **hostname** determines where a network connection goes. Brand words elsewhere can be decoration.
 
@@ -128,9 +128,9 @@ hxxps://swedbank.lt.security-check[.]example[.]com/pay
 hxxps://parcel-check[.]invalid/track?id=REDACTED
 ```
 
-In the first URL, text before `@` is user information; the host is `account-check.invalid`. [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986.html#section-7.6) explicitly warns that user-information syntax can be crafted to resemble a trusted domain. In the second, `swedbank.lt` is only part of a subdomain; the reserved registrable domain is `example.com`.
+In the first URL, text before `@` is user information. The host is `account-check.invalid`. [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986.html#section-7.6) explicitly warns that user-information syntax can be crafted to resemble a trusted domain. In the second, `swedbank.lt` is only part of a subdomain. The reserved registrable domain is `example.com`.
 
-Use a standards-aware URL parser and Public Suffix List-aware domain logic when accuracy matters. “Take the last two labels” is not a universal rule because suffixes such as `co.uk` contain more than one label. The [WHATWG URL Standard](https://url.spec.whatwg.org/) defines browser URL parsing, while the public [ICANN Lookup](https://lookup.icann.org/en) uses RDAP to retrieve available registration data.
+Use a standards-aware URL parser and Public Suffix List-aware domain logic when accuracy matters. "Take the last two labels" is not a universal rule because suffixes such as `co.uk` contain more than one label. The [WHATWG URL Standard](https://url.spec.whatwg.org/) defines browser URL parsing, while the public [ICANN Lookup](https://lookup.icann.org/en) uses RDAP to retrieve available registration data.
 
 Check these fields separately:
 
@@ -152,13 +152,13 @@ There are only two broad possibilities:
 - an existing archive or scan has already recorded the token and its redirect chain
 - a client sends a request to the shortener and observes the response.
 
-The second option is active network contact. A `HEAD` request is still a request. A “link expander” is still a third party receiving the link and potentially visiting it. Some services respond differently to `HEAD` and `GET`, browsers and scanners, or mobile and desktop clients. A unique token can expire, redirect only once or tell the sender that it was used.
+The second option is active network contact. A `HEAD` request is still a request. A "link expander" is still a third party receiving the link and potentially visiting it. Some services respond differently to `HEAD` and `GET`, browsers and scanners, or mobile and desktop clients. A unique token can expire, redirect only once or tell the sender that it was used.
 
-Under [HTTP semantics](https://www.rfc-editor.org/rfc/rfc9110.html#name-redirection-3xx), a server commonly returns a `3xx` status and a `Location` value for the next hop. The next hop can redirect again, use JavaScript, show a challenge or change according to context. A legitimate domain at the first hop can also contain an unsafe open redirect; [OWASP explains](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) why such links can make phishing appear more trustworthy.
+Under [HTTP semantics](https://www.rfc-editor.org/rfc/rfc9110.html#name-redirection-3xx), a server commonly returns a `3xx` status and a `Location` value for the next hop. The next hop can redirect again, use JavaScript, show a challenge or change according to context. A legitimate domain at the first hop can also contain an unsafe open redirect. [OWASP explains](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) why such links can make phishing appear more trustworthy.
 
 For an ordinary recipient, the safe answer is simple: **do not expand the short link on a personal device**. Verify the claim through the official channel. Analysts can trace it under the controlled conditions described later.
 
-## 5. Know which kind of “check” you are performing
+## 5. Know which kind of "check" you are performing
 
 The word _passive_ is often used too loosely. These four levels have different disclosure and risk:
 
@@ -170,7 +170,7 @@ The word _passive_ is often used too loosely. These four levels have different d
 | direct interaction | open or expand from your browser/phone | ISP, DNS resolver, shortener, target and embedded services | yes |
 
 ![A safe suspicious-link workflow separating offline inspection, third-party lookup, remote scanning and direct interaction](/assets/img/posts/2026-08-31-suspicious-sms-guide/safe-check-workflow-en.svg)
-_“A website did not receive my home IP” is not the same as “nothing was disclosed”. The lookup or scanning provider may still receive the complete URL._
+_"A website did not receive my home IP" is not the same as "nothing was disclosed". The lookup or scanning provider may still receive the complete URL._
 
 ### Search existing records before creating new ones
 
@@ -179,14 +179,14 @@ For a non-unique hostname, an analyst may search existing reports without reques
 Interpret results as observations:
 
 - **Google Safe Browsing** checks resources against Google-maintained unsafe-resource lists. A non-match means only that the queried resource was not matched at that time.
-- **VirusTotal** can return an existing URL report without resubmission. Its standard service is a crowdsourced environment; [Private Scanning](https://docs.virustotal.com/docs/private-scanning) is a separate paid workflow with different retention, visibility and verdict characteristics.
+- **VirusTotal** can return an existing URL report without resubmission. Its standard service is a crowdsourced environment. [Private Scanning](https://docs.virustotal.com/docs/private-scanning) is a separate paid workflow with different retention, visibility and verdict characteristics.
 - **URLScan** distinguishes Public, Unlisted and Private scans. According to its [visibility documentation](https://docs.urlscan.io/pages/visibility), Public results are discoverable publicly, Unlisted results remain visible to vetted Pro users and Private results are restricted to the submitter or anyone given the scan ID.
 - **RDAP** returns available registration context. As [ICANN explains](https://www.icann.org/rdap/), privacy rules and registry policy mean not all registrant data is visible.
 
 ![Isolated browser capture of URLScan's official Public, Unlisted and Private visibility documentation](/assets/img/posts/2026-08-31-suspicious-sms-guide/urlscan-visibility-levels.png)
-_URLScan documentation captured in a fresh browser context on 31 August 2026. Choose visibility before submission; changing your mind after publishing a unique link does not undo disclosure._
+_URLScan documentation captured in a fresh browser context on 31 August 2026. Choose visibility before submission. Changing your mind after publishing a unique link does not undo disclosure._
 
-<aside class="hx-callout"><strong>Correct conclusion</strong>“No detections” means the consulted sources did not identify the URL at that time. It does not mean an independent test proved the page safe.</aside>
+<aside class="hx-callout"><strong>Correct conclusion</strong>"No detections" means the consulted sources did not identify the URL at that time. It does not mean an independent test proved the page safe.</aside>
 
 ## 6. Why a clean preview may be the wrong page
 
@@ -203,12 +203,12 @@ A campaign may vary its response by:
 - JavaScript/browser capabilities, CAPTCHA or interaction
 - whether the credential step has already completed.
 
-Possible outcomes include the phishing page, a harmless brand page, a blank response, `403`, a CAPTCHA, a warning interstitial, a redirect to the real organisation or an error. Legitimate sites also localise, authenticate and adapt content. Different responses demonstrate conditional delivery; they do not automatically prove maliciousness or attribution.
+Possible outcomes include the phishing page, a harmless brand page, a blank response, `403`, a CAPTCHA, a warning interstitial, a redirect to the real organisation or an error. Legitimate sites also localise, authenticate and adapt content. Different responses demonstrate conditional delivery. They do not automatically prove maliciousness or attribution.
 
 ![A shortened SMS link passing through redirects and conditional gates to a decoy, challenge or phishing page](/assets/img/posts/2026-08-31-suspicious-sms-guide/redirect-cloaking-en.svg)
 _One screenshot proves what one observer received at one time. It is not a universal description of the URL._
 
-This is why a screenshot from a public scanner can disagree with the victim's phone. URLScan itself allows scan country, user agent and referrer selection. Microsoft has also documented phishing chains that combined open redirects and CAPTCHA gates to frustrate automated analysis. The practical conclusion is not “keep refreshing until the bad page appears”. It is to preserve each observation with its time and collection context, then avoid turning the absence of a page into proof of innocence.
+This is why a screenshot from a public scanner can disagree with the victim's phone. URLScan itself allows scan country, user agent and referrer selection. Microsoft has also documented phishing chains that combined open redirects and CAPTCHA gates to frustrate automated analysis. The practical conclusion is not "keep refreshing until the bad page appears". It is to preserve each observation with its time and collection context, then avoid turning the absence of a page into proof of innocence.
 
 ## 7. A decision workflow for a suspicious SMS
 
@@ -228,13 +228,13 @@ Treat uncertainty as a reason to pause, not as a reason to test the sender's wor
 
 ### Do not use these shortcuts
 
-- “It is inside the real SMS thread.” Sender presentation can be spoofed.
-- “The padlock is present.” TLS authenticates a hostname, not a brand claim.
-- “The logo and Lithuanian are perfect.” Both are cheap to copy.
-- “VirusTotal says 0/X.” New, targeted and cloaked URLs can be unknown.
-- “The domain is old.” Legitimate sites can be compromised and redirects abused.
-- “A preview looked harmless.” A preview is one client, time and network.
-- “I will enter fake credentials to test it.” That is unnecessary interaction and may change campaign state or create legal and safety problems.
+- "It is inside the real SMS thread." Sender presentation can be spoofed.
+- "The padlock is present." TLS authenticates a hostname, not a brand claim.
+- "The logo and Lithuanian are perfect." Both are cheap to copy.
+- "VirusTotal says 0/X." New, targeted and cloaked URLs can be unknown.
+- "The domain is old." Legitimate sites can be compromised and redirects abused.
+- "A preview looked harmless." A preview is one client, time and network.
+- "I will enter fake credentials to test it." That is unnecessary interaction and may change campaign state or create legal and safety problems.
 
 ## 8. What to do after a click
 
@@ -242,19 +242,19 @@ Respond to the action that occurred, not only to the message category.
 
 | What happened | Immediate response |
 | --- | --- |
-| clicked, but entered nothing and installed nothing | close the page; do not reopen it; check browser downloads and recently installed apps/profiles; update the device/browser; report the URL |
-| entered a password | from a trusted device, change it immediately; change every reused copy; sign out other sessions; inspect recovery methods and MFA; prioritise email and financial accounts |
-| entered card or banking data | call the bank/payment provider immediately using its official number; block the card or affected payment instrument; explain exactly what was entered |
-| approved Smart-ID, Mobile-ID, an OTP or a transaction | contact the bank immediately; state what request was approved and when; secure the underlying account; report to police where appropriate |
-| downloaded or installed an app, profile or file | stop using the affected device for banking; disconnect it from networks if safe; contact workplace IT or a trusted incident-response provider; use another trusted device for account containment |
-| transferred money | contact the bank immediately because a payment may still be stoppable; then report the crime to police |
-| replied or called but shared no secrets | stop contact; preserve the conversation; expect follow-up attempts using what the sender learned |
+| clicked, but entered nothing and installed nothing | close the page. Do not reopen it. Check browser downloads and recently installed apps/profiles. Update the device/browser. Report the URL |
+| entered a password | from a trusted device, change it immediately. Change every reused copy. Sign out other sessions. Inspect recovery methods and MFA. Prioritise email and financial accounts |
+| entered card or banking data | call the bank/payment provider immediately using its official number. Block the card or affected payment instrument. Explain exactly what was entered |
+| approved Smart-ID, Mobile-ID, an OTP or a transaction | contact the bank immediately. State what request was approved and when. Secure the underlying account. Report to police where appropriate |
+| downloaded or installed an app, profile or file | stop using the affected device for banking. Disconnect it from networks if safe. Contact workplace IT or a trusted incident-response provider. Use another trusted device for account containment |
+| transferred money | contact the bank immediately because a payment may still be stoppable. Then report the crime to police |
+| replied or called but shared no secrets | stop contact. Preserve the conversation. Expect follow-up attempts using what the sender learned |
 
 If banking details, a card, Smart-ID, Mobile-ID or a payment were involved, follow the dedicated [post-phishing emergency response guide](/en/research/what-to-do-after-entering-banking-details-on-phishing-page/). It puts the bank, session containment and evidence-preservation actions in time order.
 
 The [Bank of Lithuania's victim guidance](https://www.lb.lt/en/sfi-information-for-users) places the payment provider first because it may still be able to stop some transactions. Card theft requires rapid blocking. Police reporting follows with the preserved evidence.
 
-For authentication apps, never approve a request you did not initiate. [Smart-ID explains](https://www.smart-id.com/security/pin-codes/) that PIN1 is used for authentication while PIN2 authorises operations or signatures; the displayed operation and control code must match what you intentionally started.
+For authentication apps, never approve a request you did not initiate. [Smart-ID explains](https://www.smart-id.com/security/pin-codes/) that PIN1 is used for authentication while PIN2 authorises operations or signatures. The displayed operation and control code must match what you intentionally started.
 
 If the affected account belongs to an employer, report it to the SOC, service desk or security contact immediately. Do not forward the live link into a large chat room. Send the preserved message and a defanged copy through the approved incident channel.
 
@@ -274,7 +274,7 @@ _Official NKSC reporting page captured in a clean browser context on 31 August 2
 
 Outside Lithuania, report through the impersonated organisation, your mobile carrier, national CERT or cybercrime reporting channel. Do not assume a country-specific forwarding number, such as one advertised in another jurisdiction, works everywhere.
 
-As a preventive layer, NKSC offers a [DNS firewall](https://www.nksc.lt/uzkarda) that blocks resources already known to NKSC. It can reduce exposure; it cannot certify an unseen URL as safe.
+As a preventive layer, NKSC offers a [DNS firewall](https://www.nksc.lt/uzkarda) that blocks resources already known to NKSC. It can reduce exposure. It cannot certify an unseen URL as safe.
 
 ## 10. Controlled redirect tracing for authorised analysts
 
@@ -298,7 +298,7 @@ not established: every recipient received the same destination
 ```
 
 ![Controlled localhost-only redirect trace showing two 302 responses and a final 200 response](/assets/img/posts/2026-08-31-suspicious-sms-guide/controlled-redirect-trace-en.png)
-_Original HECAVEX capture, 31 August 2026. The requests were made only to `127.0.0.1`; no public or malicious infrastructure, recipient token or form was involved._
+_Original HECAVEX capture, 31 August 2026. The requests were made only to `127.0.0.1`. No public or malicious infrastructure, recipient token or form was involved._
 
 This evidence discipline is the same distinction used in the [UNIPARK smishing investigation](/en/research/unipark-smishing-campaign-infrastructure/) and the longer [infrastructure pivoting guide](/en/research/infrastructure-pivoting-101/): a provider result is an observation, a matching artefact is a relationship, and attribution requires more.
 
@@ -306,7 +306,7 @@ This evidence discipline is the same distinction used in the [UNIPARK smishing i
 
 ### Can simply opening an SMS link compromise a phone?
 
-It can expose the device's IP, browser characteristics and token immediately. Many phishing pages still require the victim to enter data or install something, but browser and mobile vulnerabilities also exist. Close the page, check for downloads or installed profiles/apps, update the device and respond to any action that occurred. “I only clicked” is lower risk than approving a payment; it is not identical to no contact.
+It can expose the device's IP, browser characteristics and token immediately. Many phishing pages still require the victim to enter data or install something, but browser and mobile vulnerabilities also exist. Close the page, check for downloads or installed profiles/apps, update the device and respond to any action that occurred. "I only clicked" is lower risk than approving a payment. It is not identical to no contact.
 
 ### Is an HTTPS link safe?
 
@@ -354,4 +354,4 @@ For a conceptual introduction to infrastructure reuse, read [why one scam domain
 16. [Google Search: cloaking and sneaky redirects](https://developers.google.com/search/docs/essentials/spam-policies#cloaking)
 17. [Microsoft: phishing campaign abusing open redirectors](https://www.microsoft.com/en-us/security/blog/2021/08/26/widespread-credential-phishing-campaign-abuses-open-redirector-links/)
 
-_This guide is defensive training, not a guarantee about any particular URL. Interfaces, reporting forms and provider visibility rules can change; verify them before operational use. No live suspicious address was opened to create this publication._
+_This guide is defensive training, not a guarantee about any particular URL. Interfaces, reporting forms and provider visibility rules can change. Verify them before operational use. No live suspicious address was opened to create this publication._

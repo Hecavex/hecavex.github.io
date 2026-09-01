@@ -84,17 +84,19 @@ Naudinga išsaugoti:
 
 Vienas įrašas gali turėti wildcard ir daug tarpusavyje nesusijusių SAN. Tas pats DNS vardas gali kartotis keliuose loguose ir kiekvieno sertifikato atnaujinimo metu. Monitorius turi išlaikyti provenance, bet publikavimo įrašus deduplikuoti. Viena žinutė nėra būtinai vienas domenas, o dešimt logo stebėjimų nėra dešimt kampanijų.
 
+Precertificate reikia vertinti ypač tiksliai. Pagal [RFC 9162 precertificate apdorojimo modelį](https://www.rfc-editor.org/rfc/rfc9162.html#name-precertificates), precertificate sukuriamas registravimui prieš išduodant atitinkamą galutinį sertifikatą. Logo stebėjimas įrodo, kad ši precertificate medžiaga buvo pateikta logui. Jis neįrodo, kad galutinis tokio paties gyvavimo ciklo sertifikatas buvo perduotas užsakovui ar įdiegtas serveryje. Išsaugokite `entry_type`, issuer informaciją ir logo nuorodą, užuot precertificate įvykį tyliai pavertę galutinio sertifikato teiginiu.
+
 ### Ko CT neparodo
 
 CT nepateikia registranto, dabartinio DNS atsako, hosting account, puslapio, redirect grandinės, JavaScript, credential receiver, aukų skaičiaus ar operatoriaus tapatybės. Jis nenustato ir domeno registravimo datos. Sertifikato galiojimo datos nėra registracijos datos, o logo timestamp nėra pirmojo panaudojimo įrodymas.
 
-Dalis veiklos į CT apskritai nepateks. Domenas gali neturėti TLS sertifikato, naudoti pasirinkto šaltinio dar nematytą sertifikatą, veikti per IP adresą, būti kompromituoto teisėto hosto dalis arba atsirasti tik redirect pabaigoje. Priešingai, loge esantis vardas gali niekada neturėti DNS atsako arba būti teisėta staging aplinka. Aprėptį reikia vadinti stebimu sertifikatų srautu, o ne „visais phishing domenais“.
+Dalis veiklos į CT apskritai nepateks. Domenas gali neturėti TLS sertifikato, naudoti pasirinkto šaltinio dar nematytą sertifikatą, veikti per IP adresą, būti kompromituoto teisėto hosto dalis arba atsirasti tik redirect pabaigoje. Priešingai, loge esantis vardas gali niekada neturėti DNS atsako arba būti teisėta staging aplinka. Aprėptį reikia vadinti stebimu sertifikatų srautu, o ne "visais phishing domenais".
 
 ## Logai, monitoriai ir CertStream nėra tas pats
 
 [Certificate Transparency projektas](https://certificate.transparency.dev/howctworks/) atskiria append-only logus nuo monitorių ir auditorių. Logas registruoja pateiktą medžiagą. Monitorius stebi logus ir ieško rūpimų vardų ar sertifikatų. Toks srautas kaip CertStream suteikia patogią įvykių sąsają CT stebėjimams, tačiau nėra visas CT pasitikėjimo modelis ir neturėtų tapti vieninteliu atkuriamu šaltiniu.
 
-Atspari sistema išsaugo tiek informacijos, kad spragą būtų galima replay ar backfill būdu užpildyti. Stream rinkimas mažina vėlavimą, o periodinė ribota užklausa gali atkurti praleistus įrašus. Jeigu stream nutrūko aštuonioms minutėms, teisinga būsena yra „collection gap“, kol backfill pavyks, o ne „nulis sutapimų“. Sveikatos telemetrijoje atskirai rodykite:
+Atspari sistema išsaugo tiek informacijos, kad spragą būtų galima replay ar backfill būdu užpildyti. Stream rinkimas mažina vėlavimą, o periodinė ribota užklausa gali atkurti praleistus įrašus. Jeigu stream nutrūko aštuonioms minutėms, teisinga būsena yra "collection gap", kol backfill pavyks, o ne "nulis sutapimų". Sveikatos telemetrijoje atskirai rodykite:
 
 - planuotą workflow laiką ir faktinę pradžią
 - prisijungimo prie šaltinio laiką ir planuotą klausymosi langą
@@ -104,7 +106,11 @@ Atspari sistema išsaugo tiek informacijos, kad spragą būtų galima replay ar 
 - apimtą cursor ar checkpoint intervalą
 - paskutinį sėkmingą publikavimą ir paskutinį duomenų pasikeitimą.
 
-Nulinis rezultatas yra sveikas tik tada, kai numatyta įvestis tikrai apdorota. Workflow, kuris neprisijungė prie šaltinio, nėra „healthy empty“.
+Nulinis rezultatas yra sveikas tik tada, kai numatyta įvestis tikrai apdorota. Workflow, kuris neprisijungė prie šaltinio, nėra "healthy empty".
+
+![Certificate Transparency stebėjimo eiga nuo viešo žurnalo įrašo iki normalizavimo, paaiškinamo sutapimo ir publikavimo peržiūros](/assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/ct-observation-pipeline-lt.svg)
+
+*Schema: Kiekviename etape išsaugoma įvestis, taisyklės versija ir rezultatas, todėl kandidato kelią galima atkartoti.*
 
 ## Prieš lyginimą išrinkite kiekvieną SAN
 
@@ -122,6 +128,34 @@ Praktinė seka:
 8. pašalinti normalizuoto vardo dublikatus įraše ir tarp įrašų neprarandant šaltinio nuorodų.
 
 Netrinkite visų skyrybos ženklų, nesujunkite visų brūkšneliais atskirtų dalių ir nesuplokite label prieš išsaugodami originalą. Tokios transformacijos gali būti naudingi požymiai, tačiau jos nėra canonical hostname. Laikykite jas derived laukuose kartu su taisyklės versija.
+
+### Konkretus normalizuotas stebėjimas
+
+Gavęs SAN `*.XN--EXMPLE-CUA[.]example.`, gynybinis parser turi išsaugoti originalią reikšmę, tik palyginimui pašalinti galinį tašką bei wildcard, per standards-aware biblioteką dekoduoti IDNA ir nustatyti registruojamo domeno ribą. Viešame įraše adresas gali būti neutralizuotas, bet machine-readable laukas turi likti vienareikšmis.
+
+```json
+{
+  "schema_version": "ct-observation/1.0",
+  "raw_san": "*.XN--EXMPLE-CUA.example.",
+  "wildcard": true,
+  "a_label": "xn--exmple-cua.example",
+  "u_label": "exämple.example",
+  "registrable_domain": "xn--exmple-cua.example",
+  "source": {
+    "type": "precertificate",
+    "log_id": "base64-log-id",
+    "entry_index": 123456,
+    "observed_at": "2026-08-31T15:00:00Z"
+  },
+  "normalizer_version": "idna-psl/3.2.0"
+}
+```
+
+Pavyzdyje naudojamas rezervuotas `.example` vardas. Produkcinis kodas netinkamos IDNA konversijos neturi tyliai taisyti. Jis turi nukreipti jas į quarantine srautą. Atmestam įrašui vis tiek reikia šaltinio nuorodos, parser klaidos ir originalios reikšmės, kad po parser atnaujinimo būtų galima atlikti replay.
+
+![Sertifikato vardo normalizavimas, kuriame originalus SAN atskiriamas nuo išvestinių IDNA formų ir lyginimo įvesties](/assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/ct-name-normalization-lt.svg)
+
+*Schema: Originalus sertifikato vardas nekeičiamas, o lyginimo formos išvedamos ir susiejamos su versija.*
 
 ## IDN, Punycode ir panašūs simboliai turi turėti atskirą kelią
 
@@ -168,7 +202,54 @@ Klaviatūros kaimynystės ar praleisto simbolio taisyklės naudingos tada, kai t
 
 ### Token ir konteksto taisyklės
 
-Bendriniai žodžiai vertę įgyja kombinacijose. `secure-payment` vienas gali būti įprastas. Išskirtinis stebimo ženklo token kartu su `secure-payment`, nauju CT timestamp ir kitu registruojamu domenu jau vertas peržiūros. Balas gali padėti rikiuoti eilę, tačiau viešame įraše vis tiek rodykite prisidėjusius požymius, o ne vien „92/100“.
+Bendriniai žodžiai vertę įgyja kombinacijose. `secure-payment` vienas gali būti įprastas. Išskirtinis stebimo ženklo token kartu su `secure-payment`, nauju CT timestamp ir kitu registruojamu domenu jau vertas peržiūros. Balas gali padėti rikiuoti eilę, tačiau viešame įraše vis tiek rodykite prisidėjusius požymius, o ne vien "92/100".
+
+### Balas skirtas rikiavimui, ne tiesai nustatyti
+
+Balas naudingas tada, kai rikiuoja analitiko darbą, ir žalingas tada, kai be kalibravimo pavadinamas tikimybe. Požymių vektorių laikykite šalia balo, o slenksčius traktuokite kaip peržiūros eilės politiką:
+
+```yaml
+candidate: brand-login.example
+model_version: brand-model/2026-08-31
+features:
+  distinctive_label_exact: 35
+  risky_action_token: 12
+  different_registrable_domain: 20
+  unicode_confusable: 0
+  known_partner: -60
+rank_score: 67
+queue: analyst-review
+verdict: null
+```
+
+Nesumuokite du kartus tą patį faktą aprašančių reikšmių. Exact token hit ir edit-distance-zero rezultatas yra koreliuoti. Juos sujunkite į vieną požymių grupę arba dokumentuokite bendrą limitą. Eilę kalibruokite pagal peržiūrėtus konkretaus ženklo ir kalbos duomenis, ne pagal vieną patogiai pasirinktų pavyzdžių rinkinį. Matuokite precision pagal realų peržiūros biudžetą, kiekvienos taisyklės false-positive dalį, peržiūros laiką ir retrospektyviuose testuose praleistų tikrų atvejų dalį. Balas 90 neturi tikimybinės reikšmės, kol sistema nėra kalibruota ir prižiūrima kaip tikimybinis modelis.
+
+### Klaidingų sutapimų testai turi būti šalia taisyklių
+
+Kiekvienas prekės ženklo aprašas turi turėti positive ir negative fixtures. Testai privalo apimti registruojamo domeno ribas, trumpus ženklus, partnerius, žodyninius sutapimus, Unicode formas ir sertifikatų atnaujinimo dublikatus.
+
+```yaml
+tests:
+  - name: brand token under foreign registrable domain
+    input: login-brand.example
+    expect_rules: [distinctive-label, risky-action]
+  - name: official domain inventory event
+    input: auth.brand.example
+    expect_state: official-inventory
+  - name: unrelated dictionary word
+    input: art-gallery.example
+    monitored_token: art
+    expect_rules: []
+  - name: approved service provider
+    input: brand.partner.example
+    expect_state: known-partner
+  - name: repeated certificate renewal
+    input: login-brand.example
+    expect_new_candidate: false
+    expect_new_observation: true
+```
+
+Fixture rinkinį vykdykite kaskart, kai keičiasi Public Suffix List, IDNA biblioteka, prekės ženklo modelis ar matching kodas. Jeigu negative fixtures pradeda regresuoti, taisyklės leidimas turi sustabdyti publikavimą, bet žali stebėjimai turi išlikti vėlesniam replay.
 
 ## Klaidingi sutapimai yra produkto dalis
 
@@ -183,11 +264,21 @@ Tai spręskite būsena, ne trynimu:
 - **expired/unresolved:** dabartinė DNS būsena pasikeitė, istorinis stebėjimas išlieka
 - **retracted:** publikuotas vertinimas buvo klaidingas, o pataisymas matomas.
 
-Suppressions turi būti siauros, versijuojamos ir, kai įmanoma, su galiojimo pabaiga. „Ignoruoti viską šiame hostingo paslaugų teikėjuje“ sunaikina aprėptį. „Iki partnerystės peržiūros datos nerodyti šio tikslaus partnerio domeno“ yra patikrinama išimtis.
+Suppressions turi būti siauros, versijuojamos ir, kai įmanoma, su galiojimo pabaiga. "Ignoruoti viską šiame hostingo paslaugų teikėjuje" sunaikina aprėptį. "Iki partnerystės peržiūros datos nerodyti šio tikslaus partnerio domeno" yra patikrinama išimtis.
+
+### Stebėjimo deduplikavimą atskirkite nuo kandidato būsenos
+
+Žaliam įvykiui ir analitiniam kandidatui naudokite skirtingus identifikatorius. Žalio stebėjimo raktą gali sudaryti logo tapatybė ir entry index. Galutinio sertifikato raktui galima naudoti DER fingerprint. DNS kandidato raktas paprastai turėtų būti normalizuotas A-label ir stebimo prekės ženklo modelis, ne dabartinis IP adresas.
+
+Toks atskyrimas leidžia sertifikato atnaujinimui ar antram logui pridėti įrodymą prie to paties kandidato ir neapsimesti, kad niekas nepasikeitė. Būsenos perėjimai turi būti append-only įvykiai, pavyzdžiui, `first_observed`, `reobserved`, `corroborated`, `dismissed`, `dns_changed` ir `retracted`. Iš šių įvykių iš naujo apskaičiuotas dabartinis snapshot turi sutapti su publikuotu snapshot. Jeigu nesutampa, publikavimas nėra atkuriamas.
+
+![Kandidato būsenų modelis, atskiriantis stebėtą, įtariamą, papildomai pagrįstą, atmestą ir atšauktą vertinimą](/assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/ct-publication-state-lt.svg)
+
+*Schema: Istorinis stebėjimas lieka prieinamas net tada, kai dabartinis vertinimas pakeičiamas ar pataisomas.*
 
 ## Enrichment suteikia kontekstą, ne nuosavybę
 
-Po pavadinimo sutapimo ribotas enrichment gali surinkti DNS atsakymus, nameserver, RDAP registracijos duomenis, sertifikato grandinę, autonominės sistemos kontekstą ir jau viešus skenavimo stebėjimus. Kiekvienas šaltinis turi atskirą timestamp ir ribas. Tai, kad reputacijos paslauga nieko nežino, nėra „švaru“; RDAP registranto nebuvimas neįrodo slėpimosi; Cloudflare IP nėra origin serveris.
+Po pavadinimo sutapimo ribotas enrichment gali surinkti DNS atsakymus, nameserver, RDAP registracijos duomenis, sertifikato grandinę, autonominės sistemos kontekstą ir jau viešus skenavimo stebėjimus. Kiekvienas šaltinis turi atskirą timestamp ir ribas. Tai, kad reputacijos paslauga nieko nežino, nėra "švaru". RDAP registranto nebuvimas neįrodo slėpimosi. Cloudflare IP nėra origin serveris.
 
 Neatidarykite kiekvieno kandidato automatiškai iš asmeninio ar produkcinio tinklo. Naujas nuotolinis skenavimas kontaktuoja su taikiniu ir gali paviešinti URL. Unikalios query reikšmės gali identifikuoti gavėją. Vadovaukitės OPSEC seka iš [Infrastruktūros pivoting 101](/lt/tyrimai/infrastrukturos-pivoting-101/): pradėkite nuo jau esančių viešų įrašų, atskirkite trečiosios šalies lookup nuo aktyvaus skenavimo ir eskaluokite tik turėdami leidimą bei konkretų įrodymo poreikį.
 
@@ -222,9 +313,54 @@ Workflow turėtų turėti:
 - matomą stale būseną, kai rinkimas ar publikavimas praleidžia numatytą langą
 - deterministinį rezultatą, kad ta pati įvestis sukurtų tą patį viešą įrašą.
 
+Minimalus workflow karkasas aiškiai parodo pasitikėjimo ribą. Collection job skaito viešą įvestį ir įkelia nekintamą tarpinį artefaktą. Vėlesnis job patikrina deterministinį rezultatą prieš gaudamas write leidimą. Produkcijoje trečiųjų šalių actions prisekite prie viso commit SHA, ne prie slankiojančio tag.
+
+```yaml
+name: ct-monitor
+on:
+  schedule:
+    - cron: "17,47 * * * *"
+  workflow_dispatch:
+    inputs:
+      from_cursor:
+        required: false
+permissions:
+  contents: read
+concurrency:
+  group: ct-monitor
+  cancel-in-progress: false
+jobs:
+  collect:
+    timeout-minutes: 12
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@FULL_COMMIT_SHA
+      - run: npm ci --ignore-scripts
+      - run: npm run ct:collect -- --from "${{ inputs.from_cursor }}"
+      - run: npm run ct:test-and-build
+      - uses: actions/upload-artifact@FULL_COMMIT_SHA
+        with:
+          name: ct-publication
+          path: out/
+  publish:
+    needs: collect
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@FULL_COMMIT_SHA
+        with:
+          name: ct-publication
+      - run: ./scripts/publish-validated-output.sh
+```
+
+Sertifikatų vardų eilučių nevykdykite kaip shell kodų, kelių, template fragmentų ar workflow expression. Kiekvieną CT lauką laikykite nepatikima įvestimi. Output failų vardus kurkite tik iš vidinių identifikatorių, JSON tikrinkite pagal schemą, ribokite sertifikatų ir SAN skaičių, o prieš render atmeskite control characters. Write leidimą turintis job turi vartoti tik patikrintą artefaktą ir neturi atsisiųsti ar vykdyti kandidato valdomo turinio.
+
+Atkuriamumui įrašykite šaltinio cursor intervalą, šaltinio atsakymo hash, dependency lockfile hash, taisyklių commit, normalizer versiją ir build timestamp. Rankinis backfill su ta pačia įvestimi ir versijomis turi sukurti tuos pačius kandidatų ID ir taisyklių rezultatus. Nuo laiko priklausomas enrichment turi turėti atskirą stebėjimo laiką ir negali perrašyti istorinio CT fakto.
+
 [GitHub workflow įvykių dokumentacijoje](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule) nurodoma, kad scheduled workflow gali vėluoti dėl didelės apkrovos, o eilėje esantys job gali būti praleisti, ypač valandos pradžioje. Trumpiausias intervalas yra penkios minutės, tvarkaraštis vykdomas iš naujausios default branch versijos, o viešoje repozitorijoje gali būti išjungtas po 60 dienų be aktyvumo. Todėl `cron` laikas yra ketinimas, ne įrodymas, kad rinkimas vyko.
 
-Publikuokite ir `scheduled_at`, ir `started_at`, įvesties skaičius, apimtą šaltinio intervalą, paskutinį sėkmingą bandymą bei duomenų pasikeitimo laiką. Vartotojas tada atskirs pasenusią automatiką nuo tikro nulinio rezultato. Po gedimo rankinis backfill turi atkurti žinomą praleistą intervalą, o ne vien paleisti rinkimą „nuo dabar“.
+Publikuokite ir `scheduled_at`, ir `started_at`, įvesties skaičius, apimtą šaltinio intervalą, paskutinį sėkmingą bandymą bei duomenų pasikeitimo laiką. Vartotojas tada atskirs pasenusią automatiką nuo tikro nulinio rezultato. Po gedimo rankinis backfill turi atkurti žinomą praleistą intervalą, o ne vien paleisti rinkimą "nuo dabar".
 
 ## Laukai, kurie kandidatą padaro patikrinamą
 
@@ -244,9 +380,9 @@ Viešai hostname galima rodyti neutralizuota forma, kad jis netaptų netyčia pa
 
 ## Praktinė peržiūros tvarka
 
-Pirmiausia peržiūrėkite kandidatus, kurie jungia išskirtinį prekės ženklo sutapimą su kitu registruojamu domenu, rizikingais veiksmo žodžiais, nauju sertifikato įrašu ir papildomu viešu stebėjimu. Žemiau rikiuokite žinomus oficialius domenus, tikslius partnerius ir bendrinių token sutapimus. Prieš puslapio dizainą patikrinkite registruojamo domeno ribą. Prieš žodį „naujas“ patikrinkite timestamp reikšmes. Bendrą infrastruktūrą atskirkite nuo nuosavybės. Užrašykite, kas vertinimą paneigtų.
+Pirmiausia peržiūrėkite kandidatus, kurie jungia išskirtinį prekės ženklo sutapimą su kitu registruojamu domenu, rizikingais veiksmo žodžiais, nauju sertifikato įrašu ir papildomu viešu stebėjimu. Žemiau rikiuokite žinomus oficialius domenus, tikslius partnerius ir bendrinių token sutapimus. Prieš puslapio dizainą patikrinkite registruojamo domeno ribą. Prieš žodį "naujas" patikrinkite timestamp reikšmes. Bendrą infrastruktūrą atskirkite nuo nuosavybės. Užrašykite, kas vertinimą paneigtų.
 
-CT stebėjimas stipriausias kaip ankstyvas vardų sensorius, perduodantis kandidatus disciplinuotai analizei. Jis silpniausias tada, kai „sertifikate yra prekės ženklas“ publikuojama kaip „phishing domenas“. Teisingas SAN išrinkimas, aiškios taisyklės, matoma automatikos sveikata ir įrodymus gerbianti peržiūra triukšmingą viešą srautą paverčia pagrįsta grėsmių žvalgyba.
+CT stebėjimas stipriausias kaip ankstyvas vardų sensorius, perduodantis kandidatus disciplinuotai analizei. Jis silpniausias tada, kai "sertifikate yra prekės ženklas" publikuojama kaip "phishing domenas". Teisingas SAN išrinkimas, aiškios taisyklės, matoma automatikos sveikata ir įrodymus gerbianti peržiūra triukšmingą viešą srautą paverčia pagrįsta grėsmių žvalgyba.
 
 ## Oficialūs standartai ir dokumentacija
 

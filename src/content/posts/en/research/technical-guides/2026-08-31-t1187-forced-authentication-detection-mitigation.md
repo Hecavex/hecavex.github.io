@@ -52,11 +52,11 @@ image:
 
 ## The dangerous action may be performed by Windows, not by the user
 
-Forced authentication is easy to describe badly. It is sometimes reduced to “a file steals a password”, which hides both the Windows behaviour and the analytical uncertainty. In [MITRE ATT&CK T1187](https://attack.mitre.org/techniques/T1187/), an adversary causes a target system to authenticate to infrastructure the adversary can observe. The user may open a message or browse a folder, but the consequential network request can be generated automatically when Windows resolves a remote resource.
+Forced authentication is easy to describe badly. It is sometimes reduced to "a file steals a password", which hides both the Windows behaviour and the analytical uncertainty. In [MITRE ATT&CK T1187](https://attack.mitre.org/techniques/T1187/), an adversary causes a target system to authenticate to infrastructure the adversary can observe. The user may open a message or browse a folder, but the consequential network request can be generated automatically when Windows resolves a remote resource.
 
 The material sent through NTLM challenge-response is not the user's plaintext password. It may nevertheless be valuable for offline guessing, relay or other follow-on abuse. Whether any of those outcomes happened is a separate question. A connection attempt, a completed NTLM exchange, possession of reusable material, successful cracking, successful relay and later account use are six different claims. Good incident handling does not compress them into one red box.
 
-This is also why T1187 belongs in a defensive engineering guide rather than a collection of spectacular proofs of concept. The controls are ordinary and measurable: constrain egress, discover legitimate NTLM dependencies, correlate the originating object with the network request, reduce privilege exposure, and know what evidence would justify escalating from “attempt” to “compromise”.
+This is also why T1187 belongs in a defensive engineering guide rather than a collection of spectacular proofs of concept. The controls are ordinary and measurable: constrain egress, discover legitimate NTLM dependencies, correlate the originating object with the network request, reduce privilege exposure, and know what evidence would justify escalating from "attempt" to "compromise".
 
 <aside class="hx-callout warning"><strong>Defensive boundary</strong>This publication contains no instructions for constructing a coercion file, receiving challenge-response material, relaying authentication or recovering a password. The goal is to stop, detect and investigate the behaviour without reproducing it.</aside>
 
@@ -73,11 +73,42 @@ This is conceptual, not a recipe. The important defensive observation is that th
 
 [Microsoft's NTLM overview](https://learn.microsoft.com/en-us/windows-server/security/kerberos/ntlm-overview) explains why the protocol still appears in modern estates. Kerberos is preferred in Active Directory, but workgroups, local accounts, legacy systems and applications can retain NTLM dependencies. Turning every NTLM event into an incident therefore produces noise. Leaving all outbound NTLM unmeasured produces a blind spot.
 
+![Forced-authentication chain from a remote reference through Windows resource handling to outbound SMB or WebDAV authentication](/assets/img/posts/2026-08-31-t1187-forced-authentication/t1187-authentication-path-en.svg)
+
+*Figure: The suspicious property emerges from the full chain, not from the document, process or network request in isolation.*
+
+### Read the protocol state, not only the destination port
+
+An SMB observation becomes much more useful when the sensor can distinguish transport from authentication state. SMB2 commonly starts with `SMB2 NEGOTIATE`. The client and server then exchange `SMB2 SESSION_SETUP` messages. [Microsoft's SMB2 specification](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/c9efe8ca-ff34-44d0-bfbe-58a9b9db50d4) explains that `SESSION_SETUP` carries GSS security tokens and can return `STATUS_MORE_PROCESSING_REQUIRED` while authentication continues. [SMB2 uses SPNEGO](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/06451bf2-578a-4b9d-94c0-8ce531bf14c4) to select an authentication mechanism such as Kerberos or NTLM.
+
+When NTLM is selected, [MS-NLMP defines three relevant message types](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nlmp/907f519d-6217-45b1-b421-dca10fc8af0d): `NEGOTIATE_MESSAGE`, `CHALLENGE_MESSAGE`, and `AUTHENTICATE_MESSAGE`. The last message can contain the user's domain and account identity plus a response derived from the server challenge and the user's secret. [The NTLMv2 calculation includes server challenge, client challenge, time, and target information](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nlmp/c0250a97-2940-40c7-82fb-20d208c71e96). It does not transmit the plaintext password or the NT password hash.
+
+That distinction changes incident language. An outbound SYN is not an NTLM exchange. An SMB negotiation is not an `AUTHENTICATE_MESSAGE`. A Net-NTLMv2 response is not an NT hash and cannot be used as Pass-the-Hash. Microsoft makes the same distinction in its [CVE-2023-23397 investigation guidance](https://www.microsoft.com/en-us/security/blog/2023/03/24/guidance-for-investigating-attacks-using-cve-2023-23397/), while noting that a captured response can still be relayed or subjected to offline password guessing.
+
+Treat packet captures containing an NTLM authentication response as sensitive identity evidence. Limit access, hash the capture, record acquisition time and sensor position, and avoid copying authentication payloads into tickets or public sandboxes.
+
 ### SMB and WebDAV are related paths, not interchangeable evidence
 
-Outbound SMB to an Internet address is often unusual enough to make a strong detection and prevention control. It is not the entire problem. MITRE notes WebDAV as a possible fallback path operating over ports commonly permitted for web traffic. A firewall rule that blocks TCP 445 can prevent one path while an HTTP or HTTPS request still reaches an untrusted server.
+Outbound SMB to an Internet address is often unusual enough to make a strong detection and prevention control. It is not the entire technique family. MITRE notes WebDAV as another path that can operate over HTTP or HTTPS. The Windows WebDAV Redirector depends on the WebClient service, as described in [Microsoft's WebDAV Redirector documentation](https://learn.microsoft.com/en-us/iis/publish/using-webdav/using-the-webdav-redirector).
 
-The inverse is also important. A connection to TCP 443 is not evidence of WebDAV, and WebDAV traffic is not automatically malicious. The detector needs protocol, process, destination, authentication and originating-object context. Port-only logic should be treated as a first filter, not a conclusion.
+Do not infer that every external WebDAV request exposes NTLM. The WebClient uses WinHTTP security-zone decisions. [Microsoft documents that automatic credential use normally applies to intranet sites rather than dotted Internet FQDNs](https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/credentials-prompt-access-webdav-fqdn-sites), unless proxy bypass, `AuthForwardServerList`, or other policy changes the trust decision. Broad credential-forwarding exceptions are therefore both a compatibility fact and an investigation lead.
+
+The boundary is especially important for CVE-2023-23397. Microsoft's investigation guidance states that the vulnerable Outlook reminder path could trigger external SMB authentication without user interaction. It also states that, for that specific path, an external WebDAV connection did not send Net-NTLMv2 because Internet-zone policy prevented it. Analysts should not turn a generic ATT&CK WebDAV possibility into a claim about credential exposure in every product-specific case.
+
+A connection to TCP 443 is not evidence of WebDAV. A WebDAV method is not evidence that credentials were forwarded. A blocked TCP 445 attempt is not a completed exchange. The detector needs protocol state, process, destination, policy result, authentication state, and originating-object context.
+
+## Use an evidence ladder before assigning severity
+
+| Level | Evidence established | Claim that is justified |
+| --- | --- | --- |
+| 0 | a message or file contains a remote reference | a possible forced-authentication trigger exists |
+| 1 | DNS resolution or a connection attempt is observed | the endpoint tried to reach the destination |
+| 2 | SMB or WebDAV application traffic is confirmed | the endpoint negotiated the relevant service |
+| 3 | an NTLM `AUTHENTICATE_MESSAGE` or equivalent audit evidence is present | challenge-response material was emitted |
+| 4 | a relay acceptance or successful offline password recovery is independently demonstrated | exposed material was converted into usable access |
+| 5 | authenticated actions are linked to the identity and incident | confirmed impact can be described and scoped |
+
+Levels do not automatically imply the next level. A firewall block at level 1 can be a successful preventive control and a valuable detection. A complete level 3 exchange justifies identity containment, but it does not prove the destination retained the material or that later access succeeded. Level 4 and level 5 require evidence from the accepting service, identity provider, affected resource, or another independently preserved source.
 
 ## Build a three-plane evidence chain
 
@@ -92,6 +123,22 @@ The best detections join endpoint, network and authentication telemetry within a
 [Microsoft documents `DeviceNetworkEvents`](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicenetworkevents-table) as the Defender XDR table for device network connections. Equivalent EDRs expose similar records. The product name matters less than retaining the initiating process, target and timestamp. A perimeter firewall that logs only source NAT and destination can still block traffic, but it is much less useful for finding the exact file or application that caused it.
 
 For NTLM visibility, Microsoft recommends auditing before blocking. Its [Defender for Identity event-collection guidance](https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection) covers NTLM auditing and Event 8004 enrichment, while the Windows policy reference records audit and block activity in the `Microsoft-Windows-NTLM/Operational` log. Scope and event placement vary, so confirm collection on representative clients, servers and domain controllers instead of assuming one event source covers the estate.
+
+![Forced-authentication telemetry joined across endpoint, network and identity evidence planes](/assets/img/posts/2026-08-31-t1187-forced-authentication/t1187-telemetry-join-en.svg)
+
+*Figure: Each telemetry plane answers a different incident question and only their time-bounded join reconstructs the state.*
+
+### Collect fields that let an analyst reconstruct state
+
+At endpoint level, [Sysmon Event ID 3](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon) can record process-attributed network connections when that event type is enabled. Windows Filtering Platform auditing can record allowed connections in [Event 5156](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-5156) and blocked connections in Event 5157. These sources are verbose, so filter and route them deliberately. Preserve process path, process identifier, source and destination addresses, destination port, protocol, device, user context, and filter action.
+
+In Defender XDR, `DeviceNetworkEvents` provides fields such as `DeviceId`, `DeviceName`, `InitiatingProcessAccountName`, `InitiatingProcessFileName`, `InitiatingProcessCommandLine`, `RemoteIP`, `RemoteUrl`, `RemotePort`, `Protocol`, `ActionType`, and `Timestamp`. The exact schema is product-specific, but the analytical requirement is stable: retain a process identity and a network destination on the same event, then correlate them with file, email, and authentication records.
+
+On the Windows authentication side, collect the `Microsoft-Windows-NTLM/Operational` channel and validate that Event 8004 reaches the intended analytics platform. Record account, client workstation, target server, process or calling context where available, audit or block outcome, and event source host. Event 8004 enrichment can add the target server that received NTLM, but it does not replace the client-side network record.
+
+Do not misuse Windows Security Event 4624 as a universal outbound signal. It is created by the system that accepts a logon. If the destination is outside your control, the initiating workstation may have no local 4624 proving what the remote server accepted. That is why client network telemetry, NTLM operational logs, and protocol-aware sensors matter.
+
+For packet or NDR sensors, retain metadata that can separate TCP establishment, SMB negotiation, SPNEGO selection, the NTLM challenge, and the authentication response. A sensor alert that only says `SMB to Internet` should remain level 1 or 2 until another source establishes level 3.
 
 ### A correlation analytic worth operating
 
@@ -112,13 +159,26 @@ Raise priority when:
   identity activity follows from a new device or network
 ```
 
-This is detection logic, not exploit logic. It also gives responders a reason to preserve the source message or file instead of deleting the alert's “malicious URL” and losing the initiating evidence.
+This is detection logic, not exploit logic. It also gives responders a reason to preserve the source message or file instead of deleting the alert's "malicious URL" and losing the initiating evidence.
+
+A practical correlation can start with process-attributed traffic rather than an IOC list:
+
+```kusto
+DeviceNetworkEvents
+| where Timestamp > ago(14d)
+| where RemotePort in (139, 445)
+| project Timestamp, DeviceId, DeviceName, InitiatingProcessAccountName,
+          InitiatingProcessFileName, InitiatingProcessCommandLine,
+          RemoteIP, RemoteUrl, RemotePort, Protocol, ActionType, ReportId
+```
+
+Inspect the `ActionType` values present in your tenant and verify their meaning before operational use. Enrich public-address detection with your approved external SMB inventory. Join on `DeviceId` and a narrow time window to file, email, browser, and NTLM audit events. Do not require a malware verdict or young domain. The important question is whether the process and destination are expected for that device and user.
 
 ### False positives to plan for
 
 Legitimate software deployment, document-management systems, remote file shares, intranet publishing, line-of-business applications and administrator workflows may use SMB, WebDAV or NTLM. False positives are not a reason to abandon the analytic. They are the input for a controlled allowlist with an owner, business purpose and review date.
 
-Avoid broad exceptions such as “all cloud hosts” or “all TCP 443”. Approve the smallest stable identity you can govern: a named server, managed service, expected protocol, originating application and bounded device group. An exception without an owner becomes permanent shadow architecture.
+Avoid broad exceptions such as "all cloud hosts" or "all TCP 443". Approve the smallest stable identity you can govern: a named server, managed service, expected protocol, originating application and bounded device group. An exception without an owner becomes permanent shadow architecture.
 
 ## Prevention: stop unneeded authentication from leaving
 
@@ -132,19 +192,27 @@ Remote work complicates perimeter-only control. A laptop on a home network may n
 
 Determine which managed endpoints genuinely require the Windows WebClient service or external WebDAV. Where it is unnecessary, disable or restrict the capability through tested change management. Where it is required, constrain destinations and collect enough web telemetry to distinguish approved repositories from arbitrary Internet hosts.
 
-Do not claim that “445 is blocked” closes the finding. It closes one route.
+Do not claim that "445 is blocked" closes the finding. It closes one route.
 
 ### 3. Audit NTLM, then reduce it deliberately
 
 Microsoft's [outgoing NTLM policy guidance](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj852213%28v%3Dws.11%29) explicitly recommends auditing first, reviewing required servers and only then moving to denial with narrow exceptions. Newer Windows releases also support [blocking NTLM for outbound SMB connections](https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-ntlm-blocking). Microsoft notes that this can protect SMB clients without disabling NTLM everywhere.
 
-Inventory dependencies by application and service owner. Prefer Kerberos or modern authentication where supported. Record every exception as technical debt and retest it. An emergency “deny all” change without dependency data can break business workflows and drive administrators toward unsafe bypasses.
+Inventory dependencies by application and service owner. Prefer Kerberos or modern authentication where supported. Record every exception as technical debt and retest it. An emergency "deny all" change without dependency data can break business workflows and drive administrators toward unsafe bypasses.
+
+Keep three controls distinct. Outbound NTLM blocking prevents the client from using NTLM on covered SMB connections. SMB signing protects SMB message integrity and reduces relay to SMB services that enforce signing. [Microsoft's SMB signing documentation](https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-signing) explains current default requirements on newer Windows releases. Signing does not stop the client from emitting an NTLM response, does not prevent offline guessing, and does not by itself stop relay to another protocol.
+
+Services that accept Windows authentication need their own relay resistance. [Microsoft's IIS Extended Protection documentation](https://learn.microsoft.com/en-gb/iis/configuration/system.webserver/security/authentication/windowsauthentication/extendedprotection/) describes channel binding and service binding for Windows authentication. Extended Protection can make a relayed authentication invalid for a protected service when correctly configured. It is not an estate-wide switch. Test each accepting service, load balancer, TLS termination path, and legacy client before enforcement.
 
 ### 4. Harden the value of anything exposed
 
 Strong, unique passwords make offline guessing harder, though they do not solve relay or every NTLM risk. Privileged accounts should not browse email or general file shares from administrative workstations. Local administrator passwords should be unique and managed. Service accounts need long random secrets, restricted logon rights and lifecycle ownership.
 
 For cloud identity, use phishing-resistant authentication and conditional access rather than assuming password reset alone ends every credential incident. The related HECAVEX analysis, [MFA Is Not a Panacea](/en/research/mfa-is-not-a-panacea/), explains the distinction between a password, an MFA ceremony and a reusable session. That distinction matters if the same lure led to both forced Windows authentication and interactive phishing.
+
+![Layered forced-authentication control map covering content handling, protocol restrictions, egress blocking and NTLM reduction](/assets/img/posts/2026-08-31-t1187-forced-authentication/t1187-control-map-en.svg)
+
+*Figure: Prevention and detection overlap across the chain, but no single control proves that every route is closed.*
 
 ## Triage: classify what is known before containing
 
@@ -155,7 +223,7 @@ For cloud identity, use phishing-resistant authentication and conditional access
 | responder confirms a complete exchange | the destination had an opportunity to observe challenge-response material | escalate identity containment, identify every exposed user/computer identity, investigate relay and guessing outcomes |
 | suspicious account or service activity follows | exposure may have progressed to use | treat as an identity incident, contain sessions and accounts, preserve logs, investigate persistence and impact |
 
-Start with time, device, user and originating object. Preserve the message with full headers, the attachment or file hash, endpoint timeline, DNS and proxy records, firewall actions, NTLM events, and any later identity activity. Keep the suspicious object quarantined under normal evidence procedures. Do not open it on an analyst workstation to “confirm” the behaviour.
+Start with time, device, user and originating object. Preserve the message with full headers, the attachment or file hash, endpoint timeline, DNS and proxy records, firewall actions, NTLM events, and any later identity activity. Keep the suspicious object quarantined under normal evidence procedures. Do not open it on an analyst workstation to "confirm" the behaviour.
 
 Ask four scope questions:
 
@@ -165,6 +233,19 @@ Ask four scope questions:
 4. What happened after the attempt: password guessing, relay-like access, unusual sign-ins, new sessions, mailbox changes or lateral movement?
 
 Resetting a password can be appropriate, but the response must match the evidence. If later cloud-session abuse is suspected, revoke sessions and follow the identity provider's token-theft playbook. If the evidence is limited to a blocked network attempt, state that. Overclaiming compromise weakens the incident record just as much as underreacting.
+
+### Validate coverage without collecting authentication material
+
+A safe control test does not need a credential receiver or a live coercion artifact.
+
+1. Confirm effective firewall and SMB-client policy on representative Windows versions, device groups, VPN states, IPv4 and IPv6 paths.
+2. Use a controlled test destination that records DNS and TCP connection attempts but closes the connection before SMB session setup. Verify that endpoint, firewall, proxy, SIEM, and case-management records agree on time and device.
+3. Replay synthetic `DeviceNetworkEvents`, NTLM Operational, and file-origin fixtures through the analytic to test correlation and severity transitions.
+4. Validate approved external SMB and WebDAV workflows separately. A policy can be secure and still fail operationally if a legitimate dependency is hidden.
+5. Measure what the SOC can prove after the test. It should be able to distinguish blocked connection, protocol negotiation, and NTLM authentication without inspecting a credential response.
+6. Retest after VPN, endpoint-firewall, authentication-policy, or EDR schema changes.
+
+Never point a managed workstation at an authentication-capture service to demonstrate coverage. A test that deliberately receives an employee's challenge-response material creates the exposure the control is meant to prevent.
 
 ## Threat context without turning a technique into attribution
 
@@ -184,16 +265,20 @@ An organisation is in a materially better position when it can answer yes to the
 - Are password, session and token containment procedures documented and tested?
 - Do exceptions have owners, expiry dates and evidence of continued need?
 
-The objective is not a dashboard that says “T1187 coverage: 100%”. It is a chain that prevents the common path, detects the remainder, preserves the right evidence and expresses confidence honestly.
+The objective is not a dashboard that says "T1187 coverage: 100%". It is a chain that prevents the common path, detects the remainder, preserves the right evidence and expresses confidence honestly.
 
 ## Official and primary sources
 
 - [MITRE ATT&CK: Forced Authentication, T1187](https://attack.mitre.org/techniques/T1187/)
+- [Microsoft Open Specifications: NTLM message syntax, MS-NLMP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nlmp/907f519d-6217-45b1-b421-dca10fc8af0d)
+- [Microsoft Open Specifications: SMB2 SESSION_SETUP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/c9efe8ca-ff34-44d0-bfbe-58a9b9db50d4)
 - [Microsoft Learn: NTLM overview in Windows Server](https://learn.microsoft.com/en-us/windows-server/security/kerberos/ntlm-overview)
 - [Microsoft Learn: configure Windows event auditing for Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/deploy/configure-windows-event-collection)
 - [Microsoft Learn: restrict outgoing NTLM traffic to remote servers](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj852213%28v%3Dws.11%29)
 - [Microsoft Learn: block NTLM connections on SMB](https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-ntlm-blocking)
-- [Microsoft Learn: SMB security hardening](https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-security-hardening)
+- [Microsoft Learn: SMB signing](https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-signing)
+- [Microsoft Learn: Extended Protection for Windows authentication in IIS](https://learn.microsoft.com/en-gb/iis/configuration/system.webserver/security/authentication/windowsauthentication/extendedprotection/)
+- [Microsoft Security: investigating CVE-2023-23397](https://www.microsoft.com/en-us/security/blog/2023/03/24/guidance-for-investigating-attacks-using-cve-2023-23397/)
 - [Microsoft Security Response Center: CVE-2023-23397](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-23397)
 - [CISA and partners: Russian GRU targeting Western logistics entities and technology companies, AA25-141A](https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-141a)
 

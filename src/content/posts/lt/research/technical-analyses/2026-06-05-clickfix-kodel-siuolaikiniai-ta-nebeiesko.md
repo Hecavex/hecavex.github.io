@@ -23,7 +23,7 @@ categories: ["malware", "social-engineering"]
 tags: ["ClickFix", "pradinė prieiga", "PowerShell", "socialinė inžinerija"]
 featured: true
 scope: "ClickFix vykdymo grandinės, infrastruktūros, aptikimo galimybių ir organizacinės rizikos analizė."
-limitations: "Kampanijų įrankiai ir komandos kinta; pateikti pavyzdžiai nėra baigtinis visų ClickFix variantų sąrašas."
+limitations: "Kampanijų įrankiai ir komandos kinta. Pateikti pavyzdžiai nėra baigtinis visų ClickFix variantų sąrašas."
 key_findings:
   - "Atakos sėkmė priklauso nuo įtikinamos instrukcijos, o ne programinio pažeidžiamumo."
   - "Naršyklės ir shell proceso ryšys suteikia stipresnius aptikimo signalus nei pavieniai domenai."
@@ -66,23 +66,23 @@ source_url: https://deivlis.substack.com/p/clickfix-kodel-siuolaikiniai-ta-nebei
 
 Čia jau mano asmeninė nuomonė.
 
-Lietuvos cyber erdvėje vis dar labai daug kalbama apie klasikinius phishing, slaptažodžius, MFA, “nespausk nuorodų”, “neatidaryk priedų”, “įsijunk 2FA” *(na okay, sutinku ir pats kalbu kartais…)*.
+Lietuvos cyber erdvėje vis dar labai daug kalbama apie klasikinius phishing, slaptažodžius, MFA, "nespausk nuorodų", "neatidaryk priedų", "įsijunk 2FA" *(na okay, sutinku ir pats kalbu kartais…)*.
 
 Realiai iš šitų dalykų viskas svarbu.
 
 Bet.. peržiūrint į komentarus ar diskusijas *(akis tiesiai į Registrų Centro incidentą)..* diskusijos komentarai atrodo taip, lyg 2026 metais vis dar bandom laimėt 2018 metų karą su TAs.
 
-Bendraujant su CTI *(na bent tais kas daro CTI ne Lietuvoje)* ClickFix jau seniai nėra toks nišinis dalykas. Microsoft, Proofpoint, ESET, Rapid7 ir kiti tyrėjai per 2024 - 2026 metus aprašė skirtingus ClickFix naudojimo atvejus, nuo TA571 ir ClearFake iki Booking.com apsimetimo kampanijų, WordPress kompromitavimo, infostealerių pristatymo ir didelio masto TDS valdomų operacijų. (Proofpoint, 2024; Microsoft, 2025; ESET, 2025; Rapid7, 2026)
+Bendraujant su CTI *(na bent tais kas daro CTI ne Lietuvoje)* ClickFix jau seniai nėra toks nišinis dalykas. Microsoft, Proofpoint, ESET, Rapid7 ir kiti tyrėjai per 2024 - 2026 metus aprašė skirtingus ClickFix naudojimo atvejus, nuo TA571 ir ClearFake iki Booking.com apsimetimo kampanijų, WordPress kompromitavimo, infostealerių pristatymo ir didelio masto TDS valdomų operacijų. (Proofpoint 2024, Microsoft 2025, ESET 2025 ir Rapid7 2026)
 
 O kas vyksta Lietuvoje?
 
 Viešoje erdvėje apie tai vis dar matau mažai gilesnės diskusijos *(arba laikas pradėt lankytis InfoSec meet’uose..).*
 
-Taip, kartais pasirodo bendro pobūdžio perspėjimai. Taip, kažkas pasidalina “neveskite komandų iš interneto” tipo įrašu. Bet ClickFix retai aptariamas kaip platesnis reiškinys.. kaip cybercrime ekonomikos pokytis, kaip human execution model, kaip infostealer ekosistemos įėjimo taškas, kaip CISO lygio rizikos signalas.
+Taip, kartais pasirodo bendro pobūdžio perspėjimai. Taip, kažkas pasidalina "neveskite komandų iš interneto" tipo įrašu. Bet ClickFix retai aptariamas kaip platesnis reiškinys.. kaip cybercrime ekonomikos pokytis, kaip human execution model, kaip infostealer ekosistemos įėjimo taškas, kaip CISO lygio rizikos signalas.
 
 Ir būtent čia *(mano manymu)* slypi problema.
 
-ClickFix nėra tik “dar viena phishing technika”. Čia jau yra signalas, kad TAs juda link modelio, kuriame žmogus tampa aktyvia kompromitavimo proceso dalim *(nu čia tie kur unintentional insider threat’ai).* Ne auka, kuri paspaudžia phishing’o nuorodą, o žmogus, kuris pats paleido komandą.
+ClickFix nėra tik "dar viena phishing technika". Čia jau yra signalas, kad TAs juda link modelio, kuriame žmogus tampa aktyvia kompromitavimo proceso dalim *(nu čia tie kur unintentional insider threat’ai).* Ne auka, kuri paspaudžia phishing’o nuorodą, o žmogus, kuris pats paleido komandą.
 
 Labai modernu, beveik kaip self-service incident response, tik šiuo atvėju incidentą sukuria pats žmogus.
 
@@ -114,7 +114,7 @@ ClickFix jei trumpai tai yra socialinės inžinerijos technika, kurioje vartotoj
 "Fix required to continue."
 ```
 
-**Žmogui pasiūlomas labai greitas “sprendimas”:**
+**Žmogui pasiūlomas labai greitas "sprendimas":**
 
 ```
 Paspausk Windows + R
@@ -137,9 +137,9 @@ Tada vartotojui parodomos instrukcijos kaip paleist komandą.
 
 Microsoft aprašė, kad ClickFix gali naudoti navigator.clipboard.writeText(), kai komanda nukopijuojama į operacinės sistemos clipboard. Senesni puslapiai gali dar naudot document.execCommand(), na jau šiai dienai deprecated, bet dar matomas (Microsoft, 2025).
 
-Vartotojas galvoja, kad “sprendžia problemą”, o realybėje jau paleistas execution.
+Vartotojas galvoja, kad "sprendžia problemą", o realybėje jau paleistas execution.
 
-Šitoje vietoje ClickFix yra genialus dalykas, TAs neprašo vartotojo (aukos) atsisiųst kažkokį failą *(kuris bus 100% blokuotas)*, o prašo “susitvarkyt problemą”.
+Šitoje vietoje ClickFix yra genialus dalykas, TAs neprašo vartotojo (aukos) atsisiųst kažkokį failą *(kuris bus 100% blokuotas)*, o prašo "susitvarkyt problemą".
 
 Na žmonės mėgsta tvarkyt problemas, ypač jei problema dega, trukdo kažką pasiekt *(puslapis, paskyra ar dar kas)*.
 
@@ -151,21 +151,21 @@ Trukdo darbui - reik greit spręst, geriausia šią sekundę.. negi rašysi į I
 
 ## Kodėl ClickFix toks shady velnias ir apgaulingas?
 
-Okay ClickFix nėra efektyvus todėl, kad vartotojai kvaili *(čia labai pigus paaiškinimas, jei kur matėt.. tai pritaginkit mane)*. Jis efektyvus todėl, kad išnaudoja normalų žmogaus elgesį t.y. žmonės nori tęsti darbą, atidaryt dokumentus, patekt į puslapį, greit užbaigt darbus kuriuos pradėjo. Ir kai pati “sistema” sako .. “atlik šiuos tris veiksmus”, daug.. žmonių tai padaro. Ypač jei iššokęs langas yra pažįstamas ypač kai CAPTCHA tapo mūsų rutinos dalimi, Claudflare patikrinimai vyksta dažnai… o žmonės nustojo skaityt kas vyksta, tiesiog automatu atliekam.
+Okay ClickFix nėra efektyvus todėl, kad vartotojai kvaili *(čia labai pigus paaiškinimas, jei kur matėt.. tai pritaginkit mane)*. Jis efektyvus todėl, kad išnaudoja normalų žmogaus elgesį t.y. žmonės nori tęsti darbą, atidaryt dokumentus, patekt į puslapį, greit užbaigt darbus kuriuos pradėjo. Ir kai pati "sistema" sako .. "atlik šiuos tris veiksmus", daug.. žmonių tai padaro. Ypač jei iššokęs langas yra pažįstamas ypač kai CAPTCHA tapo mūsų rutinos dalimi, Claudflare patikrinimai vyksta dažnai… o žmonės nustojo skaityt kas vyksta, tiesiog automatu atliekam.
 
 ClickFix būtent tai ir išnaudoja. Jis užpuola žmogu per rutiną, o kaip daug kas žino rutina yra labai stiprus ginklas.
 
-Internetas realiai metų metus mus mokė spaust “I’m not a robot”, bet TAs tiesiog prie šito pridėjo kelis naujus žingsnius *“Windows + R” → “CTRL + V” → “Enter” →* *Congratz*.. dabar jūs tikrai ne robotas, o tiesiog paleidot malware.
+Internetas realiai metų metus mus mokė spaust "I’m not a robot", bet TAs tiesiog prie šito pridėjo kelis naujus žingsnius *"Windows + R" → "CTRL + V" → "Enter" →* *Congratz*.. dabar jūs tikrai ne robotas, o tiesiog paleidot malware.
 
-ESET savo H1 2025 ataskaitoje labai tiksliai aprašė šį fenomeną *“vartotojai priprato prie įvairių reCAPTCHA formų, todėl nedaugelis suabejoja naujo tipo “challenge“, net jeigu jis prašo kopijuoti ir paleisti kažką savo įrenginyje” (*ESET, 2025).
+ESET savo H1 2025 ataskaitoje labai tiksliai aprašė šį fenomeną *"vartotojai priprato prie įvairių reCAPTCHA formų, todėl nedaugelis suabejoja naujo tipo "challenge", net jeigu jis prašo kopijuoti ir paleisti kažką savo įrenginyje" (*ESET, 2025).
 
-Na čia yra social engineering aukso vidurys.. *“pakankamai keista, kad sukeltų veikmą, bet pakankamai pažįstama, kad nesukeltų panikos”.*
+Na čia yra social engineering aukso vidurys.. *"pakankamai keista, kad sukeltų veikmą, bet pakankamai pažįstama, kad nesukeltų panikos".*
 
 ![Netikra CAPTCHA patikra įtikina vartotoją nukopijuoti ir paleisti komandą.](/assets/img/posts/substack/clickfix-kodel-siuolaikiniai-ta-nebeiesko/04.webp)
 
 ---
 
-## Techninė anatomija. Kas vyksta po “Verify“?
+## Techninė anatomija. Kas vyksta po "Verify"?
 
 **ClickFix techninė grandinė skiriasi pagal kampaniją, bet tipinis modelis dažnai atrodo taip:**
 
@@ -180,15 +180,15 @@ Antras etapas gali būti obfuscated PowerShell, HTA, JavaScript, VBS, MSI ar PE 
 Toliau seka loader, infostealer, RAT, backdoor arba papildomi payload.
 ```
 
-Proofpoint 2024 m. aprašė TA571 kampaniją, kur HTML attachment imitavo Microsoft Word / OneDrive tipo puslapį. “How to fix” mygtukas nukopijuodavo Base64-encoded PowerShell komandą į clipboard, o vartotojui buvo pateikiamos instrukcijos atsidaryti PowerShell ir ją paleisti. Proofpoint taip pat stebėjo ClearFake grandines, kuriose kompromituotos svetainės įkeldavo malicious scripts, naudodavo TDS filtravimą, PowerShell grandines, sandbox check’us per WMI ir galiausiai galėjo pristatyti Lumma Stealer, Amadey, XMRig miner, clipboard hijacker ir kitus payload’us. (Proofpoint, 2024)
+Proofpoint 2024 m. aprašė TA571 kampaniją, kur HTML attachment imitavo Microsoft Word / OneDrive tipo puslapį. "How to fix" mygtukas nukopijuodavo Base64-encoded PowerShell komandą į clipboard, o vartotojui buvo pateikiamos instrukcijos atsidaryti PowerShell ir ją paleisti. Proofpoint taip pat stebėjo ClearFake grandines, kuriose kompromituotos svetainės įkeldavo malicious scripts, naudodavo TDS filtravimą, PowerShell grandines, sandbox check’us per WMI ir galiausiai galėjo pristatyti Lumma Stealer, Amadey, XMRig miner, clipboard hijacker ir kitus payload’us. (Proofpoint, 2024)
 
 Šitoje vietoje atsiranda svarbus momentas, kad ClickFix nėra malware, o ClickFix yra execution pattern.
 
 Tai reiškia, kad tas pats social engineering modelis gali pristatyt įvairius *(skirtingus)* payload’us.
 
-Šiandien “Lumma”, rytoj “StealC”, poryt “NetSupport RAT”, o po savaitės jau custom loader’is… na, o po mėnesio jau ransomware pre-stage.
+Šiandien "Lumma", rytoj "StealC", poryt "NetSupport RAT", o po savaitės jau custom loader’is… na, o po mėnesio jau ransomware pre-stage.
 
-Todėl kalbėt apie ClickFix tik kaip apie “fake CAPTCHA phishing” yra per siaura, tai yra user-assisted execution framework.. šitas skamba truputi rimčiau, ir mažiau patogiai security awareness prezentacijom… na realybė nėra toki patogi gi.
+Todėl kalbėt apie ClickFix tik kaip apie "fake CAPTCHA phishing" yra per siaura, tai yra user-assisted execution framework.. šitas skamba truputi rimčiau, ir mažiau patogiai security awareness prezentacijom… na realybė nėra toki patogi gi.
 
 ![Po mygtuku Verify paslėpta vykdymo grandinė su iškarpine, Run langu ir PowerShell.](/assets/img/posts/substack/clickfix-kodel-siuolaikiniai-ta-nebeiesko/05.webp)
 
@@ -198,11 +198,11 @@ Todėl kalbėt apie ClickFix tik kaip apie “fake CAPTCHA phishing” yra per s
 
 Kad ClickFix neatrodytų kaip teorinė grėsmė, verta pažiūrėti į realias kampanijas.
 
-Proofpoint 2024 m. aprašė vieną iš ankstyvų viešai dokumentuotų ClickFix tipo technikų. TA571 kampanijoje buvo siųsti HTML priedai, kurie imitavo Microsoft Word. Vartotojui buvo rodoma klaida, kad trūksta “Word Online” plėtinio, ir siūlomas “How to fix” mygtukas. Paspaudus jis nukopijuodavo PowerShell komandą, o toliau vartotojas pats inicijuodavo infekcijos grandinę. Proofpoint nurodė, kad TA571 naudojo šią techniką nuo 2024 m. kovo 1 d., kampanijoje su daugiau nei 100 000 žinučių, taikant į tūkstančius organizacijų globaliai. (Proofpoint, 2024)
+Proofpoint 2024 m. aprašė vieną iš ankstyvų viešai dokumentuotų ClickFix tipo technikų. TA571 kampanijoje buvo siųsti HTML priedai, kurie imitavo Microsoft Word. Vartotojui buvo rodoma klaida, kad trūksta "Word Online" plėtinio, ir siūlomas "How to fix" mygtukas. Paspaudus jis nukopijuodavo PowerShell komandą, o toliau vartotojas pats inicijuodavo infekcijos grandinę. Proofpoint nurodė, kad TA571 naudojo šią techniką nuo 2024 m. kovo 1 d., kampanijoje su daugiau nei 100 000 žinučių, taikant į tūkstančius organizacijų globaliai. (Proofpoint, 2024)
 
 ClearFake pavyzdžiuose Proofpoint matė kompromituotas svetaines, malicious JavaScript, EtherHiding per Binance Smart Chain contracts, Keitaro TDS filtravimą ir kelių etapų PowerShell grandinę. Vienoje grandinėje PowerShell flushino DNS cache, išvalė clipboard, rodė decoy žinutę, atsisiuntė papildomus PowerShell scriptus, atliko WMI pagrįstą sandbox / VM check’ą pagal system temperature duomenis, o vėliau vedė į AES-encrypted PowerShell ir ZIP paketą su legitimiais signed executables bei trojanized DLL side-loading *(nekenčiu DLL side-loading.. just me).*(Proofpoint, 2024)
 
-***Čia nėra, kad “vartotojas paspaudė blogą mygtuką”, o kelių etapų pipeline.***
+***Čia nėra, kad "vartotojas paspaudė blogą mygtuką", o kelių etapų pipeline.***
 
 Microsoft 2025 m. aprašė Storm-1865 kampaniją, kuri imitavo Booking.com ir taikėsi į hospitality sektorių. El. laiškai apsimesdavo Booking.com, naudodavo temas apie neigiamus svečių atsiliepimus, paskyros verifikaciją, potencialių svečių užklausas ar online promotion galimybes. Paspaudus nuorodą, auka patekdavo į puslapį su netikru Booking.com puslapiu ir fake CAPTCHA. Ši CAPTCHA naudojo ClickFix logiką t.y. vartotojui nurodoma atsidaryti Windows Run ir paleisti komandą, kuri per **mshta.exe** inicijuoja malicious code download. (Microsoft, 2025)
 
@@ -218,21 +218,21 @@ Iš CTI pusės čia labai svarbu ne tik malware pavadinimai, o svarbiausia tai, 
 
 ClickFix tampa dar pavojingesnis tada, kai jis ateina ne iš akivaizdžiai įtartino domeno, o iš teisėtos svetainės.
 
-Rapid7 2026 m. aprašė didelio masto kampaniją, kurioje buvo kompromituota daugiau nei 250 WordPress svetainių. Priežastys galėjo būti silpni admin credentials, pasenę pluginai, temos ar kiti plačiai išnaudojami WordPress pažeidžiamumai. Kompromituotose svetainėse buvo įterpiamas fake Cloudflare CAPTCHA elementas. Vartotojui svetainė atrodydavo normali, bet pirmo apsilankymo metu buvo pateikiamas ClickFix tipo raginimas nukopijuoti ir paleisti komandą per “Windows Run”. (Rapid7, 2026)
+Rapid7 2026 m. aprašė didelio masto kampaniją, kurioje buvo kompromituota daugiau nei 250 WordPress svetainių. Priežastys galėjo būti silpni admin credentials, pasenę pluginai, temos ar kiti plačiai išnaudojami WordPress pažeidžiamumai. Kompromituotose svetainėse buvo įterpiamas fake Cloudflare CAPTCHA elementas. Vartotojui svetainė atrodydavo normali, bet pirmo apsilankymo metu buvo pateikiamas ClickFix tipo raginimas nukopijuoti ir paleisti komandą per "Windows Run". (Rapid7, 2026)
 
 TechRadar apibendrindamas Rapid7 tyrimą nurodė, kad kampanija galėjo prasidėti 2025 m. gruodį ir paveikė įvairias svetaines, įskaitant regioninę žiniasklaidą, smulkų verslą ir net JAV Senato kandidato puslapį. (TechRadar / Rapid7, 2026)
 
 Rapid7 taip pat pažymėjo, kad deobfuscavus JavaScript snippets buvo galima hunting’u atrasti daugiau kompromituotų svetainių, JavaScript hosting domenų ir fake CAPTCHA implant hosting domenų. (Rapid7, 2026)
 
-Na čia jau mano CTI įsijungia.. jeigu matai tik vieną compromised website.. gali pagalvot **“wow incidentas izoliuotas → blocklist”**, bet jei matai JS implantų šablonus, hosting patterns, pasikartojantį obfuscation, locale-based instruction generation ir tą pačią command delivery logiką, pradedi matyti kampaniją.
+Na čia jau mano CTI įsijungia.. jeigu matai tik vieną compromised website.. gali pagalvot **"wow incidentas izoliuotas → blocklist"**, bet jei matai JS implantų šablonus, hosting patterns, pasikartojantį obfuscation, locale-based instruction generation ir tą pačią command delivery logiką, pradedi matyti kampaniją.
 
 Tai yra šioks toks skirtumas tapr security alert’o ir intelligence finding.
 
-Na kaip ir dalis organizacijų vis dar mano, kad jeigu svetainė “legit” tai ji yra saugi. Skamba gražiai.. čia kaip vaikystėje tikėti, kad jei kortelė *(pokemonų)* atrodo labai graži, tai ji kažko verta *(per daug youtube pokemon card unbox’ingų žiūriu)*.
+Na kaip ir dalis organizacijų vis dar mano, kad jeigu svetainė "legit" tai ji yra saugi. Skamba gražiai.. čia kaip vaikystėje tikėti, kad jei kortelė *(pokemonų)* atrodo labai graži, tai ji kažko verta *(per daug youtube pokemon card unbox’ingų žiūriu)*.
 
 ClickFix per kompromituotas svetaines šį mitą tvarkingai palaidoja.
 
-Legit svetainė gali tapti malicious delivery surface. Ir tai ypač aktualu organizacijoms, kurios turi daug marketinginių landing page’ų, WordPress instaliacijų, senų microsite’ų, event puslapių ar pamirštų projektų domenų. Tie puslapiai vadovybei dažnai atrodo kaip “marketingo turtas”, o TA jie atrodo kaip nemokamas distribution network.
+Legit svetainė gali tapti malicious delivery surface. Ir tai ypač aktualu organizacijoms, kurios turi daug marketinginių landing page’ų, WordPress instaliacijų, senų microsite’ų, event puslapių ar pamirštų projektų domenų. Tie puslapiai vadovybei dažnai atrodo kaip "marketingo turtas", o TA jie atrodo kaip nemokamas distribution network.
 
 ![Teisėtos ir sukompromituotos svetainės palyginimas parodo netikrą patikros sluoksnį.](/assets/img/posts/substack/clickfix-kodel-siuolaikiniai-ta-nebeiesko/07.webp)
 
@@ -260,7 +260,7 @@ Conversion optimization.
 
 Tik.. kad vietoj produkto pardavimo šiuo atveju turime backdoor diegimą ir access resale.
 
-Manau jei toks modelis ateitų ar parodyčiau kokiai marketing komandai.. tikriausiai pasakytų, kad “gera funnel architektūra” *(reik susirąst kokį marketingistą komentarui…but anyway).*
+Manau jei toks modelis ateitų ar parodyčiau kokiai marketing komandai.. tikriausiai pasakytų, kad "gera funnel architektūra" *(reik susirąst kokį marketingistą komentarui…but anyway).*
 
 Jei tokį modelį parodom CISO… tai jau pasidaro mažiau juokinga.
 
@@ -270,7 +270,7 @@ Tai jau tiesiogiai siejasi su Initial Access Broker ekonomika.
 
 ClickFix → Backdoor → Access resale → Data theft / wire fraud / ransomware.
 
-Šitoje vietoje jau nebe “fake CAPTCHA”, o visas supply chain’as, tik tiekimas ..kad ir kaip skamba nusikalstamas.
+Šitoje vietoje jau nebe "fake CAPTCHA", o visas supply chain’as, tik tiekimas ..kad ir kaip skamba nusikalstamas.
 
 ![DriveSurge operacijos schema nuo sukompromituotos svetainės iki galutinio kenkėjiško krovinio.](/assets/img/posts/substack/clickfix-kodel-siuolaikiniai-ta-nebeiesko/08.webp)
 
@@ -278,7 +278,7 @@ ClickFix → Backdoor → Access resale → Data theft / wire fraud / ransomware
 
 ## Malware šeimos. Svarbios, bet ne pagrindinė istorija
 
-ClickFix kompanijos yra daug malware šeimų… “Lumma”, “Vidar”, “StealC”, “DanaBot”, “DarkGate”, “Xworm”, “VenomRat”, “AsyncRat” ir visi kiti mandri dalykai, na ir kur kas be ko ransomware pre-stage’riai.
+ClickFix kompanijos yra daug malware šeimų… "Lumma", "Vidar", "StealC", "DanaBot", "DarkGate", "Xworm", "VenomRat", "AsyncRat" ir visi kiti mandri dalykai, na ir kur kas be ko ransomware pre-stage’riai.
 
 ESET H1 2025 ataskaita nurodo, kad ClickFix jau buvo naudojamas pristatyti infostealerius, ransomware, RAT, cryptominers, post-exploitation tools ir net custom malware iš nation-state-aligned aktorių *(čia vėl žiūriu į Registrų Centro duomenų nutekėjimą…)*. (ESET, 2025)
 
@@ -286,18 +286,18 @@ Tačiau po beveik dešimtmečio CTI srityje man malware pavadinimas dažnai nėr
 
 Malware keičiasi, o operatoriai išlieka tie patys.
 
-Jei šiandien kampanija platina “Lumma”, rytoj gali pereit prie “StealC”…  
+Jei šiandien kampanija platina "Lumma", rytoj gali pereit prie "StealC"…\
 Jei vienas loader’is tampa per daug matomas, affiliate’ai pereina prie kito..
 
-Todėl jau žiūrint iš CTI pusės, pagrindinis klausimas nėra tik “kokia malware šeima?”. o pagrindiniai klausimai turi būt “Kas valdo infrastruktūrą?”, “Ar tai vienas operatorius, ar affiliate?”, “Ar ClickFix landing pages generuojami builder’iu?”, “Ar yra kampanijos šablonų?”, “Ar tie patys JS implantai kartojasi kituose domenuos?”, “Ar naudojamas tas pats TDS?”, “Ar payload hosting sutampa su kitomis kompanijomis?”, “Ar Telegram kanalai, wallet’ai, C2 ar hosting tiekėjai rodo persidengimą?”.
+Todėl jau žiūrint iš CTI pusės, pagrindinis klausimas nėra tik "kokia malware šeima?". o pagrindiniai klausimai turi būt "Kas valdo infrastruktūrą?", "Ar tai vienas operatorius, ar affiliate?", "Ar ClickFix landing pages generuojami builder’iu?", "Ar yra kampanijos šablonų?", "Ar tie patys JS implantai kartojasi kituose domenuos?", "Ar naudojamas tas pats TDS?", "Ar payload hosting sutampa su kitomis kompanijomis?", "Ar Telegram kanalai, wallet’ai, C2 ar hosting tiekėjai rodo persidengimą?".
 
 Malware / infostealer’is ir visi kiti dalykai yra tik realiai simptomai.
 
 Infrastruktūra ir monetizacija dažnai yra tik diagnozė.
 
-Ir šitoje vietoje dažnai pastebiu, kad straipsniai sustoja per anksti… Pasako “Lumma” that’s it.. bet “Lumma” yra tik paskutinė dalis visoje grandyje.
+Ir šitoje vietoje dažnai pastebiu, kad straipsniai sustoja per anksti… Pasako "Lumma" that’s it.. bet "Lumma" yra tik paskutinė dalis visoje grandyje.
 
-Jei nori suprast grėsmę, turi suprast kelią iki “Lumma” ir kelią po “Lumma”, nes po “Lumma” gali būt ir Initial Access Broker, o po access broker gali būt ransomware, po ransomware gali būt Board meeting su klausimu ***“Kodėl mes apie tai nežinojome ankščiau?”***. Ir tada visi staiga prisimena, kad PowerPoint prezentacijoje buvo parašyta ***“CYBER RISK IS MANAGED”.***
+Jei nori suprast grėsmę, turi suprast kelią iki "Lumma" ir kelią po "Lumma", nes po "Lumma" gali būt ir Initial Access Broker, o po access broker gali būt ransomware, po ransomware gali būt Board meeting su klausimu ***"Kodėl mes apie tai nežinojome ankščiau?"***. Ir tada visi staiga prisimena, kad PowerPoint prezentacijoje buvo parašyta ***"CYBER RISK IS MANAGED".***
 
 Gražu.
 
@@ -323,7 +323,7 @@ Labai tvarkinga.
 Labai greita.  
 Labai paviršutiniška.
 
-**O jau normalus tyrimas pereina taip..** Pirmas klausimas nėra “ką blokuoti?“ Pirmas klausimas yra “ką šis artefaktas atveria?“ Nuo vieno URL galima daryti kelis pivoting sluoksnius:
+**O jau normalus tyrimas pereina taip..** Pirmas klausimas nėra "ką blokuoti?" Pirmas klausimas yra "ką šis artefaktas atveria?" Nuo vieno URL galima daryti kelis pivoting sluoksnius:
 
 ```
 Pirmas sluoksnis yra domenas.
@@ -444,13 +444,13 @@ ClickFix labai aiškiai parodo IOC-centric modelio problemą:
 - Tyrėjams rodomas vienas turinys.
 - Aukoms rodomas kitas.
 
-Kai kurios kampanijos naudoja kompromituotas teisėtas svetaines, kurios pačios nėra “malicious domain“ klasikine prasme…Ką tada blokuosi? Pusę interneto? Geras planas.
+Kai kurios kampanijos naudoja kompromituotas teisėtas svetaines, kurios pačios nėra "malicious domain" klasikine prasme…Ką tada blokuosi? Pusę interneto? Geras planas.
 
 Tik vartotojai gali nesuprasti, kodėl vat užblokuota ta ir ta.
 
 Todėl brandi CTI funkcija turi judėti nuo IOC prie elgsenos ir infrastruktūros modelių.
 
-***Reikia suprasti ne tik “kas bloga“, bet reikia suprasti ir “kaip blogis veikia“.***
+***Reikia suprasti ne tik "kas bloga", bet reikia suprasti ir "kaip blogis veikia".***
 
 **Šiuo atveju svarbu analizuoti:**
 
@@ -466,13 +466,13 @@ Access broker monetizaciją.
 Attribution-lite clustering pagal techninius artefaktus.
 ```
 
-Tai yra didesnės vertės žvalgyba, nes ji padeda ne tik reaguoti, bet padeda ir prognozuoti *(na aš kaip mėgstu sakyt “Hey guys, these are just assumptions that we have right now.. let’s see how it the line)*.
+Tai yra didesnės vertės žvalgyba, nes ji padeda ne tik reaguoti, bet padeda ir prognozuoti *(na aš kaip mėgstu sakyt "Hey guys, these are just assumptions that we have right now.. let’s see how it the line")*.
 
 **O tai ir yra pagrindinis skirtumas tarp reportingo ir intelligence.**
 
-**Reporting sako -** *“Šitas domenas blogas.“*
+**Reporting sako -** *"Šitas domenas blogas."*
 
-**Intelligence sako -** *“Ši metodika greičiausiai bus adaptuota prieš mūsų sektorių, nes ji pigiai pristato infostealerius, apeina dalį awareness kontrolės ir leidžia operatoriams greitai monetizuoti prieigas.“*
+**Intelligence sako -** *"Ši metodika greičiausiai bus adaptuota prieš mūsų sektorių, nes ji pigiai pristato infostealerius, apeina dalį awareness kontrolės ir leidžia operatoriams greitai monetizuoti prieigas."*
 
 Vienas sakinys blokuoja domeną.  
 Kitas keičia saugumo strategiją.
@@ -517,7 +517,7 @@ Data extortion.
 ICT Board-level incident.
 ```
 
-Viskas prasidėjo nuo “Verify you are human“.
+Viskas prasidėjo nuo "Verify you are human".
 
 Kažkaip šioje vietoje labai poetiška…Labai bloga prasme.
 
@@ -546,7 +546,7 @@ Ar incident response playbook’ai apima infostealer logų ir session theft scen
 Ar rizikos komitetas supranta, kad MFA nebūtinai apsaugo nuo pavogtų sesijų?
 ```
 
-Čia ir prasideda security leadership.. jau nebe ***“kokį hash blokuoti?”***, O ***“kokia kontrolės architektūra neveikia, jei darbuotojas per naršyklę įtikinamas paleisti komandą?”***
+Čia ir prasideda security leadership.. jau nebe ***"kokį hash blokuoti?"***, O ***"kokia kontrolės architektūra neveikia, jei darbuotojas per naršyklę įtikinamas paleisti komandą?"***
 
 **Tai daug svarbesnis klausimas.**
 
@@ -554,17 +554,17 @@ Dalis organizacijų turi brangius EDR, XDR, SIEM, SOAR, TIP ir dar kelis acronym
 
 CISO turėtų žiūrėti į ClickFix kaip į testą t.y. ne tik endpoint testą, o saugumo kultūros testą, awareness brandos testą, privileged execution kontrolės testą, identity resilience testą, incident response brandos testą.
 
-Jeigu organizacija į ClickFix atsako tik “įdėkime IOC į SIEM”, sorry, bet neišlaikytas egzaminas sėsk 2 *(kaip tik šiandien ar tai vakar laikė matematikos egzaminus mokyklose.. kaži daug tokių bus neišlaikiusių kaip ir šitų testų..)*.
+Jeigu organizacija į ClickFix atsako tik "įdėkime IOC į SIEM", sorry, bet neišlaikytas egzaminas sėsk 2 *(kaip tik šiandien ar tai vakar laikė matematikos egzaminus mokyklose.. kaži daug tokių bus neišlaikiusių kaip ir šitų testų..)*.
 
 ![Diskusijos dalyviai nagrinėja, kodėl ClickFix yra prieigos kontrolės, o ne vien SOC problema.](/assets/img/posts/substack/clickfix-kodel-siuolaikiniai-ta-nebeiesko/13.webp)
 
 ---
 
-## MFA mitas, arba kodėl “įjunk 2FA” nėra strategija
+## MFA mitas, arba kodėl "įjunk 2FA" nėra strategija
 
 Dabar šiek tiek nepatogi dalis.
 
-Lietuvos saugumo diskusijose yra viena frazė, kuri pasirodo beveik visur.. “Reikėjo MFA.”.. na taip tai nėra blogas patarimas. MFA yra būtina kontrolė, o problema prasideda tada, kai MFA pradedama laikyti strategija.
+Lietuvos saugumo diskusijose yra viena frazė, kuri pasirodo beveik visur.. "Reikėjo MFA.".. na taip tai nėra blogas patarimas. MFA yra būtina kontrolė, o problema prasideda tada, kai MFA pradedama laikyti strategija.
 
 ClickFix dažnai nesiekia tik pavogti slaptažodžio..jis gali pristatyti infostealerį, o infostealeris gali pavogti browser cookies, session tokens, saved credentials, crypto wallets, VPN artefaktus, developer secrets, cloud tokens, Outlook duomenis ir kitus autentifikacijos artefaktus.
 
@@ -572,7 +572,7 @@ Tai reiškia, kad ataka nebūtinai kovoja su MFA, ji gali jį apeiti per sesiją
 
 MFA saugo tą patį autentifikacijos momentą, bet jei po autentifikacijos pavagiami artefaktai, diskusija tampa sudėtingesnė.
 
-***Ir būtent čia baigiasi LinkedIn komentaro “įjunk 2FA” magija.***
+***Ir būtent čia baigiasi LinkedIn komentaro "įjunk 2FA" magija.***
 
 **Realybėje reikia kalbėti apie:**
 
@@ -592,7 +592,7 @@ session revocation
 post-compromise identity response
 ```
 
-Taip, žinau, čia tikrai mažiau patogu nei parašyti “naudokite MFA” *(tas man atrodo Registrų Centro incidentas su manim keliaus visus šituos likusius metus..)*
+Taip, žinau, čia tikrai mažiau patogu nei parašyti "naudokite MFA" *(tas man atrodo Registrų Centro incidentas su manim keliaus visus šituos likusius metus..)*
 
 ***ClickFix labai aiškiai primena, kad saugumas nėra viena kontrolė. Tai kontrolės architektūra. Ir jei architektūra priklauso nuo to, kad žmogus niekada nepadarys kvailo veiksmo, tai nėra architektūra.***
 
@@ -643,7 +643,7 @@ Localized ClickFix lietuvių kalba.
 Automatiškai generuojami fake error puslapiai pagal organizacijos brandą.
 ```
 
-Ir tada nebeužteks mokyti žmonių “nepasitikėkite įtartinais laiškais” *(vėl Registrų Centras.. okay baigiu, bet ten.. numeta info[at]rc[.]lt email’ą ir rašo, kad ten sukčių email’as.. Okay Radio Centras kokiais velniais ten užsiimat?? Pradėsiu meme puslapį daryt su tokiais pasireiškimais, jau turiu gerai parinkes medžiagos)*.
+Ir tada nebeužteks mokyti žmonių "nepasitikėkite įtartinais laiškais" *(vėl Registrų Centras.. okay baigiu, bet ten.. numeta info[at]rc[.]lt email’ą ir rašo, kad ten sukčių email’as.. Okay Radio Centras kokiais velniais ten užsiimat?? Pradėsiu meme puslapį daryt su tokiais pasireiškimais, jau turiu gerai parinkes medžiagos)*.
 
 Nes ataka gali atrodyti ne kaip įtartinas laiškas, ji gali atrodyti kaip labai normalus techninis sutrikimas, o techniniai sutrikimai yra šiuolaikinio darbo dalis.
 
@@ -659,7 +659,7 @@ Ateities social engineering bus ne tik įtikinamesnė..ji bus labiau kontekstin�
 
 Nenoriu šio blogo paversti detection engineering dokumentu *(nors galėčiau.. vien šian gal 30 detection rules surašiau)*, bet keli principai būtini.
 
-**Pirmas principas:** awareness turi keistis..”Nespausk nuorodų“ nebeužtenka.  
+**Pirmas principas:** saugumo mokymai turi keistis. Vien tik "nespausk nuorodų" nebeužtenka.\
 **Reikia aiškios taisyklės:** Jokia svetainė, el. laiškas, dokumentas ar chat žinutė neturi prašyti vartotojo atsidaryti Run, PowerShell, Terminal ar vykdyti komandą. Jeigu prašo.. tai jau incidentas, ne instrukcija.
 
 **Antras principas:** riboti nereikalingą execution.  
@@ -670,7 +670,7 @@ chrome.exe → poweshell.exe, msedge.exe → mshta.exe, firefox.exe → cmd.exe.
 Tokei parent-child ryšiai ne visada yra blog, bet dažnai pakankamai reti, kad būtų verti tyrimo.
 
 **Ketvirtas principas:** vertinti infostealer incidentus rimtai.  
-Infostealer nėra “mažas virusas”, infostealer gali būti ransomware pradžia.
+Infostealer nėra "mažas virusas", infostealer gali būti ransomware pradžia.
 
 **Penktas principas:** incident response turi apimti session revocation.  
 Jeigu pavogti cookies ar tokens, slaptažodžio pakeitimas gali būti nepakankamas.
@@ -679,7 +679,7 @@ Jeigu pavogti cookies ar tokens, slaptažodžio pakeitimas gali būti nepakankam
 Marketingo landing page, senas WordPress, testinis projektas, paliktas subdomenas – visa tai gali tapti delivery infrastruktūra.
 
 **Septintas principas:** CTI *(na arba Lietuvos atveju SOC ar kiti kas žiūri šituos dalykus)* turi kalbėti vadovybei suprantama kalba.  
-Ne “HTML/FakeCaptcha detections increased“, o “ši technika mažina mūsų awareness programos efektyvumą, didina infostealer riziką ir gali tapti pradiniu access broker grandinės tašku“. Šiuo atveju vienas sakinys skirtas analitikams, o kitas skirtas vadovybei. Abu reikalingi.
+Ne "HTML/FakeCaptcha detections increased", o "ši technika mažina mūsų awareness programos efektyvumą, didina infostealer riziką ir gali tapti pradiniu access broker grandinės tašku". Šiuo atveju vienas sakinys skirtas analitikams, o kitas skirtas vadovybei. Abu reikalingi.
 
 ![Praktinių organizacijos apsaugos veiksmų prieš ClickFix kontrolinis sąrašas.](/assets/img/posts/substack/clickfix-kodel-siuolaikiniai-ta-nebeiesko/16.webp)
 

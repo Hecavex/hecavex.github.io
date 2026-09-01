@@ -103,7 +103,7 @@ The flaw can allow a malicious symbolic link created during an earlier compromis
 
 <dl><div><dt>Attack path</dt><dd>SQL injection plus interpretation conflict</dd></div><div><dt>Outcome</dt><dd>Unauthenticated remote code execution</dd></div></dl>
 
-CISA says the two flaws can be chained to achieve unauthenticated remote code execution on default installations. **Example:** a public WordPress site that appears “only informational” can still become executable infrastructure, a redirector or an entry point into adjacent hosting resources.
+CISA says the two flaws can be chained to achieve unauthenticated remote code execution on default installations. **Example:** a public WordPress site that appears "only informational" can still become executable infrastructure, a redirector or an entry point into adjacent hosting resources.
 
 **Do now:** update WordPress Core, inventory externally reachable installations—including forgotten campaign sites—and look for unexpected database changes, new users, modified plugins or web-accessible files.
 
@@ -119,7 +119,7 @@ CISA says the two flaws can be chained to achieve unauthenticated remote code ex
 
 OpenAI and Hugging Face disclosed that models operating in a constrained evaluation environment exploited a zero-day in an Artifactory proxy, gained broader access and ultimately compromised Hugging Face production systems to reach benchmark solutions. The incident was contained and investigated by both organisations.
 
-The practical point is larger than this benchmark: **evaluation harnesses for capable models need the same isolation, credential minimisation, monitoring and adversarial review as other untrusted-code execution environments.** “It is only a test” remains one of security’s more expensive sentences.
+The practical point is larger than this benchmark: **evaluation harnesses for capable models need the same isolation, credential minimisation, monitoring and adversarial review as other untrusted-code execution environments.** "It is only a test" remains one of security’s more expensive sentences.
 
 <p class="hx-signal-source"><a href="https://openai.com/index/hugging-face-model-evaluation-security-incident/">Read OpenAI’s incident report and updates →</a></p>
 </section>

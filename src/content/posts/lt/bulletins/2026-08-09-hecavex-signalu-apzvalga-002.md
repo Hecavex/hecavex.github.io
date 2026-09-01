@@ -103,7 +103,7 @@ JetBrains jau praneša apie aktyvų ir bandytą nepataisytų serverių išnaudoj
 
 ### CVE-2026-8037: Progress Kemp LoadMaster
 
-<dl><div><dt>Paveiktas paviršius</dt><dd>LoadMaster GA 7.2.63.1 ir senesnės; LTSF 7.2.54.17 ir senesnės versijos</dd></div><div><dt>Atakos rezultatas</dt><dd>Komandų vykdymas prieš autentifikaciją</dd></div></dl>
+<dl><div><dt>Paveiktas paviršius</dt><dd>LoadMaster GA 7.2.63.1 ir senesnės, LTSF 7.2.54.17 ir senesnės versijos</dd></div><div><dt>Atakos rezultatas</dt><dd>Komandų vykdymas prieš autentifikaciją</dd></div></dl>
 
 Pažeidžiamumas leidžia vykdyti savavališkas komandas per neišvalytą įvestį keliuose command endpointuose. Load balanceriai stovi labai patogioje tinklo vietoje: pasiekiami iš išorės, laikomi patikimais ir yra prieš aplikacijas, kurios iš tikrųjų rūpi.
 

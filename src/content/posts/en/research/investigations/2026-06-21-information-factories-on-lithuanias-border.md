@@ -21,7 +21,7 @@ categories: ["information-operations", "threat-intelligence"]
 tags: ["disinformation", "Russia", "Belarus", "NATO", "OSINT"]
 featured: true
 scope: "Open-source analysis of information-operation infrastructure, narratives, and amplification methods."
-limitations: "The assessment relies on public sources; not every activity discussed can be attributed to a single coordinator."
+limitations: "The assessment relies on public sources. Not every activity discussed can be attributed to a single coordinator."
 key_findings:
   - "Narratives are localised to appear as if they originated within the target society."
   - "Clones, redirects, and amplification networks obscure the information's original source."
@@ -413,7 +413,7 @@ The Lithuanian information market is small, but active.. which is both good and 
 
 | Cluster | Sample message | Operating value |
 | --- | --- | --- |
-| NATO / War | Lithuania will be included in the war; NATO is only provoking here | Fear and discrediting deterrence |
+| NATO / War | Lithuania will be included in the war. NATO is only provoking here | Fear and discrediting deterrence |
 | Ukraine / support | Everything for Ukraine, nothing for Lithuanians | Support fatigue for Ukraine |
 | Migration | The authorities are deliberately creating chaos at the border | Mistrust of the state and ethnic tension |
 | Energetics | BRELL, the EU or Brussels caused the price crisis | Discrediting energy independence |
@@ -422,7 +422,7 @@ The Lithuanian information market is small, but active.. which is both good and 
 
 These narratives often do not operate in isolation and are interconnected.
 
-**For example:** “The government steals, that's why it supports Ukraine, that's why people are poor, that's why NATO provokes war, that's why Belarus only defends itself.” *(here is this classic from the Mantas Mantas Facebook account, where the account is connected to 5-10 different groups on Facebook and comments the same under Delfi/LRT articles).*
+**For example:** "The government steals, that's why it supports Ukraine, that's why people are poor, that's why NATO provokes war, that's why Belarus only defends itself." *(here is this classic from the Mantas Mantas Facebook account, where the account is connected to 5-10 different groups on Facebook and comments the same under Delfi/LRT articles).*
 
 There is no logic, but logic is not necessary for informational operations. They need an emotional sequence. If a person is already angry about the prices, it is easier for him to sell "we give too much to Ukraine", if he no longer trusts the government, it is easier for him to sell "NATO is hiding a real plan", if he is already afraid of war, it is easier for him to sell "it is better not to interfere".. and Janina from Pabradė will like and comment the same thing after reading, even though she does not know that she is talking to a bot.. she will go and tell her neighbor Maryte "Look how Mantas Mantas said it right".
 
@@ -508,9 +508,9 @@ Why is this important for information operations? Elementary.. Because technical
 
 | A technical or physical event | A possible narrative |
 | --- | --- |
-| GPS disturbances | NATO fails to protect airspace; The West is provoking Russia |
-| DDoS against institutions | The state is weak; everything is not safe; the government hides the true extent |
-| Data leakage | Institutions are incompetent; NATO documents are not secure |
+| GPS disturbances | NATO fails to protect airspace. The West is provoking Russia |
+| DDoS against institutions | The state is weak. Everything is not safe. The government hides the true extent |
+| Data leakage | Institutions are incompetent. NATO documents are not secure |
 | Power failure | Disconnecting from Russia was a mistake |
 | Sabotage incident | Europe is destroying itself because of Ukraine |
 

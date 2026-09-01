@@ -35,7 +35,7 @@ The publication is created and edited by **Deividas Lis**, a cyber threat intell
 
 ## What this publication will examine
 
-The work will follow infrastructure, behaviour and the human systems behind phishing, fraud, malware, influence operations and other digital threats. Some publications will be long investigations; others will be short intelligence notes that preserve a useful observation without inflating it into a campaign.
+The work will follow infrastructure, behaviour and the human systems behind phishing, fraud, malware, influence operations and other digital threats. Some publications will be long investigations. Others will be short intelligence notes that preserve a useful observation without inflating it into a campaign.
 
 <aside class="hx-callout key-finding"><strong>Editorial commitment</strong>Confirmed facts, reported claims and analytical assessments will be labelled as such. Confidence will not be implied through tone alone.</aside>
 

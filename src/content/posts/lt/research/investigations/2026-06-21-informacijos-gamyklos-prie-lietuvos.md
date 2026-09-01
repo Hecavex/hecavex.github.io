@@ -23,7 +23,7 @@ categories: ["information-operations", "threat-intelligence"]
 tags: ["dezinformacija", "Rusija", "Baltarusija", "NATO", "OSINT"]
 featured: true
 scope: "Viešais šaltiniais paremta informacinių operacijų infrastruktūros, naratyvų ir amplifikavimo metodų analizė."
-limitations: "Vertinimas remiasi viešai prieinamais šaltiniais; ne kiekvieną aptartą veiklą galima priskirti vienam koordinatoriui."
+limitations: "Vertinimas remiasi viešai prieinamais šaltiniais. Ne kiekvieną aptartą veiklą galima priskirti vienam koordinatoriui."
 key_findings:
   - "Naratyvai lokalizuojami taip, kad atrodytų kylantys iš vietinės visuomenės."
   - "Klonai, peradresavimai ir amplifikavimo tinklai padeda paslėpti pirminę informacijos kilmę."
@@ -52,7 +52,7 @@ source_url: https://deivlis.substack.com/p/informacijos-gamyklos-prie-lietuvos
 - *Infrastruktūros paruošimo*
 - *Platinimo per Telegram ir socialinius tinklus*
 - *Amplifikacijos per fake paskyras ar mokamus mechanizmus*
-- *..galiausiai poveikio matavimo. Čia jau nebe nostalgija seniems “trolių fermų“ laikams.*
+- *..galiausiai poveikio matavimo. Čia jau nebe nostalgija seniems "trolių fermų" laikams.*
 
 *Čia labiau panašu į pigią, bet funkcionuojančią content operations platformą, kurioje vienas operatorius su keliais AI įrankiais gali padaryti tai, kam anksčiau reikėjo pusės redakcijos ir kelių Vasilijų su Exceliu.*
 
@@ -68,7 +68,7 @@ source_url: https://deivlis.substack.com/p/informacijos-gamyklos-prie-lietuvos
 
 *Pagrindinė sakyčiau blogo išvada yra ta, kad **naratyvas nėra galutinis produktas. Naratyvas yra payload’as. Jo tikslas nėra būti gražus, protingas ar net logiškas. Jo tikslas yra sukelti reakciją, išprovokuoti abejones, sukurti ginčą, sumažinti pasitikėjimą institucijomis, NATO, Ukraina, ES arba pačia realybės patikrinimo idėja.***
 
-*Phishing’e žmogus spaudžia nuorodą, nes gauna “sąskaitą faktūrą“. Informacinėje operacijoje žmogus spaudžia share, nes gauna “valdžia slepia tiesą“. Skirtumas tik tas, kad pirmu atveju nuteka slaptažodis, o antru sveikas protas.*
+*Phishing’e žmogus spaudžia nuorodą, nes gauna "sąskaitą faktūrą". Informacinėje operacijoje žmogus spaudžia share, nes gauna "valdžia slepia tiesą". Skirtumas tik tas, kad pirmu atveju nuteka slaptažodis, o antru sveikas protas.*
 
 [Facebook cloaking tyrimas](/lt/tyrimai/kai-fake-news-scamai-ir-cloaking/) parodo finansinio sukčiavimo pusę, kurioje taip pat naudojami cloned media, tikslinis platinimas ir skirtingas turinys skirtingiems lankytojams. Tai naudingas palyginimo kontekstas, ne įrodymas, kad čia aprašytas informacines operacijas valdo tie patys operatoriai.
 
@@ -78,11 +78,11 @@ source_url: https://deivlis.substack.com/p/informacijos-gamyklos-prie-lietuvos
 
 Lietuva Rusijos ir Baltarusijos informacinėms operacijoms yra patogi ne todėl, kad esame kažkokia unikali pasaulio bambagyslė. Patogu yra dėl geografijos, politinio konteksto ir informacinės rinkos dydžio.
 
-Lietuva yra NATO valstybė, ES narė, aktyvi Ukrainos rėmėja, ribojasi su Baltarusija ir yra šalia Kaliningrado. Tai reiškia, kad beveik bet kuris naratyvas gali būti pririštas prie vienos iš kelių jautrių temų: NATO, Ukraina, migracija, energetika, rusakalbiai, Kaliningradas, Baltarusija arba “valdžia kažką slepia”.
+Lietuva yra NATO valstybė, ES narė, aktyvi Ukrainos rėmėja, ribojasi su Baltarusija ir yra šalia Kaliningrado. Tai reiškia, kad beveik bet kuris naratyvas gali būti pririštas prie vienos iš kelių jautrių temų: NATO, Ukraina, migracija, energetika, rusakalbiai, Kaliningradas, Baltarusija arba "valdžia kažką slepia".
 
 VSD savo grėsmių vertinime pažymi, kad Rusija socialinius tinklus naudoja kaip vieną pagrindinių kanalų propagandai Lietuvoje skleisti. Tikslas yra apeiti tradiciniams propagandos kanalams taikomus ribojimus.. kurstyti nepasitikėjimą institucijomis *(čia klasika)*, mažinti pasitikėjimą NATO ir diskredituoti paramą Ukrainai. VSD taip pat pabrėžia, kad pro-rusiškos žinutės vis dažniau maskuojamos taip, kad atrodytų kylančios iš pačios Lietuvos visuomenės *(botų fermos, AI generated komentarai.. nepamirškim Remygos su botų fermomis)*. *([Source 1](#source-1))*
 
-Jeigu žinutė ateina iš RT ar Sputnik, dauguma žmonių bent jau teoriškai supranta, kad reikia įjungti skepticizmą *(na čia perspaudžiau su dauguma žmonių, bet tikiuosi taip yra)*. Jeigu ta pati žinutė ateina iš “paprasto žmogaus” Facebook komentaruose, regioninės grupės ar naujai atsiradusio “nepriklausomo” puslapio, ji atrodo natūralesnė. Čia ir prasideda visas grožis.. tas purvinas, pigus ir efektyvus grožis šių dienų.
+Jeigu žinutė ateina iš RT ar Sputnik, dauguma žmonių bent jau teoriškai supranta, kad reikia įjungti skepticizmą *(na čia perspaudžiau su dauguma žmonių, bet tikiuosi taip yra)*. Jeigu ta pati žinutė ateina iš "paprasto žmogaus" Facebook komentaruose, regioninės grupės ar naujai atsiradusio "nepriklausomo" puslapio, ji atrodo natūralesnė. Čia ir prasideda visas grožis.. tas purvinas, pigus ir efektyvus grožis šių dienų.
 
 ![Žemėlapis vaizduoja iš Rusijos ir Baltarusijos į Europą sklindančius informacinius ryšius.](/assets/img/posts/substack/informacijos-gamyklos-prie-lietuvos/02.webp)
 
@@ -103,7 +103,7 @@ Jeigu malware kampanijoje payload’as turi pavogti slaptažodį, užšifruoti f
 | NATO Lietuvos negins | Mažina pasitikėjimą kolektyvine gynyba ir atgrasymu. |
 | Ukrainai pinigų yra, lietuviams nėra | Kuria paramos Ukrainai nuovargį ir socialinį pavydą. |
 | Baltijos šalys ekonomiškai žlunga | Diskredituoja ES, sankcijas ir regiono politinę kryptį. |
-| Lietuva persekioja rusakalbius | Kuria pretekstą „gynybos“ retorikai ir spaudimui tarptautiniuose formatuose. |
+| Lietuva persekioja rusakalbius | Kuria pretekstą "gynybos" retorikai ir spaudimui tarptautiniuose formatuose. |
 | Migracija yra valdžios sukelta krizė | Aktyvuoja baimę, etninę įtampą ir nepasitikėjimą valstybės kontrole. |
 | Energetinė nepriklausomybė sukėlė krizę | Puola energetikos reformų legitimumą ir skatina nostalgiją senai priklausomybei. |
 
@@ -147,10 +147,10 @@ Poveikio matavimas
 
 **Pavyzdžiui, energetikos tema Lietuvoje gali būti paversta keliomis skirtingomis operacinėmis žinutėmis:**
 
-- “Briuselis sugriovė elektros rinką“
-- “atsijungimas nuo BRELL buvo klaida“
-- “valdžia paaukojo žmones dėl NATO“
-- “anksčiau prie Rusijos buvo pigiau“.
+- "Briuselis sugriovė elektros rinką"
+- "atsijungimas nuo BRELL buvo klaida"
+- "valdžia paaukojo žmones dėl NATO"
+- "anksčiau prie Rusijos buvo pigiau".
 
 Šitų žinučių tikslas nebūtinai yra priversti žmogų tapti pro-rusišku. Ir… tikėtina daug ko matytos rašliavos socialiniuose tinkluose.
 
@@ -160,7 +160,7 @@ Poveikio matavimas
 
 ## Nuo trolių fermų prie turinio tiekimo grandinės
 
-Klasikinis “trolių fermos“ modelis daug kam vis dar atrodo kaip pagrindinis Rusijos informacinių operacijų vaizdinys. Sėdi operatoriai, turi keliasdešimt paskyrų, rašo komentarus, dalinasi nuorodomis, ginčijasi su realiais žmonėmis ir retkarčiais su kitais botais *(nes net botų pasaulyje, matyt, reikia socializacijos.. čia kaip visai neseniai mačiau žmogus susikūrė WoW’o serverį su AI botais ir chatbotais, kad parodyti “Dead Internet” fenomeną..).*
+Klasikinis "trolių fermos" modelis daug kam vis dar atrodo kaip pagrindinis Rusijos informacinių operacijų vaizdinys. Sėdi operatoriai, turi keliasdešimt paskyrų, rašo komentarus, dalinasi nuorodomis, ginčijasi su realiais žmonėmis ir retkarčiais su kitais botais *(nes net botų pasaulyje, matyt, reikia socializacijos.. čia kaip visai neseniai mačiau žmogus susikūrė WoW’o serverį su AI botais ir chatbotais, kad parodyti "Dead Internet" fenomeną..).*
 
 Šitas modelis vis dar egzistuoja. Bet jis nebėra pakankamas aprašyti tai, ką matome dabar.
 
@@ -233,21 +233,21 @@ Naratyvo patekimas į platesnę diskusiją
 
 Doppelganger stipri kompanija ne dėl turinio kokybės. Dažnai tekstai būna vidutiniški, kalba prasta *(aka google translate)*, logika prasta *(prasčiau nei mano blog’ai.. tai nu suprantat)*. Bet yra vienas bet..kompanijai pakankamai gerai atrodyti telefone, greitai sukelti emociją ir priversti žmogų dalintis.
 
-Čia jau atsiranda “good enough“ propaganda.
+Čia jau atsiranda "good enough" propaganda.
 
-Cyber pasaulyje turime “good enough phishing“. Čia jau yra tas pats principas aka.. nereikia apgauti visų. Pakanka apgauti tą procentą auditorijos, kuris pasidalins, pakomentuos arba pradės ginčytis su kažkuo, o toliau algoritmas jau duoda savo.
+Cyber pasaulyje turime "good enough phishing". Čia jau yra tas pats principas aka.. nereikia apgauti visų. Pakanka apgauti tą procentą auditorijos, kuris pasidalins, pakomentuos arba pradės ginčytis su kažkuo, o toliau algoritmas jau duoda savo.
 
 ### Doppelganger atribucija
 
 EU DisinfoLab nurodo, kad operaciją siejo su Rusijos įmonėmis Struktura ir Social Design Agency, dar vadinama SDA / ASP. Taip pat minima, kad ISD identifikavo Argon Labs kaip galimą susijusį subjektą. *([Source 3](#source-3))*
 
-Svarbu čia, kad ne kiekvienas media klonas Lietuvoje automatiškai yra Doppelganger. Lietuvoje tikrai matome media impersonation ir brand impersonation metodus tiek scam, tiek politinių naratyvų, tiek influence operacijų kontekste, bet be domenų, serverių, socialinių paskyrų, reklamos bibliotekų, redirect grandinių ar kitų techninių sutapimų negalima kiekvieno “fake Delfi” ar “fake LRT” tiesiogiai priklijuoti prie Doppelganger.
+Svarbu čia, kad ne kiekvienas media klonas Lietuvoje automatiškai yra Doppelganger. Lietuvoje tikrai matome media impersonation ir brand impersonation metodus tiek scam, tiek politinių naratyvų, tiek influence operacijų kontekste, bet be domenų, serverių, socialinių paskyrų, reklamos bibliotekų, redirect grandinių ar kitų techninių sutapimų negalima kiekvieno "fake Delfi" ar "fake LRT" tiesiogiai priklijuoti prie Doppelganger.
 
 **Teisinga formuluotė būtų tokia:**
 
 *Viešai dokumentuotas Doppelganger modelis rodo, kad Rusijos informacinės operacijos sistemingai naudojo žinomų žiniasklaidos ir institucijų klonus. Lietuvos informacinėje erdvėje panašūs media impersonation metodai taip pat aptinkami, tačiau konkrečiai atribucijai reikia techninių artefaktų: domenų istorijos, DNS, SSL sertifikatų, redirect grandinių, socialinės amplifikacijos ir paskyrų tinklų analizės.*
 
-Čia nieko sexy nėra kaip “viską darė Doppelganger“. Bet jau tampa teisingu teisinga formuluote.
+Čia nieko sexy nėra kaip "viską darė Doppelganger". Bet jau tampa teisingu teisinga formuluote.
 
 **O žiūrint iš pačios tiekimo grandinės, kažkas taip:**
 
@@ -275,7 +275,7 @@ Wired, remdamasis Reset Tech ir Check First tyrėjais, rašė, kad Operation Ove
 
 Operation Overload taktika dažnai nukreipta į žurnalistus, fact-checkerius ir organizacijas, kurios tikrina informaciją. Operatoriai jiems siunčia fake istorijas, tagina socialiniuose tinkluose, bando priversti reaguoti, tikrinti, aiškintis, paneiginėti. Čia jau atsiranda informacinis DDoS *(greičiau sakyčiau smegeninės DDoS)*.
 
-Cyber pasaulyje DDoS tikslas nėra “nulaužti” serverį, tikslas yra jį perkrauti.  
+Cyber pasaulyje DDoS tikslas nėra "nulaužti" serverį, tikslas yra jį perkrauti.\
 Operation Overload tikslas nėra įtikinti kiekvieną žurnalistą, o tikslas yra užkimšti informacijos tikrinimo grandinę.
 
 **Taktinė vertė čia tokia:**
@@ -285,7 +285,7 @@ Operation Overload tikslas nėra įtikinti kiekvieną žurnalistą, o tikslas yr
 | Daug fake istorijų | Faktų tikrintojai turi eikvoti laiką ir resursus. |
 | AI generuotas turinys | Mažesni kaštai ir greitesnė gamyba. |
 | Taginimas arba siuntimas žurnalistams | Sukuriamas spaudimas reaguoti. |
-| Multi-platform platinimas | Sudaromas įspūdis, kad istorija „gyvena“ keliose vietose. |
+| Multi-platform platinimas | Sudaromas įspūdis, kad istorija "gyvena" keliose vietose. |
 | Net ir paneigimas | Kartais suteikia papildomą matomumą pačiai fake istorijai. |
 
 Čia ypač gražiai atsiskleidžia viena nemaloni realybė, kad ne kiekvienas debunk’as yra gryna pergalė.. čia jau paneigimas padeda operacijai pasiekti daugiau žmonių *(nors ir paneiginėji, žmonės ne visą laik tiki debunk’u, nes juk visi nupirkti ne?)*.
@@ -307,9 +307,9 @@ Reuters 2024 m. aprašė Microsoft tyrimą, kuriame Storm-1516 buvo siejama su m
 | Komponentas | Funkcija |
 | --- | --- |
 | Fake incidentas | Pagrindinė istorija, kuri turi sukelti emocinę reakciją. |
-| Fake liudininkas | Žmogiškas veidas, sukuriantis „autentiškumo“ įspūdį. |
+| Fake liudininkas | Žmogiškas veidas, sukuriantis "autentiškumo" įspūdį. |
 | Fake media outlet | Infrastruktūrinis legitimumo sluoksnis. |
-| Video arba audio | „Įrodymas“, kurį lengviau platinti socialiniuose tinkluose. |
+| Video arba audio | "Įrodymas", kurį lengviau platinti socialiniuose tinkluose. |
 | Social amplification | X, Telegram, TikTok, Facebook ar kiti kanalai. |
 | Antriniai skleidėjai | Influenceriai, fringe media, politiniai veikėjai arba botų tinklai. |
 
@@ -325,7 +325,7 @@ Jeigu Doppelganger yra phishing puslapis tai jau Storm-1516 yra social engineeri
 
 ## Pravda / Portal Kombat. Kai tikslinė auditorija yra ne žmogus, o crawler’is
 
-Pravda / Portal Kombat yra viena įdomiausių šito blog krypčių *(na man įdomiausia)*, nes yra klausimas “kam skirtas turinys?”
+Pravda / Portal Kombat yra viena įdomiausių šito blog krypčių *(na man įdomiausia)*, nes yra klausimas "kam skirtas turinys?"
 
 Klasikinė propaganda taikosi į žmogų. Pravda tipo tinklas dalinai taikosi į informacinę infrastruktūrą t.y. paieškos sistemas, crawlerius, LLM retrieval sluoksnį ir automatiškai renkamą turinį.
 
@@ -361,7 +361,7 @@ Chatbotas / AI atsakymas
 
 Čia jau nebe vien Facebook tetos iš Pakruojo *(nežinau kodėl pasirinkau Pakruojį)* problema. Čia problema sistemai, kuri vėliau atsakinėja Facebook tetai, kurį išmoko pasiklaust Chat bot’ų ar tai tiesa ar tai melas.
 
-Pravda tipo turiniui nebūtina turėti didelio realaus skaitytojų srauto. Jei turinys indeksuojamas, perpublikuojamas, lokalizuojamas ir atrodo pakankamai “naujieninis”, tampa.. š. Čia jau SEO pusbrolis, kuris atrado geopolitiką ir dabar bando paaiškinti chatbotams, kad viskas yra NATO kaltė.
+Pravda tipo turiniui nebūtina turėti didelio realaus skaitytojų srauto. Jei turinys indeksuojamas, perpublikuojamas, lokalizuojamas ir atrodo pakankamai "naujieninis", tampa.. š. Čia jau SEO pusbrolis, kuris atrado geopolitiką ir dabar bando paaiškinti chatbotams, kad viskas yra NATO kaltė.
 
 **Techniniu požiūriu šis modelis turi kelis požymius:**
 
@@ -369,7 +369,7 @@ Pravda tipo turiniui nebūtina turėti didelio realaus skaitytojų srauto. Jei t
 | --- | --- |
 | Daug lokalizuotų domenų | Leidžia taikyti skirtingoms kalboms ir regionams. |
 | Žema turinio kokybė | Turinys dažnai skirtas kiekiui, ne žmogaus skaitymo patirčiai. |
-| Pro-rusiškų šaltinių perpublikavimas | Leidžia „išplauti“ pirminį šaltinį per kitus domenus. |
+| Pro-rusiškų šaltinių perpublikavimas | Leidžia "išplauti" pirminį šaltinį per kitus domenus. |
 | SEO ir indeksavimo orientacija | Svarbu ne komentarai, o matomumas paieškos ir crawler aplinkoje. |
 | LLM grooming rizika | AI sistemos gali pakartoti užterštą informacinį sluoksnį. |
 
@@ -381,9 +381,9 @@ Ir taip, tai yra taip pat absurdiška, kaip skamba: *mes gyvename laike, kur ka�
 
 ---
 
-## Baltarusijos vaidmuo. Ne tik “mažesnė Rusija”
+## Baltarusijos vaidmuo. Ne tik "mažesnė Rusija"
 
-Baltarusijos informacinę veiklą klaidinga matyti tik kaip pigesnę Rusijos versiją. Baltarusija turi savo regioninę funkciją t.y. ji gerai tinka Lietuvos, Lenkijos ir Baltijos šalių temoms, ypač migracijos, pasienio, energetikos ir “Baltijos valstybės žlunga” naratyvams.
+Baltarusijos informacinę veiklą klaidinga matyti tik kaip pigesnę Rusijos versiją. Baltarusija turi savo regioninę funkciją t.y. ji gerai tinka Lietuvos, Lenkijos ir Baltijos šalių temoms, ypač migracijos, pasienio, energetikos ir "Baltijos valstybės žlunga" naratyvams.
 
 **Baltarusijos informacinės operacijos dažnai remiasi keliomis pasikartojančiomis kryptimis:**
 
@@ -395,9 +395,9 @@ Baltarusijos informacinę veiklą klaidinga matyti tik kaip pigesnę Rusijos ver
 | Energetika arba BRELL | Kelti baimę dėl atsijungimo nuo Rusijos energetinės įtakos. |
 | Lenkų arba rusakalbių temos | Skaldyti regionines ir etnines auditorijas. |
 
-Baltarusija dažnai veikia kaip regioninis amplifikatorius. Jei Rusijos naratyvas yra strateginis, Baltarusijos medijos gali jį lokalizuoti kaip.. “čia konkrečiai Lietuva“, “čia konkrečiai pasienis“, “čia konkrečiai Vilnius“, “čia konkrečiai elektros kainos“ *(na šitie tikrai dažnai girdimi medijoje ne?)*.
+Baltarusija dažnai veikia kaip regioninis amplifikatorius. Jei Rusijos naratyvas yra strateginis, Baltarusijos medijos gali jį lokalizuoti kaip.. "čia konkrečiai Lietuva", "čia konkrečiai pasienis", "čia konkrečiai Vilnius", "čia konkrečiai elektros kainos" *(na šitie tikrai dažnai girdimi medijoje ne?)*.
 
-Abstraktus teiginys “Europa žlunga“ yra per platus, bet pasakymas “Lietuvoje po atsijungimo nuo BRELL brangs elektra, valdžia melavo“ yra daug patogesnis socialiniam pykčiui ir pykčio sukėlimui *(na šitas manau daug ko matytas socialiniuose tinkluose.. ypač kas mėgstat paskaityt po straipsniais.. tik sunkiau atsirinkt kur botų ferma, kur realus žmogus).*
+Abstraktus teiginys "Europa žlunga" yra per platus, bet pasakymas "Lietuvoje po atsijungimo nuo BRELL brangs elektra, valdžia melavo" yra daug patogesnis socialiniam pykčiui ir pykčio sukėlimui *(na šitas manau daug ko matytas socialiniuose tinkluose.. ypač kas mėgstat paskaityt po straipsniais.. tik sunkiau atsirinkt kur botų ferma, kur realus žmogus).*
 
 ![Lietuvos žemėlapį supa iš rytų ateinantys koordinuoti informaciniai ryšiai.](/assets/img/posts/substack/informacijos-gamyklos-prie-lietuvos/09.webp)
 
@@ -409,24 +409,24 @@ Lietuvos informacinė rinka maža, bet aktyvi.. kas iš vienos pusės ir gerai i
 
 **Privalumas.** Mažoje rinkoje lengviau pastebėti pasikartojančius naratyvus, kalbos šablonus, paskyrų elgseną ir koordinaciją.
 
-**Trūkumas.** Mažoje rinkoje nedidelis amplifikacijos kiekis gali atrodyti didesnis nei yra. Jei po vienu straipsniu atsiranda 40 panašių komentarų, paprastam skaitytojui gali susidaryti įspūdis, kad “visi taip galvoja“. Realybėje kartais “visi“ yra trys žmonės, penki botai ir viena paskyra, kuri akivaizdžiai per daug mėgsta žodį “chunta“.
+**Trūkumas.** Mažoje rinkoje nedidelis amplifikacijos kiekis gali atrodyti didesnis nei yra. Jei po vienu straipsniu atsiranda 40 panašių komentarų, paprastam skaitytojui gali susidaryti įspūdis, kad "visi taip galvoja". Realybėje kartais "visi" yra trys žmonės, penki botai ir viena paskyra, kuri akivaizdžiai per daug mėgsta žodį "chunta".
 
 **Lietuvos kontekste dažniausiai matau kelis pasikartojančius naratyvų klasterius** ***(bent tą ką išscrapinau su savo dummy account’ais)*****:**
 
 | Klasteris | Pavyzdinė žinutė | Operacinė vertė |
 | --- | --- | --- |
-| NATO / karas | Lietuva bus įtraukta į karą; NATO čia tik provokuoja | Baimė ir atgrasymo diskreditacija |
+| NATO / karas | Lietuva bus įtraukta į karą. NATO čia tik provokuoja | Baimė ir atgrasymo diskreditacija |
 | Ukraina / parama | Ukrainai viskas, lietuviams nieko | Paramos Ukrainai nuovargis |
 | Migracija | Valdžia specialiai kuria chaosą pasienyje | Nepasitikėjimas valstybe ir etninė įtampa |
 | Energetika | BRELL, ES arba Briuselis sukėlė kainų krizę | Energetinės nepriklausomybės diskreditacija |
-| Rusakalbiai | Lietuva persekioja rusakalbius | Tarptautinio spaudimo ir „gynybos“ retorikos pagrindas |
+| Rusakalbiai | Lietuva persekioja rusakalbius | Tarptautinio spaudimo ir "gynybos" retorikos pagrindas |
 | Korupcija / valdžia | Visi vagia, viskas parduota | Bendras institucinis cinizmas |
 
 Šie naratyvai dažnai neveikia izoliuotai ir jie jungiami.
 
-**Pavyzdžiui:** “Valdžia vagia, todėl remia Ukrainą, todėl žmonės skursta, todėl NATO provokuoja karą, todėl Baltarusija tik ginasi.“ *(čia šitas klasikinis iš Mantas Mantas Facebook paskyros, kur paskyra yra prisijungus prie 5-10 skirtingų grupių Facebook’e ir komentuoja tą patį po Delfi/LRT straipsniais).*
+**Pavyzdžiui:** "Valdžia vagia, todėl remia Ukrainą, todėl žmonės skursta, todėl NATO provokuoja karą, todėl Baltarusija tik ginasi." *(čia šitas klasikinis iš Mantas Mantas Facebook paskyros, kur paskyra yra prisijungus prie 5-10 skirtingų grupių Facebook’e ir komentuoja tą patį po Delfi/LRT straipsniais).*
 
-Logikos nėra, bet informacinėms operacijoms logika nėra būtina. Joms reikia emocinės sekos. Jeigu žmogus jau piktas dėl kainų, jam lengviau parduoti “Ukrainai per daug duodam“, jeigu jis jau nepasitiki valdžia, jam lengviau parduoti “NATO slepia tikrą planą“, jeigu jis jau bijo karo, jam lengviau parduoti “geriau nesikiškim“.. o Janina iš Pabradės paskaičius uždės Like ir dar pakomentuos tą patį, nors nežino, kad kalba su botu.. na dar nueis Marytei kaimynei pasakys “Pažiūrėk kaip Mantas Mantas teisingai pasakė”.
+Logikos nėra, bet informacinėms operacijoms logika nėra būtina. Joms reikia emocinės sekos. Jeigu žmogus jau piktas dėl kainų, jam lengviau parduoti "Ukrainai per daug duodam", jeigu jis jau nepasitiki valdžia, jam lengviau parduoti "NATO slepia tikrą planą", jeigu jis jau bijo karo, jam lengviau parduoti "geriau nesikiškim".. o Janina iš Pabradės paskaičius uždės Like ir dar pakomentuos tą patį, nors nežino, kad kalba su botu.. na dar nueis Marytei kaimynei pasakys "Pažiūrėk kaip Mantas Mantas teisingai pasakė".
 
 ![Keli beveik vienodi socialinių tinklų įrašai rodo koordinuotą turinio sklaidą.](/assets/img/posts/substack/informacijos-gamyklos-prie-lietuvos/10.webp)
 
@@ -442,7 +442,7 @@ Vienas dažnas analizės trūkumas yra tai, kad visos platformos suplakamos į v
 | Facebook | Lokalizuota masinė auditorija, ypač per grupes ir komentarų skiltis. |
 | X | Greita amplifikacija, žurnalistų, politikų ir tarptautinių auditorijų pasiekimas. |
 | Reddit | Diskusijų infiltracija, ypač anglų kalbos ir nišinėse bendruomenėse. |
-| Fake media sites | „Evidence object“ — nuoroda, į kurią galima nukreipti. |
+| Fake media sites | "Evidence object" — nuoroda, į kurią galima nukreipti. |
 | TikTok | Trumpas emocinis formatas, memai, audio, jaunos auditorijos pasiekimas. |
 | LLM / paieška | Naujas sluoksnis: naratyvų patekimas į atsakymų ir retrieval sistemas. |
 
@@ -456,13 +456,13 @@ Telegram dažnai veikia kaip dispečerinė:
 
 Akademiniai tyrimai apie Telegram propagandos tinklus rodo, kad tokiose platformose galima aptikti koordinuotus tinklus ir pasikartojančius amplifikacijos modelius, įskaitant pro-rusiškų ir pro-ukrainietiškų tinklų sąveiką. *([Source 8](#source-8))*
 
-Facebook Lietuvoje atlieka kitą funkciją. Čia svarbu ne tik puslapiai, bet ir komentarų skiltys. Komentarai tampa pigiu social proof mechanizmu. Jeigu po straipsniu matai 30 komentarų, kurie visi skirtingais žodžiais kartoja tą pačią mintį, dalis skaitytojų nebeskaito straipsnio. Jie skaito “visuomenės reakciją”, nors ir ta visuomenės reakcija yra vieno Igorio iš Maskvos *(arba kitaip pasakius penki sockpuppet’ai su skirtingom pavardėm, bet vienas Igoris už jų).*
+Facebook Lietuvoje atlieka kitą funkciją. Čia svarbu ne tik puslapiai, bet ir komentarų skiltys. Komentarai tampa pigiu social proof mechanizmu. Jeigu po straipsniu matai 30 komentarų, kurie visi skirtingais žodžiais kartoja tą pačią mintį, dalis skaitytojų nebeskaito straipsnio. Jie skaito "visuomenės reakciją", nors ir ta visuomenės reakcija yra vieno Igorio iš Maskvos *(arba kitaip pasakius penki sockpuppet’ai su skirtingom pavardėm, bet vienas Igoris už jų).*
 
 ![Skirtingos platformos ir paskyros sujungtos į vieną amplifikavimo infrastruktūrą.](/assets/img/posts/substack/informacijos-gamyklos-prie-lietuvos/11.webp)
 
 ---
 
-## Information laundering. Kaip rusiškas naratyvas tampa “vietine nuomone”
+## Information laundering. Kaip rusiškas naratyvas tampa "vietine nuomone"
 
 Svarbiausia šių operacijų magija yra ne pats melas, o kelias, kuriuo jis pereina iš akivaizdžiai pro-rusiško šaltinio į tariamai vietinį kontekstą.
 
@@ -488,9 +488,9 @@ Mainstream diskusija
 
 VSD Lietuvos kontekste nurodo būtent šį aspektą pro-rusiškos žinutės vis dažniau platinamos užmaskuotai, kad atrodytų kylančios iš Lietuvos visuomenės. *([Source 1](#source-1))*
 
-Čia atsiranda ir pseudo-ekspertai, ir regioniniai puslapiai, ir “alternatyvios žiniasklaidos” *(čia ta su J. radės pavarde, kur mato tėvui patiko, bet ačiū Dievui jau atploviau smegenis)* projektai, ir komentarų fermos. Kuo daugiau tarpinių sluoksnių, tuo sunkiau paprastam žmogui suprasti, iš kur naratyvas atėjo.
+Čia atsiranda ir pseudo-ekspertai, ir regioniniai puslapiai, ir "alternatyvios žiniasklaidos" *(čia ta su J. radės pavarde, kur mato tėvui patiko, bet ačiū Dievui jau atploviau smegenis)* projektai, ir komentarų fermos. Kuo daugiau tarpinių sluoksnių, tuo sunkiau paprastam žmogui suprasti, iš kur naratyvas atėjo.
 
-Kai žmogus mato RT, jis gali atmesti, bet kai žmogus mato vietinį Facebook profilį su trispalve cover photo ir komentaru “aš tik klausiu”.. atrodo įtikinamiau.
+Kai žmogus mato RT, jis gali atmesti, bet kai žmogus mato vietinį Facebook profilį su trispalve cover photo ir komentaru "aš tik klausiu".. atrodo įtikinamiau.
 
 ![Naratyvo kelias nuo šaltinio ir netikrų profilių iki grupių, komentarų ir auditorijos.](/assets/img/posts/substack/informacijos-gamyklos-prie-lietuvos/12.webp)
 
@@ -510,9 +510,9 @@ Kodėl tai svarbu informacinėms operacijoms? Elementaru..Nes techninis trikdis 
 
 | Techninis arba fizinis įvykis | Galimas naratyvas |
 | --- | --- |
-| GPS sutrikimai | NATO nesugeba apsaugoti oro erdvės; Vakarai provokuoja Rusiją |
-| DDoS prieš institucijas | Valstybė silpna; viskas nesaugu; valdžia slepia tikrą mastą |
-| Duomenų nutekinimas | Institucijos nekompetentingos; NATO dokumentai nesaugūs |
+| GPS sutrikimai | NATO nesugeba apsaugoti oro erdvės. Vakarai provokuoja Rusiją |
+| DDoS prieš institucijas | Valstybė silpna. Viskas nesaugu. Valdžia slepia tikrą mastą |
+| Duomenų nutekinimas | Institucijos nekompetentingos. NATO dokumentai nesaugūs |
 | Energetikos trikdis | Atsijungimas nuo Rusijos buvo klaida |
 | Sabotažo incidentas | Europa pati save naikina dėl Ukrainos |
 
@@ -533,7 +533,7 @@ Kalbant apie Rusijos ir Baltarusijos veiklą Europoje, pavojinga apsiriboti tik 
 | Sabotažas / žvalgyba | NATO šalys viešai reiškė susirūpinimą dėl tokių veiklų Europoje. |
 | GPS jamming / spoofing | Trikdo navigaciją, aviaciją, transportą ir sukuria naratyvų žaliavą. |
 | Proxy media | Vietiniai ar tarptautiniai kanalai, kurie atrodo nepriklausomi, bet platina pro-rusišką liniją. |
-| Influencerių / fringe media išnaudojimas | Žinutė perkeliama į „nepriklausomą“ balsą. |
+| Influencerių / fringe media išnaudojimas | Žinutė perkeliama į "nepriklausomą" balsą. |
 | LLM grooming | Bandymas užteršti AI atsakymų ir paieškos sluoksnius. |
 
 Čia svarbiausia ne sakyti, kad viskas yra vienas centrinis planas. Dažnai tokios ekosistemos veikia kaip pusiau centralizuotas tinklas:
