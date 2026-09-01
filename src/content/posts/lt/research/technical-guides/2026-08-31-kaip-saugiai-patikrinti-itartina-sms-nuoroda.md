@@ -41,9 +41,9 @@ key_findings:
   - "Redirects ir cloaking reiškia, kad vienas klientas, laikas ar regionas gali pamatyti kitą turinį. Vienas švarus screenshot'as neįrodo, kad URL saugus."
   - "Jeigu jau suvesti prisijungimo ar kortelės duomenys, patvirtintas Smart-ID prašymas arba įdiegta programa, analizę reikia nutraukti ir pereiti prie incidento valdymo."
 image:
-  path: /assets/img/posts/2026-08-31-suspicious-sms-guide/suspicious-sms-guide-hero.svg
+  path: /assets/img/posts/2026-08-31-suspicious-sms-guide/suspicious-sms-guide-hero-v2.webp
   social: /assets/img/social/suspicious-sms-link-safety-guide-lt.png
-  thumbnail: /assets/img/posts/2026-08-31-suspicious-sms-guide/suspicious-sms-guide-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-suspicious-sms-guide/suspicious-sms-guide-card-v2.webp
   alt: "Praktinis įtartinos SMS phishing nuorodos patikros procesas nuo išsaugojimo ir defang iki oficialaus patikrinimo bei incidento valdymo"
   width: 1600
   height: 900

@@ -42,10 +42,10 @@ key_findings:
   - "Vien slaptažodžio pakeitimas nebūtinai nutraukia pavogtas sesijas, atšaukia patikimus įrenginius, susigrąžina mokėjimą ar pašalina įrenginyje įdiegtą prieigą."
   - "Žinutę, URL ir operacijos duomenis reikia išsaugoti negrįžtant į phishing puslapį ir neatidėliojant incidento izoliavimo."
 image:
-  path: /assets/img/posts/2026-08-31-post-phishing-banking-response/post-phishing-banking-response-hero.svg
+  path: /assets/img/posts/2026-08-31-post-phishing-banking-response/post-phishing-banking-response-hero-v2.webp
   social: /assets/img/social/post-phishing-banking-response-lt.png
   alt: "Skubūs veiksmai po phishing, kai atskleista kortelė, banko autentifikavimas, sesija, pavedimas ar įrenginys"
-  thumbnail: /assets/img/posts/2026-08-31-post-phishing-banking-response/post-phishing-banking-response-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-post-phishing-banking-response/post-phishing-banking-response-card-v2.webp
   width: 1600
   height: 900
 ---

@@ -34,10 +34,10 @@ key_findings:
 - "OpenPhish, URLhaus and MalwareBazaar are supporting sources for specific pivots. They are not automatic conclusions and this guide never downloads or detonates malware."
 - "Authorised active reconnaissance can validate deployment and service relationships, but requires separate scope, rules of engagement, OPSEC, deconfliction and abort conditions."
 image:
-  path: /assets/img/posts/2026-08-13-pivoting-101/pivoting-101-hero.svg
+  path: /assets/img/posts/2026-08-13-pivoting-101/pivoting-101-hero-v2.webp
   social: /assets/img/social/infrastructure-pivoting-101-unipark-en.png
   alt: "A CTI pivoting cycle from an intelligence requirement and seed through confirmed relationships, a cluster and reporting"
-  thumbnail: /assets/img/posts/2026-08-13-pivoting-101/pivoting-101-hero.svg
+  thumbnail: /assets/img/posts/2026-08-13-pivoting-101/pivoting-101-card-v2.webp
   width: 1600
   height: 900
 ---

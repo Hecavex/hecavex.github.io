@@ -43,10 +43,10 @@ key_findings:
   - "Didžiąją dalį įrašų pateikė CertStream, tačiau 24 valandų klausymosi aprėptis siekė 62,78 %, o septynių dienų – 31,18 %, todėl neapdoroti dienos skaičiai netinka trendų ar dažnio teiginiams."
   - "Ši bazinė apžvalga naudinga kaip aptikimo eilė tik tada, kai prie kiekvieno skaičiaus matomi šaltinis, laikas, priežasties kodai, įrodymų lygis, naujumas ir peržiūros būsena."
 image:
-  path: /assets/img/posts/2026-08-31-radar-august-baseline/radar-august-baseline-hero.svg
+  path: /assets/img/posts/2026-08-31-radar-august-baseline/radar-august-baseline-hero-v2.webp
   social: /assets/img/social/lithuania-phishing-infrastructure-radar-2026-08-lt.png
   alt: "Aprėptį įvertinanti HECAVEX Radar 2026 m. rugpjūčio apžvalga su kandidatų, prekių ženklų, įrodymų, peržiūros ir rinkimo būklės skaičiais"
-  thumbnail: /assets/img/posts/2026-08-31-radar-august-baseline/radar-august-baseline-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-radar-august-baseline/radar-august-baseline-card-v2.webp
   width: 1600
   height: 900
 ---

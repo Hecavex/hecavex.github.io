@@ -43,10 +43,10 @@ key_findings:
   - "CertStream supplied most records, but 24-hour listening coverage was 62.78% and seven-day coverage was 31.18%, making raw daily counts unsuitable for trend or rate claims."
   - "The baseline is operationally useful as a discovery queue when source, time, reason codes, evidence tier, freshness and review state remain visible beside every count."
 image:
-  path: /assets/img/posts/2026-08-31-radar-august-baseline/radar-august-baseline-hero.svg
+  path: /assets/img/posts/2026-08-31-radar-august-baseline/radar-august-baseline-hero-v2.webp
   social: /assets/img/social/lithuania-phishing-infrastructure-radar-2026-08-en.png
   alt: "Coverage-aware HECAVEX Radar August 2026 baseline with candidate, brand, evidence, review, and collection-health counts"
-  thumbnail: /assets/img/posts/2026-08-31-radar-august-baseline/radar-august-baseline-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-radar-august-baseline/radar-august-baseline-card-v2.webp
   width: 1600
   height: 900
 ---

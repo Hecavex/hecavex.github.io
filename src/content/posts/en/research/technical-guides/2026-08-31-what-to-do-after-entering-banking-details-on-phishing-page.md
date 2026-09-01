@@ -42,10 +42,10 @@ key_findings:
   - "Changing a password alone does not necessarily terminate stolen sessions, revoke trusted devices, reverse payments, or remove software installed on the device."
   - "Preserve the message, URL and transaction evidence without revisiting the phishing page or delaying containment."
 image:
-  path: /assets/img/posts/2026-08-31-post-phishing-banking-response/post-phishing-banking-response-hero.svg
+  path: /assets/img/posts/2026-08-31-post-phishing-banking-response/post-phishing-banking-response-hero-v2.webp
   social: /assets/img/social/post-phishing-banking-response-en.png
   alt: "Emergency response paths for exposed cards, bank authentication, sessions, transfers and devices after phishing"
-  thumbnail: /assets/img/posts/2026-08-31-post-phishing-banking-response/post-phishing-banking-response-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-post-phishing-banking-response/post-phishing-banking-response-card-v2.webp
   width: 1600
   height: 900
 ---

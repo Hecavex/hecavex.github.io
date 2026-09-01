@@ -42,9 +42,9 @@ key_findings:
   - "Švarus atsakymas parodo, ką vienas stebėtojas gavo konkrečiu metu, bet neįrodo, kad visi lankytojai gavo tą patį."
   - "Naudingame pranešime išsaugomas pradinis taškas, redirect grandinė, atsako artefaktai, rinkimo kontekstas ir ribos, o techninis skirtumas nepaverčiamas nepagrįsta atribucija."
 image:
-  path: /assets/img/posts/2026-08-31-facebook-cloaking-explained/facebook-cloaking-explained-hero.svg
+  path: /assets/img/posts/2026-08-31-facebook-cloaking-explained/facebook-cloaking-explained-hero-v2.webp
   social: /assets/img/social/facebook-cloaking-explained-lt.png
-  thumbnail: /assets/img/posts/2026-08-31-facebook-cloaking-explained/facebook-cloaking-explained-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-facebook-cloaking-explained/facebook-cloaking-explained-card-v2.webp
   alt: "Vienas reklamos URL pagal kontekstą nukreipiamas į švarų arba apgaulingą aukai skirtą atsakymą, o prieš vertinimą išsaugomi įrodymai"
   width: 1600
   height: 900

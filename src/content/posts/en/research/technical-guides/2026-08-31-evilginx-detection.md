@@ -42,9 +42,9 @@ key_findings:
   - "A successful MFA event does not establish that the resulting session is trustworthy. Follow-on sign-in, token, mailbox, OAuth and data-access telemetry must be reviewed."
   - "Containment must revoke sessions and inspect persistence as well as reset credentials. Phishing-resistant authentication and device-bound access materially reduce the reusable-proxy path."
 image:
-  path: /assets/img/posts/2026-08-31-evilginx-detection/evilginx-detection-hero.svg
+  path: /assets/img/posts/2026-08-31-evilginx-detection/evilginx-detection-hero-v2.webp
   social: /assets/img/social/evilginx-detection-en.png
-  thumbnail: /assets/img/posts/2026-08-31-evilginx-detection/evilginx-detection-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-evilginx-detection/evilginx-detection-card-v2.webp
   alt: "Reverse-proxy phishing evidence model connecting a user, deceptive proxy and legitimate identity provider with lure, web, sign-in and token telemetry"
   width: 1600
   height: 900

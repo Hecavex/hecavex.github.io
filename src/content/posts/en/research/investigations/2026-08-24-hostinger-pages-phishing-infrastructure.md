@@ -45,10 +45,10 @@ key_findings:
   - "A later one-host fixed-path check found that nine of ten predetermined paths returned the exact root document, supporting a Cloudflare Pages SPA-fallback explanation for path-dependent browser behavior."
   - "Shared parameter names and infrastructure support a broader kit or builder lineage, but do not prove that one person or group controlled every deployment."
 image:
-  path: /assets/img/posts/2026-08-24-hostinger-pages-phishing/hostinger-pages-phishing-hero.svg
+  path: /assets/img/posts/2026-08-24-hostinger-pages-phishing/hostinger-pages-phishing-hero-v2.webp
   social: /assets/img/social/hostinger-pages-phishing-infrastructure-en.png
   alt: "Hostinger-themed credential phishing infrastructure using randomized Cloudflare Pages projects and separate Render services"
-  thumbnail: /assets/img/posts/2026-08-24-hostinger-pages-phishing/hostinger-pages-phishing-hero.svg
+  thumbnail: /assets/img/posts/2026-08-24-hostinger-pages-phishing/hostinger-pages-phishing-card-v2.webp
   width: 1600
   height: 900
 ---

@@ -38,6 +38,7 @@ const standardOutlineHeadings: OutlineItem[] = [{ depth: 2, slug: 'page-start', 
 const showActionRail = entry.data.translation_key === 'contact';
 const showStandardOutline = !showActionRail && standardOutlineHeadings.length > 2;
 const useArticleWidthProse = entry.data.translation_key === 'about';
+const useCatalogueWidth = entry.data.translation_key === 'speaker-media' || entry.data.translation_key === 'contact';
 const latestUpdate = latestContentUpdate(posts);
 const pageFacts = pageFactsFor(entry.data.translation_key, lang, latestUpdate ? dateText(latestUpdate) : '—');
 const researchMap = researchMapFor(lang, {
@@ -81,7 +82,7 @@ const researchMap = researchMapFor(lang, {
     </> : entry.data.translation_key === 'portfolio-glossary' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} />
       <Glossary {lang} />
-    </> : <article id="standard-page-scope" class:list={['standard-page', { 'standard-page--with-rail': showStandardOutline || showActionRail, 'standard-page--article-prose': useArticleWidthProse }]}>
+    </> : <article id="standard-page-scope" class:list={['standard-page', { 'standard-page--with-rail': showStandardOutline || showActionRail, 'standard-page--article-prose': useArticleWidthProse, 'standard-page--catalogue-width': useCatalogueWidth }]}>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} facts={pageFacts} anchorId="page-start" />
       {showStandardOutline && <ContentOutline {lang} headings={standardOutlineHeadings} scopeId="standard-page-scope" condensed={standardOutlineHeadings.length > 40} />}
       {showActionRail && <PageActionRail {lang} routes={contactRoutesFor(lang)} />}

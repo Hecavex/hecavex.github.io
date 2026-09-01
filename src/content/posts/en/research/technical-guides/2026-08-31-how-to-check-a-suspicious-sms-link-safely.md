@@ -42,10 +42,10 @@ key_findings:
   - "A clean preview or reputation result is not proof of safety because redirects, first-visit gates and cloaking can deliver different content to different visitors."
   - "The correct response depends on what happened after the click: no input, credentials, payment data, an MFA code, or installed software each require different containment."
 image:
-  path: /assets/img/posts/2026-08-31-suspicious-sms-guide/suspicious-sms-guide-hero.svg
+  path: /assets/img/posts/2026-08-31-suspicious-sms-guide/suspicious-sms-guide-hero-v2.webp
   social: /assets/img/social/suspicious-sms-link-safety-guide-en.png
   alt: "A suspicious SMS is safely separated into message, URL, redirect and response decisions without contacting live malicious infrastructure"
-  thumbnail: /assets/img/posts/2026-08-31-suspicious-sms-guide/suspicious-sms-guide-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-suspicious-sms-guide/suspicious-sms-guide-card-v2.webp
   width: 1600
   height: 900
 ---

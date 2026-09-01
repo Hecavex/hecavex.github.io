@@ -37,10 +37,10 @@ key_findings:
 - "+63 numeris rodo Filipinų numeracijos planą, bet nėra patikimas operatoriaus lokacijos ar tapatybės įrodymas."
 - "Cisco Talos aprašytas JWR framework'as labai panašus veikimo modeliu, tačiau JWR-specific protokolas, endpoint'ai, session ID, šifravimas ir publikuoti IOC nesutampa su UNIPARK rinkiniu. To nepakanka tai pačiai kampanijai ar operatoriui teigti."
 image:
-  path: /assets/img/posts/2026-08-11-unipark-smishing/unipark-smishing-hero.svg
+  path: /assets/img/posts/2026-08-11-unipark-smishing/unipark-smishing-hero-v2.webp
   social: /assets/img/social/unipark-smishing-campaign-infrastructure-lt.png
   alt: "UNIPARK vardu siunčiama smishing žinutė veda į naują domeną ir daugkartinio parkingo phishing rinkinio infrastruktūrą"
-  thumbnail: /assets/img/posts/2026-08-11-unipark-smishing/unipark-smishing-hero.svg
+  thumbnail: /assets/img/posts/2026-08-11-unipark-smishing/unipark-smishing-card-v2.webp
   width: 1600
   height: 900
 ---

@@ -34,10 +34,10 @@ key_findings:
 - "OpenPhish, URLhaus ir MalwareBazaar yra papildomi šaltiniai konkrečiam pivotui. Jie nėra automatinė išvada ir šiame vadove nenaudojami malware atsisiuntimui ar detonavimui."
 - "Autorizuotas active recon gali patvirtinti deployment ir service ryšius, bet jam reikia atskiro scope, rules of engagement, OPSEC, deconfliction ir abort sąlygų."
 image:
-  path: /assets/img/posts/2026-08-13-pivoting-101/pivoting-101-hero.svg
+  path: /assets/img/posts/2026-08-13-pivoting-101/pivoting-101-hero-v2.webp
   social: /assets/img/social/infrastructure-pivoting-101-unipark-lt.png
   alt: "CTI pivoting analitinis ciklas nuo intelligence requirement ir seed iki patvirtintų ryšių, clusterio bei report"
-  thumbnail: /assets/img/posts/2026-08-13-pivoting-101/pivoting-101-hero.svg
+  thumbnail: /assets/img/posts/2026-08-13-pivoting-101/pivoting-101-card-v2.webp
   width: 1600
   height: 900
 ---

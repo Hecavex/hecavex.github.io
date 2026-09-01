@@ -42,9 +42,9 @@ key_findings:
   - "A clean response is evidence of what one observer received at one time, not proof that every visitor received the same page."
   - "Useful reporting preserves the original entry point, redirect chain, response artefacts, collection context and limitations without turning a technical difference into unsupported attribution."
 image:
-  path: /assets/img/posts/2026-08-31-facebook-cloaking-explained/facebook-cloaking-explained-hero.svg
+  path: /assets/img/posts/2026-08-31-facebook-cloaking-explained/facebook-cloaking-explained-hero-v2.webp
   social: /assets/img/social/facebook-cloaking-explained-en.png
-  thumbnail: /assets/img/posts/2026-08-31-facebook-cloaking-explained/facebook-cloaking-explained-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-facebook-cloaking-explained/facebook-cloaking-explained-card-v2.webp
   alt: "One advertisement URL is conditionally routed to a clean response or a fraudulent victim response, with evidence preserved before interpretation"
   width: 1600
   height: 900

@@ -39,8 +39,8 @@ key_findings:
   - "Vėlesniame vieno hosto fixed-path patikrinime devyni iš dešimties fiksuotų path'ų grąžino tikslų root dokumentą, todėl path-dependent browser elgsena gerai dera su Cloudflare Pages SPA fallback."
   - "Bendri parametrų vardai ir infrastruktūra rodo platesnę kit'o ar builder'io lineage, bet neįrodo, kad visus deployment'us valdė vienas žmogus ar grupė."
 image:
-  path: /assets/img/posts/2026-08-24-hostinger-pages-phishing/hostinger-pages-phishing-hero.svg
-  thumbnail: /assets/img/posts/2026-08-24-hostinger-pages-phishing/hostinger-pages-phishing-hero.svg
+  path: /assets/img/posts/2026-08-24-hostinger-pages-phishing/hostinger-pages-phishing-hero-v2.webp
+  thumbnail: /assets/img/posts/2026-08-24-hostinger-pages-phishing/hostinger-pages-phishing-card-v2.webp
   social: /assets/img/social/hostinger-pages-phishing-infrastructure-lt.png
   alt: "Hostinger imitavimo phishing kit'o srautas nuo Cloudflare Pages puslapio iki atskirų credential bei tracking servisų ir teisėto Hostinger redirect"
   width: 1600

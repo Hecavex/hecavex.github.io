@@ -42,10 +42,10 @@ key_findings:
   - "Observed certificate facts, computed similarities and analyst assessments should remain separate fields so a candidate can be audited and corrected."
   - "A GitHub-only monitor can publish valuable periodic snapshots, but workflow delay, dropped jobs and state handling must be visible rather than presented as continuous coverage."
 image:
-  path: /assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/certificate-transparency-brand-monitoring-hero.svg
+  path: /assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/certificate-transparency-brand-monitoring-hero-v2.webp
   social: /assets/img/social/certificate-transparency-brand-monitoring-en.png
   alt: "A Certificate Transparency pipeline converts public log entries into parsed SAN names, explainable brand matches and reviewable GitHub records"
-  thumbnail: /assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/certificate-transparency-brand-monitoring-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/certificate-transparency-brand-monitoring-card-v2.webp
   width: 1600
   height: 900
 ---

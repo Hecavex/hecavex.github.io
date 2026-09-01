@@ -37,10 +37,10 @@ key_findings:
 - "The +63 number fits the Philippine numbering plan but is not reliable evidence of the operator's location or identity."
 - "Cisco Talos's JWR report describes strikingly similar tradecraft, but JWR-specific protocols, endpoints, session identifiers, encryption and published IOCs do not match the UNIPARK set. The evidence does not establish one campaign or operator."
 image:
-  path: /assets/img/posts/2026-08-11-unipark-smishing/unipark-smishing-hero.svg
+  path: /assets/img/posts/2026-08-11-unipark-smishing/unipark-smishing-hero-v2.webp
   social: /assets/img/social/unipark-smishing-campaign-infrastructure-en.png
   alt: "An UNIPARK-themed smishing message leads to a newly registered domain and a reusable parking payment phishing kit"
-  thumbnail: /assets/img/posts/2026-08-11-unipark-smishing/unipark-smishing-hero.svg
+  thumbnail: /assets/img/posts/2026-08-11-unipark-smishing/unipark-smishing-card-v2.webp
   width: 1600
   height: 900
 ---

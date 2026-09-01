@@ -42,9 +42,9 @@ key_findings:
   - "An authentication attempt is exposure evidence, not automatic proof that material was captured, cracked, relayed or used. Triage must preserve those confidence boundaries."
   - "The durable response combines egress restriction, NTLM reduction, strong passwords, phishing-resistant authentication for cloud access, endpoint visibility and a tested identity-containment playbook."
 image:
-  path: /assets/img/posts/2026-08-31-t1187-forced-authentication/t1187-forced-authentication-hero.svg
+  path: /assets/img/posts/2026-08-31-t1187-forced-authentication/t1187-forced-authentication-hero-v2.webp
   social: /assets/img/social/t1187-forced-authentication-en.png
-  thumbnail: /assets/img/posts/2026-08-31-t1187-forced-authentication/t1187-forced-authentication-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-t1187-forced-authentication/t1187-forced-authentication-card-v2.webp
   alt: "T1187 defensive evidence chain from an untrusted reference through outbound authentication to correlated endpoint, network and identity telemetry"
   width: 1600
   height: 900

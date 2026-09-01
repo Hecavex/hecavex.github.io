@@ -38,7 +38,7 @@ const address = server.address();
 const baseUrl = `http://127.0.0.1:${address.port}`;
 
 const routes = [
-  '/', '/data/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/en/projects/',
+  '/', '/data/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/', '/en/projects/',
   '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/',
   '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
   '/en/research/cra-article-14-vulnerability-incident-reporting-guide/', '/lt/tyrimai/infrastrukturos-pivoting-101/',
@@ -53,6 +53,8 @@ const outlineRoutes = new Set([
 ]);
 const researchRoutes = new Set(['/en/research/', '/lt/tyrimai/']);
 const contactRoutes = new Set(['/en/contact/', '/lt/kontaktai/']);
+const catalogueIntroRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
+const briefingRoutes = new Set(['/en/briefings/', '/lt/apzvalgos/']);
 const legacyCtaRoutes = new Set(['/en/about/', '/lt/apie/', '/en/contact/', '/lt/kontaktai/']);
 const signalRoutes = new Set(['/en/briefings/2026-08-22/', '/lt/apzvalgos/2026-08-22/']);
 const widths = [320, 390, 768, 1160, 1440];
@@ -94,6 +96,23 @@ try {
         const signalFactItems = [...(signalFacts?.children ?? [])];
         const signalFactRects = signalFactItems.map((item) => item.getBoundingClientRect());
         const ctaButton = document.querySelector('.hx-page-cta .hx-button');
+        const pageShell = document.querySelector('.page-shell');
+        const pageShellRect = pageShell?.getBoundingClientRect();
+        const pageShellStyle = pageShell ? getComputedStyle(pageShell) : undefined;
+        const pageIntro = document.querySelector('.page-intro--with-facts');
+        const pageIntroRect = pageIntro?.getBoundingClientRect();
+        const briefingList = document.querySelector('.briefing-list');
+        const briefingListRect = briefingList?.getBoundingClientRect();
+        const briefingCards = [...(briefingList?.querySelectorAll(':scope > .post-card') ?? [])];
+        const briefingCardRects = briefingCards.map((card) => card.getBoundingClientRect());
+        const briefingImageRect = briefingCards[0]?.querySelector('.post-card-image')?.getBoundingClientRect();
+        const oddDataLinkLists = [...document.querySelectorAll('.data-catalogue .data-product__links')]
+          .filter((list) => list.children.length % 2 === 1);
+        const oddDataLinksFillRow = oddDataLinkLists.every((list) => {
+          const lastItem = list.lastElementChild;
+          if (!lastItem) return false;
+          return Math.abs(lastItem.getBoundingClientRect().width - list.getBoundingClientRect().width) <= 3;
+        });
         const stylesheet = document.querySelector('link[href*="/assets/css/hecavex.css"]');
         const siteScript = document.querySelector('script[src*="/assets/js/site.js"]');
         const oddResearchGrid = [...document.querySelectorAll('.catalogue-section .post-grid')]
@@ -155,6 +174,22 @@ try {
           pageUpdatedValue: document.querySelector('.page-facts > div:last-child dd')?.textContent.trim() ?? '',
           ctaButtonHeight: ctaButton?.getBoundingClientRect().height ?? 0,
           ctaButtonDisplay: ctaButton ? getComputedStyle(ctaButton).display : 'missing',
+          pageShellInnerWidth: pageShellRect && pageShellStyle
+            ? pageShellRect.width
+              - Number.parseFloat(pageShellStyle.paddingLeft)
+              - Number.parseFloat(pageShellStyle.paddingRight)
+              - Number.parseFloat(pageShellStyle.borderLeftWidth)
+              - Number.parseFloat(pageShellStyle.borderRightWidth)
+            : 0,
+          pageIntroWidth: pageIntroRect?.width ?? 0,
+          pageIntroHeight: pageIntroRect?.height ?? 0,
+          briefingListWidth: briefingListRect?.width ?? 0,
+          briefingImageWidth: briefingImageRect?.width ?? 0,
+          briefingCardsShareRow: briefingCardRects.length > 1
+            ? Math.abs(briefingCardRects[0].top - briefingCardRects[1].top) < 1
+            : false,
+          oddDataLinkListCount: oddDataLinkLists.length,
+          oddDataLinksFillRow,
           leadImageLinkName: document.querySelector('.lead-story-image')?.getAttribute('aria-label') ?? '',
           landingEditionCount: document.querySelectorAll('.landing-edition-rail a').length,
           landingCurrentCount: document.querySelectorAll('.landing-current-grid > *').length,
@@ -189,6 +224,16 @@ try {
         if (!oddCardFillsGrid) fail(route, width, `final odd research card does not fill its row (${state.oddResearchCardCount} cards, ${state.oddResearchLastCardLeftGap}px/${state.oddResearchLastCardRightGap}px edges)`);
       }
       if (contactRoutes.has(route) && (state.actionRouteCount !== 4 || state.actionLinkCount !== 5)) fail(route, width, `contact action rail is incomplete (${state.actionRouteCount} routes, ${state.actionLinkCount} links)`);
+      if (catalogueIntroRoutes.has(route)) {
+        if (Math.abs(state.pageIntroWidth - state.pageShellInnerWidth) > 1) fail(route, width, `fact intro width differs from the catalogue shell (${state.pageIntroWidth}px/${state.pageShellInnerWidth}px)`);
+        if (width >= 900 && Math.abs(state.pageIntroHeight - 336) > 1) fail(route, width, `desktop fact intro is ${state.pageIntroHeight}px instead of 336px`);
+        if (state.h1Size > 52.1) fail(route, width, `fact intro h1 exceeds the shared 52px scale (${state.h1Size}px)`);
+      }
+      if (briefingRoutes.has(route)) {
+        if (width > 680 && (!state.briefingCardsShareRow || state.briefingImageWidth > state.briefingListWidth * 0.51)) fail(route, width, `briefing catalogue is not a two-column card grid (${state.briefingImageWidth}px image/${state.briefingListWidth}px list)`);
+        if (width <= 680 && state.briefingCardsShareRow) fail(route, width, 'briefing catalogue remains two-column on a narrow screen');
+      }
+      if (route === '/data/' && (state.oddDataLinkListCount < 1 || !state.oddDataLinksFillRow)) fail(route, width, `odd data endpoint grids leave an empty cell (${state.oddDataLinkListCount} odd grids, fill ${state.oddDataLinksFillRow})`);
       if (legacyCtaRoutes.has(route) && (!['flex', 'inline-flex'].includes(state.ctaButtonDisplay) || state.ctaButtonHeight < 43 || state.ctaButtonHeight > 45)) fail(route, width, `restored page CTA is not a 44px flex control (${state.ctaButtonDisplay}, ${state.ctaButtonHeight}px)`);
       if (signalRoutes.has(route)) {
         if (state.signalEntryCount !== 7) fail(route, width, `Signal Brief contains ${state.signalEntryCount} signal records instead of 7`);

@@ -42,9 +42,9 @@ key_findings:
   - "Autentifikavimo bandymas yra ekspozicijos įrodymas, o ne automatinis patvirtinimas, kad medžiaga buvo gauta, nulaužta, relay'inta ar panaudota."
   - "Tvari apsauga jungia egress ribojimą, planingą NTLM mažinimą, stiprius slaptažodžius, phishing atsparią autentifikaciją, endpoint matomumą ir išbandytą identity containment procesą."
 image:
-  path: /assets/img/posts/2026-08-31-t1187-forced-authentication/t1187-forced-authentication-hero.svg
+  path: /assets/img/posts/2026-08-31-t1187-forced-authentication/t1187-forced-authentication-hero-v2.webp
   social: /assets/img/social/t1187-forced-authentication-lt.png
-  thumbnail: /assets/img/posts/2026-08-31-t1187-forced-authentication/t1187-forced-authentication-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-t1187-forced-authentication/t1187-forced-authentication-card-v2.webp
   alt: "T1187 gynybinė įrodymų grandinė nuo nepatikimos nuorodos į nutolusį resursą iki outbound autentifikavimo ir endpoint, tinklo bei identity telemetrijos"
   width: 1600
   height: 900

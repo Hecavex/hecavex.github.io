@@ -42,9 +42,9 @@ key_findings:
   - "Smart-ID, Mobile-ID ar OTP patvirtinimas yra konkretus veiksmas, o ne bendrinis tapatybės testas. Tekstas, suma ir gavėjas turi atitikti savarankiškai pradėtą operaciją."
   - "Suvedus duomenis ar ką nors patvirtinus, pirmiausia reikia oficialiu kanalu susisiekti su banku, o pokalbio, URL ir transakcijos įrodymus išsaugoti pranešimui."
 image:
-  path: /assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-buyer-phishing-hero.svg
+  path: /assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-buyer-phishing-hero-v2.webp
   social: /assets/img/social/marketplace-buyer-phishing-lt.png
-  thumbnail: /assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-buyer-phishing-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-buyer-phishing-card-v2.webp
   alt: "Netikras Marketplace pirkėjas iš patikimo pokalbio nuveda pardavėją į išorinį mokėjimo puslapį, po kurio parodytas banko ir incidento valdymo kelias"
   width: 1600
   height: 900

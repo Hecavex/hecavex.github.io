@@ -42,10 +42,10 @@ key_findings:
   - "Sertifikato faktai, apskaičiuotas panašumas ir analitiko vertinimas turi likti atskiruose laukuose, kad kandidatą būtų galima patikrinti ir pataisyti."
   - "GitHub-only stebėjimas gali teikti vertingas periodines iškarpas, tačiau workflow vėlavimai, praleisti paleidimai ir būsenos saugojimas turi būti matomi, o ne pateikiami kaip nenutrūkstama aprėptis."
 image:
-  path: /assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/certificate-transparency-brand-monitoring-hero.svg
+  path: /assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/certificate-transparency-brand-monitoring-hero-v2.webp
   social: /assets/img/social/certificate-transparency-brand-monitoring-lt.png
   alt: "Certificate Transparency srautas viešus logų įrašus paverčia išrinktais SAN vardais, paaiškinamais prekių ženklų sutapimais ir peržiūrimais GitHub įrašais"
-  thumbnail: /assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/certificate-transparency-brand-monitoring-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/certificate-transparency-brand-monitoring-card-v2.webp
   width: 1600
   height: 900
 ---

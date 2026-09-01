@@ -42,9 +42,9 @@ key_findings:
   - "Smart-ID, Mobile-ID or OTP approval is an action, not a generic identity check. The text, amount and recipient must match an action the user initiated independently."
   - "After data entry or approval, contacting the bank through an official channel takes priority over further link analysis, while chat, URL and transaction evidence should be preserved."
 image:
-  path: /assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-buyer-phishing-hero.svg
+  path: /assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-buyer-phishing-hero-v2.webp
   social: /assets/img/social/marketplace-buyer-phishing-en.png
-  thumbnail: /assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-buyer-phishing-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-buyer-phishing-card-v2.webp
   alt: "A fake marketplace buyer moves a seller from a trusted chat to an external payment page, followed by a bank and incident-response path"
   width: 1600
   height: 900

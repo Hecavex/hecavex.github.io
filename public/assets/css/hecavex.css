@@ -925,6 +925,13 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
   border-bottom: 0;
 }
 
+.page-intro--with-facts .page-head h1 {
+  max-width: none;
+  font-size: clamp(2.4rem, 3.6vw, 3.25rem);
+  line-height: 1;
+  text-wrap: balance;
+}
+
 .page-facts {
   display: grid;
   min-width: 0;
@@ -1021,6 +1028,11 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
   display: grid;
   gap: 1rem;
   margin-top: 1.5rem;
+}
+
+.briefing-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
 }
 
 .archive-list {
@@ -1195,6 +1207,14 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 .standard-page {
   max-width: 76rem;
   margin-inline: auto;
+}
+
+.standard-page--catalogue-width {
+  max-width: none;
+}
+
+.standard-page--catalogue-width > .page-intro--with-facts {
+  max-width: none;
 }
 
 .standard-page--with-rail {
@@ -2870,7 +2890,7 @@ main .network-grid span {
 }
 
 .page-shell .page-intro--with-facts .page-head {
-  padding: clamp(2rem, 4vw, 4rem);
+  padding: clamp(2rem, 3vw, 2.75rem);
 }
 
 main .page-head h1 {
@@ -3328,6 +3348,10 @@ main :is(.button, .hx-button):not(.button--primary, .hx-button--primary):hover {
   background: color-mix(in srgb, var(--paper) 96%, var(--ink));
 }
 
+.data-catalogue .data-product__links li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 @media (max-width: 1160px) {
   :root {
     --header-offset: 4rem;
@@ -3572,6 +3596,7 @@ main :is(.button, .hx-button):not(.button--primary, .hx-button--primary):hover {
   }
 
   .post-grid,
+  .briefing-list,
   .network-grid,
   .topic-grid,
   .project-copy,

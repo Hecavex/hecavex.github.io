@@ -42,9 +42,9 @@ key_findings:
   - "Sėkmingas MFA event'as neįrodo, kad po jo sukurta sesija yra patikima. Reikia vertinti vėlesnį sign-in, token, mailbox, OAuth ir data-access kontekstą."
   - "Containment turi revoke'inti sessions ir tikrinti persistence, o ne tik pakeisti slaptažodį. Phishing atspari autentifikacija ir prie įrenginio pririšta prieiga mažina reusable-proxy kelią."
 image:
-  path: /assets/img/posts/2026-08-31-evilginx-detection/evilginx-detection-hero.svg
+  path: /assets/img/posts/2026-08-31-evilginx-detection/evilginx-detection-hero-v2.webp
   social: /assets/img/social/evilginx-detection-lt.png
-  thumbnail: /assets/img/posts/2026-08-31-evilginx-detection/evilginx-detection-hero.svg
+  thumbnail: /assets/img/posts/2026-08-31-evilginx-detection/evilginx-detection-card-v2.webp
   alt: "Reverse-proxy phishing įrodymų modelis, siejantis vartotoją, klaidinantį proxy ir teisėtą identity provider su lure, web, sign-in bei token telemetrija"
   width: 1600
   height: 900
