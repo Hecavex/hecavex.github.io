@@ -123,22 +123,24 @@ const context = await browser.newContext({
 const page = await context.newPage();
 
 for (const card of cards) {
-  const accent = card.kind === 'brief' ? '#ffc857' : card.kind === 'threat-note' ? '#a2da68' : '#44c7dc';
+  const accent = '#55b9b1';
   await page.setContent(`<!doctype html>
     <html lang="${card.lang}"><head><meta charset="utf-8"><style>
       @font-face{font-family:Inter;font-style:normal;font-weight:700;src:url(data:font/woff2;base64,${interLatinExt}) format("woff2");unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20CF,U+2C60-2C7F,U+A720-A7FF}
       @font-face{font-family:Inter;font-style:normal;font-weight:700;src:url(data:font/woff2;base64,${interLatin}) format("woff2")}
       @font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:600;src:url(data:font/woff2;base64,${monoLatinExt}) format("woff2");unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20CF,U+2C60-2C7F,U+A720-A7FF}
       @font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:600;src:url(data:font/woff2;base64,${monoLatin}) format("woff2")}
-      *{box-sizing:border-box}html,body{width:1200px;height:630px;margin:0;overflow:hidden;background:#05080b;color:#f2f8fb}body{font-family:Inter,Arial,sans-serif}
-      .card{position:relative;width:1200px;height:630px;padding:58px 64px;border:1px solid #1e3440;border-top:8px solid ${accent};background:radial-gradient(circle at 88% 8%,rgb(68 199 220 / 13%),transparent 270px),linear-gradient(135deg,#05080b,#0b1117 60%,#101923)}
-      .grid{position:absolute;inset:0;opacity:.26;background-image:linear-gradient(#1e3440 1px,transparent 1px),linear-gradient(90deg,#1e3440 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(90deg,transparent 46%,#000)}
-      .axis{position:absolute;right:82px;top:116px;width:260px;height:260px;border:1px solid #1e3440;border-radius:50%}.axis:before,.axis:after{content:"";position:absolute;background:#1e3440}.axis:before{left:50%;top:-54px;width:1px;height:368px}.axis:after{top:50%;left:-54px;width:368px;height:1px}.pulse{position:absolute;right:159px;top:232px;width:106px;height:24px;border-top:3px solid ${accent};transform:skewX(-32deg);filter:drop-shadow(0 0 8px ${accent})}
-      header{position:relative;display:flex;align-items:center;gap:22px;font:600 16px/1.3 "IBM Plex Mono",monospace;letter-spacing:.13em}.mark{width:48px;height:48px}.brand{font-family:Inter,sans-serif;font-size:23px;letter-spacing:.16em}.edition{margin-left:auto;padding:9px 12px;border:1px solid #1e3440;color:#b6c6cf;font-size:14px}
-      main{position:relative;width:850px;margin-top:66px}.label{margin:0 0 18px;color:${accent};font:600 16px/1.2 "IBM Plex Mono",monospace;letter-spacing:.14em}.title{margin:0;font-size:${card.titleSize}px;line-height:1.03;letter-spacing:-.045em;text-wrap:balance}.meta{position:absolute;left:64px;right:64px;bottom:46px;display:flex;align-items:center;gap:24px;padding-top:20px;border-top:1px solid #1e3440;color:#8397a3;font:600 15px/1.2 "IBM Plex Mono",monospace;letter-spacing:.08em}.meta strong{color:#b6c6cf}.meta .url{margin-left:auto;color:${accent}}
-    </style></head><body><article class="card"><div class="grid"></div><div class="axis"></div><div class="pulse"></div>
-      <header><svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 5v38M43 5v38M5 8l38 34M43 8L5 42" fill="none" stroke="#ff6b6b" stroke-width="3"/><circle cx="24" cy="24" r="3" fill="${accent}"/></svg><span class="brand">HECAVEX</span><span class="edition">${card.edition}</span></header>
+      *{box-sizing:border-box}html,body{width:1200px;height:630px;margin:0;overflow:hidden;background:#111416;color:#151719}body{font-family:Inter,Arial,sans-serif}
+      .card{position:relative;width:1200px;height:630px;padding:58px 64px;border:18px solid #111416;background:#ece9e1}
+      .card:before{position:absolute;top:0;right:0;left:0;height:8px;background:${accent};content:""}
+      header{position:relative;display:flex;align-items:center;gap:22px;font:600 16px/1.3 "IBM Plex Mono",monospace;letter-spacing:.13em}.mark{width:48px;height:48px}.brand{font-family:Inter,sans-serif;font-size:23px;letter-spacing:.16em}.edition{margin-left:auto;padding:9px 12px;border:1px solid #30383b;color:#30383b;font-size:14px}
+      main{position:relative;width:870px;margin-top:70px}.label{display:flex;align-items:center;gap:16px;margin:0 0 20px;color:#151719;font:600 16px/1.2 "IBM Plex Mono",monospace;letter-spacing:.14em}.label:before{width:42px;height:4px;background:${accent};content:""}.title{margin:0;font-size:${card.titleSize}px;line-height:1.03;letter-spacing:-.045em;text-wrap:balance}
+      .folio{position:absolute;top:156px;right:64px;width:170px;height:270px;padding-left:24px;border-left:5px solid ${accent};font-family:"IBM Plex Mono",monospace}.folio span,.folio small{display:block;color:#30383b;font-size:13px;letter-spacing:.12em}.folio strong{display:block;margin:22px 0;color:#151719;font:700 66px/1 Inter,Arial,sans-serif;letter-spacing:-.06em}.folio small{margin-top:104px}
+      .meta{position:absolute;left:64px;right:64px;bottom:46px;display:flex;align-items:center;gap:24px;padding-top:20px;border-top:1px solid #30383b;color:#30383b;font:600 15px/1.2 "IBM Plex Mono",monospace;letter-spacing:.08em}.meta strong{color:#151719}.meta .url{margin-left:auto;color:#151719;text-decoration:underline;text-decoration-color:${accent};text-decoration-thickness:4px;text-underline-offset:7px}
+    </style></head><body><article class="card">
+      <header><svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 5v38M43 5v38M5 24h38M5 8l38 34M43 8 5 42" fill="none" stroke="${accent}" stroke-width="3"/><circle cx="24" cy="24" r="3" fill="#151719"/></svg><span class="brand">HECAVEX</span><span class="edition">${card.edition}</span></header>
       <main><p class="label">${escapeHtml(card.label)}</p><h1 class="title">${escapeHtml(card.title)}</h1></main>
+      <aside class="folio" aria-hidden="true"><span>PUBLICATION</span><strong>H/X</strong><small>${card.edition} / ${card.date.slice(0, 4)}</small></aside>
       <footer class="meta"><strong>${card.date}</strong><span>CTI · OSINT · DIGITAL INVESTIGATIONS</span><span class="url">HECAVEX.COM</span></footer>
     </article></body></html>`, { waitUntil: 'load' });
   await page.evaluate(() => document.fonts.ready);

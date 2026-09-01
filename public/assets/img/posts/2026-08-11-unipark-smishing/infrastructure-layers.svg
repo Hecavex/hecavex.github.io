@@ -1,49 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
   <title id="title">Delivery and backend layers of the parking phishing kit</title>
   <desc id="desc">Public scans split between Cloudflare delivery and direct Tencent Cloud addresses, while every hash-linked deployment connects to a same-origin console channel.</desc>
-  <rect width="1600" height="900" fill="#0a0f15"/>
-  <text x="92" y="76" fill="#ff6259" font-family="Consolas,monospace" font-size="22" font-weight="700" letter-spacing="4">DELIVERY INFRASTRUCTURE</text>
-  <text x="92" y="136" fill="#f4f6f8" font-family="Arial,sans-serif" font-size="43" font-weight="700">The same kit used two visible hosting patterns</text>
-  <text x="92" y="178" fill="#9babb9" font-family="Arial,sans-serif" font-size="22">163 hash-linked URLScan records · 126 unique hostnames · 30 Jun to 11 Aug 2026</text>
+  <rect width="1600" height="900" fill="#111416"/>
+  <text x="92" y="76" fill="#55B9B1" font-family="Consolas,monospace" font-size="22" font-weight="700" letter-spacing="4">DELIVERY INFRASTRUCTURE</text>
+  <text x="92" y="136" fill="#ECE9E1" font-family="Arial,sans-serif" font-size="43" font-weight="700">The same kit used two visible hosting patterns</text>
+  <text x="92" y="178" fill="#8D969A" font-family="Arial,sans-serif" font-size="22">163 hash-linked URLScan records · 126 unique hostnames · 30 Jun to 11 Aug 2026</text>
 
   <g transform="translate(90 266)" font-family="Arial,sans-serif">
-    <rect width="520" height="288" rx="18" fill="#121a24" stroke="#79b8ff" stroke-width="3"/>
-    <text x="34" y="53" fill="#79b8ff" font-family="Consolas,monospace" font-size="19">CLOUDFLARE-FRONTED</text>
-    <text x="34" y="116" fill="#f4f6f8" font-size="50" font-weight="700">121 records</text>
-    <text x="34" y="159" fill="#c1ccd6" font-size="24">101 unique hostnames</text>
-    <text x="34" y="207" fill="#9babb9" font-size="20">AS13335 · shared edge addresses</text>
-    <text x="34" y="242" fill="#9babb9" font-size="20">Origin hidden · poor IP block pivots</text>
+    <rect width="520" height="288" fill="#171B1D" stroke="#55B9B1" stroke-width="3"/>
+    <text x="34" y="53" fill="#55B9B1" font-family="Consolas,monospace" font-size="19">CLOUDFLARE-FRONTED</text>
+    <text x="34" y="116" fill="#ECE9E1" font-size="50" font-weight="700">121 records</text>
+    <text x="34" y="159" fill="#ECE9E1" font-size="24">101 unique hostnames</text>
+    <text x="34" y="207" fill="#8D969A" font-size="20">AS13335 · shared edge addresses</text>
+    <text x="34" y="242" fill="#8D969A" font-size="20">Origin hidden · poor IP block pivots</text>
   </g>
 
   <g transform="translate(990 266)" font-family="Arial,sans-serif">
-    <rect width="520" height="288" rx="18" fill="#171b23" stroke="#e5aa44" stroke-width="3"/>
-    <text x="34" y="53" fill="#e5aa44" font-family="Consolas,monospace" font-size="19">DIRECT DELIVERY</text>
-    <text x="34" y="116" fill="#f4f6f8" font-size="50" font-weight="700">42 records</text>
-    <text x="34" y="159" fill="#c1ccd6" font-size="24">25 unique hostnames · 12 IPs</text>
-    <text x="34" y="207" fill="#9babb9" font-size="20">AS132203 · Aceville / Tencent Cloud</text>
-    <text x="34" y="242" fill="#9babb9" font-size="20">41 OpenResty · 1 nginx</text>
+    <rect width="520" height="288" fill="#1D2326" stroke="#D2AA62" stroke-width="3"/>
+    <text x="34" y="53" fill="#D2AA62" font-family="Consolas,monospace" font-size="19">DIRECT DELIVERY</text>
+    <text x="34" y="116" fill="#ECE9E1" font-size="50" font-weight="700">42 records</text>
+    <text x="34" y="159" fill="#ECE9E1" font-size="24">25 unique hostnames · 12 IPs</text>
+    <text x="34" y="207" fill="#8D969A" font-size="20">AS132203 · Aceville / Tencent Cloud</text>
+    <text x="34" y="242" fill="#8D969A" font-size="20">41 OpenResty · 1 nginx</text>
   </g>
 
   <g transform="translate(646 285)" font-family="Arial,sans-serif">
-    <circle cx="154" cy="126" r="132" fill="#20171b" stroke="#ff6259" stroke-width="3"/>
-    <text x="154" y="80" fill="#ff8179" font-family="Consolas,monospace" font-size="18" text-anchor="middle">OBSERVED IN ALL 163</text>
-    <text x="154" y="131" fill="#f4f6f8" font-size="36" font-weight="700" text-anchor="middle">/console</text>
-    <text x="154" y="170" fill="#c1ccd6" font-size="20" text-anchor="middle">same-origin Socket.IO</text>
-    <text x="154" y="203" fill="#c1ccd6" font-size="20" text-anchor="middle">collection + control</text>
+    <circle cx="154" cy="126" r="132" fill="#1D2326" stroke="#86B77E" stroke-width="3"/>
+    <text x="154" y="80" fill="#86B77E" font-family="Consolas,monospace" font-size="18" text-anchor="middle">OBSERVED IN ALL 163</text>
+    <text x="154" y="131" fill="#ECE9E1" font-size="36" font-weight="700" text-anchor="middle">/console</text>
+    <text x="154" y="170" fill="#8D969A" font-size="20" text-anchor="middle">same-origin Socket.IO</text>
+    <text x="154" y="203" fill="#8D969A" font-size="20" text-anchor="middle">collection + control</text>
   </g>
 
-  <g stroke="#607b91" stroke-width="3" fill="none">
+  <g stroke="#8D969A" stroke-width="3" fill="none">
     <path d="M610 408H646"/>
     <path d="M954 408H990"/>
   </g>
-  <g fill="#ff6259"><circle cx="646" cy="408" r="6"/><circle cx="954" cy="408" r="6"/></g>
+  <g fill="#55B9B1"><circle cx="646" cy="408" r="6"/><circle cx="954" cy="408" r="6"/></g>
 
   <g transform="translate(190 640)" font-family="Arial,sans-serif">
-    <rect width="1220" height="144" rx="16" fill="#111923" stroke="#35495b" stroke-width="2"/>
-    <text x="34" y="48" fill="#79b8ff" font-family="Consolas,monospace" font-size="18">DIRECT-IP NEIGHBOUR PIVOT</text>
-    <text x="34" y="88" fill="#f4f6f8" font-size="29" font-weight="700">402 public scans · 249 unique neighbouring domains</text>
-    <text x="34" y="121" fill="#9babb9" font-size="20">RingGo, Q-Park, delivery, government and tax lures · candidate infrastructure, not 249 confirmed kit deployments</text>
+    <rect width="1220" height="144" fill="#171B1D" stroke="#30383B" stroke-width="2"/>
+    <text x="34" y="48" fill="#55B9B1" font-family="Consolas,monospace" font-size="18">DIRECT-IP NEIGHBOUR PIVOT</text>
+    <text x="34" y="88" fill="#ECE9E1" font-size="29" font-weight="700">402 public scans · 249 unique neighbouring domains</text>
+    <text x="34" y="121" fill="#8D969A" font-size="20">RingGo, Q-Park, delivery, government and tax lures · candidate infrastructure, not 249 confirmed kit deployments</text>
   </g>
 
-  <text x="92" y="852" fill="#718395" font-family="Consolas,monospace" font-size="18">CLOUD IP REUSE REQUIRES DOMAIN + SNI + TIME CORRELATION. AN IP ALONE IS NOT ATTRIBUTION.</text>
+  <text x="92" y="852" fill="#8D969A" font-family="Consolas,monospace" font-size="18">CLOUD IP REUSE REQUIRES DOMAIN + SNI + TIME CORRELATION. AN IP ALONE IS NOT ATTRIBUTION.</text>
 </svg>

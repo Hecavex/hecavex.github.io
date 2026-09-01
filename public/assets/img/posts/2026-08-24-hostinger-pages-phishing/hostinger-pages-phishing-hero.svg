@@ -4,48 +4,34 @@
   <title id="title">Hostinger impersonation infrastructure evidence map</title>
   <desc id="description">An abstract evidence map links randomized Pages project names, exact JavaScript hashes, separate collection services, and a legitimate final redirect.</desc>
   <defs>
-    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#05080b"/>
-      <stop offset="0.62" stop-color="#091116"/>
-      <stop offset="1" stop-color="#10161c"/>
-    </linearGradient>
-    <radialGradient id="signal" cx="75%" cy="24%" r="60%">
-      <stop offset="0" stop-color="#42d7ea" stop-opacity="0.14"/>
-      <stop offset="1" stop-color="#42d7ea" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
-      <path d="M64 0H0V64" fill="none" stroke="#17313c" stroke-width="1" opacity="0.55"/>
-    </pattern>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-      <path d="M0 0L0 6L9 3Z" fill="#42d7ea"/>
+      <path d="M0 0L0 6L9 3Z" fill="#55B9B1"/>
     </marker>
     <style>
       .sans { font-family: Inter, Arial, sans-serif; }
       .mono { font-family: "IBM Plex Mono", Consolas, monospace; }
-      .eyebrow { fill: #42d7ea; font-size: 17px; font-weight: 700; letter-spacing: 2.5px; }
-      .title { fill: #f2f8fb; font-size: 62px; font-weight: 700; letter-spacing: -2px; }
-      .muted { fill: #8da6b3; }
-      .panel { fill: #0a1218; stroke: #29424e; stroke-width: 2; }
-      .panel-cyan { fill: #08171c; stroke: #42d7ea; stroke-width: 2; }
-      .panel-red { fill: #171012; stroke: #ff6565; stroke-width: 2; }
-      .panel-green { fill: #0d1712; stroke: #75d98c; stroke-width: 2; }
-      .metric { fill: #f2f8fb; font-size: 42px; font-weight: 700; }
-      .metric-label { fill: #8da6b3; font-size: 14px; font-weight: 600; letter-spacing: 1.5px; }
-      .box-title { fill: #f2f8fb; font-size: 20px; font-weight: 700; }
-      .box-copy { fill: #9cb1bc; font-size: 15px; }
-      .code { fill: #c2d2da; font-size: 15px; }
-      .edge { fill: none; stroke: #42d7ea; stroke-width: 3; marker-end: url(#arrow); }
+      .eyebrow { fill: #55B9B1; font-size: 17px; font-weight: 700; letter-spacing: 2.5px; }
+      .title { fill: #ECE9E1; font-size: 62px; font-weight: 700; letter-spacing: -2px; }
+      .muted { fill: #8D969A; }
+      .panel { fill: #171B1D; stroke: #30383B; stroke-width: 2; }
+      .panel-cyan { fill: #1D2326; stroke: #55B9B1; stroke-width: 2; }
+      .panel-red { fill: #1D2326; stroke: #D06C65; stroke-width: 2; }
+      .panel-green { fill: #1D2326; stroke: #86B77E; stroke-width: 2; }
+      .metric { fill: #ECE9E1; font-size: 42px; font-weight: 700; }
+      .metric-label { fill: #8D969A; font-size: 14px; font-weight: 600; letter-spacing: 1.5px; }
+      .box-title { fill: #ECE9E1; font-size: 20px; font-weight: 700; }
+      .box-copy { fill: #8D969A; font-size: 15px; }
+      .code { fill: #ECE9E1; font-size: 15px; }
+      .edge { fill: none; stroke: #55B9B1; stroke-width: 3; marker-end: url(#arrow); }
     </style>
   </defs>
 
-  <rect width="1600" height="900" fill="url(#background)"/>
-  <rect width="1600" height="900" fill="url(#signal)"/>
-  <rect width="1600" height="900" fill="url(#grid)" opacity="0.48"/>
-  <path d="M0 7H1600" stroke="#42d7ea" stroke-width="7"/>
+  <rect width="1600" height="900" fill="#111416"/>
+  <path d="M0 7H1600" stroke="#55B9B1" stroke-width="7"/>
 
   <g transform="translate(72 54)">
-    <path d="M0 0V42M38 0V42M0 3L38 39M38 3L0 39" fill="none" stroke="#ff6565" stroke-width="3"/>
-    <circle cx="19" cy="21" r="3.5" fill="#42d7ea"/>
+    <path d="M0 0V42M38 0V42M0 3L38 39M38 3L0 39" fill="none" stroke="#55B9B1" stroke-width="3"/>
+    <circle cx="19" cy="21" r="3.5" fill="#ECE9E1"/>
     <text x="60" y="18" class="mono eyebrow">HECAVEX / HX-JSO-2026-001</text>
     <text x="60" y="42" class="mono muted" font-size="13" letter-spacing="1.4">HOSTINGER / PAGES.DEV / STATIC EVIDENCE</text>
   </g>
@@ -107,7 +93,7 @@
   <path d="M950 606H1044" class="edge"/>
 
   <g transform="translate(72 790)">
-    <rect width="1456" height="58" fill="#081116" stroke="#29424e"/>
+    <rect width="1456" height="58" fill="#171B1D" stroke="#30383B"/>
     <text x="24" y="36" class="mono muted" font-size="14" letter-spacing="1.1">OBSERVATION != VICTIM  /  CODE LINEAGE != OPERATOR ATTRIBUTION  /  SHARED PLATFORM != PROVIDER COMPROMISE</text>
   </g>
 </svg>

@@ -1,22 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="620" viewBox="0 0 1600 620" role="img" aria-labelledby="title desc">
   <title id="title">TRON replacement string validation</title>
   <desc id="desc">The payload string is 33 characters and fails TRON Base58Check validation, so no address, transactions or owner are inferred.</desc>
-  <rect width="1600" height="620" fill="#080d12"/><path d="M0 4H1600" stroke="#45c5dd" stroke-width="8"/>
-  <text x="80" y="82" fill="#45c5dd" font-family="Consolas,monospace" font-size="20" font-weight="700" letter-spacing="4">TRON VALIDATION · DO NOT REPAIR THE EVIDENCE</text>
-  <text x="80" y="150" fill="#f4f6f8" font-family="Arial,sans-serif" font-size="47" font-weight="700">A malformed string is not a wallet.</text>
+  <rect width="1600" height="620" fill="#111416"/><path d="M0 4H1600" stroke="#55B9B1" stroke-width="8"/>
+  <text x="80" y="82" fill="#55B9B1" font-family="Consolas,monospace" font-size="20" font-weight="700" letter-spacing="4">TRON VALIDATION · DO NOT REPAIR THE EVIDENCE</text>
+  <text x="80" y="150" fill="#ECE9E1" font-family="Arial,sans-serif" font-size="47" font-weight="700">A malformed string is not a wallet.</text>
   <g transform="translate(80 226)" font-family="Arial,sans-serif">
-    <rect width="660" height="226" rx="8" fill="#111922" stroke="#ff6259" stroke-width="2"/>
-    <text x="28" y="48" fill="#ff8179" font-family="Consolas,monospace" font-size="17">RECOVERED PAYLOAD VALUE</text>
-    <text x="28" y="104" fill="#f4f6f8" font-family="Consolas,monospace" font-size="24">TW4AgGnDc2Pk6YAynCtjCKzoKYWPg7nJe</text>
-    <text x="28" y="157" fill="#ff8179" font-size="22" font-weight="700">33 characters · Base58Check fails</text>
-    <text x="28" y="195" fill="#9fb0c2" font-size="18">Expected TRON account form: 34 characters with checksum</text>
+    <rect width="660" height="226" fill="#1D2326" stroke="#D06C65" stroke-width="2"/>
+    <text x="28" y="48" fill="#D06C65" font-family="Consolas,monospace" font-size="17">RECOVERED PAYLOAD VALUE</text>
+    <text x="28" y="104" fill="#ECE9E1" font-family="Consolas,monospace" font-size="24">TW4AgGnDc2Pk6YAynCtjCKzoKYWPg7nJe</text>
+    <text x="28" y="157" fill="#D06C65" font-size="22" font-weight="700">33 characters · Base58Check fails</text>
+    <text x="28" y="195" fill="#8D969A" font-size="18">Expected TRON account form: 34 characters with checksum</text>
     <g transform="translate(840 0)">
-      <rect width="600" height="226" rx="8" fill="#14201b" stroke="#7ed957"/>
-      <text x="28" y="48" fill="#9be572" font-family="Consolas,monospace" font-size="17">DEFENSIBLE OUTPUT</text>
-      <text x="28" y="98" fill="#f4f6f8" font-size="25" font-weight="700">Address: invalid</text>
-      <text x="28" y="139" fill="#f4f6f8" font-size="25" font-weight="700">Transaction history: none</text>
-      <text x="28" y="180" fill="#f4f6f8" font-size="25" font-weight="700">Owner attribution: none</text>
+      <rect width="600" height="226" fill="#1D2326" stroke="#86B77E"/>
+      <text x="28" y="48" fill="#86B77E" font-family="Consolas,monospace" font-size="17">DEFENSIBLE OUTPUT</text>
+      <text x="28" y="98" fill="#ECE9E1" font-size="25" font-weight="700">Address: invalid</text>
+      <text x="28" y="139" fill="#ECE9E1" font-size="25" font-weight="700">Transaction history: none</text>
+      <text x="28" y="180" fill="#ECE9E1" font-size="25" font-weight="700">Owner attribution: none</text>
     </g>
   </g>
-  <rect x="80" y="510" width="1440" height="62" fill="#0d151f" stroke="#2b4052"/><text x="104" y="548" fill="#9fb0c2" font-family="Consolas,monospace" font-size="17">NO CHARACTER GUESSING · NO LOOK-ALIKE ADDRESS SEARCH · NO INVENTED TRON BALANCE</text>
+  <rect x="80" y="510" width="1440" height="62" fill="#171B1D" stroke="#30383B"/><text x="104" y="548" fill="#8D969A" font-family="Consolas,monospace" font-size="17">NO CHARACTER GUESSING · NO LOOK-ALIKE ADDRESS SEARCH · NO INVENTED TRON BALANCE</text>
 </svg>

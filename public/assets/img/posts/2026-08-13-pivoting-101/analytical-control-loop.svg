@@ -2,14 +2,13 @@
   <title id="title">Hypothesis-led CTI pivot control loop</title>
   <desc id="desc">A circular analytical workflow from intelligence requirement through hypotheses, discriminating observables, collection, evidence preservation and relationship testing to decision, monitoring or stopping.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1118"/><stop offset="1" stop-color="#111a26"/></linearGradient>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#6f86a0"/></marker>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#8D969A"/></marker>
     <style>
-      .title{font:700 42px Inter,Segoe UI,sans-serif;fill:#f4f7fb}.sub{font:400 19px Inter,Segoe UI,sans-serif;fill:#9fb0c4}.label{font:700 14px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:1.7px;fill:#ff6258}.n{font:700 18px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#75b8f3}.head{font:700 21px Inter,Segoe UI,sans-serif;fill:#f4f7fb}.body{font:400 15px Inter,Segoe UI,sans-serif;fill:#b7c4d2}.box{fill:#111a26;stroke:#314054;stroke-width:1.5}.core{fill:#141b25;stroke:#ff6258;stroke-width:2}.line{fill:none;stroke:#6f86a0;stroke-width:2.5;marker-end:url(#arrow)}.weak{fill:#21191a;stroke:#e8a83d;stroke-width:1.5}.good{fill:#111f20;stroke:#64c6a1;stroke-width:1.5}
+      .title{font:700 42px Inter,Segoe UI,sans-serif;fill:#ECE9E1}.sub{font:400 19px Inter,Segoe UI,sans-serif;fill:#8D969A}.label{font:700 14px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:1.7px;fill:#55B9B1}.n{font:700 18px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#55B9B1}.head{font:700 21px Inter,Segoe UI,sans-serif;fill:#ECE9E1}.body{font:400 15px Inter,Segoe UI,sans-serif;fill:#8D969A}.box{fill:#171B1D;stroke:#30383B;stroke-width:1.5}.core{fill:#1D2326;stroke:#55B9B1;stroke-width:2}.line{fill:none;stroke:#8D969A;stroke-width:2.5;marker-end:url(#arrow)}.weak{fill:#1D2326;stroke:#D2AA62;stroke-width:1.5}.good{fill:#1D2326;stroke:#86B77E;stroke-width:1.5}
     </style>
   </defs>
-  <rect width="1600" height="900" fill="url(#bg)"/>
-  <path d="M0 2H1600" stroke="#ff6258" stroke-width="4"/>
+  <rect width="1600" height="900" fill="#111416"/>
+  <path d="M0 2H1600" stroke="#55B9B1" stroke-width="4"/>
   <text x="70" y="78" class="label">ANALYTICAL CONTROL LOOP</text>
   <text x="70" y="132" class="title">A pivot earns the next pivot</text>
   <text x="70" y="170" class="sub">Each iteration must reduce a decision-relevant uncertainty, preserve provenance and survive a competing explanation.</text>

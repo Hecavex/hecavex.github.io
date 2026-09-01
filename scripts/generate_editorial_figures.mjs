@@ -7,16 +7,16 @@ const root = resolve(import.meta.dirname, '..');
 const imageRoot = join(root, 'public', 'assets', 'img', 'posts');
 
 const palette = {
-  bg: '#05090d',
-  panel: '#0a141b',
-  panelStrong: '#0d1b24',
-  line: '#25414d',
-  muted: '#89a2af',
-  text: '#f4f8fa',
-  cyan: '#43d3e8',
-  green: '#9fdf65',
-  amber: '#ffc857',
-  red: '#ff6b6b'
+  bg: '#111416',
+  panel: '#171b1d',
+  panelStrong: '#1d2326',
+  line: '#30383b',
+  muted: '#8d969a',
+  text: '#ece9e1',
+  cyan: '#55b9b1',
+  green: '#86b77e',
+  amber: '#d2aa62',
+  red: '#d06c65'
 };
 
 const escapeXml = (value) => String(value)
@@ -30,9 +30,6 @@ function shell(width, height, body, label = 'HECAVEX / DEFENSIVE RESEARCH', titl
   <title id="title">${escapeXml(title)}</title>
   <desc id="desc">${escapeXml(description)}</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${palette.bg}"/><stop offset="1" stop-color="#0b1820"/></linearGradient>
-    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="${palette.line}" stroke-width="1" opacity=".28"/></pattern>
-    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M0 0 12 6 0 12Z" fill="${palette.cyan}"/></marker>
     <style>
       .sans{font-family:Inter,Arial,sans-serif}.mono{font-family:'IBM Plex Mono',Consolas,monospace}
@@ -45,8 +42,7 @@ function shell(width, height, body, label = 'HECAVEX / DEFENSIVE RESEARCH', titl
       .note{font:500 19px Inter,Arial,sans-serif;fill:${palette.muted}}
     </style>
   </defs>
-  <rect width="${width}" height="${height}" fill="url(#bg)"/>
-  <rect width="${width}" height="${height}" fill="url(#grid)" opacity=".5"/>
+  <rect width="${width}" height="${height}" fill="${palette.bg}"/>
   <path d="M0 8H${width}" stroke="${palette.cyan}" stroke-width="8"/>
   <text x="72" y="62" class="eyebrow">${escapeXml(label)}</text>
   ${body}
@@ -60,8 +56,8 @@ function lines(items, x, y, className, gap = 30, anchor = 'start') {
 function card(x, y, width, height, accent, title, copy = [], code = '') {
   const copyY = y + (code ? 172 : 138) + Math.max(0, title.length - 2) * 34;
   return `<g>
-    <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="18" fill="${palette.panel}" stroke="${accent}" stroke-width="3"/>
-    <rect x="${x}" y="${y}" width="10" height="${height}" rx="5" fill="${accent}"/>
+    <rect x="${x}" y="${y}" width="${width}" height="${height}" fill="${palette.panel}" stroke="${palette.line}" stroke-width="3"/>
+    <rect x="${x}" y="${y}" width="10" height="${height}" fill="${accent}"/>
     ${code ? `<text x="${x + 38}" y="${y + 46}" class="node-code">${escapeXml(code)}</text>` : ''}
     ${lines(title, x + 38, y + (code ? 92 : 58), 'node-title', 34)}
     ${lines(copy, x + 38, copyY, 'node-copy', 30)}
@@ -89,7 +85,7 @@ function flowFigure(config) {
     const start = margin + (index + 1) * nodeWidth + index * gap + 8;
     return arrow(start, top + nodeHeight / 2, start + gap - 16);
   }).join('');
-  const body = `${lines([config.title], margin, 128, 'title')}${lines([config.subtitle], margin, 174, 'subtitle')}${nodes}${arrows}<rect x="72" y="596" width="1456" height="96" rx="14" fill="${palette.panelStrong}" stroke="${palette.line}"/><circle cx="112" cy="644" r="8" fill="${config.noteAccent ?? palette.amber}"/>${lines(config.note, 140, 636, 'note', 28)}`;
+  const body = `${lines([config.title], margin, 128, 'title')}${lines([config.subtitle], margin, 174, 'subtitle')}${nodes}${arrows}<rect x="72" y="596" width="1456" height="96" fill="${palette.panelStrong}" stroke="${palette.line}"/><circle cx="112" cy="644" r="8" fill="${config.noteAccent ?? palette.cyan}"/>${lines(config.note, 140, 636, 'note', 28)}`;
   return shell(width, height, body, config.label, config.title, `${config.subtitle}. ${config.note.join(' ')}`);
 }
 
@@ -102,13 +98,13 @@ function comparisonFigure(config) {
   const colWidth = (width - margin * 2 - colGap * (config.columns.length - 1)) / config.columns.length;
   const columns = config.columns.map((column, index) => {
     const x = margin + index * (colWidth + colGap);
-    return `<g><rect x="${x}" y="${top}" width="${colWidth}" height="430" rx="18" fill="${palette.panel}" stroke="${column.accent}" stroke-width="3"/>
+    return `<g><rect x="${x}" y="${top}" width="${colWidth}" height="430" fill="${palette.panel}" stroke="${palette.line}" stroke-width="3"/>
       <circle cx="${x + 42}" cy="${top + 44}" r="10" fill="${column.accent}"/>
       ${lines(column.title, x + 70, top + 54, 'node-title', 34)}
       ${column.items.map((item, itemIndex) => `<g><path d="M${x + 34} ${top + 132 + itemIndex * 72}H${x + colWidth - 34}" stroke="${palette.line}"/><text x="${x + 42}" y="${top + 172 + itemIndex * 72}" class="node-copy">${escapeXml(item)}</text></g>`).join('')}
     </g>`;
   }).join('');
-  const body = `${lines([config.title], margin, 122, 'title')}${lines([config.subtitle], margin, 168, 'subtitle')}${columns}<rect x="72" y="688" width="1456" height="78" rx="14" fill="${palette.panelStrong}" stroke="${palette.line}"/>${lines(config.note, 104, 730, 'note', 26)}`;
+  const body = `${lines([config.title], margin, 122, 'title')}${lines([config.subtitle], margin, 168, 'subtitle')}${columns}<rect x="72" y="688" width="1456" height="78" fill="${palette.panelStrong}" stroke="${palette.line}"/>${lines(config.note, 104, 730, 'note', 26)}`;
   return shell(width, height, body, config.label, config.title, `${config.subtitle}. ${config.note.join(' ')}`);
 }
 
@@ -124,12 +120,12 @@ function timelineFigure(config) {
     const up = index % 2 === 0;
     const boxY = up ? 220 : 438;
     return `<g><circle cx="${x}" cy="${y}" r="18" fill="${palette.bg}" stroke="${event.accent}" stroke-width="6"/><path d="M${x} ${up ? y - 18 : y + 18}V${up ? boxY + 112 : boxY}" stroke="${event.accent}" stroke-width="3"/>
-      <rect x="${x - 142}" y="${boxY}" width="284" height="112" rx="16" fill="${palette.panel}" stroke="${event.accent}" stroke-width="2"/>
+      <rect x="${x - 142}" y="${boxY}" width="284" height="112" fill="${palette.panel}" stroke="${palette.line}" stroke-width="2"/>
       <text x="${x - 116}" y="${boxY + 34}" class="node-code">${escapeXml(event.code)}</text>
       ${lines(event.title, x - 116, boxY + 72, 'node-copy', 26)}
     </g>`;
   }).join('');
-  const body = `${lines([config.title], 72, 122, 'title')}${lines([config.subtitle], 72, 168, 'subtitle')}<path d="M${margin} ${y}H${width - margin}" stroke="${palette.line}" stroke-width="8"/>${events}<rect x="84" y="626" width="1432" height="74" rx="14" fill="${palette.panelStrong}" stroke="${palette.line}"/>${lines(config.note, 112, 670, 'note', 26)}`;
+  const body = `${lines([config.title], 72, 122, 'title')}${lines([config.subtitle], 72, 168, 'subtitle')}<path d="M${margin} ${y}H${width - margin}" stroke="${palette.line}" stroke-width="8"/>${events}<rect x="84" y="626" width="1432" height="74" fill="${palette.panelStrong}" stroke="${palette.line}"/>${lines(config.note, 112, 670, 'note', 26)}`;
   return shell(width, height, body, config.label, config.title, `${config.subtitle}. ${config.note.join(' ')}`);
 }
 
@@ -137,11 +133,11 @@ function heroScene(kind) {
   const common = `<circle cx="800" cy="450" r="320" fill="none" stroke="${palette.line}" stroke-width="3"/><circle cx="800" cy="450" r="220" fill="none" stroke="${palette.line}" stroke-width="2" stroke-dasharray="14 18"/>`;
   const scenes = {
     ct: `${common}<g transform="translate(330 235)"><rect width="350" height="430" rx="28" fill="${palette.panelStrong}" stroke="${palette.cyan}" stroke-width="8"/><path d="M60 100H286M60 164H286M60 228H226" stroke="${palette.muted}" stroke-width="20" stroke-linecap="round"/><rect x="58" y="294" width="228" height="74" rx="18" fill="none" stroke="${palette.green}" stroke-width="7"/><text x="172" y="344" text-anchor="middle" class="node-title">SAN</text></g><path d="M720 450H930" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(980 270)"><rect width="290" height="360" rx="28" fill="${palette.panel}" stroke="${palette.amber}" stroke-width="8"/><path d="M52 84H238M52 150H238M52 216H238M52 282H190" stroke="${palette.amber}" stroke-width="14" stroke-linecap="round"/></g>`,
-    evilginx: `<g transform="translate(180 270)"><circle cx="130" cy="80" r="64" fill="${palette.panelStrong}" stroke="${palette.green}" stroke-width="8"/><path d="M30 270c18-84 72-126 100-126s82 42 100 126" fill="none" stroke="${palette.green}" stroke-width="12"/></g><path d="M480 450H670" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(690 190)"><path d="M180 0 340 82v168c0 118-80 198-160 240C100 448 20 368 20 250V82Z" fill="${palette.panelStrong}" stroke="${palette.red}" stroke-width="10"/><path d="M110 148H250M110 216H250M110 284H218" stroke="${palette.red}" stroke-width="15" stroke-linecap="round"/></g><path d="M1080 450H1270" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(1310 310)"><rect width="170" height="280" rx="28" fill="${palette.panelStrong}" stroke="${palette.cyan}" stroke-width="8"/><circle cx="85" cy="90" r="38" fill="none" stroke="${palette.cyan}" stroke-width="8"/><path d="M52 184H118" stroke="${palette.cyan}" stroke-width="18" stroke-linecap="round"/></g><path d="M850 630c110 96 248 112 370 18" fill="none" stroke="${palette.amber}" stroke-width="8" stroke-dasharray="18 14"/><circle cx="1034" cy="686" r="34" fill="${palette.amber}" filter="url(#glow)"/>`,
+    evilginx: `<g transform="translate(180 270)"><circle cx="130" cy="80" r="64" fill="${palette.panelStrong}" stroke="${palette.green}" stroke-width="8"/><path d="M30 270c18-84 72-126 100-126s82 42 100 126" fill="none" stroke="${palette.green}" stroke-width="12"/></g><path d="M480 450H670" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(690 190)"><path d="M180 0 340 82v168c0 118-80 198-160 240C100 448 20 368 20 250V82Z" fill="${palette.panelStrong}" stroke="${palette.red}" stroke-width="10"/><path d="M110 148H250M110 216H250M110 284H218" stroke="${palette.red}" stroke-width="15" stroke-linecap="round"/></g><path d="M1080 450H1270" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(1310 310)"><rect width="170" height="280" rx="28" fill="${palette.panelStrong}" stroke="${palette.cyan}" stroke-width="8"/><circle cx="85" cy="90" r="38" fill="none" stroke="${palette.cyan}" stroke-width="8"/><path d="M52 184H118" stroke="${palette.cyan}" stroke-width="18" stroke-linecap="round"/></g><path d="M850 630c110 96 248 112 370 18" fill="none" stroke="${palette.amber}" stroke-width="8" stroke-dasharray="18 14"/><circle cx="1034" cy="686" r="34" fill="${palette.amber}"/>`,
     cloaking: `<g transform="translate(170 250)"><rect width="500" height="360" rx="26" fill="${palette.panelStrong}" stroke="${palette.cyan}" stroke-width="8"/><path d="M0 72H500" stroke="${palette.line}" stroke-width="8"/><circle cx="52" cy="36" r="12" fill="${palette.red}"/><circle cx="92" cy="36" r="12" fill="${palette.amber}"/><circle cx="132" cy="36" r="12" fill="${palette.green}"/><path d="M88 168H410M88 232H340" stroke="${palette.green}" stroke-width="18" stroke-linecap="round"/></g><path d="M670 430H840" stroke="${palette.cyan}" stroke-width="12"/><path d="M840 430 990 300M840 430 990 560" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(1030 158)"><rect width="390" height="250" rx="24" fill="${palette.panel}" stroke="${palette.green}" stroke-width="8"/><circle cx="195" cy="125" r="58" fill="none" stroke="${palette.green}" stroke-width="12"/><path d="m158 126 26 28 52-62" fill="none" stroke="${palette.green}" stroke-width="14"/></g><g transform="translate(1030 492)"><rect width="390" height="250" rx="24" fill="${palette.panel}" stroke="${palette.red}" stroke-width="8"/><path d="M128 80H262V188H128Z" fill="none" stroke="${palette.red}" stroke-width="12"/><path d="M162 132H228" stroke="${palette.red}" stroke-width="16"/></g>`,
     marketplace: `<g transform="translate(160 260)"><path d="M0 0H430V270H150L70 342V270H0Z" fill="${palette.panelStrong}" stroke="${palette.cyan}" stroke-width="9"/><path d="M64 78H346M64 142H300M64 206H232" stroke="${palette.text}" stroke-width="18" stroke-linecap="round"/></g><path d="M650 450H880" stroke="${palette.amber}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(920 224)"><rect width="510" height="420" rx="34" fill="${palette.panelStrong}" stroke="${palette.red}" stroke-width="10"/><rect x="66" y="82" width="378" height="228" rx="24" fill="none" stroke="${palette.red}" stroke-width="10"/><path d="M66 154H444" stroke="${palette.red}" stroke-width="24"/><circle cx="388" cy="354" r="50" fill="none" stroke="${palette.amber}" stroke-width="10"/><path d="M388 322V362M388 388v4" stroke="${palette.amber}" stroke-width="12" stroke-linecap="round"/></g>`,
     banking: `<g transform="translate(170 210)"><circle cx="300" cy="240" r="220" fill="${palette.panelStrong}" stroke="${palette.amber}" stroke-width="12"/><path d="M300 90V240L406 310" fill="none" stroke="${palette.amber}" stroke-width="18" stroke-linecap="round"/></g><path d="M730 450H930" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(980 180)"><path d="M220 0 420 96v206c0 148-100 248-200 300C120 550 20 450 20 302V96Z" fill="${palette.panelStrong}" stroke="${palette.green}" stroke-width="12"/><path d="m126 294 70 72 126-154" fill="none" stroke="${palette.green}" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/></g>`,
-    radar: `${common}<path d="M800 450 1070 270A320 320 0 0 1 1120 450Z" fill="${palette.cyan}" opacity=".14"/><path d="M800 450 1070 270" stroke="${palette.cyan}" stroke-width="12"/><circle cx="982" cy="330" r="22" fill="${palette.green}" filter="url(#glow)"/><circle cx="622" cy="296" r="18" fill="${palette.amber}"/><circle cx="544" cy="512" r="14" fill="${palette.red}"/><circle cx="882" cy="644" r="20" fill="${palette.cyan}"/><circle cx="800" cy="450" r="30" fill="${palette.text}"/><path d="M240 730H1360" stroke="${palette.line}" stroke-width="4"/><path d="M240 730H944" stroke="${palette.cyan}" stroke-width="14"/><path d="M1010 730H1360" stroke="${palette.line}" stroke-width="14" stroke-dasharray="20 18"/>`,
+    radar: `${common}<path d="M800 450 1070 270A320 320 0 0 1 1120 450Z" fill="${palette.cyan}" opacity=".14"/><path d="M800 450 1070 270" stroke="${palette.cyan}" stroke-width="12"/><circle cx="982" cy="330" r="22" fill="${palette.green}"/><circle cx="622" cy="296" r="18" fill="${palette.amber}"/><circle cx="544" cy="512" r="14" fill="${palette.red}"/><circle cx="882" cy="644" r="20" fill="${palette.cyan}"/><circle cx="800" cy="450" r="30" fill="${palette.text}"/><path d="M240 730H1360" stroke="${palette.line}" stroke-width="4"/><path d="M240 730H944" stroke="${palette.cyan}" stroke-width="14"/><path d="M1010 730H1360" stroke="${palette.line}" stroke-width="14" stroke-dasharray="20 18"/>`,
     sms: `<g transform="translate(180 130)"><rect width="480" height="650" rx="62" fill="${palette.panelStrong}" stroke="${palette.cyan}" stroke-width="12"/><rect x="54" y="120" width="372" height="230" rx="28" fill="${palette.panel}" stroke="${palette.line}" stroke-width="5"/><path d="M94 184H350M94 246H298" stroke="${palette.text}" stroke-width="20" stroke-linecap="round"/><rect x="92" y="404" width="296" height="102" rx="24" fill="none" stroke="${palette.red}" stroke-width="8"/><path d="M142 455H338" stroke="${palette.red}" stroke-width="16" stroke-linecap="round"/><circle cx="240" cy="574" r="30" fill="none" stroke="${palette.green}" stroke-width="8"/></g><path d="M720 450H900" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(960 220)"><circle cx="220" cy="220" r="210" fill="${palette.panelStrong}" stroke="${palette.green}" stroke-width="12"/><path d="m108 220 76 78 158-174" fill="none" stroke="${palette.green}" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/><path d="M220 430V570" stroke="${palette.green}" stroke-width="12"/><path d="M132 570H308" stroke="${palette.green}" stroke-width="12" stroke-linecap="round"/></g>`,
     t1187: `<g transform="translate(160 210)"><path d="M0 0H360L500 140V520H0Z" fill="${palette.panelStrong}" stroke="${palette.amber}" stroke-width="10"/><path d="M360 0V140H500" fill="none" stroke="${palette.amber}" stroke-width="10"/><path d="M80 240H410M80 320H350" stroke="${palette.text}" stroke-width="20" stroke-linecap="round"/></g><path d="M720 450H940" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><path d="M760 500c54 0 54 82 108 82s54-164 108-164 54 164 108 164 54-82 108-82" fill="none" stroke="${palette.cyan}" stroke-width="10"/><g transform="translate(1090 210)"><path d="M220 0 420 96v206c0 148-100 248-200 300C120 550 20 450 20 302V96Z" fill="${palette.panelStrong}" stroke="${palette.red}" stroke-width="12"/><path d="M142 226H298M142 300H298" stroke="${palette.red}" stroke-width="20" stroke-linecap="round"/></g>`
   };
@@ -364,18 +360,15 @@ const filenames = {
 };
 
 function mapSteps(input) {
-  const accents = [palette.cyan, palette.amber, palette.green, palette.red, palette.cyan];
-  return input.map(([code, copy], index) => ({ code, title: String(copy[0]).split('|'), copy: copy.slice(1), accent: accents[index] }));
+  return input.map(([code, copy]) => ({ code, title: String(copy[0]).split('|'), copy: copy.slice(1), accent: palette.cyan }));
 }
 
 function mapColumns(input) {
-  const accents = [palette.cyan, palette.amber, palette.green];
-  return input.map(([title, items], index) => ({ title: [title], items, accent: accents[index] }));
+  return input.map(([title, items]) => ({ title: [title], items, accent: palette.cyan }));
 }
 
 function mapEvents(input) {
-  const accents = [palette.red, palette.amber, palette.cyan, palette.green, palette.cyan];
-  return input.map(([code, title], index) => ({ code, title, accent: accents[index] }));
+  return input.map(([code, title]) => ({ code, title, accent: palette.cyan }));
 }
 
 for (const topic of topics) {

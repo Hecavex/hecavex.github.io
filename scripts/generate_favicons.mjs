@@ -8,9 +8,9 @@ const outputRoot = resolve(import.meta.dirname, '..', 'public');
 const checkOnly = process.argv.includes('--check');
 const sampleGrid = 4;
 const palette = {
-  background: [5, 8, 11, 255],
-  signal: [68, 199, 220, 255],
-  text: [242, 248, 251, 255],
+  background: [17, 20, 22, 255],
+  signal: [85, 185, 177, 255],
+  text: [236, 233, 225, 255],
   transparent: [0, 0, 0, 0],
 };
 

@@ -2,48 +2,44 @@
   <title id="title">Reverse-proxy phishing changes the trust path</title>
   <desc id="desc">A valid upstream login can still pass through hostile infrastructure. The strongest detections correlate the lure, sign-in, token use and post-authentication action.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05090d"/><stop offset="1" stop-color="#0b1820"/></linearGradient>
-    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#25414d" stroke-width="1" opacity=".28"/></pattern>
-    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M0 0 12 6 0 12Z" fill="#43d3e8"/></marker>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M0 0 12 6 0 12Z" fill="#55b9b1"/></marker>
     <style>
       .sans{font-family:Inter,Arial,sans-serif}.mono{font-family:'IBM Plex Mono',Consolas,monospace}
-      .title{font:700 52px Inter,Arial,sans-serif;fill:#f4f8fa;letter-spacing:-1.5px}
-      .subtitle{font:400 25px Inter,Arial,sans-serif;fill:#89a2af}
-      .eyebrow{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:#43d3e8;letter-spacing:3px}
-      .node-title{font:700 28px Inter,Arial,sans-serif;fill:#f4f8fa}
-      .node-copy{font:400 20px Inter,Arial,sans-serif;fill:#89a2af}
-      .node-code{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:#43d3e8}
-      .note{font:500 19px Inter,Arial,sans-serif;fill:#89a2af}
+      .title{font:700 52px Inter,Arial,sans-serif;fill:#ece9e1;letter-spacing:-1.5px}
+      .subtitle{font:400 25px Inter,Arial,sans-serif;fill:#8d969a}
+      .eyebrow{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:#55b9b1;letter-spacing:3px}
+      .node-title{font:700 28px Inter,Arial,sans-serif;fill:#ece9e1}
+      .node-copy{font:400 20px Inter,Arial,sans-serif;fill:#8d969a}
+      .node-code{font:600 18px 'IBM Plex Mono',Consolas,monospace;fill:#55b9b1}
+      .note{font:500 19px Inter,Arial,sans-serif;fill:#8d969a}
     </style>
   </defs>
-  <rect width="1600" height="760" fill="url(#bg)"/>
-  <rect width="1600" height="760" fill="url(#grid)" opacity=".5"/>
-  <path d="M0 8H1600" stroke="#43d3e8" stroke-width="8"/>
+  <rect width="1600" height="760" fill="#111416"/>
+  <path d="M0 8H1600" stroke="#55b9b1" stroke-width="8"/>
   <text x="72" y="62" class="eyebrow">HECAVEX / EVILGINX / FLOW</text>
   <text x="72" y="128" class="title" text-anchor="start"><tspan x="72" dy="0">Reverse-proxy phishing changes the trust path</tspan></text><text x="72" y="174" class="subtitle" text-anchor="start"><tspan x="72" dy="0">A valid upstream login can still pass through hostile infrastructure</tspan></text><g>
-    <rect x="72" y="236" width="332.5" height="304" rx="18" fill="#0a141b" stroke="#43d3e8" stroke-width="3"/>
-    <rect x="72" y="236" width="10" height="304" rx="5" fill="#43d3e8"/>
+    <rect x="72" y="236" width="332.5" height="304" fill="#171b1d" stroke="#30383b" stroke-width="3"/>
+    <rect x="72" y="236" width="10" height="304" fill="#55b9b1"/>
     <text x="110" y="282" class="node-code">USER</text>
     <text x="110" y="328" class="node-title" text-anchor="start"><tspan x="110" dy="0">Opens lure host</tspan></text>
     <text x="110" y="408" class="node-copy" text-anchor="start"><tspan x="110" dy="0">Browser trusts TLS</tspan></text>
   </g><g>
-    <rect x="446.5" y="236" width="332.5" height="304" rx="18" fill="#0a141b" stroke="#ffc857" stroke-width="3"/>
-    <rect x="446.5" y="236" width="10" height="304" rx="5" fill="#ffc857"/>
+    <rect x="446.5" y="236" width="332.5" height="304" fill="#171b1d" stroke="#30383b" stroke-width="3"/>
+    <rect x="446.5" y="236" width="10" height="304" fill="#55b9b1"/>
     <text x="484.5" y="282" class="node-code">PROXY</text>
     <text x="484.5" y="328" class="node-title" text-anchor="start"><tspan x="484.5" dy="0">Relays HTTP</tspan></text>
     <text x="484.5" y="408" class="node-copy" text-anchor="start"><tspan x="484.5" dy="0">Sees credentials</tspan></text>
   </g><g>
-    <rect x="821" y="236" width="332.5" height="304" rx="18" fill="#0a141b" stroke="#9fdf65" stroke-width="3"/>
-    <rect x="821" y="236" width="10" height="304" rx="5" fill="#9fdf65"/>
+    <rect x="821" y="236" width="332.5" height="304" fill="#171b1d" stroke="#30383b" stroke-width="3"/>
+    <rect x="821" y="236" width="10" height="304" fill="#55b9b1"/>
     <text x="859" y="282" class="node-code">IDENTITY</text>
     <text x="859" y="328" class="node-title" text-anchor="start"><tspan x="859" dy="0">Authenticates user</tspan></text>
     <text x="859" y="408" class="node-copy" text-anchor="start"><tspan x="859" dy="0">Issues session</tspan></text>
   </g><g>
-    <rect x="1195.5" y="236" width="332.5" height="304" rx="18" fill="#0a141b" stroke="#ff6b6b" stroke-width="3"/>
-    <rect x="1195.5" y="236" width="10" height="304" rx="5" fill="#ff6b6b"/>
+    <rect x="1195.5" y="236" width="332.5" height="304" fill="#171b1d" stroke="#30383b" stroke-width="3"/>
+    <rect x="1195.5" y="236" width="10" height="304" fill="#55b9b1"/>
     <text x="1233.5" y="282" class="node-code">REPLAY</text>
     <text x="1233.5" y="328" class="node-title" text-anchor="start"><tspan x="1233.5" dy="0">Token reused</tspan></text>
     <text x="1233.5" y="408" class="node-copy" text-anchor="start"><tspan x="1233.5" dy="0">New client context</tspan></text>
-  </g><g><path d="M412.5 388H438.5" stroke="#43d3e8" stroke-width="4" marker-end="url(#arrow)"/></g><g><path d="M787 388H813" stroke="#43d3e8" stroke-width="4" marker-end="url(#arrow)"/></g><g><path d="M1161.5 388H1187.5" stroke="#43d3e8" stroke-width="4" marker-end="url(#arrow)"/></g><rect x="72" y="596" width="1456" height="96" rx="14" fill="#0d1b24" stroke="#25414d"/><circle cx="112" cy="644" r="8" fill="#ffc857"/><text x="140" y="636" class="note" text-anchor="start"><tspan x="140" dy="0">The strongest detections correlate the lure, sign-in, token use and post-authentication action.</tspan></text>
+  </g><g><path d="M412.5 388H438.5" stroke="#55b9b1" stroke-width="4" marker-end="url(#arrow)"/></g><g><path d="M787 388H813" stroke="#55b9b1" stroke-width="4" marker-end="url(#arrow)"/></g><g><path d="M1161.5 388H1187.5" stroke="#55b9b1" stroke-width="4" marker-end="url(#arrow)"/></g><rect x="72" y="596" width="1456" height="96" fill="#1d2326" stroke="#30383b"/><circle cx="112" cy="644" r="8" fill="#55b9b1"/><text x="140" y="636" class="note" text-anchor="start"><tspan x="140" dy="0">The strongest detections correlate the lure, sign-in, token use and post-authentication action.</tspan></text>
 </svg>

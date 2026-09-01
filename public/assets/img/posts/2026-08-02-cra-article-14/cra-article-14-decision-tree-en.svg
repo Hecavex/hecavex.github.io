@@ -2,14 +2,12 @@
   <title id="title">CRA Article 14 technical decision tree</title>
   <desc id="desc">A signal is checked for product scope, classified as a vulnerability or incident, tested against evidence and severity thresholds, then moved into the 24-hour warning, 72-hour notification, final report and user-notification workflow.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05080b"/><stop offset="1" stop-color="#101923"/></linearGradient>
-    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#1e3440" stroke-width="1" opacity=".32"/></pattern>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#44c7dc"/></marker>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#55B9B1"/></marker>
     <style>
-      .node{fill:#0b1117;stroke:#1e3440;stroke-width:2}.decision{stroke:#ffc857}.action{stroke:#44c7dc}.outcome{stroke:#a2da68}.stop{stroke:#ff6b6b}.line{fill:none;stroke:#44c7dc;stroke-width:2;marker-end:url(#arrow)}.branch{fill:#8397a3;font:600 15px "IBM Plex Mono",monospace}.label{fill:#f2f8fb;font:700 18px Inter,Arial,sans-serif;text-anchor:middle}.small{fill:#b6c6cf;font:500 14px Inter,Arial,sans-serif;text-anchor:middle}.eyebrow{fill:#44c7dc;font:600 15px "IBM Plex Mono",monospace;letter-spacing:2px}.heading{fill:#f2f8fb;font:700 30px Inter,Arial,sans-serif}.note{fill:#8397a3;font:500 14px Inter,Arial,sans-serif}
+      .node{fill:#171B1D;stroke:#30383B;stroke-width:2}.decision{stroke:#D2AA62}.action{stroke:#55B9B1}.outcome{stroke:#86B77E}.stop{stroke:#D06C65}.line{fill:none;stroke:#55B9B1;stroke-width:2;marker-end:url(#arrow)}.branch{fill:#8D969A;font:600 15px "IBM Plex Mono",monospace}.label{fill:#ECE9E1;font:700 18px Inter,Arial,sans-serif;text-anchor:middle}.small{fill:#8D969A;font:500 14px Inter,Arial,sans-serif;text-anchor:middle}.eyebrow{fill:#55B9B1;font:600 15px "IBM Plex Mono",monospace;letter-spacing:2px}.heading{fill:#ECE9E1;font:700 30px Inter,Arial,sans-serif}.note{fill:#8D969A;font:500 14px Inter,Arial,sans-serif}
     </style>
   </defs>
-  <rect width="1200" height="1000" fill="url(#bg)"/><rect width="1200" height="1000" fill="url(#grid)"/>
+  <rect width="1200" height="1000" fill="#111416"/>
   <text x="54" y="54" class="eyebrow">CRA ARTICLE 14 · TECHNICAL CONTROL FLOW</text>
   <text x="54" y="92" class="heading">From signal to reportable awareness</text>
 

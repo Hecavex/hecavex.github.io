@@ -5,29 +5,29 @@
   <desc id="description">A reconstruction separates the delivery URL, Cloudflare Pages clone, Render credential and tracking services, fake failures, and final redirect to legitimate Hostinger Mail.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#42d7ea"/>
+      <path d="M0,0 L0,6 L9,3 z" fill="#55B9B1"/>
     </marker>
     <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#ff5f5f"/>
+      <path d="M0,0 L0,6 L9,3 z" fill="#D06C65"/>
     </marker>
     <style>
-      .bg { fill: #05090c; }
-      .panel { fill: #091218; stroke: #23414f; stroke-width: 2; }
-      .panel-red { fill: #171012; stroke: #ff5f5f; stroke-width: 2; }
-      .panel-cyan { fill: #08171c; stroke: #42d7ea; stroke-width: 2; }
-      .panel-green { fill: #0d1712; stroke: #75d98c; stroke-width: 2; }
-      .eyebrow { fill: #42d7ea; font: 700 16px Consolas, monospace; letter-spacing: 2px; }
-      .heading { fill: #f5f7f8; font: 700 30px Arial, sans-serif; }
-      .subheading { fill: #f5f7f8; font: 700 20px Arial, sans-serif; }
-      .body { fill: #a7bdca; font: 17px Arial, sans-serif; }
-      .mono { fill: #a7bdca; font: 15px Consolas, monospace; }
-      .red { fill: #ff7a7a; }
-      .green { fill: #87e39b; }
-      .amber { fill: #ffd36a; }
-      .line { fill: none; stroke: #42d7ea; stroke-width: 3; marker-end: url(#arrow); }
-      .line-red { fill: none; stroke: #ff5f5f; stroke-width: 3; marker-end: url(#arrow-red); }
+      .bg { fill: #111416; }
+      .panel { fill: #171B1D; stroke: #30383B; stroke-width: 2; }
+      .panel-red { fill: #1D2326; stroke: #D06C65; stroke-width: 2; }
+      .panel-cyan { fill: #1D2326; stroke: #55B9B1; stroke-width: 2; }
+      .panel-green { fill: #1D2326; stroke: #86B77E; stroke-width: 2; }
+      .eyebrow { fill: #55B9B1; font: 700 16px Consolas, monospace; letter-spacing: 2px; }
+      .heading { fill: #ECE9E1; font: 700 30px Arial, sans-serif; }
+      .subheading { fill: #ECE9E1; font: 700 20px Arial, sans-serif; }
+      .body { fill: #8D969A; font: 17px Arial, sans-serif; }
+      .mono { fill: #8D969A; font: 15px Consolas, monospace; }
+      .red { fill: #D06C65; }
+      .green { fill: #86B77E; }
+      .amber { fill: #D2AA62; }
+      .line { fill: none; stroke: #55B9B1; stroke-width: 3; marker-end: url(#arrow); }
+      .line-red { fill: none; stroke: #D06C65; stroke-width: 3; marker-end: url(#arrow-red); }
       .dash { stroke-dasharray: 9 8; }
-      .number { fill: #05090c; font: 700 16px Arial, sans-serif; }
+      .number { fill: #151719; font: 700 16px Arial, sans-serif; }
     </style>
   </defs>
 
@@ -37,7 +37,7 @@
   <text x="70" y="148" class="body">Public observations, static analysis, and a loopback test. No live credential submission.</text>
 
   <rect x="70" y="230" width="265" height="235" rx="6" class="panel"/>
-  <circle cx="102" cy="262" r="17" fill="#42d7ea"/>
+  <circle cx="102" cy="262" r="17" fill="#55B9B1"/>
   <text x="102" y="268" text-anchor="middle" class="number">1</text>
   <text x="130" y="270" class="subheading">Delivery URL</text>
   <text x="95" y="315" class="body">URL parameters:</text>
@@ -47,7 +47,7 @@
   <text x="95" y="438" class="mono amber">values withheld</text>
 
   <rect x="425" y="205" width="510" height="465" rx="6" class="panel-cyan"/>
-  <circle cx="458" cy="238" r="17" fill="#42d7ea"/>
+  <circle cx="458" cy="238" r="17" fill="#55B9B1"/>
   <text x="458" y="244" text-anchor="middle" class="number">2</text>
   <text x="486" y="247" class="subheading">Cloudflare Pages project</text>
   <text x="455" y="295" class="body">Imitated Hostinger Mail page</text>
@@ -62,7 +62,7 @@
   <text x="455" y="625" class="mono green">5/5 current exact pages: 15/15 hashes</text>
 
   <rect x="1050" y="205" width="475" height="195" rx="6" class="panel-red"/>
-  <circle cx="1082" cy="238" r="17" fill="#ff5f5f"/>
+  <circle cx="1082" cy="238" r="17" fill="#D06C65"/>
   <text x="1082" y="244" text-anchor="middle" class="number">3</text>
   <text x="1110" y="247" class="subheading">Credential receiver</text>
   <text x="1080" y="292" class="mono">Render service</text>
@@ -71,7 +71,7 @@
   <text x="1080" y="382" class="mono amber">Live endpoint not contacted</text>
 
   <rect x="1050" y="445" width="475" height="175" rx="6" class="panel"/>
-  <circle cx="1082" cy="478" r="17" fill="#42d7ea"/>
+  <circle cx="1082" cy="478" r="17" fill="#55B9B1"/>
   <text x="1082" y="484" text-anchor="middle" class="number">4</text>
   <text x="1110" y="487" class="subheading">Tracking receiver</text>
   <text x="1080" y="532" class="mono">trexxx  -&gt;  trex</text>
@@ -79,13 +79,13 @@
   <text x="1080" y="592" class="body">primarily by endpoint.</text>
 
   <rect x="425" y="735" width="510" height="105" rx="6" class="panel"/>
-  <circle cx="458" cy="768" r="17" fill="#42d7ea"/>
+  <circle cx="458" cy="768" r="17" fill="#55B9B1"/>
   <text x="458" y="774" text-anchor="middle" class="number">5</text>
   <text x="486" y="777" class="subheading">Fake failure loop</text>
   <text x="455" y="815" class="body">Success and error both show "Login failed."</text>
 
   <rect x="1050" y="705" width="475" height="135" rx="6" class="panel-green"/>
-  <circle cx="1082" cy="738" r="17" fill="#75d98c"/>
+  <circle cx="1082" cy="738" r="17" fill="#86B77E"/>
   <text x="1082" y="744" text-anchor="middle" class="number">6</text>
   <text x="1110" y="747" class="subheading">Legitimate Hostinger Mail</text>
   <text x="1080" y="790" class="body">Redirect after repeated attempts.</text>

@@ -2,40 +2,38 @@
   <title id="title">Anatomy of a suspicious SMS</title>
   <desc id="desc">A controlled example message highlights sender ambiguity, urgency, a defanged reserved-domain URL, the registrable domain boundary and a request for sensitive data.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05080b"/><stop offset="1" stop-color="#101923"/></linearGradient>
-    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#1e3440" opacity=".3"/></pattern>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0l10 5-10 5z" fill="#44c7dc"/></marker>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0l10 5-10 5z" fill="#55B9B1"/></marker>
     <style>
-      .eyebrow{font:700 15px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:2px;fill:#44c7dc}.heading{font:800 38px Inter,Segoe UI,Arial,sans-serif;fill:#f2f7fa}.sub{font:500 18px Inter,Segoe UI,Arial,sans-serif;fill:#96aab7}.label{font:700 19px Inter,Segoe UI,Arial,sans-serif;fill:#eef5f8}.body{font:500 16px Inter,Segoe UI,Arial,sans-serif;fill:#aebfca}.mono{font:600 16px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#d8e5eb}.call{fill:#0b1218;stroke:#2b424e;stroke-width:1.5}.warn{fill:#1b1610;stroke:#ffc857;stroke-width:2}.risk{fill:#1c1113;stroke:#ff6b6b;stroke-width:2}.line{fill:none;stroke:#44c7dc;stroke-width:2;marker-end:url(#arrow)}
+      .eyebrow{font:700 15px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:2px;fill:#55B9B1}.heading{font:800 38px Inter,Segoe UI,Arial,sans-serif;fill:#ECE9E1}.sub{font:500 18px Inter,Segoe UI,Arial,sans-serif;fill:#8D969A}.label{font:700 19px Inter,Segoe UI,Arial,sans-serif;fill:#ECE9E1}.body{font:500 16px Inter,Segoe UI,Arial,sans-serif;fill:#8D969A}.mono{font:600 16px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#ECE9E1}.call{fill:#171B1D;stroke:#30383B;stroke-width:1.5}.warn{fill:#1D2326;stroke:#D2AA62;stroke-width:2}.risk{fill:#1D2326;stroke:#D06C65;stroke-width:2}.line{fill:none;stroke:#55B9B1;stroke-width:2;marker-end:url(#arrow)}
     </style>
   </defs>
-  <rect width="1400" height="900" fill="url(#bg)"/><rect width="1400" height="900" fill="url(#grid)"/><path d="M0 3H1400" stroke="#44c7dc" stroke-width="6"/>
+  <rect width="1400" height="900" fill="#111416"/><path d="M0 3H1400" stroke="#55B9B1" stroke-width="6"/>
   <text x="60" y="62" class="eyebrow">CONTROLLED EXAMPLE / URL NOT LIVE</text>
   <text x="60" y="112" class="heading">Anatomy of a suspicious SMS</text>
   <text x="60" y="145" class="sub">A familiar brand name is not identity proof. Read the message as evidence before treating the link as a destination.</text>
 
   <g transform="translate(78 205)">
-    <rect width="478" height="585" rx="42" fill="#070b0f" stroke="#3d5867" stroke-width="3"/>
-    <rect x="24" y="24" width="430" height="537" rx="25" fill="#0d151c" stroke="#263e4a"/>
-    <rect x="188" y="10" width="102" height="8" rx="4" fill="#3d5867"/>
-    <circle cx="62" cy="76" r="23" fill="#243743"/><text x="62" y="83" text-anchor="middle" class="label">P</text>
+    <rect width="478" height="585" rx="42" fill="#171B1D" stroke="#30383B" stroke-width="3"/>
+    <rect x="24" y="24" width="430" height="537" rx="25" fill="#111416" stroke="#30383B"/>
+    <rect x="188" y="10" width="102" height="8" rx="4" fill="#30383B"/>
+    <circle cx="62" cy="76" r="23" fill="#30383B"/><text x="62" y="83" text-anchor="middle" class="label">P</text>
     <text x="101" y="72" class="label">PARCEL SERVICE</text><text x="101" y="97" class="body">Sender field supplied by network</text>
-    <rect x="50" y="135" width="352" height="298" rx="18" fill="#172630" stroke="#314d5a"/>
+    <rect x="50" y="135" width="352" height="298" rx="18" fill="#1D2326" stroke="#30383B"/>
     <text x="76" y="177" class="mono">Delivery failed.</text>
     <text x="76" y="212" class="mono">A €1.49 fee remains.</text>
     <text x="76" y="247" class="mono">Confirm within 30 minutes</text>
     <text x="76" y="282" class="mono">to prevent return:</text>
-    <text x="76" y="330" font-family="ui-monospace,Consolas,monospace" font-size="16" font-weight="700" fill="#ffc857">hxxps://parcel-check[.]example</text>
-    <text x="76" y="358" font-family="ui-monospace,Consolas,monospace" font-size="16" font-weight="700" fill="#ffc857">/track/84F2?ref=sms</text>
-    <text x="76" y="401" class="mono" fill="#ff8b84">Card verification required.</text>
-    <rect x="50" y="468" width="352" height="57" rx="6" fill="#101a20" stroke="#99dc68"/>
-    <text x="226" y="503" text-anchor="middle" class="eyebrow" fill="#99dc68">DEFANGED — DO NOT OPEN</text>
+    <text x="76" y="330" font-family="ui-monospace,Consolas,monospace" font-size="16" font-weight="700" fill="#D2AA62">hxxps://parcel-check[.]example</text>
+    <text x="76" y="358" font-family="ui-monospace,Consolas,monospace" font-size="16" font-weight="700" fill="#D2AA62">/track/84F2?ref=sms</text>
+    <text x="76" y="401" class="mono" fill="#D06C65">Card verification required.</text>
+    <rect x="50" y="468" width="352" height="57" rx="6" fill="#1D2326" stroke="#86B77E"/>
+    <text x="226" y="503" text-anchor="middle" class="eyebrow" fill="#86B77E">DEFANGED — DO NOT OPEN</text>
   </g>
 
   <path class="line" d="M555 282H655"/><path class="line" d="M555 428H655"/><path class="line" d="M555 570H655"/><path class="line" d="M555 704H655"/>
   <g transform="translate(655 222)"><rect class="call" width="670" height="116" rx="3"/><text x="24" y="34" class="eyebrow">01 / SENDER AMBIGUITY</text><text x="24" y="70" class="label">A display name can be spoofed or injected.</text><text x="24" y="96" class="body">Verify through the organisation’s official app, saved contact or manually typed site.</text></g>
-  <g transform="translate(655 368)"><rect class="warn" width="670" height="116" rx="3"/><text x="24" y="34" class="eyebrow" fill="#ffc857">02 / PRESSURE + SMALL PAYMENT</text><text x="24" y="70" class="label">Urgency narrows the time available to think.</text><text x="24" y="96" class="body">The fee is plausible enough to make a card request feel routine.</text></g>
-  <g transform="translate(655 510)"><rect class="warn" width="670" height="116" rx="3"/><text x="24" y="34" class="eyebrow" fill="#ffc857">03 / READ THE HOST, NOT THE BRAND WORD</text><text x="24" y="70" class="mono">scheme  |  parcel-check[.]example  |  path  |  query token</text><text x="24" y="96" class="body">The registrable domain is the identity boundary. A logo, path or subdomain is not.</text></g>
-  <g transform="translate(655 650)"><rect class="risk" width="670" height="116" rx="3"/><text x="24" y="34" class="eyebrow" fill="#ff6b6b">04 / SENSITIVE-DATA REQUEST</text><text x="24" y="70" class="label">Delivery messages do not establish a need for card or login data.</text><text x="24" y="96" class="body">Do not paste a private tracking token into a public scanner without assessing exposure.</text></g>
+  <g transform="translate(655 368)"><rect class="warn" width="670" height="116" rx="3"/><text x="24" y="34" class="eyebrow" fill="#D2AA62">02 / PRESSURE + SMALL PAYMENT</text><text x="24" y="70" class="label">Urgency narrows the time available to think.</text><text x="24" y="96" class="body">The fee is plausible enough to make a card request feel routine.</text></g>
+  <g transform="translate(655 510)"><rect class="warn" width="670" height="116" rx="3"/><text x="24" y="34" class="eyebrow" fill="#D2AA62">03 / READ THE HOST, NOT THE BRAND WORD</text><text x="24" y="70" class="mono">scheme  |  parcel-check[.]example  |  path  |  query token</text><text x="24" y="96" class="body">The registrable domain is the identity boundary. A logo, path or subdomain is not.</text></g>
+  <g transform="translate(655 650)"><rect class="risk" width="670" height="116" rx="3"/><text x="24" y="34" class="eyebrow" fill="#D06C65">04 / SENSITIVE-DATA REQUEST</text><text x="24" y="70" class="label">Delivery messages do not establish a need for card or login data.</text><text x="24" y="96" class="body">Do not paste a private tracking token into a public scanner without assessing exposure.</text></g>
   <text x="60" y="856" class="body">Reserved domain: .example · Defanging prevents accidental activation · A single clue is not a verdict</text>
 </svg>

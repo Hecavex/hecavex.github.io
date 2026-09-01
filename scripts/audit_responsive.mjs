@@ -162,14 +162,14 @@ try {
           versionedAssets: Boolean(stylesheet?.getAttribute('href')?.match(/\?v=[^&]+$/) && siteScript?.getAttribute('src')?.match(/\?v=[^&]+$/))
         };
       }, width);
-      if (state.shell !== 'v1') fail(route, width, 'portfolio shell marker is missing');
+      if (state.shell !== 'v2') fail(route, width, 'portfolio shell marker is missing');
       if (state.overflow > 1) fail(route, width, `horizontal overflow is ${state.overflow}px (${state.offscreen.join(', ')})`);
-      if (state.h1Size > 64.1) fail(route, width, `h1 exceeds 64px (${state.h1Size}px)`);
+      if (state.h1Size > 80.1) fail(route, width, `h1 exceeds 80px (${state.h1Size}px)`);
       if (state.markWidth < 33.5 || state.markWidth > 36.5) fail(route, width, `brand mark is ${state.markWidth}px rather than 34–36px`);
       if (state.networkLabels.join('|') !== 'Research|Radar|APT Notes|Labs|Data') fail(route, width, 'network navigation order differs from the portfolio contract');
-      if (Math.abs(state.bodyFontSize - 15.2) > 0.05 || state.bodyColor !== 'rgb(182, 198, 207)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
-      if (state.tokens.join('|') !== '#0b1117|#0b1117|#101923|#1e3440|#1e3440|#b6c6cf|#8397a3|#8397a3|#44c7dc|#44c7dc') fail(route, width, `shared Cold Signal tokens changed (${state.tokens.join('|')})`);
-      if (state.dot && (Math.abs(Number.parseFloat(state.dot.width) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.height) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.marginRight) - 8.8) > 0.02 || state.dot.color !== 'rgb(68, 199, 220)')) fail(route, width, `active network dot geometry changed (${JSON.stringify(state.dot)})`);
+      if (Math.abs(state.bodyFontSize - 15.2) > 0.05 || state.bodyColor !== 'rgb(236, 233, 225)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
+      if (state.tokens.join('|') !== '#171b1d|#171b1d|#1d2326|#30383b|#30383b|#ece9e1|#8d969a|#8d969a|#55b9b1|#55b9b1') fail(route, width, `shared HECAVEX tokens changed (${state.tokens.join('|')})`);
+      if (state.dot && (Math.abs(Number.parseFloat(state.dot.width) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.height) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.marginRight) - 8.8) > 0.02 || state.dot.color !== 'rgb(85, 185, 177)')) fail(route, width, `active network dot geometry changed (${JSON.stringify(state.dot)})`);
       if (!state.versionedAssets) fail(route, width, 'core stylesheet or script is not cache-versioned');
       if (factRoutes.has(route) && state.pageFactCount !== 4) fail(route, width, `page fact rail contains ${state.pageFactCount} records instead of 4`);
       if (outlineRoutes.has(route)) {

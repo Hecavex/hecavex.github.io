@@ -119,7 +119,7 @@ for (const file of htmlFiles) {
     }
   }
   if (!redirect && shellDocument) {
-    if (!/<header\b[^>]*class=["'][^"']*site-header[^"']*["'][^>]*data-portfolio-shell=["']v1["']/i.test(html)) failures.push(`${route}: missing portfolio shell contract marker`);
+    if (!/<header\b[^>]*class=["'][^"']*site-header[^"']*["'][^>]*data-portfolio-shell=["']v2["']/i.test(html)) failures.push(`${route}: missing portfolio shell contract marker`);
     if (!/<link\s+[^>]*rel=["']icon["'][^>]*href=["']\/favicon\.svg["']/i.test(html)) failures.push(`${route}: missing shared SVG favicon`);
     if (!/<link\s+[^>]*rel=["']apple-touch-icon["'][^>]*href=["']\/apple-touch-icon\.png["']/i.test(html)) failures.push(`${route}: missing shared Apple touch icon`);
     if (!/<link\s+[^>]*rel=["']manifest["'][^>]*href=["']\/site\.webmanifest["']/i.test(html)) failures.push(`${route}: missing origin web manifest`);

@@ -10,7 +10,7 @@
   "packageManager": "npm@10.9.2",
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run validate && npm run check:favicons && npm run build:astro && npm run build:finalize",
+    "build": "npm run validate && npm run check:favicons && npm run check:editorial-assets && npm run build:astro && npm run build:finalize",
     "build:astro": "astro check && astro build",
     "build:finalize": "node scripts/finalize-build.mjs dist",
     "preview": "astro preview",
@@ -20,6 +20,7 @@
     "generate:favicons": "node scripts/generate_favicons.mjs",
     "generate:social": "node scripts/generate_social_cards.mjs",
     "check:favicons": "node scripts/generate_favicons.mjs --check",
+    "check:editorial-assets": "node scripts/check_editorial_assets.mjs",
     "validate": "node scripts/validate-content.mjs",
     "check:routes": "node scripts/check-route-parity.mjs dist",
     "check:performance": "node scripts/check_performance_budgets.mjs dist",

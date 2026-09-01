@@ -47,19 +47,19 @@ function documentFor(copy) {
     ['03', '/landing?view=training', '200', '—']
   ];
   return `<!doctype html><html><head><meta charset="utf-8"><style>
-    *{box-sizing:border-box}html,body{margin:0;width:1600px;height:1000px;overflow:hidden;background:#05090d;color:#f4f8fa}
-    body{font-family:Inter,"Segoe UI",Arial,sans-serif;padding:66px 72px;background:radial-gradient(circle at 84% 12%,#0e202a 0,transparent 28%),#05090d}
+    *{box-sizing:border-box}html,body{margin:0;width:1600px;height:1000px;overflow:hidden;background:#111416;color:#ece9e1}
+    body{font-family:Inter,"Segoe UI",Arial,sans-serif;padding:66px 72px;background:#111416}
     .mono,.eyebrow,.label,th,td:first-child,.brand,.lab{font-family:"IBM Plex Mono",Consolas,monospace}
-    header{height:70px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:1px solid #25414d}
-    .identity{display:flex;align-items:center;gap:20px}.mark{width:38px;height:42px}.brand{font-size:18px;font-weight:700;letter-spacing:5px;margin-bottom:6px}.edition{font:11px "IBM Plex Mono",Consolas,monospace;color:#89a2af;letter-spacing:2px}
-    .lab{border:1px solid #25414d;padding:14px 20px;color:#b8d9e8;font-size:13px;letter-spacing:1.2px}
-    main{padding-top:42px}.eyebrow{color:#43d3e8;font-size:15px;font-weight:700;letter-spacing:2px}
-    h1{font-size:54px;line-height:1.03;letter-spacing:-1.8px;max-width:1180px;margin:18px 0 20px}.subtitle{font-size:20px;line-height:1.55;color:#b8d9e8;max-width:1400px;margin:0 0 34px}
-    table{width:100%;border-collapse:collapse;background:#08121a;font-size:15px}th,td{border:1px solid #25414d;text-align:left;padding:15px 16px}th{height:44px;background:#0d1b24;color:#8fc0d5;font-size:12px;letter-spacing:1.2px}td{height:48px;font-weight:600}td:nth-child(3){color:#ffc857}.ok{color:#9fdf65!important}
-    .panels{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.panel{min-height:132px;border:1px solid #25414d;background:#08121a;padding:24px}.label{font-size:12px;color:#8fc0d5;letter-spacing:1.5px;margin-bottom:16px}.copy{font-size:17px;line-height:1.48;color:#d8e7ee}
-    footer{margin-top:18px;border-left:4px solid #9fdf65;background:#102019;padding:17px 20px;color:#dfffbd;font:600 13px "IBM Plex Mono",Consolas,monospace;letter-spacing:.2px}
+    header{height:70px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:1px solid #30383b}
+    .identity{display:flex;align-items:center;gap:20px}.mark{width:38px;height:42px}.brand{font-size:18px;font-weight:700;letter-spacing:5px;margin-bottom:6px}.edition{font:11px "IBM Plex Mono",Consolas,monospace;color:#8d969a;letter-spacing:2px}
+    .lab{border:1px solid #30383b;padding:14px 20px;color:#ece9e1;font-size:13px;letter-spacing:1.2px}
+    main{padding-top:42px}.eyebrow{color:#55b9b1;font-size:15px;font-weight:700;letter-spacing:2px}
+    h1{font-size:54px;line-height:1.03;letter-spacing:-1.8px;max-width:1180px;margin:18px 0 20px}.subtitle{font-size:20px;line-height:1.55;color:#ece9e1;max-width:1400px;margin:0 0 34px}
+    table{width:100%;border-collapse:collapse;background:#171b1d;font-size:15px}th,td{border:1px solid #30383b;text-align:left;padding:15px 16px}th{height:44px;background:#1d2326;color:#8d969a;font-size:12px;letter-spacing:1.2px}td{height:48px;font-weight:600}td:nth-child(3){color:#d2aa62}.ok{color:#86b77e!important}
+    .panels{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.panel{min-height:132px;border:1px solid #30383b;background:#171b1d;padding:24px}.label{font-size:12px;color:#8d969a;letter-spacing:1.5px;margin-bottom:16px}.copy{font-size:17px;line-height:1.48;color:#ece9e1}
+    footer{margin-top:18px;border-left:4px solid #86b77e;background:#171b1d;padding:17px 20px;color:#ece9e1;font:600 13px "IBM Plex Mono",Consolas,monospace;letter-spacing:.2px}
   </style></head><body>
-    <header><div class="identity"><svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 4v40M43 4v40M5 7l38 34M43 7 5 41" fill="none" stroke="#43d3e8" stroke-width="3"/></svg><div><div class="brand">HECAVEX</div><div class="edition">RESEARCH / CONTROLLED EVIDENCE</div></div></div><div class="lab">SMS LINK SAFETY LAB · 127.0.0.1</div></header>
+    <header><div class="identity"><svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 4v40M43 4v40M5 7l38 34M43 7 5 41" fill="none" stroke="#55b9b1" stroke-width="3"/></svg><div><div class="brand">HECAVEX</div><div class="edition">RESEARCH / CONTROLLED EVIDENCE</div></div></div><div class="lab">SMS LINK SAFETY LAB · 127.0.0.1</div></header>
     <main><div class="eyebrow">${copy.eyebrow}</div><h1>${copy.title}</h1><p class="subtitle">${copy.subtitle}</p>
       <table><thead><tr>${copy.headers.map((header) => `<th>${header}</th>`).join('')}</tr></thead><tbody>${rows.map((row, index) => `<tr>${row.map((cell, cellIndex) => `<td class="${index === 2 && cellIndex === 2 ? 'ok' : ''}">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table>
       <div class="panels"><section class="panel"><div class="label">${copy.observation}</div><div class="copy">${copy.observationText}</div></section><section class="panel"><div class="label">${copy.stop}</div><div class="copy">${copy.stopText}</div></section></div>

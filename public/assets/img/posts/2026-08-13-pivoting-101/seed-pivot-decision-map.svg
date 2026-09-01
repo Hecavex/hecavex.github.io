@@ -2,16 +2,12 @@
   <title id="title">CTI seed-to-pivot decision map</title>
   <desc id="desc">A decision map connecting URL, domain, IP, certificate, web artefact, file hash and identity seeds to high-precision pivots, corroborating pivots and common analytical traps.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0b1118"/>
-      <stop offset="1" stop-color="#111a26"/>
-    </linearGradient>
     <style>
-      .title{font:700 42px Inter,Segoe UI,sans-serif;fill:#f4f7fb}.sub{font:400 19px Inter,Segoe UI,sans-serif;fill:#9fb0c4}.label{font:700 15px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:1.8px;fill:#ff6258}.head{font:700 20px Inter,Segoe UI,sans-serif;fill:#f4f7fb}.body{font:400 16px Inter,Segoe UI,sans-serif;fill:#c6d0dc}.muted{font:400 14px Inter,Segoe UI,sans-serif;fill:#8292a6}.box{fill:#111a26;stroke:#314054;stroke-width:1.5}.seed{fill:#151d28;stroke:#75b8f3;stroke-width:2}.strong{fill:#121d25;stroke:#64c6a1;stroke-width:2}.warn{fill:#21191a;stroke:#ff6258;stroke-width:1.5}.line{fill:none;stroke:#53677f;stroke-width:2}.arrow{fill:#53677f}.accent{fill:#e8a83d}
+      .title{font:700 42px Inter,Segoe UI,sans-serif;fill:#ECE9E1}.sub{font:400 19px Inter,Segoe UI,sans-serif;fill:#8D969A}.label{font:700 15px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:1.8px;fill:#55B9B1}.head{font:700 20px Inter,Segoe UI,sans-serif;fill:#ECE9E1}.body{font:400 16px Inter,Segoe UI,sans-serif;fill:#ECE9E1}.muted{font:400 14px Inter,Segoe UI,sans-serif;fill:#8D969A}.box{fill:#171B1D;stroke:#30383B;stroke-width:1.5}.seed{fill:#1D2326;stroke:#55B9B1;stroke-width:2}.strong{fill:#1D2326;stroke:#86B77E;stroke-width:2}.warn{fill:#1D2326;stroke:#D06C65;stroke-width:1.5}.line{fill:none;stroke:#8D969A;stroke-width:2}.arrow{fill:#8D969A}.accent{fill:#D2AA62}
     </style>
   </defs>
-  <rect width="1600" height="1050" fill="url(#bg)"/>
-  <path d="M0 2H1600" stroke="#ff6258" stroke-width="4"/>
+  <rect width="1600" height="1050" fill="#111416"/>
+  <path d="M0 2H1600" stroke="#55B9B1" stroke-width="4"/>
   <text x="70" y="78" class="label">SEED → QUESTION → DISCRIMINATING PIVOT → CONTROL</text>
   <text x="70" y="132" class="title">From what I have to what I should do next</text>
   <text x="70" y="170" class="sub">Start with the relationship you need to test. Shared infrastructure creates candidates. Rare, time-bound artefacts confirm edges.</text>
