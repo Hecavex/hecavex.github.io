@@ -1,5 +1,6 @@
 ---
 import SiteFooter from '../components/SiteFooter.astro';
+import ResourcePolicy from '../components/ResourcePolicy.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import CloudflareWebAnalytics from '../components/CloudflareWebAnalytics.astro';
 import type { Lang } from '../lib/site';
@@ -33,6 +34,7 @@ const canonical = new URL(canonicalPath, Astro.site);
 const socialImage = new URL(image, Astro.site);
 const otherLang: Lang = lang === 'lt' ? 'en' : 'lt';
 const resolvedXDefaultPath = xDefaultPath
+  ?? (['/', '/en/', '/lt/'].includes(canonicalPath) ? '/' : undefined)
   ?? languageAlternates?.en
   ?? (lang === 'en' ? canonicalPath : alternatePath)
   ?? canonicalPath;
@@ -94,6 +96,7 @@ const assetQuery = `?v=${encodeURIComponent(assetVersion)}`;
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
+    <ResourcePolicy />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111416" />
     <title>{fullTitle}</title>

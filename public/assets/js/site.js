@@ -74,7 +74,7 @@
           return { item, score, order };
         })
         .sort((left, right) => right.score - left.score || left.order - right.order)
-        .slice(0, 10).map(({ item }) => item);
+        .map(({ item }) => item);
       if (!matches.length) {
         const empty = document.createElement('p');
         empty.textContent = language === 'lt' ? 'Rezultatų nerasta.' : 'No results found.';
@@ -82,6 +82,10 @@
         return;
       }
       const list = document.createElement('ol');
+      const count = document.createElement('p');
+      count.setAttribute('role', 'status');
+      count.textContent = language === 'lt' ? `Rezultatų: ${matches.length}` : `${matches.length} results`;
+      searchResults.append(count);
       for (const item of matches) {
         const entry = document.createElement('li');
         const link = document.createElement('a');
@@ -115,9 +119,28 @@
   });
 
   document.querySelectorAll('[data-copy-link]').forEach((button) => button.addEventListener('click', async () => {
-    if (!navigator.clipboard?.writeText) return;
-    await navigator.clipboard.writeText(window.location.href);
-    button.textContent = button.dataset.success ?? 'Copied';
+    const value = document.querySelector('link[rel="canonical"]')?.href ?? `${location.origin}${location.pathname}`;
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(value);
+      button.textContent = button.dataset.success ?? 'Copied';
+      button.parentElement?.querySelector('[data-copy-fallback]')?.remove();
+    } catch (_) {
+      let fallback = button.parentElement?.querySelector('[data-copy-fallback]');
+      if (!fallback) {
+        fallback = document.createElement('label');
+        fallback.dataset.copyFallback = '';
+        fallback.textContent = language === 'lt' ? 'Kopijuoti nepavyko. Nukopijuokite nuorodą rankiniu būdu:' : 'Copy failed. Copy this link manually:';
+        const input = document.createElement('input');
+        input.readOnly = true;
+        input.value = value;
+        fallback.append(input);
+        button.after(fallback);
+      }
+      const input = fallback.querySelector('input');
+      input?.focus();
+      input?.select();
+    }
   }));
 
   const outlineGroups = new Map();

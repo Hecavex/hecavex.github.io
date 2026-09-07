@@ -1,4 +1,8 @@
 ---
+immediate_actions:
+  - "Do not tap the link. Capture the sender, full message and receipt time."
+  - "Verify the claim in the organisation’s official app or independently typed website."
+  - "If you entered payment data or an authentication code, contact the bank immediately through its official channel."
 title: "Suspicious SMS Link? A Practical Guide to Checking It Safely"
 card_title: "How to Check a Suspicious SMS Link Safely"
 description: "A practical defensive workflow for suspicious SMS links: defanging, safe short-link checks, cloaking clues, phishing reports, and post-click response."

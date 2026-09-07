@@ -4,7 +4,7 @@ import ContentOutline from '../../../components/ContentOutline.astro';
 import PostCard from '../../../components/PostCard.astro';
 import type { OutlineItem } from '../../../data/page-context';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imagePath, labelForPost, postNeighboursFor, relatedPostsFor, slugify, taxonomy, type Post } from '../../../lib/site';
+import { categoryPath, dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imagePath, labelForPost, postNeighboursFor, relatedPostsFor, slugify, taxonomy, type Post } from '../../../lib/site';
 import { recordLabel } from '../../../lib/record-labels.mjs';
 
 export async function getStaticPaths() {
@@ -68,6 +68,7 @@ const sectionLabel = post.publicationClass === 'signal-brief'
       <p class="eyebrow">{labelForPost(post)}</p>
       <h1>{post.title}</h1>
       <p class="article-deck">{post.description}</p>
+      {post.entry.data.immediate_actions?.length && <section class="immediate-actions" aria-labelledby="immediate-actions-title"><h2 id="immediate-actions-title">{t('What to do now', 'Ką daryti dabar')}</h2><ol>{post.entry.data.immediate_actions.map((action) => <li>{action}</li>)}</ol></section>}
       <div class="article-meta"><span>{post.lang === 'lt' ? 'Paskelbta' : 'Published'} <time datetime={post.date.toISOString()}>{dateText(post.date)}</time></span>{post.updated && post.updated.valueOf() !== post.date.valueOf() && <span>{post.lang === 'lt' ? 'Atnaujinta' : 'Updated'} <time datetime={post.updated.toISOString()}>{dateText(post.updated)}</time></span>}<span>{post.readingMinutes} {post.lang === 'lt' ? 'min. skaitymo' : 'min read'}</span><span>{post.lang === 'lt' ? 'Autorius' : 'By'} <a href={post.lang === 'lt' ? '/lt/apie/' : '/en/about/'}>Deividas Lis</a></span></div>
       <dl class="article-signals"><div><dt>{post.lang === 'lt' ? 'Turinio tipas' : 'Content type'}</dt><dd>{labelForPost(post)}</dd></div><div><dt>{post.lang === 'lt' ? 'Pasitikėjimas' : 'Confidence'}</dt><dd>{recordLabel(data.confidence ?? 'not stated', post.lang)}</dd></div><div><dt>TLP</dt><dd>{String(data.tlp ?? 'clear').toUpperCase()}</dd></div></dl>
       {hero && <figure class="article-hero"><img src={hero} alt={alt} width={image?.hero_width ?? image?.width ?? 1200} height={image?.hero_height ?? image?.height ?? 630} loading="eager" fetchpriority="high" />{alt && <figcaption>{t('Publication cover', 'Publikacijos viršelis')} · {alt}</figcaption>}</figure>}
@@ -86,7 +87,7 @@ const sectionLabel = post.publicationClass === 'signal-brief'
     <aside class="citation-block"><p class="eyebrow">{post.lang === 'lt' ? 'Citavimas' : 'Citation'}</p><p>Lis, Deividas. "{post.title}." HECAVEX, {dateText(post.date)}. <a href={post.url}>{canonical}</a>.</p></aside>
     {!translation && <p class="translation-note">{post.lang === 'lt' ? 'Šio turinio vertimas dar neparengtas.' : 'This content is currently available only in its original language.'}</p>}
     <footer class="article-footer">
-      {post.categories.length > 0 && <div class="taxonomy-row"><strong>{post.lang === 'lt' ? 'Kategorijos' : 'Categories'}</strong>{post.categories.map((category) => <a href={`/${post.lang}/${post.lang === 'lt' ? 'kategorijos' : 'categories'}/${category}/`}>{taxonomy[category]?.[post.lang] ?? category}</a>)}</div>}
+      {post.categories.length > 0 && <div class="taxonomy-row"><strong>{post.lang === 'lt' ? 'Kategorijos' : 'Categories'}</strong>{post.categories.map((category) => <a href={categoryPath(post.lang, category)}>{taxonomy[category]?.[post.lang] ?? category}</a>)}</div>}
       {post.tags.length > 0 && <div class="taxonomy-row"><strong>{post.lang === 'lt' ? 'Žymos' : 'Tags'}</strong>{post.tags.map((tag) => <a href={`/${post.lang}/${post.lang === 'lt' ? 'zymos' : 'tags'}/${slugify(tag)}/`}>{tag}</a>)}</div>}
       <div class="article-share"><strong>{post.lang === 'lt' ? 'Dalytis' : 'Share'}</strong><a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonical)}`}>LinkedIn</a><a href={`mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(canonical)}`}>{t('Email', 'El. paštas')}</a><button type="button" data-copy-link data-success={post.lang === 'lt' ? 'Nukopijuota' : 'Copied'}>{post.lang === 'lt' ? 'Kopijuoti nuorodą' : 'Copy link'}</button></div>
       <p class="content-license">{post.lang === 'lt' ? 'Jei nenurodyta kitaip, autoriaus tekstas platinamas pagal ' : "Unless stated otherwise, the author's text is licensed under "}<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>

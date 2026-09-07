@@ -7,13 +7,15 @@ interface Props { lang: Lang; kind: 'category' | 'tag'; slug: string; label: str
 const { lang, kind, slug, label, posts, alternatePath } = Astro.props;
 const base = kind === 'category' ? (lang === 'lt' ? 'kategorijos' : 'categories') : (lang === 'lt' ? 'zymos' : 'tags');
 const canonicalPath = `/${lang}/${base}/${slug}/`;
+const briefingAlias = kind === 'category' && slug === 'security-briefings';
+const briefingPath = lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/';
 const heading = kind === 'category' ? (taxonomy[slug]?.[lang] ?? label) : label;
 const description = lang === 'lt' ? `HECAVEX publikacijos: ${heading}.` : `HECAVEX publications filed under ${heading}.`;
 ---
-<BaseLayout {lang} title={heading} {description} {canonicalPath} {alternatePath} noindex={posts.length < 2} type="CollectionPage">
+<BaseLayout {lang} title={heading} {description} {canonicalPath} {alternatePath} noindex={briefingAlias || posts.length < 2} type="CollectionPage">
   <div class="shell page-shell taxonomy-results">
     <PageHeader {lang} title={heading} {description} eyebrow={kind === 'category' ? (lang === 'lt' ? 'KATEGORIJA' : 'CATEGORY') : (lang === 'lt' ? 'ŽYMA' : 'TAG')} />
     <p class="result-count">{posts.length} {lang === 'lt' ? 'susijusios publikacijos' : posts.length === 1 ? 'related publication' : 'related publications'}</p>
-    <div class="post-grid">{posts.map((post) => <PostCard {post} />)}</div>
+    {briefingAlias ? <p><a href={briefingPath}>{lang === 'lt' ? 'Atverti apžvalgų katalogą ir RSS' : 'Open the briefing catalogue and RSS feed'}</a></p> : <div class="post-grid">{posts.map((post) => <PostCard {post} />)}</div>}
   </div>
 </BaseLayout>

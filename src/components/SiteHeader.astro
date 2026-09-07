@@ -18,7 +18,7 @@ const languageHref = alternatePath ?? (lang === 'lt' ? '/en/' : '/lt/');
       <span class="brand-copy"><strong>HECAVEX</strong><small>{lang === 'lt' ? 'Tyrimai / nepriklausomas leidinys' : 'Research / independent publication'}</small></span>
     </a>
     <nav class="portfolio-navigation" aria-label="HECAVEX network">
-      {networkNavigation.map((item) => <a href={item.href} aria-current={item.name === activeNetworkItem ? 'page' : undefined}>{item.name}</a>)}
+      {networkNavigation(lang).map((item) => <a href={item.href} aria-current={item.name === activeNetworkItem ? 'page' : undefined}>{item.name}</a>)}
     </nav>
     <details class="mobile-navigation" data-mobile-navigation>
       <summary aria-label={menuLabel}>
@@ -35,7 +35,7 @@ const languageHref = alternatePath ?? (lang === 'lt' ? '/en/' : '/lt/');
         </nav>
         <nav class="mobile-portfolio-navigation" aria-label="HECAVEX network">
           <span class="navigation-label">HECAVEX network</span>
-          {networkNavigation.map((item) => <a href={item.href} aria-current={item.name === activeNetworkItem ? 'page' : undefined}>{item.name}</a>)}
+          {networkNavigation(lang).map((item) => <a href={item.href} aria-current={item.name === activeNetworkItem ? 'page' : undefined}>{item.name}</a>)}
         </nav>
       </div>
     </details>

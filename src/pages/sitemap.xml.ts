@@ -29,7 +29,7 @@ export const GET: APIRoute = async () => {
     routes.set(page.data.permalink, {
       modified: page.data.last_modified_at,
       alternates,
-      xDefault: alternates.en ?? (page.data.lang === 'en' ? page.data.permalink : undefined)
+      xDefault: ['/en/', '/lt/'].includes(page.data.permalink) ? '/' : alternates.en ?? (page.data.lang === 'en' ? page.data.permalink : undefined)
     });
   }
 
@@ -50,6 +50,7 @@ export const GET: APIRoute = async () => {
     const localized = posts.filter((post) => post.lang === lang);
     const categoryBase = lang === 'lt' ? 'kategorijos' : 'categories';
     for (const slug of Object.keys(taxonomy)) {
+      if (slug === 'security-briefings') continue;
       if (localized.filter((post) => post.categories.includes(slug)).length < 2) continue;
       const path = `/${lang}/${categoryBase}/${slug}/`;
       routes.set(path, {});

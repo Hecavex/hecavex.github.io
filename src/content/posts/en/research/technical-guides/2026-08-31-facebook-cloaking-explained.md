@@ -298,16 +298,16 @@ Use time-bounded language: "observed at", "reported by", "preserved response", "
 
 ## Defender checklist
 
-- [ ] Preserve the advert or message, account/Page context, time and exact entry URL privately.
-- [ ] Create a defanged, redacted working copy before sharing.
-- [ ] Record every redirect and response as a separate, sourced observation.
-- [ ] Keep collection context with the screenshot, DOM, response and hashes.
-- [ ] Distinguish a clean response from proof of safety.
-- [ ] Distinguish conditional delivery from proof of the rule that caused it.
-- [ ] Verify the claimed event through an independently reached official channel.
-- [ ] Escalate credentials, payments, approvals or downloads to incident response immediately.
-- [ ] Report only to parties that can act, using the evidence relevant to their layer.
-- [ ] State unknowns, alternative explanations and the time boundary.
+- Preserve the advert or message, account/Page context, time and exact entry URL privately.
+- Create a defanged, redacted working copy before sharing.
+- Record every redirect and response as a separate, sourced observation.
+- Keep collection context with the screenshot, DOM, response and hashes.
+- Distinguish a clean response from proof of safety.
+- Distinguish conditional delivery from proof of the rule that caused it.
+- Verify the claimed event through an independently reached official channel.
+- Escalate credentials, payments, approvals or downloads to incident response immediately.
+- Report only to parties that can act, using the evidence relevant to their layer.
+- State unknowns, alternative explanations and the time boundary.
 
 ## Sources and further reading
 
