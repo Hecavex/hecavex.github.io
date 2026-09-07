@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0",
+  "article": "github-malicious-python-001",
+  "recordedAt": "2026-09-07",
+  "collectionTimestamp": null,
+  "kind": "retained-publication-screenshots",
+  "limitations": "These digests identify the retained PNG screenshots, not malware samples or original repository files. Original collection time, repository commit and complete encrypted sample bytes are not preserved in this public package.",
+  "files": [
+    {
+      "path": "/assets/img/posts/2024-11-10-github/blog_images/3_img.png",
+      "bytes": 36369,
+      "sha256": "55df71f9f7c4f457af8ce7077c047a17958e30be68b9206c0de633a7e76250f2"
+    },
+    {
+      "path": "/assets/img/posts/2024-11-10-github/blog_images/4_img.png",
+      "bytes": 53802,
+      "sha256": "e1202404f2c1fd8efc5375a86994e0bba07beccec5a772209a8fbb9cef4b8d36"
+    },
+    {
+      "path": "/assets/img/posts/2024-11-10-github/blog_images/5_img.png",
+      "bytes": 155469,
+      "sha256": "dbd0aea6a006b30f9de9ce26831d122889f3f4bf84afa13d0c686142caf039a1"
+    },
+    {
+      "path": "/assets/img/posts/2024-11-10-github/blog_images/6_img.png",
+      "bytes": 156276,
+      "sha256": "f26556bb27d34fd14b0ce43f615199c0cf027f6b8deff7537ff78c262e528104"
+    },
+    {
+      "path": "/assets/img/posts/2024-11-10-github/blog_images/first_img.png",
+      "bytes": 48510,
+      "sha256": "8bf93e791918c817e4d22794fd2cf81e11dd005c04033c7f40594b28b7988942"
+    },
+    {
+      "path": "/assets/img/posts/2024-11-10-github/blog_images/second_img.png",
+      "bytes": 80559,
+      "sha256": "4a9be86996cca9c5f9122eb974e82f81a8db3e9c08b4e84732fc9d1032505f76"
+    }
+  ]
+}

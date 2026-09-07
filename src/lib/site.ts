@@ -1,5 +1,6 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { parse } from 'yaml';
+import { isApprovedPublication } from './publication-state.mjs';
 import contentTypesSource from '../data/content_types.yml?raw';
 import glossarySource from '../data/glossary.yml?raw';
 import copyEnSource from '../data/hecavex/en.yml?raw';
@@ -118,7 +119,7 @@ export const hydratePost = (entry: PostEntry): Post => {
 let postCache: Post[] | undefined;
 export const getPublicPosts = async () => {
   if (!postCache) {
-    const entries = await getCollection('posts', ({ data }) => data.draft !== true && data.published !== false);
+    const entries = await getCollection('posts', ({ data }) => isApprovedPublication(data));
     postCache = entries.map(hydratePost).sort((a, b) => b.date.valueOf() - a.date.valueOf());
   }
   return postCache;

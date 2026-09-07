@@ -3,6 +3,9 @@
 import { readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { extname, join, resolve } from 'node:path';
 import { transform } from 'lightningcss';
+import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import { releasePaths } from './release-contract.mjs';
 import { applyArticleImagePolicy } from '../src/lib/html-image-policy.mjs';
 import { buildImageDimensionMap } from '../src/lib/image-dimensions.mjs';
 
@@ -50,4 +53,10 @@ for (const file of await htmlFiles(root)) {
   imagePolicyDocuments += 1;
 }
 
-console.log(`Finalized GitHub Pages artifact (.nojekyll, minified publication CSS, localized 404 compatibility files, ${imageDimensions.size} intrinsic image records and ${imagePolicyDocuments} article image-policy documents).`);
+const revision = process.env.GITHUB_SHA ?? execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+const releaseFiles = await Promise.all(releasePaths.map(async (path) => {
+  const bytes = await readFile(join(root, path.slice(1), ...(path.endsWith('/') ? ['index.html'] : [])));
+  return { path, bytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex') };
+}));
+await writeFile(join(root, 'release.json'), JSON.stringify({ schemaVersion: 1, product: 'hecavex-research', revision, builtAt: new Date().toISOString(), files: releaseFiles }, null, 2) + '\n');
+console.log(`Finalized GitHub Pages artifact (.nojekyll, minified publication CSS, localized 404 compatibility files, ${imageDimensions.size} intrinsic image records, ${imagePolicyDocuments} article image-policy documents and release identity ${revision}).`);

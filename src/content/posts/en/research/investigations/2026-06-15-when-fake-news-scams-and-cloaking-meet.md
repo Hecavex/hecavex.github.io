@@ -1,4 +1,8 @@
 ---
+evidence_basis: "The page captures, routing observations and infrastructure examples retained in this investigation. Observations are historical, not a current inventory of active sites."
+methods: ["Comparison of differential landing-page content","Redirect and infrastructure relationship assessment"]
+draft: false
+published: true
 title: "Facebook Cloaking Investigation: Fake News and Investment Scam Infrastructure"
 description: "An investigation of how Facebook cloaking, fake news and investment scams combine into one victim-selection, redirect and monetisation infrastructure."
 seo_title: "Facebook Cloaking and Investment Scam Infrastructure"

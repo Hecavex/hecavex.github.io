@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Signal Brief #2: N-central takeover, TeamCity exploitation and exposed management planes"
 card_title: "Signal Brief #2: N-central, TeamCity and exposed management planes"
 description: "Five actively exploited vulnerability priorities, the Adform JavaScript supply-chain incident and practical checks for defenders. Coverage: 3–9 August 2026."

@@ -1,4 +1,7 @@
 ---
+evidence_basis: "The 11 August 2026 SMS, archived phishing assets, public DNS and URLScan observations, and the linked sanitized evidence bundle. No victim transactions or backend execution were tested."
+methods: ["Static JavaScript analysis","Exact-response-hash pivoting","DNS and certificate correlation","Time-bounded deduplication of public scan records"]
+published: true
 title: "UNIPARK Smishing: From One SMS to 126 Phishing Hosts"
 card_title: "UNIPARK Smishing: One Domain, a Much Larger Phishing Kit"
 description: "A full CTI investigation into an UNIPARK smishing lure: domain rotation, exact-hash pivots, 126 related hosts, card and PIN collection, and an NKSC sinkhole."

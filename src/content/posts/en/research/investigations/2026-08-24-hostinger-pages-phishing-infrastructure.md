@@ -10,7 +10,7 @@ seo_keywords:
   - "phishing kit JavaScript reuse"
   - "Render credential collector"
 date: 2026-08-27 08:00:00 +0300
-last_modified_at: 2026-08-27 08:30:00 +0300
+last_modified_at: 2026-09-07
 last_reviewed_at: 2026-08-27 08:30:00 +0300
 lang: en
 translation_key: hostinger-pages-phishing-infrastructure
@@ -30,7 +30,10 @@ published: true
 toc: true
 prose_width: wide
 comments: false
-research_bundle: /assets/data/hostinger-pages-phishing-2026/README.md
+research_artifacts:
+  - label: "Historical packaging correction"
+    url: "https://hecavex.com/assets/data/hostinger-pages-phishing-2026/CORRECTION.md"
+research_bundle: https://github.com/Hecavex/research-artifacts/tree/main/releases/hostinger-pages-phishing-2026/v1.1.1
 evidence_basis: "Hash-verified archived documents and JavaScript, public URLScan observations, static code analysis, bounded current-state and fixed-path validation, one isolated-VM observation, and sanitized aggregate outputs."
 methods: [static analysis, exact-hash pivoting, URLScan correlation, DNS and TLS validation, bounded HTTP verification, fixed-path response comparison, isolated-VM browser observation, descriptive hostname analysis]
 scope: "Static analysis of a Hostinger-themed credential-harvesting kit, correlation of historical URLScan observations, bounded non-interactive infrastructure and fixed-path checks, one negative check for fixed archive names, and a later isolated-VM spot check without form submission."

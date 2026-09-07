@@ -1,0 +1,128 @@
+---
+import PageHeader from './PageHeader.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import type { Lang } from '../lib/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = (en: string, lt: string) => lang === 'lt' ? lt : en;
+
+const catalogues = [
+  {
+    index: '01',
+    id: 'radar',
+    name: 'HECAVEX Radar',
+    owner: 'Radar',
+    cadence: t("Automated, sampled collection", "Automatizuotas, atrankinis rinkimas"),
+    description: t("Potential phishing and impersonation candidates relevant to Lithuania. Automated matches are observations for review, not maliciousness verdicts.", "Lietuvai aktualūs galimo phishing ir apsimetimo kandidatai. Automatiniai sutapimai yra peržiūrai skirti stebėjimai, ne kenkėjiškumo verdiktai."),
+    links: [
+      { label: t("Dataset guide", "Duomenų rinkinio vadovas"), detail: t("Human-readable contract and limitations", "Sutartis ir ribotumai skaitytojui"), href: 'https://radar.hecavex.com/dataset/' },
+      { label: t("Current snapshot", "Dabartinė suvestinė"), detail: t("JSON · bounded dashboard view", "JSON · ribotos apimties valdymo skydelio duomenys"), href: 'https://radar.hecavex.com/data/radar.json' },
+      { label: t("Complete-set index", "Viso rinkinio indeksas"), detail: t("JSON · deterministic shard directory", "JSON · deterministinis dalių katalogas"), href: 'https://radar.hecavex.com/data/radar.index.json' },
+      { label: t("Observation STIX", "Stebėjimų STIX"), detail: t("STIX 2.1 · observations, not block indicators", "STIX 2.1 · stebėjimai, ne blokavimo indikatoriai"), href: 'https://radar.hecavex.com/data/radar.stix.json' },
+      { label: t("Reviewed STIX", "Peržiūrėtas STIX"), detail: t("STIX 2.1 · explicit analyst confirmations only", "STIX 2.1 · tik aiškūs analitiko patvirtinimai"), href: 'https://radar.hecavex.com/data/radar-reviewed.stix.json' },
+      { label: t("Release manifest", "Laidos manifestas"), detail: t("JSON · files, schemas, digests and counts", "JSON · failai, schemos, kontrolinės sumos ir kiekiai"), href: 'https://radar.hecavex.com/data/feed-manifest.json' }
+    ]
+  },
+  {
+    index: '02',
+    id: 'apt-notes',
+    name: 'APT Notes',
+    owner: 'APT Notes',
+    cadence: t("Curated, release-versioned records", "Atrinkti, versijuotų laidų įrašai"),
+    description: t("Source-backed actor, campaign, software, technique and relationship records. The catalogue preserves source-specific attribution and review boundaries.", "Šaltiniais pagrįsti veikėjų, kampanijų, programinės įrangos, technikų ir ryšių įrašai. Išlaikomi konkrečių šaltinių priskyrimai ir peržiūros ribos."),
+    links: [
+      { label: t("API catalogue", "API katalogas"), detail: t("JSON · canonical endpoint directory", "JSON · pagrindinių prieigos taškų katalogas"), href: 'https://apt.hecavex.com/api/index.json' },
+      { label: t("Actors", "Veikėjai"), detail: t("JSON · public actor dossiers", "JSON · vieši veikėjų aprašai"), href: 'https://apt.hecavex.com/api/actors.json' },
+      { label: t("Knowledge catalogue", "Žinių katalogas"), detail: t("JSON · campaigns, software, tools and techniques", "JSON · kampanijos, programinė įranga, įrankiai ir technikos"), href: 'https://apt.hecavex.com/api/knowledge.json' },
+      { label: t("Relationships", "Ryšiai"), detail: t("JSON · source-supported entity mappings", "JSON · šaltiniais pagrįsti objektų ryšiai"), href: 'https://apt.hecavex.com/api/relationships.json' },
+      { label: t("Release version", "Laidos versija"), detail: t("JSON · publication and schema state", "JSON · publikavimo ir schemos būsena"), href: 'https://apt.hecavex.com/api/version.json' },
+      { label: t("Relationship table", "Ryšių lentelė"), detail: t("CSV · flat relationship export", "CSV · plokščiasis ryšių eksportas"), href: 'https://apt.hecavex.com/data/relationships.csv' }
+    ]
+  },
+  {
+    index: '03',
+    id: 'labs',
+    name: 'HECAVEX Labs',
+    owner: 'Labs',
+    cadence: t("Curated workspace releases", "Atrinktos tyrimų darbo erdvių laidos"),
+    description: t("Bounded datasets behind public research workspaces. Labs publishes only files listed in its deny-by-default public manifest.", "Ribotos apimties viešų tyrimų darbo erdvių duomenys. Labs skelbia tik aiškiai viešame manifeste leistus failus."),
+    links: [
+      { label: t("Dataset catalogue", "Duomenų rinkinių katalogas"), detail: t("JSON · dataset descriptions and update state", "JSON · rinkinių aprašai ir atnaujinimo būsena"), href: 'https://labs.hecavex.com/data/catalogue.json' },
+      { label: t("Publication manifest", "Publikavimo manifestas"), detail: t("JSON · exact public-file allowlist", "JSON · tikslus leidžiamų viešinti failų sąrašas"), href: 'https://labs.hecavex.com/data/public-manifest.json' },
+      { label: t("Baltic Threat Atlas", "Baltijos grėsmių atlasas"), detail: t("JSON · Baltic observations and bounded Europe actor context", "JSON · Baltijos stebėjimai ir ribotas Europos veikėjų kontekstas"), href: 'https://labs.hecavex.com/data/atlas/records.json' },
+      { label: t("Reviewed ATT&CK evidence", "Peržiūrėti ATT&CK įrodymai"), detail: t("JSON · source-linked mappings from APT Notes", "JSON · ryšiai su APT Notes šaltiniais"), href: 'https://labs.hecavex.com/data/attack/intelligence/reviewed-evidence.json' },
+      { label: t("Pivot cases", "Pivoting atvejai"), detail: t("JSON · four public case graphs including Hostinger infrastructure", "JSON · keturi vieši atvejų grafai, įskaitant Hostinger infrastruktūrą"), href: 'https://labs.hecavex.com/data/pivots/cases.json' }
+    ]
+  }
+];
+---
+<BaseLayout
+  lang={lang}
+  title={t("Public data catalogue", "Viešų duomenų katalogas")}
+  description={t("Canonical directory of public machine-readable datasets maintained by HECAVEX Radar, APT Notes, and HECAVEX Labs.", "Pagrindinis HECAVEX Radar, APT Notes ir Labs viešų mašininiu būdu skaitomų duomenų rinkinių katalogas.")}
+  canonicalPath={lang === 'lt' ? '/lt/duomenys/' : '/data/'}
+  alternatePath={lang === 'lt' ? '/data/' : '/lt/duomenys/'}
+  xDefaultPath="/data/"
+  type="CollectionPage"
+>
+  <div class="shell page-shell data-catalogue">
+    <PageHeader
+      lang={lang}
+      title={t("Public data catalogue", "Viešų duomenų katalogas")}
+      description={t("A portfolio-level directory for public machine-readable records maintained by Radar, APT Notes, and Labs.", "Bendras Radar, APT Notes ir Labs viešų mašininiu būdu skaitomų įrašų katalogas.")}
+      eyebrow={t("HECAVEX / DATA", "HECAVEX / DUOMENYS")}
+    />
+
+    <aside class="data-catalogue__boundary" aria-labelledby="catalogue-boundary-title">
+      <div>
+        <p class="eyebrow">{t("Publication boundary", "Publikavimo ribos")}</p>
+        <h2 id="catalogue-boundary-title">{t("One index, three canonical publishers", "Vienas indeksas, trys pagrindiniai leidėjai")}</h2>
+      </div>
+      <p>{t("This page does not copy or proxy the datasets. Each link opens the canonical file on the HECAVEX product that maintains its schema, provenance, update cycle, licence, and limitations.", "Šis puslapis nekopijuoja rinkinių ir netarpininkauja juos gaunant. Nuorodos atveria pagrindinius failus HECAVEX projektuose, kurie prižiūri jų schemas, kilmę, atnaujinimo ciklus, licencijas ir ribotumus.")}</p>
+    </aside>
+
+    <section class="data-catalogue__section" aria-labelledby="datasets-title">
+      <header class="section-head">
+        <div>
+          <p class="eyebrow">{t("Machine-readable releases", "Mašininiu būdu skaitomos laidos")}</p>
+          <h2 id="datasets-title">{t("Current public catalogues", "Dabartiniai vieši katalogai")}</h2>
+          <p>{t("Use the product-level documentation before integrating a distribution. A public file is not automatically a verdict, attribution claim, detection rule, or permission to redistribute upstream material.", "Prieš integruodami rinkinį perskaitykite projekto dokumentaciją. Viešas failas savaime nėra verdiktas, priskyrimo teiginys, aptikimo taisyklė ar leidimas perskelbti pirminių teikėjų medžiagą.")}</p>
+        </div>
+      </header>
+
+      <div class="data-product-list">
+        {catalogues.map((catalogue) => <article id={catalogue.id} class="data-product">
+          <header class="data-product__head">
+            <span>{catalogue.index}</span>
+            <div>
+              <p class="eyebrow">{t('Maintained by', 'Prižiūri')} {catalogue.owner}</p>
+              <h3>{catalogue.name}</h3>
+            </div>
+            <p>{catalogue.cadence}</p>
+          </header>
+          <p class="data-product__description">{catalogue.description}</p>
+          <ul class="data-product__links">
+            {catalogue.links.map((link) => <li>
+              <a href={link.href}>{link.label} <span aria-hidden="true">↗</span></a>
+              <small>{link.detail}</small>
+            </li>)}
+          </ul>
+        </article>)}
+      </div>
+    </section>
+
+    <section class="data-catalogue__section data-catalogue__use" aria-labelledby="using-data-title">
+      <header>
+        <p class="eyebrow">{t("Consumer notes", "Pastabos naudotojui")}</p>
+        <h2 id="using-data-title">{t("Before using a dataset", "Prieš naudojant duomenų rinkinį")}</h2>
+      </header>
+      <ol>
+        <li><strong>{t("Read its local contract.", "Perskaitykite rinkinio sutartį.")}</strong><span>{t("Scope, freshness, confidence, retention and field semantics differ between products.", "Projektų apimtis, naujumas, pasitikėjimas, saugojimo trukmė ir laukų reikšmės skiriasi.")}</span></li>
+        <li><strong>{t("Pin a release where reproducibility matters.", "Kai svarbus atkartojamumas, nurodykite konkrečią laidą.")}</strong><span>{t("Use the product version, manifest or digest instead of assuming that a live URL never changes.", "Naudokite versiją, manifestą ar kontrolinę sumą. Nelaikykite veikiančio URL nekintamu failu.")}</span></li>
+        <li><strong>{t("Preserve provenance and uncertainty.", "Išlaikykite kilmę ir neapibrėžtumą.")}</strong><span>{t("Do not turn a candidate, reported relationship or bounded observation into a stronger claim than its source supports.", "Kandidato, pranešto ryšio ar riboto stebėjimo neverskite stipresniu teiginiu, nei leidžia šaltinis.")}</span></li>
+        <li><strong>{t("Check reuse terms.", "Patikrinkite pakartotinio naudojimo sąlygas.")}</strong><span>{t("Code licences do not automatically relicense datasets, article text, screenshots or upstream provider material.", "Kodo licencijos savaime nekeičia rinkinių, straipsnių, ekrano kopijų ar pirminių teikėjų medžiagos licencijų.")}</span></li>
+      </ol>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,4 +1,8 @@
 ---
+evidence_basis: "Šiame tyrime išsaugotos puslapių kopijos, nukreipimų stebėjimai ir infrastruktūros pavyzdžiai. Tai istoriniai stebėjimai, ne dabartinis veikiančių svetainių sąrašas."
+methods: ["Skirtingai pateikiamo puslapių turinio palyginimas","Nukreipimų ir infrastruktūros ryšių vertinimas"]
+draft: false
+published: true
 title: "Facebook cloaking tyrimas: netikros naujienos ir investicinio sukčiavimo infrastruktūra"
 description: "Tyrimas, kaip Facebook cloaking, netikros naujienos ir investicinis sukčiavimas sujungiami į vieną aukų atrankos, redirect ir monetizavimo infrastruktūrą."
 seo_title: "Facebook cloaking ir investicinio sukčiavimo infrastruktūra"

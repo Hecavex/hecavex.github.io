@@ -1,4 +1,5 @@
 ---
+published: true
 title: "OSINT renka. CTI padeda priimti sprendimą."
 card_title: "OSINT ir CTI nėra tas pats darbas"
 description: "Kodėl atvirųjų šaltinių rinkimas ir kibernetinių grėsmių žvalgyba yra susijusios, bet skirtingos disciplinos, ir kaip viešą informaciją paversti pagrįstu saugumo sprendimu."

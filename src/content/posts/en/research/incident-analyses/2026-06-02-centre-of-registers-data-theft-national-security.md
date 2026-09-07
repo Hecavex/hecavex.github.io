@@ -1,4 +1,8 @@
 ---
+evidence_basis: "Publicly reported Centre of Registers data theft and the analytical scenarios discussed in the article. No incident-response logs or stolen dataset are published here."
+methods: ["Review of public incident reporting","Separation of confirmed facts from downstream-use scenarios"]
+draft: false
+published: true
 title: "The Centre of Registers Data Theft: When \"It’s Just Data\" Suddenly Becomes a National Security Issue"
 description: "Why large-scale theft from Lithuania's Centre of Registers is not merely a privacy incident but a potential intelligence and national-security issue."
 seo_title: "Lithuania Centre of Registers Data Theft and National Security"

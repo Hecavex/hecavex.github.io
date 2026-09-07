@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Signalų apžvalga #1: išnaudojami tinklo įrenginiai, WordPress RCE grandinė ir DI vertinimo rizika"
 description: "Penki CVE, kuriuos verta prioritetizuoti, Hugging Face modelių vertinimo incidentas ir naujos Kibernetinio atsparumo akto gairės. Laikotarpis: 2026 m. liepos 20 d.–rugpjūčio 2 d."
 seo_description: "Prioritetinė apžvalga apie penkis CVE, WordPress RCE grandinę, Hugging Face incidentą ir CRA gaires nuo liepos 20 d. iki rugpjūčio 2 d."

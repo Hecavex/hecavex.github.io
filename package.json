@@ -26,7 +26,9 @@
     "check:performance": "node scripts/check_performance_budgets.mjs dist",
     "audit:site": "node scripts/audit-site.mjs dist",
     "audit:responsive": "node scripts/audit_responsive.mjs dist",
-    "verify": "npm run lint:js && npm run lint:css && npm run build && npm run check:routes && npm run check:performance && npm run audit:site && npm run audit:responsive"
+    "test": "node --test scripts/*.test.mjs",
+    "check:evidence": "node scripts/check-retained-evidence.mjs",
+    "verify": "npm test && npm run lint:js && npm run lint:css && npm run check:evidence && npm run build && npm run check:routes && npm run check:performance && npm run audit:site && npm run audit:responsive"
   },
   "dependencies": {
     "astro": "7.1.6"

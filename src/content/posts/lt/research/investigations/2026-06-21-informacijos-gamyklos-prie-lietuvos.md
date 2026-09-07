@@ -1,4 +1,8 @@
 ---
+evidence_basis: "Vieši pranešimai, cituojami pavyzdžiai ir straipsnyje aptariama informacinių operacijų infrastruktūra. Šie šaltiniai neįrodo vieno visų aptartų veiklų koordinatoriaus."
+methods: ["Naratyvų ir lokalizavimo palyginimas","Viešų infrastruktūros ir sklaidos duomenų vertinimas"]
+draft: false
+published: true
 title: "Informacijos gamyklos prie Lietuvos sienos. Kaip Rusijos ir Baltarusijos informacinės operacijos veikia prieš Lietuvą, NATO ir Europą"
 card_title: "Informacijos gamyklos prie Lietuvos sienos"
 description: "Kaip Rusijos ir Baltarusijos informacinės operacijos kuria, lokalizuoja ir platina naratyvus prieš Lietuvą, NATO ir Europą."

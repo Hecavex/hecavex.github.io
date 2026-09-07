@@ -39,6 +39,10 @@ The authoritative deployment is the GitHub Pages workflow on `main`. Every relea
 
 The same release gate is available to the maintainer as `npm run verify`. It is an operational control for this publication, not a promise that the repository is a supported downstream website package.
 
+Each build emits `release.json` with the Git revision and delivered-file SHA-256 values for representative English/Lithuanian pages, both data catalogues, search indexes, feeds and the security contact. The post-deploy check requires that exact revision and those bytes, not merely successful HTTP responses.
+
+Visual acceptance is separate from build validity. [The review contract](docs/EDITORIAL-VISUAL-REVIEW.md) provides a private preview-sheet command, evidence-caption requirements and the boundary for measured Search Console decisions.
+
 The production workflow requires the `HECAVEX_ANALYTICS_TOKEN` repository variable, includes the manually installed Cloudflare Web Analytics beacon and verifies that every generated shell page contains exactly one configured site tag. Local builds omit the beacon unless `PUBLIC_HECAVEX_ANALYTICS_TOKEN` is supplied. The loader honours `Do Not Track: 1`, and the implementation and portfolio boundaries are recorded in [Site measurement](docs/MEASUREMENT.md).
 
 ## HECAVEX network

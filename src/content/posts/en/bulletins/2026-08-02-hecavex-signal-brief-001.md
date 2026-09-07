@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Signal Brief #1: exploited edge devices, a WordPress RCE chain and AI evaluation risk"
 description: "Five CVEs defenders should triage, plus the Hugging Face model-evaluation incident and new Cyber Resilience Act guidance. Coverage: 20 July–2 August 2026."
 seo_title: "Actively Exploited WordPress and Edge Device Vulnerabilities"

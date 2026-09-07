@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Signalų apžvalga #3: išnaudojamas Metabase, privačios cyber operacijos ir DI remiamas šnipinėjimas"
 card_title: "Signalų apžvalga #3: Metabase, privačios cyber operacijos ir DI šnipinėjime"
 description: "Trys išnaudojami CVE, du geopolitiniai cyber pokyčiai, trys duomenų nutekėjimo ir ransomware atvejai bei dvi šnipinėjimo kampanijos. Laikotarpis: 2026 m. rugpjūčio 10–14 d."

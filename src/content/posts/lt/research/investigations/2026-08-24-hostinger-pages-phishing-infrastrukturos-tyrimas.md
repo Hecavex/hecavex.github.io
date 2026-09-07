@@ -10,7 +10,7 @@ seo_keywords:
   - "phishing kit analizė"
   - "Cloudflare Pages phishing"
 date: 2026-08-27 08:00:00 +0300
-last_modified_at: 2026-08-27 08:30:00 +0300
+last_modified_at: 2026-09-07
 last_reviewed_at: 2026-08-27 08:30:00 +0300
 lang: lt
 translation_key: hostinger-pages-phishing-infrastructure
@@ -26,7 +26,10 @@ research_version: "1.2"
 research_status: published
 evidence_basis: "Hash patikrinti archyvuoti dokumentai ir JavaScript, URLScan vieši stebėjimai, statinė kodo analizė, ribotas dabartinės būsenos ir fiksuotų path'ų patikrinimas, vienas isolated-VM stebėjimas bei sanitizuotos agreguotos išvestys."
 methods: [static analysis, exact-hash pivoting, URLScan correlation, DNS and TLS validation, bounded HTTP verification, fixed-path response comparison, isolated-VM browser observation, descriptive hostname analysis]
-research_bundle: /assets/data/hostinger-pages-phishing-2026/README.md
+research_artifacts:
+  - label: "Istorinės pakuotės klaidos paaiškinimas"
+    url: "https://hecavex.com/assets/data/hostinger-pages-phishing-2026/CORRECTION.md"
+research_bundle: https://github.com/Hecavex/research-artifacts/tree/main/releases/hostinger-pages-phishing-2026/v1.1.1
 scope: "Hostinger tematika sukurto credential-harvesting kit'o statinė analizė, URLScan istorinių stebėjimų koreliacija, riboti neinteraktyvūs infrastruktūros ir fixed-path patikrinimai, vienas fiksuotų archyvų vardų negative check bei vėlesnis isolated-VM spot check be formos pateikimo."
 limitations: "Tyrimas nenustato aukų skaičiaus, sėkmingų prisijungimo duomenų pateikimų, tikslaus hostname generatoriaus, vieno operatoriaus ar Hostinger sistemų kompromitavimo. Joks valid kit'o archyvas nebuvo gautas. Manual VM patikrinimas neišsaugojo HAR, todėl automatinio tracker kontakto ir tikslios path-dependent browser elgsenos priežasties atkurti negalima. URLScan skaičiai yra skenavimo stebėjimai, ne aukos."
 key_findings:

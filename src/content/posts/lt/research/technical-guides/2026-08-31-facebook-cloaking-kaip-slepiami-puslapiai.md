@@ -280,7 +280,7 @@ Skirtingoms komandoms reikia skirtingų to paties įrašo dalių:
 - **SOC ir incident response:** paveiktas žmogus, naršyklės, proxy bei DNS telemetrija, suvesti duomenys ar patvirtinimai, atsisiuntimai ir containment
 - **grėsmių žvalgyba:** provenance, laiko ribos, ryšiai, alternatyvūs paaiškinimai ir confidence.
 
-Jei pateikti prisijungimo ar kortelės duomenys, autentifikacijos kodas arba mokėjimo patvirtinimas, rinkimas jau nėra pirmas prioritetas. Paskyrą reikia riboti oficialiais kanalais. [Įtartinos SMS vadove](/lt/tyrimai/kaip-saugiai-patikrinti-itartina-sms-nuoroda/#ka-daryti-po-paspaudimo-ar-duomenu-suvedimo) atskirti veiksmai po paprasto paspaudimo, slaptažodžio, mokėjimo duomenų, patvirtinimo ar įdiegto failo.
+Jei pateikti prisijungimo ar kortelės duomenys, autentifikacijos kodas arba mokėjimo patvirtinimas, rinkimas jau nėra pirmas prioritetas. Paskyrą reikia riboti oficialiais kanalais. [Įtartinos SMS vadove](/lt/tyrimai/kaip-saugiai-patikrinti-itartina-sms-nuoroda/#ką-daryti-po-paspaudimo-ar-duomenų-suvedimo) atskirti veiksmai po paprasto paspaudimo, slaptažodžio, mokėjimo duomenų, patvirtinimo ar įdiegto failo.
 
 ## Ko šie įrodymai vieni nepatvirtina
 

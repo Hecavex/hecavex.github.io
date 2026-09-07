@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-import { readFile, readdir, stat } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { extname, join, relative, resolve } from 'node:path';
+import { hasFragment } from '../src/lib/html-fragments.mjs';
 
 const root = resolve(process.argv[2] ?? 'dist');
 const failures = [];
@@ -18,9 +19,11 @@ async function walk(directory) {
   return files;
 }
 
-async function isFile(path) { try { return (await stat(path)).isFile(); } catch { return false; } }
+async function isFile(path) { return fileSet.has(resolve(path)); }
 const files = await walk(root);
+const fileSet = new Set(files.map((path) => resolve(path)));
 const htmlFiles = files.filter((file) => extname(file) === '.html');
+const htmlCache = new Map(await Promise.all(htmlFiles.map(async (file) => [resolve(file), await readFile(file, 'utf8')])));
 const canonicalOwners = new Map();
 const hreflangByCanonical = new Map();
 let wideTableClasses = 0;
@@ -36,18 +39,18 @@ function stripMarkup(value) { return value.replace(/<script[\s\S]*?<\/script>/gi
 function countOccurrences(value, needle) { return needle ? value.split(needle).length - 1 : 0; }
 
 function resolveLocal(raw, currentFile) {
-  if (!raw || /^(?:mailto:|tel:|data:|javascript:|#)/i.test(raw) || raw.startsWith('//')) return undefined;
+  if (!raw || /^(?:mailto:|tel:|data:|javascript:)/i.test(raw) || raw.startsWith('//')) return undefined;
   let url;
   try { url = new URL(raw, `https://hecavex.com/${relative(root, currentFile).replaceAll('\\', '/')}`); } catch { return { path: raw, target: '' }; }
   if (url.hostname !== 'hecavex.com') return undefined;
   const path = decodeURIComponent(url.pathname);
   const target = path.endsWith('/') ? join(root, path.slice(1), 'index.html') : join(root, path.slice(1));
-  return { path, target };
+  return { path, target, hash: url.hash };
 }
 
 for (const file of htmlFiles) {
   const route = `/${relative(root, file).replaceAll('\\', '/')}`;
-  const html = await readFile(file, 'utf8');
+  const html = htmlCache.get(resolve(file));
   if (/\{:\s*[^}]+\}/i.test(html)) failures.push(`${route}: unprocessed legacy Markdown attribute marker`);
   if (/<p>\s*<img\b[^>]*>\s*<em>[\s\S]*?<\/em>\s*<\/p>/i.test(html)) failures.push(`${route}: evidence image and caption were not converted to a semantic figure`);
   wideTableClasses += (html.match(/class=["'][^"']*\bhx-table-wide\b/gi) ?? []).length;
@@ -56,6 +59,11 @@ for (const file of htmlFiles) {
   evidenceFigures += (html.match(/class=["'][^"']*\bhx-evidence-figure\b/gi) ?? []).length;
   const shellDocument = !route.startsWith('/assets/media/');
   const articleDocument = /class=["'][^"']*\barticle-body\b[^"']*\bprose\b/i.test(html);
+  const citation = html.match(/<aside class="citation-block">([\s\S]*?)<\/aside>/)?.[1] ?? '';
+  if (/[\u201c\u201d\u201e]/u.test(citation)) failures.push(`${route}: citation template must use straight quotes`);
+  const record = html.match(/<section class="research-record"([\s\S]*?)<\/section>/)?.[1] ?? '';
+  const signals = html.match(/<dl class="article-signals">([\s\S]*?)<\/dl>/)?.[1] ?? '';
+  if (route.startsWith('/lt/') && /(?:>PUBLICATION RECORD<|<dd>(?:published|updated|high|moderate)<)/.test(record + signals)) failures.push(`${route}: untranslated controlled record label`);
   const noindex = /<meta\s+[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html);
   const expectedAnalyticsReferences = shellDocument && analyticsToken ? 1 : 0;
   const analyticsReferences = countOccurrences(html, analyticsSource);
@@ -146,6 +154,12 @@ for (const file of htmlFiles) {
       const indexTarget = `${local.target}${extname(local.target) ? '' : '/index.html'}`;
       if (!(await isFile(indexTarget))) failures.push(`${route}: unresolved internal reference ${raw}`);
     }
+    if (local?.hash) {
+      const target = await isFile(local.target) ? local.target : `${local.target}/index.html`;
+      if (await isFile(target) && extname(target) === '.html' && !hasFragment(htmlCache.get(resolve(target)), local.hash)) {
+        failures.push(`${route}: unresolved internal fragment ${raw}`);
+      }
+    }
   }
   if (!stripMarkup(html)) failures.push(`${route}: empty document`);
 }
@@ -192,6 +206,7 @@ for (const lang of ['en', 'lt']) {
   for (const [index, record] of records.entries()) {
     if (!String(record.searchText ?? '').trim()) failures.push(`${lang}/search.json: record ${index} is missing precomputed searchText`);
     if (!Array.isArray(record.keywords)) failures.push(`${lang}/search.json: record ${index} is missing SEO keyword search fields`);
+    if (!Array.isArray(record.categoryLabels) || record.categoryLabels.length !== record.categories.length) failures.push(`${lang}/search.json: record ${index} is missing localized category labels`);
     if (Object.hasOwn(record, 'content')) failures.push(`${lang}/search.json: record ${index} still exposes the legacy unprocessed content field`);
   }
 }

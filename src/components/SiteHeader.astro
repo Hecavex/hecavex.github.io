@@ -5,7 +5,7 @@ interface Props { lang: Lang; alternatePath?: string; }
 const { lang, alternatePath } = Astro.props;
 const path = Astro.url.pathname;
 const active = (href: string) => href.endsWith('/') ? path === href || (href.includes('/research/') || href.includes('/tyrimai/')) && path.startsWith(href) : path === href;
-const activeNetworkItem = path.startsWith('/data/') ? 'Data' : 'Research';
+const activeNetworkItem = path.startsWith('/data/') || path.startsWith('/lt/duomenys/') ? 'Data' : 'Research';
 const menuLabel = lang === 'lt' ? 'Atverti navigacijos meniu' : 'Open navigation menu';
 const searchLabel = lang === 'lt' ? 'Paieška' : 'Search';
 const otherLanguage = lang === 'lt' ? 'EN' : 'LT';

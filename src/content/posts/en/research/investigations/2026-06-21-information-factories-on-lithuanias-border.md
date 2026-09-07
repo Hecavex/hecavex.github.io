@@ -1,4 +1,8 @@
 ---
+evidence_basis: "Public reports, cited examples and information-operation infrastructure discussed in the article. These sources do not establish a single coordinator for every described activity."
+methods: ["Comparison of narratives and localization","Open-source infrastructure and amplification assessment"]
+draft: false
+published: true
 title: "Information Factories on Lithuania's Border: How Russian and Belarusian Information Operations Target Lithuania, NATO, and Europe"
 card_title: "Information Factories on Lithuania’s Border"
 description: "How Russian and Belarusian information operations manufacture, localise, and distribute narratives targeting Lithuania, NATO, and Europe."

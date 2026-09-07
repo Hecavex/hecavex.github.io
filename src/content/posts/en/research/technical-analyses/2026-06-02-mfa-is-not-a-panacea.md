@@ -1,4 +1,8 @@
 ---
+evidence_basis: "The public incidents and identity-security mechanisms discussed in the article. This is a defensive assessment, not telemetry from a tested organization."
+methods: ["Comparison of MFA and session-theft mechanisms","Identity containment and control assessment"]
+draft: false
+published: true
 title: "MFA Is Not a Panacea, and It's Time We Stopped Pretending It Is"
 description: "Why MFA is essential but insufficient against session theft, AiTM, token replay, OAuth abuse, and modern account takeover."
 seo_title: "MFA Bypass Through Adversary-in-the-Middle Phishing"

@@ -1,5 +1,5 @@
 import type { APIRoute, GetStaticPaths } from 'astro';
-import { getLocalizedPosts, type Lang } from '../../lib/site';
+import { getLocalizedPosts, taxonomy, type Lang } from '../../lib/site';
 
 export const getStaticPaths = (() => [{ params: { lang: 'en' } }, { params: { lang: 'lt' } }]) satisfies GetStaticPaths;
 
@@ -22,6 +22,7 @@ export const GET: APIRoute = async ({ params }) => {
     url: post.url,
     date: post.date.toISOString(),
     categories: post.categories,
+    categoryLabels: post.categories.map((category) => taxonomy[category]?.[post.lang] ?? category),
     tags: post.tags,
     keywords: post.seoKeywords,
     searchText: [

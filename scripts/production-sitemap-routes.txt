@@ -1,5 +1,6 @@
 /
 /data/
+/lt/duomenys/
 /en/
 /en/about/
 /en/archive/

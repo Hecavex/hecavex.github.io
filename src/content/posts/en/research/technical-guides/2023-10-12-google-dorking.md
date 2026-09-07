@@ -1,8 +1,11 @@
 ---
+evidence_basis: "Retained historical search screenshots, illustrative queries and official Google search-operator documentation. Search-result counts are not a measured population."
+methods: ["Stepwise query construction","Query and retrieval logging","Assessment of index and operator limitations"]
+published: true
 title: "Advanced Search for OSINT: A Reproducible Query Method"
 card_title: "Advanced Search for OSINT"
 date: 2023-10-12 14:00:00 +0300
-last_modified_at: 2026-08-14 12:00:00 +0300
+last_modified_at: 2026-09-07
 lang: en
 translation_key: google-dorking-001
 categories: [osint, tradecraft]
@@ -28,7 +31,7 @@ featured: false
 draft: false
 comments: false
 toc: true
-research_version: "2.0"
+research_version: "2.1"
 research_status: updated
 key_findings:
   - Advanced search is most useful when a broad research question is decomposed into entities, source boundaries, document types and time windows.
@@ -37,9 +40,21 @@ key_findings:
 scope: Public-web discovery using mainstream search operators for lawful OSINT and CTI collection.
 limitations: Search engines expose an incomplete and changing index. An absent result does not establish that the material or relationship does not exist.
 updates:
+  - date: 2026-09-07
+    note: "Added checked official operator documentation and clarified historical screenshots versus a reproducible current search log."
   - date: 2026-08-14
     note: Rewritten as a reproducible OSINT collection method with a search log, evidence-preservation guidance and current operator limitations.
 ---
+
+## Official documentation and the reproduction boundary
+
+Documentation checked on 7 September 2026. The original screenshots below remain historical captures, not reruns performed on that date.
+
+- Google's [search refinement documentation](https://support.google.com/websearch/answer/2466433) covers quotes, exclusions, `site:`, `filetype:`, `before:` and `after:`. Date filters concern Google's interpretation of an updated document, not proof of an original publication date.
+- Google's [site operator documentation](https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site) explicitly describes incomplete results. A `site:` result count is not the number of indexed URLs, and a missing result is not proof of absence.
+- [Google Advanced Search](https://www.google.com/advanced_search) provides visible controls for phrase, domain, format and term placement. If a shortcut behaves differently, record the exact engine/interface and verify the returned documents rather than assuming universal syntax.
+
+The query examples are a method, not a preserved result set. Reproduction requires a new dated query log and retrieved-source inventory. Search personalization, region, language and index changes can produce a different result without invalidating the earlier screenshot. Historical archive retrieval is a separate collection step, not a guarantee supplied by a search snippet.
 
 ## Search is a collection method, not a magic trick
 
@@ -174,7 +189,7 @@ The screenshots show the practical effect of narrowing a query. The number displ
 - **Over-constraining too early.** Useful synonyms and sources disappear before the analyst sees them.
 - **Treating ranking as credibility.** The first result is optimized for relevance, not evidential quality.
 - **Confusing absence with non-existence.** Index coverage, language, robots rules and dynamic pages create blind spots.
-- **Using stale operators.** Search features change. The retired Google cache link is a good example. Use web archives directly when historical material is required.
+- **Using stale operators.** Search features change. Use a separately documented web archive when historical material is required, rather than treating a search snippet as a preserved copy.
 - **Collecting without a question.** A folder full of links is not intelligence.
 - **Ignoring safety.** Suspicious results should be handled through an isolated research workflow, not opened casually on a production workstation.
 

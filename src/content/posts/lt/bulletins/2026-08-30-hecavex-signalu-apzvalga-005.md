@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Signalų apžvalga #5: išnaudojamos kūrimo platformos, DI valdymo sluoksniai ir internetu pasiekiamos kameros"
 card_title: "Signalų apžvalga #5: kūrimo platformos, DI valdymo sluoksniai ir internetu pasiekiamos kameros"
 description: "Vienuolika naujų CISA KEV įrašų, atakos prieš DI gateway ir orchestration servisus, kamerų saugumo rekomendacijos ir Lietuvos phishing atvejis. Laikotarpis: 2026 m. rugpjūčio 22–30 d."

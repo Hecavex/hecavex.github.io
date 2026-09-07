@@ -3,6 +3,7 @@
 import { access, readFile, readdir } from 'node:fs/promises';
 import { extname, join, relative, resolve } from 'node:path';
 import { parse } from 'yaml';
+import { isApprovedPublication } from '../src/lib/publication-state.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const postsRoot = join(root, 'src', 'content', 'posts');
@@ -89,7 +90,6 @@ export async function validate() {
   if (!Number.isFinite(expiryTime)) errors.push('security.txt requires a valid RFC 3339 Expires field');
   else if (expiryTime - Date.now() < 45 * 24 * 60 * 60 * 1000) errors.push('security.txt expires in fewer than 45 days; renew it before release');
 
-  if (files.length === 0 || files.length % 2 !== 0) errors.push(`expected a non-zero even number of bilingual Markdown posts, found ${files.length}`);
 
   for (const absolute of files) {
     const file = relative(root, absolute).replaceAll('\\', '/');
@@ -98,8 +98,8 @@ export async function validate() {
     for (const violation of proseStyleViolations(source)) {
       errors.push(`${file}:${violation.line}: ${violation.message}`);
     }
-    if (data.draft === true) {
-      if (data.published !== false) errors.push(`${file}: draft posts must also set published: false`);
+    if (!isApprovedPublication(data)) {
+      if (data.draft !== true || data.published !== false) errors.push(`${file}: set draft: false and published: true to approve, or draft: true and published: false to withhold`);
       continue;
     }
     if (!allowedLanguages.has(data.lang)) errors.push(`${file}: lang must be en or lt`);
@@ -108,7 +108,13 @@ export async function validate() {
     if (searchDescription.length > 160) errors.push(`${file}: effective search description exceeds 160 characters (${searchDescription.length}); add a concise seo_description`);
     if (!allowedTypes.has(String(data.content_type))) errors.push(`${file}: missing or invalid content_type`);
     if (evidenceTypes.has(data.content_type)) {
-      for (const field of ['key_findings', 'scope', 'limitations']) if (!data[field] || (Array.isArray(data[field]) && !data[field].length)) errors.push(`${file}: evidence-bearing publication missing ${field}`);
+      for (const field of ['key_findings', 'scope', 'limitations', 'evidence_basis', 'methods']) if (!data[field] || (Array.isArray(data[field]) && !data[field].length)) errors.push(`${file}: evidence-bearing publication missing ${field}`);
+      if (!Array.isArray(data.methods) || data.methods.some((method) => typeof method !== 'string' || !method.trim())) errors.push(`${file}: methods must be a non-empty string list`);
+      if (data.last_reviewed_at && !Number.isFinite(Date.parse(String(data.last_reviewed_at)))) errors.push(`${file}: invalid substantive review date`);
+      for (const artifact of data.research_artifacts ?? []) {
+        if (!artifact.label?.trim() || !/^https:\/\//.test(artifact.url ?? '')) errors.push(`${file}: artifact requires a label and HTTPS URL`);
+        if (artifact.sha256 && !/^[a-f0-9]{64}$/.test(artifact.sha256)) errors.push(`${file}: invalid artifact SHA-256`);
+      }
     }
     const pair = `${data.translation_key}:${data.lang}`;
     if (keys.has(pair)) errors.push(`${file}: duplicate translation_key ${data.translation_key} for ${data.lang}`);
@@ -136,6 +142,7 @@ export async function validate() {
     if (/\{%|\{\{\s*(?:site|page|post)\./.test(source)) errors.push(`${file}: contains unrendered template syntax`);
   }
 
+  if (keys.size === 0 || keys.size % 2 !== 0) errors.push(`expected a non-zero even number of approved bilingual posts, found ${keys.size}`);
   const parityFields = ['date', 'last_modified_at', 'content_type', 'categories', 'author', 'confidence', 'tlp', 'featured', 'draft', 'published', 'toc', 'comments', 'series', 'issue', 'coverage_start', 'coverage_end', 'information_cutoff', 'critical_count', 'high_count', 'watch_count'];
   for (const key of new Set([...keys.keys()].map((value) => value.split(':')[0]))) {
     const languages = ['en', 'lt'].filter((lang) => keys.has(`${key}:${lang}`));
@@ -210,8 +217,8 @@ export async function validate() {
 
   for (const message of warnings) console.warn(`WARNING: ${message}`);
   if (errors.length) throw new Error(`Content validation failed:\n- ${[...new Set(errors)].join('\n- ')}`);
-  console.log(`Content validation passed (${files.length} public localized posts; ${pageFiles.length} localized static pages; ${keys.size + pageKeys.size} language records).`);
-  return { postCount: files.length, pageCount: pageFiles.length, languageRecords: keys.size + pageKeys.size, warnings };
+  console.log(`Content validation passed (${keys.size} approved localized posts; ${pageFiles.length} localized static pages; ${keys.size + pageKeys.size} language records).`);
+  return { postCount: keys.size, pageCount: pageFiles.length, languageRecords: keys.size + pageKeys.size, warnings };
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === resolve(import.meta.filename)) {

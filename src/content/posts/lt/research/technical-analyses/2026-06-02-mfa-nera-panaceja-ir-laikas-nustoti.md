@@ -1,4 +1,8 @@
 ---
+evidence_basis: "Straipsnyje aptariami vieši incidentai ir tapatybės saugumo mechanizmai. Tai gynybinis vertinimas, ne konkrečios tikrintos organizacijos telemetrija."
+methods: ["MFA ir sesijų vagystės mechanizmų palyginimas","Tapatybės incidento ribojimo ir kontrolės priemonių vertinimas"]
+draft: false
+published: true
 title: "MFA nėra panacėja ir laikas nustoti apsimetinėti kad yra"
 description: "Kodėl MFA yra būtina, bet nepakankama apsauga nuo session theft, AiTM, token replay, OAuth abuse ir šiuolaikinio account takeover."
 seo_title: "MFA apėjimas: AiTM phishing ir sesijos vagystė"

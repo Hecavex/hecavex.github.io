@@ -37,10 +37,10 @@ const posts = defineCollection({
     categories: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
     image: imageSchema.optional(),
-    confidence: z.string().optional(),
+    confidence: z.enum(['high', 'moderate', 'low']).optional(),
     tlp: z.string().optional(),
     featured: z.boolean().default(false),
-    draft: z.boolean().default(false),
+    draft: z.boolean().optional(),
     published: z.boolean().optional(),
     toc: z.boolean().default(true),
     prose_width: z.enum(['standard', 'wide']).optional(),
@@ -50,6 +50,17 @@ const posts = defineCollection({
     limitations: z.string().optional(),
     methods: z.array(z.string()).optional(),
     evidence_basis: z.string().optional(),
+    research_id: z.string().optional(),
+    research_version: z.string().min(1).optional(),
+    research_status: z.enum(['published', 'updated', 'corrected', 'retracted']).optional(),
+    last_reviewed_at: z.coerce.date().optional(),
+    research_bundle: z.string().refine((value) => value.startsWith('https://') || (value.startsWith('/') && !value.startsWith('//')), 'Bundle URLs must use HTTPS or a same-origin path').optional(),
+    research_artifacts: z.array(z.object({
+      label: z.string().min(1),
+      url: z.url().refine((value) => value.startsWith('https://'), 'Artifact URLs must use HTTPS'),
+      version: z.string().min(1).optional(),
+      sha256: z.string().regex(/^[a-f0-9]{64}$/).optional()
+    })).optional(),
     updates: z.array(z.object({ date: z.coerce.date(), note: z.string() })).optional()
   }).loose()
 });

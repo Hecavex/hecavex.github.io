@@ -1,4 +1,7 @@
 ---
+evidence_basis: "The linked August 2026 UNIPARK investigation and its preserved public observations, used as a worked methodological example. This guide does not add a newly collected campaign dataset."
+methods: ["Intelligence-requirement and hypothesis definition","Time-bounded DNS, URLScan, TLS and hash pivots","Relationship provenance and competing-explanation assessment"]
+published: true
 title: "Infrastructure Pivoting for CTI: DNS, URLScan, TLS and Hashes"
 card_title: "Infrastructure Pivoting with DNS, URLScan and Hashes"
 description: "A practical CTI guide to pivoting across DNS, RDAP, URLScan, TLS, JavaScript hashes and timelines without turning correlations into unsupported attribution."

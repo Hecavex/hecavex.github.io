@@ -2664,6 +2664,11 @@ body[data-language="lt"] .table-scroll-hint::before {
 }
 
 .site-footer nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  min-width: 24px;
+  padding-block: 0.35rem;
   color: var(--muted);
   font: 500 0.62rem var(--mono);
   text-decoration: none;

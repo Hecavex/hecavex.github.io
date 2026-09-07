@@ -1,4 +1,8 @@
 ---
+evidence_basis: "Public information about the Centre of Registers incident and identity-abuse scenarios. Full technical incident evidence is unavailable in this publication."
+methods: ["Identity and session attack-path assessment","Comparison of behavioral detection opportunities"]
+draft: false
+published: true
 title: "The Centre of Registers Data Theft — Part 2"
 description: "Part two of the Centre of Registers data-theft analysis, examining stolen identity, legitimate access, and gaps in behavioural detection."
 seo_title: "Centre of Registers Data Theft: Identity and Detection Gaps"

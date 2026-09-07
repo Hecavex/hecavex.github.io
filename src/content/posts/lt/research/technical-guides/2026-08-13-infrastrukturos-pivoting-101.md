@@ -1,4 +1,7 @@
 ---
+evidence_basis: "Susietas 2026 m. rugpjūčio UNIPARK tyrimas ir jo išsaugoti vieši stebėjimai naudojami kaip metodinis pavyzdys. Vadovas neprideda naujai surinkto kampanijos duomenų rinkinio."
+methods: ["Žvalgybinio poreikio ir hipotezės apibrėžimas","Apibrėžto laikotarpio DNS, URLScan, TLS ir kontrolinių sumų pivoting","Ryšių kilmės ir alternatyvių paaiškinimų vertinimas"]
+published: true
 title: "Phishing infrastruktūros pivoting: DNS, URLScan, TLS ir hash'ai"
 card_title: "Infrastruktūros pivoting su DNS, URLScan ir hash'ais"
 description: "Praktinis CTI vadovas apie pivoting per DNS, RDAP, URLScan, TLS, JavaScript hash'us ir laiko juostas, nepaverčiant koreliacijos nepagrįsta attribution."

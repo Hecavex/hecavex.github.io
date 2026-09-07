@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Signalų apžvalga #4: atviri PLC, išnaudojamas Zimbra ir phishing per patikimas platformas"
 card_title: "Signalų apžvalga #4: atviri PLC, Zimbra ir phishing per patikimas platformas"
 description: "Aktyvi grėsmė viešiems PLC, devyni žinomi išnaudojami pažeidžiamumai, phishing per patikimas platformas, ransomware atkūrimo apgaulė ir Lietuvos pulsas. Laikotarpis: 2026 m. rugpjūčio 14–22 d."

@@ -1,4 +1,5 @@
 ---
+published: true
 title: "OSINT Is Collection. CTI Is Decision Support."
 card_title: "OSINT and CTI Are Not the Same Job"
 date: 2023-10-18 14:00:00 +0300

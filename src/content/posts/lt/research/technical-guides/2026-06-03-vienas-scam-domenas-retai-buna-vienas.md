@@ -1,4 +1,8 @@
 ---
+evidence_basis: "Straipsnyje aprašyti infrastruktūros pavyzdžiai ir pivoting būdai. Bendros savybės yra paieškos užuominos, kurias reikia patvirtinti prieš teigiant bendrą kontrolę."
+methods: ["Pasyvių DNS ir registracijos užklausų planavimas","Turinio ir infrastruktūros savybių palyginimas","Alternatyvių ryšių paaiškinimų vertinimas"]
+draft: false
+published: true
 title: "Vienas scam domenas retai būna vienas. Kaip PIVOTING padeda atsekti sukčiavimo infrastruktūrą"
 card_title: "Vienas scam domenas retai būna vienas"
 description: "Praktinis infrastruktūros pivoting metodas, padedantis nuo vieno sukčiavimo domeno pereiti prie susijusių hostų, šablonų ir backend sistemų."

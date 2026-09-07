@@ -1,4 +1,7 @@
 ---
+evidence_basis: "Išsaugotos istorinės paieškos ekrano kopijos, mokomieji užklausų pavyzdžiai ir oficiali Google operatorių dokumentacija. Paieškos rezultatų skaičiai nėra populiacijos matavimas."
+methods: ["Laipsniškas užklausų sudarymas","Užklausų ir gautų šaltinių registravimas","Indekso ir operatorių ribotumų vertinimas"]
+published: true
 title: "OSINT galimybės: pažangioji \"Google\" paieška"
 description: "Pažangūs \"Google\" paieškos operatoriai padeda aptikti įprastoje paieškoje sunkiai randamą informaciją ir yra naudingi OSINT, saugumo tyrimams bei analizei."
 seo_title: "Google dorking OSINT: pažangūs paieškos operatoriai"
@@ -9,7 +12,7 @@ seo_keywords:
   - "OSINT paieška"
   - "site ir filetype operatoriai"
 date: 2023-10-12 14:00:00 +0300
-last_modified_at: 2026-08-14 12:00:00 +0300
+last_modified_at: 2026-09-07
 lang: lt
 translation_key: google-dorking-001
 categories: [osint, tradecraft]
@@ -27,7 +30,7 @@ featured: false
 draft: false
 toc: true
 comments: false
-research_version: "2.0"
+research_version: "2.1"
 research_status: updated
 key_findings:
   - Pažangioji paieška daugiausia vertės suteikia tada, kai platus klausimas suskaidomas į objektus, šaltinių ribas, dokumentų tipus ir laiko intervalus.
@@ -36,9 +39,21 @@ key_findings:
 scope: Teisėtas viešojo žiniatinklio turinio aptikimas naudojant pagrindinius paieškos operatorius OSINT ir CTI užduotims.
 limitations: Paieškos sistemos rodo nepilną ir nuolat kintantį indeksą. Nerastas rezultatas neįrodo, kad informacija ar ryšys neegzistuoja.
 updates:
+  - date: 2026-09-07
+    note: "Pridėta patikrinta oficiali operatorių dokumentacija ir atskirtos istorinės kopijos nuo dabartinio atkartojamo paieškos žurnalo."
   - date: 2026-08-14
     note: Tekstas pertvarkytas į pakartojamą OSINT rinkimo metodą, pridėtas paieškos žurnalas, įrodymų išsaugojimas ir dabartiniai operatorių apribojimai.
 ---
+
+## Oficiali dokumentacija ir atkartojimo ribos
+
+Dokumentacija patikrinta 2026 m. rugsėjo 7 d. Toliau pateiktos originalios ekrano kopijos yra istorinės, ne tą dieną pakartotos paieškos.
+
+- [Google paieškos tikslinimo dokumentacijoje](https://support.google.com/websearch/answer/2466433) aptariamos kabutės, išskyrimas, `site:`, `filetype:`, `before:` ir `after:`. Datos filtrai remiasi Google nustatyta dokumento atnaujinimo data, ne originalaus publikavimo laiko įrodymu.
+- [Google site operatoriaus dokumentacijoje](https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site) aiškiai nurodomas rezultatų neišsamumas. `site:` rezultatų skaičius nėra indeksuotų URL kiekis, o nerastas rezultatas neįrodo nebuvimo.
+- [Google išplėstinėje paieškoje](https://www.google.com/advanced_search) pateikiami frazės, domeno, formato ir žodžių vietos valdikliai. Jei trumpasis operatorius veikia kitaip, užfiksuokite konkrečią sistemą bei sąsają ir tikrinkite gautus dokumentus, užuot laikę sintaksę universalia.
+
+Užklausų pavyzdžiai yra metodas, ne išsaugotas rezultatų rinkinys. Atkartojimui reikia naujo datuoto užklausų žurnalo ir gautų šaltinių sąrašo. Personalizavimas, regionas, kalba ir indekso pokyčiai gali pakeisti rezultatą nepaneigdami ankstesnės kopijos. Istorinio archyvo gavimas yra atskiras rinkimo veiksmas, ne paieškos ištraukos garantija.
 
 ## Įvadas
 

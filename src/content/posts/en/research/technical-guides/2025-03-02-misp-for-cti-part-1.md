@@ -1,5 +1,8 @@
 ---
 title: "MISP for Cyber Threat Intelligence: Deployment, Data Quality and Automation [Part 1]"
+published: true
+evidence_basis: "The MISP deployment, data-model and API examples documented in this guide. Example configuration is not evidence of a production deployment or independent security test."
+methods: ["Explanation of MISP data and distribution models","Deployment and recovery control review","Introductory API examples"]
 card_title: "MISP for CTI: Deployment and Automation"
 date: 2025-03-02 14:00:00 +0300
 last_modified_at: 2026-08-14 12:00:00 +0300
@@ -40,7 +43,6 @@ updates:
   - date: 2026-08-14
     note: Updated deployment safety, TLS and API-key handling, data-quality controls and the distinction between a platform and an intelligence process.
 ---
-
 ## What MISP is useful for
 
 [MISP](https://www.misp-project.org/) is an open-source platform for structuring, correlating and sharing threat information. In a CTI environment it can hold events, observables, indicators, objects, relationships, sightings, taxonomies and sharing rules in one system.

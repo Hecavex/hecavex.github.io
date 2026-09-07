@@ -190,7 +190,7 @@ projects:
           lt: Duomenų katalogas
         url:
           en: https://hecavex.com/data/
-          lt: https://hecavex.com/data/
+          lt: https://hecavex.com/lt/duomenys/
         kind: data
       - label:
           en: Source repository
@@ -226,7 +226,7 @@ projects:
           lt: Atverti duomenų katalogą
         url:
           en: https://hecavex.com/data/
-          lt: https://hecavex.com/data/
+          lt: https://hecavex.com/lt/duomenys/
         kind: primary
       - label:
           en: Research bundle specification

@@ -1,4 +1,7 @@
 ---
+evidence_basis: "CRA 14 straipsnis ir publikacijoje nurodytos Europos Komisijos gairės. Veiksmų sąrašas yra autoriaus interpretacija, ne teisinė konsultacija ar priežiūros institucijos sprendimas."
+methods: ["Pranešimų priežasčių ir terminų susiejimas","Pažeidžiamumo ir incidento pranešimų kelių atskyrimas","Operacinio pasirengimo kontrolinis sąrašas"]
+published: true
 title: "CRA 14 straipsnis: 24 ir 72 valandų pranešimų vadovas"
 card_title: "CRA 14 straipsnis: pranešimų terminai"
 description: "Praktinis CRA 14 straipsnio vadovas apie 24 valandų ankstyvąjį perspėjimą, 72 valandų pranešimą ENISA, išnaudojamus pažeidžiamumus ir incidentus."

@@ -1,4 +1,7 @@
 ---
+evidence_basis: "Vadove pateikti MISP diegimo, duomenų modelio ir API pavyzdžiai. Pavyzdinė konfigūracija neįrodo produkcinio diegimo ar nepriklausomo saugumo testo."
+methods: ["MISP duomenų ir platinimo modelių paaiškinimas","Diegimo ir atkūrimo kontrolės priemonių aptarimas","Įvadiniai API pavyzdžiai"]
+published: true
 title: "MISP grėsmių žvalgybai: diegimas, integracija ir automatizavimas [1 dalis]"
 card_title: "MISP grėsmių žvalgybai: diegimas ir automatizavimas"
 description: "Praktinis MISP diegimo su \"Docker\", pagrindinių duomenų modelių, integracijų ir automatizavimo galimybių vadovas grėsmių žvalgybos komandoms."

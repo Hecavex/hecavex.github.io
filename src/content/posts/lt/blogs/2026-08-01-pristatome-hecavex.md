@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Pristatome HECAVEX"
 card_title: "Pristatome HECAVEX"
 description: "Kodėl atsirado HECAVEX ir kaip šiame nepriklausomame grėsmių žvalgybos leidinyje bus vertinami įrodymai, neapibrėžtumas ir skaitmeniniai tyrimai."

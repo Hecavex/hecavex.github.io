@@ -1,4 +1,8 @@
 ---
+evidence_basis: "Viešai aprašyta Registrų centro duomenų vagystė ir straipsnio analitiniai scenarijai. Incidento tyrimo žurnalai ar pavogtas duomenų rinkinys čia neskelbiami."
+methods: ["Viešų pranešimų apie incidentą analizė","Patvirtintų faktų atskyrimas nuo galimų duomenų panaudojimo scenarijų"]
+draft: false
+published: true
 title: "Registrų centro duomenų vagystė, kai \"čia tik duomenys\" staiga tampa nacionalinio saugumo klausimu."
 description: "Kodėl didelio masto Registrų centro duomenų vagystė nėra vien privatumo incidentas, o potencialus žvalgybos ir nacionalinio saugumo klausimas."
 seo_title: "Registrų centro duomenų vagystė ir nacionalinis saugumas"

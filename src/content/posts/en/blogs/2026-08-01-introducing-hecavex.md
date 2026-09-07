@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Introducing HECAVEX"
 card_title: "Introducing HECAVEX"
 description: "Why HECAVEX exists and how this independent threat intelligence publication will approach evidence, uncertainty and digital investigations."

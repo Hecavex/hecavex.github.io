@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Analitinis pasitikėjimas yra laukas, o ne jausmas"
 card_title: "Pasitikėjimas yra laukas"
 description: "Kaip HECAVEX atskiria šaltinio patikimumą, įrodymų stiprumą ir analitinį pasitikėjimą, neslėpdamas neapibrėžtumo po viena etikete."

@@ -38,7 +38,7 @@ const address = server.address();
 const baseUrl = `http://127.0.0.1:${address.port}`;
 
 const routes = [
-  '/', '/data/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/', '/en/projects/',
+  '/', '/data/', '/lt/duomenys/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/', '/en/projects/', '/lt/projektai/',
   '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/',
   '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
   '/en/research/cra-article-14-vulnerability-incident-reporting-guide/', '/lt/tyrimai/infrastrukturos-pivoting-101/',
@@ -143,6 +143,10 @@ try {
           return rect.width > 0 && (rect.left < -1 || rect.right > viewportWidth + 1);
         }).slice(0, 6).map((element) => `${element.tagName}.${String(element.className).replace(/\s+/g, '.')}`);
         return {
+          undersizedFooterTargets: [...document.querySelectorAll('.site-footer nav a')].filter((link) => {
+            const rect = link.getBoundingClientRect();
+            return rect.width < 24 || rect.height < 24;
+          }).map((link) => link.textContent.trim()),
           shell: header?.getAttribute('data-portfolio-shell'),
           overflow: Math.max(root.scrollWidth, document.body.scrollWidth) - root.clientWidth,
           offscreen,
@@ -234,6 +238,7 @@ try {
         });
       }
       if (state.shell !== 'v2') fail(route, width, 'portfolio shell marker is missing');
+      if (state.undersizedFooterTargets.length) fail(route, width, `footer targets are smaller than 24px: ${state.undersizedFooterTargets.join(', ')}`);
       if (state.overflow > 1) fail(route, width, `horizontal overflow is ${state.overflow}px (${state.offscreen.join(', ')})`);
       if (state.h1Size > 64.1) fail(route, width, `h1 exceeds the 64px display ceiling (${state.h1Size}px)`);
       if (state.markWidth < 33.5 || state.markWidth > 36.5) fail(route, width, `brand mark is ${state.markWidth}px rather than 34–36px`);
@@ -555,6 +560,56 @@ try {
   });
   if (mobileTableState.clientWidth > 390 || mobileTableState.scrollWidth <= mobileTableState.clientWidth || mobileTableState.scrollLeft <= 0 || !mobileTableState.focused || mobileTableState.hintDisplay === 'none' || mobileTableState.documentOverflow > 1) fail(tableRoute, 390, `mobile table region is not independently inspectable (${JSON.stringify(mobileTableState)})`);
   await mobileTableContext.close();
+  for (const language of ['en', 'lt']) {
+    const context = await browser.newContext({ viewport: { width: 390, height: 900 } });
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    let requests = 0;
+    await page.route(`**/${language}/search.json`, async (route) => {
+      requests += 1;
+      await new Promise((resolve) => setTimeout(resolve, 650));
+      await route.continue();
+    });
+    await page.goto(`${baseUrl}/${language}/`, { waitUntil: 'networkidle' });
+    await page.evaluate(() => document.querySelector('[data-search-dialog]').showModal());
+    const input = page.locator('[data-search-input]');
+    await input.fill('unipark');
+    await input.fill('');
+    await page.waitForTimeout(900);
+    if (await page.locator('[data-search-results]').innerText()) fail('search', 390, `${language}: stale results appeared after clearing input`);
+    if (requests !== 1) fail('search', 390, `${language}: duplicate in-flight index requests (${requests})`);
+    await input.fill('unipark');
+    await page.waitForTimeout(100);
+    const first = await page.locator('[data-search-results] a').first().getAttribute('href');
+    if (!first?.includes('unipark-smishing')) fail('search', 390, `${language}: dedicated title was not first (${first})`);
+    if (language === 'lt') {
+      await input.fill('itartina');
+      await page.waitForTimeout(100);
+      const accented = await page.locator('[data-search-results] a').first().getAttribute('href');
+      if (!accented?.includes('sms-nuoroda')) fail('search', 390, 'LT accent-insensitive title match was lost');
+    }
+    await context.close();
+
+    const retryContext = await browser.newContext({ viewport: { width: 390, height: 900 } });
+    const retryPage = await retryContext.newPage();
+    retryPage.on('pageerror', (error) => errors.push(error.message));
+    let retryRequests = 0;
+    await retryPage.route(`**/${language}/search.json`, async (route) => {
+      retryRequests += 1;
+      if (retryRequests === 1) await route.fulfill({ status: 503, body: 'unavailable' });
+      else await route.continue();
+    });
+    await retryPage.goto(`${baseUrl}/${language}/`, { waitUntil: 'networkidle' });
+    await retryPage.evaluate(() => document.querySelector('[data-search-dialog]').showModal());
+    const retryInput = retryPage.locator('[data-search-input]');
+    await retryInput.focus();
+    await retryPage.waitForTimeout(150);
+    await retryInput.fill('unipark');
+    await retryPage.locator('[data-search-results] a').first().waitFor();
+    if (retryRequests !== 2 || errors.length) fail('search', 390, `${language}: prefetch/retry failure (${retryRequests} requests, ${errors.join(', ')})`);
+    await retryContext.close();
+  }
 } finally {
   await browser.close();
   await new Promise((accept) => server.close(accept));

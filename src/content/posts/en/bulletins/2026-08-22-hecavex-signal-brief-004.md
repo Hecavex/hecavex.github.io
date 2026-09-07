@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Signal Brief #4: exposed PLCs, exploited Zimbra and trusted-platform phishing"
 card_title: "Signal Brief #4: exposed PLCs, Zimbra and trusted-platform phishing"
 description: "An active threat to exposed PLCs, nine known-exploited vulnerabilities, trusted-platform phishing, ransomware recovery fraud and a Lithuania pulse. Coverage: 14–22 August 2026."

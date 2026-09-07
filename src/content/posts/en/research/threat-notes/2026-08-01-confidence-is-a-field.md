@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Analytical Confidence Is a Field, Not a Feeling"
 card_title: "Confidence Is a Field"
 description: "How HECAVEX separates source reliability, evidence strength and analytical confidence without using a label to hide uncertainty."

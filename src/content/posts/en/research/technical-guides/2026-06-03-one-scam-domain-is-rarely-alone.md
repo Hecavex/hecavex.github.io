@@ -1,4 +1,8 @@
 ---
+evidence_basis: "The infrastructure examples and pivot types described in the article. Shared properties are discovery leads and need corroboration before a common-control claim."
+methods: ["Passive DNS and registration pivot design","Comparison of content and infrastructure properties","Assessment of competing relationship explanations"]
+draft: false
+published: true
 title: "One Scam Domain Is Rarely Alone: Using Pivoting to Trace Fraud Infrastructure"
 card_title: "One Scam Domain Is Rarely Alone"
 description: "A practical infrastructure-pivoting method for moving from one scam domain to related hosts, templates, and backend systems."

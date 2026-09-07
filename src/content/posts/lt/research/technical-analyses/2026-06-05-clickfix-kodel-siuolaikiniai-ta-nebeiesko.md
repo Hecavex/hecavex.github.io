@@ -1,4 +1,8 @@
 ---
+evidence_basis: "Straipsnyje pateikti ClickFix raginimai, vykdymo grandinių pavyzdžiai ir aptikimo analizė. Pavyzdžiai nėra išsamus kampanijų ar kenkėjiškų programų sąrašas."
+methods: ["Naršyklės ir komandų vykdymo grandinės analizė","Aptikimo ir reagavimo galimybių palyginimas"]
+draft: false
+published: true
 title: "ClickFix atakos: netikri CAPTCHA patikrinimai, PowerShell ir aptikimas"
 card_title: "ClickFix: nuo netikro CAPTCHA iki PowerShell"
 description: "Kaip ClickFix atakos netikrais CAPTCHA patikrinimais priverčia auką paleisti PowerShell ir kokius aptikimo bei reagavimo signalus turi matyti SOC."

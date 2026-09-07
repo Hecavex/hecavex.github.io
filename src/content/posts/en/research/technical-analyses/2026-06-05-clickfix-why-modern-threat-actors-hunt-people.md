@@ -1,4 +1,8 @@
 ---
+evidence_basis: "The ClickFix prompts, execution-chain examples and detection discussion presented in the article. Examples do not constitute a complete campaign or malware inventory."
+methods: ["Browser-to-shell execution-chain analysis","Comparison of detection and response opportunities"]
+draft: false
+published: true
 title: "ClickFix Attacks Explained: Fake CAPTCHA, PowerShell and Detection"
 card_title: "ClickFix: Fake CAPTCHA to PowerShell"
 description: "How ClickFix attacks use fake CAPTCHA prompts and copied commands to make victims launch PowerShell, with practical SOC detection and response signals."

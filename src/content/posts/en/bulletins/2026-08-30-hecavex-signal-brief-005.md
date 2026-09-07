@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Signal Brief #5: exploited developer platforms, AI control planes and camera exposure"
 card_title: "Signal Brief #5: developer platforms, AI control planes and exposed cameras"
 description: "Eleven additions to CISA KEV, attacks on AI gateways and orchestration services, camera exposure guidance and a Lithuania phishing report. Coverage: 22–30 August 2026."

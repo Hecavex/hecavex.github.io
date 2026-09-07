@@ -18,7 +18,7 @@ The folder normally sets the class. `content_type` gives the more specific label
 Primary research and technical assessments need:
 
 - a stable `translation_key`
-- a version and review date
+- an explicit article version and substantive review date when recorded
 - findings that are narrower than the evidence supporting them
 - a clear scope and limitations section
 - a short description of the evidence and methods used
@@ -47,13 +47,25 @@ evidence_basis: "What was collected or reviewed."
 methods: [static analysis, passive DNS, source validation]
 ```
 
-Folder defaults fill in the usual values, but a case-specific description is better whenever the work differs from the default.
+Publication approval requires both `draft: false` and `published: true`. Omitted flags do not publish.
+
+Evidence basis and methods are case-specific required fields. Historical versions or substantive review dates that were not recorded appear as "Not recorded", not as invented defaults. Publication and last-modification dates are not substituted for substantive review. A metadata clarification does not imply the underlying evidence was collected again.
 
 ## Artefacts
 
 Link a separate artefact package only when there is something useful to release, such as a dataset, sanitized sample metadata, a graph export or reproducible code. Do not create an empty archive so the article looks more serious. If all the evidence is already in the article, the publication record says so.
 
 For a release with several files, use `research_artifacts` and label each item. `research_bundle` remains available for a single release page.
+
+```yaml
+research_artifacts:
+  - label: "Sanitized observation table"
+    url: "https://example.org/releases/v1.2/observations.csv"
+    version: "1.2"
+    # Optional sha256 is the lowercase digest of the delivered file bytes.
+```
+
+Artifact versions are independent of the article version. Do not infer sample hashes from screenshot hashes. A screenshot proves only what it visibly records, not collection time, current infrastructure status or the availability of original sample bytes.
 
 ## Updates
 

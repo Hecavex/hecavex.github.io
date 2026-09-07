@@ -22,6 +22,8 @@
   const searchInput = document.querySelector('[data-search-input]');
   const searchResults = document.querySelector('[data-search-results]');
   let searchIndex;
+  let searchRequest;
+  let searchGeneration = 0;
 
   const normalizeSearchText = (value) => String(value ?? '')
     .normalize('NFD')
@@ -42,20 +44,37 @@
 
   const loadSearch = async () => {
     if (searchIndex) return searchIndex;
-    const response = await fetch(`/${language}/search.json`);
-    if (!response.ok) throw new Error(`Search index returned ${response.status}`);
-    searchIndex = await response.json();
-    return searchIndex;
+    if (!searchRequest) {
+      searchRequest = fetch(`/${language}/search.json`).then(async (response) => {
+        if (!response.ok) throw new Error(`Search index returned ${response.status}`);
+        const index = await response.json();
+        if (!Array.isArray(index)) throw new Error('Invalid search index');
+        searchIndex = index;
+        return index;
+      }).finally(() => { searchRequest = undefined; });
+    }
+    return searchRequest;
   };
 
   const renderSearch = async () => {
     if (!(searchInput instanceof HTMLInputElement) || !searchResults) return;
     const query = normalizeSearchText(searchInput.value.trim());
+    const generation = ++searchGeneration;
     searchResults.replaceChildren();
     if (query.length < 2) return;
     try {
       const index = await loadSearch();
-      const matches = index.filter((item) => normalizeSearchText(item.searchText).includes(query)).slice(0, 10);
+      if (generation !== searchGeneration || query !== normalizeSearchText(searchInput.value.trim())) return;
+      const matches = index
+        .filter((item) => normalizeSearchText(item.searchText).includes(query))
+        .map((item, order) => {
+          const title = normalizeSearchText(item.title);
+          const score = title === query ? 4 : title.startsWith(query) ? 3 : title.includes(query) ? 2
+            : normalizeSearchText(item.description).includes(query) ? 1 : 0;
+          return { item, score, order };
+        })
+        .sort((left, right) => right.score - left.score || left.order - right.order)
+        .slice(0, 10).map(({ item }) => item);
       if (!matches.length) {
         const empty = document.createElement('p');
         empty.textContent = language === 'lt' ? 'Rezultatų nerasta.' : 'No results found.';
@@ -69,19 +88,22 @@
         const meta = document.createElement('small');
         link.href = item.url;
         link.textContent = item.title;
-        meta.textContent = [String(item.date).slice(0, 10), item.categories.join(', ')].filter(Boolean).join(' · ');
+        meta.textContent = [String(item.date).slice(0, 10), (item.categoryLabels ?? item.categories).join(', ')].filter(Boolean).join(' · ');
         entry.append(link, meta);
         list.append(entry);
       }
       searchResults.append(list);
     } catch (_) {
+      if (generation !== searchGeneration || query !== normalizeSearchText(searchInput.value.trim())) return;
       const error = document.createElement('p');
       error.textContent = language === 'lt' ? 'Paieška šiuo metu nepasiekiama.' : 'Search is temporarily unavailable.';
       searchResults.append(error);
     }
   };
 
-  searchInput?.addEventListener('focus', loadSearch, { once: true });
+  // Prefetch is opportunistic. A failed request is handled and the next input
+  // retries without an unhandled rejection or a permanently cached failure.
+  searchInput?.addEventListener('focus', () => { void loadSearch().catch(() => {}); });
   searchInput?.addEventListener('input', renderSearch);
 
   document.addEventListener('keydown', (event) => {

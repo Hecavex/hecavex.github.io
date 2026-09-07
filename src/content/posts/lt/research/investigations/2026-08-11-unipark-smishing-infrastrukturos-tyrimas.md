@@ -1,4 +1,7 @@
 ---
+evidence_basis: "2026 m. rugpjūčio 11 d. SMS, išsaugoti phishing ištekliai, vieši DNS ir URLScan stebėjimai bei susietas išvalytas įrodymų paketas. Aukų operacijos ir backend vykdymas netirti."
+methods: ["Statinė JavaScript analizė","Tikslių atsakų kontrolinių sumų pivoting","DNS ir sertifikatų koreliacija","Viešų skenavimo įrašų deduplikavimas apibrėžtu laikotarpiu"]
+published: true
 title: "UNIPARK smishing: nuo vienos SMS iki 126 phishing hostų"
 card_title: "UNIPARK smishing: vienas domenas, gerokai didesnis phishing kit'as"
 description: "Pilnas UNIPARK vardu siųstos smishing žinutės CTI tyrimas: domeno rotacija, exact-hash pivotai, 126 susiję hostai, kortelės bei PIN rinkimas ir NKSC sinkhole."

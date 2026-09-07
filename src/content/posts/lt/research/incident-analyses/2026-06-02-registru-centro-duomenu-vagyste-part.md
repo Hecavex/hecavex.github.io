@@ -1,4 +1,8 @@
 ---
+evidence_basis: "Vieša informacija apie Registrų centro incidentą ir tapatybės panaudojimo scenarijai. Išsamūs techniniai incidento įrodymai šioje publikacijoje nepateikiami."
+methods: ["Tapatybės ir sesijos atakos kelių vertinimas","Elgsenos aptikimo galimybių palyginimas"]
+draft: false
+published: true
 title: "Registrų centro duomenų vagystė — Part 2"
 description: "Antroji Registrų centro duomenų vagystės analizės dalis apie pavogtos tapatybės, teisėtų prieigų ir aptikimo spragų reikšmę."
 seo_title: "Registrų centro duomenų vagystė: tapatybės rizika"

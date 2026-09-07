@@ -18,3 +18,22 @@ const projects = portfolio.projects.map((project, index) => ({
     </article>
   ))}
 </div>
+<section class="project-directory" aria-labelledby="self-hosted-tools-title">
+  <header class="section-head">
+    <div>
+      <p class="eyebrow">{lang === 'lt' ? 'Diegiama savo aplinkoje' : 'Self-hosted tools'}</p>
+      <h2 id="self-hosted-tools-title">{lang === 'lt' ? 'Tyrimų programinė įranga' : 'Research software'}</h2>
+      <p>{lang === 'lt' ? 'Atskiri projektai, kuriuos operatorius diegia ir prižiūri pats. Tai nėra HECAVEX teikiamos talpinimo ar stebėjimo paslaugos.' : 'Separate projects installed and operated by their users. These are not HECAVEX-hosted monitoring or managed services.'}</p>
+    </div>
+  </header>
+  <article class="project-record">
+    <header><h3>Open Domain Radar</h3><span class="status-badge">Alpha · Apache-2.0</span></header>
+    <p>{lang === 'lt' ? 'Savo aplinkoje diegiama potencialaus apsimetimo domenais rinkimo, peržiūros ir saugaus publikavimo programa. Kandidatai nėra automatiniai phishing verdiktai. Operatorius atsako už diegimą, paslaugų sąlygas, prieigą ir atsargines kopijas.' : 'A self-hosted application for collecting, reviewing and safely publishing potential domain-impersonation signals. Candidates are not automatic phishing verdicts. Operators are responsible for deployment, provider terms, access and backups.'}</p>
+    <nav aria-label={lang === 'lt' ? 'Open Domain Radar nuorodos' : 'Open Domain Radar links'}><a href="https://github.com/Hecavex/open-domain-radar">{lang === 'lt' ? 'Kodas ir diegimo vadovas' : 'Source and installation guide'} ↗</a><a href="https://github.com/Hecavex/open-domain-radar/blob/main/LICENSE">{lang === 'lt' ? 'Licencija' : 'Licence'} ↗</a></nav>
+  </article>
+  <article class="project-record">
+    <header><h3>SignalGraph</h3><span class="status-badge">{lang === 'lt' ? 'v1.0.0 laidos kandidatas' : 'v1.0.0 release candidate'}</span></header>
+    <p>{lang === 'lt' ? 'Savo aplinkoje diegiama CTI darbo erdvė objektams, šaltiniais pagrįstiems ryšiams, tyrimams ir ataskaitoms. Tai dar ne stabili laida. Kodas prieinamas pagal Hecavex Internal Use and Security Research License 1.0, o ne OSI patvirtintą atvirojo kodo licenciją. Prieš naudojimą patikrinkite platinimo, klientų paslaugų ir kitus apribojimus.' : 'A self-hosted CTI workspace for entities, source-backed relationships, investigations and reports. It is not yet a stable release. Source is available under the Hecavex Internal Use and Security Research License 1.0, not an OSI-approved open-source licence. Review redistribution, client-service and other restrictions before use.'}</p>
+    <nav aria-label={lang === 'lt' ? 'SignalGraph nuorodos' : 'SignalGraph links'}><a href="https://github.com/Hecavex/signalgraph">{lang === 'lt' ? 'Kodas ir laidos būsena' : 'Source and release status'} ↗</a><a href="https://github.com/Hecavex/signalgraph/blob/main/LICENSE">{lang === 'lt' ? 'Naudojimo sąlygos' : 'Use terms'} ↗</a></nav>
+  </article>
+</section>
