@@ -1,4 +1,8 @@
 ---
+immediate_actions:
+  - "Contact your bank or payment provider immediately through its official app or an independently verified number."
+  - "Ask it to stop or recall affected payments and block exposed cards or account access."
+  - "Preserve the message, transaction details and times. A report does not guarantee recovery."
 title: "Entered Banking Details on a Phishing Page? Do This Now"
 card_title: "What to Do After Banking Phishing"
 description: "An emergency response guide for exposed card details, online-banking credentials, Smart-ID or OTP approvals, stolen sessions, transfers, and installed apps."

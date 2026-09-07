@@ -33,6 +33,7 @@ export const GET: APIRoute = async ({ params }) => {
       ...post.categories,
       ...post.tags,
       ...post.seoKeywords,
+      ...post.entry.data.search_terms,
       searchableProse(post.entry.body ?? '')
     ].filter(Boolean).join(' ')
   }));

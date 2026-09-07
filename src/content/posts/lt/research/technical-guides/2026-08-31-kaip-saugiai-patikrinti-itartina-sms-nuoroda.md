@@ -1,4 +1,8 @@
 ---
+immediate_actions:
+  - "Nespauskite nuorodos. Išsaugokite siuntėją, visą žinutę ir gavimo laiką."
+  - "Patikrinkite teiginį oficialioje organizacijos programėlėje arba savarankiškai įvestoje svetainėje."
+  - "Jei suvedėte mokėjimo duomenis ar autentifikavimo kodą, nedelsdami susisiekite su banku oficialiu kanalu."
 title: "Gavote įtartiną SMS? Kaip saugiai patikrinti phishing nuorodą"
 card_title: "Kaip saugiai patikrinti įtartiną SMS nuorodą"
 description: "Praktinis vadovas, kaip išsaugoti įtartiną SMS, neutralizuoti nuorodą, patikrinti domeną, shortener'į ir peradresavimus neatskleidžiant duomenų."

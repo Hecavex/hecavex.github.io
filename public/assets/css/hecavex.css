@@ -777,7 +777,7 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
   gap: 0.5rem 1rem;
   margin: 0;
   color: var(--faint);
-  font-size: 0.59rem;
+  font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -843,7 +843,7 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 .card-action {
   margin-top: auto;
   color: var(--cyan-bright);
-  font: 600 0.64rem var(--mono);
+  font: 600 0.75rem var(--mono);
   text-decoration: none;
 }
 
@@ -3727,5 +3727,35 @@ main :is(.button, .hx-button):not(.button--primary, .hx-button--primary):hover {
   .shell {
     width: 100%;
     max-width: none;
+  }
+}
+
+.immediate-actions {
+  padding: 1rem;
+  border-left: 3px solid var(--cyan);
+  background: var(--surface-cyan);
+}
+
+.evidence-original {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+[data-copy-fallback] {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+[data-copy-fallback] input {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .prose p,
+  .prose figcaption {
+    text-align: left;
+    hyphens: none;
   }
 }

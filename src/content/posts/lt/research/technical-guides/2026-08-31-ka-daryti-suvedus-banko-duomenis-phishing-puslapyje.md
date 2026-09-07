@@ -1,4 +1,8 @@
 ---
+immediate_actions:
+  - "Nedelsdami susisiekite su banku ar mokėjimo paslaugų teikėju per oficialią programėlę arba savarankiškai patikrintu numeriu."
+  - "Paprašykite sustabdyti ar atšaukti susijusius mokėjimus ir užblokuoti atskleistą kortelę ar prieigą prie sąskaitos."
+  - "Išsaugokite žinutę, operacijų duomenis ir laiką. Pranešimas negarantuoja pinigų grąžinimo."
 title: "Suvedėte banko duomenis phishing puslapyje? Veikite dabar"
 card_title: "Ką daryti po bankinio phishing"
 description: "Skubi veiksmų seka, kai phishing puslapyje atskleisti kortelės ar banko duomenys, Smart-ID PIN, OTP kodas, sesija, atliktas pavedimas arba įdiegta programa."

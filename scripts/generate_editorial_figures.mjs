@@ -132,35 +132,10 @@ function timelineFigure(config) {
   return shell(width, height, body, config.label, config.title, `${config.subtitle}. ${config.note.join(' ')}`);
 }
 
-function heroScene(kind) {
-  const common = `<circle cx="800" cy="450" r="320" fill="none" stroke="${palette.line}" stroke-width="3"/><circle cx="800" cy="450" r="220" fill="none" stroke="${palette.line}" stroke-width="2" stroke-dasharray="14 18"/>`;
-  const scenes = {
-    ct: `${common}<g transform="translate(330 235)"><rect width="350" height="430" rx="28" fill="${palette.panelStrong}" stroke="${palette.cyan}" stroke-width="8"/><path d="M60 100H286M60 164H286M60 228H226" stroke="${palette.muted}" stroke-width="20" stroke-linecap="round"/><rect x="58" y="294" width="228" height="74" rx="18" fill="none" stroke="${palette.green}" stroke-width="7"/><text x="172" y="344" text-anchor="middle" class="node-title">SAN</text></g><path d="M720 450H930" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(980 270)"><rect width="290" height="360" rx="28" fill="${palette.panel}" stroke="${palette.amber}" stroke-width="8"/><path d="M52 84H238M52 150H238M52 216H238M52 282H190" stroke="${palette.amber}" stroke-width="14" stroke-linecap="round"/></g>`,
-    evilginx: `<g transform="translate(180 270)"><circle cx="130" cy="80" r="64" fill="${palette.panelStrong}" stroke="${palette.green}" stroke-width="8"/><path d="M30 270c18-84 72-126 100-126s82 42 100 126" fill="none" stroke="${palette.green}" stroke-width="12"/></g><path d="M480 450H670" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(690 190)"><path d="M180 0 340 82v168c0 118-80 198-160 240C100 448 20 368 20 250V82Z" fill="${palette.panelStrong}" stroke="${palette.red}" stroke-width="10"/><path d="M110 148H250M110 216H250M110 284H218" stroke="${palette.red}" stroke-width="15" stroke-linecap="round"/></g><path d="M1080 450H1270" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(1310 310)"><rect width="170" height="280" rx="28" fill="${palette.panelStrong}" stroke="${palette.cyan}" stroke-width="8"/><circle cx="85" cy="90" r="38" fill="none" stroke="${palette.cyan}" stroke-width="8"/><path d="M52 184H118" stroke="${palette.cyan}" stroke-width="18" stroke-linecap="round"/></g><path d="M850 630c110 96 248 112 370 18" fill="none" stroke="${palette.amber}" stroke-width="8" stroke-dasharray="18 14"/><circle cx="1034" cy="686" r="34" fill="${palette.amber}"/>`,
-    cloaking: `<g transform="translate(170 250)"><rect width="500" height="360" rx="26" fill="${palette.panelStrong}" stroke="${palette.cyan}" stroke-width="8"/><path d="M0 72H500" stroke="${palette.line}" stroke-width="8"/><circle cx="52" cy="36" r="12" fill="${palette.red}"/><circle cx="92" cy="36" r="12" fill="${palette.amber}"/><circle cx="132" cy="36" r="12" fill="${palette.green}"/><path d="M88 168H410M88 232H340" stroke="${palette.green}" stroke-width="18" stroke-linecap="round"/></g><path d="M670 430H840" stroke="${palette.cyan}" stroke-width="12"/><path d="M840 430 990 300M840 430 990 560" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(1030 158)"><rect width="390" height="250" rx="24" fill="${palette.panel}" stroke="${palette.green}" stroke-width="8"/><circle cx="195" cy="125" r="58" fill="none" stroke="${palette.green}" stroke-width="12"/><path d="m158 126 26 28 52-62" fill="none" stroke="${palette.green}" stroke-width="14"/></g><g transform="translate(1030 492)"><rect width="390" height="250" rx="24" fill="${palette.panel}" stroke="${palette.red}" stroke-width="8"/><path d="M128 80H262V188H128Z" fill="none" stroke="${palette.red}" stroke-width="12"/><path d="M162 132H228" stroke="${palette.red}" stroke-width="16"/></g>`,
-    marketplace: `<g transform="translate(160 260)"><path d="M0 0H430V270H150L70 342V270H0Z" fill="${palette.panelStrong}" stroke="${palette.cyan}" stroke-width="9"/><path d="M64 78H346M64 142H300M64 206H232" stroke="${palette.text}" stroke-width="18" stroke-linecap="round"/></g><path d="M650 450H880" stroke="${palette.amber}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(920 224)"><rect width="510" height="420" rx="34" fill="${palette.panelStrong}" stroke="${palette.red}" stroke-width="10"/><rect x="66" y="82" width="378" height="228" rx="24" fill="none" stroke="${palette.red}" stroke-width="10"/><path d="M66 154H444" stroke="${palette.red}" stroke-width="24"/><circle cx="388" cy="354" r="50" fill="none" stroke="${palette.amber}" stroke-width="10"/><path d="M388 322V362M388 388v4" stroke="${palette.amber}" stroke-width="12" stroke-linecap="round"/></g>`,
-    banking: `<g transform="translate(170 210)"><circle cx="300" cy="240" r="220" fill="${palette.panelStrong}" stroke="${palette.amber}" stroke-width="12"/><path d="M300 90V240L406 310" fill="none" stroke="${palette.amber}" stroke-width="18" stroke-linecap="round"/></g><path d="M730 450H930" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(980 180)"><path d="M220 0 420 96v206c0 148-100 248-200 300C120 550 20 450 20 302V96Z" fill="${palette.panelStrong}" stroke="${palette.green}" stroke-width="12"/><path d="m126 294 70 72 126-154" fill="none" stroke="${palette.green}" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/></g>`,
-    radar: `${common}<path d="M800 450 1070 270A320 320 0 0 1 1120 450Z" fill="${palette.cyan}" opacity=".14"/><path d="M800 450 1070 270" stroke="${palette.cyan}" stroke-width="12"/><circle cx="982" cy="330" r="22" fill="${palette.green}"/><circle cx="622" cy="296" r="18" fill="${palette.amber}"/><circle cx="544" cy="512" r="14" fill="${palette.red}"/><circle cx="882" cy="644" r="20" fill="${palette.cyan}"/><circle cx="800" cy="450" r="30" fill="${palette.text}"/><path d="M240 730H1360" stroke="${palette.line}" stroke-width="4"/><path d="M240 730H944" stroke="${palette.cyan}" stroke-width="14"/><path d="M1010 730H1360" stroke="${palette.line}" stroke-width="14" stroke-dasharray="20 18"/>`,
-    sms: `<g transform="translate(180 130)"><rect width="480" height="650" rx="62" fill="${palette.panelStrong}" stroke="${palette.cyan}" stroke-width="12"/><rect x="54" y="120" width="372" height="230" rx="28" fill="${palette.panel}" stroke="${palette.line}" stroke-width="5"/><path d="M94 184H350M94 246H298" stroke="${palette.text}" stroke-width="20" stroke-linecap="round"/><rect x="92" y="404" width="296" height="102" rx="24" fill="none" stroke="${palette.red}" stroke-width="8"/><path d="M142 455H338" stroke="${palette.red}" stroke-width="16" stroke-linecap="round"/><circle cx="240" cy="574" r="30" fill="none" stroke="${palette.green}" stroke-width="8"/></g><path d="M720 450H900" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><g transform="translate(960 220)"><circle cx="220" cy="220" r="210" fill="${palette.panelStrong}" stroke="${palette.green}" stroke-width="12"/><path d="m108 220 76 78 158-174" fill="none" stroke="${palette.green}" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/><path d="M220 430V570" stroke="${palette.green}" stroke-width="12"/><path d="M132 570H308" stroke="${palette.green}" stroke-width="12" stroke-linecap="round"/></g>`,
-    t1187: `<g transform="translate(160 210)"><path d="M0 0H360L500 140V520H0Z" fill="${palette.panelStrong}" stroke="${palette.amber}" stroke-width="10"/><path d="M360 0V140H500" fill="none" stroke="${palette.amber}" stroke-width="10"/><path d="M80 240H410M80 320H350" stroke="${palette.text}" stroke-width="20" stroke-linecap="round"/></g><path d="M720 450H940" stroke="${palette.cyan}" stroke-width="12" marker-end="url(#arrow)"/><path d="M760 500c54 0 54 82 108 82s54-164 108-164 54 164 108 164 54-82 108-82" fill="none" stroke="${palette.cyan}" stroke-width="10"/><g transform="translate(1090 210)"><path d="M220 0 420 96v206c0 148-100 248-200 300C120 550 20 450 20 302V96Z" fill="${palette.panelStrong}" stroke="${palette.red}" stroke-width="12"/><path d="M142 226H298M142 300H298" stroke="${palette.red}" stroke-width="20" stroke-linecap="round"/></g>`
-  };
-  const descriptions = {
-    ct: ['Certificate Transparency monitoring', 'A public certificate entry moves into a review queue'],
-    evilginx: ['Reverse-proxy phishing detection', 'A user, reverse proxy, session token, and protected service are connected'],
-    cloaking: ['Conditional-delivery comparison', 'One request path branches into a benign response and a phishing response'],
-    marketplace: ['Marketplace buyer phishing', 'A chat message hands the recipient to a fraudulent payment page'],
-    banking: ['Post-phishing response', 'A clock points to ordered containment and evidence-preservation actions'],
-    radar: ['Phishing-infrastructure baseline', 'A coverage-aware radar view separates observed signals from collection gaps'],
-    sms: ['Suspicious SMS link analysis', 'A suspicious message is inspected before a trust decision is made'],
-    t1187: ['Forced-authentication detection', 'A crafted document can trigger an authentication path that defenders must observe']
-  };
-  const [title, description] = descriptions[kind];
-  return shell(1600, 900, scenes[kind], 'HECAVEX / EDITORIAL RESEARCH VISUAL', title, description);
-}
-
+// Historical hero SVG URLs are retained, but covers are no longer emitted here.
 const topics = [
   {
-    directory: '2026-08-31-certificate-transparency-brand-monitoring', hero: 'certificate-transparency-brand-monitoring-hero.svg', kind: 'ct', prefix: 'ct',
+    directory: '2026-08-31-certificate-transparency-brand-monitoring', prefix: 'ct',
     locales: {
       en: {
         flow: ['From public log entry to reviewable lead', 'Keep every transformation visible and reversible', [
@@ -187,7 +162,7 @@ const topics = [
     }
   },
   {
-    directory: '2026-08-31-evilginx-detection', hero: 'evilginx-detection-hero.svg', kind: 'evilginx', prefix: 'evilginx',
+    directory: '2026-08-31-evilginx-detection', prefix: 'evilginx',
     locales: {
       en: {
         flow: ['Reverse-proxy phishing changes the trust path', 'A valid upstream login can still pass through hostile infrastructure', [
@@ -214,7 +189,7 @@ const topics = [
     }
   },
   {
-    directory: '2026-08-31-facebook-cloaking-explained', hero: 'facebook-cloaking-explained-hero.svg', kind: 'cloaking', prefix: 'cloaking',
+    directory: '2026-08-31-facebook-cloaking-explained', prefix: 'cloaking',
     locales: {
       en: {
         flow: ['One URL can produce two defensible observations', 'Change one collection variable at a time', [
@@ -241,7 +216,7 @@ const topics = [
     }
   },
   {
-    directory: '2026-08-31-marketplace-buyer-phishing', hero: 'marketplace-buyer-phishing-hero.svg', kind: 'marketplace', prefix: 'marketplace',
+    directory: '2026-08-31-marketplace-buyer-phishing', prefix: 'marketplace',
     locales: {
       en: {
         flow: ['The decisive handoff happens outside the marketplace', 'The fake buyer converts a sale into a payment or identity event', [
@@ -268,7 +243,7 @@ const topics = [
     }
   },
   {
-    directory: '2026-08-31-post-phishing-banking-response', hero: 'post-phishing-banking-response-hero.svg', kind: 'banking', prefix: 'banking',
+    directory: '2026-08-31-post-phishing-banking-response', prefix: 'banking',
     locales: {
       en: {
         flow: ['Classify what crossed the boundary', 'Different exposed assets require different containment', [
@@ -295,7 +270,7 @@ const topics = [
     }
   },
   {
-    directory: '2026-08-31-radar-august-baseline', hero: 'radar-august-baseline-hero.svg', kind: 'radar', prefix: 'radar',
+    directory: '2026-08-31-radar-august-baseline', prefix: 'radar',
     locales: {
       en: {
         flow: ['Evidence profile at the August cutoff', 'The queue was dominated by name-only discovery', [
@@ -322,7 +297,7 @@ const topics = [
     }
   },
   {
-    directory: '2026-08-31-t1187-forced-authentication', hero: 't1187-forced-authentication-hero.svg', kind: 't1187', prefix: 't1187',
+    directory: '2026-08-31-t1187-forced-authentication', prefix: 't1187',
     locales: {
       en: {
         flow: ['Forced authentication is a chain, not one event', 'A crafted reference can cause an outbound authentication attempt', [
@@ -377,26 +352,25 @@ function mapEvents(input) {
 for (const topic of topics) {
   const directory = join(imageRoot, topic.directory);
   await mkdir(directory, { recursive: true });
-  await writeFile(join(directory, topic.hero), heroScene(topic.kind), 'utf8');
+  // Legacy hero SVGs remain at their historical URLs but are no longer regenerated.
   for (const [lang, content] of Object.entries(topic.locales)) {
     const [flowTitle, flowSubtitle, flowSteps, flowNote] = content.flow;
-    await writeFile(join(directory, `${topic.prefix}-${filenames.flow[topic.kind]}-${lang}.svg`), flowFigure({
+    await writeFile(join(directory, `${topic.prefix}-${filenames.flow[topic.prefix]}-${lang}.svg`), flowFigure({
       title: flowTitle, subtitle: flowSubtitle, steps: mapSteps(flowSteps), note: flowNote, label: `HECAVEX / ${topic.prefix.toUpperCase()} / FLOW`
     }), 'utf8');
 
     const [compareTitle, compareSubtitle, compareColumns, compareNote] = content.compare;
-    await writeFile(join(directory, `${topic.prefix}-${filenames.compare[topic.kind]}-${lang}.svg`), comparisonFigure({
+    await writeFile(join(directory, `${topic.prefix}-${filenames.compare[topic.prefix]}-${lang}.svg`), comparisonFigure({
       title: compareTitle, subtitle: compareSubtitle, columns: mapColumns(compareColumns), note: compareNote, label: `HECAVEX / ${topic.prefix.toUpperCase()} / EVIDENCE`
     }), 'utf8');
 
     const [timelineTitle, timelineSubtitle, timelineEvents, timelineNote] = content.timeline;
-    await writeFile(join(directory, `${topic.prefix}-${filenames.timeline[topic.kind]}-${lang}.svg`), timelineFigure({
+    await writeFile(join(directory, `${topic.prefix}-${filenames.timeline[topic.prefix]}-${lang}.svg`), timelineFigure({
       title: timelineTitle, subtitle: timelineSubtitle, events: mapEvents(timelineEvents), note: timelineNote, label: `HECAVEX / ${topic.prefix.toUpperCase()} / DECISION`
     }), 'utf8');
   }
 }
 
-const smsDirectory = join(imageRoot, '2026-08-31-suspicious-sms-guide');
-await writeFile(join(smsDirectory, 'suspicious-sms-guide-hero.svg'), heroScene('sms'), 'utf8');
+// Keep the historical SMS hero URL intact. Current covers are maintained separately.
 
-console.log(`Generated ${topics.length} editorial hero sets, ${topics.length * 6} localized technical figures, and the revised suspicious-SMS hero.`);
+console.log(`Generated ${topics.length * 6} localized technical figures. Legacy hero files were preserved.`);

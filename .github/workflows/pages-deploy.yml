@@ -62,7 +62,8 @@ jobs:
           grep -Fq "https://radar.hecavex.com/" dist/llms.txt
           grep -Fq "Canonical: https://hecavex.com/.well-known/security.txt" dist/.well-known/security.txt
           test "$(grep -o '<loc>' dist/sitemap.xml | wc -l)" -eq "$(grep -cve '^[[:space:]]*$' scripts/production-sitemap-routes.txt)"
-          test "$(grep -Foc 'https://static.cloudflareinsights.com/beacon.min.js' dist/index.html)" -eq 1
+          test "$(grep -Foc '/assets/js/analytics.js' dist/index.html)" -eq 1
+          test "$(grep -Foc 'https://static.cloudflareinsights.com/beacon.min.js' dist/assets/js/analytics.js)" -eq 1
           test "$(grep -Foc -- "$PUBLIC_HECAVEX_ANALYTICS_TOKEN" dist/index.html)" -eq 1
 
       - name: Upload site artifact

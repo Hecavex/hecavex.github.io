@@ -7,7 +7,9 @@ import { hasFragment } from '../src/lib/html-fragments.mjs';
 const root = resolve(process.argv[2] ?? 'dist');
 const failures = [];
 const analyticsToken = process.env.PUBLIC_HECAVEX_ANALYTICS_TOKEN?.trim() ?? '';
-const analyticsSource = 'https://static.cloudflareinsights.com/beacon.min.js';
+const analyticsSource = '/assets/js/analytics.js';
+const analyticsLoader = await readFile(join(root, analyticsSource.slice(1)), 'utf8');
+if (!analyticsLoader.includes('https://static.cloudflareinsights.com/beacon.min.js')) failures.push('Analytics loader does not use the intended provider');
 
 async function walk(directory) {
   const files = [];
@@ -74,8 +76,8 @@ for (const file of htmlFiles) {
     const beaconIndex = html.indexOf(analyticsSource);
     const bodyCloseIndex = html.toLowerCase().lastIndexOf('</body>');
     if (beaconIndex < 0 || bodyCloseIndex < 0 || beaconIndex > bodyCloseIndex) failures.push(`${route}: analytics loader is not placed before the closing body tag`);
-    if (!/beacon\.type\s*=\s*['"]module['"]/.test(html)) failures.push(`${route}: analytics beacon is not created as a module script`);
-    if (!/doNotTrack/.test(html)) failures.push(`${route}: analytics loader is missing the Do Not Track gate`);
+    if (!/beacon\.type\s*=\s*['"]module['"]/.test(analyticsLoader)) failures.push(`${route}: analytics beacon is not created as a module script`);
+    if (!/doNotTrack/.test(analyticsLoader)) failures.push(`${route}: analytics loader is missing the Do Not Track gate`);
   }
   if (/\{%|\{\{\s*(?:site|page|post)\./i.test(html)) failures.push(`${route}: unrendered template output remains`);
   const htmlTag = html.match(/<html\b[^>]*>/i)?.[0] ?? '';
@@ -98,7 +100,8 @@ for (const file of htmlFiles) {
       else hreflangMap.set(language, href);
     }
     if (!hreflangMap.has('x-default')) failures.push(`${route}: missing hreflang x-default`);
-    const rootLanguageSelector = route === '/index.html' && canonical === 'https://hecavex.com/';
+    const rootLanguageSelector = ['https://hecavex.com/', 'https://hecavex.com/en/', 'https://hecavex.com/lt/'].includes(canonical);
+    if (rootLanguageSelector && hreflangMap.get('x-default') !== 'https://hecavex.com/') failures.push(`${route}: home x-default must resolve to the selector`);
     if (!rootLanguageSelector && hreflangMap.has('en') && hreflangMap.has('lt') && hreflangMap.get('x-default') !== hreflangMap.get('en')) failures.push(`${route}: bilingual x-default must resolve to the English counterpart`);
     if (canonical) hreflangByCanonical.set(canonical, hreflangMap);
     for (const property of ['og:title', 'og:description', 'og:url', 'og:image', 'og:image:width', 'og:image:height', 'og:image:alt']) if (!new RegExp(`<meta\\s+[^>]*property=["']${property.replace(':', '\\:')}["'][^>]*content=["'][^"']+`, 'i').test(html)) failures.push(`${route}: missing ${property}`);

@@ -25,6 +25,8 @@ const posts = defineCollection({
     seo_title: z.string().optional(),
     seo_description: z.string().optional(),
     seo_keywords: z.array(z.string()).default([]),
+    search_terms: z.array(z.string().min(1)).default([]),
+    immediate_actions: z.array(z.string().min(1)).optional(),
     description: z.string(),
     date: z.coerce.date().optional(),
     last_modified_at: z.coerce.date().optional(),

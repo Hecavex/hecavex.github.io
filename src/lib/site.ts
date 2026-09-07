@@ -226,12 +226,16 @@ export const languagePairPath = async (translationKey: string, lang: Lang) => {
   return page?.data.permalink;
 };
 
-export const networkNavigation = [
-  { name: 'Research', href: 'https://hecavex.com/en/research/' },
+export const categoryPath = (lang: Lang, slug: string) => slug === 'security-briefings'
+  ? (lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/')
+  : `/${lang}/${lang === 'lt' ? 'kategorijos' : 'categories'}/${slug}/`;
+
+export const networkNavigation = (lang: Lang) => [
+  { name: 'Research', href: lang === 'lt' ? '/lt/tyrimai/' : '/en/research/' },
   { name: 'Radar', href: 'https://radar.hecavex.com/' },
   { name: 'APT Notes', href: 'https://apt.hecavex.com/' },
   { name: 'Labs', href: 'https://labs.hecavex.com/' },
-  { name: 'Data', href: 'https://hecavex.com/data/' }
+  { name: 'Data', href: lang === 'lt' ? '/lt/duomenys/' : '/data/' }
 ] as const;
 
 export const productNavigation = {

@@ -8,7 +8,7 @@ import PostCard from '../../components/PostCard.astro';
 import ProjectDirectory from '../../components/ProjectDirectory.astro';
 import { contactRoutesFor, pageFactsFor, researchMapFor, type OutlineItem } from '../../data/page-context';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { dateText, getPages, getLocalizedPosts, languagePairPath, latestContentUpdate, slugify, taxonomy, type Lang, type PageEntry } from '../../lib/site';
+import { categoryPath, labelForPost, dateText, getPages, getLocalizedPosts, languagePairPath, latestContentUpdate, slugify, taxonomy, type Lang, type PageEntry } from '../../lib/site';
 
 export async function getStaticPaths() {
   const pages = await getPages();
@@ -68,10 +68,10 @@ const researchMap = researchMapFor(lang, {
       <div class="briefing-list">{briefings.map((post) => <PostCard {post} prominent />)}</div>
     </> : layout === 'archive-hx' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} />
-      <ol class="archive-list">{posts.map((post) => <li><time datetime={post.date.toISOString()}>{post.date.toISOString().slice(0, 10)}</time><div><span>{post.publicationClass}</span><a href={post.url}>{post.title}</a></div></li>)}</ol>
+      <ol class="archive-list">{posts.map((post) => <li><time datetime={post.date.toISOString()}>{post.date.toISOString().slice(0, 10)}</time><div><span>{labelForPost(post)}</span><a href={post.url}>{post.title}</a></div></li>)}</ol>
     </> : layout === 'taxonomy' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} />
-      <div class="topic-grid">{Object.entries(taxonomy).map(([slug, labels]) => { const count = posts.filter((post) => post.categories.includes(slug)).length; return count > 0 ? <a href={`/${lang}/${lang === 'lt' ? 'kategorijos' : 'categories'}/${slug}/`}><h2>{labels[lang]}</h2><p>{count} {lang === 'lt' ? 'publikacijos' : count === 1 ? 'publication' : 'publications'}</p><span aria-hidden="true">→</span></a> : <section aria-disabled="true"><h2>{labels[lang]}</h2><p>0 {lang === 'lt' ? 'publikacijų' : 'publications'}</p></section>; })}</div>
+      <div class="topic-grid">{Object.entries(taxonomy).map(([slug, labels]) => { const count = posts.filter((post) => post.categories.includes(slug)).length; return count > 0 ? <a href={categoryPath(lang, slug)}><h2>{labels[lang]}</h2><p>{count} {lang === 'lt' ? 'publikacijos' : count === 1 ? 'publication' : 'publications'}</p><span aria-hidden="true">→</span></a> : <section aria-disabled="true"><h2>{labels[lang]}</h2><p>0 {lang === 'lt' ? 'publikacijų' : 'publications'}</p></section>; })}</div>
     </> : entry.data.translation_key === 'tags' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} />
       <div class="tag-index">{tags.map(([slug, tag]) => <a href={`/${lang}/${lang === 'lt' ? 'zymos' : 'tags'}/${slug}/`}>{tag}</a>)}</div>
