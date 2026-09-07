@@ -1225,6 +1225,10 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
   max-width: none;
 }
 
+.standard-page--catalogue-width > .prose {
+  max-width: none;
+}
+
 .standard-page--with-rail {
   display: grid;
   grid-template-areas:
@@ -1642,7 +1646,12 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 }
 
 .data-catalogue__section > .section-head > div {
-  max-width: 58rem;
+  width: 100%;
+  max-width: none;
+}
+
+.data-catalogue__section > .section-head p:not(.eyebrow) {
+  max-width: none;
 }
 
 .data-product-list {
