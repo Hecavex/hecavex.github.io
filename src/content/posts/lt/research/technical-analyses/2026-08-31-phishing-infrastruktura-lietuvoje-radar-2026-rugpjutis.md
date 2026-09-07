@@ -1,4 +1,5 @@
 ---
+last_modified_at: 2026-09-07
 title: "Phishing infrastruktūra Lietuvoje: 2026 m. rugpjūčio Radar bazinė apžvalga"
 card_title: "Radar 2026 m. rugpjūčio phishing infrastruktūros apžvalga"
 description: "Aprėptį įvertinanti 130 Lietuvos prekių ženklų impersonation kandidatų, jų įrodymų lygių, rinkimo būklės ir analitinių ribų apžvalga."
@@ -57,7 +58,7 @@ image:
 
 Šie keturi sakiniai yra ir rezultatas, ir būtinas perspėjimas. Radar skirta rasti tai, ką verta tirti: neseniai stebėtus domenų vardus, viešus svetainių stebėjimus bei mažą vietoje peržiūrėtų įrašų dalį, galinčią būti susijusią su Lietuvos prekių ženklų impersonation. Kandidatas nėra automatiškai phishing svetainė. Kandidatų skaičius nėra aukų skaičius. Daugiau atitikmenų turintis prekių ženklas nebūtinai atakuojamas dažniau už mažiau atitikmenų turintį ženklą.
 
-Šia publikacija nustatau atkuriamą rugpjūčio bazę vėlesniems palyginimams. Kartu su pagrindiniais skaičiais pateikiu rinkimo aprėptį, šaltinių šališkumą, įrodymų lygį, peržiūros būseną ir saugojimo laiką. Be šių laukų dashboard'o skaičius yra tik dekoracija. Su jais skaičius gali tapti pagrįsta tyrimo eile.
+Šia publikacija išsaugau agreguotą rugpjūčio bazę vėlesniems palyginimams. Kartu su pagrindiniais skaičiais pateikiu rinkimo aprėptį, šaltinių šališkumą, įrodymų lygį, peržiūros būseną ir saugojimo laiką. Be šių laukų dashboard'o skaičius yra tik dekoracija. Su jais skaičius gali tapti pagrįsta tyrimo eile.
 
 <aside class="hx-callout warning"><strong>Tai nėra phishing paplitimo matas.</strong>Suvestinė neparodo, kokią viso phishing Lietuvoje dalį aptiko Radar, kiek žmonių matė puslapį, ar buvo pateikti prisijungimo duomenys, kas valdė infrastruktūrą ir kokia žala padaryta. Jei URL nėra Radar, tai nėra jo saugumo įrodymas.</aside>
 
@@ -195,9 +196,11 @@ Tyrėjams ir žurnalistams [pokyčių žurnalas](https://radar.hecavex.com/lt/po
 
 Paprastam gavėjui Radar nepakeičia [saugaus įtartinos SMS patikrinimo](/lt/tyrimai/kaip-saugiai-patikrinti-itartina-sms-nuoroda/). Neatidarykite kandidato vien todėl, kad jis yra tyrimo indekse. Tariamus įvykius tikrinkite oficialioje organizacijos programėlėje arba pačių įvestu adresu. Jei jau pateikėte banko ar autentifikavimo duomenis, naudokite [veiksmų po phishing incidento gidą](/lt/tyrimai/ka-daryti-suvedus-banko-duomenis-phishing-puslapyje/), o ne tęskite nuorodos tyrimą.
 
-## Atkuriamumas ir kitas palyginimas
+## Išsaugotos reikšmės ir atkūrimo ribos
 
 Išvestiniame [summary JSON](/assets/data/radar-august-2026-baseline/summary.json) išsaugotos naudotos reikšmės, jų apibrėžimai, laiko riba, retention, šaltinių būklė ir dviejų lokalių šaltinio failų SHA-256. `radar.json` buvo 113 912 baitų, jo SHA-256 – `dcce36b0…83cce2`. `pipeline-health.json` buvo 4 604 baitų, jo SHA-256 – `28063e26…057d7`. Pilni hash palikti pakete.
+
+Išsaugotas agreguotas reikšmes galima peržiūrėti ir cituoti, tačiau pilno nepriklausomo šios publikacijos atkūrimo patikrinta procedūra nepateikta. Abu tikslūs įvesties failai rasti nekintamoje saugyklos istorijoje: [radar.json](https://github.com/Hecavex/radar.hecavex/blob/6a9327ff77a03e25d2be37e5a775f877a4da3183/public/data/radar.json) ir [pipeline-health.json](https://github.com/Hecavex/radar.hecavex/blob/6a9327ff77a03e25d2be37e5a775f877a4da3183/public/data/pipeline-health.json). Jų baitų skaičiai ir SHA-256 sutampa su šiuo paketu. Hash patikra nustato įvesties tapatumą, bet neatkuria visų išvestinių laukų. Originali publikacija neturi išsaugotos ir patikrintos agregavimo komandos. [Datuotas atkūrimo paaiškinimas](/assets/data/radar-august-2026-baseline/README.md) patikslina pradinį teiginį apie atkuriamumą ir palieka originalius santraukos baitus nepakeistus.
 
 Kita bazinė apžvalga turėtų lyginti palyginamus dalykus:
 

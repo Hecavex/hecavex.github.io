@@ -1,4 +1,5 @@
 ---
+last_modified_at: 2026-09-07
 layout: page
 lang: lt
 translation_key: speaker-media
@@ -26,13 +27,19 @@ Dėl pranešimų ar komentarų žiniasklaidai rašykite **[info@hecavex.com](mai
 
 Threat intelligence tampa naudinga tada, kai pakeičia sprendimą. Šiame pranešime einu toliau už dar ilgesnius IOC sąrašus ir rodau, kaip infrastruktūrą, elgseną, pasitikėjimo lygį bei informacijos spragas paversti vertinimu, kurį realiai gali naudoti gynėjai ir vadovai.
 
+Susijęs tyrimas: [Radar rugpjūčio bazė ir jos įrodymų ribos](/lt/tyrimai/phishing-infrastruktura-lietuvoje-radar-2026-rugpjutis/). Susijęs įrašas: [visas NordStellar seminaras apie grėsmių žvalgybą](https://www.youtube.com/watch?v=qxrLrMH7_x4).
+
 ### Vienas scam domenas retai būna vienas
 
 Vienas phishingo ar sukčiavimo URL dažniausiai yra tyrimo pradžia, o ne pabaiga. Praktiniame pranešime pereinu per redirect'us, DNS, sertifikatus, hostingą, puslapių šablonus bei susijusią infrastruktūrą ir parodau, kaip atskirti prasmingą koreliaciją nuo paprasto sutapimo.
 
+Tyrimo pavyzdys: [UNIPARK smishing infrastruktūros tyrimas](/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/). Susijęs įrašas: [visas Pociūnas Podcast pokalbis apie elektroninių nusikaltimų tyrimus](https://www.youtube.com/watch?v=mzeDypl0QiA).
+
 ### Užpuolikai ieško žmonių
 
 ClickFix, sesijų vagystės ir šiuolaikinė socialinė inžinerija veikia todėl, kad pati auka tampa execution chain'o dalimi. Pranešime aiškinu, kodėl vien MFA ar awareness šūkio neužtenka, ir susieju užpuolikų elgseną su praktinėmis aptikimo bei reagavimo galimybėmis.
+
+Susijusi publikacija: [ClickFix ir naudotojo vaidmuo vykdymo grandinėje](/lt/tyrimai/clickfix-kodel-siuolaikiniai-ta-nebeiesko/). Susijęs įrašas: [Žinių radijo interviu apie sukčių bendravimą su aukomis](https://www.ziniuradijas.lt/laidos/pergudrauti-sukciu/kodel-sukciai-skambina-per-pietus-arba-vakare?video=1). Tai jau paskelbti įrašai, o ne siūlomų pranešimų ištraukos.
 
 ## Praktinė informacija
 
@@ -55,13 +62,12 @@ Renginių organizatoriai ir redakcijos gali naudoti šią biografiją nurodydami
 
 ## Atrinkti pasirodymai
 
-- Ekspertinis komentaras **Delfi** apie didelio masto „Facebook“ duomenų nutekėjimą
-- Interviu **Žinių radijui** apie tai, kaip sukčiai pasirenka ir pasiekia aukas
-- Ekspertinis komentaras **TV3** apie masiškai plintančią sukčiavimo schemą
-- Išsamūs pokalbiai **„Pociūnas Podcast“** ir **„Tapk Geresniu Podcast“** apie elektroninių nusikaltimų tyrimus, sukčiavimą ir tamsųjį internetą
-- **„NordStellar“** internetinis seminaras apie veiksmingus grėsmių žvalgybos gebėjimus
-
-[Peržiūrėti pasirodymų nuorodas ir išsamius aprašymus](/lt/apie/#atrinkti-pasirodymai-žiniasklaidoje).
+- [Delfi komentaras apie didelio masto Facebook duomenų nutekėjimą](https://www.delfi.lt/mokslas/login/programisiai-nutekino-1-2-milijardo-facebook-vartotoju-duomenis-it-specialistas-ispeja-kas-gresia-turintiems-feisbuko-paskyras-120111498)
+- [Žinių radijo interviu apie tai, kaip sukčiai pasirenka ir pasiekia aukas](https://www.ziniuradijas.lt/laidos/pergudrauti-sukciu/kodel-sukciai-skambina-per-pietus-arba-vakare?video=1)
+- [TV3 komentaras apie masiškai plintančią sukčiavimo schemą](https://www.tv3.lt/naujiena/lietuva/ispeja-apie-masiskai-plintancia-sukciu-afera-stai-kaip-atsirenka-jus-kaip-auka-n1521886)
+- [Pociūnas Podcast pokalbis apie elektroninių nusikaltimų tyrimus](https://www.youtube.com/watch?v=mzeDypl0QiA)
+- [Tapk Geresniu Podcast pokalbis apie sukčiavimą ir tamsųjį internetą](https://www.youtube.com/watch?v=1RPIICt7_SU)
+- [NordStellar seminaras apie grėsmių žvalgybos gebėjimus](https://www.youtube.com/watch?v=qxrLrMH7_x4)
 
 ## Medijos rinkinys
 

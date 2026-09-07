@@ -65,7 +65,8 @@ try {
     boxes: document.querySelectorAll('input[type=checkbox][disabled]').length,
     csp: !!document.querySelector('meta[http-equiv="Content-Security-Policy"]'),
     figures: [...document.querySelectorAll('.hx-evidence-figure')].map(f => ({ link: !!f.querySelector('a.evidence-original'), caption: !!f.querySelector('figcaption'), text: f.querySelector('a.evidence-original')?.textContent })),
-    metadata: parseFloat(getComputedStyle(document.querySelector('.card-meta') ?? document.body).fontSize)
+    metadata: parseFloat(getComputedStyle(document.querySelector('.card-meta') ?? document.body).fontSize),
+    proseAligned: [...document.querySelectorAll('.article-body > p')].every(p => getComputedStyle(p).textAlign !== 'justify')
    }));
    check(!state.overflow, route + ' @ ' + width + ': overflow');
    check(state.actions === actions, route + ': immediate action scope/order');
@@ -73,14 +74,21 @@ try {
    check(state.csp, route + ': CSP missing');
    if (route.includes('sms') || route.includes('adform')) check(state.figures.length > 0 && state.figures.every(f => f.link && f.caption), route + ': inspectable figures');
    check(state.metadata >= 12, route + ': metadata below 12px');
+   if (width <= 600) check(state.proseAligned, route + ': narrow prose remains justified');
    if (route.includes('github-and-malware')) {
     check(state.figures.length === 6 && state.figures.every(f => f.link && f.caption && /px/.test(f.text)), route + ': evidence links/captions/dimensions');
+    await page.evaluate(() => document.fonts.ready);
     const link = page.locator('.evidence-original').nth(1);
     await link.scrollIntoViewIfNeeded();
     const scroll = await page.evaluate(() => scrollY);
     await link.click();
     await page.goBack();
-    check(Math.abs(await page.evaluate(() => scrollY) - scroll) < 120, route + ': back scroll restoration');
+    await page.evaluate(async () => {
+     await document.fonts.ready;
+     await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    });
+    const restoredScroll = await page.evaluate(() => scrollY);
+    check(Math.abs(restoredScroll - scroll) < 120, route + ' @ ' + width + ': back scroll restoration ' + scroll + ' -> ' + restoredScroll);
    }
    for (const mode of ['denied', 'missing', 'success']) {
     await page.evaluate(mode => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: mode === 'missing' ? undefined : { writeText: async value => { if (mode === 'denied') throw new DOMException('Denied', 'NotAllowedError'); window.copiedValue = value; } } }), mode);
