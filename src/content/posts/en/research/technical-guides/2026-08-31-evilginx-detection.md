@@ -1,4 +1,9 @@
 ---
+last_modified_at: 2026-09-07
+research_artifacts:
+  - label: "Experimental analytic and synthetic fixtures"
+    url: "https://github.com/Hecavex/research-artifacts/tree/846937aee43d792a81bcf1b3c05c396f440588f0/releases/aitm-auth-journey-analytic/v1.0.0"
+    version: "1.0.0"
 title: "Evilginx Detection: Finding Reverse-Proxy Phishing and Session Theft"
 card_title: "Evilginx Detection for Identity Defenders"
 description: "A defensive guide to reverse-proxy phishing indicators, identity and authentication telemetry, domain and HTTP clues, session containment, and phishing-resistant MFA."
@@ -49,6 +54,12 @@ image:
   width: 1600
   height: 900
 ---
+
+## Experimental analytic and offline fixtures
+
+The [version 1.0.0 analytic bundle](https://github.com/Hecavex/research-artifacts/tree/846937aee43d792a81bcf1b3c05c396f440588f0/releases/aitm-auth-journey-analytic/v1.0.0) supplies one bounded rule, its telemetry contract, synthetic positive and negative records, expected matches, tuning notes and a portable Python reference model. [Download the source archive at this exact revision](https://github.com/Hecavex/research-artifacts/archive/846937aee43d792a81bcf1b3c05c396f440588f0.zip), select `releases/aitm-auth-journey-analytic/v1.0.0/`, and run `python reference.py --check` with Python 3.12 or newer. The command makes no network requests.
+
+The portable fixture tests pass. The included KQL candidate has **NOT VERIFIED** engine compilation, execution or semantic equivalence. Production effectiveness is also **NOT VERIFIED**. The rule uses an explicit custom normalized click/sign-in schema. It is not a ready-made join of native provider tables and does not prove Evilginx or session theft. Validate the actual engine and connector mapping before operational use. Missing telemetry is not evidence of safety.
 
 ## The sign-in can be real while the browser is in the wrong place
 

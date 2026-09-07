@@ -1,4 +1,9 @@
 ---
+last_modified_at: 2026-09-07
+research_artifacts:
+  - label: "Eksperimentinė aptikimo taisyklė ir sintetiniai bandymai"
+    url: "https://github.com/Hecavex/research-artifacts/tree/846937aee43d792a81bcf1b3c05c396f440588f0/releases/aitm-auth-journey-analytic/v1.0.0"
+    version: "1.0.0"
 title: "Evilginx aptikimas: reverse-proxy phishing ir pavogtų sesijų požymiai"
 card_title: "Evilginx aptikimas identity aplinkoje"
 description: "Gynybinis Evilginx ir reverse-proxy phishing vadovas apie domenų, HTTP, prisijungimų bei token telemetriją, session containment ir phishing atsparią MFA."
@@ -49,6 +54,12 @@ image:
   width: 1600
   height: 900
 ---
+
+## Eksperimentinė taisyklė ir bandymai be tinklo
+
+[1.0.0 versijos rinkinyje](https://github.com/Hecavex/research-artifacts/tree/846937aee43d792a81bcf1b3c05c396f440588f0/releases/aitm-auth-journey-analytic/v1.0.0) pateikta viena ribotos apimties taisyklė, telemetrijos schema, sintetiniai teigiami ir neigiami pavyzdžiai, tikėtini rezultatai, derinimo pastabos ir nuo platformos nepriklausantis Python modelis. [Atsisiųskite šios tikslios revizijos archyvą](https://github.com/Hecavex/research-artifacts/archive/846937aee43d792a81bcf1b3c05c396f440588f0.zip), pasirinkite `releases/aitm-auth-journey-analytic/v1.0.0/` ir su Python 3.12 ar naujesniu paleiskite `python reference.py --check`. Komanda tinklo užklausų nesiunčia. Lietuviškos instrukcijos yra `README.lt.md`.
+
+Python modelio bandymai sėkmingi. KQL kandidato kompiliavimas, vykdymas ir semantinis lygiavertiškumas tikrame variklyje **NEPATIKRINTI (NOT VERIFIED)**. Praktinis aptikimo efektyvumas taip pat **nepatikrintas**. Taisyklė remiasi atskirai aprašyta normalizuota paspaudimų ir prisijungimų schema. Tai nėra paruošta vietinių platformos lentelių jungtis ir neįrodo Evilginx ar sesijos vagystės. Prieš naudojimą patikrinkite tikrą variklį ir jungčių laukų atitikimą. Trūkstama telemetrija nėra saugumo įrodymas.
 
 ## Prisijungimas gali būti tikras, nors naršyklė yra ne ten
 

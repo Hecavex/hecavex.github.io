@@ -2119,14 +2119,16 @@ body[data-language="lt"] .table-scroll-hint::before {
   max-width: none;
 }
 
-.article-body > p:not(:has(> img:only-child)),
-.article-body > ul > li,
-.article-body > ol > li,
-.article-body > blockquote > p {
-  text-align: justify;
-  text-align-last: left;
-  text-justify: inter-word;
-  hyphens: auto;
+@media (min-width: 601px) {
+  .article-body > p:not(:has(> img:only-child)),
+  .article-body > ul > li,
+  .article-body > ol > li,
+  .article-body > blockquote > p {
+    text-align: justify;
+    text-align-last: left;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
 }
 
 .prose .hx-signal-entry {

@@ -1,4 +1,5 @@
 ---
+last_modified_at: 2026-09-07
 layout: page
 lang: en
 translation_key: speaker-media
@@ -26,13 +27,19 @@ For speaking or media enquiries, email **[info@hecavex.com](mailto:info@hecavex.
 
 Threat intelligence becomes useful when it changes a decision. This talk moves beyond longer IOC lists and shows how infrastructure, behaviour, confidence and collection gaps can be turned into an assessment that defenders and leaders can act on.
 
+Related research: [Radar August baseline and its evidence limits](/en/research/lithuania-phishing-infrastructure-radar-august-2026/). Related recording: [NordStellar threat-intelligence webinar, full session](https://www.youtube.com/watch?v=qxrLrMH7_x4).
+
 ### One scam domain is rarely alone
 
 A single phishing or fraud URL is usually an entry point, not the investigation. This practical session follows the pivots through redirects, DNS, certificates, hosting, page templates and related infrastructure while separating useful correlation from accidental overlap.
 
+Case study: [UNIPARK smishing infrastructure investigation](/en/research/unipark-smishing-campaign-infrastructure/). Related recording: [Pociūnas Podcast conversation about cybercrime investigations, full episode](https://www.youtube.com/watch?v=mzeDypl0QiA).
+
 ### Attackers are looking for people
 
 ClickFix, session theft and modern social engineering succeed by turning the victim into part of the execution chain. This talk explains why MFA and awareness slogans are not enough, then connects attacker behaviour to practical detection and response opportunities.
+
+Related publication: [ClickFix and the role of the user in the execution chain](/en/research/clickfix-why-modern-threat-actors-hunt-people/). Related recording: [Žinių radijas interview about how scammers approach victims](https://www.ziniuradijas.lt/laidos/pergudrauti-sukciu/kodel-sukciai-skambina-per-pietus-arba-vakare?video=1). These are existing recordings, not excerpts of the proposed talks.
 
 ## Practical details
 
@@ -55,13 +62,12 @@ Event organisers and editors may use this biography with attribution. For a long
 
 ## Selected appearances
 
-- Expert commentary for **Delfi** on a large-scale Facebook data exposure
-- Interview with **Žinių radijas** about how scammers select and approach victims
-- Expert commentary for **TV3** about a rapidly spreading fraud scheme
-- Long-form conversations on **Pociūnas Podcast** and **Tapk Geresniu Podcast** about cybercrime investigations, fraud and the dark web
-- **NordStellar** webinar on building effective threat-intelligence capabilities
-
-[View the linked appearances and full descriptions](/en/about/#selected-media-and-appearances).
+- [Delfi commentary on a large-scale Facebook data exposure](https://www.delfi.lt/mokslas/login/programisiai-nutekino-1-2-milijardo-facebook-vartotoju-duomenis-it-specialistas-ispeja-kas-gresia-turintiems-feisbuko-paskyras-120111498)
+- [Žinių radijas interview about how scammers select and approach victims](https://www.ziniuradijas.lt/laidos/pergudrauti-sukciu/kodel-sukciai-skambina-per-pietus-arba-vakare?video=1)
+- [TV3 commentary on a rapidly spreading fraud scheme](https://www.tv3.lt/naujiena/lietuva/ispeja-apie-masiskai-plintancia-sukciu-afera-stai-kaip-atsirenka-jus-kaip-auka-n1521886)
+- [Pociūnas Podcast conversation about cybercrime investigations](https://www.youtube.com/watch?v=mzeDypl0QiA)
+- [Tapk Geresniu Podcast conversation about fraud and the dark web](https://www.youtube.com/watch?v=1RPIICt7_SU)
+- [NordStellar webinar on threat-intelligence capabilities](https://www.youtube.com/watch?v=qxrLrMH7_x4)
 
 ## Media kit
 

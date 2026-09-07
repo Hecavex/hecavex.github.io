@@ -22,3 +22,7 @@ Source record counts are not additive because the public view deduplicates candi
 - Change record: <https://radar.hecavex.com/changes/>
 
 The SHA-256 values in `summary.json` identify the exact local source files used for the aggregate. The live URLs can change after later synchronization.
+
+## Replay clarification - 7 September 2026
+
+The preserved aggregate values can be inspected and cited, but complete independent replay of this release is not available as a tested procedure. Both exact input files have now been located in immutable repository history: [radar.json](https://github.com/Hecavex/radar.hecavex/blob/6a9327ff77a03e25d2be37e5a775f877a4da3183/public/data/radar.json) and [pipeline-health.json](https://github.com/Hecavex/radar.hecavex/blob/6a9327ff77a03e25d2be37e5a775f877a4da3183/public/data/pipeline-health.json). Their byte lengths and SHA-256 values match this bundle. A hash check establishes input identity, not a complete reconstruction of every derived field. No retained, tested aggregation command accompanies the original release. The original `summary.json` is preserved byte-for-byte. Its scope sentence calling the aggregate reproducible is historical wording and is superseded by this clarification. This correction does not change any aggregate value or claim a new collection. The live URLs above are context, not the fixed inputs for this baseline.

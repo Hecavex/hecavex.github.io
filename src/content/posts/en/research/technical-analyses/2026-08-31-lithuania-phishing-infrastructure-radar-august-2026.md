@@ -1,4 +1,5 @@
 ---
+last_modified_at: 2026-09-07
 title: "Lithuania Phishing Infrastructure: Radar's August 2026 Baseline"
 card_title: "Radar's August 2026 Phishing-Infrastructure Baseline"
 description: "A coverage-aware baseline of 130 Lithuanian brand-impersonation candidates, their evidence tiers, collection health, and analytical limits."
@@ -57,7 +58,7 @@ At the cutoff on **30 August 2026 at 17:20:26 UTC**, the current public [HECAVEX
 
 Those four sentences are the useful result and the necessary warning. Radar is designed to find things worth looking at: recently observed domain names, public web observations and a small number of locally reviewed records that may be relevant to Lithuanian brand impersonation. A candidate is not automatically a phishing site. A count is not a victim count. A brand with more matches is not necessarily being attacked more often than a brand with fewer matches.
 
-This publication establishes a reproducible August baseline before later reports attempt comparisons. It places collection coverage, source bias, evidence level, review state and retention beside the headline figures. Without those fields, a dashboard number is decoration. With them, it can become a defensible research queue.
+This publication preserves an August aggregate baseline before later reports attempt comparisons. It places collection coverage, source bias, evidence level, review state and retention beside the headline figures. Without those fields, a dashboard number is decoration. With them, it can become a defensible research queue.
 
 <aside class="hx-callout warning"><strong>Do not read this as prevalence.</strong>The snapshot cannot tell us what share of phishing in Lithuania Radar observed, how many people encountered a page, whether credentials were submitted, who operated the infrastructure or how much harm occurred. Absence from Radar is not evidence that a URL is safe.</aside>
 
@@ -195,9 +196,11 @@ For researchers and journalists, the [change record](https://radar.hecavex.com/c
 
 For ordinary recipients, Radar is not a substitute for the [safe suspicious-SMS workflow](/en/research/how-to-check-a-suspicious-sms-link-safely/). Do not visit a candidate merely because it appears in a research index. Verify the claimed event through the organisation's official application or independently typed website. If banking or authentication data was already entered, use the [post-phishing emergency response guide](/en/research/what-to-do-after-entering-banking-details-on-phishing-page/) rather than continuing to investigate the link.
 
-## Reproducibility and the next comparison
+## Preserved values and replay limits
 
 The derived [summary JSON](/assets/data/radar-august-2026-baseline/summary.json) records the values used here, their definitions, the cutoff, retention, source-health fields and SHA-256 hashes of the two local source artifacts. The source `radar.json` was 113,912 bytes with SHA-256 `dcce36b0…83cce2`. `pipeline-health.json` was 4,604 bytes with SHA-256 `28063e26…057d7`. The complete hashes remain in the bundle.
+
+The preserved aggregate values can be inspected and cited, but complete independent replay of this release is not available as a tested procedure. Both exact input files have now been located in immutable repository history: [radar.json](https://github.com/Hecavex/radar.hecavex/blob/6a9327ff77a03e25d2be37e5a775f877a4da3183/public/data/radar.json) and [pipeline-health.json](https://github.com/Hecavex/radar.hecavex/blob/6a9327ff77a03e25d2be37e5a775f877a4da3183/public/data/pipeline-health.json). Their byte lengths and SHA-256 values match this bundle. A hash check establishes input identity, not a complete reconstruction of every derived field. No retained, tested aggregation command accompanies the original release. The [dated replay clarification](/assets/data/radar-august-2026-baseline/README.md) corrects the original reproducibility wording while preserving the original summary bytes.
 
 A later baseline should compare like with like:
 
@@ -209,7 +212,7 @@ A later baseline should compare like with like:
 6. publish correction or retraction effects
 7. avoid rates until the denominator and observation process are stable.
 
-The August result is therefore not "Lithuania had 130 phishing domains". It is more modest and more useful: **a sampled, coverage-aware discovery system retained 130 review candidates, most with name-only evidence, at a reproducible cutoff**. That is enough to guide enrichment and future measurement. It is not enough to manufacture certainty.
+The August result is therefore not "Lithuania had 130 phishing domains". It is more modest and more useful: **a sampled, coverage-aware discovery system retained 130 review candidates, most with name-only evidence, at the stated cutoff**. That is enough to guide enrichment and future measurement. It is not enough to manufacture certainty.
 
 For the next baseline, four quality measures would add more value than a larger headline count:
 
