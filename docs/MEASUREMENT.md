@@ -47,11 +47,7 @@ Changes in another repository must be reviewed against the public privacy wordin
 
 ## Security boundary
 
-This site currently publishes no Content Security Policy, so no CSP allowlist was expanded for the beacon. If a policy is introduced later:
-
-- authorize the inline loader with a nonce or hash rather than broadly enabling unsafe inline scripts;
-- add only `https://static.cloudflareinsights.com/beacon.min.js` to `script-src`; and
-- add only `https://cloudflareinsights.com` to `connect-src` where the manual reporting endpoint requires it. A proxied same-origin `/cdn-cgi/rum` request is already covered by `self`.
+The site now publishes a meta Content Security Policy through `ResourcePolicy.astro`. Its script policy permits self-hosted JavaScript and `https://static.cloudflareinsights.com`, without unsafe inline scripts. The self-hosted analytics loader uses those permissions. `connect-src` permits the same origin and `https://cloudflareinsights.com` for reporting. This is the current source contract, not an assertion that response-header-only protections such as `frame-ancestors` have been deployed.
 
 Cloudflare does not currently offer a stable versioned beacon URL suitable for Subresource Integrity. Do not invent an integrity hash for the moving `beacon.min.js` target.
 

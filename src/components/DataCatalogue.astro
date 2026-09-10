@@ -54,13 +54,25 @@ const catalogues = [
       { label: t("Reviewed ATT&CK evidence", "Peržiūrėti ATT&CK įrodymai"), detail: t("JSON · source-linked mappings from APT Notes", "JSON · ryšiai su APT Notes šaltiniais"), href: 'https://labs.hecavex.com/data/attack/intelligence/reviewed-evidence.json' },
       { label: t("Pivot cases", "Pivoting atvejai"), detail: t("JSON · four public case graphs including Hostinger infrastructure", "JSON · keturi vieši atvejų grafai, įskaitant Hostinger infrastruktūrą"), href: 'https://labs.hecavex.com/data/pivots/cases.json' }
     ]
+  },
+  {
+    index: '04',
+    id: 'research',
+    name: 'HECAVEX Research',
+    owner: 'Research',
+    cadence: t('Approved publication metadata', 'Patvirtintų publikacijų metaduomenys'),
+    description: t('Citable metadata for the bilingual publication archive. Language editions are linked, not counted as separate investigations. Article versions and recorded review dates stay distinct.', 'Dvikalbio publikacijų archyvo metaduomenys citavimui. Kalbinės versijos susietos ir nelaikomos atskirais tyrimais. Straipsnio versija atskiriama nuo užfiksuotos peržiūros datos.'),
+    links: [
+      { label: t('Publication catalogue', 'Publikacijų katalogas'), detail: t('JSON · dates, versions, translations and citation downloads', 'JSON · datos, versijos, vertimai ir citavimo failai'), href: '/data/publications.json' },
+      { label: t('Browse and cite research', 'Skaityti ir cituoti tyrimus'), detail: t('Each article offers BibTeX and CSL-JSON', 'Kiekviename straipsnyje pateikiami BibTeX ir CSL-JSON'), href: lang === 'lt' ? '/lt/tyrimai/' : '/en/research/' }
+    ]
   }
 ];
 ---
 <BaseLayout
   lang={lang}
   title={t("Public data catalogue", "Viešų duomenų katalogas")}
-  description={t("Canonical directory of public machine-readable datasets maintained by HECAVEX Radar, APT Notes, and HECAVEX Labs.", "Pagrindinis HECAVEX Radar, APT Notes ir Labs viešų mašininiu būdu skaitomų duomenų rinkinių katalogas.")}
+  description={t("Canonical directory of public datasets and publication metadata maintained by HECAVEX Research, Radar, APT Notes and Labs.", "Pagrindinis HECAVEX Research, Radar, APT Notes ir Labs viešų duomenų rinkinių ir publikacijų metaduomenų katalogas.")}
   canonicalPath={lang === 'lt' ? '/lt/duomenys/' : '/data/'}
   alternatePath={lang === 'lt' ? '/data/' : '/lt/duomenys/'}
   xDefaultPath="/data/"
@@ -70,14 +82,14 @@ const catalogues = [
     <PageHeader
       lang={lang}
       title={t("Public data catalogue", "Viešų duomenų katalogas")}
-      description={t("A portfolio-level directory for public machine-readable records maintained by Radar, APT Notes, and Labs.", "Bendras Radar, APT Notes ir Labs viešų mašininiu būdu skaitomų įrašų katalogas.")}
+      description={t("A portfolio-level directory for public machine-readable records maintained by Research, Radar, APT Notes and Labs.", "Bendras Research, Radar, APT Notes ir Labs viešų mašininiu būdu skaitomų įrašų katalogas.")}
       eyebrow={t("HECAVEX / DATA", "HECAVEX / DUOMENYS")}
     />
 
     <aside class="data-catalogue__boundary" aria-labelledby="catalogue-boundary-title">
       <div>
         <p class="eyebrow">{t("Publication boundary", "Publikavimo ribos")}</p>
-        <h2 id="catalogue-boundary-title">{t("One index, three canonical publishers", "Vienas indeksas, trys pagrindiniai leidėjai")}</h2>
+        <h2 id="catalogue-boundary-title">{t("One index, four canonical publishers", "Vienas indeksas, keturi pagrindiniai leidėjai")}</h2>
       </div>
       <p>{t("This page does not copy or proxy the datasets. Each link opens the canonical file on the HECAVEX product that maintains its schema, provenance, update cycle, licence, and limitations.", "Šis puslapis nekopijuoja rinkinių ir netarpininkauja juos gaunant. Nuorodos atveria pagrindinius failus HECAVEX projektuose, kurie prižiūri jų schemas, kilmę, atnaujinimo ciklus, licencijas ir ribotumus.")}</p>
     </aside>

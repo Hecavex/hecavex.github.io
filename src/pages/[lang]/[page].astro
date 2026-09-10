@@ -28,6 +28,8 @@ const posts = await getLocalizedPosts(lang);
 const alternatePath = await languagePairPath(entry.data.translation_key, lang);
 const { Content, headings } = await render(entry);
 const layout = entry.data.layout;
+const pageType = entry.data.translation_key === 'about' ? 'ProfilePage'
+  : ['research', 'briefings', 'archive-hx', 'taxonomy'].includes(layout) || ['tags', 'portfolio-projects'].includes(entry.data.translation_key) ? 'CollectionPage' : 'WebPage';
 const primary = posts.filter((post) => post.publicationClass === 'primary-research');
 const assessments = posts.filter((post) => post.publicationClass === 'technical-assessment');
 const commentary = posts.filter((post) => post.publicationClass === 'commentary');
@@ -50,7 +52,7 @@ const researchMap = researchMapFor(lang, {
   briefings: briefings.length
 });
 ---
-<BaseLayout {lang} {title} description={entry.data.seo_description ?? entry.data.description} canonicalPath={entry.data.permalink} {alternatePath} noindex={entry.data.robots?.includes('noindex')} type="CollectionPage">
+<BaseLayout {lang} {title} description={entry.data.seo_description ?? entry.data.description} canonicalPath={entry.data.permalink} {alternatePath} noindex={entry.data.robots?.includes('noindex')} type={pageType} modified={entry.data.last_modified_at}>
   <div class="shell page-shell">
     {layout === 'research' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} facts={pageFacts} anchorId="page-start" />

@@ -2413,6 +2413,18 @@ body[data-language="lt"] .table-scroll-hint::before {
   margin-bottom: 0;
 }
 
+.citation-downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+
+.citation-downloads a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
 .taxonomy-row,
 .article-share {
   display: flex;

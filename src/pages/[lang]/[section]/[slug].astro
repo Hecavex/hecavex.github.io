@@ -6,6 +6,7 @@ import type { OutlineItem } from '../../../data/page-context';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { categoryPath, dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imagePath, labelForPost, postNeighboursFor, relatedPostsFor, slugify, taxonomy, type Post } from '../../../lib/site';
 import { recordLabel } from '../../../lib/record-labels.mjs';
+import { citationPath } from '../../../lib/publication-citations.mjs';
 
 export async function getStaticPaths() {
   const posts = await getPublicPosts();
@@ -84,7 +85,11 @@ const sectionLabel = post.publicationClass === 'signal-brief'
     </div>
 
     {updates.length > 0 && <section class="update-history"><p class="eyebrow">{post.lang === 'lt' ? 'Atnaujinimų istorija' : 'Update history'}</p><ol>{updates.map((update) => <li><time datetime={new Date(update.date).toISOString()}>{dateText(new Date(update.date))}</time><p>{update.note}</p></li>)}</ol></section>}
-    <aside class="citation-block"><p class="eyebrow">{post.lang === 'lt' ? 'Citavimas' : 'Citation'}</p><p>Lis, Deividas. "{post.title}." HECAVEX, {dateText(post.date)}. <a href={post.url}>{canonical}</a>.</p></aside>
+    <aside class="citation-block"><p class="eyebrow">{post.lang === 'lt' ? 'Citavimas' : 'Citation'}</p><p>Lis, Deividas. "{post.title}." HECAVEX, {dateText(post.date)}. <a href={post.url}>{canonical}</a>.</p>
+      {data.research_version && <p>{t('Research version', 'Tyrimo versija')}: {String(data.research_version)}. {t('The evidence package may have a different version.', 'Įrodymų paketo versija gali skirtis.')}</p>}
+      <p class="citation-downloads"><a href={citationPath(post, 'bib')} download>{t('Download BibTeX', 'Atsisiųsti BibTeX')}</a><a href={citationPath(post, 'json')} download>{t('Download CSL-JSON', 'Atsisiųsti CSL-JSON')}</a></p>
+      <p>{t('Import into your reference manager. These files describe this language edition and its recorded version, not a peer-review certification.', 'Importuokite į bibliografijos tvarkymo programą. Failai aprašo šią kalbinę versiją ir užfiksuotą tyrimo versiją, o ne patvirtina mokslinį recenzavimą.')}</p>
+    </aside>
     {!translation && <p class="translation-note">{post.lang === 'lt' ? 'Šio turinio vertimas dar neparengtas.' : 'This content is currently available only in its original language.'}</p>}
     <footer class="article-footer">
       {post.categories.length > 0 && <div class="taxonomy-row"><strong>{post.lang === 'lt' ? 'Kategorijos' : 'Categories'}</strong>{post.categories.map((category) => <a href={categoryPath(post.lang, category)}>{taxonomy[category]?.[post.lang] ?? category}</a>)}</div>}
