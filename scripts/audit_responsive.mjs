@@ -53,6 +53,9 @@ const outlineRoutes = new Set([
   '/en/briefings/2026-08-22/', '/lt/apzvalgos/2026-08-22/'
 ]);
 const researchRoutes = new Set(['/en/research/', '/lt/tyrimai/']);
+const homeRoutes = new Set(['/en/', '/lt/']);
+const aboutRoutes = new Set(['/en/about/', '/lt/apie/']);
+const fullScreenRoutes = new Set([...homeRoutes, ...aboutRoutes, ...researchRoutes]);
 const contactRoutes = new Set(['/en/contact/', '/lt/kontaktai/']);
 const catalogueIntroRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
 const briefingRoutes = new Set(['/en/briefings/', '/lt/apzvalgos/']);
@@ -65,12 +68,13 @@ const legacyCtaRoutes = new Set(['/en/about/', '/lt/apie/', '/en/contact/', '/lt
 const signalRoutes = new Set(['/en/briefings/2026-08-22/', '/lt/apzvalgos/2026-08-22/']);
 const widths = [320, 390, 768, 1160, 1440];
 const failures = [];
+const cardPresentations = new Map();
 const browser = await chromium.launch({ executablePath, headless: true });
 const fail = (route, width, message) => failures.push(`${route} @ ${width}px: ${message}`);
 
 try {
   for (const route of routes) {
-    for (const width of widths) {
+    for (const width of fullScreenRoutes.has(route) ? [...widths, 1920] : widths) {
       const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce', serviceWorkers: 'block' });
       const page = await context.newPage();
       const response = await page.goto(`${baseUrl}${route}`, { waitUntil: 'networkidle' });
@@ -132,6 +136,45 @@ try {
         const oddResearchLastCard = oddResearchCards.at(-1);
         const oddResearchLastCardRect = oddResearchLastCard?.getBoundingClientRect();
         const oddResearchLastCardStyle = oddResearchLastCard ? getComputedStyle(oddResearchLastCard) : undefined;
+        const latestGrid = document.querySelector('.home-latest-grid');
+        const latestGridRect = latestGrid?.getBoundingClientRect();
+        const latestGridStyle = latestGrid ? getComputedStyle(latestGrid) : undefined;
+        const latestCards = [...(latestGrid?.querySelectorAll(':scope > .post-card') ?? [])];
+        const latestCardGeometry = latestCards.map((card) => {
+          const rect = card.getBoundingClientRect();
+          const title = card.querySelector('h3 a');
+          const action = card.querySelector('.card-action');
+          const image = card.querySelector('.post-card-image');
+          const imageRect = image?.getBoundingClientRect();
+          const copyRect = card.querySelector('.post-card-copy')?.getBoundingClientRect();
+          return {
+            left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom, width: rect.width,
+            titleSize: title ? Number.parseFloat(getComputedStyle(title).fontSize) : 0,
+            accessibleLinks: Boolean(title?.textContent.trim() && action?.textContent.trim()
+              && action.getAttribute('aria-label')?.trim()
+              && title.getAttribute('href') === action.getAttribute('href')
+              && title.getAttribute('aria-hidden') !== 'true' && action.getAttribute('aria-hidden') !== 'true'
+              && title.getAttribute('tabindex') !== '-1' && action.getAttribute('tabindex') !== '-1'),
+            imageRatio: imageRect?.height ? imageRect.width / imageRect.height : 0,
+            copyBelowImage: Boolean(imageRect && copyRect && copyRect.top >= imageRect.bottom - 1)
+          };
+        });
+        const latestRows = [];
+        for (const card of latestCardGeometry) {
+          const row = latestRows.find((candidate) => Math.abs(candidate.top - card.top) <= 1);
+          if (row) {
+            row.count += 1;
+            row.bottom = Math.max(row.bottom, card.bottom);
+          } else latestRows.push({ top: card.top, bottom: card.bottom, count: 1 });
+        }
+        const referenceGrid = document.querySelector('#primary .post-grid');
+        const referenceCard = referenceGrid?.querySelector('.post-card');
+        const referenceTitle = referenceCard?.querySelector('h3 a');
+        const referenceImageRect = referenceCard?.querySelector('.post-card-image')?.getBoundingClientRect();
+        const referenceGridStyle = referenceGrid ? getComputedStyle(referenceGrid) : undefined;
+        const standardProse = document.querySelector('.standard-page > .prose');
+        const aboutParagraphs = [...(standardProse?.querySelectorAll(':scope > p:not(:has(> img:only-child))') ?? [])];
+        const aboutHeading = standardProse?.querySelector('h2');
         const articleShell = document.querySelector('.article-shell');
         const articleShellRect = articleShell?.getBoundingClientRect();
         const articleShellStyle = articleShell ? getComputedStyle(articleShell) : undefined;
@@ -220,7 +263,26 @@ try {
             : false,
           oddDataLinkListCount: oddDataLinkLists.length,
           oddDataLinksFillRow,
-          leadImageLinkName: document.querySelector('.lead-story-image')?.getAttribute('aria-label') ?? '',
+          latestGridWidth: latestGridRect?.width ?? 0,
+          latestColumnGap: latestGridStyle ? Number.parseFloat(latestGridStyle.columnGap) : 0,
+          latestRowGap: latestGridStyle ? Number.parseFloat(latestGridStyle.rowGap) : 0,
+          latestCardGeometry,
+          latestRows,
+          hasOversizedHomeLead: Boolean(document.querySelector('.home-shell .lead-story')),
+          referencePresentation: referenceTitle && referenceGridStyle && referenceImageRect ? {
+            titleSize: Number.parseFloat(getComputedStyle(referenceTitle).fontSize),
+            columnGap: Number.parseFloat(referenceGridStyle.columnGap),
+            rowGap: Number.parseFloat(referenceGridStyle.rowGap),
+            imageRatio: referenceImageRect.width / referenceImageRect.height
+          } : null,
+          aboutMarker: Boolean(document.querySelector('.standard-page--about')),
+          aboutParagraphs: aboutParagraphs.map((paragraph) => {
+            const style = getComputedStyle(paragraph);
+            return { align: style.textAlign, lastAlign: style.textAlignLast, hyphens: style.hyphens,
+              width: paragraph.getBoundingClientRect().width };
+          }),
+          aboutProseWidth: standardProse?.getBoundingClientRect().width ?? 0,
+          aboutHeadingAlign: aboutHeading ? getComputedStyle(aboutHeading).textAlign : '',
           landingEditionCount: document.querySelectorAll('.landing-edition-rail a').length,
           landingCurrentCount: document.querySelectorAll('.landing-current-grid > *').length,
           landingNetworkCount: document.querySelectorAll('.landing-network-grid > a').length,
@@ -293,7 +355,40 @@ try {
         if (width > 680 && !state.signalFactsShareRow) fail(route, width, 'signal facts do not share a row on a wide screen');
       }
       if (route === '/' && (state.landingEditionCount !== 2 || state.landingCurrentCount !== 3 || state.landingNetworkCount !== 4)) fail(route, width, `root gateway is incomplete (${state.landingEditionCount} editions, ${state.landingCurrentCount} current records, ${state.landingNetworkCount} network links)`);
-      if (['/en/', '/lt/'].includes(route) && !state.leadImageLinkName) fail(route, width, 'lead-story image link has no accessible name');
+      if (homeRoutes.has(route)) {
+        const columns = width > 680 ? 2 : 1;
+        const expectedCardWidth = (state.latestGridWidth - state.latestColumnGap * (columns - 1)) / columns;
+        const cards = state.latestCardGeometry;
+        if (state.hasOversizedHomeLead || cards.length !== 5) fail(route, width, `latest research is not five ordinary cards (${cards.length} cards, oversized lead ${state.hasOversizedHomeLead})`);
+        if (state.latestColumnGap < 16 || state.latestRowGap < 16) fail(route, width, `latest research gaps are below 16px (${state.latestColumnGap}px/${state.latestRowGap}px)`);
+        if (cards.some((card) => Math.abs(card.width - expectedCardWidth) > 1)) fail(route, width, `latest research cards do not share the ordinary ${columns}-column width (${cards.map((card) => card.width).join('/')} versus ${expectedCardWidth}px)`);
+        if (state.latestRows.length !== Math.ceil(5 / columns)
+          || state.latestRows.some((row, index) => row.count !== Math.min(columns, 5 - index * columns))) fail(route, width, `latest research row composition is wrong (${JSON.stringify(state.latestRows)})`);
+        const rowGaps = state.latestRows.slice(1).map((row, index) => row.top - state.latestRows[index].bottom);
+        if (rowGaps.some((gap) => gap < 15.5 || Math.abs(gap - state.latestRowGap) > 1)) fail(route, width, `latest research rows touch or have inconsistent spacing (${rowGaps.join('/')}px)`);
+        if (columns === 2 && cards.length > 1 && Math.abs(cards[1].left - cards[0].right - state.latestColumnGap) > 1) fail(route, width, 'latest research columns do not have the declared visible gap');
+        if (cards.some((card) => !card.accessibleLinks || !card.copyBelowImage || Math.abs(card.imageRatio - 16 / 9) > 0.02 || card.titleSize <= 0 || card.titleSize > 20)) fail(route, width, `latest research card presentation/accessibility is wrong (${JSON.stringify(cards)})`);
+        cardPresentations.set(`${route.slice(1, 3)}:${width}`, {
+          cards, columnGap: state.latestColumnGap, rowGap: state.latestRowGap
+        });
+      }
+      if (researchRoutes.has(route)) {
+        const home = cardPresentations.get(`${route.slice(1, 3)}:${width}`);
+        const reference = state.referencePresentation;
+        if (!home || !reference || Math.abs(home.columnGap - reference.columnGap) > 0.1
+          || Math.abs(home.rowGap - reference.rowGap) > 0.1
+          || home.cards.some((card) => Math.abs(card.titleSize - reference.titleSize) > 0.1
+            || Math.abs(card.imageRatio - reference.imageRatio) > 0.02)) fail(route, width, 'home card typography, image ratio or gaps differ from the Research catalogue');
+      }
+      if (aboutRoutes.has(route)) {
+        if (!state.aboutMarker || state.aboutParagraphs.length < 2) fail(route, width, 'About paragraph scope is missing');
+        const alignmentCorrect = state.aboutParagraphs.every((paragraph) => width > 600
+          ? paragraph.align === 'justify' && paragraph.lastAlign === 'left' && paragraph.hyphens === 'auto'
+          : ['left', 'start'].includes(paragraph.align));
+        if (!alignmentCorrect) fail(route, width, `About paragraph alignment is wrong (${JSON.stringify(state.aboutParagraphs)})`);
+        if (state.aboutHeadingAlign === 'justify') fail(route, width, 'About headings must not inherit paragraph justification');
+        if (state.aboutParagraphs.some((paragraph) => Math.abs(paragraph.width - state.aboutProseWidth) > 1)) fail(route, width, 'About paragraphs no longer fill the available body column');
+      }
       if (width <= 1160) {
         if (Math.abs(state.networkHeight - 64) > 1) fail(route, width, `mobile header is ${state.networkHeight}px instead of 64px`);
         if (state.productDisplay !== 'none') fail(route, width, 'desktop product row remains visible below 1160px');
@@ -619,4 +714,4 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Responsive audit passed: ${routes.length} pages × ${widths.length} viewports plus no-JavaScript navigation, scroll-aware reading maps and wide-table inspection.`);
+console.log(`Responsive audit passed: ${routes.length} pages × ${widths.length} viewports, ${fullScreenRoutes.size} full-screen checks, plus no-JavaScript navigation, scroll-aware reading maps and wide-table inspection.`);

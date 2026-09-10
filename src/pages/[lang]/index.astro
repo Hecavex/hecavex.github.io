@@ -1,15 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
-import { copy, dateText, findPage, getLocalizedPosts, imagePath, labelForPost, latestContentUpdate, type Lang, type Post } from '../../lib/site';
+import { copy, dateText, findPage, getLocalizedPosts, latestContentUpdate, type Lang, type Post } from '../../lib/site';
 
 export function getStaticPaths() { return [{ params: { lang: 'en' } }, { params: { lang: 'lt' } }]; }
 const lang = Astro.params.lang as Lang;
 const posts = await getLocalizedPosts(lang);
 const research = posts.filter((post) => ['primary-research', 'technical-assessment'].includes(post.publicationClass));
 const briefings = posts.filter((post) => post.contentType === 'signal-brief');
-const lead = research[0];
-const recent = research.slice(1, 5);
+const recent = research.slice(0, 5);
 const latestBriefing = briefings[0];
 const hx = copy[lang];
 const latestUpdate = latestContentUpdate(posts);
@@ -47,13 +46,9 @@ const topicPosts = topicDefinitions
       </dl>
     </section>
 
-    {lead && <section class="home-section" aria-labelledby="latest-title">
+    {recent.length > 0 && <section class="home-section" aria-labelledby="latest-title">
       <header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Naujausias darbas' : 'Latest work'}</p><h2 id="latest-title">{hx.latest_research}</h2></div><a href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.view_all} →</a></header>
-      <article class="lead-story">
-        <a class="lead-story-image" href={lead.url} aria-label={lead.title}><img src={imagePath(lead, 'thumbnail') ?? '/assets/img/brand/hecavex-mark.svg'} alt="" width="960" height="540" loading="eager" /></a>
-        <div><p class="card-meta"><span>{labelForPost(lead)}</span><time datetime={lead.date.toISOString()}>{dateText(lead.date)}</time></p><h3><a href={lead.url}>{lead.cardTitle}</a></h3><p>{lead.description}</p><a href={lead.url}>{hx.read_more} →</a></div>
-      </article>
-      <div class="post-grid">{recent.map((post) => <PostCard {post} />)}</div>
+      <div class="post-grid home-latest-grid">{recent.map((post) => <PostCard {post} />)}</div>
     </section>}
 
     {topicPosts.length > 0 && <section class="home-section" aria-labelledby="topic-title">

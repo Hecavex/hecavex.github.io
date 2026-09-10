@@ -86,7 +86,7 @@ const researchMap = researchMapFor(lang, {
     </> : entry.data.translation_key === 'portfolio-glossary' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} />
       <Glossary {lang} />
-    </> : <article id="standard-page-scope" class:list={['standard-page', { 'standard-page--with-rail': showStandardOutline || showActionRail, 'standard-page--catalogue-width': useCatalogueWidth }]}>
+    </> : <article id="standard-page-scope" class:list={['standard-page', { 'standard-page--with-rail': showStandardOutline || showActionRail, 'standard-page--catalogue-width': useCatalogueWidth, 'standard-page--about': entry.data.translation_key === 'about' }]}>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} facts={pageFacts} anchorId="page-start" />
       {showStandardOutline && <ContentOutline {lang} headings={standardOutlineHeadings} scopeId="standard-page-scope" condensed={standardOutlineHeadings.length > 40} />}
       {showActionRail && <PageActionRail {lang} routes={contactRoutesFor(lang)} />}
