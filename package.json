@@ -39,7 +39,7 @@
     "verify": "npm test && npm run check:consumer && npm run lint:js && npm run lint:css && npm run check:evidence && npm run build && npm run check:routes && npm run check:performance && npm run audit:site && npm run audit:responsive && npm run check:publication && npm run check:journeys && npm run check:citations && npm run check:media-kit && npm run check:defensive-reuse"
   },
   "dependencies": {
-    "astro": "7.2.8"
+    "astro": "7.3.1"
   },
   "devDependencies": {
     "@astrojs/check": "latest",
