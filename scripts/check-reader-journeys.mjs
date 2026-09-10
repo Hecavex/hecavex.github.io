@@ -59,6 +59,7 @@ try {
      assert.equal(await page.locator('.research-tasks').getAttribute('open'),'');
      if(width<768){await summary.tap();assert.equal(await page.locator('.research-tasks').getAttribute('open'),null);await summary.tap();}
      assert.equal(await page.locator('.research-tasks ol a').count(),4);
+     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,route+' expanded overflow');
      for(const href of await page.locator('.research-tasks ol a').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('href')))){
       assert(href.startsWith('/'+lang+'/'));
       assert.equal((await ctx.request.get(baseUrl+href)).status(),200);
@@ -80,6 +81,7 @@ try {
       const traffic=[];page.on('request',r=>traffic.push(r.url()));
       await page.locator('[data-prepare]').focus();await page.keyboard.press('Enter');
       await page.locator('[data-enquiry-output]').waitFor();
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,route+' prepared draft overflow');
       assert((await page.locator('[data-draft]').inputValue()).includes('A & B <example> ? # ąčę'));
       const link=new URL(await page.locator('[data-open-email]').getAttribute('href'));
       assert.equal(link.pathname,'info@hecavex.com');

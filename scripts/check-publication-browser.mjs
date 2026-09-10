@@ -79,16 +79,37 @@ try {
     check(state.figures.length === 6 && state.figures.every(f => f.link && f.caption && /px/.test(f.text)), route + ': evidence links/captions/dimensions');
     await page.evaluate(() => document.fonts.ready);
     const link = page.locator('.evidence-original').nth(1);
-    await link.scrollIntoViewIfNeeded();
-    const scroll = await page.evaluate(() => scrollY);
+    const originalUrl = new URL(await link.getAttribute('href'), page.url()).href;
+    let departureScroll;
+    await page.exposeFunction('recordEvidenceDeparture', value => { departureScroll = value; });
+    // Click may scroll the link into view. Record the viewport at activation,
+    // not the earlier position before Playwright has performed that scroll.
+    await link.evaluate(element => element.addEventListener('click', () => {
+     window.recordEvidenceDeparture(scrollY);
+    }, { once: true }));
     await link.click();
+    await page.waitForURL(originalUrl);
+    check(Number.isFinite(departureScroll), route + ': evidence departure viewport captured');
     await page.goBack();
-    await page.evaluate(async () => {
+    const restoration = await page.evaluate(async expected => {
      await document.fonts.ready;
-     await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-    });
-    const restoredScroll = await page.evaluate(() => scrollY);
-    check(Math.abs(restoredScroll - scroll) < 120, route + ' @ ' + width + ': back scroll restoration ' + scroll + ' -> ' + restoredScroll);
+     const started = performance.now();
+     let previous = scrollY;
+     let stableSince = started;
+     return await new Promise(resolve => {
+      const sample = now => {
+       const current = scrollY;
+       if (Math.abs(current - previous) > 1) stableSince = now;
+       previous = current;
+       const withinTolerance = Math.abs(current - expected) < 120;
+       if (withinTolerance && now - stableSince >= 150) return resolve({ scroll: current, settled: true });
+       if (now - started >= 3000) return resolve({ scroll: current, settled: false });
+       requestAnimationFrame(sample);
+      };
+      requestAnimationFrame(sample);
+     });
+    }, departureScroll);
+    check(restoration.settled && Math.abs(restoration.scroll - departureScroll) < 120, route + ' @ ' + width + ': back scroll restoration ' + departureScroll + ' -> ' + restoration.scroll);
    }
    for (const mode of ['denied', 'missing', 'success']) {
     await page.evaluate(mode => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: mode === 'missing' ? undefined : { writeText: async value => { if (mode === 'denied') throw new DOMException('Denied', 'NotAllowedError'); window.copiedValue = value; } } }), mode);
