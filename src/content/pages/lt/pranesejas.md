@@ -77,9 +77,13 @@ Renginių organizatoriai ir redakcijos gali naudoti šią biografiją nurodydami
 
 ## Medijos rinkinys
 
+<a href="/assets/media/hecavex-media-kit-lt.pdf" download="hecavex-media-kit-lt.pdf">Atsisiųskite lietuvišką vieno puslapio medijos rinkinį (PDF)</a> renginio programai ar redakcijai. Jame naudojamos tos pačios biografijos, pasirodymų nuorodos ir nuotraukų naudojimo ribos kaip toliau pateiktame HTML rinkinyje.
+
 [Lietuviškas HECAVEX medijos rinkinys](/assets/media/hecavex-media-kit-lt.html) – spausdinimui paruoštas vieno puslapio HTML failas su trumpa ir išsamia biografija, pranešimų temomis, formatais, atrinktais pasirodymais bei užklausų informacija. Norėdami naudoti svetainėje saugomus leidinio šriftus, atverkite jį HECAVEX svetainėje, tada atsispausdinkite, išsaugokite PDF formatu arba <a href="/assets/media/hecavex-media-kit-lt.html" download="hecavex-media-kit-lt.html">atsisiųskite HTML failą</a>. Atsisiųsto ir neprisijungus atverto failo turinys bei maketas išlieka tinkami naudoti su vietiniais sistemos šriftais.
 
 Didelės raiškos nuotraukų žiniasklaidai teiraukitės el. paštu **[info@hecavex.com](mailto:info@hecavex.com)**. Abstraktus svetainės avataras sąmoningai nepateikiamas kaip spaudai skirta portretinė nuotrauka.
+
+Renginio programai ar redakcijos dokumentui <a href="/assets/media/hecavex-media-kit-lt.txt" download="hecavex-media-kit-lt.txt">atsisiųskite biografijas ir pasirodymų šaltinių nuorodas tekstiniu failu</a>. Rinkinyje kiekvienas pasirodymas taip pat susietas su originalia publikacija. Biografijos tekstą galima pažymėti ir kopijuoti neįjungus JavaScript. Susietiems atsisiuntimams ir originaliems pasirodymams reikia interneto ryšio.
 
 ## Užklausos informacija
 

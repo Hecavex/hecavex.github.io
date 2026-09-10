@@ -30,7 +30,8 @@ HECAVEX is a public, read-only publication. Cite canonical article URLs and pres
 
 ## Machine-readable publication surfaces
 
-- [Public data catalogue](https://hecavex.com/data/): Portfolio index of canonical Radar, APT Notes, and Labs datasets.
+- [Public data catalogue](https://hecavex.com/data/): Portfolio index of canonical Research, Radar, APT Notes and Labs records.
+- [Publication metadata](https://hecavex.com/data/publications.json): Approved localized editions, original dates, recorded research versions, translation links and per-article BibTeX/CSL-JSON downloads. Translations are not additional investigations; publication dates are not review dates.
 - [English Atom feed](https://hecavex.com/en/feed.xml): Current English publications.
 - [Lithuanian Atom feed](https://hecavex.com/lt/feed.xml): Current Lithuanian publications.
 - [English search index](https://hecavex.com/en/search.json): Static public search records.

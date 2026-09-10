@@ -40,6 +40,25 @@ const baseUrl = `http://127.0.0.1:${address.port}`;
 
 
 import assert from 'node:assert/strict';
+// Focus and disclosure changes can move a target near the viewport edge.
+// Sample from the host: page-side rAF callbacks can stall with JavaScript off.
+async function waitForInputSettlement(locator, label) {
+ const started = performance.now();
+ let previous;
+ let stableSince = started;
+ while (performance.now() - started < 3000) {
+  const current = await locator.evaluate(element => {
+   const rect = element.getBoundingClientRect();
+   return [scrollX, scrollY, rect.x, rect.y, rect.width, rect.height];
+  });
+  const now = performance.now();
+  if (!previous || current.some((value, index) => Math.abs(value - previous[index]) > 1)) stableSince = now;
+  previous = current;
+  if (now - stableSince >= 150) return;
+  await new Promise(done => setTimeout(done, 16));
+ }
+ assert.fail(`${label}: scroll/target did not settle within 3000ms, last sample ${JSON.stringify(previous)}`);
+}
 const browser = await chromium.launch({executablePath, headless: true});
 let checked = 0;
 try {
@@ -55,9 +74,19 @@ try {
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,route+' overflow');
     if(kind==='research'){
      const summary=page.locator('.research-tasks summary').first();
-     await summary.focus();await page.keyboard.press('Enter');
+     const inputCase=`${lang} ${width}px JavaScript ${enabled ? 'on' : 'off'}`;
+     await summary.focus();
+     await waitForInputSettlement(summary,inputCase+' focused research summary');
+     await page.keyboard.press('Enter');
      assert.equal(await page.locator('.research-tasks').getAttribute('open'),'');
-     if(width<768){await summary.tap();assert.equal(await page.locator('.research-tasks').getAttribute('open'),null);await summary.tap();}
+     if(width<768){
+      await waitForInputSettlement(summary,inputCase+' keyboard-open research summary');
+      await summary.tap();
+      assert.equal(await page.locator('.research-tasks').getAttribute('open'),null);
+      await waitForInputSettlement(summary,inputCase+' touch-closed research summary');
+      await summary.tap();
+      assert.equal(await page.locator('.research-tasks').getAttribute('open'),'');
+     }
      assert.equal(await page.locator('.research-tasks ol a').count(),4);
      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,route+' expanded overflow');
      for(const href of await page.locator('.research-tasks ol a').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('href')))){

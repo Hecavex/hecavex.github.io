@@ -77,9 +77,13 @@ Event organisers and editors may use this biography with attribution. For a long
 
 ## Media kit
 
+<a href="/assets/media/hecavex-media-kit-en.pdf" download="hecavex-media-kit-en.pdf">Download the English one-page media kit (PDF)</a> for an event programme or editorial handoff. It uses the same biographies, appearance links and photography limits as the HTML kit below.
+
 The [HECAVEX English media kit](/assets/media/hecavex-media-kit-en.html) is a print-ready, single-page HTML file with short and extended biographies, speaking topics, formats, selected appearances and booking details. Open it on HECAVEX to use the publication's self-hosted typefaces, then print it, save it as PDF or <a href="/assets/media/hecavex-media-kit-en.html" download="hecavex-media-kit-en.html">download the HTML file</a>. When the downloaded file is opened offline, its content and layout remain usable with local system fonts.
 
 High-resolution press photography is available on request from **[info@hecavex.com](mailto:info@hecavex.com)**. The abstract website avatar is deliberately not presented as a press headshot.
+
+For programme notes or an editor's document, <a href="/assets/media/hecavex-media-kit-en.txt" download="hecavex-media-kit-en.txt">download the biographies and appearance source links as plain text</a>. The kit also links each appearance to its original publication. You can select biography text directly without enabling JavaScript. Linked downloads and original appearances require an online connection.
 
 ## Booking information
 
