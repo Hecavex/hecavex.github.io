@@ -1229,6 +1229,62 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
   max-width: none;
 }
 
+.research-tasks,
+.enquiry-draft {
+  margin-block: 2rem;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid var(--line-strong);
+  border-top: 3px solid var(--cyan);
+  background: var(--surface);
+}
+
+.research-tasks h2,
+.enquiry-draft h2 {
+  margin-top: 0;
+}
+
+.research-tasks details,
+.enquiry-draft details {
+  margin-block: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.research-tasks summary,
+.enquiry-draft summary {
+  padding-block: 0.8rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.enquiry-draft fieldset {
+  min-width: 0;
+  margin-block: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--line-strong);
+}
+
+.enquiry-draft label {
+  display: grid;
+  gap: 0.4rem;
+  margin-block: 0.8rem;
+}
+
+.enquiry-draft :is(input, select, textarea) {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 0.7rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.enquiry-draft textarea {
+  resize: vertical;
+}
+
 .standard-page--with-rail {
   display: grid;
   grid-template-areas:

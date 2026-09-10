@@ -1,5 +1,5 @@
 ---
-last_modified_at: 2026-09-07
+last_modified_at: 2026-09-10
 layout: page
 lang: lt
 translation_key: speaker-media
@@ -29,17 +29,23 @@ Threat intelligence tampa naudinga tada, kai pakeičia sprendimą. Šiame prane�
 
 Susijęs tyrimas: [Radar rugpjūčio bazė ir jos įrodymų ribos](/lt/tyrimai/phishing-infrastruktura-lietuvoje-radar-2026-rugpjutis/). Susijęs įrašas: [visas NordStellar seminaras apie grėsmių žvalgybą](https://www.youtube.com/watch?v=qxrLrMH7_x4).
 
+[Parengti kvietimą šiam pranešimui](/lt/kontaktai/?talk=0#prepare-request)
+
 ### Vienas scam domenas retai būna vienas
 
 Vienas phishingo ar sukčiavimo URL dažniausiai yra tyrimo pradžia, o ne pabaiga. Praktiniame pranešime pereinu per redirect'us, DNS, sertifikatus, hostingą, puslapių šablonus bei susijusią infrastruktūrą ir parodau, kaip atskirti prasmingą koreliaciją nuo paprasto sutapimo.
 
 Tyrimo pavyzdys: [UNIPARK smishing infrastruktūros tyrimas](/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/). Susijęs įrašas: [visas Pociūnas Podcast pokalbis apie elektroninių nusikaltimų tyrimus](https://www.youtube.com/watch?v=mzeDypl0QiA).
 
+[Parengti kvietimą šiam pranešimui](/lt/kontaktai/?talk=1#prepare-request)
+
 ### Užpuolikai ieško žmonių
 
 ClickFix, sesijų vagystės ir šiuolaikinė socialinė inžinerija veikia todėl, kad pati auka tampa execution chain'o dalimi. Pranešime aiškinu, kodėl vien MFA ar awareness šūkio neužtenka, ir susieju užpuolikų elgseną su praktinėmis aptikimo bei reagavimo galimybėmis.
 
 Susijusi publikacija: [ClickFix ir naudotojo vaidmuo vykdymo grandinėje](/lt/tyrimai/clickfix-kodel-siuolaikiniai-ta-nebeiesko/). Susijęs įrašas: [Žinių radijo interviu apie sukčių bendravimą su aukomis](https://www.ziniuradijas.lt/laidos/pergudrauti-sukciu/kodel-sukciai-skambina-per-pietus-arba-vakare?video=1). Tai jau paskelbti įrašai, o ne siūlomų pranešimų ištraukos.
+
+[Parengti kvietimą šiam pranešimui](/lt/kontaktai/?talk=2#prepare-request)
 
 ## Praktinė informacija
 
