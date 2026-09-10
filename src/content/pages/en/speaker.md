@@ -1,5 +1,5 @@
 ---
-last_modified_at: 2026-09-07
+last_modified_at: 2026-09-10
 layout: page
 lang: en
 translation_key: speaker-media
@@ -29,17 +29,23 @@ Threat intelligence becomes useful when it changes a decision. This talk moves b
 
 Related research: [Radar August baseline and its evidence limits](/en/research/lithuania-phishing-infrastructure-radar-august-2026/). Related recording: [NordStellar threat-intelligence webinar, full session](https://www.youtube.com/watch?v=qxrLrMH7_x4).
 
+[Prepare an invitation for this talk](/en/contact/?talk=0#prepare-request)
+
 ### One scam domain is rarely alone
 
 A single phishing or fraud URL is usually an entry point, not the investigation. This practical session follows the pivots through redirects, DNS, certificates, hosting, page templates and related infrastructure while separating useful correlation from accidental overlap.
 
 Case study: [UNIPARK smishing infrastructure investigation](/en/research/unipark-smishing-campaign-infrastructure/). Related recording: [Pociūnas Podcast conversation about cybercrime investigations, full episode](https://www.youtube.com/watch?v=mzeDypl0QiA).
 
+[Prepare an invitation for this talk](/en/contact/?talk=1#prepare-request)
+
 ### Attackers are looking for people
 
 ClickFix, session theft and modern social engineering succeed by turning the victim into part of the execution chain. This talk explains why MFA and awareness slogans are not enough, then connects attacker behaviour to practical detection and response opportunities.
 
 Related publication: [ClickFix and the role of the user in the execution chain](/en/research/clickfix-why-modern-threat-actors-hunt-people/). Related recording: [Žinių radijas interview about how scammers approach victims](https://www.ziniuradijas.lt/laidos/pergudrauti-sukciu/kodel-sukciai-skambina-per-pietus-arba-vakare?video=1). These are existing recordings, not excerpts of the proposed talks.
+
+[Prepare an invitation for this talk](/en/contact/?talk=2#prepare-request)
 
 ## Practical details
 

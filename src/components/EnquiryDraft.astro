@@ -1,0 +1,36 @@
+---
+import type { Lang } from '../lib/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = (en: string, lt: string) => lang === 'lt' ? lt : en;
+const kinds = [t('Speaking invitation', 'Kvietimas pranešimui'), t('Media request', 'Žiniasklaidos užklausa'), t('Research collaboration', 'Bendras tyrimas')];
+const template = t('Topic:\nEvent or publication:\nAudience and format:\nDate or deadline (include time zone):\nLanguage and location or remote:\nOn or off the record:\nPublic research link, if relevant:', 'Tema:\nRenginys ar leidinys:\nAuditorija ir formatas:\nData ar terminas (nurodykite laiko juostą):\nKalba ir vieta arba nuotoliu:\nViešas ar neviešas pokalbis:\nViešo tyrimo nuoroda, jei aktualu:');
+---
+<section id="prepare-request" class="enquiry-draft" data-enquiry data-language={lang} aria-labelledby="request-title">
+  <h2 id="request-title">{t('Prepare a request', 'Parenkite užklausą')}</h2>
+  <p>{t('This prepares an email draft, not a booking or a submission. Nothing is sent by this page. Do not include sensitive evidence or credentials.', 'Čia parengiamas laiško juodraštis, o ne rezervacija ar išsiųsta užklausa. Šis puslapis nieko nesiunčia. Neįtraukite jautrių įrodymų ar prisijungimo duomenų.')}</p>
+  <p>{t('Use a template in your email app, or write directly to', 'Naudokite šabloną savo pašto programoje arba rašykite tiesiogiai')} <a href="mailto:info@hecavex.com">info@hecavex.com</a>.</p>
+  <ul class="enquiry-templates">{kinds.map(kind => <li><a href={`mailto:info@hecavex.com?subject=${encodeURIComponent(kind)}&body=${encodeURIComponent(template)}`}>{kind}</a></li>)}</ul>
+  <details data-enquiry-editor hidden>
+    <summary>{t('Prepare a draft on this page', 'Parengti juodraštį šiame puslapyje')}</summary>
+    <p>{t('Fields stay in this tab and are not saved. Review the text before opening your email app. Availability and arrangements require a reply.', 'Laukai lieka šiame skirtuke ir nėra išsaugomi. Prieš atverdami pašto programą peržiūrėkite tekstą. Dėl galimybės dalyvauti ir sąlygų reikia susitarti atsakant į laišką.')}</p>
+    <fieldset>
+      <legend>{t('Request details', 'Užklausos informacija')}</legend>
+      <label>{t('Request type', 'Užklausos tipas')}<select data-field="kind">{kinds.map((kind, index) => <option value={index}>{kind}</option>)}</select></label>
+      <label>{t('Topic or proposed talk', 'Tema ar siūlomas pranešimas')}<input data-field="topic" maxlength="140" /></label>
+      <label>{t('Event or publication', 'Renginys ar leidinys')}<input data-field="event" maxlength="180" /></label>
+      <label>{t('Audience and format', 'Auditorija ir formatas')}<input data-field="audience" maxlength="180" /></label>
+      <label>{t('Date or deadline, including time zone', 'Data ar terminas su laiko juosta')}<input data-field="date" maxlength="120" /></label>
+      <label>{t('Language and location or remote', 'Kalba ir vieta arba nuotoliu')}<input data-field="location" maxlength="180" /></label>
+      <label>{t('Public research link or on/off-record preference', 'Viešo tyrimo nuoroda arba viešo / neviešo pokalbio pasirinkimas')}<input data-field="context" maxlength="240" /></label>
+    </fieldset>
+    <button type="button" class="hx-button" data-prepare>{t('Prepare draft', 'Parengti juodraštį')}</button>
+    <p role="status" data-enquiry-status></p>
+    <div data-enquiry-output hidden>
+      <label>{t('Draft to review or copy manually', 'Juodraštis peržiūrai arba kopijavimui')}<textarea readonly rows="12" data-draft></textarea></label>
+      <a class="hx-button hx-button--primary" data-open-email href="mailto:info@hecavex.com">{t('Open email app with this draft', 'Atverti pašto programą su šiuo juodraščiu')}</a>
+      <p>{t('No email app? Select the draft and paste it into your usual mail service.', 'Nėra pašto programos? Pažymėkite juodraštį ir įklijuokite į įprastą paštą.')}</p>
+    </div>
+  </details>
+</section>
+<script is:inline src="/assets/js/enquiry.js" defer></script>

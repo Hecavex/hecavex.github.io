@@ -1,0 +1,20 @@
+---
+import type { Lang, Post } from '../lib/site';
+interface Props { lang: Lang; posts: Post[]; }
+const { lang, posts } = Astro.props;
+const t = (en: string, lt: string) => lang === 'lt' ? lt : en;
+const tasks = [
+  { title: t('Investigate related infrastructure', 'Tirti susijusią infrastruktūrą'), note: t('Follow a worked case, then use the pivoting method. Shared infrastructure alone is not attribution.', 'Pradėkite nuo konkretaus tyrimo, tada pereikite prie pivoting metodo. Vien bendra infrastruktūra neįrodo priskyrimo.'), keys: ['unipark-smishing-campaign-infrastructure', 'infrastructure-pivoting-101-unipark'] },
+  { title: t('Evaluate a defensive analytic', 'Įvertinti aptikimo logiką'), note: t('Use the versioned synthetic fixtures linked in these guides. Portable model tests do not validate KQL execution or production efficacy.', 'Naudokite vadovuose pateiktus versijuotus sintetinius testus. Modelio testai nepatvirtina KQL vykdymo ar veiksmingumo realioje aplinkoje.'), keys: ['t1187-forced-authentication', 'evilginx-detection'] },
+];
+---
+<details class="research-tasks">
+  <summary>{t('Find research for a task', 'Raskite tyrimą pagal užduotį')}</summary>
+  <p>{t('A short route through existing work. The full publication catalogue follows below.', 'Trumpas kelias per jau paskelbtus darbus. Visas publikacijų katalogas pateiktas žemiau.')}</p>
+  {tasks.map(task => <section><h2>{task.title}</h2><p>{task.note}</p><ol>{task.keys.map(key => {
+    const post = posts.find(item => item.translationKey === key);
+    if (!post) throw new Error(`Missing research task publication: ${key}/${lang}`);
+    return <li><a href={post.url}>{post.title}</a></li>;
+  })}</ol></section>)}
+  <p><a href={lang === 'lt' ? '/lt/duomenys/' : '/data/'}>{t('Need machine-readable records? Open the data catalogue', 'Reikia mašininiu būdu skaitomų įrašų? Atverkite duomenų katalogą')}</a>. {t('Check the package licence and evidence limits before reuse.', 'Prieš naudodami patikrinkite paketo licenciją ir įrodymų ribas.')}</p>
+</details>
