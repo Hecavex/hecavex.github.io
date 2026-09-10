@@ -51,7 +51,7 @@ const catalogues = [
       { label: t("Dataset catalogue", "Duomenų rinkinių katalogas"), detail: t("JSON · dataset descriptions and update state", "JSON · rinkinių aprašai ir atnaujinimo būsena"), href: 'https://labs.hecavex.com/data/catalogue.json' },
       { label: t("Publication manifest", "Publikavimo manifestas"), detail: t("JSON · exact public-file allowlist", "JSON · tikslus leidžiamų viešinti failų sąrašas"), href: 'https://labs.hecavex.com/data/public-manifest.json' },
       { label: t("Baltic Threat Atlas", "Baltijos grėsmių atlasas"), detail: t("JSON · Baltic observations and bounded Europe actor context", "JSON · Baltijos stebėjimai ir ribotas Europos veikėjų kontekstas"), href: 'https://labs.hecavex.com/data/atlas/records.json' },
-      { label: t("Reviewed ATT&CK evidence", "Peržiūrėti ATT&CK įrodymai"), detail: t("JSON · source-linked mappings from APT Notes", "JSON · ryšiai su APT Notes šaltiniais"), href: 'https://labs.hecavex.com/data/attack/intelligence/reviewed-evidence.json' },
+      { label: t("Source-linked ATT&CK evidence", "ATT&CK įrodymai su šaltiniais"), detail: t("JSON · mappings and explicit review state from APT Notes", "JSON · APT Notes ryšiai ir aiški peržiūros būsena"), href: 'https://labs.hecavex.com/data/attack/intelligence/reviewed-evidence.json' },
       { label: t("Pivot cases", "Pivoting atvejai"), detail: t("JSON · four public case graphs including Hostinger infrastructure", "JSON · keturi vieši atvejų grafai, įskaitant Hostinger infrastruktūrą"), href: 'https://labs.hecavex.com/data/pivots/cases.json' }
     ]
   },
@@ -64,7 +64,9 @@ const catalogues = [
     description: t('Citable metadata for the bilingual publication archive. Language editions are linked, not counted as separate investigations. Article versions and recorded review dates stay distinct.', 'Dvikalbio publikacijų archyvo metaduomenys citavimui. Kalbinės versijos susietos ir nelaikomos atskirais tyrimais. Straipsnio versija atskiriama nuo užfiksuotos peržiūros datos.'),
     links: [
       { label: t('Publication catalogue', 'Publikacijų katalogas'), detail: t('JSON · dates, versions, translations and citation downloads', 'JSON · datos, versijos, vertimai ir citavimo failai'), href: '/data/publications.json' },
-      { label: t('Browse and cite research', 'Skaityti ir cituoti tyrimus'), detail: t('Each article offers BibTeX and CSL-JSON', 'Kiekviename straipsnyje pateikiami BibTeX ir CSL-JSON'), href: lang === 'lt' ? '/lt/tyrimai/' : '/en/research/' }
+      { label: t('Browse and cite research', 'Skaityti ir cituoti tyrimus'), detail: t('Each article offers BibTeX and CSL-JSON', 'Kiekviename straipsnyje pateikiami BibTeX ir CSL-JSON'), href: lang === 'lt' ? '/lt/tyrimai/' : '/en/research/' },
+      { label: t('Vulnerability decision companion', 'Pažeidžiamumo sprendimo rinkinys'), detail: t('JSON · two dated advisories; fictional decisions stay separate', 'JSON · du datuoti pranešimai; fiktyvūs sprendimai atskirti'), href: '/assets/data/signal-brief-005-decisions/records.json' },
+      { label: t('CRA reporting rehearsal', 'CRA pranešimų pratimas'), detail: t('JSON · fictional evidence and timeline exercise, not a reporting service', 'JSON · fiktyvus įrodymų ir laiko sekos pratimas, ne pranešimų paslauga'), href: '/assets/data/cra-reporting-rehearsal/scenario.json' }
     ]
   }
 ];

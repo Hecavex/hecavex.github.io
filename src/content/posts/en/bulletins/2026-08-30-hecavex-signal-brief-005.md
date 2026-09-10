@@ -50,6 +50,8 @@ image:
   alt: "An analytical signal crossing developer platforms, AI control planes, cloud storage and exposed cameras"
   thumbnail: /assets/img/series/hecavex-signal-brief.svg
 updates:
+  - date: 2026-09-10
+    note: "Added a separately dated, source-linked decision companion with fictional asset examples. The original briefing cutoff is unchanged."
   - date: 2026-08-30
     note: "Initial publication. Information cut-off: 15:00 EEST."
 ---
@@ -57,6 +59,12 @@ updates:
 This week's urgent queue is not one product family. It is a set of systems that sit unusually close to code, credentials and data: a source-code forge, an Oracle web tier, a file-sharing platform, an artifact repository and several AI control planes. CISA added eleven vulnerabilities to its Known Exploited Vulnerabilities catalogue during the coverage window. The entries share exploitation evidence, but they do not share the same prerequisites, impact or remediation path. CISA records known ransomware-campaign use as "Unknown" for all eleven.
 
 That distinction matters. A critical score describes potential impact under defined conditions. KEV inclusion says exploitation has been observed. Neither tells you whether your instance was reachable, vulnerable or compromised. Inventory, exposure and evidence still have to complete the sentence.
+
+## From this brief to a local decision
+
+**Companion added 10 September 2026. The original 30 August briefing cutoff remains unchanged.** Two selected cases, Gitea and ownCloud, now have a [reproducible decision pack](/assets/data/signal-brief-005-decisions/README.md): [source-linked JSON](/assets/data/signal-brief-005-decisions/records.json), [CSV](/assets/data/signal-brief-005-decisions/records.csv), a [blank decision worksheet](/assets/data/signal-brief-005-decisions/decision-template.csv) and an [offline consumer](/assets/data/signal-brief-005-decisions/consumer.mjs).
+
+The pack separates vendor version statements, dated KEV evidence, exposure and prerequisites from the organisation's action. Three **fictional** examples show why a public forge, an isolated instance and an unknown file-server version produce different next steps. EPSS is explicitly not collected. A missing version remains unknown. Neither the consumer nor a KEV entry establishes local compromise. Historical remediation versions are evidence from the cited notices, not advice to install an unsupported release.
 
 ## Developer and content platforms
 

@@ -1,0 +1,9 @@
+let start = datetime(2026-07-26 21:49:00Z);
+let stop  = datetime(2026-08-06 23:59:59Z);
+DeviceNetworkEvents
+| where Timestamp between (start .. stop)
+| where (RemoteIP == "84.32.102.230" and RemotePort == 7744)
+    or RemoteUrl has "/banners/scripts/st/trackpoint-async.js"
+| project Timestamp, DeviceName, InitiatingProcessAccountName,
+          RemoteIP, RemotePort, RemoteUrl, InitiatingProcessFileName
+| order by Timestamp asc

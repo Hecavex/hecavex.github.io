@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0.0",
+  "release": "cra-rehearsal-2026-09-10-v1",
+  "preparedOn": "2026-09-10",
+  "purpose": "Integrity manifest for an educational, offline companion; not a human review or production validation receipt",
+  "files": [
+    {
+      "path": "README.lt.md",
+      "bytes": 3378,
+      "sha256": "da38028aa7241152d2a4b0213cd4ca8200291d838244037900b546429fd60927"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4342,
+      "sha256": "95061e7ae9f3da2463a8e31410868932385e46913ff86bc6b2f3daaa332d750c"
+    },
+    {
+      "path": "decision-template.csv",
+      "bytes": 418,
+      "sha256": "a7a7216788f30bf1be15df79e7b3752eb17c46715fbf169ad6108ec6242a47a5"
+    },
+    {
+      "path": "rehearsal.mjs",
+      "bytes": 2461,
+      "sha256": "9c28c8cb409ff0a007522746c096665661b6fe04f705c9e750cb327bdb9fc76f"
+    },
+    {
+      "path": "scenario.json",
+      "bytes": 5033,
+      "sha256": "e48b86a821db4f970ef4ba8cfc3253d763910491c6c4236e1bf4092f87db8bd6"
+    }
+  ]
+}

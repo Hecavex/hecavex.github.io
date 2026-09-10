@@ -23,7 +23,13 @@ For speaking or media enquiries, email **[info@hecavex.com](mailto:info@hecavex.
 
 ## Featured talk abstracts
 
+These are proposed sessions built from published research, not a claim that each title has already been delivered. The audience and learning goals below are a starting point for agreeing the programme. Demonstrations use retained evidence or harmless examples, not live attacker infrastructure. Final scope, accessibility needs and recording permission are agreed with the organiser.
+
 ### Intelligence beyond indicators
+
+- **Best fit:** CTI analysts, SOC leads and security decision-makers who need to explain what an assessment changes.
+- **Takeaways:** distinguish an observation from an assessment, identify a collection blind spot, and turn an indicator list into a bounded investigation question.
+- **Prerequisites and format:** no coding required. A 20-minute briefing or a 45-minute case-led session with a walk-through of published Radar evidence and its limits, not a live monitoring demonstration.
 
 Threat intelligence becomes useful when it changes a decision. This talk moves beyond longer IOC lists and shows how infrastructure, behaviour, confidence and collection gaps can be turned into an assessment that defenders and leaders can act on.
 
@@ -33,6 +39,10 @@ Related research: [Radar August baseline and its evidence limits](/en/research/l
 
 ### One scam domain is rarely alone
 
+- **Best fit:** fraud investigators, OSINT practitioners and defenders assessing suspicious infrastructure.
+- **Takeaways:** build a pivot trail, challenge a shared-hosting coincidence, and explain why related infrastructure is not proof of a common operator.
+- **Prerequisites and format:** basic familiarity with URLs and DNS helps. A 45-minute case-led session using retained UNIPARK evidence, with no audience accounts or candidate-site visits required.
+
 A single phishing or fraud URL is usually an entry point, not the investigation. This practical session follows the pivots through redirects, DNS, certificates, hosting, page templates and related infrastructure while separating useful correlation from accidental overlap.
 
 Case study: [UNIPARK smishing infrastructure investigation](/en/research/unipark-smishing-campaign-infrastructure/). Related recording: [Pociūnas Podcast conversation about cybercrime investigations, full episode](https://www.youtube.com/watch?v=mzeDypl0QiA).
@@ -40,6 +50,10 @@ Case study: [UNIPARK smishing infrastructure investigation](/en/research/unipark
 [Prepare an invitation for this talk](/en/contact/?talk=1#prepare-request)
 
 ### Attackers are looking for people
+
+- **Best fit:** security teams, identity owners and leaders responsible for staff-facing controls.
+- **Takeaways:** recognise the user-mediated execution step, separate MFA coverage from session risk, and frame one concrete detection or response question for the local environment.
+- **Prerequisites and format:** no malware tooling required. A 20-minute briefing or 45-minute session using published ClickFix and identity-attack examples. No executable malicious demonstration or claim of measured training effectiveness.
 
 ClickFix, session theft and modern social engineering succeed by turning the victim into part of the execution chain. This talk explains why MFA and awareness slogans are not enough, then connects attacker behaviour to practical detection and response opportunities.
 
