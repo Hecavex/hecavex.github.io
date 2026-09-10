@@ -3,6 +3,7 @@ import { unified } from '@astrojs/markdown-remark';
 import rehypeEvidenceFigures from './src/lib/rehype-evidence-figures.mjs';
 import rehypeTableRegions from './src/lib/rehype-table-regions.mjs';
 import remarkKramdownAttributes from './src/lib/remark-kramdown-attributes.mjs';
+import remarkCanonicalCode from './src/lib/remark-canonical-code.mjs';
 
 // Keep code examples inside the same editorial colour system as the article.
 // The previous bundled dark theme produced a near-black slab and introduced a
@@ -31,7 +32,7 @@ export default defineConfig({
   trailingSlash: 'always',
   build: { format: 'directory' },
   markdown: {
-    processor: unified({ remarkPlugins: [remarkKramdownAttributes], rehypePlugins: [rehypeEvidenceFigures, rehypeTableRegions] }),
+    processor: unified({ remarkPlugins: [remarkCanonicalCode, remarkKramdownAttributes], rehypePlugins: [rehypeEvidenceFigures, rehypeTableRegions] }),
     shikiConfig: { theme: hecavexCodeTheme, wrap: true }
   },
   security: { checkOrigin: true }

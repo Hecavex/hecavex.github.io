@@ -10,7 +10,8 @@
   "packageManager": "npm@10.9.2",
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run validate && npm run check:favicons && npm run check:editorial-assets && npm run build:astro && npm run build:media-pdfs && npm run build:finalize",
+    "build": "npm run validate && npm run check:decision-packs && npm run check:favicons && npm run check:editorial-assets && npm run build:astro && npm run build:media-pdfs && npm run build:finalize",
+    "check:decision-packs": "node scripts/build-decision-packs.mjs --check",
     "build:astro": "astro check && astro build",
     "build:finalize": "node scripts/finalize-build.mjs dist",
     "build:media-pdfs": "node scripts/generate-media-pdfs.mjs dist",
@@ -31,9 +32,11 @@
     "check:journeys": "node scripts/check-reader-journeys.mjs dist",
     "check:citations": "node scripts/check-citations.mjs dist",
     "check:media-kit": "node scripts/check-media-kit.mjs dist",
+    "check:defensive-reuse": "node scripts/check-defensive-reuse.mjs dist",
+    "check:consumer": "python scripts/test-investigation-consumer.py",
     "test": "node --test scripts/*.test.mjs",
     "check:evidence": "node scripts/check-retained-evidence.mjs",
-    "verify": "npm test && npm run lint:js && npm run lint:css && npm run check:evidence && npm run build && npm run check:routes && npm run check:performance && npm run audit:site && npm run audit:responsive && npm run check:publication && npm run check:journeys && npm run check:citations && npm run check:media-kit"
+    "verify": "npm test && npm run check:consumer && npm run lint:js && npm run lint:css && npm run check:evidence && npm run build && npm run check:routes && npm run check:performance && npm run audit:site && npm run audit:responsive && npm run check:publication && npm run check:journeys && npm run check:citations && npm run check:media-kit && npm run check:defensive-reuse"
   },
   "dependencies": {
     "astro": "7.2.8"

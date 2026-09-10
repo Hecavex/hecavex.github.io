@@ -23,7 +23,13 @@ Dėl pranešimų ar komentarų žiniasklaidai rašykite **[info@hecavex.com](mai
 
 ## Pagrindinių pranešimų aprašymai
 
+Tai siūlomi pranešimai, paremti paskelbtais tyrimais, o ne teiginys, kad kiekvienas jų jau skaitytas tokiu pavadinimu. Toliau aprašyta auditorija ir mokymosi tikslai padeda suderinti programą. Demonstracijoms naudojami išsaugoti įrodymai arba nekenksmingi pavyzdžiai, ne aktyvi užpuolikų infrastruktūra. Galutinę apimtį, prieinamumo poreikius ir leidimą įrašyti suderiname su organizatoriumi.
+
 ### Žvalgyba už indikatorių ribų
+
+- **Kam skirta:** CTI analitikams, SOC vadovams ir saugumo sprendimų priėmėjams, kuriems reikia paaiškinti, ką keičia vertinimas.
+- **Ką aptarsime:** kaip atskirti stebėjimą nuo vertinimo, įvardyti duomenų rinkimo spragą ir indikatorių sąrašą paversti konkrečiu, ribotos apimties tyrimo klausimu.
+- **Pasirengimas ir formatas:** programuoti nereikia. 20 minučių apžvalga arba 45 minučių pranešimas su paskelbtų Radar įrodymų ir jų ribų aptarimu, ne tiesioginio stebėjimo demonstracija.
 
 Threat intelligence tampa naudinga tada, kai pakeičia sprendimą. Šiame pranešime einu toliau už dar ilgesnius IOC sąrašus ir rodau, kaip infrastruktūrą, elgseną, pasitikėjimo lygį bei informacijos spragas paversti vertinimu, kurį realiai gali naudoti gynėjai ir vadovai.
 
@@ -33,6 +39,10 @@ Susijęs tyrimas: [Radar rugpjūčio bazė ir jos įrodymų ribos](/lt/tyrimai/p
 
 ### Vienas scam domenas retai būna vienas
 
+- **Kam skirta:** sukčiavimo tyrėjams, OSINT praktikams ir įtartiną infrastruktūrą vertinantiems gynėjams.
+- **Ką aptarsime:** kaip sudaryti tyrimo ryšių seką, patikrinti bendro hostingo sutapimo versiją ir paaiškinti, kodėl susijusi infrastruktūra dar neįrodo bendro operatoriaus.
+- **Pasirengimas ir formatas:** praverčia URL ir DNS pagrindai. 45 minučių pranešimas su išsaugotais UNIPARK įrodymais. Dalyviams nereikia paskyrų ar lankytis įtartinose svetainėse.
+
 Vienas phishingo ar sukčiavimo URL dažniausiai yra tyrimo pradžia, o ne pabaiga. Praktiniame pranešime pereinu per redirect'us, DNS, sertifikatus, hostingą, puslapių šablonus bei susijusią infrastruktūrą ir parodau, kaip atskirti prasmingą koreliaciją nuo paprasto sutapimo.
 
 Tyrimo pavyzdys: [UNIPARK smishing infrastruktūros tyrimas](/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/). Susijęs įrašas: [visas Pociūnas Podcast pokalbis apie elektroninių nusikaltimų tyrimus](https://www.youtube.com/watch?v=mzeDypl0QiA).
@@ -40,6 +50,10 @@ Tyrimo pavyzdys: [UNIPARK smishing infrastruktūros tyrimas](/lt/tyrimai/unipark
 [Parengti kvietimą šiam pranešimui](/lt/kontaktai/?talk=1#prepare-request)
 
 ### Užpuolikai ieško žmonių
+
+- **Kam skirta:** saugumo komandoms, tapatybės sistemų savininkams ir už darbuotojams taikomas kontrolės priemones atsakingiems vadovams.
+- **Ką aptarsime:** kaip atpažinti naudotojo atliekamą vykdymo žingsnį, atskirti MFA apsaugos ribas nuo sesijos rizikos ir suformuluoti konkretų aptikimo ar reagavimo klausimą savo aplinkai.
+- **Pasirengimas ir formatas:** kenkėjiško kodo analizės įrankių nereikia. 20 minučių apžvalga arba 45 minučių pranešimas su paskelbtais ClickFix ir tapatybės atakų pavyzdžiais. Be vykdomos kenkėjiškos demonstracijos ir be teiginio apie išmatuotą mokymų veiksmingumą.
 
 ClickFix, sesijų vagystės ir šiuolaikinė socialinė inžinerija veikia todėl, kad pati auka tampa execution chain'o dalimi. Pranešime aiškinu, kodėl vien MFA ar awareness šūkio neužtenka, ir susieju užpuolikų elgseną su praktinėmis aptikimo bei reagavimo galimybėmis.
 

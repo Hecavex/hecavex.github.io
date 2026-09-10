@@ -1,0 +1,13 @@
+(index=proxy OR index=web) earliest="07/26/2026:21:49:00" latest="08/06/2026:23:59:59"
+(
+  (dest_ip="84.32.102.230" dest_port=7744 uri_path="/p")
+  OR uri="*/banners/scripts/st/trackpoint-async.js*"
+  OR response_sha256 IN (
+    "c03567cac86046a9aa1c1c4b43e0c6de7703b43cf01b3d8229978314afc6e9da",
+    "0674a58b224cca2ce840153d6c8d474f29f126f7af5054350ba1572c33233aa3",
+    "a04461bbdccb15378182cdf77281ec29628f1c1386ae0fe89b62f359471fdeb6",
+    "02ff86c7f9fe609a753ff15bda90baa3c3e0d4a2e559ec4fcf8a3de0954b7c55"
+  )
+)
+| stats count min(_time) as first_seen max(_time) as last_seen
+  values(url) values(response_sha256) by src_ip, user, dest_host

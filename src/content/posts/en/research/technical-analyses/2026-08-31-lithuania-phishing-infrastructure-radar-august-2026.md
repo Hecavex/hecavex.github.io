@@ -1,5 +1,5 @@
 ---
-last_modified_at: 2026-09-07
+last_modified_at: 2026-09-10
 title: "Lithuania Phishing Infrastructure: Radar's August 2026 Baseline"
 card_title: "Radar's August 2026 Phishing-Infrastructure Baseline"
 description: "A coverage-aware baseline of 130 Lithuanian brand-impersonation candidates, their evidence tiers, collection health, and analytical limits."
@@ -197,6 +197,8 @@ For researchers and journalists, the [change record](https://radar.hecavex.com/c
 For ordinary recipients, Radar is not a substitute for the [safe suspicious-SMS workflow](/en/research/how-to-check-a-suspicious-sms-link-safely/). Do not visit a candidate merely because it appears in a research index. Verify the claimed event through the organisation's official application or independently typed website. If banking or authentication data was already entered, use the [post-phishing emergency response guide](/en/research/what-to-do-after-entering-banking-details-on-phishing-page/) rather than continuing to investigate the link.
 
 ## Preserved values and replay limits
+
+The [material-correction index](/en/corrections/#radar-august-baseline-replay-boundary) records the dated clarification below. It is not a new measurement or review of the candidate population.
 
 The derived [summary JSON](/assets/data/radar-august-2026-baseline/summary.json) records the values used here, their definitions, the cutoff, retention, source-health fields and SHA-256 hashes of the two local source artifacts. The source `radar.json` was 113,912 bytes with SHA-256 `dcce36b0…83cce2`. `pipeline-health.json` was 4,604 bytes with SHA-256 `28063e26…057d7`. The complete hashes remain in the bundle.
 

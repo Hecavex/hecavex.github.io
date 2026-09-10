@@ -1,5 +1,5 @@
 ---
-last_modified_at: 2026-09-07
+last_modified_at: 2026-09-10
 title: "Phishing infrastruktūra Lietuvoje: 2026 m. rugpjūčio Radar bazinė apžvalga"
 card_title: "Radar 2026 m. rugpjūčio phishing infrastruktūros apžvalga"
 description: "Aprėptį įvertinanti 130 Lietuvos prekių ženklų impersonation kandidatų, jų įrodymų lygių, rinkimo būklės ir analitinių ribų apžvalga."
@@ -197,6 +197,8 @@ Tyrėjams ir žurnalistams [pokyčių žurnalas](https://radar.hecavex.com/lt/po
 Paprastam gavėjui Radar nepakeičia [saugaus įtartinos SMS patikrinimo](/lt/tyrimai/kaip-saugiai-patikrinti-itartina-sms-nuoroda/). Neatidarykite kandidato vien todėl, kad jis yra tyrimo indekse. Tariamus įvykius tikrinkite oficialioje organizacijos programėlėje arba pačių įvestu adresu. Jei jau pateikėte banko ar autentifikavimo duomenis, naudokite [veiksmų po phishing incidento gidą](/lt/tyrimai/ka-daryti-suvedus-banko-duomenis-phishing-puslapyje/), o ne tęskite nuorodos tyrimą.
 
 ## Išsaugotos reikšmės ir atkūrimo ribos
+
+[Esminių pataisymų rodyklėje](/lt/pataisymai/#radar-rugpjucio-bazes-atkurimo-ribos) nurodytas šis paaiškinimas ir jo data. Tai nėra naujas matavimas ar kandidatų populiacijos peržiūra.
 
 Išvestiniame [summary JSON](/assets/data/radar-august-2026-baseline/summary.json) išsaugotos naudotos reikšmės, jų apibrėžimai, laiko riba, retention, šaltinių būklė ir dviejų lokalių šaltinio failų SHA-256. `radar.json` buvo 113 912 baitų, jo SHA-256 – `dcce36b0…83cce2`. `pipeline-health.json` buvo 4 604 baitų, jo SHA-256 – `28063e26…057d7`. Pilni hash palikti pakete.
 
