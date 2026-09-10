@@ -1,7 +1,3 @@
----
-layout: null
-sitemap: false
----
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,15 +13,15 @@ sitemap: false
     <link rel="stylesheet" href="/assets/css/fonts.css" />
     <style>
       :root {
-        color-scheme: dark;
-        --bg: #111416;
-        --surface: #171b1d;
-        --text: #ece9e1;
-        --muted: #8d969a;
+        color-scheme: light;
+        --bg: #ece9e1;
+        --surface: #f4f1e9;
+        --text: #151719;
+        --muted: #465355;
         --danger: #d06c65;
         --line: #30383b;
         --accent: #55b9b1;
-        --blue: #55b9b1;
+        --blue: #176b66;
       }
       * {
         box-sizing: border-box;
@@ -76,6 +72,31 @@ sitemap: false
       a {
         color: var(--blue);
       }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+      }
+      .actions a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+      }
+      a:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+      .use-note {
+        margin-top: 10px;
+        font-size: 13px;
+      }
+      footer {
+        flex-wrap: wrap;
+        overflow-wrap: anywhere;
+      }
       main {
         display: grid;
         grid-template-columns: 1.15fr 0.85fr;
@@ -111,7 +132,7 @@ sitemap: false
       .fact {
         padding: 10px;
         border-left: 2px solid var(--line);
-        background: #1d2326;
+        background: #e4e5dc;
       }
       .fact strong {
         display: block;
@@ -151,6 +172,12 @@ sitemap: false
         }
       }
       @media print {
+        .screen-only {
+          display: none;
+        }
+        header, .note, footer, li {
+          break-inside: avoid;
+        }
         :root {
           color-scheme: light;
           --bg: #ece9e1;
@@ -158,7 +185,7 @@ sitemap: false
           --text: #151719;
           --muted: #30383b;
           --line: #30383b;
-          --blue: #55b9b1;
+          --blue: #176b66;
         }
         body {
           font-size: 11px;
@@ -203,10 +230,15 @@ sitemap: false
           >
         </div>
       </header>
+      <nav class="actions screen-only" aria-label="Media kit downloads">
+        <a href="https://hecavex.com/assets/media/hecavex-media-kit-en.txt" download="hecavex-media-kit-en.txt">Download biographies and source links (.txt)</a>
+        <a href="https://hecavex.com/en/speaker/">Current speaker information</a>
+      </nav>
+      <p class="use-note screen-only">Select text to copy, or use the text download. From a downloaded HTML copy, the text link opens the online file and needs an internet connection. To print or save as PDF, use your browser's print command.</p>
       <main>
         <section>
-          <h2>50-word biography</h2>
-          <p>
+          <h2>Short biography</h2>
+          <p data-biography="short">
             Deividas Lis is a Lithuanian cyber threat intelligence researcher,
             former cybercrime investigator, public speaker and media
             commentator. His work covers CTI, OSINT, fraud infrastructure,
@@ -215,7 +247,7 @@ sitemap: false
             practical security analysis through HECAVEX.
           </p>
           <h2>Extended biography</h2>
-          <p>
+          <p data-biography="extended">
             Based in Vilnius, Deividas has worked across law enforcement,
             financial-sector security and private-sector threat research. He
             translates technically complex threats into direct explanations for
@@ -254,12 +286,12 @@ sitemap: false
           </div>
           <h2>Selected appearances</h2>
           <ul>
-            <li>Delfi — Facebook data-exposure risk</li>
-            <li>Žinių radijas — how scammers select victims</li>
-            <li>TV3 — fraud campaigns spreading at scale</li>
-            <li>Pociūnas Podcast — cybercrime investigations</li>
-            <li>Tapk Geresniu Podcast — fraud and the dark web</li>
-            <li>NordStellar — effective threat intelligence</li>
+            <li><a href="https://www.delfi.lt/mokslas/login/programisiai-nutekino-1-2-milijardo-facebook-vartotoju-duomenis-it-specialistas-ispeja-kas-gresia-turintiems-feisbuko-paskyras-120111498">Delfi — Facebook data-exposure risk</a></li>
+            <li><a href="https://www.ziniuradijas.lt/laidos/pergudrauti-sukciu/kodel-sukciai-skambina-per-pietus-arba-vakare?video=1">Žinių radijas — how scammers select victims</a></li>
+            <li><a href="https://www.tv3.lt/naujiena/lietuva/ispeja-apie-masiskai-plintancia-sukciu-afera-stai-kaip-atsirenka-jus-kaip-auka-n1521886">TV3 — fraud campaigns spreading at scale</a></li>
+            <li><a href="https://www.youtube.com/watch?v=mzeDypl0QiA">Pociūnas Podcast — cybercrime investigations</a></li>
+            <li><a href="https://www.youtube.com/watch?v=1RPIICt7_SU">Tapk Geresniu Podcast — fraud and the dark web</a></li>
+            <li><a href="https://www.youtube.com/watch?v=qxrLrMH7_x4">NordStellar — effective threat intelligence</a></li>
           </ul>
           <h2>Available for</h2>
           <p>
@@ -273,9 +305,10 @@ sitemap: false
           </div>
         </aside>
       </main>
+      <p class="use-note" data-reuse-note>Organisers and editors may use the short biography with attribution to Deividas Lis / HECAVEX. Third-party appearances retain their own rights.</p>
       <footer>
         <span>Booking: info@hecavex.com · LinkedIn: linkedin.com/in/deilis</span
-        ><span>Updated August 2026</span>
+        ><span>Updated 10 September 2026</span>
       </footer>
     </article>
   </body>

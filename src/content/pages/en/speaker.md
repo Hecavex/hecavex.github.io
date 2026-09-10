@@ -81,6 +81,8 @@ The [HECAVEX English media kit](/assets/media/hecavex-media-kit-en.html) is a pr
 
 High-resolution press photography is available on request from **[info@hecavex.com](mailto:info@hecavex.com)**. The abstract website avatar is deliberately not presented as a press headshot.
 
+For programme notes or an editor's document, <a href="/assets/media/hecavex-media-kit-en.txt" download="hecavex-media-kit-en.txt">download the biographies and appearance source links as plain text</a>. The kit also links each appearance to its original publication. You can select biography text directly without enabling JavaScript. Linked downloads and original appearances require an online connection.
+
 ## Booking information
 
 When contacting, include the event or publication, proposed topic, audience, format, location or remote option, language and expected date. Email **[info@hecavex.com](mailto:info@hecavex.com)**.

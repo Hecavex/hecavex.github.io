@@ -81,6 +81,8 @@ Renginių organizatoriai ir redakcijos gali naudoti šią biografiją nurodydami
 
 Didelės raiškos nuotraukų žiniasklaidai teiraukitės el. paštu **[info@hecavex.com](mailto:info@hecavex.com)**. Abstraktus svetainės avataras sąmoningai nepateikiamas kaip spaudai skirta portretinė nuotrauka.
 
+Renginio programai ar redakcijos dokumentui <a href="/assets/media/hecavex-media-kit-lt.txt" download="hecavex-media-kit-lt.txt">atsisiųskite biografijas ir pasirodymų šaltinių nuorodas tekstiniu failu</a>. Rinkinyje kiekvienas pasirodymas taip pat susietas su originalia publikacija. Biografijos tekstą galima pažymėti ir kopijuoti neįjungus JavaScript. Susietiems atsisiuntimams ir originaliems pasirodymams reikia interneto ryšio.
+
 ## Užklausos informacija
 
 Kreipdamiesi nurodykite renginį ar leidinį, siūlomą temą, auditoriją, formatą, vietą arba nuotolinio dalyvavimo galimybę, kalbą ir planuojamą datą. El. paštas: **[info@hecavex.com](mailto:info@hecavex.com)**.
