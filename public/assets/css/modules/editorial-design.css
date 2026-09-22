@@ -320,7 +320,7 @@ main .card-meta span {
   text-transform: none;
 }
 
-.article-head h1 {
+.article-shell .article-head h1 {
   line-height: 1.08;
 }
 
