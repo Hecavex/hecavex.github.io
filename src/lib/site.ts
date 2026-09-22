@@ -120,7 +120,9 @@ let postCache: Post[] | undefined;
 export const getPublicPosts = async () => {
   if (!postCache) {
     const entries = await getCollection('posts', ({ data }) => isApprovedPublication(data));
-    postCache = entries.map(hydratePost).sort((a, b) => b.date.valueOf() - a.date.valueOf());
+    // A retrospective batch can share one real publication time. Keep its
+    // highest issue first without inventing different publication timestamps.
+    postCache = entries.map(hydratePost).sort(sequenceOrder);
   }
   return postCache;
 };

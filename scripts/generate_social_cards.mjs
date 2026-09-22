@@ -11,6 +11,10 @@ const sourceRoot = join(projectRoot, 'src');
 const publicRoot = join(projectRoot, 'public');
 const postsRoot = join(sourceRoot, 'content', 'posts');
 const outputRoot = join(publicRoot, 'assets', 'img', 'social');
+// Regenerate one approved editorial batch without rewriting unrelated assets.
+// No arguments retains the existing all-publications behaviour.
+const requestedKeys = new Set(process.argv.slice(2));
+const selectedKeys = new Set();
 const browserCandidates = [
   process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
   'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
@@ -78,6 +82,8 @@ for (const file of postFiles) {
   const title = scalar(frontMatter, 'title');
   const lang = scalar(frontMatter, 'lang');
   const translationKey = scalar(frontMatter, 'translation_key');
+  if (requestedKeys.size && !requestedKeys.has(translationKey)) continue;
+  selectedKeys.add(translationKey);
   const date = scalar(frontMatter, 'date').slice(0, 10);
   const publicationClass = scalar(frontMatter, 'publication_class');
   const contentType = scalar(frontMatter, 'content_type');
@@ -99,6 +105,10 @@ for (const file of postFiles) {
     title,
     titleSize: titleSize(title)
   });
+}
+
+for (const key of requestedKeys) {
+  if (!selectedKeys.has(key)) throw new Error(`No approved publication matches social-card key: ${key}`);
 }
 
 const keys = new Set();

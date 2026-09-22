@@ -10,6 +10,9 @@
 /en/briefings/2026-08-14/
 /en/briefings/2026-08-22/
 /en/briefings/2026-08-30/
+/en/briefings/2026-09-06/
+/en/briefings/2026-09-13/
+/en/briefings/2026-09-20/
 /en/categories/
 /en/categories/data-breaches/
 /en/categories/fraud-scams/
@@ -64,6 +67,7 @@
 /en/tags/certificate-transparency/
 /en/tags/centre-of-registers/
 /en/tags/cisa-kev/
+/en/tags/cisco/
 /en/tags/cloaking/
 /en/tags/cti/
 /en/tags/cyber-resilience-act/
@@ -97,6 +101,9 @@
 /lt/apzvalgos/2026-08-14/
 /lt/apzvalgos/2026-08-22/
 /lt/apzvalgos/2026-08-30/
+/lt/apzvalgos/2026-09-06/
+/lt/apzvalgos/2026-09-13/
+/lt/apzvalgos/2026-09-20/
 /lt/archyvas/
 /lt/dabar/
 /lt/kategorijos/
@@ -151,6 +158,7 @@
 /lt/zymos/analize/
 /lt/zymos/certificate-transparency/
 /lt/zymos/cisa-kev/
+/lt/zymos/cisco/
 /lt/zymos/cloaking/
 /lt/zymos/cti/
 /lt/zymos/detection-engineering/
@@ -174,6 +182,7 @@
 /lt/zymos/session-theft/
 /lt/zymos/smishing/
 /lt/zymos/sms/
+/lt/zymos/social-engineering/
 /lt/zymos/supply-chain/
 /lt/zymos/threat-hunting/
 /lt/zymos/urlscan/
