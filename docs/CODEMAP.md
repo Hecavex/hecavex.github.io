@@ -9,6 +9,7 @@ Start here for focused retrieval. Follow the entrypoint for the feature; do not 
 | Research/profile catalogues | `src/pages/[lang]/[page].astro`, `src/data/page-context.ts` | content, action-rail, route assertions |
 | Article assembly | `src/pages/[lang]/[section]/[slug].astro` | citations, evidence, publication browser checks |
 | Publication eligibility and metadata | `src/lib/site.ts`, publication policy helpers | content validation; never bypass approval |
+| Signal Brief chronology and discovery | bilingual `src/content/posts/*/bulletins/`, shared ordering in `src/lib/site.ts`, date display in `src/lib/briefing-record.mjs` | `scripts/signal-briefs.test.mjs`, `scripts/check-signal-briefs.mjs` |
 | Cover/preview decision | `src/lib/publication-preview.mjs` | `scripts/publication-preview.test.mjs` |
 | Reusable research card | `src/components/PostCard.astro` | responsive catalogue/home parity |
 | Secondary speaking invitation | `src/components/SpeakingInvitation.astro` | route audit and bilingual link checks |

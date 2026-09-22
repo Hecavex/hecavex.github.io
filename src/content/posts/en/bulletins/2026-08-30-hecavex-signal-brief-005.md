@@ -12,6 +12,7 @@ seo_keywords:
   - "AI gateway attacks LiteLLM RAGFlow Kestra"
   - "CISA KEV August 2026"
 date: 2026-08-30 15:30:00 +0300
+last_modified_at: 2026-09-22 14:00:00 +0300
 lang: en
 translation_key: hecavex-signal-brief-005
 permalink: /en/briefings/2026-08-30/
@@ -50,6 +51,8 @@ image:
   alt: "An analytical signal crossing developer platforms, AI control planes, cloud storage and exposed cameras"
   thumbnail: /assets/img/series/hecavex-signal-brief.svg
 updates:
+  - date: 2026-09-22
+    note: "Linked the three retrospective follow-up editions and removed the generic closing summary. The original information cutoff and evidence package are unchanged."
   - date: 2026-09-10
     note: "Added a separately dated, source-linked decision companion with fictional asset examples. The original briefing cutoff is unchanged."
   - date: 2026-08-30
@@ -61,6 +64,8 @@ This week's urgent queue is not one product family. It is a set of systems that 
 That distinction matters. A critical score describes potential impact under defined conditions. KEV inclusion says exploitation has been observed. Neither tells you whether your instance was reachable, vulnerable or compromised. Inventory, exposure and evidence still have to complete the sentence.
 
 ## From this brief to a local decision
+
+The series continues with [Brief #6, 31 August–6 September](/en/briefings/2026-09-06/), [Brief #7, 7–13 September](/en/briefings/2026-09-13/) and [Brief #8, 14–20 September](/en/briefings/2026-09-20/). Those editions were compiled retrospectively on 22 September. In particular, #6 records the later change in Artifactory's exploitation status rather than rewriting the finding at this issue's 30 August cutoff.
 
 **Companion added 10 September 2026. The original 30 August briefing cutoff remains unchanged.** Two selected cases, Gitea and ownCloud, now have a [reproducible decision pack](/assets/data/signal-brief-005-decisions/README.md): [source-linked JSON](/assets/data/signal-brief-005-decisions/records.json), [CSV](/assets/data/signal-brief-005-decisions/records.csv), a [blank decision worksheet](/assets/data/signal-brief-005-decisions/decision-template.csv) and an [offline consumer](/assets/data/signal-brief-005-decisions/consumer.mjs).
 
@@ -227,9 +232,3 @@ The practical investigation path is covered in [One Scam Domain Is Rarely Alone]
 
 <p class="hx-signal-source"><a href="https://panevezys.policija.lrv.lt/lt/ivykiu-suvestines/2026-08-26-suvestine-4zp7/">Read the Panevėžys police summary →</a></p>
 </section>
-
-## Bottom line
-
-Start with the systems that actually exist and sit closest to code, credentials or sensitive data. Gitea, Oracle HTTP Server, ownCloud and Artifactory require product-specific action, not one generic vulnerability ticket. The rest of the KEV batch needs the same discipline: distinguish internet entry from local privilege escalation, and distinguish a fixed version from evidence that the system was never used.
-
-The longer signal is architectural. AI gateways and orchestrators inherit the value of every secret and execution path connected to them. Cameras inherit the sensitivity of what they can see and the networks they can reach. A marketplace conversation inherits no trust merely because it began on a familiar platform. Patch the named products, but also reduce the access and evidence gaps that made each path valuable.

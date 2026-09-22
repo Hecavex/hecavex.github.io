@@ -30,6 +30,9 @@ HECAVEX is a public, read-only publication. Cite canonical article URLs and pres
 
 ## Machine-readable publication surfaces
 
+- [English Signal Briefs](https://hecavex.com/en/briefings/) / [Lietuviškos signalų apžvalgos](https://hecavex.com/lt/apzvalgos/): Source-linked period briefings. A coverage window is not a publication date; retrospective editions state both. Priority labels are editorial queues, not CVSS scores.
+- [English briefing feed](https://hecavex.com/en/briefings/feed.xml) / [Lithuanian briefing feed](https://hecavex.com/lt/apzvalgos/feed.xml): Signal Brief editions only, ordered by actual publication date and issue number.
+
 - [Public data catalogue](https://hecavex.com/data/): Portfolio index of canonical Research, Radar, APT Notes and Labs records.
 - [Publication metadata](https://hecavex.com/data/publications.json): Approved localized editions, original dates, recorded research versions, translation links and per-article BibTeX/CSL-JSON downloads. Translations are not additional investigations; publication dates are not review dates.
 - [English Atom feed](https://hecavex.com/en/feed.xml): Current English publications.

@@ -37,7 +37,11 @@ await new Promise((accept) => server.listen(0, '127.0.0.1', accept));
 const address = server.address();
 const baseUrl = `http://127.0.0.1:${address.port}`;
 
+const septemberBriefRoutes = ['2026-09-06', '2026-09-13', '2026-09-20'].flatMap(date => [
+  `/en/briefings/${date}/`, `/lt/apzvalgos/${date}/`
+]);
 const routes = [
+  ...septemberBriefRoutes,
   '/', '/data/', '/lt/duomenys/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/', '/en/projects/', '/lt/projektai/',
   '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/',
   '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
@@ -47,6 +51,7 @@ const routes = [
 ];
 const factRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
 const outlineRoutes = new Set([
+  ...septemberBriefRoutes,
   '/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/',
   '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
   '/en/research/cra-article-14-vulnerability-incident-reporting-guide/', '/lt/tyrimai/infrastrukturos-pivoting-101/',
@@ -65,7 +70,7 @@ const standardizedPageTitleRoutes = new Set([
   '/en/projects/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/'
 ]);
 const legacyCtaRoutes = new Set(['/en/about/', '/lt/apie/', '/en/contact/', '/lt/kontaktai/']);
-const signalRoutes = new Set(['/en/briefings/2026-08-22/', '/lt/apzvalgos/2026-08-22/']);
+const signalRoutes = new Set([...septemberBriefRoutes, '/en/briefings/2026-08-22/', '/lt/apzvalgos/2026-08-22/']);
 const widths = [320, 390, 768, 1160, 1440];
 const failures = [];
 const cardPresentations = new Map();

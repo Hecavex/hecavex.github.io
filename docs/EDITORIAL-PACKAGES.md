@@ -72,3 +72,21 @@ Artifact versions are independent of the article version. Do not infer sample ha
 Correct quiet formatting mistakes normally. When a source, finding, confidence level or conclusion changes, update `last_modified_at`, increase `research_version` and add a short entry to `updates` explaining what changed. Readers should not have to compare Git commits to discover that an assessment moved.
 
 English and Lithuanian versions keep the same `translation_key`, but each language can have its own review date and update wording.
+
+## Retrospective Signal Brief editions
+
+Coverage is not publication time. An edition prepared after its coverage window keeps the real preparation/publication date in `date`, its historical UTC window in `coverage_start` and `coverage_end`, and an explicit `information_cutoff`. State that it is retrospective in the opening. A date-based permalink can identify the coverage endpoint, but must not become a backdated citation or feed timestamp.
+
+Render coverage as UTC calendar dates through `src/lib/briefing-record.mjs`. The Markdown loader can hydrate unquoted YAML dates as `Date` objects; native string coercion would leak the build machine's timezone and produce different labels locally and in CI.
+
+Use dated primary material within the window, or explicitly identified earlier context. Prefer immutable official catalogue revisions when testing historical exploitation status. A mutable advisory is not proof that every word of its current page existed at the cutoff. Record that limitation, and do not import later findings into an earlier edition. Follow-up changes belong to the subsequent issue.
+
+Priority counts describe the actual editorial blocks, not a CVE total or vendor CVSS category. Keep English/Lithuanian CVE coverage and metadata aligned. End after the final substantive item and its actions/sources, without a generic "Bottom line" or "Esmė" summary.
+
+Batch publication can use one actual timestamp. The publication sorter uses issue number as the tie-break, so #8 remains ahead of #7 and #6 without invented time offsets. Generate just the new social cards with:
+
+```powershell
+node scripts/generate_social_cards.mjs hecavex-signal-brief-006 hecavex-signal-brief-007 hecavex-signal-brief-008
+```
+
+The normal `npm run verify` gate includes source-level chronology/parity tests and a built-output briefing check covering home discovery, indexes, both feeds, search, archive, sitemap, citation dates, publication catalogue and social assets. Update the reviewed sitemap manifest for explicitly added routes, including any newly indexable repeated tags. Never remove the exact route gate to make a release pass.
