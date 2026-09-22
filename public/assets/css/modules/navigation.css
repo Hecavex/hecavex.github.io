@@ -153,7 +153,7 @@
   display: grid;
   width: 9rem;
   min-width: 0;
-  min-height: 2.25rem;
+  min-height: 2.75rem;
   grid-template-columns: 2.8rem minmax(0, 1fr);
   align-items: stretch;
   border: 1px solid var(--line);
@@ -342,4 +342,3 @@ main {
   background: var(--text);
   color: var(--bg);
 }
-
