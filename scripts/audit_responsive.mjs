@@ -70,7 +70,9 @@ const standardizedPageTitleRoutes = new Set([
   '/en/projects/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/'
 ]);
 const legacyCtaRoutes = new Set(['/en/about/', '/lt/apie/', '/en/contact/', '/lt/kontaktai/']);
-const signalRoutes = new Set([...septemberBriefRoutes, '/en/briefings/2026-08-22/', '/lt/apzvalgos/2026-08-22/']);
+const signalCounts = new Map([
+  ['2026-08-22', 7], ['2026-09-06', 5], ['2026-09-13', 5], ['2026-09-20', 6]
+].flatMap(([date, count]) => [[`/en/briefings/${date}/`, count], [`/lt/apzvalgos/${date}/`, count]]));
 const widths = [320, 390, 768, 1160, 1440];
 const failures = [];
 const cardPresentations = new Map();
@@ -372,8 +374,9 @@ try {
       }
       if (route === '/data/' && (state.oddDataLinkListCount < 1 || !state.oddDataLinksFillRow)) fail(route, width, `odd data endpoint grids leave an empty cell (${state.oddDataLinkListCount} odd grids, fill ${state.oddDataLinksFillRow})`);
       if (legacyCtaRoutes.has(route) && (!['flex', 'inline-flex'].includes(state.ctaButtonDisplay) || state.ctaButtonHeight < 43 || state.ctaButtonHeight > 45)) fail(route, width, `restored page CTA is not a 44px flex control (${state.ctaButtonDisplay}, ${state.ctaButtonHeight}px)`);
-      if (signalRoutes.has(route)) {
-        if (state.signalEntryCount !== 7) fail(route, width, `Signal Brief contains ${state.signalEntryCount} signal records instead of 7`);
+      if (signalCounts.has(route)) {
+        const expectedCount = signalCounts.get(route);
+        if (state.signalEntryCount !== expectedCount) fail(route, width, `Signal Brief contains ${state.signalEntryCount} signal records instead of ${expectedCount}`);
         if (state.signalEntryBorder !== '1px' || state.signalFactDisplay !== 'grid' || state.signalFactCount !== 2) fail(route, width, `signal record presentation is incomplete (${state.signalEntryBorder}, ${state.signalFactDisplay}, ${state.signalFactCount} facts)`);
         if (width <= 680 && state.signalFactsShareRow) fail(route, width, 'signal facts remain side-by-side on a narrow screen');
         if (width > 680 && !state.signalFactsShareRow) fail(route, width, 'signal facts do not share a row on a wide screen');

@@ -71,6 +71,8 @@ Todėl penkiuose įrašuose atskirta, **ką patvirtina šaltinis**, **kas lieka 
 
 ### MikroTik: pataisytas maršrutizatorius dar nėra patikimas maršrutizatorius
 
+<dl><div><dt>Valdymo pasiekiamumas</dt><dd>SSH pasiekiamas iš nepatikimų tinklų</dd></div><div><dt>Reikalingas sprendimas</dt><dd>Pataisytas leidimas ir atskiras kompromitavimo vertinimas</dd></div></dl>
+
 Kanados kibernetinio saugumo centro rugsėjo 10 d. perspėjimas papildė ankstesnius MikroTik pranešimus ir nurodė, kad tą dieną CISA į KEV įtraukė CVE-2026-67277 bei CVE-2026-86060. Pataisos įvardytos RouterOS 6.49.21, 7.23.4 long-term, 7.24.2 stable ir 7.25 beta 3. Tai istorinės atskaitos versijos, ne rekomendacija gamybinę aplinką perkelti į beta kanalą. [Kanados centro perspėjimas](https://www.cyber.gc.ca/en/alerts-advisories/al26-020-vulnerabilities-impacting-mikrotik-routeros-cve-2026-67276-cve-2026-67277-cve-2026-86060).
 
 CERT Polska jau buvo pranešusi apie su SSH susijusios MikroTrick grandinės, apimančios CVE-2026-67276 ir CVE-2026-86060, išnaudojimą. CVE-2026-67277 susijęs su atskiru bandwidth-test servisu. Gamintojas rekomenduoja riboti nepatikimą SSH prieigą ir po atnaujinimo tikrinti neatpažįstamą konfigūraciją. CERT Polska taip pat perspėja, kad "Flagged" žymos nebuvimas neatmeta kompromitavimo. Uždarytas įėjimo kelias ir patikima įrenginio būsena yra du skirtingi klausimai. [CERT Polska analizė](https://cert.pl/en/posts/2026/09/vulnerabilities-in-mikrotik-routeros-actively-exploited/), [MikroTik pranešimas](https://mikrotik.com/supportsec/september-2026-vulnerability/).
@@ -84,6 +86,8 @@ CERT Polska jau buvo pranešusi apie su SSH susijusios MikroTrick grandinės, ap
 <p class="hx-signal-label">KRITINIS PRIORITETAS · PRANEŠTAS IŠNAUDOJIMAS · NARŠYKLIŲ PARKAS</p>
 
 ### Chrome: matuoti veikiančią versiją, ne diegimo pranešimą
+
+<dl><div><dt>Pažeidžiamumas</dt><dd>CVE-2026-87491</dd></div><div><dt>Įrodymų skirtumas</dt><dd>Gamintojo medium severity, praneštas išnaudojimas</dd></div></dl>
 
 Google rugsėjo 8 d. Chrome 153 pranešime nurodo realiai naudojamą CVE-2026-87491 exploit. Tai V8 out-of-bounds write klaida, pranešime įvertinta kaip medium. Stalinių sistemų leidimai buvo 153.0.8010.36 Linux ir 153.0.8010.36/.37 Windows bei macOS. Gamintojo severity ir išnaudojimo įrodymai yra atskiri laukai. [Chrome leidimo pranešimas](https://chromereleases.googleblog.com/2026/09/stable-channel-update-for-desktop_0808145027.html).
 
@@ -101,6 +105,8 @@ Tą pačią dieną Google pradėjo dviejų savaičių Stable ciklą. Extended St
 
 ### XenServer: guest riba ir automatizavimo ryšys reikalauja skirtingų pataisų
 
+<dl><div><dt>Hostų apimtis</dt><dd>XenServer 8.4 ir 9</dd></div><div><dt>Atskiras komponentas</dt><dd>Ankstesnis nei 0.3.0 Terraform provider</dd></div></dl>
+
 Cloud Software Group rugsėjo 8 d. biuletenis aprašo XenServer 8.4 ir 9 klaidas, dėl kurių privilegijuotas guest naudotojas gali kompromituoti hostą arba sutrikdyti jo veikimą. Atskirai įvardyta CVE-2026-83496 ankstesnėse nei 0.3.0 Terraform provider versijose, leidžianti perimti provider ir hosto ryšį. Hosto pataisos paskelbtos atitinkamuose atnaujinimų kanaluose. [XenServer biuletenis CTX697038](https://support.citrix.com/external/article/CTX697038/xenserver-security-update-for-multiple-i.html).
 
 Provider 0.3.0 leidimas pagal nutylėjimą įjungia TLS sertifikato tikrinimą ir ryšiams su hostu naudoja HTTPS. Galima nurodyti patikimos CA sertifikato kelią. `insecure` išimtis numatyta kūrimui ar bandymams, ne gamybinės aplinkos pasitikėjimo klaidai "sutvarkyti". [Provider 0.3.0 leidimas](https://github.com/xenserver/terraform-provider-xenserver/releases/tag/v0.3.0).
@@ -114,6 +120,8 @@ Provider 0.3.0 leidimas pagal nutylėjimą įjungia TLS sertifikato tikrinimą i
 <p class="hx-signal-label">AUKŠTAS PRIORITETAS · EUROPA · PRODUKTO SAUGUMO PRANEŠIMAI</p>
 
 ### CRA: laikrodis prasideda sužinojus, ne užbaigus tyrimą
+
+<dl><div><dt>Pranešimų pradžia</dt><dd>2026 m. rugsėjo 11 d.</dd></div><div><dt>Pranešimą teikia</dt><dd>Paskirtas gamintojo atstovas</dd></div></dl>
 
 Nuo rugsėjo 11 d. gamintojų CRA pareigos apima aktyviai išnaudojamus pažeidžiamumus ir rimtus produkto saugumo incidentus. Pranešti reikia be nepagrįsto delsimo, o ankstyvą perspėjimą ir pranešimą pateikti ne vėliau kaip per 24 ir 72 valandas nuo sužinojimo. Galutiniai terminai skiriasi: pažeidžiamumams, per 14 dienų nuo korekcinės ar poveikį mažinančios priemonės atsiradimo, incidentams, per mėnesį nuo 72 valandų pranešimo. Atvirojo kodo programinės įrangos valdytojų atitinkamos pareigos prasideda 2027 m. gruodžio 11 d. [Komisijos gairės, atnaujintos rugsėjo 11 d.](https://digital-strategy.ec.europa.eu/en/policies/cra-reporting), [CRA 14 straipsnis](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=OJ:L_202402847).
 
@@ -130,6 +138,8 @@ ENISA instrukcija atskiria išsaugotą juodraštį nuo pateikto perspėjimo ir a
 <p class="hx-signal-label">STEBĖTI · LIETUVA · ŽVALGYBOS BENDRADARBIAVIMAS</p>
 
 ### NKSC platforma didina dalijamo analitinio rezultato kokybės svarbą
+
+<dl><div><dt>Pranešimas</dt><dd>NKSC, rugsėjo 7 d.</dd></div><div><dt>Įrodymų riba</dt><dd>Bendradarbiavimo pokytis, ne atskleistas įsilaužimas</dd></div></dl>
 
 Rugsėjo 7 d. NKSC paskelbė, kad Regioninis kibernetinės gynybos centras tampa Tarptautine kibernetinių grėsmių analizės platforma. Nurodytos kryptys yra bendra grėsmių paieška, analizė ir tyrimai. Tarybos susitikimo dalyviais įvardytos Lietuva, Lenkija, Ukraina, Čekija ir JAV. Tai bendradarbiavimo pokytis, ne naujai atskleistas įsilaužimas. [NKSC pranešimas](https://nksc.lrv.lt/lt/naujienos/nksc-koordinuojamas-regioninis-kibernetines-gynybos-centras-tampa-tarptautine-kibernetiniu-gresmiu-analizes-platforma-SPI/).
 

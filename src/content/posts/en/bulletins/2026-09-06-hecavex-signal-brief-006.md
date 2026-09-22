@@ -105,6 +105,8 @@ JFrog describes unauthenticated administrative access under the default configur
 
 ### Teams contact can become a remote operator's entry point
 
+<dl><div><dt>Report date</dt><dd>2 September</dd></div><div><dt>Initial contact</dt><dd>External Teams contact posing as IT support</dd></div></dl>
+
 Microsoft's 2 September research describes external Teams contacts posing as IT support, obtaining a remote session and delivering an MSI/Node.js implant. Operators then conducted discovery and used WinRM toward high-value systems. This is reported abuse of collaboration and support workflows, not a disclosed Teams software vulnerability. [Microsoft's campaign analysis](https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/).
 
 **Assessment:** the important authorisation decision happens before the suspicious installer. Who is allowed to ask an employee for interactive control, and how does the employee verify that person without using the contact details supplied by the caller? An approved application does not make every operator using it approved.
@@ -119,6 +121,8 @@ For a Lithuanian organisation using an external IT provider, the practical bound
 <p class="hx-signal-label">HIGH PRIORITY · NEW ADVISORY · NETWORK CONTROL</p>
 
 ### Cisco Nexus: check the hardware before creating the emergency
+
+<dl><div><dt>Vulnerability</dt><dd>CVE-2026-20212</dd></div><div><dt>Scope</dt><dd>Selected Nexus 9000 models with Silicon One ASICs</dd></div></dl>
 
 Cisco's 2 September advisory for **CVE-2026-20212** concerns specific Nexus 9000 switches with Silicon One ASICs. Exposed TCP ports **43210/43211** in the default L3 VRF can permit unauthenticated root-level execution. Cisco reported no known malicious use. Other Nexus 9000 models and ACI-mode fabric switches were not included as affected. [Cisco advisory](https://www.cisco.com/c/en/us/support/docs/csa/cisco-sa-n9k-s1-rce-EH8dEtr.html).
 
@@ -136,6 +140,8 @@ The vendor rates the flaw critical. This brief places it in the high-priority qu
 <p class="hx-signal-label">WATCH · RESPONSE READINESS · SERVICE PROVIDERS</p>
 
 ### A service outage is not automatically a cyberattack
+
+<dl><div><dt>Guidance date</dt><dd>2 September</dd></div><div><dt>ACSC publication</dt><dd>3 September</dd></div></dl>
 
 CISA-led joint guidance dated **2 September**, posted by Australia's ACSC on **3 September**, addresses communications during IT and OT outages. It asks providers to distinguish confirmed information from unresolved cause and prepare communications before an incident. It is operational guidance, not a new Lithuanian or EU reporting rule. [Joint guidance PDF](https://www.cyber.gov.au/sites/default/files/2026-09/joint-guidance-communicating-under-pressure-best-practices-for-service-providers.pdf), [ACSC publication page](https://www.cyber.gov.au/business-government/detecting-responding-to-threats/cyber-security-incident-response/communicating-under-pressure-best-practices-for-service-providers).
 

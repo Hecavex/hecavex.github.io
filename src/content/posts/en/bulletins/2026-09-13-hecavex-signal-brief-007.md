@@ -71,6 +71,8 @@ The five entries below therefore separate **what the source establishes**, **wha
 
 ### MikroTik: a patched router is not automatically a trusted router
 
+<dl><div><dt>Management exposure</dt><dd>SSH reachable from untrusted networks</dd></div><div><dt>Required decision</dt><dd>Fixed release and a separate compromise assessment</dd></div></dl>
+
 The Canadian Centre for Cyber Security's 10 September alert reinforced the earlier MikroTik disclosures and recorded CISA's addition of CVE-2026-67277 and CVE-2026-86060 to KEV that day. Its release table identifies fixes in RouterOS 6.49.21, 7.23.4 long-term, 7.24.2 stable and 7.25 beta 3. Those are historical reference versions, not a recommendation to move production routers to a beta channel. [Canadian alert](https://www.cyber.gc.ca/en/alerts-advisories/al26-020-vulnerabilities-impacting-mikrotik-routeros-cve-2026-67276-cve-2026-67277-cve-2026-86060).
 
 CERT Polska had already reported exploitation of the SSH-related MikroTrick chain, involving CVE-2026-67276 and CVE-2026-86060. CVE-2026-67277 concerns the separate bandwidth-test service. The vendor's notice tells administrators to restrict untrusted SSH access and inspect unfamiliar configuration after updating. CERT Polska also warns that the absence of a "Flagged" marker does not exclude compromise. These are separate questions: whether the entry path is fixed and whether the device remains trustworthy. [CERT Polska analysis](https://cert.pl/en/posts/2026/09/vulnerabilities-in-mikrotik-routeros-actively-exploited/), [MikroTik notice](https://mikrotik.com/supportsec/september-2026-vulnerability/).
@@ -84,6 +86,8 @@ CERT Polska had already reported exploitation of the SSH-related MikroTrick chai
 <p class="hx-signal-label">CRITICAL PRIORITY · REPORTED EXPLOITATION · BROWSER FLEET</p>
 
 ### Chrome: measure the running version, not the deployment message
+
+<dl><div><dt>Vulnerability</dt><dd>CVE-2026-87491</dd></div><div><dt>Evidence distinction</dt><dd>Vendor medium severity, reported exploitation</dd></div></dl>
 
 Google's 8 September Chrome 153 notice states that an exploit for CVE-2026-87491 exists in the wild. The issue is an out-of-bounds write in V8, labelled medium severity in that notice. The desktop release was 153.0.8010.36 for Linux and 153.0.8010.36/.37 for Windows and macOS. Vendor severity and exploitation evidence are different fields. [Chrome release notice](https://chromereleases.googleblog.com/2026/09/stable-channel-update-for-desktop_0808145027.html).
 
@@ -101,6 +105,8 @@ The same day, Google began a two-week Stable release cycle. Its enterprise guida
 
 ### XenServer: the guest boundary and the automation connection need different fixes
 
+<dl><div><dt>Host scope</dt><dd>XenServer 8.4 and 9</dd></div><div><dt>Separate component</dt><dd>Terraform provider before 0.3.0</dd></div></dl>
+
 Cloud Software Group's 8 September bulletin describes issues affecting XenServer 8.4 and 9 that can allow a privileged guest user to compromise or crash the host. It separately identifies CVE-2026-83496 in Terraform provider versions before 0.3.0 as permitting interception of provider-to-host communication. The vendor released host updates through the relevant update channels. [XenServer bulletin CTX697038](https://support.citrix.com/external/article/CTX697038/xenserver-security-update-for-multiple-i.html).
 
 The provider's 0.3.0 release enables TLS certificate verification by default and uses HTTPS for host connections. Its configuration supports a trusted CA certificate path. An `insecure` override exists for development or testing, not as a production remedy for a failed trust check. [Provider 0.3.0 release](https://github.com/xenserver/terraform-provider-xenserver/releases/tag/v0.3.0).
@@ -114,6 +120,8 @@ The provider's 0.3.0 release enables TLS certificate verification by default and
 <p class="hx-signal-label">HIGH PRIORITY · EUROPE · PRODUCT-SECURITY REPORTING</p>
 
 ### CRA: the clock starts with awareness, not a completed investigation
+
+<dl><div><dt>Reporting start</dt><dd>11 September 2026</dd></div><div><dt>Submission role</dt><dd>Assigned representative of the manufacturer</dd></div></dl>
 
 From 11 September, manufacturers' CRA duties cover actively exploited vulnerabilities and severe incidents affecting product security. Reports are required without undue delay, with early warning and notification no later than 24 and 72 hours from awareness. Final reports differ: exploited vulnerabilities, within 14 days after a corrective or mitigating measure becomes available, and severe incidents, within a month of the 72-hour notification. Open-source software stewards' corresponding obligations start on 11 December 2027. [Commission reporting guidance, updated 11 September](https://digital-strategy.ec.europa.eu/en/policies/cra-reporting), [CRA Article 14](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=OJ:L_202402847).
 
@@ -130,6 +138,8 @@ ENISA's notification instructions distinguish a saved draft from a submitted war
 <p class="hx-signal-label">WATCH · LITHUANIA · INTELLIGENCE COOPERATION</p>
 
 ### NKSC's new hub makes the quality of a shared finding more important
+
+<dl><div><dt>Announcement</dt><dd>NKSC, 7 September</dd></div><div><dt>Evidence boundary</dt><dd>Cooperation development, not an intrusion disclosure</dd></div></dl>
 
 On 7 September, NKSC announced that its Regional Cyber Defence Centre was becoming the International Cyber Threat Analysis Hub. The stated directions are joint threat hunting, analysis and research. The announcement names Lithuania, Poland, Ukraine, Czechia and the United States as participating in the board meeting. It describes a cooperation development, not a newly disclosed intrusion. [NKSC announcement](https://nksc.lrv.lt/lt/naujienos/nksc-koordinuojamas-regioninis-kibernetines-gynybos-centras-tampa-tarptautine-kibernetiniu-gresmiu-analizes-platforma-SPI/).
 

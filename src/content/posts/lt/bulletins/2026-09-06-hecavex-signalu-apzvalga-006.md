@@ -105,6 +105,8 @@ JFrog aprašo administratoriaus prieigą be autentifikacijos esant numatytajai k
 
 ### Teams kontaktas gali tapti išorinio operatoriaus įėjimu
 
+<dl><div><dt>Tyrimo data</dt><dd>Rugsėjo 2 d.</dd></div><div><dt>Pradinis kontaktas</dt><dd>Išorinis Teams kontaktas, apsimetantis IT pagalba</dd></div></dl>
+
 Rugsėjo 2 d. Microsoft aprašė išorinius Teams kontaktus, kurie apsimetė IT pagalba, gavo nuotolinę sesiją ir įdiegė MSI/Node.js implantą. Operatoriai rinko aplinkos informaciją ir per WinRM judėjo link vertingų sistemų. Tai pranešta apie bendradarbiavimo bei pagalbos procesų išnaudojimą, ne Teams programinės įrangos pažeidžiamumą. [Microsoft kampanijos analizė](https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/).
 
 **Vertinimas:** svarbus prieigos sprendimas įvyksta prieš įtartiną installer. Kas gali paprašyti darbuotojo perduoti interaktyvų valdymą ir kaip darbuotojas patikrins tą žmogų nenaudodamas paties skambinančiojo pateiktų kontaktų? Patvirtinta aplikacija nepadaro kiekvieno jos operatoriaus patvirtintu.
@@ -119,6 +121,8 @@ Išorinį IT tiekėją naudojančiai Lietuvos organizacijai praktinė riba aišk
 <p class="hx-signal-label">AUKŠTAS PRIORITETAS · NAUJAS PRANEŠIMAS · TINKLO VALDYMAS</p>
 
 ### Cisco Nexus: prieš skubų pakeitimą patikrinti aparatūrą
+
+<dl><div><dt>Pažeidžiamumas</dt><dd>CVE-2026-20212</dd></div><div><dt>Apimtis</dt><dd>Konkrečių modelių Nexus 9000 su Silicon One ASIC</dd></div></dl>
 
 Rugsėjo 2 d. Cisco pranešimas apie **CVE-2026-20212** apima konkrečius Nexus 9000 komutatorius su Silicon One ASIC. TCP **43210/43211** pasiekiamumas numatytajame L3 VRF gali leisti be autentifikacijos vykdyti kodą root teisėmis. Cisco nenurodė žinomo piktybinio išnaudojimo. Kiti Nexus 9000 modeliai ir ACI režimo fabric komutatoriai nepatenka į paveiktą apimtį. [Cisco pranešimas](https://www.cisco.com/c/en/us/support/docs/csa/cisco-sa-n9k-s1-rce-EH8dEtr.html).
 
@@ -136,6 +140,8 @@ Gamintojo severity yra critical. Šioje apžvalgoje signalas patenka į aukšto 
 <p class="hx-signal-label">STEBĖTI · PASIRENGIMAS ATSAKUI · PASLAUGŲ TIEKĖJAI</p>
 
 ### Paslaugos sutrikimas dar nėra kibernetinė ataka
+
+<dl><div><dt>Rekomendacijų data</dt><dd>Rugsėjo 2 d.</dd></div><div><dt>ACSC publikacija</dt><dd>Rugsėjo 3 d.</dd></div></dl>
 
 CISA vadovaujant parengtos bendros IT bei OT sutrikimų komunikacijos rekomendacijos datuotos **rugsėjo 2 d.**, o Australijos ACSC jas paskelbė **rugsėjo 3 d.** Jos ragina atskirti patvirtintą informaciją nuo neišaiškintos priežasties ir pasirengti iki incidento. Tai praktinės rekomendacijos, ne nauja Lietuvos ar ES pranešimo pareiga. [Bendrų rekomendacijų PDF](https://www.cyber.gov.au/sites/default/files/2026-09/joint-guidance-communicating-under-pressure-best-practices-for-service-providers.pdf), [ACSC publikacijos puslapis](https://www.cyber.gov.au/business-government/detecting-responding-to-threats/cyber-security-incident-response/communicating-under-pressure-best-practices-for-service-providers).
 

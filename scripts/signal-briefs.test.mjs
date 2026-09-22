@@ -55,6 +55,11 @@ for (const { issue, start, end, counts } of batch) {
         assert.equal(actual, counts[priorityIndex], `${data.lang}: ${priority} priority counts`);
       }
       assert.doesNotMatch(body, /^##\s+(?:Bottom line|Esmė|Apibendrinimas|Išvada)\s*$/mi);
+      for (const [, section] of body.matchAll(/<section class="hx-signal-entry[^>]*>([\s\S]*?)<\/section>/g)) {
+        const facts = section.match(/<dl>([\s\S]*?)<\/dl>/)?.[1] ?? '';
+        assert.equal((facts.match(/<dt>/g) ?? []).length, 2, `${data.lang}: every signal needs two concise facts`);
+        assert.equal((facts.match(/<dd>/g) ?? []).length, 2, `${data.lang}: every fact needs a value`);
+      }
       assert(body.trimEnd().endsWith('</section>'), 'finish at the last substantive item, not a generic summary');
     }
     assert.deepEqual(cves(pair[0].body), cves(pair[1].body), 'translations must cover the same CVEs');
