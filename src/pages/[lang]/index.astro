@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
+import SpeakingInvitation from '../../components/SpeakingInvitation.astro';
 import { copy, dateText, findPage, getLocalizedPosts, latestContentUpdate, type Lang, type Post } from '../../lib/site';
 
 export function getStaticPaths() { return [{ params: { lang: 'en' } }, { params: { lang: 'lt' } }]; }
@@ -47,7 +48,7 @@ const topicPosts = topicDefinitions
     </section>
 
     {recent.length > 0 && <section class="home-section" aria-labelledby="latest-title">
-      <header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Naujausias darbas' : 'Latest work'}</p><h2 id="latest-title">{hx.latest_research}</h2></div><a href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.view_all} →</a></header>
+      <header class="section-head"><h2 id="latest-title">{hx.latest_research}</h2><a href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.view_all} →</a></header>
       <div class="post-grid home-latest-grid">{recent.map((post) => <PostCard {post} />)}</div>
     </section>}
 
@@ -62,9 +63,6 @@ const topicPosts = topicDefinitions
     </section>
 
     <section class="network-section" aria-labelledby="network-title"><header class="section-head"><div><p class="eyebrow">HECAVEX NETWORK</p><h2 id="network-title">{lang === 'lt' ? 'Vienas leidinys. Kelios tyrimų erdvės.' : 'One publication. Several research surfaces.'}</h2></div><a href={lang === 'lt' ? '/lt/projektai/' : '/en/projects/'}>{hx.projects} →</a></header><div class="network-grid"><a href="https://apt.hecavex.com/"><span>01</span><strong>APT Notes</strong><small>{lang === 'lt' ? 'Struktūruotos grėsmių veikėjų pastabos' : 'Structured threat-actor notes'}</small></a><a href="https://labs.hecavex.com/"><span>02</span><strong>Labs</strong><small>{lang === 'lt' ? 'Naršyklėje veikiantys tyrimų įrankiai' : 'Browser-based research tools'}</small></a><a href="/data/"><span>03</span><strong>{lang === 'lt' ? 'Duomenų katalogas' : 'Public data'}</strong><small>{lang === 'lt' ? 'Cituojami tyrimų duomenų rinkiniai' : 'Citable research datasets'}</small></a></div></section>
-    <section class="speaking-invitation" aria-labelledby="speaking-title">
-      <div><h2 id="speaking-title">{lang === 'lt' ? 'Tyrimai, apie kuriuos verta kalbėti.' : 'Bring the research into the conversation.'}</h2><p>{lang === 'lt' ? 'Deividas Lis konferencijoms, diskusijoms ir žiniasklaidos komentarams apie grėsmių žvalgybą, apgaules ir skaitmenines grėsmes.' : 'Deividas Lis for conference talks, discussions and media commentary on threat intelligence, fraud and digital threats.'}</p></div>
-      <a class="button" href={lang === 'lt' ? '/lt/pranesejas/' : '/en/speaker/'}>{lang === 'lt' ? 'Pranešimai ir žiniasklaida' : 'Speaking and media'} →</a>
-    </section>
+    <SpeakingInvitation {lang} />
   </div>
 </BaseLayout>

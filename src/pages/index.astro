@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SpeakingInvitation from '../components/SpeakingInvitation.astro';
 import { dateText, getPublicPosts, latestContentUpdate, type Post } from '../lib/site';
 
 const posts = await getPublicPosts();
@@ -141,6 +142,6 @@ const network = [
         </a>)}
       </div>
     </section>
-    <section class="speaking-invitation" aria-labelledby="speaking-title"><div><h2 id="speaking-title">Research first. A conversation beyond the page.</h2><p>Talks, panels and media commentary with Deividas Lis. Available in English and Lithuanian.</p></div><a class="button" href="/en/speaker/">Speaking and media →</a></section>
+    <SpeakingInvitation lang="en" />
   </div>
 </BaseLayout>

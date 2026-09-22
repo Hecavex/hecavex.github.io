@@ -11,6 +11,7 @@ Start here for focused retrieval. Follow the entrypoint for the feature; do not 
 | Publication eligibility and metadata | `src/lib/site.ts`, publication policy helpers | content validation; never bypass approval |
 | Cover/preview decision | `src/lib/publication-preview.mjs` | `scripts/publication-preview.test.mjs` |
 | Reusable research card | `src/components/PostCard.astro` | responsive catalogue/home parity |
+| Secondary speaking invitation | `src/components/SpeakingInvitation.astro` | route audit and bilingual link checks |
 | Header, footer, SEO and policies | `src/components/SiteHeader.astro`, `SiteFooter.astro`, `ResourcePolicy.astro`, `src/layouts/BaseLayout.astro` | no-JS navigation, CSP, route audits |
 | Reading position / contents | `src/components/ContentOutline.astro`, `public/assets/js/site.js` | publication browser + anchor checks |
 | Stylesheet entrypoint | `public/assets/css/hecavex.css` | imports remain ordered; production bundling below |

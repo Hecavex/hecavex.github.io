@@ -1,0 +1,17 @@
+---
+import type { Lang } from '../lib/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const lt = lang === 'lt';
+---
+<section class="speaking-invitation" aria-labelledby="speaking-title">
+  <div>
+    <h2 id="speaking-title">{lt ? 'Tyrimai, apie kuriuos verta kalbėti.' : 'Bring the research into the conversation.'}</h2>
+    <p>{lt
+      ? 'Deividas Lis konferencijoms, diskusijoms ir žiniasklaidos komentarams apie grėsmių žvalgybą, apgaules ir skaitmenines grėsmes.'
+      : 'Deividas Lis for conference talks, discussions and media commentary on threat intelligence, fraud and digital threats.'}</p>
+  </div>
+  <a class="button" href={lt ? '/lt/pranesejas/' : '/en/speaker/'}>
+    {lt ? 'Pranešimai ir žiniasklaida' : 'Speaking and media'} →
+  </a>
+</section>
