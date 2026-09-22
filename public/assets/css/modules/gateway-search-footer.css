@@ -235,7 +235,7 @@
 
 .footer-brand strong {
   color: var(--text);
-  font: 600 0.67rem var(--mono);
+  font: 600 0.75rem var(--mono);
   letter-spacing: 0.12em;
 }
 
@@ -253,8 +253,8 @@
   min-width: 24px;
   padding-block: 0.35rem;
   color: var(--muted);
-  font: 500 0.62rem var(--mono);
+  font: 500 0.75rem var(--sans);
+  letter-spacing: 0;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
 }
-
