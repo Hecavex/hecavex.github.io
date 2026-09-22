@@ -18,7 +18,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "lint:js": "node --check public/assets/js/site.js && node --check public/assets/js/enquiry.js",
-    "lint:css": "stylelint public/assets/css/fonts.css public/assets/css/hecavex.css",
+    "lint:css": "stylelint \"public/assets/css/**/*.css\"",
     "generate:favicons": "node scripts/generate_favicons.mjs",
     "generate:social": "node scripts/generate_social_cards.mjs",
     "check:favicons": "node scripts/generate_favicons.mjs --check",

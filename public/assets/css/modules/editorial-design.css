@@ -1,0 +1,367 @@
+/* Editorial hierarchy: shared shell, open introductions, typographic research.
+ * This final module supersedes legacy presentation, not evidence/body rules.
+ */
+.portfolio-navigation a,
+.product-navigation a,
+.header-utilities a,
+.search-trigger,
+.mobile-navigation-panel a,
+.navigation-button {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.portfolio-navigation a[aria-current="page"]::before {
+  display: none;
+  content: none;
+}
+
+.portfolio-navigation a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: var(--cyan);
+  text-underline-offset: 0.4rem;
+}
+
+.product-identity span,
+.brand-copy small {
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+:is(.home-shell, .page-shell, .article-shell, .landing-portal) .eyebrow {
+  padding-left: 0;
+  font: 600 0.75rem/1.5 var(--sans);
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+:is(.home-shell, .page-shell, .article-shell, .landing-portal) .eyebrow::before {
+  content: none;
+}
+
+:is(.home-shell, .landing-portal) .home-hero,
+.page-shell .page-intro--with-facts {
+  min-height: 20rem;
+  gap: clamp(2rem, 5vw, 5rem);
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  box-shadow: none;
+}
+
+.home-shell .home-hero {
+  grid-template-columns: minmax(0, 1.7fr) minmax(17rem, 0.65fr);
+}
+
+:is(.home-shell, .landing-portal) .home-hero-copy,
+.page-intro--with-facts .page-head {
+  padding: 1.5rem 0 2.5rem;
+}
+
+:is(.home-shell, .landing-portal) .home-hero h1,
+.page-intro--with-facts .page-head h1,
+.page-head h1 {
+  font-family: var(--display);
+  font-size: var(--page-title-size);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.home-shell .home-hero h1 {
+  max-width: 19ch;
+}
+
+.home-shell .hero-deck {
+  max-width: 52ch;
+  margin-top: 0.5rem;
+  font-size: clamp(1.1rem, 1.6vw, 1.25rem);
+}
+
+.hero-actions {
+  gap: 0.75rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.hero-actions > a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}
+
+.home-shell .hero-index,
+.page-shell .page-facts {
+  align-content: center;
+  gap: 1rem;
+  padding-block: 1.5rem 2.5rem;
+  border: 0;
+  background: transparent;
+}
+
+.home-shell .hero-index div,
+.page-shell .page-facts > div {
+  padding: 0 0 0.8rem;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-index dt,
+.page-facts dt,
+.article-signals dt,
+.research-record dt,
+.landing-index dt {
+  font: 500 0.75rem/1.5 var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.hero-index dd,
+.page-facts dd {
+  font-size: 0.875rem;
+}
+
+:is(.home-shell, .page-shell, .article-shell) .post-card {
+  position: relative;
+  grid-template-rows: auto;
+  border-color: var(--line);
+  background: transparent;
+}
+
+:is(.home-shell, .page-shell, .article-shell) .post-card-copy {
+  padding: clamp(1.25rem, 2.4vw, 2rem);
+}
+
+.post-card--typographic .post-card-copy {
+  min-height: 19rem;
+}
+
+.post-card h3 {
+  max-width: 36ch;
+  margin: 1rem 0 0.8rem;
+  font-size: clamp(1.3rem, 1.9vw, 1.625rem);
+  line-height: 1.2;
+}
+
+.post-card h3 a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--cyan);
+}
+
+.post-card-copy > p:not(.card-meta, .card-reading) {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.card-meta {
+  font: 500 0.75rem/1.5 var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.card-meta time {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+main .card-meta span {
+  text-decoration: none;
+}
+
+.post-card-copy > .card-reading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin: auto 0 0.6rem;
+  padding-top: 1rem;
+  font-size: 0.75rem;
+}
+
+.card-action {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line);
+  font: 600 0.875rem/1.5 var(--sans);
+}
+
+.card-action span {
+  color: var(--rule);
+}
+
+.post-card:focus-within {
+  border-color: var(--ink);
+}
+
+.landing-portal .landing-edition-rail {
+  align-content: center;
+  padding-bottom: 2rem;
+  border: 0;
+}
+
+.landing-portal .landing-edition-rail a {
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  background: transparent;
+}
+
+.landing-edition-rail a + a {
+  margin-top: 0.75rem;
+}
+
+.landing-portal .landing-edition-rail strong {
+  margin-top: 0.25rem;
+  font: 600 1.4rem/1.2 var(--display);
+}
+
+.landing-portal .landing-edition-rail :is(span, small),
+.landing-current-card footer {
+  font: 500 0.75rem/1.6 var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.landing-portal .landing-edition-rail p,
+.landing-current-card > p:not(.eyebrow) {
+  font-size: 0.9375rem;
+}
+
+.landing-index {
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding: 0 0 1.5rem;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+}
+
+.landing-index > div {
+  padding: 0;
+  background: transparent;
+}
+
+.landing-index dd {
+  font-size: 1rem;
+}
+
+.landing-current-card h3 {
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+
+:is(.home-shell, .landing-portal) .network-grid {
+  gap: 1.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+:is(.home-shell, .landing-portal) .network-grid a {
+  align-content: start;
+  gap: 0.6rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--line);
+  background: transparent;
+}
+
+:is(.home-shell, .landing-portal) .network-grid a:nth-child(even) {
+  background: transparent;
+}
+
+:is(.home-shell, .landing-portal) .network-grid span {
+  display: none;
+}
+
+:is(.home-shell, .landing-portal) .network-grid small {
+  font: 400 0.9375rem/1.6 var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.speaking-invitation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: var(--major-section-space);
+  padding-block: 2rem;
+  border-block: 1px solid var(--line);
+}
+
+.speaking-invitation h2 {
+  margin: 0 0 0.5rem;
+}
+
+.speaking-invitation p {
+  max-width: 64ch;
+  margin: 0;
+}
+
+.content-outline__frame,
+.page-action-rail {
+  border-top-width: 1px;
+  background: transparent;
+}
+
+.content-outline :is(a, dt, small, .content-outline__number, .content-outline__status-line),
+.page-action-rail :is(a, p),
+.article-meta,
+.article-edition,
+.taxonomy-row,
+.article-share,
+.search-results small {
+  font-size: 0.75rem;
+  line-height: 1.6;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.article-head h1 {
+  line-height: 1.08;
+}
+
+@media (max-width: 1160px) {
+  .brand-copy small {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-shell .home-hero,
+  .landing-portal .home-hero,
+  .page-shell .page-intro--with-facts {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .home-shell .hero-index,
+  .page-shell .page-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 2rem;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .post-card--typographic .post-card-copy {
+    min-height: 0;
+  }
+
+  .post-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .home-shell .home-hero h1,
+  .landing-portal .home-hero h1 {
+    font-size: clamp(2.25rem, 9vw, 3rem);
+  }
+
+  .card-meta {
+    gap: 0.5rem;
+  }
+}

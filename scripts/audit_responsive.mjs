@@ -156,7 +156,9 @@ try {
               && title.getAttribute('aria-hidden') !== 'true' && action.getAttribute('aria-hidden') !== 'true'
               && title.getAttribute('tabindex') !== '-1' && action.getAttribute('tabindex') !== '-1'),
             imageRatio: imageRect?.height ? imageRect.width / imageRect.height : 0,
-            copyBelowImage: Boolean(imageRect && copyRect && copyRect.top >= imageRect.bottom - 1)
+            copyBelowImage: Boolean(imageRect && copyRect && copyRect.top >= imageRect.bottom - 1),
+            typographic: card.getAttribute('data-preview') === 'typographic' && !image,
+            readingTime: Boolean(card.querySelector('.card-reading')?.textContent.trim())
           };
         });
         const latestRows = [];
@@ -207,7 +209,9 @@ try {
           bodyFontSize: Number.parseFloat(bodyStyle.fontSize),
           bodyColor: bodyStyle.color,
           tokens: ['--bg-elevated', '--surface', '--surface-strong', '--line', '--line-strong', '--text-soft', '--muted', '--faint', '--cyan', '--cyan-bright'].map((token) => rootStyle.getPropertyValue(token).trim()),
-          dot: dotStyle ? { width: dotStyle.width, height: dotStyle.height, marginRight: dotStyle.marginRight, color: dotStyle.backgroundColor } : undefined,
+          dot: dotStyle ? { display: dotStyle.display, content: dotStyle.content } : undefined,
+          displayFont: h1Style?.fontFamily ?? '',
+          heroOpen: !hero || ['borderTopWidth','borderLeftWidth','borderRightWidth'].every((key) => getComputedStyle(hero)[key] === '0px'),
           networkLabels: [...document.querySelectorAll('.portfolio-navigation a')].map((link) => link.textContent.trim()),
           pageFactCount: document.querySelectorAll('.page-facts > div').length,
           desktopOutlineDisplay: desktopOutline ? getComputedStyle(desktopOutline).display : 'missing',
@@ -269,11 +273,11 @@ try {
           latestCardGeometry,
           latestRows,
           hasOversizedHomeLead: Boolean(document.querySelector('.home-shell .lead-story')),
-          referencePresentation: referenceTitle && referenceGridStyle && referenceImageRect ? {
+          referencePresentation: referenceTitle && referenceGridStyle ? {
             titleSize: Number.parseFloat(getComputedStyle(referenceTitle).fontSize),
             columnGap: Number.parseFloat(referenceGridStyle.columnGap),
             rowGap: Number.parseFloat(referenceGridStyle.rowGap),
-            imageRatio: referenceImageRect.width / referenceImageRect.height
+            imageRatio: referenceImageRect ? referenceImageRect.width / referenceImageRect.height : 0
           } : null,
           aboutMarker: Boolean(document.querySelector('.standard-page--about')),
           aboutParagraphs: aboutParagraphs.map((paragraph) => {
@@ -305,9 +309,11 @@ try {
       if (state.h1Size > 64.1) fail(route, width, `h1 exceeds the 64px display ceiling (${state.h1Size}px)`);
       if (state.markWidth < 33.5 || state.markWidth > 36.5) fail(route, width, `brand mark is ${state.markWidth}px rather than 34–36px`);
       if (state.networkLabels.join('|') !== 'Research|Radar|APT Notes|Labs|Data') fail(route, width, 'network navigation order differs from the portfolio contract');
-      if (Math.abs(state.bodyFontSize - 15.2) > 0.05 || state.bodyColor !== 'rgb(236, 233, 225)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
+      if (Math.abs(state.bodyFontSize - 16) > 0.05 || state.bodyColor !== 'rgb(236, 233, 225)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
+      if (!state.displayFont.includes('Space Grotesk')) fail(route, width, 'shared self-hosted display type is missing');
+      if (!state.heroOpen) fail(route, width, 'hero has reverted to a closed panel');
       if (state.tokens.join('|') !== '#171b1d|#171b1d|#1d2326|#30383b|#30383b|#ece9e1|#8d969a|#8d969a|#55b9b1|#55b9b1') fail(route, width, `shared HECAVEX tokens changed (${state.tokens.join('|')})`);
-      if (state.dot && (Math.abs(Number.parseFloat(state.dot.width) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.height) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.marginRight) - 8.8) > 0.02 || state.dot.color !== 'rgb(85, 185, 177)')) fail(route, width, `active network dot geometry changed (${JSON.stringify(state.dot)})`);
+      if (state.dot && state.dot.display !== 'none' && !['none','normal'].includes(state.dot.content)) fail(route, width, 'decorative network dot returned');
       if (!state.versionedAssets) fail(route, width, 'core stylesheet or script is not cache-versioned');
       if (factRoutes.has(route) && state.pageFactCount !== 4) fail(route, width, `page fact rail contains ${state.pageFactCount} records instead of 4`);
       if (outlineRoutes.has(route)) {
@@ -330,7 +336,7 @@ try {
       if (contactRoutes.has(route) && (state.actionRouteCount !== 4 || state.actionLinkCount !== 5)) fail(route, width, `contact action rail is incomplete (${state.actionRouteCount} routes, ${state.actionLinkCount} links)`);
       if (catalogueIntroRoutes.has(route)) {
         if (Math.abs(state.pageIntroWidth - state.pageShellInnerWidth) > 1) fail(route, width, `fact intro width differs from the catalogue shell (${state.pageIntroWidth}px/${state.pageShellInnerWidth}px)`);
-        if (width >= 900 && Math.abs(state.pageIntroHeight - 336) > 1) fail(route, width, `desktop fact intro is ${state.pageIntroHeight}px instead of 336px`);
+        if (width > 900 && state.pageIntroHeight < 319) fail(route, width, `desktop fact intro is below the 320px minimum (${state.pageIntroHeight}px)`);
         if (state.h1Size > 52.1) fail(route, width, `fact intro h1 exceeds the shared 52px scale (${state.h1Size}px)`);
       }
       if (recordFooterRoutes.has(route)) {
@@ -340,7 +346,7 @@ try {
       }
       if (standardizedPageTitleRoutes.has(route)) {
         if (state.h1Size > 52.1) fail(route, width, `standard page h1 exceeds the shared 52px scale (${state.h1Size}px)`);
-        if (Math.abs(state.h1LineHeight - state.h1Size) > 0.3) fail(route, width, `standard page h1 line-height differs from its font size (${state.h1LineHeight}px/${state.h1Size}px)`);
+        if (Math.abs(state.h1LineHeight - state.h1Size * 1.08) > 0.3) fail(route, width, `standard page h1 line-height differs from 1.08 (${state.h1LineHeight}px/${state.h1Size}px)`);
       }
       if (briefingRoutes.has(route)) {
         if (width > 680 && (!state.briefingCardsShareRow || state.briefingImageWidth > state.briefingListWidth * 0.51)) fail(route, width, `briefing catalogue is not a two-column card grid (${state.briefingImageWidth}px image/${state.briefingListWidth}px list)`);
@@ -367,7 +373,7 @@ try {
         const rowGaps = state.latestRows.slice(1).map((row, index) => row.top - state.latestRows[index].bottom);
         if (rowGaps.some((gap) => gap < 15.5 || Math.abs(gap - state.latestRowGap) > 1)) fail(route, width, `latest research rows touch or have inconsistent spacing (${rowGaps.join('/')}px)`);
         if (columns === 2 && cards.length > 1 && Math.abs(cards[1].left - cards[0].right - state.latestColumnGap) > 1) fail(route, width, 'latest research columns do not have the declared visible gap');
-        if (cards.some((card) => !card.accessibleLinks || !card.copyBelowImage || Math.abs(card.imageRatio - 16 / 9) > 0.02 || card.titleSize <= 0 || card.titleSize > 20)) fail(route, width, `latest research card presentation/accessibility is wrong (${JSON.stringify(cards)})`);
+        if (cards.some((card) => !card.accessibleLinks || !card.typographic || !card.readingTime || card.titleSize <= 0 || card.titleSize > 26.1)) fail(route, width, `latest research typographic card presentation/accessibility is wrong (${JSON.stringify(cards)})`);
         cardPresentations.set(`${route.slice(1, 3)}:${width}`, {
           cards, columnGap: state.latestColumnGap, rowGap: state.latestRowGap
         });
@@ -401,7 +407,7 @@ try {
         if (Math.abs(state.utilityWidth - 144) > 1) fail(route, width, `desktop utility is ${state.utilityWidth}px instead of 9rem`);
       }
       if (['/en/', '/lt/'].includes(route) && width === 1440) {
-        if (Math.abs(state.heroHeight - 377) > 1) fail(route, width, `home hero differs from the shared 377px frame (${state.heroHeight}px)`);
+        if (state.heroHeight < 319 || state.heroHeight > 460) fail(route, width, `home hero is outside the compact open-intro range (${state.heroHeight}px)`);
         if (state.heroChildOverflow > 1) fail(route, width, `home hero child overflows its panel by ${state.heroChildOverflow}px`);
       }
 

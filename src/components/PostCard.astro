@@ -5,12 +5,13 @@ const { post, prominent = false, eyebrow } = Astro.props;
 const thumbnail = imagePath(post, 'thumbnail');
 const actionLabel = post.lang === 'lt' ? 'Skaityti' : 'Read analysis';
 ---
-<article class:list={['post-card', { 'post-card--prominent': prominent }]}>
+<article class:list={['post-card', { 'post-card--prominent': prominent, 'post-card--typographic': !thumbnail }]} data-preview={thumbnail ? 'evidence' : 'typographic'}>
   {thumbnail && <a class="post-card-image" href={post.url} tabindex="-1" aria-hidden="true"><img src={thumbnail} alt="" width="640" height="360" loading={prominent ? 'eager' : 'lazy'} /></a>}
   <div class="post-card-copy">
     <p class="card-meta"><span>{eyebrow ?? labelForPost(post)}</span><time datetime={post.date.toISOString()}>{dateText(post.date)}</time></p>
     <h3><a href={post.url}>{post.cardTitle}</a></h3>
     <p>{post.description}</p>
+    <p class="card-reading"><span>{post.readingMinutes} {post.lang === 'lt' ? 'min. skaitymo' : 'min read'}</span><span>{post.lang === 'lt' ? 'Deividas Lis · HECAVEX' : 'Deividas Lis · HECAVEX'}</span></p>
     <a class="card-action" href={post.url} aria-label={`${actionLabel}: ${post.title}`}>{actionLabel} <span aria-hidden="true">→</span></a>
   </div>
 </article>
