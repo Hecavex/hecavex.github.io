@@ -156,8 +156,9 @@
   min-height: 2.75rem;
   grid-template-columns: 2.8rem minmax(0, 1fr);
   align-items: stretch;
-  border: 1px solid var(--line);
+  border: 0;
   background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line);
 }
 
 .language-link,

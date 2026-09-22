@@ -13,6 +13,14 @@
   text-transform: none;
 }
 
+.button,
+.hx-button,
+.mobile-navigation summary {
+  font: 600 0.875rem/1.5 var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .portfolio-navigation a[aria-current="page"]::before {
   display: none;
   content: none;
@@ -26,6 +34,7 @@
 
 .product-identity span,
 .brand-copy small {
+  font-family: var(--sans);
   font-size: 0.75rem;
   letter-spacing: 0;
   text-transform: none;
@@ -57,7 +66,7 @@
 }
 
 :is(.home-shell, .landing-portal) .home-hero-copy,
-.page-intro--with-facts .page-head {
+.page-shell .page-intro--with-facts .page-head {
   padding: 1.5rem 0 2.5rem;
 }
 
@@ -320,14 +329,17 @@ main .card-meta span {
   text-transform: none;
 }
 
-.article-shell .article-head h1 {
-  line-height: 1.08;
+.content-outline :is(a, dt, dd, small, .content-outline__title, .content-outline__subtitle, .content-outline__status-line),
+.page-action-rail :is(a, p) {
+  font-family: var(--sans);
 }
 
-@media (max-width: 1160px) {
-  .brand-copy small {
-    font-size: 0.65rem;
-  }
+.content-outline.is-enhanced [data-outline-item].is-past .content-outline__number::after {
+  content: none;
+}
+
+.article-shell .article-head h1 {
+  line-height: 1.08;
 }
 
 @media (max-width: 900px) {
