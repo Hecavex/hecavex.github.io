@@ -63,7 +63,7 @@
 
 :is(.home-shell, .landing-portal) .home-hero h1,
 .page-intro--with-facts .page-head h1,
-.page-head h1 {
+.page-shell .page-head h1 {
   font-family: var(--display);
   font-size: var(--page-title-size);
   line-height: 1.08;
