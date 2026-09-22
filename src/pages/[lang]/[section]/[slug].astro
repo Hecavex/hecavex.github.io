@@ -27,7 +27,7 @@ const related = relatedPostsFor(post, localized);
 const evidenceBearing = ['investigation', 'malware-analysis', 'incident-analysis', 'technical-analysis', 'technical-guide'].includes(post.contentType);
 const hero = imagePath(post, 'hero');
 const social = imagePath(post, 'social');
-const alt = imageAlt(post);
+const alt = hero ? imageAlt(post) : '';
 const image = typeof post.image === 'object' ? post.image : undefined;
 const methods = Array.isArray(data.methods) ? data.methods.map(String) : [];
 const findings = Array.isArray(data.key_findings) ? data.key_findings.map(String) : [];

@@ -2,7 +2,7 @@
 
 import { readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { extname, join, resolve } from 'node:path';
-import { transform } from 'lightningcss';
+import { bundle } from 'lightningcss';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { releasePaths } from './release-contract.mjs';
@@ -15,13 +15,13 @@ await writeFile(join(root, '.nojekyll'), '', 'utf8');
 // Public styles remain readable and lintable in source control. Compress only
 // the deploy artifact so the publication keeps its strict transfer budgets.
 const stylesheet = join(root, 'assets', 'css', 'hecavex.css');
-const stylesheetSource = await readFile(stylesheet);
-const { code: minifiedStylesheet } = transform({
+const { code: minifiedStylesheet } = bundle({
   filename: stylesheet,
-  code: stylesheetSource,
   minify: true,
 });
 await writeFile(stylesheet, minifiedStylesheet);
+// The imported source modules are not a second production asset bundle.
+await rm(join(root, 'assets', 'css', 'modules'), { recursive: true });
 
 // Astro treats the localized 404 documents as regular static pages. Keep the
 // historic `.html` URLs as exact files in addition to their generated source.

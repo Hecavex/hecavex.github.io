@@ -195,17 +195,7 @@ export const labelForPost = (post: Post) => publicationClasses[post.publicationC
   ?? contentTypes[post.contentType]?.[post.lang]
   ?? (post.lang === 'lt' ? 'HECAVEX tyrimas' : 'HECAVEX Research');
 
-export const imagePath = (post: Post, kind: 'hero' | 'thumbnail' | 'social' = 'hero') => {
-  // Signal Briefs are recurring text-led publications. Their issue-specific
-  // cards remain available for social sharing, while the catalogue and article
-  // avoid promoting a generic series illustration as if it were evidence.
-  if (post.contentType === 'signal-brief' && kind !== 'social') return undefined;
-  if (!post.image) return kind === 'social' ? `/assets/img/og/hecavex-default-${post.lang}.png` : undefined;
-  if (typeof post.image === 'string') return post.image;
-  if (kind === 'social') return post.image.social ?? `/assets/img/social/${post.translationKey}-${post.lang}.png`;
-  if (kind === 'thumbnail') return post.image.thumbnail ?? post.image.hero ?? post.image.path;
-  return post.image.hero ?? post.image.path;
-};
+export { publicationPreview as imagePath } from './publication-preview.mjs';
 
 export const imageAlt = (post: Post) => typeof post.image === 'object' ? post.image.alt : '';
 export const dateText = (date: Date) => {
