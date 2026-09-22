@@ -188,6 +188,18 @@ try {
           return rect.width > 0 && (rect.left < -1 || rect.right > viewportWidth + 1);
         }).slice(0, 6).map((element) => `${element.tagName}.${String(element.className).replace(/\s+/g, '.')}`);
         return {
+          footerTypeMismatches: [...document.querySelectorAll('.site-footer nav a, .footer-brand strong')].filter((element) => {
+            const style = getComputedStyle(element);
+            const brand = element.matches('.footer-brand strong');
+            const family = style.fontFamily.split(',')[0].replaceAll('"', '').toLowerCase();
+            const tracking = Number.parseFloat(style.letterSpacing) || 0;
+            return family !== (brand ? 'ibm plex mono' : 'inter')
+              || Number.parseFloat(style.fontSize) !== 12
+              || style.fontWeight !== (brand ? '600' : '500')
+              || style.lineHeight !== 'normal'
+              || Math.abs(tracking - (brand ? 1.44 : 0)) > 0.025
+              || style.textTransform !== 'none';
+          }).map((element) => element.textContent.trim()),
           undersizedFooterTargets: [...document.querySelectorAll('.site-footer nav a')].filter((link) => {
             const rect = link.getBoundingClientRect();
             return rect.width < 24 || rect.height < 24;
@@ -309,6 +321,7 @@ try {
       if (state.h1Size > 64.1) fail(route, width, `h1 exceeds the 64px display ceiling (${state.h1Size}px)`);
       if (state.markWidth < 33.5 || state.markWidth > 36.5) fail(route, width, `brand mark is ${state.markWidth}px rather than 34–36px`);
       if (state.networkLabels.join('|') !== 'Research|Radar|APT Notes|Labs|Data') fail(route, width, 'network navigation order differs from the portfolio contract');
+      if (state.footerTypeMismatches.length) fail(route, width, `footer typography differs from the portfolio contract: ${state.footerTypeMismatches.join(', ')}`);
       if (Math.abs(state.bodyFontSize - 16) > 0.05 || state.bodyColor !== 'rgb(236, 233, 225)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
       if (!state.displayFont.includes('Space Grotesk')) fail(route, width, 'shared self-hosted display type is missing');
       if (!state.heroOpen) fail(route, width, 'hero has reverted to a closed panel');
