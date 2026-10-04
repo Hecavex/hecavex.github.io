@@ -284,8 +284,10 @@
 }
 
 .research-record dl > div {
+  min-width: 0;
   padding: 0.8rem;
   background: var(--bg-elevated);
+  overflow-wrap: anywhere;
 }
 
 .research-record dd {
