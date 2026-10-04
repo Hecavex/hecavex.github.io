@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "dataset": "radar-september-2026-baseline-inputs",
+  "version": "1.0",
+  "repository": "https://github.com/Hecavex/radar.hecavex.com",
+  "publicationRevision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+  "generatorRevision": "33075e4ca3fb5ab223fab61a92125bb2c797e2f5",
+  "inputDataRevision": "e703afd425b4e0c74aac9f19efdc9d7b9dcbcae9",
+  "releaseGeneratedAt": "2026-10-01T00:40:26.566Z",
+  "observationWindow": {
+    "startInclusive": "2026-09-01T00:00:00.000Z",
+    "endExclusive": "2026-10-01T00:00:00.000Z"
+  },
+  "inputs": [
+    {
+      "path": "public/data/daily-trends.json",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/public/data/daily-trends.json",
+      "bytes": 61266,
+      "sha256": "39429a7671571118e437e6b481cbfbbac5fbc83bd339adc28c0fb54e11cdd4b7"
+    },
+    {
+      "path": "public/data/history.json",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/public/data/history.json",
+      "bytes": 373376,
+      "sha256": "cfd868790d2cf687459e3aef5efb34639d2f956a5d675a4b2a0adcee267d102d"
+    },
+    {
+      "path": "public/data/radar.json",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/public/data/radar.json",
+      "bytes": 89726,
+      "sha256": "56665fb958a650a18b06f6106167eab9dce88ded08353525f51827545cfef913"
+    },
+    {
+      "path": "public/data/quality-metrics.json",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/public/data/quality-metrics.json",
+      "bytes": 1713,
+      "sha256": "3459f3067aeb3af195cffaafcf8b6827866be26db46e5b58b7f238b1596a2c23"
+    },
+    {
+      "path": "public/data/pipeline-health.json",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/public/data/pipeline-health.json",
+      "bytes": 5410,
+      "sha256": "035f82e3f585f754d02d93487a12733872dba831856711bcd862b03e233e1c78"
+    },
+    {
+      "path": "public/data/feed-manifest.json",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/public/data/feed-manifest.json",
+      "bytes": 44578,
+      "sha256": "e2b96a889c43bde20680c258801c6e94799f27f261b7bb0217df57ab48e38755"
+    },
+    {
+      "path": "public/data/radar.index.json",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/public/data/radar.index.json",
+      "bytes": 474,
+      "sha256": "e4e95dadc982a39c6a9f6e72de369db99bee417dd2311eec55c13d40d85138d1"
+    },
+    {
+      "path": "radar-publication.json",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/radar-publication.json",
+      "bytes": 201,
+      "sha256": "f0738bcab60e4655a39a778834c44d957c83742e4b50ccb3cc5f6ca3e2ee1651"
+    },
+    {
+      "path": "data/brands-lt.json",
+      "revision": "33075e4ca3fb5ab223fab61a92125bb2c797e2f5",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/33075e4ca3fb5ab223fab61a92125bb2c797e2f5/data/brands-lt.json",
+      "bytes": 15156,
+      "sha256": "b0e5cb65458ab1db99b1159e1b211c5c1298ce2b65fb91fad19710f7ee4d0f8d"
+    },
+    {
+      "path": "data/history/daily/2026-09-01/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-01/events.ndjson",
+      "bytes": 12269,
+      "sha256": "5c9327d4c50ca1d11bf4730b8d70501579a173713724bfda86e4f1148161c8aa"
+    },
+    {
+      "path": "data/history/daily/2026-09-02/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-02/events.ndjson",
+      "bytes": 14404,
+      "sha256": "4f9071adee773ce144898138d5bb70fac299c659dede7b4d267e579a0e752a31"
+    },
+    {
+      "path": "data/history/daily/2026-09-03/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-03/events.ndjson",
+      "bytes": 12613,
+      "sha256": "4c9ff9d3c94bac685013f327553ee43e6b465bc1b97e341ce502fd04ffdea2fc"
+    },
+    {
+      "path": "data/history/daily/2026-09-04/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-04/events.ndjson",
+      "bytes": 14910,
+      "sha256": "5f2a46f85c1cd7aa1e7f306fff0b023853686633b93811e9e06224d3deaba8ff"
+    },
+    {
+      "path": "data/history/daily/2026-09-05/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-05/events.ndjson",
+      "bytes": 16762,
+      "sha256": "c77a0c7ed33c4086d876e24eaf7dbb1a109ec10791b688d6d5bcaf5f57ff9b62"
+    },
+    {
+      "path": "data/history/daily/2026-09-06/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-06/events.ndjson",
+      "bytes": 16038,
+      "sha256": "e31e16028ee78c340417a12cce69db605f3883f8d09354315de184f866188598"
+    },
+    {
+      "path": "data/history/daily/2026-09-07/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-07/events.ndjson",
+      "bytes": 10360,
+      "sha256": "79447a5289a98766b0d11c089418edc5c0e02e025fa8119b1a3c32397f6deedf"
+    },
+    {
+      "path": "data/history/daily/2026-09-08/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-08/events.ndjson",
+      "bytes": 1202,
+      "sha256": "a3c1a8e97970ca128249917faa402bbb30b7232c5a128e035013563def8351db"
+    },
+    {
+      "path": "data/history/daily/2026-09-09/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-09/events.ndjson",
+      "bytes": 9323,
+      "sha256": "e1c5c5b2161506fc3ed15dd13e515339e0bad34f893e32f8003eb3cff3e3d309"
+    },
+    {
+      "path": "data/history/daily/2026-09-10/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-10/events.ndjson",
+      "bytes": 12702,
+      "sha256": "1743d6805ec6ecffa1b6f291484b7931fb8c5bbd1075fcc1684ec5dfb2544b34"
+    },
+    {
+      "path": "data/history/daily/2026-09-11/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-11/events.ndjson",
+      "bytes": 7468,
+      "sha256": "5006d7819b0417c62328fa82e967bc4fd9cd6471a75c2093f936f2614b095c8f"
+    },
+    {
+      "path": "data/history/daily/2026-09-12/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-12/events.ndjson",
+      "bytes": 11781,
+      "sha256": "e64582f35462210c576d58134cd1fa1968d447b54181922364d3a7b835ca0036"
+    },
+    {
+      "path": "data/history/daily/2026-09-13/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-13/events.ndjson",
+      "bytes": 12336,
+      "sha256": "08d2dde409a02e120ccfe233f0e0ed6d822ef76a76e04e8e5950f8158687202e"
+    },
+    {
+      "path": "data/history/daily/2026-09-14/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-14/events.ndjson",
+      "bytes": 13046,
+      "sha256": "b3784eb0706cad98daf95b378637f9c753e89a1a1e273938e9188b2af495490f"
+    },
+    {
+      "path": "data/history/daily/2026-09-15/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-15/events.ndjson",
+      "bytes": 19587,
+      "sha256": "902047e1cd291074aa27fa17a7ae0c9b8dbfdf3c3fd91ca21980eade3dbab05d"
+    },
+    {
+      "path": "data/history/daily/2026-09-16/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-16/events.ndjson",
+      "bytes": 17501,
+      "sha256": "7c2a915d1d4e3625cfa7680c0bc874738cfa2d576749b2f2b077113d511df48d"
+    },
+    {
+      "path": "data/history/daily/2026-09-17/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-17/events.ndjson",
+      "bytes": 21946,
+      "sha256": "994a46d8a4004086877cba00bbc89fc178aad6629ab72a77c4eb8e5c480022d0"
+    },
+    {
+      "path": "data/history/daily/2026-09-18/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-18/events.ndjson",
+      "bytes": 8058,
+      "sha256": "9e95d4ad08372b473944504af6ff724454d2d94b3ea80b7b5dda72e478c151ce"
+    },
+    {
+      "path": "data/history/daily/2026-09-19/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-19/events.ndjson",
+      "bytes": 9776,
+      "sha256": "da27020d476bb30eba48d9018bada5b2ce86090326aa91222018de4ee956d54c"
+    },
+    {
+      "path": "data/history/daily/2026-09-20/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-20/events.ndjson",
+      "bytes": 17422,
+      "sha256": "e7203fa40ce9477f4a800a641b031f0721066e8b2b3fc11551735f69f2e0bb2d"
+    },
+    {
+      "path": "data/history/daily/2026-09-21/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-21/events.ndjson",
+      "bytes": 9367,
+      "sha256": "d62d1051dba5d98dda5b3a87c1908bcc9c419f59eeba22bb6a8a57a86fcf2eb6"
+    },
+    {
+      "path": "data/history/daily/2026-09-22/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-22/events.ndjson",
+      "bytes": 10832,
+      "sha256": "7ea9e01c8a5d26eb309dc2bf3b36a0a0022c649080cc21877cb30153cf241640"
+    },
+    {
+      "path": "data/history/daily/2026-09-23/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-23/events.ndjson",
+      "bytes": 15186,
+      "sha256": "86c6fe2f969779d93f7244a5cb5ab01a8ec92ae7ecb84c9324a9680040ff44ef"
+    },
+    {
+      "path": "data/history/daily/2026-09-24/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-24/events.ndjson",
+      "bytes": 10597,
+      "sha256": "0f52403f09b6d40263edd8005c410c99d49323e7dbb97d9e7f5d8876a1b914d2"
+    },
+    {
+      "path": "data/history/daily/2026-09-25/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-25/events.ndjson",
+      "bytes": 9173,
+      "sha256": "22d43d593d42f0c5bbfe7748d8df3c34ff491549df84e660a7d34b2f879918bf"
+    },
+    {
+      "path": "data/history/daily/2026-09-26/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-26/events.ndjson",
+      "bytes": 8050,
+      "sha256": "5e766659fbe7b4e38c8bd76bc2e5e1265774c43c631442a49f7d7ce0bd93fa12"
+    },
+    {
+      "path": "data/history/daily/2026-09-27/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-27/events.ndjson",
+      "bytes": 18607,
+      "sha256": "54ed8bd5893ec36a46ea7b351f17c63ab19e262f7fabd2bac73f588d46118dc6"
+    },
+    {
+      "path": "data/history/daily/2026-09-28/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-28/events.ndjson",
+      "bytes": 15037,
+      "sha256": "59692c5dd180b0b2b49f181b55d30779db482148ff8eb3d6de8b8c04d66e3c69"
+    },
+    {
+      "path": "data/history/daily/2026-09-29/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-29/events.ndjson",
+      "bytes": 14281,
+      "sha256": "d115b780759e1ee048d75af07c66a6ad4f149278312f9805049650b417f1307b"
+    },
+    {
+      "path": "data/history/daily/2026-09-30/events.ndjson",
+      "revision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+      "url": "https://raw.githubusercontent.com/Hecavex/radar.hecavex.com/3d80a765404f50afbe50c3dc49472751a2e13b65/data/history/daily/2026-09-30/events.ndjson",
+      "bytes": 11371,
+      "sha256": "d13d68464e04e05e0d4cebcc3db41d430a8f1bba00363efc301d8790917f5923"
+    }
+  ]
+}
