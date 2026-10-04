@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "dataset": "radar-september-2026-baseline",
+  "version": "1.0",
+  "observationWindow": {
+    "startInclusive": "2026-09-01T00:00:00.000Z",
+    "endExclusive": "2026-10-01T00:00:00.000Z"
+  },
+  "releaseGeneratedAt": "2026-10-01T00:40:26.566Z",
+  "publicationRevision": "3d80a765404f50afbe50c3dc49472751a2e13b65",
+  "generatorRevision": "33075e4ca3fb5ab223fab61a92125bb2c797e2f5",
+  "inputDataRevision": "e703afd425b4e0c74aac9f19efdc9d7b9dcbcae9",
+  "inputFiles": 39,
+  "countingMethodVersion": 2,
+  "coverageBoundsMethodVersion": 2,
+  "monthlyActivity": {
+    "uniqueObservedHosts": 447,
+    "representedBrandLabels": 30,
+    "registryEntriesAtGeneratorRevision": 46,
+    "allEvents": 950,
+    "observationEvents": 513,
+    "firstPublicationMarkedEvents": 437,
+    "firstPublicationMarkedHosts": 437,
+    "otherObservedHosts": 10,
+    "firstSeenInSeptemberInPinnedHistory": 437,
+    "statusChangeEvents": 0,
+    "sumOfDailyUniqueHostsSignalDays": 508,
+    "sourceLabelsUniqueHosts": {
+      "CertStream": 447
+    },
+    "publishedReobservationClassificationEvents": 63,
+    "statusAtPinnedHistory": {
+      "suspected": 447
+    },
+    "monthlyEvidenceTierDistributionAvailable": false
+  },
+  "collection": {
+    "days": 30,
+    "windowSeconds": 2592000.0,
+    "scheduledSlots": 2880,
+    "recordedAttempts": 2419,
+    "healthyAttempts": 2419,
+    "attemptsRelativeToScheduledSlotsPercent": 83.993056,
+    "lowerListeningSeconds": 1160977.181,
+    "upperListeningSeconds": 1161090.024,
+    "lowerListeningHours": 322.493661,
+    "upperListeningHours": 322.525007,
+    "lowerWallClockPercent": 44.790786,
+    "upperWallClockPercent": 44.79514,
+    "plannedListeningCeilingPercent": 53.333333,
+    "reportedWorkerSeconds": 1161033.595,
+    "unknownAttempts": 0,
+    "outcomes": {
+      "healthy-empty": 2001,
+      "healthy-matches": 418
+    }
+  },
+  "collectionSubperiods": {
+    "2026-09-01_to_2026-09-10": {
+      "days": 10,
+      "windowSeconds": 864000.0,
+      "scheduledSlots": 960,
+      "recordedAttempts": 513,
+      "healthyAttempts": 513,
+      "attemptsRelativeToScheduledSlotsPercent": 53.4375,
+      "lowerListeningSeconds": 246253.313,
+      "upperListeningSeconds": 246253.33,
+      "lowerListeningHours": 68.403698,
+      "upperListeningHours": 68.403703,
+      "lowerWallClockPercent": 28.501541,
+      "upperWallClockPercent": 28.501543,
+      "plannedListeningCeilingPercent": 53.333333,
+      "reportedWorkerSeconds": 246228.272,
+      "unknownAttempts": 0,
+      "outcomes": {
+        "healthy-empty": 386,
+        "healthy-matches": 127
+      }
+    },
+    "2026-09-11_to_2026-09-30": {
+      "days": 20,
+      "windowSeconds": 1728000.0,
+      "scheduledSlots": 1920,
+      "recordedAttempts": 1906,
+      "healthyAttempts": 1906,
+      "attemptsRelativeToScheduledSlotsPercent": 99.270833,
+      "lowerListeningSeconds": 914723.868,
+      "upperListeningSeconds": 914836.694,
+      "lowerListeningHours": 254.089963,
+      "upperListeningHours": 254.121304,
+      "lowerWallClockPercent": 52.935409,
+      "upperWallClockPercent": 52.941938,
+      "plannedListeningCeilingPercent": 53.333333,
+      "reportedWorkerSeconds": 914805.323,
+      "unknownAttempts": 0,
+      "outcomes": {
+        "healthy-empty": 1615,
+        "healthy-matches": 291
+      }
+    }
+  },
+  "separatePostMonthSnapshot": {
+    "generatedAt": "2026-10-01T00:40:26.566Z",
+    "signals": 105,
+    "monthlyCohortOverlap": 103,
+    "outsideMonthlyCohort": 2,
+    "firstSeenAfterMonth": 1,
+    "lastSeenBeforeMonth": 1,
+    "brands": 20,
+    "evidenceTiers": {
+      "name-only": 105
+    },
+    "reviewStates": {
+      "unreviewed": 104,
+      "needs-review": 1
+    },
+    "sourceLabels": {
+      "CertStream": 104,
+      "HECAVEX": 1
+    },
+    "ltRelevance": {
+      "lithuanian-brand-relevance": 105
+    }
+  },
+  "publicReviewMetricsAtRelease": {
+    "assessments": 0,
+    "assessedSignals": 0,
+    "precisionAvailable": false,
+    "eligiblePublishedSignalsAllRetainedHistory": 606
+  },
+  "limits": [
+    "Source-observation timestamps date the monthly events, not domain registration, attack start or actual deployment.",
+    "CertStream is the public source label shared by live collection and checkpointed CT search. It is not proof of exclusive live-stream discovery.",
+    "Daily unique host counts sum to signal-days. Deduplicating all monthly signal identifiers gives the monthly host count.",
+    "Brand labels describe registry matches, not compromised organizations, victims or verified Lithuanian targeting.",
+    "Monthly archived events do not retain evidence tiers. The separate post-month snapshot cannot classify the whole month.",
+    "Published reobservation classification depends on retained earlier provenance. It is not the arithmetic remainder after first-publication markers.",
+    "Listening bounds measure recorded wall-clock sampling, not detection recall or completeness of upstream CT coverage.",
+    "Daily attempt counts are end-time attributed, not a deduplicated census of cron slot identities.",
+    "The frozen release preserves all 30 September daily partitions. The pinned generator's pre-correction trends projection lost older discovery detail after history compaction. This describes that historical implementation, not later corrected releases.",
+    "The post-month release is 40 minutes and 26.566 seconds after the month boundary. Monthly event filtering excludes October timestamps.",
+    "August's 130-row snapshot at August 30 17:20:26 UTC is not the same population as September monthly observed hosts."
+  ]
+}

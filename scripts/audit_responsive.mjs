@@ -41,8 +41,13 @@ const baseUrl = `http://127.0.0.1:${address.port}`;
 const recentBriefRoutes = signalBriefEditions.flatMap(({ end }) => [
   `/en/briefings/${end}/`, `/lt/apzvalgos/${end}/`
 ]);
+const monthlyRadarRoutes = [
+  '/en/research/lithuania-phishing-infrastructure-radar-september-2026/',
+  '/lt/tyrimai/phishing-infrastruktura-lietuvoje-radar-2026-rugsejis/'
+];
 const routes = [
   ...recentBriefRoutes,
+  ...monthlyRadarRoutes,
   '/', '/data/', '/lt/duomenys/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/', '/en/projects/', '/lt/projektai/',
   '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/',
   '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
@@ -53,6 +58,7 @@ const routes = [
 const factRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
 const outlineRoutes = new Set([
   ...recentBriefRoutes,
+  ...monthlyRadarRoutes,
   '/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/',
   '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
   '/en/research/cra-article-14-vulnerability-incident-reporting-guide/', '/lt/tyrimai/infrastrukturos-pivoting-101/',

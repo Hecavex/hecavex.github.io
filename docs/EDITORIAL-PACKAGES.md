@@ -69,6 +69,12 @@ research_artifacts:
 
 Artifact versions are independent of the article version. Do not infer sample hashes from screenshot hashes. A screenshot proves only what it visibly records, not collection time, current infrastructure status or the availability of original sample bytes.
 
+## Monthly monitoring assessments
+
+Freeze a complete UTC-month input set, with separate publication, generator and input-data revisions. Verify immutable input bytes before calculating. Monthly unique hosts require cross-day deduplication, not adding daily unique counts. Distinguish the observed monthly cohort, event counts and the later current snapshot. Never apply snapshot evidence tiers to earlier observations or describe candidates as confirmed malicious sites.
+
+The September 2026 bundle at `public/assets/data/radar-september-2026-baseline/` includes source hashes, aggregate CSV/JSON and a standard-library Python replay. It reconstructs discovery from retained events but sums the published coverage bounds, not independent worker connection logs. Its fixture tests and bilingual built-site discovery checks run in `npm run verify`. Network reproduction of the 39 pinned inputs is a separate release check, not a dependency on live data during every build. Preserve published bundles and document substantive corrections through a new version.
+
 ## Updates
 
 Correct quiet formatting mistakes normally. When a source, finding, confidence level or conclusion changes, update `last_modified_at`, increase `research_version` and add a short entry to `updates` explaining what changed. Readers should not have to compare Git commits to discover that an assessment moved.
