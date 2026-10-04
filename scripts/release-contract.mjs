@@ -6,6 +6,8 @@ export const releasePaths = Object.freeze([
   '/en/briefings/2026-09-06/', '/lt/apzvalgos/2026-09-06/',
   '/en/briefings/2026-09-13/', '/lt/apzvalgos/2026-09-13/',
   '/en/briefings/2026-09-20/', '/lt/apzvalgos/2026-09-20/',
+  '/en/briefings/2026-09-27/', '/lt/apzvalgos/2026-09-27/',
+  '/en/briefings/2026-10-04/', '/lt/apzvalgos/2026-10-04/',
   '/.well-known/security.txt', '/data/publications.json',
   '/assets/media/hecavex-media-kit-en.html', '/assets/media/hecavex-media-kit-lt.html',
   '/assets/media/hecavex-media-kit-en.txt', '/assets/media/hecavex-media-kit-lt.txt',

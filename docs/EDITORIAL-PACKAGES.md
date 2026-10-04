@@ -49,6 +49,8 @@ methods: [static analysis, passive DNS, source validation]
 
 Publication approval requires both `draft: false` and `published: true`. Omitted flags do not publish.
 
+House style uses ASCII double quotes and no prose semicolons, including front matter and short fact labels. Use separate sentences, commas or conjunctions as appropriate. `scripts/validate-content.mjs` enforces this without changing fenced code or URLs.
+
 Evidence basis and methods are case-specific required fields. Historical versions or substantive review dates that were not recorded appear as "Not recorded", not as invented defaults. Publication and last-modification dates are not substituted for substantive review. A metadata clarification does not imply the underlying evidence was collected again.
 
 ## Artefacts
@@ -83,10 +85,14 @@ Use dated primary material within the window, or explicitly identified earlier c
 
 Priority counts describe the actual editorial blocks, not a CVE total or vendor CVSS category. Keep English/Lithuanian CVE coverage and metadata aligned. End after the final substantive item and its actions/sources, without a generic "Bottom line" or "Esmė" summary.
 
-Batch publication can use one actual timestamp. The publication sorter uses issue number as the tie-break, so #8 remains ahead of #7 and #6 without invented time offsets. Generate just the new social cards with:
+When publishing during the last coverage day, freeze a real UTC information cutoff and state prominently that the day is partial in both languages. Do not imply end-of-day coverage or include later updates. A live situation page's original publication date does not date its subsequent updates: record the timestamp of the latest included update.
+
+Batch publication can use one actual timestamp. The publication sorter uses issue number as the tie-break, so the higher issue remains first without invented time offsets. Generate just the new social cards with:
 
 ```powershell
-node scripts/generate_social_cards.mjs hecavex-signal-brief-006 hecavex-signal-brief-007 hecavex-signal-brief-008
+node scripts/generate_social_cards.mjs hecavex-signal-brief-009 hecavex-signal-brief-010
 ```
+
+The reviewed edition expectations live in `scripts/signal-brief-editions.mjs`: issue, UTC coverage, publication time, cutoff, retrospective status and editorial counts. Source tests, built-output checks and responsive browser routes consume that same matrix. Add each new EN/LT pair there and add its routes to `scripts/release-contract.mjs` for exact-byte live verification.
 
 The normal `npm run verify` gate includes source-level chronology/parity tests and a built-output briefing check covering home discovery, indexes, both feeds, search, archive, sitemap, citation dates, publication catalogue and social assets. Update the reviewed sitemap manifest for explicitly added routes, including any newly indexable repeated tags. Never remove the exact route gate to make a release pass.

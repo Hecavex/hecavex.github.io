@@ -5,6 +5,7 @@ import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve, sep } from 'node:path';
 import { chromium } from 'playwright-core';
+import { signalBriefEditions } from './signal-brief-editions.mjs';
 
 const siteRoot = resolve(process.argv[2] ?? 'dist');
 const browserCandidates = [
@@ -37,11 +38,11 @@ await new Promise((accept) => server.listen(0, '127.0.0.1', accept));
 const address = server.address();
 const baseUrl = `http://127.0.0.1:${address.port}`;
 
-const septemberBriefRoutes = ['2026-09-06', '2026-09-13', '2026-09-20'].flatMap(date => [
-  `/en/briefings/${date}/`, `/lt/apzvalgos/${date}/`
+const recentBriefRoutes = signalBriefEditions.flatMap(({ end }) => [
+  `/en/briefings/${end}/`, `/lt/apzvalgos/${end}/`
 ]);
 const routes = [
-  ...septemberBriefRoutes,
+  ...recentBriefRoutes,
   '/', '/data/', '/lt/duomenys/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/', '/en/projects/', '/lt/projektai/',
   '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/',
   '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
@@ -51,7 +52,7 @@ const routes = [
 ];
 const factRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
 const outlineRoutes = new Set([
-  ...septemberBriefRoutes,
+  ...recentBriefRoutes,
   '/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/',
   '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
   '/en/research/cra-article-14-vulnerability-incident-reporting-guide/', '/lt/tyrimai/infrastrukturos-pivoting-101/',
@@ -71,7 +72,7 @@ const standardizedPageTitleRoutes = new Set([
 ]);
 const legacyCtaRoutes = new Set(['/en/about/', '/lt/apie/', '/en/contact/', '/lt/kontaktai/']);
 const signalCounts = new Map([
-  ['2026-08-22', 7], ['2026-09-06', 5], ['2026-09-13', 5], ['2026-09-20', 6]
+  ['2026-08-22', 7], ...signalBriefEditions.map(({ end, counts }) => [end, counts.reduce((sum, count) => sum + count, 0)])
 ].flatMap(([date, count]) => [[`/en/briefings/${date}/`, count], [`/lt/apzvalgos/${date}/`, count]]));
 const widths = [320, 390, 768, 1160, 1440];
 const failures = [];

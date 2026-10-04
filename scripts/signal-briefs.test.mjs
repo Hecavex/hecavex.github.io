@@ -4,13 +4,9 @@ import { resolve } from 'node:path';
 import test from 'node:test';
 import { parse } from 'yaml';
 import { coverageDate } from '../src/lib/briefing-record.mjs';
+import { signalBriefEditions as batch } from './signal-brief-editions.mjs';
 
 const root = resolve(import.meta.dirname, '..');
-const batch = [
-  { issue: 6, start: '2026-08-31', end: '2026-09-06', counts: [2, 2, 1] },
-  { issue: 7, start: '2026-09-07', end: '2026-09-13', counts: [2, 2, 1] },
-  { issue: 8, start: '2026-09-14', end: '2026-09-20', counts: [2, 3, 1] }
-];
 
 async function edition(issue, end, lang) {
   const number = String(issue).padStart(3, '0');
@@ -34,7 +30,7 @@ test('coverage calendar dates are independent of YAML hydration and build timezo
   }
 });
 
-for (const { issue, start, end, counts } of batch) {
+for (const { issue, start, end, counts, published, cutoff, retrospective } of batch) {
   test(`brief ${issue}: matched editions preserve coverage, actual publication and signal counts`, async () => {
     const pair = await Promise.all(['en', 'lt'].map(lang => edition(issue, end, lang)));
     for (const [index, { data, body }] of pair.entries()) {
@@ -43,10 +39,15 @@ for (const { issue, start, end, counts } of batch) {
       assert.equal(data.issue, issue);
       assert.equal(data.coverage_start, start);
       assert.equal(data.coverage_end, end);
-      assert.equal(new Date(data.information_cutoff).toISOString(), `${end}T23:59:59.000Z`);
-      assert.equal(new Date(data.date).toISOString(), '2026-09-22T11:00:00.000Z');
-      assert(new Date(data.date) > new Date(data.information_cutoff), 'retrospectives must not be backdated');
-      assert.match(body, /retrospective|retrospektyv|compiled on 22 September|parengta rugsėjo 22/i);
+      assert.equal(new Date(data.information_cutoff).toISOString(), cutoff);
+      assert.equal(new Date(data.date).toISOString(), published);
+      assert(new Date(data.date) > new Date(data.information_cutoff), 'publication must follow its information cutoff');
+      assert(new Date(cutoff) >= new Date(start) && new Date(cutoff) < new Date(Date.parse(end) + 86400000));
+      if (retrospective) assert.match(body, /retrospective|retrospektyv|compiled on 22 September|parengta rugsėjo 22/i);
+      if (!cutoff.endsWith('T23:59:59.000Z')) {
+        assert(body.includes(`${cutoff.slice(11, 16)} UTC`), 'show the actual partial-day cutoff');
+        assert.match(body, /partial|in progress|not yet|nepasibaig|dalin|nepiln/i, 'partial-day coverage must be explicit');
+      }
       assert.equal(data.permalink, `/${index === 0 ? 'en/briefings' : 'lt/apzvalgos'}/${end}/`);
       assert.equal(data.translation_key, `hecavex-signal-brief-${String(issue).padStart(3, '0')}`);
       for (const [priorityIndex, priority] of ['critical', 'high', 'watch'].entries()) {
@@ -72,7 +73,7 @@ test('brief 5 retains its original date and cutoff while linking dated follow-up
     const { data, body } = await edition(5, '2026-08-30', lang);
     assert.equal(new Date(data.date).toISOString(), '2026-08-30T12:30:00.000Z');
     assert.equal(new Date(data.information_cutoff).toISOString(), '2026-08-30T12:00:00.000Z');
-    for (const { end } of batch) assert(body.includes(`/${lang === 'en' ? 'en/briefings' : 'lt/apzvalgos'}/${end}/`));
+    for (const { end } of batch.filter(record => record.issue <= 8)) assert(body.includes(`/${lang === 'en' ? 'en/briefings' : 'lt/apzvalgos'}/${end}/`));
     assert.doesNotMatch(body, /^##\s+(?:Bottom line|Esmė)\s*$/mi);
     assert(body.includes('/assets/data/signal-brief-005-decisions/'), 'retain the existing evidence companion');
   }
@@ -80,10 +81,11 @@ test('brief 5 retains its original date and cutoff while linking dated follow-up
 
 test('follow-up coverage is contiguous, with no overlapping or missing UTC day', () => {
   let previousEnd = '2026-08-30';
-  for (const { start, end } of batch) {
+  for (const [index, { issue, start, end }] of batch.entries()) {
+    assert.equal(issue, 6 + index, 'edition numbers must remain consecutive');
     assert.equal(Date.parse(start) - Date.parse(previousEnd), 86400000);
     assert(Date.parse(end) >= Date.parse(start));
     previousEnd = end;
   }
-  assert.equal(previousEnd, '2026-09-20');
+  assert.equal(previousEnd, '2026-10-04', 'reviewed publication coverage endpoint');
 });
