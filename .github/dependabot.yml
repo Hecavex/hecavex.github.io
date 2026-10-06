@@ -10,6 +10,11 @@ updates:
       timezone: Etc/UTC
     open-pull-requests-limit: 5
     groups:
+      # Astro requires a compatible optional Markdown processor peer.
+      astro-rendering:
+        patterns:
+          - "astro"
+          - "@astrojs/markdown-remark"
       frontend-tooling:
         patterns:
           - "playwright-core"

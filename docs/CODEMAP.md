@@ -40,3 +40,11 @@ Cards are typographic by default, with the real article title, summary, class, d
 - No external font service, account requirement or new tracking dependency.
 - Full verification: `npm run verify`. Use Node 24 LTS (supported Node >=22.13).
 - Screen-reader certification still requires an actual recorded human review; browser assertions are not a substitute.
+
+## Dependency updates
+
+`package.json` and `package-lock.json` own the reproducible toolchain. Astro and
+`@astrojs/markdown-remark` must satisfy Astro's optional peer dependency together;
+`.github/dependabot.yml` groups their updates as `astro-rendering`. Verify a clean
+`npm ci` and the full `npm run verify` gate. Do not bypass an incompatible pair
+with `--force` or `--legacy-peer-deps`.
