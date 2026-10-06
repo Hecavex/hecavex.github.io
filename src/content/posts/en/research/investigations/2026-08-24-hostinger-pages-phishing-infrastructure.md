@@ -10,7 +10,7 @@ seo_keywords:
   - "phishing kit JavaScript reuse"
   - "Render credential collector"
 date: 2026-08-27 08:00:00 +0300
-last_modified_at: 2026-09-07
+last_modified_at: 2026-09-10
 last_reviewed_at: 2026-08-27 08:30:00 +0300
 lang: en
 translation_key: hostinger-pages-phishing-infrastructure
@@ -1085,6 +1085,8 @@ The available evidence does not show compromise of Hostinger systems. It shows t
 Those boundaries do not weaken the finding. They make it more reliable.
 
 ## Public research artifacts
+
+The [material-correction index](/en/corrections/#hostinger-package-integrity) records the dated packaging change. For a shared, non-blocking representation alongside Adform evidence, use the additive [offline consumer adapter](/assets/reuse/investigation-consumer/v1.0.0/README.md). It preserves original roles, dates, confidence and source records without rewriting this package.
 
 The sanitized, publication-safe evidence package is available in the [Hostinger Pages phishing research bundle](/assets/data/hostinger-pages-phishing-2026/README.md). Its [complete defanged domain inventory](/assets/data/hostinger-pages-phishing-2026/hostinger-domain-inventory.csv) contains 302 Hostinger-labelled Pages names across roles and one PythonAnywhere redirect-context name, with confirmed domains kept separate from lead-only and contextual records. The bundle also contains hashes, derived hostname statistics, methodology notes, an evidence-file manifest, and evidence-boundary documentation needed to inspect the published conclusions without exposing full task URLs, paths, query strings, mailbox fragments, raw response bodies, API credentials, private scan identifiers, provider ticket data, or local workstation paths.
 

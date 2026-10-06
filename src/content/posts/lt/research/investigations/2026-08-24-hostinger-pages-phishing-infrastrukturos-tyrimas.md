@@ -10,7 +10,7 @@ seo_keywords:
   - "phishing kit analizė"
   - "Cloudflare Pages phishing"
 date: 2026-08-27 08:00:00 +0300
-last_modified_at: 2026-09-07
+last_modified_at: 2026-09-10
 last_reviewed_at: 2026-08-27 08:30:00 +0300
 lang: lt
 translation_key: hostinger-pages-phishing-infrastructure
@@ -1084,6 +1084,8 @@ Turimas evidence nerodo Hostinger sistemų kompromitavimo. Jis rodo, kad Hosting
 Tokios ribos nedaro finding'o silpnesnio. Jos padaro jį patikimesnį.
 
 ## Vieši tyrimo artefaktai
+
+[Esminių pataisymų rodyklėje](/lt/pataisymai/#hostinger-paketo-vientisumas) nurodytas pakavimo pakeitimas ir jo data. Bendram, ne blokavimui skirtam vaizdui su Adform įrodymais galima naudoti papildomą [vietinį duomenų adapterį](/assets/reuse/investigation-consumer/v1.0.0/README.md). Jis išsaugo pradinius vaidmenis, datas, pasitikėjimą ir šaltinio įrašus neperrašydamas šio paketo.
 
 Sanitizuotas, publikavimui paruoštas evidence paketas pateiktas [Hostinger Pages phishing tyrimo artefaktų rinkinyje](/assets/data/hostinger-pages-phishing-2026/README.md). Jo [pilname defanged domenų IOC rinkinyje](/assets/data/hostinger-pages-phishing-2026/hostinger-domain-inventory.csv) yra 302 Hostinger-labelled Pages vardai per skirtingas roles ir vienas PythonAnywhere redirect-context vardas, o confirmed domenai atskirti nuo lead-only bei contextual įrašų. Pakete taip pat yra hash, išvestinė hostname statistika, metodikos pastabos, evidence failų manifestas ir evidence boundary dokumentacija. Rinkinyje nėra pilnų task URL, path'ų, query string'ų, pašto dėžučių fragmentų, raw response body, API raktų, privačių scan identifikatorių, provider ticket duomenų ar lokalių darbo aplinkos kelių.
 

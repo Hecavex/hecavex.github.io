@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0.0",
+  "fictional": true,
+  "notProductionInventory": true,
+  "decisions": [
+    {
+      "id": "training-gitea-public",
+      "cve": "CVE-2026-60004",
+      "asset": "forge.example.invalid",
+      "product": "Gitea",
+      "version": "1.27.0",
+      "ownerRole": "Fictional development-platform owner",
+      "exposure": "internet",
+      "prerequisites": "confirmed in the fictional inventory",
+      "action": "contain-and-remediate",
+      "rationale": "Writable repositories and the affected route are reachable; preserve evidence and remove exposure while deploying a supported fixed release.",
+      "targetAt": "2026-09-11T12:00:00Z",
+      "targetBasis": "Fictional owner-selected exercise target, not a legal or vendor deadline",
+      "closureEvidence": [
+        "Approved supported build recorded",
+        "Reachability/configuration checked",
+        "Evidence-preservation and compromise-assessment decision recorded"
+      ],
+      "compromiseState": "unknown"
+    },
+    {
+      "id": "training-gitea-isolated",
+      "cve": "CVE-2026-60004",
+      "asset": "offline-forge.example.invalid",
+      "product": "Gitea",
+      "version": "1.27.0",
+      "ownerRole": "Fictional lab-platform owner",
+      "exposure": "isolated-lab",
+      "prerequisites": "diffpatch disabled; no untrusted write path in the fictional inventory",
+      "action": "scheduled-remediation-with-control-check",
+      "rationale": "The same vulnerable version remains present. Verified isolation and disabled functionality alter the immediate exposure path, not the vendor severity or patch requirement.",
+      "targetAt": "2026-09-14T12:00:00Z",
+      "targetBasis": "Fictional owner-selected exercise target, not an automatic exception",
+      "closureEvidence": [
+        "Isolation and route control rechecked",
+        "Supported fixed build recorded",
+        "Exception expiry and reopen trigger documented"
+      ],
+      "compromiseState": "unknown"
+    },
+    {
+      "id": "training-owncloud-unknown",
+      "cve": "CVE-2023-49105",
+      "asset": "files.example.invalid",
+      "product": "ownCloud Server",
+      "version": null,
+      "ownerRole": "Fictional collaboration-service owner",
+      "exposure": "unknown",
+      "prerequisites": "unknown",
+      "action": "resolve-inventory-gap",
+      "rationale": "Unknown version or exposure cannot become not affected. Establish product/build and preserve evidence before the applicability decision.",
+      "targetAt": "2026-09-11T08:00:00Z",
+      "targetBasis": "Fictional investigation checkpoint, not permission to defer required action",
+      "closureEvidence": [
+        "Exact product/build established",
+        "Affected-account prerequisites assessed",
+        "Action and accountable owner recorded"
+      ],
+      "compromiseState": "unknown"
+    }
+  ]
+}

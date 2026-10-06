@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SpeakingInvitation from '../components/SpeakingInvitation.astro';
 import { dateText, getPublicPosts, latestContentUpdate, type Post } from '../lib/site';
 
 const posts = await getPublicPosts();
@@ -48,20 +49,20 @@ const network = [
   <div class="shell landing-portal">
     <section class="home-hero landing-hero" aria-labelledby="portal-title">
       <div class="home-hero-copy">
-        <p class="eyebrow">HECAVEX / INDEPENDENT RESEARCH</p>
-        <h1 id="portal-title">Independent research.<br /><span>Two editions.</span></h1>
+        <p class="eyebrow">Independent threat intelligence · Nepriklausomi tyrimai</p>
+        <h1 id="portal-title">Intelligence beyond<br /><span>indicators.</span></h1>
         <p class="hero-deck">Cyber threat intelligence, technical investigations and concise security briefings by Deividas Lis.</p>
         <p>Original analysis, public research tools and structured data for people who need the evidence, confidence and limitations—not only another indicator list.</p>
       </div>
       <nav class="landing-edition-rail" aria-label="Choose a HECAVEX edition">
         <a href="/en/">
-          <span>EN / ENGLISH</span>
+          <span>EN</span>
           <strong>English edition</strong>
           <p>Investigations, technical analysis, Signal Briefs and methodology.</p>
           <small>Open research →</small>
         </a>
         <a href="/lt/" lang="lt" hreflang="lt">
-          <span>LT / LIETUVIŲ</span>
+          <span>LT</span>
           <strong>Lietuviškas leidinys</strong>
           <p>Tyrimai, techninė analizė, Signalų apžvalgos ir metodika.</p>
           <small>Atverti tyrimus →</small>
@@ -141,5 +142,6 @@ const network = [
         </a>)}
       </div>
     </section>
+    <SpeakingInvitation lang="en" />
   </div>
 </BaseLayout>

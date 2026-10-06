@@ -1,7 +1,3 @@
----
-layout: null
-sitemap: false
----
 <!doctype html>
 <html lang="lt">
   <head>
@@ -17,15 +13,15 @@ sitemap: false
     <link rel="stylesheet" href="/assets/css/fonts.css" />
     <style>
       :root {
-        color-scheme: dark;
-        --bg: #111416;
-        --surface: #171b1d;
-        --text: #ece9e1;
-        --muted: #8d969a;
+        color-scheme: light;
+        --bg: #ece9e1;
+        --surface: #f4f1e9;
+        --text: #151719;
+        --muted: #465355;
         --danger: #d06c65;
         --line: #30383b;
         --accent: #55b9b1;
-        --blue: #55b9b1;
+        --blue: #176b66;
       }
       * {
         box-sizing: border-box;
@@ -76,6 +72,31 @@ sitemap: false
       a {
         color: var(--blue);
       }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+      }
+      .actions a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+      }
+      a:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+      .use-note {
+        margin-top: 10px;
+        font-size: 13px;
+      }
+      footer {
+        flex-wrap: wrap;
+        overflow-wrap: anywhere;
+      }
       main {
         display: grid;
         grid-template-columns: 1.15fr 0.85fr;
@@ -111,7 +132,7 @@ sitemap: false
       .fact {
         padding: 10px;
         border-left: 2px solid var(--line);
-        background: #1d2326;
+        background: #e4e5dc;
       }
       .fact strong {
         display: block;
@@ -151,6 +172,12 @@ sitemap: false
         }
       }
       @media print {
+        .screen-only {
+          display: none;
+        }
+        header, .note, footer, li {
+          break-inside: avoid;
+        }
         :root {
           color-scheme: light;
           --bg: #ece9e1;
@@ -158,7 +185,7 @@ sitemap: false
           --text: #151719;
           --muted: #30383b;
           --line: #30383b;
-          --blue: #55b9b1;
+          --blue: #176b66;
         }
         body {
           font-size: 11px;
@@ -203,10 +230,16 @@ sitemap: false
           >
         </div>
       </header>
+      <nav class="actions screen-only" aria-label="Medijos rinkinio atsisiuntimai">
+        <a href="https://hecavex.com/assets/media/hecavex-media-kit-lt.pdf" download="hecavex-media-kit-lt.pdf">Atsisiųsti vieno puslapio medijos rinkinį (.pdf)</a>
+        <a href="https://hecavex.com/assets/media/hecavex-media-kit-lt.txt" download="hecavex-media-kit-lt.txt">Atsisiųsti biografijas ir šaltinių nuorodas (.txt)</a>
+        <a href="https://hecavex.com/lt/pranesejas/">Dabartinė informacija apie pranešimus</a>
+      </nav>
+      <p class="use-note screen-only">Pažymėkite tekstą kopijavimui arba atsisiųskite tekstinį failą. Atsisiųstoje HTML kopijoje atsisiuntimų nuorodos atveria internetinius failus, todėl reikia interneto ryšio. Taip pat galite spausdinti ar išsaugoti PDF naudodami naršyklės spausdinimo komandą.</p>
       <main>
         <section>
           <h2>Trumpa biografija</h2>
-          <p>
+          <p data-biography="short">
             Deividas Lis – Lietuvos kibernetinių grėsmių žvalgybos tyrėjas,
             buvęs elektroninių nusikaltimų tyrėjas, viešas pranešėjas ir
             ekspertas žiniasklaidai. Jo sritys – CTI, OSINT, sukčiavimo
@@ -215,14 +248,14 @@ sitemap: false
             saugumo analizę jis skelbia HECAVEX.
           </p>
           <h2>Išsami biografija</h2>
-          <p>
+          <p data-biography="extended">
             Vilniuje gyvenantis Deividas yra dirbęs teisėsaugoje, finansų
             sektoriaus saugumo srityje ir privačiuose grėsmių tyrimuose.
             Sudėtingas technines grėsmes jis paaiškina saugumo specialistams,
             vadovams, žurnalistams ir plačiajai auditorijai. Jo darbas apima
             taktinę ir techninę CTI, OSINT ir infrastruktūros pivoting,
             internetinį sukčiavimą, tapatybės atakas, informacines operacijas,
-            automatizavimą su „Python“ ir aptikimo taisykles.
+            automatizavimą su "Python" ir aptikimo taisykles.
           </p>
           <h2>Pranešimų temos</h2>
           <ul>
@@ -252,12 +285,12 @@ sitemap: false
           </div>
           <h2>Atrinkti pasirodymai</h2>
           <ul>
-            <li>Delfi – „Facebook“ duomenų nutekėjimo rizika</li>
-            <li>Žinių radijas – kaip sukčiai pasirenka aukas</li>
-            <li>TV3 – masiškai plintančios sukčiavimo schemos</li>
-            <li>Pociūnas Podcast – elektroninių nusikaltimų tyrimai</li>
-            <li>Tapk Geresniu Podcast – sukčiavimas ir tamsusis internetas</li>
-            <li>NordStellar – veiksminga grėsmių žvalgyba</li>
+            <li><a href="https://www.delfi.lt/mokslas/login/programisiai-nutekino-1-2-milijardo-facebook-vartotoju-duomenis-it-specialistas-ispeja-kas-gresia-turintiems-feisbuko-paskyras-120111498">Delfi – "Facebook" duomenų nutekėjimo rizika</a></li>
+            <li><a href="https://www.ziniuradijas.lt/laidos/pergudrauti-sukciu/kodel-sukciai-skambina-per-pietus-arba-vakare?video=1">Žinių radijas – kaip sukčiai pasirenka aukas</a></li>
+            <li><a href="https://www.tv3.lt/naujiena/lietuva/ispeja-apie-masiskai-plintancia-sukciu-afera-stai-kaip-atsirenka-jus-kaip-auka-n1521886">TV3 – masiškai plintančios sukčiavimo schemos</a></li>
+            <li><a href="https://www.youtube.com/watch?v=mzeDypl0QiA">Pociūnas Podcast – elektroninių nusikaltimų tyrimai</a></li>
+            <li><a href="https://www.youtube.com/watch?v=1RPIICt7_SU">Tapk Geresniu Podcast – sukčiavimas ir tamsusis internetas</a></li>
+            <li><a href="https://www.youtube.com/watch?v=qxrLrMH7_x4">NordStellar – veiksminga grėsmių žvalgyba</a></li>
           </ul>
           <h2>Galimi formatai</h2>
           <p>
@@ -271,10 +304,11 @@ sitemap: false
           </div>
         </aside>
       </main>
+      <p class="use-note" data-reuse-note>Organizatoriai ir redakcijos gali naudoti trumpą biografiją nurodydami Deividą Lis / HECAVEX. Trečiųjų šalių pasirodymų medžiagai taikomos jos savininkų teisės.</p>
       <footer>
         <span
           >Užklausos: info@hecavex.com · LinkedIn: linkedin.com/in/deilis</span
-        ><span>Atnaujinta 2026 m. rugpjūtį</span>
+        ><span>Atnaujinta 2026 m. rugsėjo 10 d.</span>
       </footer>
     </article>
   </body>

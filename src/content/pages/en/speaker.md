@@ -1,4 +1,5 @@
 ---
+last_modified_at: 2026-09-10
 layout: page
 lang: en
 translation_key: speaker-media
@@ -22,17 +23,43 @@ For speaking or media enquiries, email **[info@hecavex.com](mailto:info@hecavex.
 
 ## Featured talk abstracts
 
+These are proposed sessions built from published research, not a claim that each title has already been delivered. The audience and learning goals below are a starting point for agreeing the programme. Demonstrations use retained evidence or harmless examples, not live attacker infrastructure. Final scope, accessibility needs and recording permission are agreed with the organiser.
+
 ### Intelligence beyond indicators
+
+- **Best fit:** CTI analysts, SOC leads and security decision-makers who need to explain what an assessment changes.
+- **Takeaways:** distinguish an observation from an assessment, identify a collection blind spot, and turn an indicator list into a bounded investigation question.
+- **Prerequisites and format:** no coding required. A 20-minute briefing or a 45-minute case-led session with a walk-through of published Radar evidence and its limits, not a live monitoring demonstration.
 
 Threat intelligence becomes useful when it changes a decision. This talk moves beyond longer IOC lists and shows how infrastructure, behaviour, confidence and collection gaps can be turned into an assessment that defenders and leaders can act on.
 
+Related research: [Radar August baseline and its evidence limits](/en/research/lithuania-phishing-infrastructure-radar-august-2026/). Related recording: [NordStellar threat-intelligence webinar, full session](https://www.youtube.com/watch?v=qxrLrMH7_x4).
+
+[Prepare an invitation for this talk](/en/contact/?talk=0#prepare-request)
+
 ### One scam domain is rarely alone
+
+- **Best fit:** fraud investigators, OSINT practitioners and defenders assessing suspicious infrastructure.
+- **Takeaways:** build a pivot trail, challenge a shared-hosting coincidence, and explain why related infrastructure is not proof of a common operator.
+- **Prerequisites and format:** basic familiarity with URLs and DNS helps. A 45-minute case-led session using retained UNIPARK evidence, with no audience accounts or candidate-site visits required.
 
 A single phishing or fraud URL is usually an entry point, not the investigation. This practical session follows the pivots through redirects, DNS, certificates, hosting, page templates and related infrastructure while separating useful correlation from accidental overlap.
 
+Case study: [UNIPARK smishing infrastructure investigation](/en/research/unipark-smishing-campaign-infrastructure/). Related recording: [Pociūnas Podcast conversation about cybercrime investigations, full episode](https://www.youtube.com/watch?v=mzeDypl0QiA).
+
+[Prepare an invitation for this talk](/en/contact/?talk=1#prepare-request)
+
 ### Attackers are looking for people
 
+- **Best fit:** security teams, identity owners and leaders responsible for staff-facing controls.
+- **Takeaways:** recognise the user-mediated execution step, separate MFA coverage from session risk, and frame one concrete detection or response question for the local environment.
+- **Prerequisites and format:** no malware tooling required. A 20-minute briefing or 45-minute session using published ClickFix and identity-attack examples. No executable malicious demonstration or claim of measured training effectiveness.
+
 ClickFix, session theft and modern social engineering succeed by turning the victim into part of the execution chain. This talk explains why MFA and awareness slogans are not enough, then connects attacker behaviour to practical detection and response opportunities.
+
+Related publication: [ClickFix and the role of the user in the execution chain](/en/research/clickfix-why-modern-threat-actors-hunt-people/). Related recording: [Žinių radijas interview about how scammers approach victims](https://www.ziniuradijas.lt/laidos/pergudrauti-sukciu/kodel-sukciai-skambina-per-pietus-arba-vakare?video=1). These are existing recordings, not excerpts of the proposed talks.
+
+[Prepare an invitation for this talk](/en/contact/?talk=2#prepare-request)
 
 ## Practical details
 
@@ -55,19 +82,22 @@ Event organisers and editors may use this biography with attribution. For a long
 
 ## Selected appearances
 
-- Expert commentary for **Delfi** on a large-scale Facebook data exposure
-- Interview with **Žinių radijas** about how scammers select and approach victims
-- Expert commentary for **TV3** about a rapidly spreading fraud scheme
-- Long-form conversations on **Pociūnas Podcast** and **Tapk Geresniu Podcast** about cybercrime investigations, fraud and the dark web
-- **NordStellar** webinar on building effective threat-intelligence capabilities
-
-[View the linked appearances and full descriptions](/en/about/#selected-media-and-appearances).
+- [Delfi commentary on a large-scale Facebook data exposure](https://www.delfi.lt/mokslas/login/programisiai-nutekino-1-2-milijardo-facebook-vartotoju-duomenis-it-specialistas-ispeja-kas-gresia-turintiems-feisbuko-paskyras-120111498)
+- [Žinių radijas interview about how scammers select and approach victims](https://www.ziniuradijas.lt/laidos/pergudrauti-sukciu/kodel-sukciai-skambina-per-pietus-arba-vakare?video=1)
+- [TV3 commentary on a rapidly spreading fraud scheme](https://www.tv3.lt/naujiena/lietuva/ispeja-apie-masiskai-plintancia-sukciu-afera-stai-kaip-atsirenka-jus-kaip-auka-n1521886)
+- [Pociūnas Podcast conversation about cybercrime investigations](https://www.youtube.com/watch?v=mzeDypl0QiA)
+- [Tapk Geresniu Podcast conversation about fraud and the dark web](https://www.youtube.com/watch?v=1RPIICt7_SU)
+- [NordStellar webinar on threat-intelligence capabilities](https://www.youtube.com/watch?v=qxrLrMH7_x4)
 
 ## Media kit
+
+<a href="/assets/media/hecavex-media-kit-en.pdf" download="hecavex-media-kit-en.pdf">Download the English one-page media kit (PDF)</a> for an event programme or editorial handoff. It uses the same biographies, appearance links and photography limits as the HTML kit below.
 
 The [HECAVEX English media kit](/assets/media/hecavex-media-kit-en.html) is a print-ready, single-page HTML file with short and extended biographies, speaking topics, formats, selected appearances and booking details. Open it on HECAVEX to use the publication's self-hosted typefaces, then print it, save it as PDF or <a href="/assets/media/hecavex-media-kit-en.html" download="hecavex-media-kit-en.html">download the HTML file</a>. When the downloaded file is opened offline, its content and layout remain usable with local system fonts.
 
 High-resolution press photography is available on request from **[info@hecavex.com](mailto:info@hecavex.com)**. The abstract website avatar is deliberately not presented as a press headshot.
+
+For programme notes or an editor's document, <a href="/assets/media/hecavex-media-kit-en.txt" download="hecavex-media-kit-en.txt">download the biographies and appearance source links as plain text</a>. The kit also links each appearance to its original publication. You can select biography text directly without enabling JavaScript. Linked downloads and original appearances require an online connection.
 
 ## Booking information
 

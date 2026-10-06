@@ -1,4 +1,9 @@
 ---
+last_modified_at: 2026-09-07
+research_artifacts:
+  - label: "Experimental analytic and synthetic fixtures"
+    url: "https://github.com/Hecavex/research-artifacts/tree/846937aee43d792a81bcf1b3c05c396f440588f0/releases/t1187-outbound-smb-analytic/v1.0.0"
+    version: "1.0.0"
 title: "T1187 Forced Authentication: Detection and Mitigation for Windows Environments"
 card_title: "T1187 Forced Authentication: Detection and Mitigation"
 description: "A defensive guide to forced SMB and WebDAV authentication, Windows and network evidence, NTLM auditing, egress controls, triage, and identity hardening."
@@ -49,6 +54,12 @@ image:
   width: 1600
   height: 900
 ---
+
+## Experimental analytic and offline fixtures
+
+The [version 1.0.0 analytic bundle](https://github.com/Hecavex/research-artifacts/tree/846937aee43d792a81bcf1b3c05c396f440588f0/releases/t1187-outbound-smb-analytic/v1.0.0) supplies one bounded rule, its telemetry contract, synthetic positive and negative records, expected matches, tuning notes and a portable Python reference model. [Download the source archive at this exact revision](https://github.com/Hecavex/research-artifacts/archive/846937aee43d792a81bcf1b3c05c396f440588f0.zip), select `releases/t1187-outbound-smb-analytic/v1.0.0/`, and run `python reference.py --check` with Python 3.12 or newer. The command makes no network requests.
+
+The portable fixture tests pass. The included KQL candidate has **NOT VERIFIED** engine compilation, execution or semantic equivalence. Production effectiveness is also **NOT VERIFIED**. The rule selects outbound SMB review leads and retains failed connection events. It does not establish NTLM exchange or compromise. Validate the actual engine and connector mapping before operational use. Missing telemetry is not evidence of safety.
 
 ## The dangerous action may be performed by Windows, not by the user
 

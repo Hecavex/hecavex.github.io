@@ -5,6 +5,7 @@ import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve, sep } from 'node:path';
 import { chromium } from 'playwright-core';
+import { signalBriefEditions } from './signal-brief-editions.mjs';
 
 const siteRoot = resolve(process.argv[2] ?? 'dist');
 const browserCandidates = [
@@ -37,7 +38,16 @@ await new Promise((accept) => server.listen(0, '127.0.0.1', accept));
 const address = server.address();
 const baseUrl = `http://127.0.0.1:${address.port}`;
 
+const recentBriefRoutes = signalBriefEditions.flatMap(({ end }) => [
+  `/en/briefings/${end}/`, `/lt/apzvalgos/${end}/`
+]);
+const monthlyRadarRoutes = [
+  '/en/research/lithuania-phishing-infrastructure-radar-september-2026/',
+  '/lt/tyrimai/phishing-infrastruktura-lietuvoje-radar-2026-rugsejis/'
+];
 const routes = [
+  ...recentBriefRoutes,
+  ...monthlyRadarRoutes,
   '/', '/data/', '/lt/duomenys/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/', '/en/projects/', '/lt/projektai/',
   '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/',
   '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
@@ -47,12 +57,17 @@ const routes = [
 ];
 const factRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
 const outlineRoutes = new Set([
+  ...recentBriefRoutes,
+  ...monthlyRadarRoutes,
   '/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/',
   '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
   '/en/research/cra-article-14-vulnerability-incident-reporting-guide/', '/lt/tyrimai/infrastrukturos-pivoting-101/',
   '/en/briefings/2026-08-22/', '/lt/apzvalgos/2026-08-22/'
 ]);
 const researchRoutes = new Set(['/en/research/', '/lt/tyrimai/']);
+const homeRoutes = new Set(['/en/', '/lt/']);
+const aboutRoutes = new Set(['/en/about/', '/lt/apie/']);
+const fullScreenRoutes = new Set([...homeRoutes, ...aboutRoutes, ...researchRoutes]);
 const contactRoutes = new Set(['/en/contact/', '/lt/kontaktai/']);
 const catalogueIntroRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
 const briefingRoutes = new Set(['/en/briefings/', '/lt/apzvalgos/']);
@@ -62,15 +77,18 @@ const standardizedPageTitleRoutes = new Set([
   '/en/projects/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/'
 ]);
 const legacyCtaRoutes = new Set(['/en/about/', '/lt/apie/', '/en/contact/', '/lt/kontaktai/']);
-const signalRoutes = new Set(['/en/briefings/2026-08-22/', '/lt/apzvalgos/2026-08-22/']);
+const signalCounts = new Map([
+  ['2026-08-22', 7], ...signalBriefEditions.map(({ end, counts }) => [end, counts.reduce((sum, count) => sum + count, 0)])
+].flatMap(([date, count]) => [[`/en/briefings/${date}/`, count], [`/lt/apzvalgos/${date}/`, count]]));
 const widths = [320, 390, 768, 1160, 1440];
 const failures = [];
+const cardPresentations = new Map();
 const browser = await chromium.launch({ executablePath, headless: true });
 const fail = (route, width, message) => failures.push(`${route} @ ${width}px: ${message}`);
 
 try {
   for (const route of routes) {
-    for (const width of widths) {
+    for (const width of fullScreenRoutes.has(route) ? [...widths, 1920] : widths) {
       const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce', serviceWorkers: 'block' });
       const page = await context.newPage();
       const response = await page.goto(`${baseUrl}${route}`, { waitUntil: 'networkidle' });
@@ -132,6 +150,47 @@ try {
         const oddResearchLastCard = oddResearchCards.at(-1);
         const oddResearchLastCardRect = oddResearchLastCard?.getBoundingClientRect();
         const oddResearchLastCardStyle = oddResearchLastCard ? getComputedStyle(oddResearchLastCard) : undefined;
+        const latestGrid = document.querySelector('.home-latest-grid');
+        const latestGridRect = latestGrid?.getBoundingClientRect();
+        const latestGridStyle = latestGrid ? getComputedStyle(latestGrid) : undefined;
+        const latestCards = [...(latestGrid?.querySelectorAll(':scope > .post-card') ?? [])];
+        const latestCardGeometry = latestCards.map((card) => {
+          const rect = card.getBoundingClientRect();
+          const title = card.querySelector('h3 a');
+          const action = card.querySelector('.card-action');
+          const image = card.querySelector('.post-card-image');
+          const imageRect = image?.getBoundingClientRect();
+          const copyRect = card.querySelector('.post-card-copy')?.getBoundingClientRect();
+          return {
+            left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom, width: rect.width,
+            titleSize: title ? Number.parseFloat(getComputedStyle(title).fontSize) : 0,
+            accessibleLinks: Boolean(title?.textContent.trim() && action?.textContent.trim()
+              && action.getAttribute('aria-label')?.trim()
+              && title.getAttribute('href') === action.getAttribute('href')
+              && title.getAttribute('aria-hidden') !== 'true' && action.getAttribute('aria-hidden') !== 'true'
+              && title.getAttribute('tabindex') !== '-1' && action.getAttribute('tabindex') !== '-1'),
+            imageRatio: imageRect?.height ? imageRect.width / imageRect.height : 0,
+            copyBelowImage: Boolean(imageRect && copyRect && copyRect.top >= imageRect.bottom - 1),
+            typographic: card.getAttribute('data-preview') === 'typographic' && !image,
+            readingTime: Boolean(card.querySelector('.card-reading')?.textContent.trim())
+          };
+        });
+        const latestRows = [];
+        for (const card of latestCardGeometry) {
+          const row = latestRows.find((candidate) => Math.abs(candidate.top - card.top) <= 1);
+          if (row) {
+            row.count += 1;
+            row.bottom = Math.max(row.bottom, card.bottom);
+          } else latestRows.push({ top: card.top, bottom: card.bottom, count: 1 });
+        }
+        const referenceGrid = document.querySelector('#primary .post-grid');
+        const referenceCard = referenceGrid?.querySelector('.post-card');
+        const referenceTitle = referenceCard?.querySelector('h3 a');
+        const referenceImageRect = referenceCard?.querySelector('.post-card-image')?.getBoundingClientRect();
+        const referenceGridStyle = referenceGrid ? getComputedStyle(referenceGrid) : undefined;
+        const standardProse = document.querySelector('.standard-page > .prose');
+        const aboutParagraphs = [...(standardProse?.querySelectorAll(':scope > p:not(:has(> img:only-child))') ?? [])];
+        const aboutHeading = standardProse?.querySelector('h2');
         const articleShell = document.querySelector('.article-shell');
         const articleShellRect = articleShell?.getBoundingClientRect();
         const articleShellStyle = articleShell ? getComputedStyle(articleShell) : undefined;
@@ -143,6 +202,18 @@ try {
           return rect.width > 0 && (rect.left < -1 || rect.right > viewportWidth + 1);
         }).slice(0, 6).map((element) => `${element.tagName}.${String(element.className).replace(/\s+/g, '.')}`);
         return {
+          footerTypeMismatches: [...document.querySelectorAll('.site-footer nav a, .footer-brand strong')].filter((element) => {
+            const style = getComputedStyle(element);
+            const brand = element.matches('.footer-brand strong');
+            const family = style.fontFamily.split(',')[0].replaceAll('"', '').toLowerCase();
+            const tracking = Number.parseFloat(style.letterSpacing) || 0;
+            return family !== (brand ? 'ibm plex mono' : 'inter')
+              || Number.parseFloat(style.fontSize) !== 12
+              || style.fontWeight !== (brand ? '600' : '500')
+              || style.lineHeight !== 'normal'
+              || Math.abs(tracking - (brand ? 1.44 : 0)) > 0.025
+              || style.textTransform !== 'none';
+          }).map((element) => element.textContent.trim()),
           undersizedFooterTargets: [...document.querySelectorAll('.site-footer nav a')].filter((link) => {
             const rect = link.getBoundingClientRect();
             return rect.width < 24 || rect.height < 24;
@@ -164,7 +235,9 @@ try {
           bodyFontSize: Number.parseFloat(bodyStyle.fontSize),
           bodyColor: bodyStyle.color,
           tokens: ['--bg-elevated', '--surface', '--surface-strong', '--line', '--line-strong', '--text-soft', '--muted', '--faint', '--cyan', '--cyan-bright'].map((token) => rootStyle.getPropertyValue(token).trim()),
-          dot: dotStyle ? { width: dotStyle.width, height: dotStyle.height, marginRight: dotStyle.marginRight, color: dotStyle.backgroundColor } : undefined,
+          dot: dotStyle ? { display: dotStyle.display, content: dotStyle.content } : undefined,
+          displayFont: h1Style?.fontFamily ?? '',
+          heroOpen: !hero || ['borderTopWidth','borderLeftWidth','borderRightWidth'].every((key) => getComputedStyle(hero)[key] === '0px'),
           networkLabels: [...document.querySelectorAll('.portfolio-navigation a')].map((link) => link.textContent.trim()),
           pageFactCount: document.querySelectorAll('.page-facts > div').length,
           desktopOutlineDisplay: desktopOutline ? getComputedStyle(desktopOutline).display : 'missing',
@@ -220,7 +293,26 @@ try {
             : false,
           oddDataLinkListCount: oddDataLinkLists.length,
           oddDataLinksFillRow,
-          leadImageLinkName: document.querySelector('.lead-story-image')?.getAttribute('aria-label') ?? '',
+          latestGridWidth: latestGridRect?.width ?? 0,
+          latestColumnGap: latestGridStyle ? Number.parseFloat(latestGridStyle.columnGap) : 0,
+          latestRowGap: latestGridStyle ? Number.parseFloat(latestGridStyle.rowGap) : 0,
+          latestCardGeometry,
+          latestRows,
+          hasOversizedHomeLead: Boolean(document.querySelector('.home-shell .lead-story')),
+          referencePresentation: referenceTitle && referenceGridStyle ? {
+            titleSize: Number.parseFloat(getComputedStyle(referenceTitle).fontSize),
+            columnGap: Number.parseFloat(referenceGridStyle.columnGap),
+            rowGap: Number.parseFloat(referenceGridStyle.rowGap),
+            imageRatio: referenceImageRect ? referenceImageRect.width / referenceImageRect.height : 0
+          } : null,
+          aboutMarker: Boolean(document.querySelector('.standard-page--about')),
+          aboutParagraphs: aboutParagraphs.map((paragraph) => {
+            const style = getComputedStyle(paragraph);
+            return { align: style.textAlign, lastAlign: style.textAlignLast, hyphens: style.hyphens,
+              width: paragraph.getBoundingClientRect().width };
+          }),
+          aboutProseWidth: standardProse?.getBoundingClientRect().width ?? 0,
+          aboutHeadingAlign: aboutHeading ? getComputedStyle(aboutHeading).textAlign : '',
           landingEditionCount: document.querySelectorAll('.landing-edition-rail a').length,
           landingCurrentCount: document.querySelectorAll('.landing-current-grid > *').length,
           landingNetworkCount: document.querySelectorAll('.landing-network-grid > a').length,
@@ -243,9 +335,12 @@ try {
       if (state.h1Size > 64.1) fail(route, width, `h1 exceeds the 64px display ceiling (${state.h1Size}px)`);
       if (state.markWidth < 33.5 || state.markWidth > 36.5) fail(route, width, `brand mark is ${state.markWidth}px rather than 34–36px`);
       if (state.networkLabels.join('|') !== 'Research|Radar|APT Notes|Labs|Data') fail(route, width, 'network navigation order differs from the portfolio contract');
-      if (Math.abs(state.bodyFontSize - 15.2) > 0.05 || state.bodyColor !== 'rgb(236, 233, 225)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
+      if (state.footerTypeMismatches.length) fail(route, width, `footer typography differs from the portfolio contract: ${state.footerTypeMismatches.join(', ')}`);
+      if (Math.abs(state.bodyFontSize - 16) > 0.05 || state.bodyColor !== 'rgb(236, 233, 225)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
+      if (!state.displayFont.includes('Space Grotesk')) fail(route, width, 'shared self-hosted display type is missing');
+      if (!state.heroOpen) fail(route, width, 'hero has reverted to a closed panel');
       if (state.tokens.join('|') !== '#171b1d|#171b1d|#1d2326|#30383b|#30383b|#ece9e1|#8d969a|#8d969a|#55b9b1|#55b9b1') fail(route, width, `shared HECAVEX tokens changed (${state.tokens.join('|')})`);
-      if (state.dot && (Math.abs(Number.parseFloat(state.dot.width) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.height) - 4.48) > 0.02 || Math.abs(Number.parseFloat(state.dot.marginRight) - 8.8) > 0.02 || state.dot.color !== 'rgb(85, 185, 177)')) fail(route, width, `active network dot geometry changed (${JSON.stringify(state.dot)})`);
+      if (state.dot && state.dot.display !== 'none' && !['none','normal'].includes(state.dot.content)) fail(route, width, 'decorative network dot returned');
       if (!state.versionedAssets) fail(route, width, 'core stylesheet or script is not cache-versioned');
       if (factRoutes.has(route) && state.pageFactCount !== 4) fail(route, width, `page fact rail contains ${state.pageFactCount} records instead of 4`);
       if (outlineRoutes.has(route)) {
@@ -268,7 +363,7 @@ try {
       if (contactRoutes.has(route) && (state.actionRouteCount !== 4 || state.actionLinkCount !== 5)) fail(route, width, `contact action rail is incomplete (${state.actionRouteCount} routes, ${state.actionLinkCount} links)`);
       if (catalogueIntroRoutes.has(route)) {
         if (Math.abs(state.pageIntroWidth - state.pageShellInnerWidth) > 1) fail(route, width, `fact intro width differs from the catalogue shell (${state.pageIntroWidth}px/${state.pageShellInnerWidth}px)`);
-        if (width >= 900 && Math.abs(state.pageIntroHeight - 336) > 1) fail(route, width, `desktop fact intro is ${state.pageIntroHeight}px instead of 336px`);
+        if (width > 900 && state.pageIntroHeight < 319) fail(route, width, `desktop fact intro is below the 320px minimum (${state.pageIntroHeight}px)`);
         if (state.h1Size > 52.1) fail(route, width, `fact intro h1 exceeds the shared 52px scale (${state.h1Size}px)`);
       }
       if (recordFooterRoutes.has(route)) {
@@ -278,7 +373,7 @@ try {
       }
       if (standardizedPageTitleRoutes.has(route)) {
         if (state.h1Size > 52.1) fail(route, width, `standard page h1 exceeds the shared 52px scale (${state.h1Size}px)`);
-        if (Math.abs(state.h1LineHeight - state.h1Size) > 0.3) fail(route, width, `standard page h1 line-height differs from its font size (${state.h1LineHeight}px/${state.h1Size}px)`);
+        if (Math.abs(state.h1LineHeight - state.h1Size * 1.08) > 0.3) fail(route, width, `standard page h1 line-height differs from 1.08 (${state.h1LineHeight}px/${state.h1Size}px)`);
       }
       if (briefingRoutes.has(route)) {
         if (width > 680 && (!state.briefingCardsShareRow || state.briefingImageWidth > state.briefingListWidth * 0.51)) fail(route, width, `briefing catalogue is not a two-column card grid (${state.briefingImageWidth}px image/${state.briefingListWidth}px list)`);
@@ -286,14 +381,48 @@ try {
       }
       if (route === '/data/' && (state.oddDataLinkListCount < 1 || !state.oddDataLinksFillRow)) fail(route, width, `odd data endpoint grids leave an empty cell (${state.oddDataLinkListCount} odd grids, fill ${state.oddDataLinksFillRow})`);
       if (legacyCtaRoutes.has(route) && (!['flex', 'inline-flex'].includes(state.ctaButtonDisplay) || state.ctaButtonHeight < 43 || state.ctaButtonHeight > 45)) fail(route, width, `restored page CTA is not a 44px flex control (${state.ctaButtonDisplay}, ${state.ctaButtonHeight}px)`);
-      if (signalRoutes.has(route)) {
-        if (state.signalEntryCount !== 7) fail(route, width, `Signal Brief contains ${state.signalEntryCount} signal records instead of 7`);
+      if (signalCounts.has(route)) {
+        const expectedCount = signalCounts.get(route);
+        if (state.signalEntryCount !== expectedCount) fail(route, width, `Signal Brief contains ${state.signalEntryCount} signal records instead of ${expectedCount}`);
         if (state.signalEntryBorder !== '1px' || state.signalFactDisplay !== 'grid' || state.signalFactCount !== 2) fail(route, width, `signal record presentation is incomplete (${state.signalEntryBorder}, ${state.signalFactDisplay}, ${state.signalFactCount} facts)`);
         if (width <= 680 && state.signalFactsShareRow) fail(route, width, 'signal facts remain side-by-side on a narrow screen');
         if (width > 680 && !state.signalFactsShareRow) fail(route, width, 'signal facts do not share a row on a wide screen');
       }
       if (route === '/' && (state.landingEditionCount !== 2 || state.landingCurrentCount !== 3 || state.landingNetworkCount !== 4)) fail(route, width, `root gateway is incomplete (${state.landingEditionCount} editions, ${state.landingCurrentCount} current records, ${state.landingNetworkCount} network links)`);
-      if (['/en/', '/lt/'].includes(route) && !state.leadImageLinkName) fail(route, width, 'lead-story image link has no accessible name');
+      if (homeRoutes.has(route)) {
+        const columns = width > 680 ? 2 : 1;
+        const expectedCardWidth = (state.latestGridWidth - state.latestColumnGap * (columns - 1)) / columns;
+        const cards = state.latestCardGeometry;
+        if (state.hasOversizedHomeLead || cards.length !== 5) fail(route, width, `latest research is not five ordinary cards (${cards.length} cards, oversized lead ${state.hasOversizedHomeLead})`);
+        if (state.latestColumnGap < 16 || state.latestRowGap < 16) fail(route, width, `latest research gaps are below 16px (${state.latestColumnGap}px/${state.latestRowGap}px)`);
+        if (cards.some((card) => Math.abs(card.width - expectedCardWidth) > 1)) fail(route, width, `latest research cards do not share the ordinary ${columns}-column width (${cards.map((card) => card.width).join('/')} versus ${expectedCardWidth}px)`);
+        if (state.latestRows.length !== Math.ceil(5 / columns)
+          || state.latestRows.some((row, index) => row.count !== Math.min(columns, 5 - index * columns))) fail(route, width, `latest research row composition is wrong (${JSON.stringify(state.latestRows)})`);
+        const rowGaps = state.latestRows.slice(1).map((row, index) => row.top - state.latestRows[index].bottom);
+        if (rowGaps.some((gap) => gap < 15.5 || Math.abs(gap - state.latestRowGap) > 1)) fail(route, width, `latest research rows touch or have inconsistent spacing (${rowGaps.join('/')}px)`);
+        if (columns === 2 && cards.length > 1 && Math.abs(cards[1].left - cards[0].right - state.latestColumnGap) > 1) fail(route, width, 'latest research columns do not have the declared visible gap');
+        if (cards.some((card) => !card.accessibleLinks || !card.typographic || !card.readingTime || card.titleSize <= 0 || card.titleSize > 26.1)) fail(route, width, `latest research typographic card presentation/accessibility is wrong (${JSON.stringify(cards)})`);
+        cardPresentations.set(`${route.slice(1, 3)}:${width}`, {
+          cards, columnGap: state.latestColumnGap, rowGap: state.latestRowGap
+        });
+      }
+      if (researchRoutes.has(route)) {
+        const home = cardPresentations.get(`${route.slice(1, 3)}:${width}`);
+        const reference = state.referencePresentation;
+        if (!home || !reference || Math.abs(home.columnGap - reference.columnGap) > 0.1
+          || Math.abs(home.rowGap - reference.rowGap) > 0.1
+          || home.cards.some((card) => Math.abs(card.titleSize - reference.titleSize) > 0.1
+            || Math.abs(card.imageRatio - reference.imageRatio) > 0.02)) fail(route, width, 'home card typography, image ratio or gaps differ from the Research catalogue');
+      }
+      if (aboutRoutes.has(route)) {
+        if (!state.aboutMarker || state.aboutParagraphs.length < 2) fail(route, width, 'About paragraph scope is missing');
+        const alignmentCorrect = state.aboutParagraphs.every((paragraph) => width > 600
+          ? paragraph.align === 'justify' && paragraph.lastAlign === 'left' && paragraph.hyphens === 'auto'
+          : ['left', 'start'].includes(paragraph.align));
+        if (!alignmentCorrect) fail(route, width, `About paragraph alignment is wrong (${JSON.stringify(state.aboutParagraphs)})`);
+        if (state.aboutHeadingAlign === 'justify') fail(route, width, 'About headings must not inherit paragraph justification');
+        if (state.aboutParagraphs.some((paragraph) => Math.abs(paragraph.width - state.aboutProseWidth) > 1)) fail(route, width, 'About paragraphs no longer fill the available body column');
+      }
       if (width <= 1160) {
         if (Math.abs(state.networkHeight - 64) > 1) fail(route, width, `mobile header is ${state.networkHeight}px instead of 64px`);
         if (state.productDisplay !== 'none') fail(route, width, 'desktop product row remains visible below 1160px');
@@ -306,7 +435,7 @@ try {
         if (Math.abs(state.utilityWidth - 144) > 1) fail(route, width, `desktop utility is ${state.utilityWidth}px instead of 9rem`);
       }
       if (['/en/', '/lt/'].includes(route) && width === 1440) {
-        if (Math.abs(state.heroHeight - 377) > 1) fail(route, width, `home hero differs from the shared 377px frame (${state.heroHeight}px)`);
+        if (state.heroHeight < 319 || state.heroHeight > 460) fail(route, width, `home hero is outside the compact open-intro range (${state.heroHeight}px)`);
         if (state.heroChildOverflow > 1) fail(route, width, `home hero child overflows its panel by ${state.heroChildOverflow}px`);
       }
 
@@ -619,4 +748,4 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Responsive audit passed: ${routes.length} pages × ${widths.length} viewports plus no-JavaScript navigation, scroll-aware reading maps and wide-table inspection.`);
+console.log(`Responsive audit passed: ${routes.length} pages × ${widths.length} viewports, ${fullScreenRoutes.size} full-screen checks, plus no-JavaScript navigation, scroll-aware reading maps and wide-table inspection.`);

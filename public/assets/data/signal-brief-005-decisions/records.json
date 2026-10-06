@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "1.0.0",
+  "release": "decision-companions-2026-09-10-v1",
+  "preparedOn": "2026-09-10",
+  "publisher": "HECAVEX Research",
+  "status": "educational-source-companion",
+  "sourceCutoff": "2026-09-10",
+  "originalBriefCutoff": "2026-08-30T12:00:00Z",
+  "brief": {
+    "en": "https://hecavex.com/en/briefings/2026-08-30/",
+    "lt": "https://hecavex.com/lt/apzvalgos/2026-08-30/"
+  },
+  "limitations": [
+    "Selected two-advisory companion, not a current vulnerability feed or scanner.",
+    "Vendor facts and fictional organization decisions are separate.",
+    "KEV membership is dated evidence of exploitation somewhere, not proof of local compromise.",
+    "Listed historical remediation versions are not recommendations to install unsupported software; consult current vendor releases."
+  ],
+  "sources": [
+    {
+      "id": "gitea-advisory",
+      "url": "https://github.com/go-gitea/gitea/security/advisories/GHSA-rcr6-4jqh-j84m",
+      "publisher": "Gitea",
+      "published": "2026-07-28",
+      "accessed": "2026-09-10",
+      "locator": "Affected versions; Patched versions; Summary; trigger prerequisites"
+    },
+    {
+      "id": "owncloud-advisory",
+      "url": "https://owncloud.com/security-advisories/webdav-api-authentication-bypass-using-pre-signed-urls/",
+      "publisher": "ownCloud",
+      "published": "2023-11-21",
+      "accessed": "2026-09-10",
+      "locator": "Description; Affected; Fix"
+    },
+    {
+      "id": "owncloud-remediation",
+      "url": "https://owncloud.com/blogs/immediate-action-required-critical-security-updates-for-owncloud/",
+      "publisher": "ownCloud",
+      "accessed": "2026-09-10",
+      "locator": "Immediate Actions; Patch for Pre-Signed URL Issue"
+    },
+    {
+      "id": "cisa-kev",
+      "url": "https://raw.githubusercontent.com/cisagov/kev-data/main/known_exploited_vulnerabilities.json",
+      "publisher": "CISA",
+      "accessed": "2026-09-10",
+      "catalogueVersion": "2026.09.09",
+      "catalogueReleased": "2026-09-09T19:00:50.2591Z",
+      "locator": "Records CVE-2026-60004 and CVE-2023-49105"
+    }
+  ],
+  "records": [
+    {
+      "id": "CVE-2026-60004",
+      "product": "Gitea",
+      "affectedVersionStatement": ">=1.17, <1.27.1",
+      "citedRange": {
+        "minimum": "1.17.0",
+        "maximum": "1.27.1",
+        "maximumInclusive": false
+      },
+      "historicalFixedVersion": "1.27.1",
+      "versionSource": "gitea-advisory",
+      "excludedProducts": [],
+      "prerequisites": [
+        "Repository write access",
+        "Git 2.32 or newer",
+        "Enabled diffpatch route",
+        "Writable and executable temporary filesystem"
+      ],
+      "impact": "Execution in the Gitea service-account context.",
+      "kev": {
+        "state": "listed",
+        "dateAdded": "2026-08-25",
+        "checkedAt": "2026-09-10",
+        "source": "cisa-kev"
+      },
+      "epss": {
+        "probability": null,
+        "percentile": null,
+        "scoreDate": null,
+        "state": "not-collected"
+      },
+      "remediation": "Select a currently supported vendor release containing the fix. Restrict exposure while assessing and preserving evidence.",
+      "investigativeFollowup": [
+        "Establish reachable route and repository-write population",
+        "Preserve relevant service, repository and process evidence",
+        "Determine whether application and integration credentials require incident-response action"
+      ],
+      "localAssessmentRequired": true,
+      "sourceIds": [
+        "gitea-advisory",
+        "cisa-kev"
+      ]
+    },
+    {
+      "id": "CVE-2023-49105",
+      "product": "ownCloud Server",
+      "affectedVersionStatement": "core 10.6.0 through 10.13.0 in the specific advisory",
+      "citedRange": {
+        "minimum": "10.6.0",
+        "maximum": "10.13.0",
+        "maximumInclusive": true
+      },
+      "historicalFixedVersion": "10.13.3 (vendor remediation notice) or vendor patch",
+      "versionSource": "owncloud-advisory",
+      "remediationSource": "owncloud-remediation",
+      "excludedProducts": [
+        "ownCloud Infinite Scale",
+        "ownCloud Online"
+      ],
+      "prerequisites": [
+        "Known username",
+        "No signing key configured for the account"
+      ],
+      "impact": "Unauthenticated access, modification or deletion of affected users' files.",
+      "kev": {
+        "state": "listed",
+        "dateAdded": "2026-08-27",
+        "checkedAt": "2026-09-10",
+        "source": "cisa-kev"
+      },
+      "epss": {
+        "probability": null,
+        "percentile": null,
+        "scoreDate": null,
+        "state": "not-collected"
+      },
+      "remediation": "Consult the current vendor-supported remediation path. Preserve the specific advisory's affected range separately from the broader remediation notice.",
+      "investigativeFollowup": [
+        "Distinguish classic Server from excluded products",
+        "Preserve WebDAV and file-change evidence",
+        "Assess exposure and retention gaps; patching alone does not establish no compromise"
+      ],
+      "localAssessmentRequired": true,
+      "sourceIds": [
+        "owncloud-advisory",
+        "owncloud-remediation",
+        "cisa-kev"
+      ]
+    }
+  ]
+}

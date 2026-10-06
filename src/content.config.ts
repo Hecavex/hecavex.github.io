@@ -9,6 +9,7 @@ const imageSchema = z.union([
     hero: z.string().optional(),
     thumbnail: z.string().optional(),
     social: z.string().optional(),
+    presentation: z.enum(['illustration', 'evidence']).optional(),
     alt: z.string().default(''),
     width: z.number().optional(),
     height: z.number().optional(),

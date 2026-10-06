@@ -4,6 +4,7 @@ import ResourcePolicy from '../components/ResourcePolicy.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import CloudflareWebAnalytics from '../components/CloudflareWebAnalytics.astro';
 import type { Lang } from '../lib/site';
+import { citationDate, citationPath } from '../lib/publication-citations.mjs';
 
 interface Props {
   lang: Lang;
@@ -19,7 +20,7 @@ interface Props {
   image?: string;
   imageAlt?: string;
   noindex?: boolean;
-  type?: 'WebPage' | 'CollectionPage' | 'Article';
+  type?: 'WebPage' | 'CollectionPage' | 'Article' | 'ProfilePage';
   published?: Date;
   modified?: Date;
   breadcrumbs?: Array<{ name: string; path: string }>;
@@ -57,6 +58,7 @@ const pageNode: Record<string, unknown> = {
 };
 if (published) pageNode.datePublished = published.toISOString();
 if (modified) pageNode.dateModified = modified.toISOString();
+if (type === 'ProfilePage') pageNode.mainEntity = { '@id': 'https://hecavex.com/#deividas-lis' };
 if (type === 'Article') {
   pageNode.headline = title;
   pageNode.mainEntityOfPage = { '@type': 'WebPage', '@id': canonical.href };
@@ -79,8 +81,8 @@ if (breadcrumbNode) pageNode.breadcrumb = { '@id': breadcrumbNode['@id'] };
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    { '@type': 'Organization', '@id': 'https://hecavex.com/#organization', name: 'HECAVEX', url: 'https://hecavex.com/', logo: { '@type': 'ImageObject', '@id': 'https://hecavex.com/#logo', url: 'https://hecavex.com/icon-512.png', contentUrl: 'https://hecavex.com/icon-512.png', width: 512, height: 512 }, founder: { '@id': 'https://hecavex.com/#deividas-lis' }, sameAs: ['https://github.com/Hecavex', 'https://www.linkedin.com/in/deilis'] },
-    { '@type': 'Person', '@id': 'https://hecavex.com/#deividas-lis', name: 'Deividas Lis', url: 'https://hecavex.com/en/about/' },
+    { '@type': 'Organization', '@id': 'https://hecavex.com/#organization', name: 'HECAVEX', url: 'https://hecavex.com/', logo: { '@type': 'ImageObject', '@id': 'https://hecavex.com/#logo', url: 'https://hecavex.com/icon-512.png', contentUrl: 'https://hecavex.com/icon-512.png', width: 512, height: 512 }, founder: { '@id': 'https://hecavex.com/#deividas-lis' }, sameAs: ['https://github.com/Hecavex'] },
+    { '@type': 'Person', '@id': 'https://hecavex.com/#deividas-lis', name: 'Deividas Lis', url: 'https://hecavex.com/en/about/', description: 'Independent cyber threat intelligence researcher, former cybercrime investigator and public speaker.', sameAs: ['https://www.linkedin.com/in/deilis'] },
     { '@type': 'WebSite', '@id': 'https://hecavex.com/#website', name: 'HECAVEX', url: 'https://hecavex.com/', inLanguage: ['en', 'lt'], hasPart: [{ '@id': 'https://apt.hecavex.com/#website' }, { '@id': 'https://labs.hecavex.com/#website' }, { '@id': 'https://radar.hecavex.com/#website' }] },
     { '@type': 'WebSite', '@id': 'https://apt.hecavex.com/#website', name: 'APT Notes by HECAVEX', url: 'https://apt.hecavex.com/', isPartOf: { '@id': 'https://hecavex.com/#website' } },
     { '@type': 'WebSite', '@id': 'https://labs.hecavex.com/#website', name: 'HECAVEX Labs', url: 'https://labs.hecavex.com/', isPartOf: { '@id': 'https://hecavex.com/#website' } },
@@ -101,6 +103,17 @@ const assetQuery = `?v=${encodeURIComponent(assetVersion)}`;
     <meta name="theme-color" content="#111416" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {type === 'Article' && published && <>
+      <meta name="DC.title" content={title} />
+      <meta name="DC.creator" content="Lis, Deividas" />
+      <meta name="DC.publisher" content="HECAVEX" />
+      <meta name="DC.type" content="Text" />
+      <meta name="DC.date" content={citationDate(published)} />
+      <meta name="DC.language" content={lang} />
+      <meta name="DC.identifier" content={canonical.href} />
+      <link rel="alternate" type="application/x-bibtex" title="BibTeX" href={citationPath({ url: canonicalPath }, 'bib')} />
+      <link rel="alternate" type="application/vnd.citationstyles.csl+json" title="CSL-JSON" href={citationPath({ url: canonicalPath }, 'json')} />
+    </>}
     {noindex && <meta name="robots" content="noindex,follow" />}
     <link rel="canonical" href={canonical} />
     {languageAlternates
@@ -134,7 +147,7 @@ const assetQuery = `?v=${encodeURIComponent(assetVersion)}`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
     <meta name="twitter:image:alt" content={imageAlt} />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd).replaceAll('<', '\\u003c')} />
   </head>
   <body data-language={lang}>
     <a class="skip-link" href="#main-content">{lang === 'lt' ? 'Pereiti prie turinio' : 'Skip to content'}</a>

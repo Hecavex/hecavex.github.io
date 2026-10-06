@@ -49,6 +49,8 @@ methods: [static analysis, passive DNS, source validation]
 
 Publication approval requires both `draft: false` and `published: true`. Omitted flags do not publish.
 
+House style uses ASCII double quotes and no prose semicolons, including front matter and short fact labels. Use separate sentences, commas or conjunctions as appropriate. `scripts/validate-content.mjs` enforces this without changing fenced code or URLs.
+
 Evidence basis and methods are case-specific required fields. Historical versions or substantive review dates that were not recorded appear as "Not recorded", not as invented defaults. Publication and last-modification dates are not substituted for substantive review. A metadata clarification does not imply the underlying evidence was collected again.
 
 ## Artefacts
@@ -67,8 +69,36 @@ research_artifacts:
 
 Artifact versions are independent of the article version. Do not infer sample hashes from screenshot hashes. A screenshot proves only what it visibly records, not collection time, current infrastructure status or the availability of original sample bytes.
 
+## Monthly monitoring assessments
+
+Freeze a complete UTC-month input set, with separate publication, generator and input-data revisions. Verify immutable input bytes before calculating. Monthly unique hosts require cross-day deduplication, not adding daily unique counts. Distinguish the observed monthly cohort, event counts and the later current snapshot. Never apply snapshot evidence tiers to earlier observations or describe candidates as confirmed malicious sites.
+
+The September 2026 bundle at `public/assets/data/radar-september-2026-baseline/` includes source hashes, aggregate CSV/JSON and a standard-library Python replay. It reconstructs discovery from retained events but sums the published coverage bounds, not independent worker connection logs. Its fixture tests and bilingual built-site discovery checks run in `npm run verify`. Network reproduction of the 39 pinned inputs is a separate release check, not a dependency on live data during every build. Preserve published bundles and document substantive corrections through a new version.
+
 ## Updates
 
 Correct quiet formatting mistakes normally. When a source, finding, confidence level or conclusion changes, update `last_modified_at`, increase `research_version` and add a short entry to `updates` explaining what changed. Readers should not have to compare Git commits to discover that an assessment moved.
 
 English and Lithuanian versions keep the same `translation_key`, but each language can have its own review date and update wording.
+
+## Retrospective Signal Brief editions
+
+Coverage is not publication time. An edition prepared after its coverage window keeps the real preparation/publication date in `date`, its historical UTC window in `coverage_start` and `coverage_end`, and an explicit `information_cutoff`. State that it is retrospective in the opening. A date-based permalink can identify the coverage endpoint, but must not become a backdated citation or feed timestamp.
+
+Render coverage as UTC calendar dates through `src/lib/briefing-record.mjs`. The Markdown loader can hydrate unquoted YAML dates as `Date` objects; native string coercion would leak the build machine's timezone and produce different labels locally and in CI.
+
+Use dated primary material within the window, or explicitly identified earlier context. Prefer immutable official catalogue revisions when testing historical exploitation status. A mutable advisory is not proof that every word of its current page existed at the cutoff. Record that limitation, and do not import later findings into an earlier edition. Follow-up changes belong to the subsequent issue.
+
+Priority counts describe the actual editorial blocks, not a CVE total or vendor CVSS category. Keep English/Lithuanian CVE coverage and metadata aligned. End after the final substantive item and its actions/sources, without a generic "Bottom line" or "Esmė" summary.
+
+When publishing during the last coverage day, freeze a real UTC information cutoff and state prominently that the day is partial in both languages. Do not imply end-of-day coverage or include later updates. A live situation page's original publication date does not date its subsequent updates: record the timestamp of the latest included update.
+
+Batch publication can use one actual timestamp. The publication sorter uses issue number as the tie-break, so the higher issue remains first without invented time offsets. Generate just the new social cards with:
+
+```powershell
+node scripts/generate_social_cards.mjs hecavex-signal-brief-009 hecavex-signal-brief-010
+```
+
+The reviewed edition expectations live in `scripts/signal-brief-editions.mjs`: issue, UTC coverage, publication time, cutoff, retrospective status and editorial counts. Source tests, built-output checks and responsive browser routes consume that same matrix. Add each new EN/LT pair there and add its routes to `scripts/release-contract.mjs` for exact-byte live verification.
+
+The normal `npm run verify` gate includes source-level chronology/parity tests and a built-output briefing check covering home discovery, indexes, both feeds, search, archive, sitemap, citation dates, publication catalogue and social assets. Update the reviewed sitemap manifest for explicitly added routes, including any newly indexable repeated tags. Never remove the exact route gate to make a release pass.

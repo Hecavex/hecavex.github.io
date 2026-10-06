@@ -33,6 +33,8 @@ English and Lithuanian counterparts use the same `translation_key`. Draft templa
 
 Material corrections update the publication metadata and revision record; readers should not need Git history to discover that an assessment changed. Social cards, feeds, search indexes, structured data and route manifests are regenerated as part of the maintained release process.
 
+Approved articles also provide version-aware [citation exports](docs/CITATION-EXPORTS.md) in BibTeX and CSL-JSON. `/data/publications.json` links the bilingual catalogue without presenting translations as additional investigations. The [portable speaker kits](docs/MEDIA-KIT.md) provide linked appearances, reusable biographies and offline-readable text copies.
+
 ## Release contract
 
 The authoritative deployment is the GitHub Pages workflow on `main`. Every release is checked for content validity, Astro type safety, preserved public routes, internal-link and metadata integrity, accessibility, responsive behavior and payload budgets before the Pages artifact is published.

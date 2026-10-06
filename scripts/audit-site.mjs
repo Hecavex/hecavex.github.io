@@ -226,10 +226,10 @@ for (const [token, pattern] of [
   ['content width', /--content:\s*94rem/], ['network row', /--network-row:\s*4rem/], ['product row', /--product-row:\s*3\.25rem/],
   ['desktop header offset', /--header-offset:\s*7\.25rem/], ['mark size', /\.brand img\s*\{[^}]*width:\s*2\.25rem/s],
   ['product link height', /\.product-navigation a\s*\{[^}]*min-height:\s*3\.25rem/s], ['1160px collapse', /@media \((?:max-width:\s*1160px|width\s*<=\s*1160px)\)/],
-  ['page top spacing', /--page-space-top:\s*clamp\(3\.25rem,\s*5vw,\s*4\.75rem\)/],
+  ['page top spacing', /--page-space-top:\s*clamp\(2rem,\s*3vw,\s*3rem\)/],
   ['page bottom spacing', /--page-space-bottom:\s*clamp\(4rem,\s*8vw,\s*8rem\)/],
-  ['major section spacing', /--major-section-space:\s*clamp\(3\.5rem,\s*7vw,\s*6\.5rem\)/],
-  ['product hero height', /--frame-product-hero:\s*clamp\(21rem,\s*26\.2vw,\s*23\.5625rem\)/],
+  ['major section spacing', /--major-section-space:\s*clamp\(3rem,\s*5vw,\s*4\.5rem\)/],
+  ['product hero minimum height', /--frame-product-hero:\s*20rem/],
   ['page heading', /--page-title-size:\s*clamp\(2\.4rem,\s*3\.6vw,\s*3\.25rem\)/],
   ['section heading', /--section-title-size:\s*clamp\(1\.45rem,\s*2\.4vw,\s*2rem\)/],
   ['display heading', /--display-title-size:\s*clamp\(2\.5rem,\s*4\.2vw,\s*4rem\)/]

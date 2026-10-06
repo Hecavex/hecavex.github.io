@@ -26,11 +26,17 @@ HECAVEX is a public, read-only publication. Cite canonical article URLs and pres
 - [T1187 Forced Authentication](https://hecavex.com/en/research/t1187-forced-authentication-detection-mitigation/) / [T1187 aptikimas ir apsauga](https://hecavex.com/lt/tyrimai/t1187-forced-authentication-aptikimas-apsauga/)
 - [Evilginx detection](https://hecavex.com/en/research/evilginx-detection/) / [Evilginx aptikimas](https://hecavex.com/lt/tyrimai/evilginx-aptikimas/)
 - [Certificate Transparency brand monitoring](https://hecavex.com/en/research/certificate-transparency-brand-monitoring/) / [Certificate Transparency prekių ženklų stebėjimas](https://hecavex.com/lt/tyrimai/certificate-transparency-prekiu-zenklu-stebejimas/)
-- [Radar August 2026 baseline](https://hecavex.com/en/research/lithuania-phishing-infrastructure-radar-august-2026/) / [Radar 2026 m. rugpjūčio apžvalga](https://hecavex.com/lt/tyrimai/phishing-infrastruktura-lietuvoje-radar-2026-rugpjutis/)
+- [Radar September 2026 baseline](https://hecavex.com/en/research/lithuania-phishing-infrastructure-radar-september-2026/) / [Radar 2026 m. rugsėjo apžvalga](https://hecavex.com/lt/tyrimai/phishing-infrastruktura-lietuvoje-radar-2026-rugsejis/): Frozen source-history cohort, collection-time bounds and a separate snapshot. Monthly candidates are not confirmed phishing incidents and are not directly comparable with August's point-in-time population.
+- [September aggregate and replay package](https://hecavex.com/assets/data/radar-september-2026-baseline/README.md): Immutable input references, SHA-256 identities, aggregate outputs and executable replay. No new blocklist or raw candidate inventory.
+- [Earlier Radar August 2026 baseline](https://hecavex.com/en/research/lithuania-phishing-infrastructure-radar-august-2026/) / [Ankstesnė Radar 2026 m. rugpjūčio apžvalga](https://hecavex.com/lt/tyrimai/phishing-infrastruktura-lietuvoje-radar-2026-rugpjutis/)
 
 ## Machine-readable publication surfaces
 
-- [Public data catalogue](https://hecavex.com/data/): Portfolio index of canonical Radar, APT Notes, and Labs datasets.
+- [English Signal Briefs](https://hecavex.com/en/briefings/) / [Lietuviškos signalų apžvalgos](https://hecavex.com/lt/apzvalgos/): Source-linked period briefings. A coverage window is not a publication date; retrospective editions state both. Priority labels are editorial queues, not CVSS scores.
+- [English briefing feed](https://hecavex.com/en/briefings/feed.xml) / [Lithuanian briefing feed](https://hecavex.com/lt/apzvalgos/feed.xml): Signal Brief editions only, ordered by actual publication date and issue number.
+
+- [Public data catalogue](https://hecavex.com/data/): Portfolio index of canonical Research, Radar, APT Notes and Labs records.
+- [Publication metadata](https://hecavex.com/data/publications.json): Approved localized editions, original dates, recorded research versions, translation links and per-article BibTeX/CSL-JSON downloads. Translations are not additional investigations; publication dates are not review dates.
 - [English Atom feed](https://hecavex.com/en/feed.xml): Current English publications.
 - [Lithuanian Atom feed](https://hecavex.com/lt/feed.xml): Current Lithuanian publications.
 - [English search index](https://hecavex.com/en/search.json): Static public search records.

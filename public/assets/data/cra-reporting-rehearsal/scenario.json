@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "1.0.0",
+  "release": "cra-rehearsal-2026-09-10-v1",
+  "fictional": true,
+  "notOfficialForm": true,
+  "legalReview": "not-performed",
+  "scopeAssumption": "Fictional manufacturer with an in-scope product; applicability and awareness are explicit exercise assumptions, not automatic conclusions.",
+  "sources": [
+    {
+      "id": "enisa-srp",
+      "url": "https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp",
+      "accessed": "2026-09-10"
+    },
+    {
+      "id": "enisa-faq",
+      "url": "https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/frequently-asked-questions",
+      "accessed": "2026-09-10",
+      "locator": "Reporting timelines; counters FAQ 26"
+    },
+    {
+      "id": "commission",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/cra-reporting",
+      "accessed": "2026-09-10"
+    }
+  ],
+  "product": {
+    "name": "Example Edge Gateway — fictional",
+    "issue": "TRAINING-CRA-01 (not a CVE)",
+    "builds": [
+      {
+        "build": "2.4.0",
+        "component": "example-parser 1.8.0",
+        "affectedCode": "present",
+        "feature": "enabled",
+        "reachability": "confirmed in synthetic fixture",
+        "disposition": "included in exercise scope"
+      },
+      {
+        "build": "2.4.1",
+        "component": "example-parser 1.8.0",
+        "affectedCode": "present",
+        "feature": "disabled by default",
+        "reachability": "customer configuration unknown",
+        "disposition": "unresolved; a default does not prove all deployed configurations"
+      },
+      {
+        "build": "2.4.2",
+        "component": "example-parser 1.8.1",
+        "affectedCode": "removed in synthetic fixture",
+        "feature": "enabled",
+        "reachability": "not relevant to removal proof",
+        "disposition": "fixed exercise build; historical exposure still needs assessment"
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "id": "E01",
+      "at": "2026-09-14T08:00:00Z",
+      "type": "synthetic vendor notice",
+      "supports": "Affected component and exploitation reported in the fictional scenario",
+      "doesNotProve": "Presence, exploitation or reportability in the manufacturer's product"
+    },
+    {
+      "id": "E02",
+      "at": "2026-09-14T08:25:00Z",
+      "type": "synthetic build inventory",
+      "supports": "Component present in 2.4.0 and 2.4.1",
+      "doesNotProve": "All customer configurations or execution"
+    },
+    {
+      "id": "E03",
+      "at": "2026-09-14T09:00:00Z",
+      "type": "synthetic configuration test",
+      "supports": "Affected path reachable in 2.4.0 fixture",
+      "doesNotProve": "Customer deployment exposure"
+    },
+    {
+      "id": "E04",
+      "at": "2026-09-14T10:30:00Z",
+      "type": "fictional coordinator decision",
+      "supports": "Exercise assumes awareness threshold met for an actively exploited vulnerability contained in the scoped product",
+      "doesNotProve": "A real legal determination or a human review performed by HECAVEX"
+    },
+    {
+      "id": "E05",
+      "at": "2026-09-17T14:00:00Z",
+      "type": "synthetic remediation release",
+      "supports": "Corrective measure available in the exercise",
+      "doesNotProve": "Every customer installed it"
+    }
+  ],
+  "cases": [
+    {
+      "id": "vulnerability-path",
+      "kind": "actively-exploited-vulnerability",
+      "awarenessAt": "2026-09-14T10:30:00Z",
+      "earlyWarningSubmittedAt": "2026-09-14T15:00:00Z",
+      "notificationSubmittedAt": "2026-09-16T10:00:00Z",
+      "correctiveMeasureAvailableAt": "2026-09-17T14:00:00Z",
+      "exerciseExpected": {
+        "earlyWarningNoLaterThan": "2026-09-15T10:30:00.000Z",
+        "notificationNoLaterThan": "2026-09-17T10:30:00.000Z",
+        "finalReportNoLaterThan": "2026-10-01T14:00:00.000Z"
+      },
+      "authority": "Fictional Article 14 coordinator; PSIRT/engineering/legal participants are scenario roles, not real reviewers"
+    },
+    {
+      "id": "incident-path",
+      "kind": "severe-incident",
+      "awarenessAt": "2026-09-14T12:00:00Z",
+      "earlyWarningSubmittedAt": "2026-09-14T16:00:00Z",
+      "notificationSubmittedAt": "2026-09-16T15:00:00Z",
+      "correctiveMeasureAvailableAt": null,
+      "exerciseExpected": {
+        "earlyWarningNoLaterThan": "2026-09-15T12:00:00.000Z",
+        "notificationNoLaterThan": "2026-09-17T12:00:00.000Z",
+        "finalReportNoLaterThan": "2026-10-16T15:00:00.000Z"
+      },
+      "authority": "Fictional coordinator explicitly assumes severe-incident threshold; final example uses the actual notification timestamp"
+    }
+  ],
+  "unanswered": [
+    "Customer-specific configurations for build 2.4.1",
+    "Affected user scope and notification method",
+    "Whether a real scenario meets legal scope and awareness thresholds",
+    "Potential overlap with other reporting duties"
+  ],
+  "boundary": "Without undue delay remains relevant; computed outer times are rehearsal aids, not permission to wait or authoritative legal deadlines."
+}

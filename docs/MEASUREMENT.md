@@ -41,17 +41,13 @@ Primary provider references:
 
 All four production properties—HECAVEX Research, APT Notes, Radar and Labs—load the same Cloudflare Web Analytics site tag. Each repository installs its own beacon; navigating between properties does not transfer the script or browser state from one deployment to another.
 
-Labs' ATT&CK workspace is a distinct feature. It separately stores readiness assessments, incident timelines, observation drafts and workspace metadata in the visitor's `localStorage`; that workspace can be cleared in Labs or through browser site-data controls. Cloudflare Web Analytics does not use that workspace data.
+Current Labs explorers use transient filters/comparisons and deliberate URL sharing or file exports. They do not implement the former localStorage readiness/incident/draft workspace. Historical values may remain in an older visitor's browser, and the former Labs clearing control is unavailable. Browser site-data controls can remove those values. No automatic legacy deletion is claimed. Main enquiry drafts are in-memory and never auto-sent. Downloads are user-managed files, not analytics or persisted workspace records.
 
 Changes in another repository must be reviewed against the public privacy wording before deployment.
 
 ## Security boundary
 
-This site currently publishes no Content Security Policy, so no CSP allowlist was expanded for the beacon. If a policy is introduced later:
-
-- authorize the inline loader with a nonce or hash rather than broadly enabling unsafe inline scripts;
-- add only `https://static.cloudflareinsights.com/beacon.min.js` to `script-src`; and
-- add only `https://cloudflareinsights.com` to `connect-src` where the manual reporting endpoint requires it. A proxied same-origin `/cdn-cgi/rum` request is already covered by `self`.
+The site now publishes a meta Content Security Policy through `ResourcePolicy.astro`. Its script policy permits self-hosted JavaScript and `https://static.cloudflareinsights.com`, without unsafe inline scripts. The self-hosted analytics loader uses those permissions. `connect-src` permits the same origin and `https://cloudflareinsights.com` for reporting. This is the current source contract, not an assertion that response-header-only protections such as `frame-ancestors` have been deployed.
 
 Cloudflare does not currently offer a stable versioned beacon URL suitable for Subresource Integrity. Do not invent an integrity hash for the moving `beacon.min.js` target.
 

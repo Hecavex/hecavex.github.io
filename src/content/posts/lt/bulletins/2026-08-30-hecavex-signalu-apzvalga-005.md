@@ -12,6 +12,7 @@ seo_keywords:
   - "DI gateway atakos LiteLLM RAGFlow Kestra"
   - "CISA KEV 2026 rugpjūtis"
 date: 2026-08-30 15:30:00 +0300
+last_modified_at: 2026-09-22 14:00:00 +0300
 lang: lt
 translation_key: hecavex-signal-brief-005
 permalink: /lt/apzvalgos/2026-08-30/
@@ -50,6 +51,10 @@ image:
   alt: "Analitinis signalas kerta kūrimo platformas, DI valdymo sluoksnius, cloud saugyklas ir atviras kameras"
   thumbnail: /assets/img/series/hecavex-signal-brief.svg
 updates:
+  - date: 2026-09-22
+    note: "Pridėtos trijų retrospektyvių tęstinių apžvalgų nuorodos ir pašalinta bendro pobūdžio baigiamoji santrauka. Pradinė informacijos riba ir įrodymų rinkinys nepakeisti."
+  - date: 2026-09-10
+    note: "Pridėtas atskirai datuotas, šaltiniais susietas sprendimo rinkinys su fiktyviais sistemų pavyzdžiais. Pradinė apžvalgos informacijos riba nepakeista."
   - date: 2026-08-30
     note: "Pirmoji publikacija. Informacijos riba – 15:00 EEST."
 ---
@@ -57,6 +62,14 @@ updates:
 Šios savaitės skubiausiame sąraše nėra vienos produktų šeimos. Jame yra sistemos, stovinčios neįprastai arti kodo, credentials ir duomenų: source-code platforma, Oracle web sluoksnis, failų dalinimosi sistema, artifact repository ir keli DI valdymo sluoksniai. Per apžvalgos laikotarpį CISA į Known Exploited Vulnerabilities katalogą įtraukė vienuolika pažeidžiamumų. Juos sieja išnaudojimo įrodymai, bet ne vienodos prielaidos, poveikis ar remediation kelias. Visų vienuolikos įrašų ryšį su žinomomis ransomware kampanijomis CISA žymi kaip "Unknown".
 
 Šis skirtumas svarbus. Critical balas aprašo galimą poveikį nustatytomis sąlygomis. KEV įtraukimas sako, kad išnaudojimas buvo stebėtas. Nė vienas iš jų nepasako, ar jūsų instance buvo pasiekiamas, pažeidžiamas arba kompromituotas. Sakinį vis tiek turi užbaigti inventorius, pasiekiamumas ir įrodymai.
+
+## Nuo apžvalgos iki sprendimo savo aplinkoje
+
+Seriją tęsia [apžvalga #6, rugpjūčio 31–rugsėjo 6 d.](/lt/apzvalgos/2026-09-06/), [apžvalga #7, rugsėjo 7–13 d.](/lt/apzvalgos/2026-09-13/) ir [apžvalga #8, rugsėjo 14–20 d.](/lt/apzvalgos/2026-09-20/). Jos retrospektyviai parengtos rugsėjo 22 d. Apžvalgoje #6 užfiksuotas vėlesnis Artifactory išnaudojimo statuso pasikeitimas, neperrašant šios apžvalgos vertinimo ties rugpjūčio 30 d. informacijos riba.
+
+**Papildyta 2026 m. rugsėjo 10 d. Pradinė rugpjūčio 30 d. apžvalgos informacijos riba nepakeista.** Dviem pasirinktiems atvejams, Gitea ir ownCloud, parengtas [atkartojamas sprendimo rinkinys](/assets/data/signal-brief-005-decisions/README.lt.md): [JSON su šaltiniais](/assets/data/signal-brief-005-decisions/records.json), [CSV](/assets/data/signal-brief-005-decisions/records.csv), [tuščias sprendimo šablonas](/assets/data/signal-brief-005-decisions/decision-template.csv) ir [vietinis duomenų apdorojimo pavyzdys](/assets/data/signal-brief-005-decisions/consumer.mjs).
+
+Rinkinyje gamintojo nurodytos versijos, datuotas KEV įrašas, pasiekiamumas ir išnaudojimo prielaidos atskirti nuo organizacijos sprendimo. Trys **fiktyvūs** pavyzdžiai parodo, kodėl viešas kodo serveris, izoliuotas diegimas ir nežinoma failų serverio versija veda prie skirtingų veiksmų. EPSS nerinktas ir taip pažymėtas. Trūkstama versija lieka nežinoma. Nei programa, nei KEV įrašas nepatvirtina kompromitavimo jūsų aplinkoje. Istorinė pataisymo versija yra šaltinio faktas, ne patarimas šiandien diegti nebepalaikomą leidimą.
 
 ## Kūrimo ir turinio platformos
 
@@ -219,9 +232,3 @@ Praktinis tyrimo kelias pateiktas tekste [Vienas scam domenas retai būna vienas
 
 <p class="hx-signal-source"><a href="https://panevezys.policija.lrv.lt/lt/ivykiu-suvestines/2026-08-26-suvestine-4zp7/">Panevėžio policijos suvestinė →</a></p>
 </section>
-
-## Esmė
-
-Pradėkite nuo sistemų, kurios iš tikrųjų veikia aplinkoje ir yra arčiausiai kodo, credentials arba jautrių duomenų. Gitea, Oracle HTTP Server, ownCloud ir Artifactory reikia konkrečiam produktui pritaikytų veiksmų, ne vieno bendro vulnerability ticket. Likusiai KEV grupei reikia tos pačios disciplinos: atskirti interneto įėjimą nuo lokalaus privilege escalation ir pataisytą versiją nuo įrodymo, kad sistema niekada nebuvo išnaudota.
-
-Ilgesnis signalas yra architektūrinis. DI gateway ir orchestrator paveldi kiekvieno prijungto secret bei execution path vertę. Kameros paveldi jautrumą to, ką gali matyti ir kokį tinklą pasiekia. Marketplace pokalbis nepaveldi pasitikėjimo vien todėl, kad prasidėjo pažįstamoje platformoje. Pataisykite įvardytus produktus, bet kartu mažinkite prieigos ir įrodymų spragas, dėl kurių kiekvienas šių kelių tapo vertingas.

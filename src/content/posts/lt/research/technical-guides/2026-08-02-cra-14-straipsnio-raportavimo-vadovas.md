@@ -13,6 +13,9 @@ seo_keywords:
   - "rimtas produkto saugumo incidentas"
   - "24 ir 72 valandų terminai"
 date: 2026-08-02 14:15:00 +0300
+updates:
+  - date: 2026-09-10
+    note: "Pridėtas fiktyvus vietinis pranešimų pratimas, scenarijus su šaltiniais, tuščias šablonas ir patikrinti UTC skaičiavimai. Tai nėra oficiali pranešimo forma ar teisinė peržiūra."
 lang: lt
 translation_key: cra-article-14-reporting-guide
 permalink: /lt/tyrimai/cra-14-straipsnio-raportavimo-vadovas/
@@ -39,6 +42,14 @@ image:
   width: 1200
   height: 630
 ---
+
+## Išbandykite pranešimų pratimą
+
+Perskaityti terminus ir turėti pagrindžiamą sprendimą, kai laiko mažai, nėra tas pats. [Atsisiunčiamame pratime](/assets/data/cra-reporting-rehearsal/README.lt.md) pateiktas **fiktyvus** produktas su trimis versijomis, penki įrodymų įvykiai, atskiri pažeidžiamumo ir incidento keliai, [tuščias šablonas](/assets/data/cra-reporting-rehearsal/decision-template.csv), [scenarijaus JSON](/assets/data/cra-reporting-rehearsal/scenario.json) ir [nedidelė vietinė UTC programa](/assets/data/cra-reporting-rehearsal/rehearsal.mjs).
+
+Pratimo esmė: užrašyti, ką žinome, ko įrodymas nepatvirtina, kas priima sprendimą ir nuo kurio momento skaičiuojamas kiekvienas terminas. Nežinomas atskaitos taškas lieka nežinomas. Programa patikrina pateiktus pavyzdžius, bet nenustato teisinės apimties ar sužinojimo, nesiunčia pranešimo ir nepatvirtina pasirengimo. Mėnesio pabaigos teisiniam skaičiavimui reikia kvalifikuotos peržiūros. Pranešti reikia nedelsiant, be nepagrįsto delsimo: išorinė laiko riba nėra leidimas laukti.
+
+Tikram pranešimui ir aktualiai platformos informacijai naudokite [ENISA SRP puslapį](https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp) bei [oficialius DUK](https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/frequently-asked-questions). Rinkinio šaltiniai tikrinti 2026 m. rugsėjo 10 d. Realių dalyvių pratybos ar teisinis patvirtinimas nėra deklaruojami.
 
 ## Techninis scenarijus: kada pažeidžiamumo signalas tampa reguliaciniu klausimu
 

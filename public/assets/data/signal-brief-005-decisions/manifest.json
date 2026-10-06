@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0.0",
+  "release": "decision-companions-2026-09-10-v1",
+  "preparedOn": "2026-09-10",
+  "purpose": "Integrity manifest for an educational, offline companion; not a human review or production validation receipt",
+  "files": [
+    {
+      "path": "README.lt.md",
+      "bytes": 3111,
+      "sha256": "733d2baa3a68074c062e9b9bd4e9782035cc75d3625c059aa24df9fd715c5730"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4871,
+      "sha256": "1f328306730f00a0b67f1e9b46e3611424923016b197f60eb75b624c37afab30"
+    },
+    {
+      "path": "consumer.mjs",
+      "bytes": 3391,
+      "sha256": "9dba735a549a935b7a880f9638ab1a33dd76434e33ad030aeb9e57fcaf245dc8"
+    },
+    {
+      "path": "decision-template.csv",
+      "bytes": 274,
+      "sha256": "b4a4a9178fed04130f5b9d5dc292f7b95d4806cd38e3f39afeaa546a2a8727ef"
+    },
+    {
+      "path": "records.csv",
+      "bytes": 1221,
+      "sha256": "db1200ba6e11da7db8a6c4ab8ffd7b633431a29972be28eec314992654339d02"
+    },
+    {
+      "path": "records.json",
+      "bytes": 5210,
+      "sha256": "b8ad54d01274ee341ad744866e0faa1a5ef9470ea8bef90e24a35cdb94e92aec"
+    },
+    {
+      "path": "worked-decisions.json",
+      "bytes": 2850,
+      "sha256": "a9fcd7b53af069ce0c63fb4bea33b22d0dd7e4fa97f80f277b6122f8e30a5376"
+    }
+  ]
+}
