@@ -3,6 +3,10 @@
 /dist/
 /node_modules/
 
+# Python verification caches
+__pycache__/
+*.py[cod]
+
 # Local configuration and logs
 .env
 .env.*
