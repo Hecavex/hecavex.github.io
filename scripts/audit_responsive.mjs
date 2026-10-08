@@ -390,6 +390,21 @@ try {
       }
       if (route === '/' && (state.landingEditionCount !== 2 || state.landingCurrentCount !== 3 || state.landingNetworkCount !== 4)) fail(route, width, `root gateway is incomplete (${state.landingEditionCount} editions, ${state.landingCurrentCount} current records, ${state.landingNetworkCount} network links)`);
       if (homeRoutes.has(route)) {
+        const discovery = await page.evaluate(() => ({
+          taskRoutes: [...document.querySelectorAll('.home-route-rail li a')].map(link => ({ href: link.getAttribute('href'), height: link.getBoundingClientRect().height, text: link.textContent.trim() })),
+          updated: document.querySelector('.home-route-updated time')?.getAttribute('datetime'),
+          paths: [...document.querySelectorAll('.research-path')].map(path => ({
+            href: path.querySelector('h3 a')?.getAttribute('href'),
+            title: path.querySelector('h3 a')?.textContent.trim(),
+            summary: path.querySelector('.research-path-summary')?.textContent.trim(),
+            date: path.querySelector('time')?.getAttribute('datetime'),
+            citation: path.querySelector('a[download]')?.getAttribute('href'),
+            targets: [...path.querySelectorAll('a')].map(link => link.getBoundingClientRect().height)
+          }))
+        }));
+        const edition = route.slice(1, 3);
+        if (discovery.taskRoutes.length !== 4 || discovery.taskRoutes.some(link => !link.href?.startsWith(`/${edition}/`) && !(edition === 'en' && link.href === '/data/') || link.height < 43.5 || !link.text) || !discovery.updated) fail(route, width, `localized task discovery is incomplete (${JSON.stringify(discovery.taskRoutes)})`);
+        if (discovery.paths.length !== 4 || discovery.paths.some(path => !path.href?.startsWith(`/${edition}/`) || !path.title || !path.summary || !path.date || !path.citation?.endsWith('.bib') || path.targets.some(height => height < 43.5))) fail(route, width, 'compact reading paths lost their localized records, citations or accessible targets');
         const columns = width > 680 ? 2 : 1;
         const expectedCardWidth = (state.latestGridWidth - state.latestColumnGap * (columns - 1)) / columns;
         const cards = state.latestCardGeometry;

@@ -2,7 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
 import SpeakingInvitation from '../../components/SpeakingInvitation.astro';
-import { copy, dateText, findPage, getLocalizedPosts, latestContentUpdate, type Lang, type Post } from '../../lib/site';
+import HomeTaskRoutes from '../../components/HomeTaskRoutes.astro';
+import ResearchPaths from '../../components/ResearchPaths.astro';
+import { copy, findPage, getLocalizedPosts, latestContentUpdate, type Lang, type Post } from '../../lib/site';
 
 export function getStaticPaths() { return [{ params: { lang: 'en' } }, { params: { lang: 'lt' } }]; }
 const lang = Astro.params.lang as Lang;
@@ -36,15 +38,10 @@ const topicPosts = topicDefinitions
         <p class="eyebrow">{lang === 'lt' ? 'Nepriklausomi grėsmių žvalgybos tyrimai' : 'Independent threat intelligence research'}</p>
         <h1 id="home-title">{hx.tagline}</h1>
         <p class="hero-deck">{hx.supporting}</p>
-        <p>{lang === 'lt' ? 'Nepriklausomas Deivido Lis leidinys apie grėsmių žvalgybą, techninius tyrimus ir skaitmeninių grėsmių infrastruktūrą.' : 'An independent publication by Deividas Lis on threat intelligence, technical investigations and the infrastructure behind digital threats.'}</p>
+        <p>{lang === 'lt' ? 'Nepriklausomas Deivido Lis leidinys. Tyrimai, praktiniai vadovai ir šaltiniai pasiekiami be registracijos.' : 'An independent publication by Deividas Lis. Read the research, practical guides and sources without an account.'}</p>
         <div class="hero-actions"><a class="button button--primary" href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.all_articles}</a><a href={lang === 'lt' ? '/lt/metodika/' : '/en/methodology/'}>{lang === 'lt' ? 'Kaip atliekami tyrimai' : 'How the research is done'} →</a></div>
       </div>
-      <dl class="hero-index">
-        <div><dt>{lang === 'lt' ? 'Dėmesys' : 'Focus'}</dt><dd>CTI · OSINT · malware · fraud</dd></div>
-        <div><dt>{lang === 'lt' ? 'Leidėjas' : 'Publisher'}</dt><dd>Deividas Lis</dd></div>
-        <div><dt>{lang === 'lt' ? 'Prieiga' : 'Access'}</dt><dd>{lang === 'lt' ? 'Vieša · be registracijos' : 'Public · no account'}</dd></div>
-        <div><dt>{lang === 'lt' ? 'Atnaujinta' : 'Updated'}</dt><dd>{latestUpdate ? dateText(latestUpdate) : '—'}</dd></div>
-      </dl>
+      <HomeTaskRoutes {lang} {posts} {latestUpdate} />
     </section>
 
     {recent.length > 0 && <section class="home-section" aria-labelledby="latest-title">
@@ -54,7 +51,7 @@ const topicPosts = topicDefinitions
 
     {topicPosts.length > 0 && <section class="home-section" aria-labelledby="topic-title">
       <header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Temų keliai' : 'Research paths'}</p><h2 id="topic-title">{lang === 'lt' ? 'Pradėkite nuo temos' : 'Explore by topic'}</h2><p>{lang === 'lt' ? 'Atrinkti, nuolat vertingi tyrimai apie phishing, infrastruktūrą, kenkėjišką kodą ir CTI praktiką.' : 'Selected evergreen research on phishing, infrastructure, malware and practical threat intelligence.'}</p></div><a href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.view_all} →</a></header>
-      <div class="post-grid">{topicPosts.map(({ topic, post }) => <PostCard {post} eyebrow={topic[lang]} />)}</div>
+      <ResearchPaths {lang} entries={topicPosts.map(({ topic, post }) => ({ label: topic[lang], post }))} />
     </section>}
 
     <section class="home-signal-grid">

@@ -2,10 +2,14 @@
 
 Start here for focused retrieval. Follow the entrypoint for the feature; do not load the complete site or generated `dist` into an agent context.
 
+Use [MAINTENANCE.md](MAINTENANCE.md) for reproducible setup, verification and release operations; the root README routes readers and contributors into this map.
+
 | Responsibility | Source | Verification |
 | --- | --- | --- |
 | Root language gateway | `src/pages/index.astro` | route, responsive and reader-journey audits |
 | EN/LT home | `src/pages/[lang]/index.astro` | five-card parity and responsive checks |
+| Home reader-task routes and content date | `src/components/HomeTaskRoutes.astro` | `scripts/audit_responsive.mjs`: bilingual routes, real content-update time, accessible targets; static links work without JavaScript |
+| Compact evergreen reading paths and citations | `src/components/ResearchPaths.astro`, `src/lib/publication-citations.mjs` | responsive discovery checks and `scripts/check-citations.mjs`; retain publication date and approved record |
 | Research/profile catalogues | `src/pages/[lang]/[page].astro`, `src/data/page-context.ts` | content, action-rail, route assertions |
 | Article assembly | `src/pages/[lang]/[section]/[slug].astro` | citations, evidence, publication browser checks |
 | Publication eligibility and metadata | `src/lib/site.ts`, publication policy helpers | content validation; never bypass approval |

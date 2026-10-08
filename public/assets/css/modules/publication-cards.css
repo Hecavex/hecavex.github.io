@@ -139,25 +139,6 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
   margin-top: 1rem;
 }
 
-.hero-index {
-  display: grid;
-  min-width: 0;
-  margin: 0;
-  border-left: 1px solid var(--line-strong);
-}
-
-.hero-index div {
-  display: grid;
-  align-content: center;
-  padding: 0.9rem 1.2rem;
-  border-bottom: 1px solid var(--line);
-}
-
-.hero-index div:last-child {
-  border-bottom: 0;
-}
-
-.hero-index dt,
 .article-signals dt,
 .research-record dt {
   color: var(--faint);
@@ -166,7 +147,6 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
   text-transform: uppercase;
 }
 
-.hero-index dd,
 .article-signals dd {
   margin: 0.25rem 0 0;
   color: var(--text);
