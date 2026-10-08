@@ -2,10 +2,14 @@
 
 Start here for focused retrieval. Follow the entrypoint for the feature; do not load the complete site or generated `dist` into an agent context.
 
+Use [MAINTENANCE.md](MAINTENANCE.md) for reproducible setup, verification and release operations; the root README routes readers and contributors into this map.
+
 | Responsibility | Source | Verification |
 | --- | --- | --- |
 | Root language gateway | `src/pages/index.astro` | route, responsive and reader-journey audits |
 | EN/LT home | `src/pages/[lang]/index.astro` | five-card parity and responsive checks |
+| Home reader-task routes and content date | `src/components/HomeTaskRoutes.astro` | `scripts/audit_responsive.mjs`: bilingual routes, real content-update time, accessible targets; static links work without JavaScript |
+| Compact evergreen reading paths and citations | `src/components/ResearchPaths.astro`, `src/lib/publication-citations.mjs` | responsive discovery checks and `scripts/check-citations.mjs`; retain publication date and approved record |
 | Research/profile catalogues | `src/pages/[lang]/[page].astro`, `src/data/page-context.ts` | content, action-rail, route assertions |
 | Article assembly | `src/pages/[lang]/[section]/[slug].astro` | citations, evidence, publication browser checks |
 | Publication eligibility and metadata | `src/lib/site.ts`, publication policy helpers | content validation; never bypass approval |
@@ -40,3 +44,11 @@ Cards are typographic by default, with the real article title, summary, class, d
 - No external font service, account requirement or new tracking dependency.
 - Full verification: `npm run verify`. Use Node 24 LTS (supported Node >=22.13).
 - Screen-reader certification still requires an actual recorded human review; browser assertions are not a substitute.
+
+## Dependency updates
+
+`package.json` and `package-lock.json` own the reproducible toolchain. Astro and
+`@astrojs/markdown-remark` must satisfy Astro's optional peer dependency together;
+`.github/dependabot.yml` groups their updates as `astro-rendering`. Verify a clean
+`npm ci` and the full `npm run verify` gate. Do not bypass an incompatible pair
+with `--force` or `--legacy-peer-deps`.

@@ -1,0 +1,14 @@
+---
+import { dateText, type Lang, type Post } from '../lib/site';
+import { citationPath } from '../lib/publication-citations.mjs';
+interface Props { lang: Lang; entries: { label: string; post: Post }[]; }
+const { lang, entries } = Astro.props;
+---
+<ul class="research-paths">
+  {entries.map(({ label, post }) => <li class="research-path">
+    <p class="research-path-label">{label}</p>
+    <h3><a href={post.url}>{post.cardTitle}</a></h3>
+    <p class="research-path-summary">{post.description}</p>
+    <div class="research-path-record"><span><time datetime={post.date.toISOString()}>{dateText(post.date)}</time> · {post.readingMinutes} {lang === 'lt' ? 'min. skaitymo' : 'min read'}</span><a href={citationPath(post, 'bib')} download aria-label={`${lang === 'lt' ? 'Atsisiųsti BibTeX citatą' : 'Download BibTeX citation'}: ${post.title}`}>BibTeX</a></div>
+  </li>)}
+</ul>

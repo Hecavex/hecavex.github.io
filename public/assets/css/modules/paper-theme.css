@@ -83,10 +83,6 @@ main :is(.home-hero, .page-intro--with-facts) {
   font-size: clamp(1.04rem, 1.4vw, 1.15rem);
 }
 
-.home-shell .hero-index div {
-  padding-inline: clamp(1.2rem, 2vw, 2rem);
-}
-
 main :is(.button--primary, .hx-button--primary) {
   border-color: var(--cyan);
   background: var(--cyan);

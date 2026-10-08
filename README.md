@@ -1,63 +1,30 @@
 # HECAVEX Research
 
-This is the maintained source and publication record for [hecavex.com](https://hecavex.com), the bilingual cyber threat intelligence publication edited by Deividas Lis. It is the production website repository, not a general-purpose theme or starter project.
+Source for [hecavex.com](https://hecavex.com/), the English and Lithuanian cyber threat intelligence publication edited by Deividas Lis. Astro renders approved investigations, assessments, guides and Signal Briefs as a public static website.
 
-## Published surface
+## Read and explore
 
-HECAVEX Research publishes English and Lithuanian investigations, technical assessments, commentary and Signal Briefs. The site also holds the public methodology, author information, speaking and contact pages, taxonomies, feeds, search indexes and citable research artefacts attached to individual publications.
+- [English](https://hecavex.com/en/) and [Lietuviškai](https://hecavex.com/lt/): publication entrypoints.
+- [Research](https://hecavex.com/en/research/), [Signal Briefs](https://hecavex.com/en/briefings/) and [public data](https://hecavex.com/data/): investigations, dated coverage and reusable evidence.
+- [Methodology](https://hecavex.com/en/methodology/), [author](https://hecavex.com/en/about/) and [corrections](https://hecavex.com/en/corrections/): scope, authorship and material changes.
+- Related properties: [Radar](https://radar.hecavex.com/), [APT Notes](https://apt.hecavex.com/) and [Labs](https://labs.hecavex.com/).
 
-The production site is rendered as static HTML by Astro. It has no account system, content-management backend or application database. The interface uses the shared Cold Signal portfolio shell found across HECAVEX Research, Radar, APT Notes and Labs.
+## Find and change the source
 
-## Repository structure
+Start with [the code map](docs/CODEMAP.md). Publications belong in `src/content/posts/en/` and `src/content/posts/lt/`; page copy in `src/content/pages/`; routes and layouts in `src/pages/`, `src/components/` and `src/layouts/`; browser styles and scripts in `public/assets/`.
 
-- `src/content/posts/en/` and `src/content/posts/lt/` hold the canonical localized publications.
-- `src/content/pages/` contains maintained English and Lithuanian page copy.
-- `src/pages/` defines publication, feed, search, taxonomy and compatibility routes.
-- `src/components/` and `src/layouts/` implement the HECAVEX Research interface and portfolio shell.
-- `src/data/` contains editorial labels, taxonomy, glossary and project records.
-- `public/assets/` contains self-hosted fonts, publication artwork, downloadable research records, CSS and browser JavaScript.
-- `docs/` records the publication classes, editorial templates, measurement boundary and performance budgets.
-- `scripts/production-sitemap-routes.txt` preserves the route contract from the website rebuild.
+| Task | Authoritative guide |
+| --- | --- |
+| Local setup, checks and release operation | [Maintenance](docs/MAINTENANCE.md) |
+| Publication types, approval and bilingual metadata | [Editorial packages](docs/EDITORIAL-PACKAGES.md) and [templates](docs/templates/) |
+| Citation exports and speaker material | [Citations](docs/CITATION-EXPORTS.md) and [media kit](docs/MEDIA-KIT.md) |
+| Visual acceptance and payload limits | [Visual review](docs/EDITORIAL-VISUAL-REVIEW.md) and [performance budgets](docs/PERFORMANCE-BUDGETS.md) |
+| Audience measurement and privacy | [Measurement](docs/MEASUREMENT.md) |
 
-Generated output in `dist/`, Astro caches and dependency directories are operational by-products and are not part of the publication record.
-
-## Editorial operation
-
-Publications are maintained in three localized collections:
-
-- `blogs/` for commentary and publication notes;
-- `bulletins/` for time-bounded Signal Briefs; and
-- `research/` for investigations, malware analysis, technical assessments and guides.
-
-English and Lithuanian counterparts use the same `translation_key`. Draft templates live in `docs/templates/` and remain excluded from the public build until both `draft: false` and `published: true` are set. Evidence-bearing work includes a visible publication record covering scope, evidence basis, methods, confidence, TLP marking and revision history. The full contract is documented in [Publication format](docs/EDITORIAL-PACKAGES.md).
-
-Material corrections update the publication metadata and revision record; readers should not need Git history to discover that an assessment changed. Social cards, feeds, search indexes, structured data and route manifests are regenerated as part of the maintained release process.
-
-Approved articles also provide version-aware [citation exports](docs/CITATION-EXPORTS.md) in BibTeX and CSL-JSON. `/data/publications.json` links the bilingual catalogue without presenting translations as additional investigations. The [portable speaker kits](docs/MEDIA-KIT.md) provide linked appearances, reusable biographies and offline-readable text copies.
-
-## Release contract
-
-The authoritative deployment is the GitHub Pages workflow on `main`. Every release is checked for content validity, Astro type safety, preserved public routes, internal-link and metadata integrity, accessibility, responsive behavior and payload budgets before the Pages artifact is published.
-
-The same release gate is available to the maintainer as `npm run verify`. It is an operational control for this publication, not a promise that the repository is a supported downstream website package.
-
-Each build emits `release.json` with the Git revision and delivered-file SHA-256 values for representative English/Lithuanian pages, both data catalogues, search indexes, feeds and the security contact. The post-deploy check requires that exact revision and those bytes, not merely successful HTTP responses.
-
-Visual acceptance is separate from build validity. [The review contract](docs/EDITORIAL-VISUAL-REVIEW.md) provides a private preview-sheet command, evidence-caption requirements and the boundary for measured Search Console decisions.
-
-The production workflow requires the `HECAVEX_ANALYTICS_TOKEN` repository variable, includes the manually installed Cloudflare Web Analytics beacon and verifies that every generated shell page contains exactly one configured site tag. Local builds omit the beacon unless `PUBLIC_HECAVEX_ANALYTICS_TOKEN` is supplied. The loader honours `Do Not Track: 1`, and the implementation and portfolio boundaries are recorded in [Site measurement](docs/MEASUREMENT.md).
-
-## HECAVEX network
-
-- [HECAVEX Radar](https://radar.hecavex.com) publishes screened potential phishing signals relevant to Lithuania.
-- [APT Notes](https://apt.hecavex.com) maintains structured, source-backed threat-actor research.
-- [HECAVEX Labs](https://labs.hecavex.com) exposes inspectable research workspaces and bounded datasets.
-- [HECAVEX Data](https://hecavex.com/data/) is the portfolio catalogue for public machine-readable releases.
-
-Each property deploys independently while sharing the Cold Signal visual, navigation and accessibility contract.
+The maintainer release gate is `npm run verify`. This is the operated publication source; it is maintained for HECAVEX rather than offered as a supported website package. Generated output, dependencies, private editorial notes and credentials stay outside the publication record.
 
 ## Corrections, security and rights
 
-Corrections, broken links and accessibility problems can be reported through the contact route on [hecavex.com](https://hecavex.com/en/contact/). Website vulnerabilities must be reported privately under [the security policy](SECURITY.md); sensitive evidence does not belong in a public issue.
+Report corrections and accessibility problems through [contact](https://hecavex.com/en/contact/). Report vulnerabilities privately using [SECURITY.md](SECURITY.md).
 
-Original website code is covered by the repository's [MIT license](LICENSE). Author-written article text carrying the visible page notice is available under CC BY 4.0. Datasets, evidence, artwork, fonts and third-party material retain their package- or asset-specific terms. The complete [rights and reuse boundary](docs/RIGHTS.md) explains which rule applies; the software licence does not relicense the publication archive.
+Original software is [MIT](LICENSE). Article text carrying the published notice is CC BY 4.0; data, evidence, images, fonts and third-party material retain their own terms. [Rights and reuse](docs/RIGHTS.md) is the authoritative boundary. Package-level READMEs remain beside their evidence or font files because they carry release, reproduction and legal context.
