@@ -66,7 +66,14 @@ try {
     csp: !!document.querySelector('meta[http-equiv="Content-Security-Policy"]'),
     figures: [...document.querySelectorAll('.hx-evidence-figure')].map(f => ({ link: !!f.querySelector('a.evidence-original'), caption: !!f.querySelector('figcaption'), text: f.querySelector('a.evidence-original')?.textContent })),
     metadata: parseFloat(getComputedStyle(document.querySelector('.card-meta') ?? document.body).fontSize),
-    proseAligned: [...document.querySelectorAll('.article-body > p')].every(p => getComputedStyle(p).textAlign !== 'justify')
+    proseAligned: [...document.querySelectorAll('.article-body > p')].every(p => getComputedStyle(p).textAlign !== 'justify'),
+    callouts: [...document.querySelectorAll('.article-body aside.hx-callout')].map(aside => ({
+     title: aside.querySelector(':scope > p:first-child > strong')?.textContent.trim(),
+     body: aside.querySelector(':scope > p:nth-child(2)')?.textContent.trim(),
+     paragraphs: aside.querySelectorAll(':scope > p').length,
+     literalLink: /\[[^\]]+\]\([^)]+\)/.test(aside.textContent),
+     links: [...aside.querySelectorAll('a')].map(link => ({href:link.getAttribute('href'), text:link.textContent.trim(), focusable:link.tabIndex >= 0}))
+    }))
    }));
    check(!state.overflow, route + ' @ ' + width + ': overflow');
    check(state.actions === actions, route + ': immediate action scope/order');
@@ -75,6 +82,11 @@ try {
    if (route.includes('sms') || route.includes('adform')) check(state.figures.length > 0 && state.figures.every(f => f.link && f.caption), route + ': inspectable figures');
    check(state.metadata >= 12, route + ': metadata below 12px');
    if (width <= 600) check(state.proseAligned, route + ': narrow prose remains justified');
+   if (route.includes('sms')) {
+    const lithuanian = route.startsWith('/lt/');
+    check(state.callouts.length === (lithuanian ? 1 : 2) && state.callouts.every(callout => callout.title && callout.body && callout.paragraphs === 2 && !callout.literalLink), route + ': SMS callout title/body must be separate paragraphs without literal Markdown links');
+    if (lithuanian) check(state.callouts[0]?.links.some(link => link.href === '/lt/tyrimai/ka-daryti-suvedus-banko-duomenis-phishing-puslapyje/' && link.text === 'veiksmų po phishing incidento' && link.focusable), route + ': SMS incident-response link must be a keyboard-accessible native anchor');
+   }
    if (route.includes('github-and-malware')) {
     check(state.figures.length === 6 && state.figures.every(f => f.link && f.caption && /px/.test(f.text)), route + ': evidence links/captions/dimensions');
     await page.evaluate(() => document.fonts.ready);
