@@ -44,10 +44,17 @@ key_findings:
   - "A legitimate sign-in page does not prove a legitimate session request, and existing workload permissions can support destructive cloud operations without a new software exploit."
   - "Threat-report publication dates, observation periods and known denominators must remain visible when findings are used for local decisions."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/hecavex-signal-brief/session-trust-hero-v1.webp
   social: /assets/img/social/hecavex-signal-brief-009-en.png
-  alt: "Signal Brief 9 covering exploited gateways, device-code phishing, cloud identities and European threat assessment"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "A deceptive login route carries a symbolic access key past identity checks to a cloud service."
+  thumbnail: /assets/img/posts/hecavex-signal-brief/session-trust-card-v1.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-009-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-10-04
     note: "Initial retrospective publication covering 21–27 September. Information cutoff: 27 September 2026, 23:59:59 UTC."

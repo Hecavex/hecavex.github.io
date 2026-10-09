@@ -43,10 +43,17 @@ key_findings:
   - "N-central shows why installing the first hotfix is not the same thing as closing an incident: CVE-2026-18577 followed an incomplete fix and required additional mitigation."
   - "The Adform case shows that a trusted browser-side dependency can modify transaction data without installing persistent malware on the visitor's device."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/hecavex-signal-brief/control-plane-hero-v1.webp
   social: /assets/img/social/hecavex-signal-brief-002-en.png
-  alt: "An analytical signal crossing a radar of exposed management systems, build infrastructure and supply-chain dependencies"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "An exposed gateway connects an external network to an internal control panel across a trust boundary."
+  thumbnail: /assets/img/posts/hecavex-signal-brief/control-plane-card-v1.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-002-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-08-09
     note: "Initial publication. Information cut-off: 11:30 EEST."

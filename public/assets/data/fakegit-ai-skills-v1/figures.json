@@ -1,0 +1,1259 @@
+{
+  "version": "1.0",
+  "figures": [
+    {
+      "id": "chrome-readme-repoint-v2",
+      "path": "/assets/img/posts/fakegit-ai-skills/chrome-readme-repoint-v2.webp",
+      "presentation": "evidence",
+      "source_type": "source-evidence",
+      "source_url": "https://github.com/amanahmed2222/skills/commit/84a4fdc3840133c30e283ee34adb730b49d3dff4",
+      "captured_at_utc": "2026-10-09T13:54:56.577Z",
+      "browser": "Chrome",
+      "capture_surface": "Unscaled detail excerpts from the retained native capture; selected panels are composited where specified.",
+      "visible_claim": "README diff hunks containing four Markdown destination changes and one image-source change to a ZIP.",
+      "original_sha256": "11b0ef7c411c46f991eff2fa6dcd86aec1ac59b11a5dd42d1158ec59b82077d2",
+      "sha256": "87b1bd0304fd281b3ce8b3d0085ab9f819aaaad91542966ce023eecb80c4146c",
+      "width": 896,
+      "height": 1068,
+      "bytes": 180320,
+      "processing": [
+        "Unscaled rectangular detail crops from the retained annotated v1 derivative; noncontiguous panels, where present, are composited with neutral padding. Added only the owner-requested HECAVEX mark in a separate 32-pixel top margin. Existing red annotations and labelled redactions remain. Encoded as WebP. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "Source rectangles and output placements are recorded in detail_crop_provenance, with zero-based end-exclusive bounds.",
+        "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "The native original and superseded full-frame v1 derivative remain private."
+      ],
+      "limits": "Selected diff excerpts document the recorded source changes. They do not establish archive behavior, infection or the identity of the editor.",
+      "rights_boundary": "Source interface excerpts used for research commentary. Third-party interface, text and trademarks retain their respective rights.",
+      "caption": {
+        "en": "Four links and one image source now point to the same ZIP.",
+        "lt": "Keturios nuorodos ir vieno paveikslėlio šaltinis nukreipti į tą patį ZIP."
+      },
+      "alt": {
+        "en": "README diff excerpts showing four links and one image source redirected to a ZIP.",
+        "lt": "README pakeitimų ištraukos: keturios nuorodos ir vieno paveikslėlio šaltinis nukreipti į ZIP."
+      },
+      "historical_full_frame_v1": {
+        "capture_surface": "full browser page, native toolbar excluded",
+        "width": 914,
+        "height": 1814,
+        "bytes": 169940,
+        "sha256": "b8c91860dca2fc7a32dc3ca7b7507c5fccfe5127c6e6b152c71efca3db40bdb9",
+        "processing": [
+          "Retained complete capture geometry without cropping or scaling",
+          "Added separate editorial source/time header",
+          "Drew red rectangles over identified evidence",
+          "Encoded a lossy WebP derivative; retained original privately"
+        ],
+        "visible_claim": "README-only change and archive destinations",
+        "limits": "A screenshot documents visible page state. It does not establish archive behavior or infection. Native browser toolbar was not captured. Explorer advertisements are incidental source-page content.",
+        "asset_basename": "chrome-readme-repoint-v1.webp",
+        "scope": "Historical full-frame capture/v1 derivative only. These geometry and annotation coordinates do not describe the published v2 detail image."
+      },
+      "encoding": {
+        "format": "WebP",
+        "lossless": false
+      },
+      "detail_crop_provenance": {
+        "source_asset_basename": "chrome-readme-repoint-v1.webp",
+        "source_sha256": "b8c91860dca2fc7a32dc3ca7b7507c5fccfe5127c6e6b152c71efca3db40bdb9",
+        "native_original_basename": "chrome-k2-commit-full-original.jpg",
+        "native_original_sha256": "11b0ef7c411c46f991eff2fa6dcd86aec1ac59b11a5dd42d1158ec59b82077d2",
+        "coordinate_basis": "Source v1 derivative and output detail image, zero-based x/y, end-exclusive rectangle bounds.",
+        "panels": [
+          {
+            "role": "All four README archive redirection hunks",
+            "rect": [
+              16,
+              579,
+              912,
+              1615
+            ],
+            "place": [
+              0,
+              32,
+              896,
+              1068
+            ]
+          }
+        ],
+        "transform": "Unscaled rectangular detail crops from the retained annotated v1 derivative; noncontiguous panels, where present, are composited with neutral padding. Added only the owner-requested HECAVEX mark in a separate 32-pixel top margin. Existing red annotations and labelled redactions remain. Encoded as WebP. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "preencoding_pixel_check": "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "native_original_retained_privately": true,
+        "v1_derivative_retained_privately": true,
+        "branding": {
+          "text": "HECAVEX",
+          "margin_height": 32,
+          "position": [
+            12,
+            6
+          ],
+          "font": "Segoe UI Bold",
+          "font_size": 14
+        }
+      }
+    },
+    {
+      "id": "chrome-skill-directory-v2",
+      "path": "/assets/img/posts/fakegit-ai-skills/chrome-skill-directory-v2.webp",
+      "presentation": "evidence",
+      "source_type": "source-evidence",
+      "source_url": "https://github.com/amanahmed2222/skills/tree/84a4fdc3840133c30e283ee34adb730b49d3dff4/skills/create-branch",
+      "captured_at_utc": "2026-10-09T13:56:42.296Z",
+      "browser": "Chrome",
+      "capture_surface": "Unscaled detail excerpts from the retained native capture; selected panels are composited where specified.",
+      "visible_claim": "Pinned revision/path and filename entries for SKILL.md and its adjacent ZIP archive.",
+      "original_sha256": "1e961617063ccf75a487714ce61ad0cf2cc7036abcadeeb2b4237f8d5c00b098",
+      "sha256": "43ba3e74ccffed04b1b3c887403a3c3edfff5b7b5e7f9fe0118c67e3b14cb3b8",
+      "width": 478,
+      "height": 330,
+      "bytes": 11218,
+      "processing": [
+        "Unscaled rectangular detail crops from the retained annotated v1 derivative; noncontiguous panels, where present, are composited with neutral padding. Added only the owner-requested HECAVEX mark in a separate 32-pixel top margin. Existing red annotations and labelled redactions remain. Encoded as WebP. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "Source rectangles and output placements are recorded in detail_crop_provenance, with zero-based end-exclusive bounds.",
+        "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "The native original and superseded full-frame v1 derivative remain private."
+      ],
+      "limits": "Noncontiguous directory details show file entries at the inspected revision. They do not establish archive execution or installer behavior.",
+      "rights_boundary": "Source interface excerpts used for research commentary. Third-party interface, text and trademarks retain their respective rights.",
+      "caption": {
+        "en": "SKILL.md and the ZIP archive in the same create-branch directory.",
+        "lt": "SKILL.md ir ZIP archyvas tame pačiame create-branch kataloge."
+      },
+      "alt": {
+        "en": "Pinned revision and directory entries showing SKILL.md beside the ZIP archive.",
+        "lt": "Fiksuota versija ir katalogo įrašai: SKILL.md greta ZIP archyvo."
+      },
+      "historical_full_frame_v1": {
+        "capture_surface": "full browser page, native toolbar excluded",
+        "width": 914,
+        "height": 1049,
+        "bytes": 39162,
+        "sha256": "a78e082783a25e05d70e9ea08fb42e08b43c026e5d6d1c959f2f97f10a904017",
+        "processing": [
+          "Retained complete capture geometry without cropping or scaling",
+          "Added separate editorial source/time header",
+          "Drew red rectangles over identified evidence",
+          "Encoded a lossy WebP derivative; retained original privately"
+        ],
+        "visible_claim": "SKILL.md and adjacent archive entry",
+        "limits": "A screenshot documents visible page state. It does not establish archive behavior or infection. Native browser toolbar was not captured. Explorer advertisements are incidental source-page content.",
+        "asset_basename": "chrome-skill-directory-v1.webp",
+        "scope": "Historical full-frame capture/v1 derivative only. These geometry and annotation coordinates do not describe the published v2 detail image."
+      },
+      "encoding": {
+        "format": "WebP",
+        "lossless": false
+      },
+      "detail_crop_provenance": {
+        "source_asset_basename": "chrome-skill-directory-v1.webp",
+        "source_sha256": "a78e082783a25e05d70e9ea08fb42e08b43c026e5d6d1c959f2f97f10a904017",
+        "native_original_basename": "chrome-skill-directory-original.jpg",
+        "native_original_sha256": "1e961617063ccf75a487714ce61ad0cf2cc7036abcadeeb2b4237f8d5c00b098",
+        "coordinate_basis": "Source v1 derivative and output detail image, zero-based x/y, end-exclusive rectangle bounds.",
+        "panels": [
+          {
+            "role": "Pinned revision and skills/create-branch path",
+            "rect": [
+              16,
+              258,
+              470,
+              309
+            ],
+            "place": [
+              12,
+              44,
+              466,
+              95
+            ]
+          },
+          {
+            "role": "Directory filename column, including SKILL.md and adjacent ZIP",
+            "rect": [
+              16,
+              378,
+              300,
+              585
+            ],
+            "place": [
+              12,
+              111,
+              296,
+              318
+            ]
+          }
+        ],
+        "transform": "Unscaled rectangular detail crops from the retained annotated v1 derivative; noncontiguous panels, where present, are composited with neutral padding. Added only the owner-requested HECAVEX mark in a separate 32-pixel top margin. Existing red annotations and labelled redactions remain. Encoded as WebP. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "preencoding_pixel_check": "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "native_original_retained_privately": true,
+        "v1_derivative_retained_privately": true,
+        "branding": {
+          "text": "HECAVEX",
+          "margin_height": 32,
+          "position": [
+            12,
+            6
+          ],
+          "font": "Segoe UI Bold",
+          "font_size": 14
+        }
+      }
+    },
+    {
+      "id": "chrome-polygon-transaction-v2",
+      "path": "/assets/img/posts/fakegit-ai-skills/chrome-polygon-transaction-v2.webp",
+      "presentation": "evidence",
+      "source_type": "source-evidence",
+      "source_url": "https://polygonscan.com/tx/0x086f877cf8227cdc9ce2bcd905f121e0ea8449fb9216e38c506ccdbb16424fbf",
+      "captured_at_utc": "2026-10-09T13:57:12.930Z",
+      "browser": "Chrome",
+      "capture_surface": "Unscaled detail excerpts from the retained native capture; selected panels are composited where specified.",
+      "visible_claim": "Transaction hash, successful status, block, UTC timestamp, sender, recipient and encoded updateData input in selected excerpts.",
+      "original_sha256": "c7221c3402864067f7064fd4cf23ed0a63625a9d7969ae57921cfd9aef663c27",
+      "sha256": "8dd7ca19c1e7264b55ea571e1486b42804528246e0c2cdd925dd63f3a4657690",
+      "width": 914,
+      "height": 524,
+      "bytes": 50298,
+      "processing": [
+        "Unscaled rectangular detail crops from the retained annotated v1 derivative; noncontiguous panels, where present, are composited with neutral padding. Added only the owner-requested HECAVEX mark in a separate 32-pixel top margin. Existing red annotations and labelled redactions remain. Encoded as WebP. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "Source rectangles and output placements are recorded in detail_crop_provenance, with zero-based end-exclusive bounds.",
+        "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "The native original and superseded full-frame v1 derivative remain private."
+      ],
+      "limits": "Noncontiguous transaction details document the explorer record. Getter state comparisons are separately recorded RPC evidence, not measurements from this image.",
+      "rights_boundary": "Source interface excerpts used for research commentary. Third-party interface, text and trademarks retain their respective rights.",
+      "caption": {
+        "en": "The September 17 Polygon transaction: status, block, time and update input.",
+        "lt": "Rugsėjo 17 d. Polygon transakcija: būsena, blokas, laikas ir atnaujinimo įvestis."
+      },
+      "alt": {
+        "en": "September 17 Polygon transaction details showing status, block, time and update input.",
+        "lt": "Rugsėjo 17 d. Polygon transakcijos duomenys: būsena, blokas, laikas ir atnaujinimo įvestis."
+      },
+      "historical_full_frame_v1": {
+        "capture_surface": "full browser page, native toolbar excluded",
+        "width": 914,
+        "height": 2184,
+        "bytes": 161108,
+        "sha256": "0f149a96e2d46bbf7e9fdcf2c8432eb5cdd151c346b1adf6376f45966544529d",
+        "processing": [
+          "Retained complete capture geometry without cropping or scaling",
+          "Added separate editorial source/time header",
+          "Drew red rectangles over identified evidence",
+          "Encoded a lossy WebP derivative; retained original privately"
+        ],
+        "visible_claim": "Successful transaction, block, UTC timestamp and encoded input",
+        "limits": "A screenshot documents visible page state. It does not establish archive behavior or infection. Native browser toolbar was not captured. Explorer advertisements are incidental source-page content.",
+        "asset_basename": "chrome-polygon-transaction-v1.webp",
+        "scope": "Historical full-frame capture/v1 derivative only. These geometry and annotation coordinates do not describe the published v2 detail image."
+      },
+      "encoding": {
+        "format": "WebP",
+        "lossless": false
+      },
+      "detail_crop_provenance": {
+        "source_asset_basename": "chrome-polygon-transaction-v1.webp",
+        "source_sha256": "0f149a96e2d46bbf7e9fdcf2c8432eb5cdd151c346b1adf6376f45966544529d",
+        "native_original_basename": "chrome-polygon-transaction-original.jpg",
+        "native_original_sha256": "c7221c3402864067f7064fd4cf23ed0a63625a9d7969ae57921cfd9aef663c27",
+        "coordinate_basis": "Source v1 derivative and output detail image, zero-based x/y, end-exclusive rectangle bounds.",
+        "panels": [
+          {
+            "role": "Transaction hash, successful status, block and UTC timestamp",
+            "rect": [
+              20,
+              430,
+              908,
+              621
+            ],
+            "place": [
+              12,
+              44,
+              900,
+              235
+            ]
+          },
+          {
+            "role": "Transaction sender and recipient",
+            "rect": [
+              20,
+              744,
+              910,
+              839
+            ],
+            "place": [
+              12,
+              251,
+              902,
+              346
+            ]
+          },
+          {
+            "role": "Encoded updateData input",
+            "rect": [
+              255,
+              1224,
+              891,
+              1374
+            ],
+            "place": [
+              12,
+              362,
+              648,
+              512
+            ]
+          }
+        ],
+        "transform": "Unscaled rectangular detail crops from the retained annotated v1 derivative; noncontiguous panels, where present, are composited with neutral padding. Added only the owner-requested HECAVEX mark in a separate 32-pixel top margin. Existing red annotations and labelled redactions remain. Encoded as WebP. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "preencoding_pixel_check": "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "native_original_retained_privately": true,
+        "v1_derivative_retained_privately": true,
+        "branding": {
+          "text": "HECAVEX",
+          "margin_height": 32,
+          "position": [
+            12,
+            6
+          ],
+          "font": "Segoe UI Bold",
+          "font_size": 14
+        }
+      }
+    },
+    {
+      "id": "chrome-toxic-skill-prerequisite-v2",
+      "path": "/assets/img/posts/fakegit-ai-skills/chrome-toxic-skill-prerequisite-v2.webp",
+      "presentation": "evidence",
+      "source_type": "source-evidence",
+      "source_url": "https://github.com/aztr0nutzs/NET_NiNjA.v1.2/blob/b857b9cb9154c9be6f63295cca91d331be28c250/skills/skills-folders/whatsapp-mgv/SKILL.md?plain=1",
+      "captured_at_utc": "2026-10-09T14:15:37.909Z",
+      "browser": "Chrome",
+      "capture_surface": "Unscaled detail excerpts from the retained native capture; selected panels are composited where specified.",
+      "visible_claim": "SKILL.md prerequisite lines and context with the existing labelled destination and command redactions preserved.",
+      "original_sha256": "5cd2c971dbe68f19dac0b9816cda4eb9801aafd59a6e71321e305430265193d5",
+      "sha256": "93667982b1cc925c2ec78126fe4eccbd38124f40781497d04a1065cb594c9704",
+      "width": 841,
+      "height": 362,
+      "bytes": 32964,
+      "processing": [
+        "Unscaled rectangular detail crops from the retained annotated v1 derivative; noncontiguous panels, where present, are composited with neutral padding. Added only the owner-requested HECAVEX mark in a separate 32-pixel top margin. Existing red annotations and labelled redactions remain. Encoded as WebP. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "Source rectangles and output placements are recorded in detail_crop_provenance, with zero-based end-exclusive bounds.",
+        "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "The native original and superseded full-frame v1 derivative remain private."
+      ],
+      "limits": "Selected source lines retain explicit destination and command redactions. The original source extended beyond the captured horizontal view. No instruction was executed or payload destination requested.",
+      "rights_boundary": "Source interface excerpts used for research commentary. Third-party interface, text and trademarks retain their respective rights.",
+      "caption": {
+        "en": "The skill prerequisite, with its download destination and command redacted.",
+        "lt": "Įgūdžio paruošimo instrukcija su uždengtu atsisiuntimo adresu ir komanda."
+      },
+      "alt": {
+        "en": "Skill prerequisite lines with the download destination and embedded command redacted.",
+        "lt": "Įgūdžio paruošimo eilutės su uždengtu atsisiuntimo adresu ir įterpta komanda."
+      },
+      "historical_full_frame_v1": {
+        "capture_surface": "Chrome complete browser-page viewport without native browser toolbar",
+        "width": 914,
+        "height": 935,
+        "bytes": 65956,
+        "sha256": "414c1d03d9b4d513cfbd104a10db641a8d2d3400990405f4a9f732d95fa2f558",
+        "processing": [
+          "Retained complete capture geometry without cropping or scaling",
+          "Added separate editorial source/time header",
+          "Drew red rectangles over identified evidence",
+          "Encoded a lossy WebP derivative; retained original privately",
+          "Redacted payload destination and embedded command with explicit labels"
+        ],
+        "visible_claim": "Pinned skill source and visible prerequisite lines; command extends beyond viewport",
+        "limits": "Complete viewport, not a crop. Source code extends horizontally beyond the viewport. Text decoded separately as inert data. No instruction executed or payload destination requested.",
+        "asset_basename": "chrome-toxic-skill-prerequisite-v1.webp",
+        "scope": "Historical full-frame capture/v1 derivative only. These geometry and annotation coordinates do not describe the published v2 detail image."
+      },
+      "encoding": {
+        "format": "WebP",
+        "lossless": false
+      },
+      "detail_crop_provenance": {
+        "source_asset_basename": "chrome-toxic-skill-prerequisite-v1.webp",
+        "source_sha256": "414c1d03d9b4d513cfbd104a10db641a8d2d3400990405f4a9f732d95fa2f558",
+        "native_original_basename": "chrome-toxic-skill-viewport-original.jpg",
+        "native_original_sha256": "5cd2c971dbe68f19dac0b9816cda4eb9801aafd59a6e71321e305430265193d5",
+        "coordinate_basis": "Source v1 derivative and output detail image, zero-based x/y, end-exclusive rectangle bounds.",
+        "panels": [
+          {
+            "role": "SKILL.md context and prerequisite lines with retained destination and command redactions",
+            "rect": [
+              50,
+              441,
+              891,
+              771
+            ],
+            "place": [
+              0,
+              32,
+              841,
+              362
+            ]
+          }
+        ],
+        "transform": "Unscaled rectangular detail crops from the retained annotated v1 derivative; noncontiguous panels, where present, are composited with neutral padding. Added only the owner-requested HECAVEX mark in a separate 32-pixel top margin. Existing red annotations and labelled redactions remain. Encoded as WebP. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "preencoding_pixel_check": "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "native_original_retained_privately": true,
+        "v1_derivative_retained_privately": true,
+        "branding": {
+          "text": "HECAVEX",
+          "margin_height": 32,
+          "position": [
+            12,
+            6
+          ],
+          "font": "Segoe UI Bold",
+          "font_size": 14
+        }
+      }
+    },
+    {
+      "id": "chrome-vt-related-files-v2",
+      "path": "/assets/img/posts/fakegit-ai-skills/chrome-vt-related-files-v2.webp",
+      "presentation": "evidence",
+      "source_type": "source-evidence",
+      "source_url": "https://www.virustotal.com/gui/ip-address/185.10.68.110/relations",
+      "captured_at_utc": "2026-10-09T14:26:54.957Z",
+      "browser": "Chrome",
+      "capture_surface": "Unscaled detail excerpts from the retained native capture; selected panels are composited where specified.",
+      "visible_claim": "Ten displayed rows in the provider Communicating Files table, including one previously reported archive name and one redacted candidate row.",
+      "original_sha256": "85bcfe93da66985bcfb7f35e5fbb811a1b370290bafd9830abd8e98e34070ea1",
+      "sha256": "3128b7148afd41fa2f0e3f4ef66b1b54854b230736ec09ffc9082d488e0ecfdf",
+      "width": 802,
+      "height": 451,
+      "bytes": 33842,
+      "processing": [
+        "Unscaled rectangular detail crops from the retained annotated v1 derivative; noncontiguous panels, where present, are composited with neutral padding. Added only the owner-requested HECAVEX mark in a separate 32-pixel top margin. Existing red annotations and labelled redactions remain. Encoded as WebP. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "Source rectangles and output placements are recorded in detail_crop_provenance, with zero-based end-exclusive bounds.",
+        "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "The native original and superseded full-frame v1 derivative remain private."
+      ],
+      "limits": "Existing provider relationships, not independently observed communications or campaign totals. Ten displayed rows only. No Reanalyze, Load More, endpoint request or sample upload.",
+      "rights_boundary": "Source interface excerpts used for research commentary. Third-party interface, text and trademarks retain their respective rights.",
+      "caption": {
+        "en": "File relations used for the next GitHub search. The candidate details are redacted.",
+        "lt": "Failų ryšiai, panaudoti tolesnei GitHub paieškai. Kandidatės duomenys uždengti."
+      },
+      "alt": {
+        "en": "VirusTotal Communicating Files table with the withheld candidate row redacted.",
+        "lt": "VirusTotal Communicating Files lentelė su uždengta neviešinamos kandidatės eilute."
+      },
+      "historical_full_frame_v1": {
+        "capture_surface": "Chrome complete browser-page viewport without native browser toolbar",
+        "width": 914,
+        "height": 916,
+        "bytes": 56492,
+        "sha256": "8a1d7a421b477492e0eef587e954c16dc4c51a1a8344387c543dc33ce9bbcc80",
+        "processing": [
+          "Retained complete capture geometry without cropping or scaling",
+          "Added separate editorial source/time header",
+          "Drew red rectangles over identified evidence",
+          "Encoded a lossy WebP derivative; retained original privately",
+          "Redacted one identifying candidate row with an explicit label"
+        ],
+        "visible_claim": "Provider relationship table and one already reported skill-themed archive name; one candidate row redacted",
+        "limits": "Existing provider relationships, not independently observed communications or campaign totals. First ten rows visible. No Reanalyze/Load More/endpoint visit/upload.",
+        "asset_basename": "chrome-vt-related-files-v1.webp",
+        "scope": "Historical full-frame capture/v1 derivative only. These geometry and annotation coordinates do not describe the published v2 detail image."
+      },
+      "encoding": {
+        "format": "WebP",
+        "lossless": false
+      },
+      "detail_crop_provenance": {
+        "source_asset_basename": "chrome-vt-related-files-v1.webp",
+        "source_sha256": "8a1d7a421b477492e0eef587e954c16dc4c51a1a8344387c543dc33ce9bbcc80",
+        "native_original_basename": "chrome-vt-relations-original.jpg",
+        "native_original_sha256": "85bcfe93da66985bcfb7f35e5fbb811a1b370290bafd9830abd8e98e34070ea1",
+        "coordinate_basis": "Source v1 derivative and output detail image, zero-based x/y, end-exclusive rectangle bounds.",
+        "panels": [
+          {
+            "role": "Communicating Files table, ten displayed rows and retained candidate redaction",
+            "rect": [
+              50,
+              376,
+              852,
+              795
+            ],
+            "place": [
+              0,
+              32,
+              802,
+              451
+            ]
+          }
+        ],
+        "transform": "Unscaled rectangular detail crops from the retained annotated v1 derivative; noncontiguous panels, where present, are composited with neutral padding. Added only the owner-requested HECAVEX mark in a separate 32-pixel top margin. Existing red annotations and labelled redactions remain. Encoded as WebP. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "preencoding_pixel_check": "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "native_original_retained_privately": true,
+        "v1_derivative_retained_privately": true,
+        "branding": {
+          "text": "HECAVEX",
+          "margin_height": 32,
+          "position": [
+            12,
+            6
+          ],
+          "font": "Segoe UI Bold",
+          "font_size": 14
+        }
+      }
+    },
+    {
+      "id": "vscode-source-parser-v2",
+      "path": "/assets/img/posts/fakegit-ai-skills/vscode-source-parser-v2.webp",
+      "width": 1428,
+      "height": 518,
+      "bytes": 152888,
+      "sha256": "49970d190d3a7d6476f6308365cd8ef2e202987f6aeaf7d0ac58c5600da0894e",
+      "presentation": "evidence",
+      "source_type": "source-evidence",
+      "capture_receipt_id": "vscode-source-parser-capture-20261009",
+      "application": "Microsoft Visual Studio Code",
+      "capture_surface": "Unscaled detail excerpts from the retained native capture; selected panels are composited where specified.",
+      "observed_at_utc": "2026-10-09T15:29:16.841Z",
+      "clock_basis": "Post-capture artifact-save receipt; not a calibrated screenshot time or endpoint event time.",
+      "visible_claim": "Unscaled composite of original escaped source and fixed cipher/seed excerpts beside analyst-written decimal-byte and one-based chunk parsing code.",
+      "original_sha256": "84a7015c0bc6113e47b5277a16df4b7234f4d85264b71e78c56565141718dd77",
+      "original_detected_format": "JPEG",
+      "input_source": {
+        "url": "https://github.com/amanahmed2222/skills/commit/84a4fdc3840133c30e283ee34adb730b49d3dff4",
+        "role": "Pinned repository commit for the acquired source archive; not the screenshot source URL."
+      },
+      "processing": [
+        "Unscaled rectangular detail crops from the retained annotated v1 derivative; composited with neutral padding and encoded as WebP. Existing red annotations remain. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "Source rectangles and output placements are recorded in detail_crop_provenance, with zero-based end-exclusive bounds.",
+        "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "The native original and superseded full-frame v1 derivative remain private."
+      ],
+      "limits": "Inert original-source excerpts and analyst-written Python. This is not sample execution or a runtime trace. Opaque callee identity and reachability remain unresolved.",
+      "rights_boundary": "Native application-interface excerpts and analyst-authored analysis materials used for research commentary. Third-party interface and trademarks retain their respective rights.",
+      "caption": {
+        "en": "The escaped strings beside the Python parser.",
+        "lt": "Užkoduotos eilutės greta Python analizatoriaus."
+      },
+      "alt": {
+        "en": "Original escaped source excerpts beside the Python decimal-byte and chunk parsers.",
+        "lt": "Pirminės užkoduoto šaltinio ištraukos greta Python dešimtainių baitų ir teksto dalių analizatorių."
+      },
+      "historical_full_frame_v1": {
+        "capture_surface": "Complete native application window with title bar, editor panes and status bar",
+        "width": 1920,
+        "height": 1032,
+        "bytes": 266260,
+        "sha256": "bad9f090dd404218b52b141386f06c27fa0d2258584fcbfa09d098c1bf174ee2",
+        "processing": [
+          "Retained the complete native application-window geometry at 1920 by 1032 pixels; no crop, scaling or editorial header.",
+          "Redacted only two local-filesystem breadcrumb prefixes with opaque neutral rectangles; no substitute UI text.",
+          "Added red outline rectangles around the referenced source, analyst-code and result regions; code and result text preserved.",
+          "Encoded a high-quality lossy WebP derivative at quality 92, method 6. Before encoding, all pixels outside the disclosed outline/redaction mask are byte-identical to the decoded retained original."
+        ],
+        "encoding": {
+          "format": "WebP",
+          "lossless": false,
+          "quality": 92,
+          "method": 6
+        },
+        "annotation": {
+          "coordinate_basis": "Original 1920 by 1032 image, zero-based x/y; inclusive rectangle bounds",
+          "outline_rgb": [
+            239,
+            68,
+            68
+          ],
+          "line_width_pixels": 3,
+          "rectangles": [
+            {
+              "label": "original identifier",
+              "bounds": [
+                114,
+                187,
+                735,
+                226
+              ]
+            },
+            {
+              "label": "fixed seed",
+              "bounds": [
+                115,
+                243,
+                640,
+                282
+              ]
+            },
+            {
+              "label": "ciphertext chunks",
+              "bounds": [
+                115,
+                300,
+                865,
+                528
+              ]
+            },
+            {
+              "label": "decimal escape parser",
+              "bounds": [
+                1103,
+                257,
+                1690,
+                430
+              ]
+            },
+            {
+              "label": "one-based chunk join",
+              "bounds": [
+                1073,
+                923,
+                1685,
+                998
+              ]
+            }
+          ]
+        },
+        "redactions": {
+          "reason": "Local filesystem breadcrumb prefixes",
+          "fill_rgb": [
+            35,
+            40,
+            47
+          ],
+          "rectangles": [
+            [
+              52,
+              68,
+              650,
+              90
+            ],
+            [
+              991,
+              68,
+              1595,
+              90
+            ]
+          ]
+        },
+        "visible_claim": "Original decimal-escaped literal and fixed cipher/seed excerpts beside the bounded analyst parser.",
+        "limits": "Native VS Code view of saved inert source excerpts and analyst-written Python. It is not a GitHub page, sample execution, terminal display or runtime trace. This capture does not establish opaque callee identity or reachability.",
+        "asset_basename": "vscode-source-parser-v1.webp",
+        "scope": "Historical full-frame capture/v1 derivative only. These geometry and annotation coordinates do not describe the published v2 detail image."
+      },
+      "encoding": {
+        "format": "WebP",
+        "lossless": false
+      },
+      "detail_crop_provenance": {
+        "source_asset_basename": "vscode-source-parser-v1.webp",
+        "source_sha256": "bad9f090dd404218b52b141386f06c27fa0d2258584fcbfa09d098c1bf174ee2",
+        "native_original_basename": "vscode-source-parser-original.jpg",
+        "native_original_sha256": "84a7015c0bc6113e47b5277a16df4b7234f4d85264b71e78c56565141718dd77",
+        "coordinate_basis": "Source v1 derivative and output detail image, zero-based x/y, end-exclusive rectangle bounds.",
+        "panels": [
+          {
+            "role": "Original source excerpts, byte offsets and acquisition hash",
+            "rect": [
+              113,
+              91,
+              870,
+              585
+            ],
+            "place": [
+              12,
+              12,
+              769,
+              506
+            ]
+          },
+          {
+            "role": "Python parser branch for Lua decimal byte escapes",
+            "rect": [
+              1098,
+              256,
+              1698,
+              432
+            ],
+            "place": [
+              789,
+              12,
+              1389,
+              188
+            ]
+          },
+          {
+            "role": "Python parser branch for constant character permutation",
+            "rect": [
+              1067,
+              922,
+              1694,
+              1000
+            ],
+            "place": [
+              789,
+              208,
+              1416,
+              286
+            ]
+          }
+        ],
+        "transform": "Unscaled rectangular detail crops from the retained annotated v1 derivative; composited with neutral padding and encoded as WebP. Existing red annotations remain. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "preencoding_pixel_check": "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "native_original_retained_privately": true,
+        "v1_derivative_retained_privately": true
+      }
+    },
+    {
+      "id": "vscode-transform-output-v2",
+      "path": "/assets/img/posts/fakegit-ai-skills/vscode-transform-output-v2.webp",
+      "width": 1449,
+      "height": 557,
+      "bytes": 150074,
+      "sha256": "780371b15dbd066bc9ebf509ede2e6c06ea33618c4fe922afa5da974413f9857",
+      "presentation": "evidence",
+      "source_type": "source-evidence",
+      "capture_receipt_id": "vscode-transform-output-capture-20261009",
+      "application": "Microsoft Visual Studio Code",
+      "capture_surface": "Unscaled detail excerpts from the retained native capture; selected panels are composited where specified.",
+      "observed_at_utc": "2026-10-09T15:30:41.911Z",
+      "clock_basis": "Post-capture artifact-save receipt; not a calibrated screenshot time or endpoint event time.",
+      "visible_claim": "Unscaled composite of the bounded analyst constant_transform function with Prometheus attribution and saved stdout containing the placeholder JSON and static-scope limit.",
+      "original_sha256": "121bb333c320b8fb06013bc8c9797ba3e06b8e0a72369de0e80b27a73727bb6d",
+      "original_detected_format": "JPEG",
+      "input_source": {
+        "url": "https://github.com/amanahmed2222/skills/commit/84a4fdc3840133c30e283ee34adb730b49d3dff4",
+        "role": "Pinned repository commit for the acquired source archive; not the screenshot source URL."
+      },
+      "processing": [
+        "Unscaled rectangular detail crops from the retained annotated v1 derivative; composited with neutral padding and encoded as WebP. Existing red annotations remain. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "Source rectangles and output placements are recorded in detail_crop_provenance, with zero-based end-exclusive bounds.",
+        "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "The native original and superseded full-frame v1 derivative remain private."
+      ],
+      "limits": "Saved stdout from analyst-authored Python, not a live terminal, Lua execution or observed sample behavior. The recovered template has placeholders only and does not independently identify a Polygon contract or endpoint.",
+      "rights_boundary": "Native application-interface excerpts and analyst-authored analysis materials used for research commentary. Third-party interface and trademarks retain their respective rights.",
+      "caption": {
+        "en": "The transform and its saved result.",
+        "lt": "Transformacija ir jos išsaugotas rezultatas."
+      },
+      "alt": {
+        "en": "The bounded mathematical transform beside its saved output and placeholder JSON.",
+        "lt": "Ribota matematinė transformacija greta išsaugotos išvesties ir JSON su vietaženkliais."
+      },
+      "historical_full_frame_v1": {
+        "capture_surface": "Complete native application window with title bar, editor panes and status bar",
+        "width": 1920,
+        "height": 1032,
+        "bytes": 249578,
+        "sha256": "825362b678f155e0614fe3b434847724ef38ad046b98323b09006a8fa27e603e",
+        "processing": [
+          "Retained the complete native application-window geometry at 1920 by 1032 pixels; no crop, scaling or editorial header.",
+          "Redacted only two local-filesystem breadcrumb prefixes with opaque neutral rectangles; no substitute UI text.",
+          "Added red outline rectangles around the referenced source, analyst-code and result regions; code and result text preserved.",
+          "Encoded a high-quality lossy WebP derivative at quality 92, method 6. Before encoding, all pixels outside the disclosed outline/redaction mask are byte-identical to the decoded retained original."
+        ],
+        "encoding": {
+          "format": "WebP",
+          "lossless": false,
+          "quality": 92,
+          "method": 6
+        },
+        "annotation": {
+          "coordinate_basis": "Original 1920 by 1032 image, zero-based x/y; inclusive rectangle bounds",
+          "outline_rgb": [
+            239,
+            68,
+            68
+          ],
+          "line_width_pixels": 3,
+          "rectangles": [
+            {
+              "label": "mathematical recurrence",
+              "bounds": [
+                177,
+                335,
+                767,
+                449
+              ]
+            },
+            {
+              "label": "high-byte-first extraction",
+              "bounds": [
+                177,
+                542,
+                837,
+                624
+              ]
+            },
+            {
+              "label": "identifier output",
+              "bounds": [
+                1044,
+                148,
+                1574,
+                225
+              ]
+            },
+            {
+              "label": "placeholder JSON output",
+              "bounds": [
+                1044,
+                337,
+                1425,
+                566
+              ]
+            }
+          ]
+        },
+        "redactions": {
+          "reason": "Local filesystem breadcrumb prefixes",
+          "fill_rgb": [
+            35,
+            40,
+            47
+          ],
+          "rectangles": [
+            [
+              52,
+              68,
+              650,
+              90
+            ],
+            [
+              991,
+              68,
+              1595,
+              90
+            ]
+          ]
+        },
+        "visible_claim": "Analyst mathematical transform and saved actual Python stdout showing currentDllPath and placeholder-only eth_call JSON.",
+        "limits": "Native VS Code view of an analyst-written transform and saved actual Python stdout, not a terminal execution capture or malware runtime telemetry. Placeholder JSON supplies no actual contract, getter or RPC destination and does not independently link these bytes to the later Polygon contract.",
+        "asset_basename": "vscode-transform-output-v1.webp",
+        "scope": "Historical full-frame capture/v1 derivative only. These geometry and annotation coordinates do not describe the published v2 detail image."
+      },
+      "encoding": {
+        "format": "WebP",
+        "lossless": false
+      },
+      "detail_crop_provenance": {
+        "source_asset_basename": "vscode-transform-output-v1.webp",
+        "source_sha256": "825362b678f155e0614fe3b434847724ef38ad046b98323b09006a8fa27e603e",
+        "native_original_basename": "vscode-transform-output-original.jpg",
+        "native_original_sha256": "121bb333c320b8fb06013bc8c9797ba3e06b8e0a72369de0e80b27a73727bb6d",
+        "coordinate_basis": "Source v1 derivative and output detail image, zero-based x/y, end-exclusive rectangle bounds.",
+        "panels": [
+          {
+            "role": "Complete bounded constant_transform function with Prometheus attribution",
+            "rect": [
+              113,
+              108,
+              858,
+              641
+            ],
+            "place": [
+              12,
+              12,
+              757,
+              545
+            ]
+          },
+          {
+            "role": "Saved literal and constant transform output, including static scope limitation",
+            "rect": [
+              1040,
+              90,
+              1700,
+              623
+            ],
+            "place": [
+              777,
+              12,
+              1437,
+              545
+            ]
+          }
+        ],
+        "transform": "Unscaled rectangular detail crops from the retained annotated v1 derivative; composited with neutral padding and encoded as WebP. Existing red annotations remain. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "preencoding_pixel_check": "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "native_original_retained_privately": true,
+        "v1_derivative_retained_privately": true
+      }
+    },
+    {
+      "id": "vscode-original-files-v2",
+      "path": "/assets/img/posts/fakegit-ai-skills/vscode-original-files-v2.webp",
+      "width": 783,
+      "height": 329,
+      "bytes": 86316,
+      "sha256": "63e8337fb71a117fad1e85d12fa0eda4876b1d5984dcb31e81228a165e76e134",
+      "presentation": "evidence",
+      "source_type": "source-evidence",
+      "capture_receipt_id": "vscode-original-files-capture-20261009",
+      "application": "Microsoft Visual Studio Code",
+      "capture_surface": "Unscaled detail excerpts from the retained native capture; selected panels are composited where specified.",
+      "observed_at_utc": "2026-10-09T15:47:56.987Z",
+      "clock_basis": "Post-capture artifact-save receipt; not a calibrated screenshot time or endpoint event time.",
+      "visible_claim": "Unscaled detail composite of the complete unchanged icon16.txt file opening and the original complete App.bat launcher line. No inventory panel is included.",
+      "original_sha256": "b451f4dfa89fdff3a9e0d81303dcd0cd8aede23af99ffe481df3d8c7968038c1",
+      "original_detected_format": "JPEG",
+      "input_source": {
+        "url": "https://github.com/amanahmed2222/skills/commit/84a4fdc3840133c30e283ee34adb730b49d3dff4",
+        "role": "Pinned repository commit for the acquired source archive; not the screenshot source URL."
+      },
+      "prepared_original_member_hashes": {
+        "icon16.txt": "33250ded61c43128b6c29b01de7b1cc962b241b236933f54bc42b648afae2398",
+        "App.bat": "a96ffc9f649333f9e84b7a7e1101cf85f7a5f143253db1d7853e6e48d46b3c72",
+        "lua51.dll": "c740061da4971cdf36a102637f80fc23dbff5769c1ec2156fcd90764237d51e2"
+      },
+      "processing": [
+        "Unscaled rectangular detail crops from the retained annotated v1 derivative; composited with neutral padding and encoded as WebP. Existing red annotations remain. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "Source rectangles and output placements are recorded in detail_crop_provenance, with zero-based end-exclusive bounds.",
+        "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "The native original and superseded full-frame v1 derivative remain private."
+      ],
+      "limits": "Only the opening of the complete retained Lua file is shown. The 29-byte launcher is visible as text. Original bytes, intended invocation and observed execution remain distinct; no sample was executed.",
+      "rights_boundary": "Native application-interface excerpts and analyst-authored analysis materials used for research commentary. Third-party interface and trademarks retain their respective rights.",
+      "caption": {
+        "en": "The original Lua opening and its launcher.",
+        "lt": "Pirminio Lua pradžia ir jo paleidimo failas."
+      },
+      "alt": {
+        "en": "Original obfuscated Lua opening above the unchanged App.bat launcher line.",
+        "lt": "Pirminio užmaskuoto Lua pradžia, po ja nepakeista App.bat paleidimo eilutė."
+      },
+      "historical_full_frame_v1": {
+        "capture_surface": "Complete native application window with title bar, three editor panes and status bar",
+        "width": 1920,
+        "height": 1032,
+        "bytes": 378888,
+        "sha256": "a0b6870172cf560b70d54d90a5ad96759805f519f3e3f492f9c34fdbdfeee351",
+        "processing": [
+          "Retained complete native application-window geometry at 1920 by 1032 pixels; no crop, scaling or editorial header.",
+          "Redacted only three local-filesystem breadcrumb prefixes with opaque neutral rectangles; filenames and inventory caveats preserved.",
+          "Added red outline rectangles in margins around the referenced source, header-byte and inventory regions; no replacement source or UI text.",
+          "Encoded a high-quality lossy WebP derivative at quality 88, method 6. Before encoding, all pixels outside the disclosed outline/redaction mask are byte-identical to the decoded retained JPEG original."
+        ],
+        "encoding": {
+          "format": "WebP",
+          "lossless": false,
+          "quality": 88,
+          "method": 6
+        },
+        "annotation": {
+          "coordinate_basis": "Original 1920 by 1032 image, zero-based x/y; inclusive rectangle bounds",
+          "outline_rgb": [
+            239,
+            68,
+            68
+          ],
+          "line_width_pixels": 3,
+          "rectangles": [
+            {
+              "label": "opening original Lua viewport",
+              "bounds": [
+                114,
+                92,
+                870,
+                342
+              ]
+            },
+            {
+              "label": "complete original launcher text",
+              "bounds": [
+                1046,
+                91,
+                1295,
+                112
+              ]
+            },
+            {
+              "label": "archive identity and acquisition hashes",
+              "bounds": [
+                1046,
+                297,
+                1750,
+                370
+              ]
+            },
+            {
+              "label": "original Lua size and acquisition hash",
+              "bounds": [
+                1045,
+                562,
+                1765,
+                641
+              ]
+            }
+          ]
+        },
+        "redactions": {
+          "reason": "Local filesystem breadcrumb prefixes",
+          "fill_rgb": [
+            35,
+            40,
+            47
+          ],
+          "rectangles": [
+            [
+              66,
+              68,
+              632,
+              88
+            ],
+            [
+              996,
+              68,
+              1560,
+              88
+            ],
+            [
+              996,
+              236,
+              1560,
+              255
+            ]
+          ]
+        },
+        "visible_claim": "The complete unchanged original TXT file is open with its opening viewport visible; the complete original BAT and an analyst-created archive inventory are displayed alongside it.",
+        "limits": "Only the opening editor viewport of the full unchanged TXT file is visible, not its complete contents. The BAT is shown as inert text. The inventory is an analyst-created saved record, not terminal telemetry. No sample was executed; the original TXT, BAT and DLL remain private.",
+        "asset_basename": "vscode-original-files-v1.webp",
+        "scope": "Historical full-frame capture/v1 derivative only. These geometry and annotation coordinates do not describe the published v2 detail image."
+      },
+      "encoding": {
+        "format": "WebP",
+        "lossless": false
+      },
+      "detail_crop_provenance": {
+        "source_asset_basename": "vscode-original-files-v1.webp",
+        "source_sha256": "a0b6870172cf560b70d54d90a5ad96759805f519f3e3f492f9c34fdbdfeee351",
+        "native_original_basename": "vscode-original-files-original.jpg",
+        "native_original_sha256": "b451f4dfa89fdff3a9e0d81303dcd0cd8aede23af99ffe481df3d8c7968038c1",
+        "coordinate_basis": "Source v1 derivative and output detail image, zero-based x/y, end-exclusive rectangle bounds.",
+        "panels": [
+          {
+            "role": "Original icon16.txt opening, including AT character permutation",
+            "rect": [
+              113,
+              91,
+              872,
+              355
+            ],
+            "place": [
+              12,
+              12,
+              771,
+              276
+            ]
+          },
+          {
+            "role": "Original App.bat launcher line",
+            "rect": [
+              1045,
+              90,
+              1298,
+              115
+            ],
+            "place": [
+              12,
+              292,
+              265,
+              317
+            ]
+          }
+        ],
+        "transform": "Unscaled rectangular detail crops from the retained annotated v1 derivative; composited with neutral padding and encoded as WebP. Existing red annotations remain. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "preencoding_pixel_check": "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "native_original_retained_privately": true,
+        "v1_derivative_retained_privately": true
+      }
+    },
+    {
+      "id": "vscode-original-dll-bytes-v2",
+      "path": "/assets/img/posts/fakegit-ai-skills/vscode-original-dll-bytes-v2.webp",
+      "width": 711,
+      "height": 484,
+      "bytes": 117152,
+      "sha256": "0f66a8dd540757122bb14f0e82fcce88d6774b62947d1bf90754035230ad5cdb",
+      "presentation": "evidence",
+      "source_type": "source-evidence",
+      "capture_receipt_id": "vscode-original-dll-bytes-capture-20261009",
+      "application": "Microsoft Visual Studio Code",
+      "capture_surface": "Unscaled detail excerpts from the retained native capture; selected panels are composited where specified.",
+      "observed_at_utc": "2026-10-09T15:49:09.015Z",
+      "clock_basis": "Post-capture artifact-save receipt; not a calibrated screenshot time or endpoint event time.",
+      "visible_claim": "Unscaled excerpt of analyst-generated DLL byte text containing the original size, SHA-256 and MZ/PE signatures. No inventory or parsed section table is included.",
+      "original_sha256": "48f78ced70d5b4c3d7473ce366636e9601120687b4ce94564ecf45603bbc614a",
+      "original_detected_format": "JPEG",
+      "input_source": {
+        "url": "https://github.com/amanahmed2222/skills/commit/84a4fdc3840133c30e283ee34adb730b49d3dff4",
+        "role": "Pinned repository commit for the acquired source archive; not the screenshot source URL."
+      },
+      "prepared_original_member_hashes": {
+        "icon16.txt": "33250ded61c43128b6c29b01de7b1cc962b241b236933f54bc42b648afae2398",
+        "App.bat": "a96ffc9f649333f9e84b7a7e1101cf85f7a5f143253db1d7853e6e48d46b3c72",
+        "lua51.dll": "c740061da4971cdf36a102637f80fc23dbff5769c1ec2156fcd90764237d51e2"
+      },
+      "processing": [
+        "Unscaled rectangular detail crops from the retained annotated v1 derivative; composited with neutral padding and encoded as WebP. Existing red annotations remain. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "Source rectangles and output placements are recorded in detail_crop_provenance, with zero-based end-exclusive bounds.",
+        "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "The native original and superseded full-frame v1 derivative remain private."
+      ],
+      "limits": "An analyst-generated hexadecimal rendering of retained DLL bytes, not original DLL source, decompilation, a Hex Editor session or a loaded runtime. The DLL was not loaded.",
+      "rights_boundary": "Native application-interface excerpts and analyst-authored analysis materials used for research commentary. Third-party interface and trademarks retain their respective rights.",
+      "caption": {
+        "en": "The DLL hash and its MZ/PE header bytes.",
+        "lt": "DLL maišos reikšmė ir MZ/PE antraštės baitai."
+      },
+      "alt": {
+        "en": "DLL size and SHA-256 above a hexadecimal excerpt containing the MZ and PE signatures.",
+        "lt": "DLL dydis ir SHA-256 virš šešioliktainės ištraukos su MZ ir PE žymėmis."
+      },
+      "derived_byte_view": {
+        "artifact_name": "lua51.dll.hex.txt",
+        "artifact_sha256": "ae672785fdb235a9fa5d0646c8db7cf5c2f1c3c2f5b5dacf9026a1a771ca4d02",
+        "source_member": "lua51.dll",
+        "source_member_sha256": "c740061da4971cdf36a102637f80fc23dbff5769c1ec2156fcd90764237d51e2",
+        "derived_hex_start_byte": 0,
+        "derived_hex_end_byte_exclusive": 1024,
+        "only_editor_viewport_visible": true,
+        "rendering": "Analyst-authored hexadecimal/ASCII text plus static pefile metadata",
+        "parser_version": "2024.8.26",
+        "DLL_loaded": false,
+        "decompiled_source": false
+      },
+      "historical_full_frame_v1": {
+        "capture_surface": "Complete native application window with title bar, three editor panes and status bar",
+        "width": 1920,
+        "height": 1032,
+        "bytes": 356694,
+        "sha256": "d09f24561f6beff9249f7538b7f6ed4bb65ce0fcea5517af2df264ed16bbe13c",
+        "processing": [
+          "Retained complete native application-window geometry at 1920 by 1032 pixels; no crop, scaling or editorial header.",
+          "Redacted only three local-filesystem breadcrumb prefixes with opaque neutral rectangles; filenames and inventory caveats preserved.",
+          "Added red outline rectangles in margins around the referenced source, header-byte and inventory regions; no replacement source or UI text.",
+          "Encoded a high-quality lossy WebP derivative at quality 92, method 6. Before encoding, all pixels outside the disclosed outline/redaction mask are byte-identical to the decoded retained JPEG original."
+        ],
+        "encoding": {
+          "format": "WebP",
+          "lossless": false,
+          "quality": 92,
+          "method": 6
+        },
+        "annotation": {
+          "coordinate_basis": "Original 1920 by 1032 image, zero-based x/y; inclusive rectangle bounds",
+          "outline_rgb": [
+            239,
+            68,
+            68
+          ],
+          "line_width_pixels": 3,
+          "rectangles": [
+            {
+              "label": "derived hex view and original DLL identity",
+              "bounds": [
+                114,
+                91,
+                795,
+                186
+              ]
+            },
+            {
+              "label": "original MZ header bytes",
+              "bounds": [
+                114,
+                222,
+                720,
+                246
+              ]
+            },
+            {
+              "label": "original PE signature bytes",
+              "bounds": [
+                114,
+                525,
+                720,
+                549
+              ]
+            },
+            {
+              "label": "original DLL inventory and acquisition hash",
+              "bounds": [
+                1045,
+                654,
+                1765,
+                733
+              ]
+            }
+          ]
+        },
+        "redactions": {
+          "reason": "Local filesystem breadcrumb prefixes",
+          "fill_rgb": [
+            35,
+            40,
+            47
+          ],
+          "rectangles": [
+            [
+              66,
+              68,
+              632,
+              88
+            ],
+            [
+              996,
+              68,
+              1560,
+              88
+            ],
+            [
+              996,
+              236,
+              1560,
+              255
+            ]
+          ]
+        },
+        "visible_claim": "An analyst-derived hex/static PE view of retained original DLL byte values shows MZ and PE header bytes, beside the original BAT and analyst inventory.",
+        "limits": "Visible viewport of an analyst-generated hex/static PE text view derived from the first 1024 original DLL bytes, not original DLL source code, decompilation, a Hex Editor session or runtime execution. The DLL was parsed as data and was not loaded. Original sample files remain private; compatibility metadata does not prove authenticity or benignness.",
+        "asset_basename": "vscode-original-dll-bytes-v1.webp",
+        "scope": "Historical full-frame capture/v1 derivative only. These geometry and annotation coordinates do not describe the published v2 detail image."
+      },
+      "encoding": {
+        "format": "WebP",
+        "lossless": false
+      },
+      "detail_crop_provenance": {
+        "source_asset_basename": "vscode-original-dll-bytes-v1.webp",
+        "source_sha256": "d09f24561f6beff9249f7538b7f6ed4bb65ce0fcea5517af2df264ed16bbe13c",
+        "native_original_basename": "vscode-original-dll-bytes-original.jpg",
+        "native_original_sha256": "48f78ced70d5b4c3d7473ce366636e9601120687b4ce94564ecf45603bbc614a",
+        "coordinate_basis": "Source v1 derivative and output detail image, zero-based x/y, end-exclusive rectangle bounds.",
+        "panels": [
+          {
+            "role": "Original DLL hash and analyst-generated hexadecimal view of the MZ and PE signatures",
+            "rect": [
+              113,
+              91,
+              800,
+              551
+            ],
+            "place": [
+              12,
+              12,
+              699,
+              472
+            ]
+          }
+        ],
+        "transform": "Unscaled rectangular detail crops from the retained annotated v1 derivative; composited with neutral padding and encoded as WebP. Existing red annotations remain. No source text, pointer or UI pixels were repainted or reconstructed.",
+        "preencoding_pixel_check": "PASS: every cropped panel was byte-identical to its input rectangle before WebP encoding",
+        "native_original_retained_privately": true,
+        "v1_derivative_retained_privately": true
+      }
+    }
+  ]
+}

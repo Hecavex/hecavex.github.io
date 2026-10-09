@@ -44,10 +44,17 @@ key_findings:
   - "N-central primena, kad pirmo hotfix įdiegimas dar nereiškia incidento pabaigos: CVE-2026-18577 liko po nepilno pataisymo ir prireikė papildomos mitigacijos."
   - "Adform atvejis rodo, kad patikima browser-side priklausomybė gali keisti transakcijos duomenis net neįdiegdama persistentiško malware vartotojo įrenginyje."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/hecavex-signal-brief/control-plane-hero-v1.webp
   social: /assets/img/social/hecavex-signal-brief-002-lt.png
-  alt: "Analitinis signalas kerta viešų valdymo sistemų, build infrastruktūros ir supply-chain priklausomybių radarą"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "Atviras šliuzas per pasitikėjimo ribą sujungia išorinį tinklą su vidiniu valdymo skydeliu."
+  thumbnail: /assets/img/posts/hecavex-signal-brief/control-plane-card-v1.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-002-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-08-09
     note: "Pirmoji publikacija. Informacijos riba 11:30 EEST."

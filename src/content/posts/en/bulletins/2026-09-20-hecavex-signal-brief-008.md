@@ -44,10 +44,17 @@ key_findings:
   - "A local privilege requirement does not make a flaw marginal on multi-tenant hosting. Kernel findings must still be separated by reachable subsystem and attacker position."
   - "DNS remediation should preserve service continuity. Lithuanian manufacturers also need an operational reporting owner, not merely awareness of CRA deadlines."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/hecavex-signal-brief/control-plane-hero-v1.webp
   social: /assets/img/social/hecavex-signal-brief-008-en.png
-  alt: "Signal Brief 8 covering security appliances, hosting privileges, DNS and reporting readiness"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "An exposed gateway connects an external network to an internal control panel across a trust boundary."
+  thumbnail: /assets/img/posts/hecavex-signal-brief/control-plane-card-v1.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-008-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-09-22
     note: "Initial retrospective publication covering 14–20 September. Information cutoff: 20 September 2026, 23:59:59 UTC."

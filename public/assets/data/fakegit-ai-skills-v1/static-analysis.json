@@ -1,0 +1,502 @@
+{
+  "schema": "hecavex.bounded-static-data-review.v1",
+  "observed_date_utc": "2026-10-09",
+  "method_boundary": {
+    "target_or_recovered_code_executed": false,
+    "dll_loaded": false,
+    "sample_uploaded": false,
+    "c2_requested": false,
+    "protection_bypassed": false,
+    "new_sample_reads_for_public_artifact_assembly": false
+  },
+  "phases": [
+    {
+      "id": "source-only",
+      "description": "Pinned source/tree and published-hash comparisons preceded acquisition. Their original byte-unverified statements apply at their recorded phase."
+    },
+    {
+      "id": "known-K2-acquisition",
+      "received_at_utc": "2026-10-09T14:18:40.101474+00:00",
+      "description": "Separately authorized bytes acquired and inventoried as inert data."
+    },
+    {
+      "id": "known-K2-PE",
+      "observed_at_utc": "2026-10-09T14:20:48.316693+00:00",
+      "description": "One DLL parsed as bytes. The adjacent executable was blocked during an independent hash-read attempt; no alternate access."
+    },
+    {
+      "id": "known-K2-Lua-data",
+      "description": "Literal parsing, integer permutations and bounded constant transforms, followed by independent mathematical checks. No Lua state-machine emulation or runtime invocation."
+    },
+    {
+      "id": "anonymous-later-comparison",
+      "description": "A separately acquired anonymous archive matched its selected reputation-platform file hash and pinned Git blob. Identifying metadata is withheld; static comparison is limited as described below."
+    }
+  ],
+  "known_K2": {
+    "already_reported_repository_defanged": "github[.]com/amanahmed2222/skills",
+    "source_commit": "84a4fdc3840133c30e283ee34adb730b49d3dff4",
+    "source_archive_path": "skills/create-branch/Software_v2.0-alpha.3.zip",
+    "archive_size_bytes": 487650,
+    "archive_sha256": "06cd34cacbcc7046b7e0bac0cdfb6d94e79049cb974218dca247b28e619c59ac",
+    "git_blob_sha1": "f8ef6f6e39990c57cbc35ca540c8c0895bfa97c4",
+    "pinned_tree_size_matches": true,
+    "pinned_tree_blob_matches": true,
+    "reported_historical_island_sha256": "06cd34cacbcc7046b7e0bac0cdfb6d94e79049cb974218dca247b28e619c59ac",
+    "current_bytes_match_historical_island_sha256": true,
+    "hash_boundary": "Git blob SHA-1 hashes Git object framing plus bytes. Archive SHA-256 hashes file bytes. They are distinct identifiers.",
+    "inventory": [
+      {
+        "name": "App.bat",
+        "size_bytes": 29,
+        "sha256": "a96ffc9f649333f9e84b7a7e1101cf85f7a5f143253db1d7853e6e48d46b3c72",
+        "receipt_origin": "Acquisition inventory",
+        "crc_verified_as_data": true
+      },
+      {
+        "name": "icon16.txt",
+        "size_bytes": 296308,
+        "sha256": "33250ded61c43128b6c29b01de7b1cc962b241b236933f54bc42b648afae2398",
+        "receipt_origin": "Acquisition inventory",
+        "crc_verified_as_data": true
+      },
+      {
+        "name": "lua51.dll",
+        "size_bytes": 390144,
+        "sha256": "c740061da4971cdf36a102637f80fc23dbff5769c1ec2156fcd90764237d51e2",
+        "receipt_origin": "Acquisition inventory",
+        "crc_verified_as_data": true
+      },
+      {
+        "name": "resolver.exe",
+        "size_bytes": 288768,
+        "sha256": "8fa25c75ee56eb3c4a2b0a6fe056c1e9f933e00596c6e3167e4727f01828168d",
+        "receipt_origin": "Acquisition inventory",
+        "crc_verified_as_data": true
+      }
+    ],
+    "declared_total_unpacked_bytes": 975249,
+    "launcher_observation": "The launcher is intended to pass the text-named Lua member to the adjacent executable. This intended invocation was not run.",
+    "zip_metadata_limit": "ZIP timestamps are untrusted metadata, not verified build dates."
+  },
+  "known_K2_PE": {
+    "parsed_member": "lua51.dll",
+    "independent_sha256": "c740061da4971cdf36a102637f80fc23dbff5769c1ec2156fcd90764237d51e2",
+    "machine": "AMD64",
+    "format": "PE32+ DLL",
+    "section_names": [
+      ".text",
+      ".rdata",
+      ".data",
+      ".pdata",
+      ".reloc"
+    ],
+    "imported_library_count": 12,
+    "imported_symbol_count": 129,
+    "export_count": 324,
+    "lua_prefixed_export_count": 147,
+    "runtime_markers": [
+      "Lua 5.1",
+      "LuaJIT 2.1.0-beta3",
+      "Lua C API and FFI exports"
+    ],
+    "interpretation": "Compatible interpreter-runtime structure and strings; not a proof of malicious behavior, an unmodified upstream build or authentic provenance.",
+    "certificate_table": {
+      "file_offset": 0,
+      "size": 0,
+      "authenticode_cryptographic_verification_performed": false
+    },
+    "strings_scope": {
+      "minimum_characters": 6,
+      "ascii_count": 2031,
+      "utf16le_ascii_count": 2,
+      "selected_count": 12,
+      "limit": "Bounded selected-string review is not a complete encoded-indicator search."
+    },
+    "adjacent_executable_limit": {
+      "member": "resolver.exe",
+      "independent_pe_parse_performed": false,
+      "independent_hash_verified": false,
+      "acquisition_sha256": "8fa25c75ee56eb3c4a2b0a6fe056c1e9f933e00596c6e3167e4727f01828168d",
+      "reported_local_error": "Operation did not complete successfully because the file contains a virus or potentially unwanted software.",
+      "interpretation": "The local protection message is not a malware-family label. Acquisition inventory hash is attributed to that earlier process. No protection setting was changed or alternate read attempted."
+    }
+  },
+  "known_K2_Lua": {
+    "source_member": "icon16.txt",
+    "source_sha256": "33250ded61c43128b6c29b01de7b1cc962b241b236933f54bc42b648afae2398",
+    "literal_phase_counts": {
+      "tokens": 113912,
+      "quoted_literals": 2294,
+      "literal_permutations_decoded": 387,
+      "url_ip_contract_matches_in_decoded_literal_and_permutation_values": 0
+    },
+    "independent_literal_data_check": {
+      "quoted_literals_checked": 2294,
+      "permutations_checked": 387,
+      "literal_mismatches": 0,
+      "permutation_mismatches": 0,
+      "token_count_independently_reconstructed": false
+    },
+    "literal_phase_limit": "Zero URL/IP/contract matches applies only to decoded quoted-literal and fixed-permutation values. It does not imply absence of network behavior or include later constant transforms.",
+    "straight_line_bounds": {
+      "max_candidates": 2000,
+      "max_total_cipher_bytes": 512000,
+      "max_cipher_bytes_per_pair": 10000,
+      "max_constant_expression_steps": 256
+    },
+    "straight_line_counts": {
+      "source_tokens": 113912,
+      "lexical_blocks": 4356,
+      "binding_reset_events_with_values": 1413,
+      "unsupported_assignment_events": 8096,
+      "candidate_constant_pairs": 539,
+      "fully_printable_utf8_transforms": 539,
+      "other_transforms": 0,
+      "fully_printable_unique_values": 292
+    },
+    "mathematical_parameters": {
+      "multiplier45": 241,
+      "addend45": 31330050365433,
+      "multiplier8": 186,
+      "initial_previous_byte": 68,
+      "modulus45": 35184372088832
+    },
+    "constant_transform_method": {
+      "word_byte_consumption": "Each 32-bit word is split low-byte to high-byte; pop-last consumption uses the high byte first.",
+      "rejection_rule": "The modulo 257 recurrence repeats until its state differs from 1; the trusted decoder caps this at 256 iterations.",
+      "data_combination": "Cipher byte, generated byte and previous decoded byte are added modulo 256.",
+      "input_bounds": "Each transform rejects ciphertext longer than 10000 bytes or a seed outside [0,2^53).",
+      "limit": "Pure data arithmetic only; no sample function or plaintext evaluation."
+    },
+    "straight_line_method": "Bindings discarded at lexical branches, joins, loops, function boundaries and after opaque calls; unsupported assignments discarded. Only pure constant data transformations retained.",
+    "independent_math_check": {
+      "recorded_pairs_recomputed": 539,
+      "distinct_printable_utf8_values_reproduced": 292,
+      "all_recorded_transform_outputs_match": true,
+      "original_source_pairs_independently_checked": 5,
+      "all_five_selected_source_pairs_match": true,
+      "limits": "Recomputing outputs verifies arithmetic. Only five selected original source-pair proofs were independently checked; no reachability or opaque-callee proof for the remaining candidates."
+    },
+    "recovered_content_categories": [
+      "Windows C/FFI and PE/PEB/LDR declaration text",
+      "WinINet API names",
+      "Screenshot-related API names",
+      "Scheduled-task and PowerShell command fragments",
+      "An eth_call JSON template with destination/data placeholders"
+    ],
+    "rpc_template_limit": "The template supplies no recovered concrete contract, getter or endpoint. It is content evidence, not an observed RPC request.",
+    "false_positive_control": "A dotted browser-version token in a user-agent string was not promoted to an IP indicator.",
+    "harmless_source_span_reference": {
+      "start_byte": 267943,
+      "end_byte_exclusive": 268016,
+      "proof_kind": "literal chunk permutation only",
+      "decoded_identifier": "currentDllPath",
+      "related_quoted_literal_span": {
+        "start_byte": 267728,
+        "end_byte_exclusive": 267786
+      },
+      "interpretation": "A harmless identifier recovered as data from a fixed chunk order. This does not resolve a runtime DLL path or establish the identifier is used. Only the selected literal source data is reproduced; the complete Lua and payload code are not included.",
+      "source_sha256": "33250ded61c43128b6c29b01de7b1cc962b241b236933f54bc42b648afae2398"
+    },
+    "primary_transform_reference": {
+      "url": "https://github.com/prometheus-lua/Prometheus/blob/a4efc5f381c50ae2a111bdbb9272fa3203685be3/src/prometheus/steps/EncryptStrings.lua",
+      "commit": "a4efc5f381c50ae2a111bdbb9272fa3203685be3",
+      "git_blob_sha1": "a7e031f7f6d9ce95b09212b2a31d78584f0982f8",
+      "relevant_lines": [
+        47,
+        49,
+        121,
+        137,
+        144,
+        159
+      ],
+      "retrieved_at_utc": "2026-10-09T14:24:32.224Z",
+      "limit": "Algorithm comparison only; shared transform structure does not establish obfuscator attribution, malware family or operator."
+    },
+    "primary_transform_license_attribution": {
+      "license_url": "https://github.com/prometheus-lua/Prometheus/blob/a4efc5f381c50ae2a111bdbb9272fa3203685be3/LICENSE",
+      "license_git_blob_sha1": "138f1d910723ae29450c7562389a2af229e98c90",
+      "license_description": "Custom attribution license; no SPDX or MIT classification inferred.",
+      "copyright": "Copyright (c) 2025 Elias Oelschner",
+      "attribution": "Based on Prometheus by Elias Oelschner, https://github.com/prometheus-lua/Prometheus"
+    },
+    "behavior_limit": "Recovered names/declarations/fragments do not establish actual injection, persistence, screen capture, network traffic or a victim event. State-dependent configuration and execution remain unresolved."
+  },
+  "trusted_tools": {
+    "python_version": "3.12.8",
+    "python_executable_sha256": "1a078825122b059f04b6c1545909f1d3ed0838dd24ab80d1c7fa60ca68ff9af5",
+    "pefile_version": "2024.8.26",
+    "pefile_source_sha256": "0d0eb68f0f169182613dc64b3ab50b20855508c1c1d2faafe8fccf23edb6a345",
+    "known_K2_PE_reader_script_sha256": "7be56d140bfc3e0c53c2af9c5ba40e7724e7f21734b4fc53c10e3075cf1882ec",
+    "tool_origin": "Existing local trusted Python and pefile; explicitly authored inspection scripts. No sample-derived executable arguments."
+  },
+  "actual_recorded_K2_Lua_processes": {
+    "recorded_process_count": 5,
+    "scope": "Four recorded initial trusted data-inspection subprocesses plus one separately recorded straight-line inspection subprocess. This is not a census of all analyst commands.",
+    "processes": [
+      {
+        "trusted_script_name": "static-lua-data.py",
+        "script_sha256": "60cfbe88b4853e2c5cc1b456e3113838596909569105d35389400fe00b5b3d10",
+        "started_utc": "2026-10-09T14:26:58.283390+00:00",
+        "completed_utc": "2026-10-09T14:27:01.366352+00:00",
+        "exit_code": 0,
+        "stdout_sha256": "ff78a0cc1fdcbc21f0916332a5cb22602e171f7fa20be11975defeaa85c9df6f",
+        "stdout_bytes": 1646,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_bytes": 0
+      },
+      {
+        "trusted_script_name": "static-lua-context.py",
+        "script_sha256": "8fb1a85b602a2d11dedda724b8604656a254e51f8f2fcc3976bb3460d2378d48",
+        "started_utc": "2026-10-09T14:27:01.383523+00:00",
+        "completed_utc": "2026-10-09T14:27:01.806415+00:00",
+        "exit_code": 0,
+        "stdout_sha256": "0b3d79fb660f5cd6c4f5abc30ba726886614123f42a44ed86b47895d3a10b5ae",
+        "stdout_bytes": 124133,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_bytes": 0
+      },
+      {
+        "trusted_script_name": "static-lua-review.py",
+        "script_sha256": "ddda12b6e24c586944e6cd5cde1b6f2fa6ace79c71fca869859e1cbfc82159b4",
+        "started_utc": "2026-10-09T14:27:01.838150+00:00",
+        "completed_utc": "2026-10-09T14:27:02.249378+00:00",
+        "exit_code": 0,
+        "stdout_sha256": "27a16b28455beed5d0461b6748cfe5e9c436b9a4ff5a42efaaa8e9dd76dcff1b",
+        "stdout_bytes": 6806,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_bytes": 0
+      },
+      {
+        "trusted_script_name": "static-lua-constant-decrypt.py",
+        "script_sha256": "16ddaf5d37a97862d886e0130bafa2bd9ee8b087a4d76ac0c3527776118cf589",
+        "started_utc": "2026-10-09T14:27:02.279237+00:00",
+        "completed_utc": "2026-10-09T14:27:02.676218+00:00",
+        "exit_code": 0,
+        "stdout_sha256": "db53a2f8090dd27cfb3c915816d7545cd2bafa62a5d5988cc3d5443d168e909c",
+        "stdout_bytes": 4620,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_bytes": 0
+      },
+      {
+        "trusted_script_name": "static-lua-straight-line.py",
+        "script_sha256": "0c9f0dc8115c67d6b231d27f9b17e7d0f06aa26f20557a91b622d3b146200fd1",
+        "started_utc": "2026-10-09T14:32:06.402870+00:00",
+        "completed_utc": "2026-10-09T14:32:10.171819+00:00",
+        "exit_code": 0,
+        "stdout_sha256": "26ab136674f36eb280ce71971711fbef4357c5ad4d651a3e6b86e5125fe12626",
+        "stdout_bytes": 11280,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_bytes": 0
+      }
+    ],
+    "straight_line_trusted_import_script_hashes": {
+      "static-lua-data.py": "be318ed0d45a3fb3e99a409cc1569802e534d99bcb67866ade2af23aea406ea3",
+      "static-lua-constant-decrypt.py": "16ddaf5d37a97862d886e0130bafa2bd9ee8b087a4d76ac0c3527776118cf589"
+    },
+    "original_inputs_unchanged_across_recorded_runs": true
+  },
+  "anonymous_later_comparison": {
+    "case_id": "V2",
+    "archive_sha256_matches_selected_platform_record": true,
+    "archive_git_blob_matches_pinned_tree": true,
+    "identifying_metadata_withheld": true,
+    "adjacent_skill_text_observation": "The adjacent task-guidance text did not mention archive/runtime indicators among the seven explicit string checks. This negative check does not establish a complete behavioral audit.",
+    "same_archive_shape": "Launcher, text-named Lua member, executable and DLL. Their bytes differ from the known K2 members.",
+    "literal_data_counts": {
+      "quoted_literals": 3830,
+      "fixed_chunk_permutations": 413
+    },
+    "structural_comparison": "Similar fixed chunk-permutation and flattened numeric-state structure, with different arithmetic constants. No shared operator or malware family inferred.",
+    "trusted_data_inspection_process_count": 2,
+    "pure_cipher_transform_performed": false,
+    "vm_or_target_execution": false,
+    "PE_access_limit": "The first inert PE member read returned local OSError Invalid argument. The reader stopped; no PE parse or independent PE hash succeeded. Cause and malware family were not established; no alternate access attempted.",
+    "limits": "No archive/member filenames, hashes, source identifiers, exact byte sizes, arithmetic constants or identifying timestamps are disclosed for this unconfirmed repository."
+  },
+  "other_acquisition_attempt": {
+    "previously_reported_Windows_prerequisite": "HTTP404; no archive bytes obtained.",
+    "limit": "Unavailable download does not establish deletion, takedown or later payload behavior."
+  },
+  "limits": [
+    "Static content evidence is distinct from execution and operator attribution.",
+    "No full source/VM deobfuscation, live endpoint request, target process execution, memory loading, security-setting change or external sample upload.",
+    "Tool/receipt hashes identify inspection provenance. No full sample, full ciphertext table or recovered command/code payload is included. A separate bounded public replay provides only one 174-byte ciphertext and its placeholders-only JSON template."
+  ],
+  "publication_status": "Prepared for owner review; not published.",
+  "bounded_walkthrough_replay": {
+    "classification": "Unscaled detail excerpts from native editor captures of inert source and analyst-written Python; saved stdout is replay evidence, not sample execution.",
+    "original_member": "icon16.txt",
+    "original_lua_sha256": "33250ded61c43128b6c29b01de7b1cc962b241b236933f54bc42b648afae2398",
+    "offset_convention": "zero-based original bytes, end-exclusive",
+    "source_spans": {
+      "identifier": {
+        "start_byte": 267943,
+        "end_byte_exclusive": 268016,
+        "sha256": "d8c861ddcd9cb2b425b3307bb1d4466f8db96a6fd0cfa4a4761c59da93d09c53"
+      },
+      "cipher": {
+        "start_byte": 176790,
+        "end_byte_exclusive": 177673,
+        "sha256": "fabbad1cd507ff19cf7be2b3ab81ed91b5ba50e280a31f0aa50422bcc60bb2eb"
+      },
+      "seed": {
+        "start_byte": 176754,
+        "end_byte_exclusive": 176781,
+        "sha256": "5db4827532fefe95a642927665daa2eb5e3b4b4f1fc5a4df62a8ac22783505ff"
+      },
+      "call": {
+        "start_byte": 177688,
+        "end_byte_exclusive": 177696,
+        "sha256": "6f9ba3220473453f8b9e28b1751612feee111ea391680ecf156c9005b923726b"
+      }
+    },
+    "identifier": {
+      "decoded_value": "currentDllPath",
+      "source_bytes": 73,
+      "one_based_order": [
+        1,
+        2
+      ],
+      "decoded_chunks": [
+        "curre",
+        "ntDllPath"
+      ]
+    },
+    "constant_pair": {
+      "cipher_chunks": 34,
+      "cipher_bytes": 174,
+      "cipher_sha256": "2807ea9e86ae814427e1c7ceb9c22aec73e63b70d8a94b0a9f30c9dd8f5d079b",
+      "seed_expression": "28217191079822-(-616966)",
+      "seed_integer": 28217191696788,
+      "plaintext_bytes": 174,
+      "plaintext_sha256": "487190fca26fbf3acf04520ce3ab7e7447a4d11453003591edd2de51c0f4bf4c",
+      "content": "eth_call JSON template with %s placeholders only"
+    },
+    "replay": {
+      "started_utc": "2026-10-09T15:22:16.732017+00:00",
+      "finished_utc": "2026-10-09T15:22:18.373211+00:00",
+      "elapsed_seconds": 1.656,
+      "command_display": "<trusted Python interpreter> -B safe_decode.py",
+      "command_display_omits_runtime_directory": true,
+      "python_version": "3.12.8",
+      "exit_code": 0,
+      "stdout_bytes": 994,
+      "stderr_bytes": 0
+    },
+    "tools_and_output": {
+      "safe_decode.py": {
+        "sha256": "9f31e33777c5c624b36d0139dd5b6d9a6aa7ff3a552ece10b933828f6a769a3c",
+        "size_bytes": 7140
+      },
+      "run_walkthrough.py": {
+        "sha256": "1e06a43f6ce0ff7076aa2b108d4dcc136c65efa3853779fd4944b7c531d78a45",
+        "size_bytes": 1777
+      },
+      "input.json": {
+        "sha256": "8b04ac3615f8b8e51fbb9a22347328ecd613b0d9798f89e07528bf38e2571720",
+        "size_bytes": 2483
+      },
+      "output.txt": {
+        "sha256": "4c9d0714a1379af3ecd0801c4d32e7a189a202995c041dea254a219a74a6376e",
+        "size_bytes": 994
+      }
+    },
+    "checks": [
+      "Original excerpt hashes and byte spans",
+      "One-based literal indices and byte bounds",
+      "Fixed seed arithmetic",
+      "Ciphertext and plaintext hashes",
+      "Exact placeholder-only JSON object",
+      "Benign three-digit escape and out-of-range rejection checks"
+    ],
+    "limits": "Earlier lexical proof supplies the constant relationship. Opaque callee identity and runtime reachability are unresolved. No endpoint, contract, selector or provider is recovered. The walkthrough never loads the complete Lua.",
+    "execution_boundary": "Only analyst-authored Python was executed. No Lua, VM, sample function, recovered command, API behavior or network request."
+  },
+  "bounded_original_file_views": {
+    "classification": "Complete original-byte editor inputs and analyst-generated binary rendering, represented by unscaled native-capture detail excerpts.",
+    "verified_originals": [
+      {
+        "member": "icon16.txt",
+        "size_bytes": 296308,
+        "sha256": "33250ded61c43128b6c29b01de7b1cc962b241b236933f54bc42b648afae2398",
+        "complete_original_bytes_unchanged": true
+      },
+      {
+        "member": "App.bat",
+        "size_bytes": 29,
+        "sha256": "a96ffc9f649333f9e84b7a7e1101cf85f7a5f143253db1d7853e6e48d46b3c72",
+        "complete_original_bytes_unchanged": true
+      },
+      {
+        "member": "lua51.dll",
+        "size_bytes": 390144,
+        "sha256": "c740061da4971cdf36a102637f80fc23dbff5769c1ec2156fcd90764237d51e2",
+        "complete_original_bytes_unchanged": true
+      }
+    ],
+    "verification_time_utc": "2026-10-09T15:50:11.063111+00:00",
+    "original_file_capture": "Unscaled composite of the opening of complete unchanged icon16.txt and the complete original App.bat launcher line. The inventory is excluded from the detail image; all four member identities, sizes and acquisition hashes remain in the article table.",
+    "dll_byte_capture": "Unscaled excerpt of analyst-generated hexadecimal text showing the original DLL size, SHA-256, MZ and PE signatures. No inventory or parsed section table is shown. Not DLL source, decompilation or a Hex Editor session.",
+    "derived_hex_text_range": {
+      "start_byte": 0,
+      "end_byte_exclusive": 1024,
+      "MZ_file_offset": 0,
+      "PE_file_offset": 256,
+      "parsed_section_table_visible_in_capture": false,
+      "captured_view_is_detail_excerpt": true
+    },
+    "inventory_scope": "All four K2 archive members, complete member sizes and acquisition SHA-256 values. Resolver measurements remain acquisition-only after its later blocked independent read.",
+    "protected_resolver_read_or_copied_for_views": false,
+    "sample_or_launcher_executed": false,
+    "dll_loaded": false,
+    "full_samples_published": false,
+    "preparation_tool": {
+      "filename": "prepare-vscode-original-files.private.py",
+      "sha256": "7554688ab2d4ed2ecbbee53f81ed7edec9157d9ae7bdd35dd4638a7438ed25f5"
+    },
+    "limits": "Original bytes and a derived byte rendering do not establish runtime behavior or an authentic unmodified upstream runtime. Withheld second-archive identity is outside these views.",
+    "figure_provenance": "Exact native-original and v1-input hashes, v2 dimensions, crop rectangles, panel placements and retained annotations/redactions are recorded in figures.json. Full-frame originals and v1 derivatives remain private."
+  },
+  "public_constant_replay": {
+    "path": "/assets/data/fakegit-ai-skills-v1/constant-replay/",
+    "files": {
+      "constant_replay.py": {
+        "bytes": 4214,
+        "sha256": "37ec97ffe70ef66c5f039278f54fa76e1e1991d13920fc468e68defad171aced"
+      },
+      "fixture.json": {
+        "bytes": 2349,
+        "sha256": "5f9f0d787e7691a0f25fa632a4f21659680aed96059fe71839e74a72335998c0"
+      },
+      "README.md": {
+        "bytes": 2221,
+        "sha256": "9a331310895190cfc363bcdaf28fd4f9a44b24161f36c259ee910d296d1742e6"
+      },
+      "LICENSE-Prometheus.txt": {
+        "bytes": 5376,
+        "sha256": "ef341e47d112b0c7ad5f07e41a5136b085385463cd31f5fc5b4fa87283a47cad"
+      }
+    },
+    "scope": "One fixed 174-byte constant-data relation; analyst-authored standard-library arithmetic, not sample execution.",
+    "ciphertext_sha256": "2807ea9e86ae814427e1c7ceb9c22aec73e63b70d8a94b0a9f30c9dd8f5d079b",
+    "plaintext_sha256": "487190fca26fbf3acf04520ce3ab7e7447a4d11453003591edd2de51c0f4bf4c",
+    "plaintext_encoding": "UTF-8, LF line endings, exactly one final LF; 174 bytes.",
+    "verification": {
+      "fresh_python_replay": "passed",
+      "changed_ciphertext": "expected mismatch",
+      "changed_seed": "expected mismatch",
+      "changed_output": "rejected",
+      "independent_check": "Original 34-chunk reconstruction, seed expression and separate integer recomputation matched the fixed relation."
+    },
+    "source_hash_boundary": "Original Lua and source-span hashes are provenance metadata; this helper does not obtain or revalidate those source files.",
+    "limits": [
+      "The opaque callee and runtime reachability remain unresolved.",
+      "The fixed fixture contains no real contract, selector, RPC provider, destination or recovered command.",
+      "This replay adds no new result to the 539 arithmetic-output total or five independently checked original source pairings."
+    ],
+    "attribution": "Based on Prometheus by Elias Oelschner, https://github.com/prometheus-lua/Prometheus",
+    "license": "Complete pinned custom license retained in LICENSE-Prometheus.txt; no standard SPDX license inferred."
+  }
+}

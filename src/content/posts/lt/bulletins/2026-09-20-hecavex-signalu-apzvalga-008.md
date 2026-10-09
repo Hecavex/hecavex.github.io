@@ -44,10 +44,17 @@ key_findings:
   - "Lokalios prieigos sąlyga nemažina rizikos vien dėl savo pavadinimo, kai viename hostinge veikia keli klientai. Linux radinius vis tiek reikia skirti pagal posistemę ir užpuoliko poziciją."
   - "Atnaujinant DNS būtina išlaikyti paslaugos tęstinumą. Lietuvos gamintojams taip pat reikia veikiančio pranešimų proceso savininko, ne vien žinių apie CRA terminus."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/hecavex-signal-brief/control-plane-hero-v1.webp
   social: /assets/img/social/hecavex-signal-brief-008-lt.png
-  alt: "Aštuntoji signalų apžvalga apie saugumo įrangą, hostingo privilegijas, DNS ir pasirengimą pranešti"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "Atviras šliuzas per pasitikėjimo ribą sujungia išorinį tinklą su vidiniu valdymo skydeliu."
+  thumbnail: /assets/img/posts/hecavex-signal-brief/control-plane-card-v1.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-008-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-09-22
     note: "Pirmoji retrospektyvi publikacija apie rugsėjo 14–20 d. Informacijos riba: 2026 m. rugsėjo 20 d., 23:59:59 UTC."

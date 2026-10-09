@@ -1,9 +1,8 @@
 /** Covers require an explicit editorial/evidence classification. A generated
  * illustration can identify a topic, but cannot establish an analytical claim.
- * Unclassified legacy strings and Signal Briefs remain text-led.
+ * Unclassified legacy images remain text-led; classified Briefings use the same cover system.
  */
 export function publicationImagePresentation(post) {
-  if (post.contentType === 'signal-brief') return undefined;
   const image = post.image;
   if (!image || typeof image === 'string') return undefined;
   return ['illustration', 'evidence'].includes(image.presentation) ? image.presentation : undefined;

@@ -26,7 +26,7 @@ function coverFromSource(file) {
     const source = readFileSync(path, 'utf8');
     const yaml = source.replace(/^\uFEFF/, '').match(/^---\r?\n([\s\S]*?)\r?\n---/);
     const data = yaml ? parse(yaml[1]) : undefined;
-    return data?.draft === false && data?.published === true && data?.content_type !== 'signal-brief' ? data.image : undefined;
+    return data?.draft === false && data?.published === true ? data.image : undefined;
   } catch { return undefined; }
 }
 
@@ -67,7 +67,7 @@ export default function rehypeEvidenceFigures() {
           if ((content.length === 2 || separate) && image?.type === 'element' && image.tagName === 'img' && caption?.type === 'element' && caption.tagName === 'em') {
             const editorial = /^(AI-generated|DI sukurta)/.test(String(caption.children?.[0]?.value ?? ''));
             const original = typeof image.properties?.src === 'string' && image.properties.src.startsWith('/assets/')
-              ? [{ type: 'text', value: ' ' }, { type: 'element', tagName: 'a', properties: { href: image.properties.src, className: ['evidence-original'] }, children: [{ type: 'text', value: (editorial ? (lt ? 'Atverti viso dydžio iliustraciją' : 'Open full-size illustration') : (lt ? 'Atverti originalų vaizdą' : 'Open original image')) + imageDimensions(image.properties.src) }] }] : [];
+              ? [{ type: 'text', value: ' ' }, { type: 'element', tagName: 'a', properties: { href: image.properties.src, className: ['evidence-original'] }, children: [{ type: 'text', value: (editorial ? (lt ? 'Atverti viso dydžio iliustraciją' : 'Open full-size illustration') : (lt ? 'Atverti viso dydžio vaizdą' : 'Open full-size image')) + imageDimensions(image.properties.src) }] }] : [];
             parent.children[index] = {
               type: 'element',
               tagName: 'figure',

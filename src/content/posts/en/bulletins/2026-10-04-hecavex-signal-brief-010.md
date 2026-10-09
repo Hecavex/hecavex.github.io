@@ -44,10 +44,17 @@ key_findings:
   - "The separate NetScaler SAML vulnerability requires a new applicability check after the September updates. Its documented impact is denial of service, not the earlier flaws' arbitrary code execution."
   - "A legitimate software signature, a familiar sender domain or a lookalike website is not enough to decide whether activity is authorised, malicious or attributable."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/hecavex-signal-brief/session-trust-hero-v1.webp
   social: /assets/img/social/hecavex-signal-brief-010-en.png
-  alt: "Signal Brief 10 covering control-plane vulnerabilities, phishing tradecraft and Baltic election monitoring"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "A deceptive login route carries a symbolic access key past identity checks to a cloud service."
+  thumbnail: /assets/img/posts/hecavex-signal-brief/session-trust-card-v1.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-010-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-10-04
     note: "Initial publication covering 28 September–4 October. Information cutoff: 4 October 2026, 08:00 UTC. The final UTC day is partial."

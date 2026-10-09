@@ -44,10 +44,17 @@ key_findings:
   - "Tikras prisijungimo puslapis neįrodo teisėto sesijos prašymo, o jau suteiktos aplikacijos teisės gali leisti destruktyvią veiklą be naujo programinės įrangos exploit."
   - "Naudojant grėsmių ataskaitą vietiniams sprendimams, turi likti matomos publikacijos datos, stebėjimo laikotarpis ir žinomas vardiklis."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/hecavex-signal-brief/session-trust-hero-v1.webp
   social: /assets/img/social/hecavex-signal-brief-009-lt.png
-  alt: "Devintoji signalų apžvalga apie išnaudojamus gateway, device-code phishing, debesijos paskyras ir Europos grėsmių vertinimą"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "Apgaulingas prisijungimo kelias simbolinį prieigos raktą nukreipia pro tapatybės patikrą į debesijos paslaugą."
+  thumbnail: /assets/img/posts/hecavex-signal-brief/session-trust-card-v1.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-009-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-10-04
     note: "Pirmoji retrospektyvi publikacija apie rugsėjo 21–27 d. Informacijos riba: 2026 m. rugsėjo 27 d., 23:59:59 UTC."

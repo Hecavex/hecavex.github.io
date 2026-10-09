@@ -26,6 +26,8 @@ The authoritative deployment is the GitHub Pages workflow on `main`. Every relea
 
 The same release gate is available to the maintainer as `npm run verify`. It is an operational control for this publication, not a promise that the repository is a supported downstream website package.
 
+Pull requests and pushes to `publish/**` run the same `verify` workflow. The branch trigger checks the exact publication commit before it reaches `main`; it does not deploy.
+
 Each build emits `release.json` with the Git revision and delivered-file SHA-256 values for representative English/Lithuanian pages, both data catalogues, search indexes, feeds and the security contact. The post-deploy check requires that exact revision and those bytes, not merely successful HTTP responses.
 
 Visual acceptance is separate from build validity. [The review contract](EDITORIAL-VISUAL-REVIEW.md) provides a private preview-sheet command, evidence-caption requirements and the boundary for measured Search Console decisions.
