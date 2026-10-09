@@ -67,7 +67,10 @@ Do not begin by asking whether the link _looks_ safe. Begin by asking whether th
 
 This guide explains what an ordinary recipient can check without visiting the link, what a public lookup can expose, why shortened URLs and cloaking complicate the answer, and what to do if the link has already been opened. The final section gives a separate, bounded workflow for authorised analysts. It is not necessary for a consumer to reproduce an investigation merely to avoid a phishing page.
 
-<aside class="hx-callout warning"><strong>The 30-second response</strong>Do not tap the link. Capture the sender, full message and receipt time. Verify the claim in the organisation's official app or independently typed website. If it is false or still suspicious, report it. If you already entered a password, payment data or an authentication code, skip the investigation and contain the account immediately.</aside>
+<aside class="hx-callout warning">
+<p><strong>The 30-second response</strong></p>
+<p>Do not tap the link. Capture the sender, full message and receipt time. Verify the claim in the organisation's official app or independently typed website. If it is false or still suspicious, report it. If you already entered a password, payment data or an authentication code, skip the investigation and contain the account immediately.</p>
+</aside>
 
 The term **smishing** simply means phishing delivered by SMS or another text-message channel. The sender label, phone number and position inside an existing message thread can all be misleading. The [Bank of Lithuania warns](https://www.lb.lt/lt/duomenu-viliojimas) that forged messages may appear alongside genuine bank messages and that cloned sites can closely reproduce the real one. A familiar conversation is context, not authentication.
 
@@ -200,7 +203,10 @@ Interpret results as observations:
 ![Isolated browser capture of URLScan's official Public, Unlisted and Private visibility documentation](/assets/img/posts/2026-08-31-suspicious-sms-guide/urlscan-visibility-levels.png)
 _URLScan documentation captured in a fresh browser context on 31 August 2026. Choose visibility before submission. Changing your mind after publishing a unique link does not undo disclosure._
 
-<aside class="hx-callout"><strong>Correct conclusion</strong>"No detections" means the consulted sources did not identify the URL at that time. It does not mean an independent test proved the page safe.</aside>
+<aside class="hx-callout">
+<p><strong>Correct conclusion</strong></p>
+<p>"No detections" means the consulted sources did not identify the URL at that time. It does not mean an independent test proved the page safe.</p>
+</aside>
 
 ## 6. Why a clean preview may be the wrong page
 

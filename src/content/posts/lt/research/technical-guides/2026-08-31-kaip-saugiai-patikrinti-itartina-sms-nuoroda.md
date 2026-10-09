@@ -73,7 +73,10 @@ Gera naujiena paprasta: **daugumai žmonių visai nereikia atverti SMS nuorodos,
 
 Jos neturi susimaišyti. Žmogui, norinčiam sužinoti, ar tikrai vėluoja jo siunta, nereikia namuose statytis phishing laboratorijos.
 
-<aside class="hx-callout warning"><strong>Jeigu jau suvedėte duomenis</strong>Nebetęskite nuorodos analizės, jei pateikėte banko, kortelės ar prisijungimo duomenis, patvirtinote Smart-ID ar kitą MFA užklausą, pervedėte pinigų arba įdiegėte programą. Pereikite tiesiai prie [veiksmų po phishing incidento](/lt/tyrimai/ka-daryti-suvedus-banko-duomenis-phishing-puslapyje/).</aside>
+<aside class="hx-callout warning">
+<p><strong>Jeigu jau suvedėte duomenis</strong></p>
+<p>Nebetęskite nuorodos analizės, jei pateikėte banko, kortelės ar prisijungimo duomenis, patvirtinote Smart-ID ar kitą MFA užklausą, pervedėte pinigų arba įdiegėte programą. Pereikite tiesiai prie <a href="/lt/tyrimai/ka-daryti-suvedus-banko-duomenis-phishing-puslapyje/">veiksmų po phishing incidento</a>.</p>
+</aside>
 
 
 ![Išgalvotas telefonas be prekės ženklo, pauzės simbolis ir didinamasis stiklas iliustruoja sustojimą prieš atveriant SMS nuorodą](/assets/img/posts/2026-08-31-suspicious-sms-guide/sms-safe-pause-inline-v1.webp)
