@@ -38,6 +38,11 @@ image:
   thumbnail: /assets/img/posts/substack/informacijos-gamyklos-prie-lietuvos/01-card.webp
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: substack-informacijos-gamyklos-prie-lietuvos-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 source_url: https://deivlis.substack.com/p/informacijos-gamyklos-prie-lietuvos
 ---
 ![Analitikas stebi koordinuoto informacinio tinklo ir Rusijos žemėlapio ekranus.](/assets/img/posts/substack/informacijos-gamyklos-prie-lietuvos/01.webp)

@@ -10,11 +10,16 @@ const imageSchema = z.union([
     thumbnail: z.string().optional(),
     social: z.string().optional(),
     presentation: z.enum(['illustration', 'evidence']).optional(),
+    source_type: z.enum(['retained', 'generated', 'source-evidence']).optional(),
+    provenance_id: z.string().min(1).optional(),
+    caption: z.string().optional(),
     alt: z.string().default(''),
     width: z.number().optional(),
     height: z.number().optional(),
     hero_width: z.number().optional(),
-    hero_height: z.number().optional()
+    hero_height: z.number().optional(),
+    thumbnail_width: z.number().int().positive().optional(),
+    thumbnail_height: z.number().int().positive().optional()
   }).loose()
 ]);
 

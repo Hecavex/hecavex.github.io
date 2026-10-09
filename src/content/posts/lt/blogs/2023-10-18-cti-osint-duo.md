@@ -26,6 +26,11 @@ image:
   alt: "Iliustracija apie OSINT ir CTI procesų derinimą"
   width: 577
   height: 433
+  presentation: illustration
+  source_type: retained
+  provenance_id: cti-osint-duo-001-cover-retained
+  thumbnail_width: 577
+  thumbnail_height: 433
 featured: false
 draft: false
 toc: true

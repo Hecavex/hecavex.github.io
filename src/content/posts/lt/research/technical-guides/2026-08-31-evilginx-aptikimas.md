@@ -53,6 +53,11 @@ image:
   alt: "Reverse-proxy phishing įrodymų modelis, siejantis vartotoją, klaidinantį proxy ir teisėtą identity provider su lure, web, sign-in bei token telemetrija"
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: evilginx-detection-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## Eksperimentinė taisyklė ir bandymai be tinklo

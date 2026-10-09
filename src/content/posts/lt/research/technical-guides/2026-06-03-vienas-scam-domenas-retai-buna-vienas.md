@@ -38,6 +38,11 @@ image:
   thumbnail: /assets/img/posts/substack/vienas-scam-domenas-retai-buna-vienas/01-card.webp
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: substack-vienas-scam-domenas-retai-buna-vienas-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 source_url: https://deivlis.substack.com/p/vienas-scam-domenas-retai-buna-vienas
 ---
 ![Vienas sukčiavimo URL išplečiamas į susijusius domenus, IP adresus, sertifikatus ir puslapio artefaktus.](/assets/img/posts/substack/vienas-scam-domenas-retai-buna-vienas/01.webp)

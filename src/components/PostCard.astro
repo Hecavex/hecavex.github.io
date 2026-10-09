@@ -1,12 +1,13 @@
 ---
-import { dateText, imagePath, labelForPost, type Post } from '../lib/site';
-interface Props { post: Post; prominent?: boolean; eyebrow?: string; }
-const { post, prominent = false, eyebrow } = Astro.props;
+import { dateText, imagePath, imagePresentation, imageCaption, imageDimensions, imageSrcSet, labelForPost, type Post } from '../lib/site';
+interface Props { post: Post; prominent?: boolean; eyebrow?: string; eager?: boolean; }
+const { post, prominent = false, eyebrow, eager = false } = Astro.props;
 const thumbnail = imagePath(post, 'thumbnail');
+const dimensions = imageDimensions(post, 'thumbnail') ?? { width: 640, height: 360 };
 const actionLabel = post.lang === 'lt' ? 'Skaityti' : 'Read analysis';
 ---
-<article class:list={['post-card', { 'post-card--prominent': prominent, 'post-card--typographic': !thumbnail }]} data-preview={thumbnail ? 'evidence' : 'typographic'}>
-  {thumbnail && <a class="post-card-image" href={post.url} tabindex="-1" aria-hidden="true"><img src={thumbnail} alt="" width="640" height="360" loading={prominent ? 'eager' : 'lazy'} /></a>}
+<article class:list={['post-card', { 'post-card--prominent': prominent, 'post-card--typographic': !thumbnail }]} data-preview={imagePresentation(post) ?? 'typographic'}>
+  {thumbnail && <figure class="post-card-image"><a href={post.url} tabindex="-1" aria-hidden="true"><img src={thumbnail} srcset={imageSrcSet(post, 'thumbnail')} sizes="(max-width: 680px) 34vw, 17vw" alt="" width={dimensions.width} height={dimensions.height} loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : undefined} /></a><figcaption>{imageCaption(post)}</figcaption></figure>}
   <div class="post-card-copy">
     <p class="card-meta"><span>{eyebrow ?? labelForPost(post)}</span><time datetime={post.date.toISOString()}>{dateText(post.date)}</time></p>
     <h3><a href={post.url}>{post.cardTitle}</a></h3>

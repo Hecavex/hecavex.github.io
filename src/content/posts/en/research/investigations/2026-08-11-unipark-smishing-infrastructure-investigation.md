@@ -46,6 +46,11 @@ image:
   thumbnail: /assets/img/posts/2026-08-11-unipark-smishing/unipark-smishing-card-v2.webp
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: unipark-smishing-campaign-infrastructure-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## In short: one SMS, definitely not one domain

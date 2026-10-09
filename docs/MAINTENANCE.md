@@ -30,4 +30,6 @@ Each build emits `release.json` with the Git revision and delivered-file SHA-256
 
 Visual acceptance is separate from build validity. [The review contract](EDITORIAL-VISUAL-REVIEW.md) provides a private preview-sheet command, evidence-caption requirements and the boundary for measured Search Console decisions.
 
+[Editorial media](EDITORIAL-MEDIA.md) owns classified covers, bilingual captions, responsive derivatives and `src/data/editorial-media.json` provenance. Run `npm run check:editorial-assets` after changing a cover or inline illustration. Generated originals remain private, and artwork cannot be classified as source evidence.
+
 The production workflow requires the `HECAVEX_ANALYTICS_TOKEN` repository variable, includes the manually installed Cloudflare Web Analytics beacon and verifies that every generated shell page contains exactly one configured site tag. Local builds omit the beacon unless `PUBLIC_HECAVEX_ANALYTICS_TOKEN` is supplied. The loader honours `Do Not Track: 1`, and the implementation and portfolio boundaries are recorded in [Site measurement](MEASUREMENT.md).

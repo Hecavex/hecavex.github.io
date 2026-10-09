@@ -61,6 +61,12 @@ for (const file of htmlFiles) {
   evidenceFigures += (html.match(/class=["'][^"']*\bhx-evidence-figure\b/gi) ?? []).length;
   const shellDocument = !route.startsWith('/assets/media/');
   const articleDocument = /class=["'][^"']*\barticle-body\b[^"']*\bprose\b/i.test(html);
+  for (const [code] of html.matchAll(/<pre\b[^>]*\bclass=["'][^"']*\bastro-code\b[^"']*["'][^>]*>/gi)) {
+    const style = attr(code, 'style');
+    if (!/background-color:\s*#171b1d\b/i.test(style) || !/(?:^|;)\s*color:\s*#ece9e1\b/i.test(style)) {
+      failures.push(`${route}: code block does not use the dark publication surface/text`);
+    }
+  }
   const citation = html.match(/<aside class="citation-block">([\s\S]*?)<\/aside>/)?.[1] ?? '';
   if (/[\u201c\u201d\u201e]/u.test(citation)) failures.push(`${route}: citation template must use straight quotes`);
   const record = html.match(/<section class="research-record"([\s\S]*?)<\/section>/)?.[1] ?? '';

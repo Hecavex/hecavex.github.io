@@ -37,6 +37,11 @@ image:
   thumbnail: /assets/img/posts/substack/kai-fake-news-scamai-ir-cloaking/01-card.webp
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: substack-kai-fake-news-scamai-ir-cloaking-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 source_url: https://deivlis.substack.com/p/kai-fake-news-scamai-ir-cloaking
 ---
 ![Cloaking schema rodo, kaip tas pats URL tyrėjui pateikia saugų puslapį, o aukai – sukčiavimą.](/assets/img/posts/substack/kai-fake-news-scamai-ir-cloaking/01.webp)

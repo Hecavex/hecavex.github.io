@@ -54,6 +54,11 @@ image:
   thumbnail: /assets/img/posts/2026-08-24-hostinger-pages-phishing/hostinger-pages-phishing-card-v2.webp
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: hostinger-pages-phishing-infrastructure-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## In short: this investigation does not show a Hostinger compromise, but its login page acquired a very bad twin

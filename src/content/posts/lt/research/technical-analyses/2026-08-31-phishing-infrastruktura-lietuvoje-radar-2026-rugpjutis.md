@@ -50,6 +50,11 @@ image:
   thumbnail: /assets/img/posts/2026-08-31-radar-august-baseline/radar-august-baseline-card-v2.webp
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: lithuania-phishing-infrastructure-radar-2026-08-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## Bazinė apžvalga, o ne daugiausia atakuojamų prekių ženklų lentelė

@@ -1,6 +1,6 @@
 # Evidence and visual acceptance
 
-Automated dimensions and payload checks are release controls, not artistic approval. Keep the current palette and distinguish a cover from a claim-bearing figure.
+Automated dimensions and payload checks are release controls, not artistic approval. Follow the near-black portfolio palette and distinguish an editorial illustration from a claim-bearing source figure. [Editorial media](EDITORIAL-MEDIA.md) owns the classified preview and provenance workflow.
 
 Before replacing an image series, review a primary investigation, technical guide, historical screenshot-led article and text-led Signal Brief in both languages.
 

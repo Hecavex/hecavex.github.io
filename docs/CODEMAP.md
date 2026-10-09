@@ -15,7 +15,9 @@ Use [MAINTENANCE.md](MAINTENANCE.md) for reproducible setup, verification and re
 | Publication eligibility and metadata | `src/lib/site.ts`, publication policy helpers | content validation; never bypass approval |
 | Signal Brief chronology and discovery | bilingual `src/content/posts/*/bulletins/`, shared ordering in `src/lib/site.ts`, date display in `src/lib/briefing-record.mjs`, reviewed expectations in `scripts/signal-brief-editions.mjs` | `scripts/signal-briefs.test.mjs`, `scripts/check-signal-briefs.mjs`, `scripts/audit_responsive.mjs` |
 | September Radar monthly evidence | `public/assets/data/radar-september-2026-baseline/`, bilingual September research articles | `scripts/radar-baseline.test.mjs`, `scripts/check-radar-baseline.mjs`, bundle `replay_test.py`; full pinned-input reproduction: `python -B public/assets/data/radar-september-2026-baseline/replay.py` |
-| Cover/preview decision | `src/lib/publication-preview.mjs` | `scripts/publication-preview.test.mjs` |
+| Cover/preview decision, illustration/evidence label and responsive dimensions | `src/lib/publication-preview.mjs`, `src/lib/site.ts` | `scripts/publication-preview.test.mjs`; [editorial media workflow](EDITORIAL-MEDIA.md) |
+| Media provenance and optimized asset gate | `src/data/editorial-media.json`, `scripts/check-editorial-media.mjs` | `scripts/editorial-media.test.mjs`, `npm run check:editorial-assets`; generated originals stay private |
+| Repeated opening illustration and inline figure rendering | `src/lib/rehype-evidence-figures.mjs`, `src/lib/html-image-policy.mjs` | `scripts/evidence-figures.test.mjs`, `scripts/html-fragments.test.mjs`; analytical prose/citations and source evidence are retained |
 | Reusable research card | `src/components/PostCard.astro` | responsive catalogue/home parity |
 | Secondary speaking invitation | `src/components/SpeakingInvitation.astro` | route audit and bilingual link checks |
 | Header, footer, SEO and policies | `src/components/SiteHeader.astro`, `SiteFooter.astro`, `ResourcePolicy.astro`, `src/layouts/BaseLayout.astro` | no-JS navigation, CSP, route audits |
@@ -25,8 +27,8 @@ Use [MAINTENANCE.md](MAINTENANCE.md) for reproducible setup, verification and re
 | Cards and page layout | `modules/publication-cards.css`, `page-layouts.css` | compact home and catalogue parity |
 | Reading / profile rails | `modules/reading-rails.css`, `article-reading.css` | full-width body, evidence tables, About justification |
 | Root gateway, search and footer | `modules/gateway-search-footer.css` | search and footer target checks |
-| Existing light theme / breakpoint rules | `modules/paper-theme.css`, `responsive.css` | cascade order intentionally preserved |
-| Approved editorial redesign | `modules/editorial-design.css` | open heroes, readable labels, typographic cards |
+| Dark article/data surfaces and breakpoint rules | `modules/editorial-surfaces.css`, `responsive.css` | preserve article/data geometry without a paper-colour override |
+| Approved editorial redesign | `modules/editorial-design.css` | compact home introduction, readable labels, image-led classified cards |
 | Fonts | `public/assets/css/fonts.css`, `public/assets/fonts/` | self-hosted Latin + Lithuanian extended glyphs |
 | Production CSS bundling/release manifest | `scripts/finalize-build.mjs` | one minified CSS output; unchanged transfer budgets |
 
@@ -34,7 +36,7 @@ Paths beginning `modules/` are relative to `public/assets/css/`. Public CSS stay
 
 ## Preview contract
 
-Cards are typographic by default, with the real article title, summary, class, date and reading time. Legacy illustrative covers are retained on disk but not promoted on cards or in article openings. A genuine evidence preview requires explicit `image.presentation: evidence`. Images in article Markdown and retained evidence packages are untouched. Social images are edition-specific typography, not invented evidence.
+Classified ordinary publications show image-led cards and an article opening. `image.presentation: illustration` is labelled as editorial imagery, with a separate AI-generated label for new generated art. `image.presentation: evidence` has its own evidence label. Unclassified/no-image articles and Signal Briefs remain text-led. Retained cover bytes and rights remain unchanged. A duplicate opening illustration is suppressed in rendering while its caption/prose is retained. Social images remain edition-specific typography. [EDITORIAL-MEDIA.md](EDITORIAL-MEDIA.md) owns the metadata, provenance and future generation workflow.
 
 ## Change boundaries
 

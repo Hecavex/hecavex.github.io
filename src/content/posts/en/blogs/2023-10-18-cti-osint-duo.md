@@ -12,6 +12,11 @@ image:
   alt: "Illustration accompanying an analysis of OSINT and CTI workflows"
   width: 577
   height: 433
+  presentation: illustration
+  source_type: retained
+  provenance_id: cti-osint-duo-001-cover-retained
+  thumbnail_width: 577
+  thumbnail_height: 433
 description: Why open-source collection and cyber threat intelligence are complementary disciplines, and how to turn public information into a defensible security decision.
 seo_title: "OSINT vs Cyber Threat Intelligence: From Collection to Decisions"
 seo_keywords:

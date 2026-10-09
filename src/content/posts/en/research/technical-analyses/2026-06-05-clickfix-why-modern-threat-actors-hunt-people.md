@@ -36,6 +36,11 @@ image:
   thumbnail: /assets/img/posts/substack/clickfix-kodel-siuolaikiniai-ta-nebeiesko/01-card.webp
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: substack-clickfix-kodel-siuolaikiniai-ta-nebeiesko-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 source_url: https://deivlis.substack.com/p/clickfix-kodel-siuolaikiniai-ta-nebeiesko
 ---
 *During almost a decade working across cybercrime intelligence and cyber threat intelligence *(the same family, but definitely not the same job)* I have seen many different stages of threats such as:*

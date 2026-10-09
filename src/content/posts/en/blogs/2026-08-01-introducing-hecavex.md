@@ -28,6 +28,13 @@ image:
   social: /assets/img/social/introducing-hecavex-001-en.png
   alt: "HECAVEX mark within an analytical publication grid"
   thumbnail: /assets/img/posts/hecavex-editorial/introducing-hecavex.svg
+  presentation: illustration
+  source_type: retained
+  provenance_id: introducing-hecavex-001-cover-retained
+  width: 1200
+  height: 630
+  thumbnail_width: 1200
+  thumbnail_height: 630
 ---
 
 HECAVEX is an independent publication for cyber threat intelligence and digital investigations. It begins with a simple premise: indicators matter, but the relationships around them usually matter more.

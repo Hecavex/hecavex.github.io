@@ -53,6 +53,11 @@ image:
   alt: "T1187 gynybinė įrodymų grandinė nuo nepatikimos nuorodos į nutolusį resursą iki outbound autentifikavimo ir endpoint, tinklo bei identity telemetrijos"
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: t1187-forced-authentication-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## Eksperimentinė taisyklė ir bandymai be tinklo

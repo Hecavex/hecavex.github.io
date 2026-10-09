@@ -5,6 +5,7 @@ import { resolve, join, dirname, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { parse } from 'yaml';
 import { isApprovedPublication } from '../src/lib/publication-state.mjs';
+import { publicationImageCaption, publicationPreview } from '../src/lib/publication-preview.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const output = resolve(process.argv[2] ?? '');
@@ -26,13 +27,13 @@ for (const path of await walk(join(root, 'src/content/posts'))) {
   const data = parse(source.replace(/^\uFEFF/, '').match(/^---\r?\n([\s\S]*?)\r?\n---/)[1]);
   if (!isApprovedPublication(data)) continue;
   const image = typeof data.image === 'object' ? data.image : { path: data.image };
-  const textLed = data.content_type === 'signal-brief';
+  const post = {image:data.image,contentType:data.content_type,translationKey:data.translation_key,lang:data.lang};
   const variants = [
-    ['Cover / viršelis', textLed ? undefined : image?.hero ?? image?.path, 600],
-    ['Card / kortelė', textLed ? undefined : image?.thumbnail ?? image?.hero ?? image?.path, 320],
-    ['Social / dalijimasis', image?.social ?? `/assets/img/social/${data.translation_key}-${data.lang}.png`, 600]
+    ['Cover / viršelis', publicationPreview(post,'hero'), 600],
+    ['Card / kortelė', publicationPreview(post,'thumbnail'), 320],
+    ['Social / dalijimasis', publicationPreview(post,'social'), 600]
   ];
-  cards.push(`<article><h2>${escape(data.title)} [${escape(data.lang)}]</h2><p>${escape(data.translation_key)} · Visual approval: pending owner review</p><div class="variants">${variants.filter(([,path]) => path).map(([label, path, width]) => `<figure><figcaption>${label} · ${width} CSS px</figcaption><img src="${pathToFileURL(join(root, 'public', path.slice(1))).href}" width="${width}" alt="${escape(image.alt)}"></figure>`).join('')}</div></article>`);
+  cards.push(`<article><h2>${escape(data.title)} [${escape(data.lang)}]</h2><p>${escape(data.translation_key)} · ${escape(publicationImageCaption(post))} · Visual review: representative checks required</p><div class="variants">${variants.filter(([,path]) => path).map(([label, path, width]) => `<figure><figcaption>${label} · ${width} CSS px</figcaption><img src="${pathToFileURL(join(root, 'public', path.slice(1))).href}" width="${width}" alt="${escape(image.alt)}"></figure>`).join('')}</div></article>`);
 }
 await mkdir(dirname(output), { recursive: true });
 await writeFile(output, `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>HECAVEX private visual acceptance sheet</title><style>body{margin:32px;background:#ece9e1;color:#151719;font:16px/1.5 system-ui}article{border-top:1px solid #30383b;padding:24px 0}.variants{display:flex;gap:24px;flex-wrap:wrap}figure{margin:0;max-width:100%}img{height:auto;max-width:100%;border:1px solid #30383b}figcaption{margin-bottom:8px}</style><h1>HECAVEX private visual acceptance sheet</h1><p>Cover, 320 px card and 600 px social preview. Generated ${new Date().toISOString()}. This is not evidence of owner approval, a new investigation or improved CTR.</p><p>Check legibility, meaningful crop, accurate language, real versus illustrative content and caption-to-claim support. Preserve original evidence. Do not replace a series before approving representative examples.</p>${cards.join('')}</html>\n`);

@@ -48,6 +48,11 @@ image:
   alt: "Vienas reklamos URL pagal kontekstą nukreipiamas į švarų arba apgaulingą aukai skirtą atsakymą, o prieš vertinimą išsaugomi įrodymai"
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: facebook-cloaking-explained-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## Cloaking yra nukreipimo sprendimas, o ne ypatinga puslapio rūšis

@@ -4,7 +4,7 @@ import ContentOutline from '../../../components/ContentOutline.astro';
 import PostCard from '../../../components/PostCard.astro';
 import type { OutlineItem } from '../../../data/page-context';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { categoryPath, dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imagePath, labelForPost, postNeighboursFor, relatedPostsFor, slugify, taxonomy, type Post } from '../../../lib/site';
+import { categoryPath, dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imageCaption, imageDimensions, imagePath, imagePresentation, imageSocialAlt, imageSrcSet, labelForPost, postNeighboursFor, relatedPostsFor, slugify, taxonomy, type Post } from '../../../lib/site';
 import { recordLabel } from '../../../lib/record-labels.mjs';
 import { coverageDate } from '../../../lib/briefing-record.mjs';
 import { citationPath } from '../../../lib/publication-citations.mjs';
@@ -30,6 +30,7 @@ const hero = imagePath(post, 'hero');
 const social = imagePath(post, 'social');
 const alt = hero ? imageAlt(post) : '';
 const image = typeof post.image === 'object' ? post.image : undefined;
+const heroDimensions = imageDimensions(post, 'hero');
 const methods = Array.isArray(data.methods) ? data.methods.map(String) : [];
 const findings = Array.isArray(data.key_findings) ? data.key_findings.map(String) : [];
 const updates = Array.isArray(data.updates) ? data.updates as Array<{ date: Date; note: string }> : [];
@@ -59,7 +60,7 @@ const sectionLabel = post.publicationClass === 'signal-brief'
   ? (post.lang === 'lt' ? 'Signalų apžvalgos' : 'Signal Briefs')
   : (post.lang === 'lt' ? 'Tyrimai' : 'Research');
 ---
-<BaseLayout lang={post.lang} title={post.title} seoTitle={post.seoTitle} keywords={post.seoKeywords.length > 0 ? post.seoKeywords : post.tags} articleSection={labelForPost(post)} description={post.seoDescription ?? post.description} canonicalPath={post.url} alternatePath={translation?.url} image={social} imageAlt={alt || `${post.title} social preview`} type="Article" published={post.date} modified={post.updated ?? post.date} breadcrumbs={[{ name: 'HECAVEX', path: `/${post.lang}/` }, { name: sectionLabel, path: sectionPath }, { name: post.title, path: post.url }]}>
+<BaseLayout lang={post.lang} title={post.title} seoTitle={post.seoTitle} keywords={post.seoKeywords.length > 0 ? post.seoKeywords : post.tags} articleSection={labelForPost(post)} description={post.seoDescription ?? post.description} canonicalPath={post.url} alternatePath={translation?.url} image={social} imageAlt={imageSocialAlt(post)} type="Article" published={post.date} modified={post.updated ?? post.date} breadcrumbs={[{ name: 'HECAVEX', path: `/${post.lang}/` }, { name: sectionLabel, path: sectionPath }, { name: post.title, path: post.url }]}>
   <article class="shell article-shell">
     <nav class="article-breadcrumb" aria-label={post.lang === 'lt' ? 'Publikacijos kelias' : 'Publication path'}>
       <a href={`/${post.lang}/`}>HECAVEX</a><span aria-hidden="true">/</span><a href={sectionPath}>{sectionLabel}</a><span aria-hidden="true">/</span><span aria-current="page">{post.title}</span>
@@ -73,7 +74,7 @@ const sectionLabel = post.publicationClass === 'signal-brief'
       {post.entry.data.immediate_actions?.length && <section class="immediate-actions" aria-labelledby="immediate-actions-title"><h2 id="immediate-actions-title">{t('What to do now', 'Ką daryti dabar')}</h2><ol>{post.entry.data.immediate_actions.map((action) => <li>{action}</li>)}</ol></section>}
       <div class="article-meta"><span>{post.lang === 'lt' ? 'Paskelbta' : 'Published'} <time datetime={post.date.toISOString()}>{dateText(post.date)}</time></span>{post.updated && post.updated.valueOf() !== post.date.valueOf() && <span>{post.lang === 'lt' ? 'Atnaujinta' : 'Updated'} <time datetime={post.updated.toISOString()}>{dateText(post.updated)}</time></span>}<span>{post.readingMinutes} {post.lang === 'lt' ? 'min. skaitymo' : 'min read'}</span><span>{post.lang === 'lt' ? 'Autorius' : 'By'} <a href={post.lang === 'lt' ? '/lt/apie/' : '/en/about/'}>Deividas Lis</a></span></div>
       <dl class="article-signals"><div><dt>{post.lang === 'lt' ? 'Turinio tipas' : 'Content type'}</dt><dd>{labelForPost(post)}</dd></div><div><dt>{post.lang === 'lt' ? 'Pasitikėjimas' : 'Confidence'}</dt><dd>{recordLabel(data.confidence ?? 'not stated', post.lang)}</dd></div><div><dt>TLP</dt><dd>{String(data.tlp ?? 'clear').toUpperCase()}</dd></div></dl>
-      {hero && <figure class="article-hero"><img src={hero} alt={alt} width={image?.hero_width ?? image?.width ?? 1200} height={image?.hero_height ?? image?.height ?? 630} loading="eager" fetchpriority="high" />{alt && <figcaption>{t('Publication cover', 'Publikacijos viršelis')} · {alt}</figcaption>}</figure>}
+      {hero && <figure class="article-hero" data-preview={imagePresentation(post)}><img src={hero} srcset={imageSrcSet(post, 'hero')} sizes="(max-width: 960px) calc(100vw - 40px), 1120px" alt={alt} width={heroDimensions?.width} height={heroDimensions?.height} loading="eager" fetchpriority="high" decoding="async" /><figcaption>{imageCaption(post)}{image?.caption && <> · {image.caption}</>} <a href={hero}>{image?.source_type === 'generated' ? t('Open full-size illustration', 'Atverti viso dydžio iliustraciją') : t('Open original image', 'Atverti originalų vaizdą')}</a></figcaption></figure>}
     </header>
 
       {showOutline && <ContentOutline lang={post.lang} headings={outlineHeadings} scopeId="article-reading" condensed={condensedOutline} />}

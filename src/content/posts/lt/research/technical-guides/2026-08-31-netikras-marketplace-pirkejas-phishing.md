@@ -48,6 +48,11 @@ image:
   alt: "Netikras Marketplace pirkėjas iš patikimo pokalbio nuveda pardavėją į išorinį mokėjimo puslapį, po kurio parodytas banko ir incidento valdymo kelias"
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: marketplace-buyer-phishing-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## 30 sekundžių taisyklė pardavėjui

@@ -35,6 +35,11 @@ image:
   thumbnail: /assets/img/posts/substack/mfa-nera-panaceja-ir-laikas-nustoti/01-card.webp
   width: 1280
   height: 719
+  presentation: illustration
+  source_type: retained
+  provenance_id: substack-mfa-nera-panaceja-ir-laikas-nustoti-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 404
 source_url: https://deivlis.substack.com/p/mfa-nera-panaceja-ir-laikas-nustoti
 ---
 ![A sign-in screen and lightning fracture illustrate that MFA is necessary but not a panacea.](/assets/img/posts/substack/mfa-nera-panaceja-ir-laikas-nustoti/01.webp)

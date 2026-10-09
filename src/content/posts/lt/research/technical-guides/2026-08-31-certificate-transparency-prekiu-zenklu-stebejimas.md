@@ -48,6 +48,11 @@ image:
   thumbnail: /assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/certificate-transparency-brand-monitoring-card-v2.webp
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: certificate-transparency-brand-monitoring-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## Sertifikatas yra stebėjimas, o ne kenkėjiškumo nuosprendis

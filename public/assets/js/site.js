@@ -24,14 +24,16 @@
   let searchIndex;
   let searchRequest;
   let searchGeneration = 0;
+  let searchOpener;
 
   const normalizeSearchText = (value) => String(value ?? '')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLocaleLowerCase(language);
 
-  const openSearch = () => {
+  const openSearch = (event) => {
     if (!(dialog instanceof HTMLDialogElement)) return;
+    searchOpener = event.currentTarget;
     dialog.showModal();
     if (navigation instanceof HTMLDetailsElement) navigation.open = false;
     window.requestAnimationFrame(() => searchInput?.focus());
@@ -40,6 +42,14 @@
   document.querySelectorAll('[data-search-open]').forEach((button) => button.addEventListener('click', openSearch));
   dialog?.addEventListener('click', (event) => {
     if (event.target === dialog && dialog instanceof HTMLDialogElement) dialog.close();
+  });
+  dialog?.addEventListener('close', () => {
+    if (!searchOpener) return;
+    // Opening search collapses the mobile menu, hiding its Search button.
+    const returnTarget = [searchOpener, navigationSummary, ...document.querySelectorAll('[data-search-open]')]
+      .find((element) => element instanceof HTMLElement && element.checkVisibility({ visibilityProperty: true }));
+    returnTarget?.focus({ preventScroll: true });
+    searchOpener = undefined;
   });
 
   const loadSearch = async () => {

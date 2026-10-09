@@ -14,6 +14,11 @@ image:
   alt: "MISP threat intelligence platform interface"
   width: 1300
   height: 500
+  presentation: illustration
+  source_type: retained
+  provenance_id: misp-for-cti-part-1-001-cover-retained
+  thumbnail_width: 1300
+  thumbnail_height: 500
 description: A practitioner guide to MISP deployment, data modelling, operating controls, integrations and introductory PyMISP automation for threat intelligence teams.
 seo_title: "MISP Threat Intelligence Deployment and PyMISP Automation"
 seo_keywords:

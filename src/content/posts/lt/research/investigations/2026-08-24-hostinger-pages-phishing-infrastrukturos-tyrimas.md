@@ -48,6 +48,11 @@ image:
   alt: "Hostinger imitavimo phishing kit'o srautas nuo Cloudflare Pages puslapio iki atskirų credential bei tracking servisų ir teisėto Hostinger redirect"
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: hostinger-pages-phishing-infrastructure-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 featured: false
 draft: false
 published: true

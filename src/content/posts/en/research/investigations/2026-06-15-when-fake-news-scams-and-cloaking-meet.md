@@ -35,6 +35,11 @@ image:
   thumbnail: /assets/img/posts/substack/kai-fake-news-scamai-ir-cloaking/01-card.webp
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: substack-kai-fake-news-scamai-ir-cloaking-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 source_url: https://deivlis.substack.com/p/kai-fake-news-scamai-ir-cloaking
 ---
 ![Cloaking diagram showing one URL serving a safe page to a researcher and a scam to a victim.](/assets/img/posts/substack/kai-fake-news-scamai-ir-cloaking/01.webp)

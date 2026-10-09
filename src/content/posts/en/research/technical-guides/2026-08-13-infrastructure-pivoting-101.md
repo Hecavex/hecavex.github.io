@@ -43,6 +43,11 @@ image:
   thumbnail: /assets/img/posts/2026-08-13-pivoting-101/pivoting-101-card-v2.webp
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: infrastructure-pivoting-101-unipark-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## Pivoting is not IOC multiplication

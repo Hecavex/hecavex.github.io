@@ -29,6 +29,13 @@ image:
   social: /assets/img/social/introducing-hecavex-001-lt.png
   alt: "HECAVEX ženklas analitinio leidinio tinklelyje"
   thumbnail: /assets/img/posts/hecavex-editorial/introducing-hecavex.svg
+  presentation: illustration
+  source_type: retained
+  provenance_id: introducing-hecavex-001-cover-retained
+  width: 1200
+  height: 630
+  thumbnail_width: 1200
+  thumbnail_height: 630
 ---
 
 HECAVEX – nepriklausomas kibernetinių grėsmių žvalgybos ir skaitmeninių tyrimų leidinys. Jo pradinis principas paprastas: indikatoriai svarbūs, tačiau ryšiai aplink juos dažniausiai pasako daugiau.

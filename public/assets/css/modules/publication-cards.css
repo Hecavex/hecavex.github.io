@@ -203,16 +203,21 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 .post-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
-  padding: 1px;
-  background: var(--line);
+  gap: clamp(1rem, 2vw, 1.5rem);
 }
 
 .post-card {
   display: grid;
   min-width: 0;
-  grid-template-columns: minmax(9rem, 0.34fr) minmax(0, 0.66fr);
-  background: var(--surface);
+  grid-template-columns: minmax(0, 0.36fr) minmax(0, 0.64fr);
+  gap: 1rem;
+  align-content: start;
+  padding-block: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.post-card--typographic {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .post-grid > .post-card:last-child:nth-child(odd) {
@@ -223,29 +228,41 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
   grid-column: auto;
 }
 
-.post-card--prominent {
-  grid-template-columns: minmax(12rem, 0.45fr) minmax(0, 0.55fr);
+.post-card-image {
+  min-width: 0;
+  margin: 0;
 }
 
-.post-card-image {
-  min-height: 12rem;
-  overflow: hidden;
-  padding: clamp(0.45rem, 0.8vw, 0.8rem);
-  border-right: 1px solid var(--line);
-  background: var(--graphite);
+.post-card-image a {
+  display: block;
+  background: var(--surface);
 }
 
 .post-card-image img {
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.post-card[data-preview="evidence"] .post-card-image img,
+.post-card-image img[src$=".svg"] {
   object-fit: contain;
+}
+
+.post-card-image figcaption {
+  margin-top: 0.4rem;
+  color: var(--muted);
+  font-size: 0.6875rem;
+  line-height: 1.5;
 }
 
 .post-card-copy {
   display: flex;
   min-width: 0;
   flex-direction: column;
-  padding: 1.2rem;
+  padding: 0;
 }
 
 .post-card h3 {

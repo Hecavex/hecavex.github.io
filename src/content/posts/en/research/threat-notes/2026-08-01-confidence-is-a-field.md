@@ -29,6 +29,13 @@ image:
   social: /assets/img/social/confidence-method-001-en.png
   alt: "Analytical confidence plotted as evidence bands on a calibrated field"
   thumbnail: /assets/img/posts/hecavex-editorial/confidence-field.svg
+  presentation: illustration
+  source_type: retained
+  provenance_id: confidence-method-001-cover-retained
+  width: 1200
+  height: 630
+  thumbnail_width: 1200
+  thumbnail_height: 630
 ---
 
 Analytical confidence describes how well the available evidence supports an assessment. It does not describe how strongly an analyst likes the conclusion, how serious the topic sounds or how many times the same claim has been repeated.

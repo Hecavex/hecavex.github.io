@@ -48,6 +48,11 @@ image:
   alt: "One advertisement URL is conditionally routed to a clean response or a fraudulent victim response, with evidence preserved before interpretation"
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: facebook-cloaking-explained-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## Cloaking is a routing decision, not a special kind of webpage

@@ -180,10 +180,10 @@ for (const edition of editions) {
   assert.equal(record.substantiveReview, citationDate(data.last_reviewed_at), `${path}: explicit review date`);
   assert.deepEqual(record.translations, [{ language: other.lang, url: origin + other.path }], `${path}: catalogue counterpart`);
 
-  // September belongs on home while it is among the five latest research posts.
+  // September belongs on home while it is among the five latest ordinary articles.
   // A future legitimate publication must be able to replace it in the lead slot.
   const researchIds = new Set(catalogue.publications
-    .filter(item => item.language === lang && ['primary-research', 'technical-assessment'].includes(item.publicationClass))
+    .filter(item => item.language === lang && item.publicationClass !== 'signal-brief')
     .map(item => new URL(item.id).pathname));
   const latestResearch = search.filter(item => researchIds.has(item.url));
   assert(latestResearch.length > 0, `${lang}: available research discovery`);
