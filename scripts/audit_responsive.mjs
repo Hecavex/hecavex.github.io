@@ -410,13 +410,19 @@ try {
         }));
         const edition = route.slice(1, 3);
         const catalogue = JSON.parse(await readFile(join(siteRoot, 'data/publications.json'), 'utf8'));
-        const expected = catalogue.publications.filter(item => item.language === edition && item.publicationClass !== 'signal-brief').sort((a, b) => new Date(b.published) - new Date(a.published)).slice(0, 5).map(item => new URL(item.id).pathname);
+        const ordinaryPaths = new Set(catalogue.publications.filter(item => item.language === edition && item.publicationClass !== 'signal-brief').map(item => new URL(item.id).pathname));
+        // Citation dates are calendar-only and cannot order publications on the
+        // same day. Search retains full timestamps and canonical exact-tie order.
+        const search = JSON.parse(await readFile(join(siteRoot, edition, 'search.json'), 'utf8'));
+        const expectedArticles = search.filter(item => ordinaryPaths.has(item.url)).sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+        const expected = expectedArticles.map(item => item.url);
         if (discovery.taskRoutes.length !== 4 || discovery.taskRoutes.some(link => !link.href?.startsWith(`/${edition}/`) && !(edition === 'en' && link.href === '/data/') || link.height < 43.5 || !link.text) || !discovery.updated) fail(route, width, `localized task discovery is incomplete (${JSON.stringify(discovery.taskRoutes)})`);
         if (discovery.paths.length !== 4 || discovery.paths.some(path => !path.href?.startsWith(`/${edition}/`) || !path.title || !path.summary || !path.date || !path.citation?.endsWith('.bib') || path.targets.some(height => height < 43.5))) fail(route, width, 'compact reading paths lost their localized records, citations or accessible targets');
         const columns = width > 680 ? 2 : 1;
         const expectedCardWidth = (state.latestGridWidth - state.latestColumnGap * (columns - 1)) / columns;
         const cards = state.latestCardGeometry;
-        if (JSON.stringify(cards.map(card => card.href)) !== JSON.stringify(expected)) fail(route, width, `newest approved article order differs from catalogue (${cards.map(card => card.href)})`);
+        if (JSON.stringify(cards.map(card => card.href)) !== JSON.stringify(expected)) fail(route, width, `newest approved article order differs from full publication timestamps (${cards.map(card => card.href)})`);
+        if (cards.some((card, index) => card.date !== expectedArticles[index]?.date)) fail(route, width, 'latest article datetimes differ from the full publication timestamps');
         if (cards[0]?.imageLoading !== 'eager' || cards.slice(1).some(card => card.imageLoading !== 'lazy')) fail(route, width, 'first article preview must load eagerly and later previews lazily');
         if (cards[0]?.top > (width <= 680 ? 570 : 480) || cards[0]?.titleBottom > (width <= 680 ? 760 : 650)) fail(route, width, 'newest article image/title are pushed below the initial reading viewport');
         if (state.hasOversizedHomeLead || cards.length !== 5) fail(route, width, `latest research is not five ordinary cards (${cards.length} cards, oversized lead ${state.hasOversizedHomeLead})`);
