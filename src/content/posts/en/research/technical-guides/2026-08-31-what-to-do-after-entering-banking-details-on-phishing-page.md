@@ -52,6 +52,11 @@ image:
   thumbnail: /assets/img/posts/2026-08-31-post-phishing-banking-response/post-phishing-banking-response-card-v2.webp
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: post-phishing-banking-response-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## First actions: contain the account before analysing the page

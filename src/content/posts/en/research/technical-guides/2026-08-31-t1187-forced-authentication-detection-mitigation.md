@@ -53,6 +53,11 @@ image:
   alt: "T1187 defensive evidence chain from an untrusted reference through outbound authentication to correlated endpoint, network and identity telemetry"
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: t1187-forced-authentication-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## Experimental analytic and offline fixtures

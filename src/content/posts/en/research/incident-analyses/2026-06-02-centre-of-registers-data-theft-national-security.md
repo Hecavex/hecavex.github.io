@@ -37,6 +37,11 @@ image:
   thumbnail: /assets/img/posts/substack/registru-centro-duomenu-vagyste-kai/01-card.webp
   width: 1280
   height: 719
+  presentation: illustration
+  source_type: retained
+  provenance_id: substack-registru-centro-duomenu-vagyste-kai-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 404
 source_url: https://deivlis.substack.com/p/registru-centro-duomenu-vagyste-kai
 ---
 ![Scale of the Center of Registers data theft and its possible path to national-security impact.](/assets/img/posts/substack/registru-centro-duomenu-vagyste-kai/01.webp)

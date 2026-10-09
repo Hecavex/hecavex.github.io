@@ -197,7 +197,14 @@ export const labelForPost = (post: Post) => publicationClasses[post.publicationC
   ?? contentTypes[post.contentType]?.[post.lang]
   ?? (post.lang === 'lt' ? 'HECAVEX tyrimas' : 'HECAVEX Research');
 
-export { publicationPreview as imagePath } from './publication-preview.mjs';
+export {
+  publicationPreview as imagePath,
+  publicationImageCaption as imageCaption,
+  publicationImageDimensions as imageDimensions,
+  publicationImagePresentation as imagePresentation,
+  publicationImageSrcSet as imageSrcSet,
+  publicationSocialAlt as imageSocialAlt
+} from './publication-preview.mjs';
 
 export const imageAlt = (post: Post) => typeof post.image === 'object' ? post.image.alt : '';
 export const dateText = (date: Date) => {

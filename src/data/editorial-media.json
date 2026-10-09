@@ -1,0 +1,648 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "id": "cti-osint-duo-001-cover-retained",
+      "translation_key": "cti-osint-duo-001",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2023-10-18-cti-osint/1_img.png",
+          "width": 577,
+          "height": 433,
+          "bytes": 26756,
+          "sha256": "d71b2df1f0bc0b3e223a20e64007c7532bd70963de7c999027b5e68c0c2d213a"
+        }
+      ]
+    },
+    {
+      "id": "introducing-hecavex-001-cover-retained",
+      "translation_key": "introducing-hecavex-001",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/hecavex-editorial/introducing-hecavex.svg",
+          "width": 1200,
+          "height": 630,
+          "bytes": 1041,
+          "sha256": "e024bbcba28774beb94d1657fd097c299a6637a28243b648a0f8418df9148571"
+        }
+      ]
+    },
+    {
+      "id": "substack-registru-centro-duomenu-vagyste-kai-cover-retained",
+      "translation_key": "substack-registru-centro-duomenu-vagyste-kai",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/substack/registru-centro-duomenu-vagyste-kai/01.webp",
+          "width": 1280,
+          "height": 719,
+          "bytes": 83890,
+          "sha256": "eff3d4aeb53fac2a3b7ac4df3ce7476b7e0c4ab42f20345568a0ede75eed4a67"
+        },
+        {
+          "path": "/assets/img/posts/substack/registru-centro-duomenu-vagyste-kai/01-card.webp",
+          "width": 720,
+          "height": 404,
+          "bytes": 29668,
+          "sha256": "aba3bdbd9fcaae2188ee0ea6707245b6cbc4453735f4461fab9c0874d018648e"
+        }
+      ]
+    },
+    {
+      "id": "substack-registru-centro-duomenu-vagyste-part-cover-retained",
+      "translation_key": "substack-registru-centro-duomenu-vagyste-part",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/substack/registru-centro-duomenu-vagyste-part/01.webp",
+          "width": 1280,
+          "height": 719,
+          "bytes": 87544,
+          "sha256": "1333bdfb988a52e5361ac07934549f69572a67b6bb06a343d2c52b682d5fa2c1"
+        },
+        {
+          "path": "/assets/img/posts/substack/registru-centro-duomenu-vagyste-part/01-card.webp",
+          "width": 720,
+          "height": 404,
+          "bytes": 31930,
+          "sha256": "049db9615da29f8ce907c2cd378aaf69701716ab6bed6916dffb38f1cfe6c792"
+        }
+      ]
+    },
+    {
+      "id": "substack-kai-fake-news-scamai-ir-cloaking-cover-retained",
+      "translation_key": "substack-kai-fake-news-scamai-ir-cloaking",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/substack/kai-fake-news-scamai-ir-cloaking/01.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 138720,
+          "sha256": "33836d627c322f07121113e06c3df283157ae255d97eaabeaddab295b06884ad"
+        },
+        {
+          "path": "/assets/img/posts/substack/kai-fake-news-scamai-ir-cloaking/01-card.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 34308,
+          "sha256": "d6de48f1d718e87f93196d54e4da0c1804a50883ab7efe20b8bf351072e92077"
+        }
+      ]
+    },
+    {
+      "id": "substack-informacijos-gamyklos-prie-lietuvos-cover-retained",
+      "translation_key": "substack-informacijos-gamyklos-prie-lietuvos",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/substack/informacijos-gamyklos-prie-lietuvos/01.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 179556,
+          "sha256": "b06c0c3964825235ba0c66aa644c39e325759f5256ff9b2ec1381f41f2012668"
+        },
+        {
+          "path": "/assets/img/posts/substack/informacijos-gamyklos-prie-lietuvos/01-card.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 42504,
+          "sha256": "ffd2f6a91a4d51967603cb89f45813b4fdb0bacf60a5cdf2f5469fdf794f3ad7"
+        }
+      ]
+    },
+    {
+      "id": "unipark-smishing-campaign-infrastructure-cover-retained",
+      "translation_key": "unipark-smishing-campaign-infrastructure",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-11-unipark-smishing/unipark-smishing-hero-v2.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 133880,
+          "sha256": "98b0cb8da52aec645a33cfa680c3966a3c2c84a89f51d00909545986b5a9d811"
+        },
+        {
+          "path": "/assets/img/posts/2026-08-11-unipark-smishing/unipark-smishing-card-v2.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 33964,
+          "sha256": "2537300c217ee25f188339363fce0a7fe4ad2777ff04fbd147ad59deff1d8ed3"
+        }
+      ]
+    },
+    {
+      "id": "hostinger-pages-phishing-infrastructure-cover-retained",
+      "translation_key": "hostinger-pages-phishing-infrastructure",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-24-hostinger-pages-phishing/hostinger-pages-phishing-hero-v2.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 133844,
+          "sha256": "cbd43dd8aa4ade00af21b77d2e4378ed00b52e28527ccf3563313aa805f2b0d3"
+        },
+        {
+          "path": "/assets/img/posts/2026-08-24-hostinger-pages-phishing/hostinger-pages-phishing-card-v2.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 33520,
+          "sha256": "99c59d434bc21641684f0ee809b7a2fdc6d91f12a4178d9b8ab255839023a72f"
+        }
+      ]
+    },
+    {
+      "id": "github-malicious-python-001-cover-retained",
+      "translation_key": "github-malicious-python-001",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2024-11-10-github/main/cover.jpg",
+          "width": 1200,
+          "height": 686,
+          "bytes": 292718,
+          "sha256": "a2b938d4ac589bf8cc6b93c262c7edf68cbb5e981d4cbfd982644ab85f70d175"
+        }
+      ]
+    },
+    {
+      "id": "adform-supply-chain-crypto-clipper-cover-retained",
+      "translation_key": "adform-supply-chain-crypto-clipper",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-08-adform-clipper/adform-clipper-hero.webp",
+          "width": 1672,
+          "height": 941,
+          "bytes": 95262,
+          "sha256": "6d22e6292712c72bd30a641a2a42e0d15ef5d5377d42acfcc9a949d3465df4e6"
+        },
+        {
+          "path": "/assets/img/posts/2026-08-08-adform-clipper/adform-clipper-card.webp",
+          "width": 800,
+          "height": 450,
+          "bytes": 20372,
+          "sha256": "d31d35da54a2e21a07b4fbbf2b0c7db25c166e4e3a272fd5e9d0b6e4afc587b1"
+        }
+      ]
+    },
+    {
+      "id": "substack-mfa-nera-panaceja-ir-laikas-nustoti-cover-retained",
+      "translation_key": "substack-mfa-nera-panaceja-ir-laikas-nustoti",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/substack/mfa-nera-panaceja-ir-laikas-nustoti/01.webp",
+          "width": 1280,
+          "height": 719,
+          "bytes": 62578,
+          "sha256": "d23dc571c2d30ec283ae50275515473db51a6820b4299272dc07394a70cffa22"
+        },
+        {
+          "path": "/assets/img/posts/substack/mfa-nera-panaceja-ir-laikas-nustoti/01-card.webp",
+          "width": 720,
+          "height": 404,
+          "bytes": 22964,
+          "sha256": "f61a6f05ec4b2f8ceeb4e0a9f4be17a79a9f738bd6ed5a262c8bdeed32f28bc3"
+        }
+      ]
+    },
+    {
+      "id": "substack-clickfix-kodel-siuolaikiniai-ta-nebeiesko-cover-retained",
+      "translation_key": "substack-clickfix-kodel-siuolaikiniai-ta-nebeiesko",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/substack/clickfix-kodel-siuolaikiniai-ta-nebeiesko/01.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 114994,
+          "sha256": "fc630800d329e0e82cf4dbd076fb682160e070200accef3186a07fcf88a8cc07"
+        },
+        {
+          "path": "/assets/img/posts/substack/clickfix-kodel-siuolaikiniai-ta-nebeiesko/01-card.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 29378,
+          "sha256": "9428d71e0323455ded4a4de809e935a895479f8587a5361103a16c275a86ff8d"
+        }
+      ]
+    },
+    {
+      "id": "lithuania-phishing-infrastructure-radar-2026-08-cover-retained",
+      "translation_key": "lithuania-phishing-infrastructure-radar-2026-08",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-31-radar-august-baseline/radar-august-baseline-hero-v2.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 179436,
+          "sha256": "25a420c5e97b7e380bf0b0a93abe97a32ab8c7a1e2aac521af3c6011e4abafe8"
+        },
+        {
+          "path": "/assets/img/posts/2026-08-31-radar-august-baseline/radar-august-baseline-card-v2.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 35748,
+          "sha256": "e97843aec36856fe5738f8a8e74e348c828f98dca915076b630eb8689eb9aee8"
+        }
+      ]
+    },
+    {
+      "id": "lithuania-phishing-infrastructure-radar-2026-09-cover-generated-v1",
+      "translation_key": "lithuania-phishing-infrastructure-radar-2026-09",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "generated",
+      "rights": "Generated for HECAVEX editorial use. No third-party brand or evidence licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-10-04-radar-september-baseline/radar-september-baseline-hero-v1.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 98716,
+          "sha256": "fc94aa43984441a11e9f9d5a4a96fd2504cf873a8731d2eda0147aa04b5d6132"
+        },
+        {
+          "path": "/assets/img/posts/2026-10-04-radar-september-baseline/radar-september-baseline-card-v1.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 27614,
+          "sha256": "420297ca2b100fdeac29c9b944fa04b3ec1585e4d0259a76fd3a66e33cf44484"
+        }
+      ],
+      "generation": {
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "recorded_at": "2026-10-09 03:05:42 UTC",
+        "request_id": "exec-9c887060-a5cb-4dbd-b194-58a1a4862f8b",
+        "prompt": "Use case: stylized-concept. Create one polished editorial illustration for an independent cybersecurity research article about a September 2026 baseline of public certificate-transparency hostname observations and candidate triage. This is a symbolic editorial cover, never a depiction of evidence or a real dashboard. Wide landscape composition, 16:9 if available, designed to remain recognizable at a small article thumbnail. Scene: an elegant physical archive of dark graphite translucent certificate plates and small abstract hostname tokens traveling through three restrained observation trays, with fine teal connections passing through a simple magnifying lens. Clear central subject, substantial dark negative space around edges; minimalist cinematic macro still life, realistic materials, no human hacker stereotype. Palette: near-black #111416, graphite #171b1d, muted teal #55b9b1, a few warm paper highlights. Sophisticated editorial photography mixed with precise sculptural illustration; subtle natural side light, restrained contrast, no neon glow. The archive suggests sampled observations, retention and careful verification rather than a verdict. No text, no dates, no numbers, no charts, no axes, no country maps, no logos, no company names, no recognizable actual domains, no skulls, no padlock icon, no green matrix rain. Avoid showing exact operational architecture or false quantitative facts. Opaque background. Deliver a single finished image.",
+        "original_sha256": "351e314be3333c054a29fba5f696818320556f2fc3f0870f618bc9473001e4ec",
+        "reference_images_used": false,
+        "processing": "Format conversion and proportional center crop to 16:9 using Pillow, Lanczos, WebP quality82, metadata stripped."
+      }
+    },
+    {
+      "id": "google-dorking-001-cover-retained",
+      "translation_key": "google-dorking-001",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2023-10-11-google-dorking/main/1_img.png",
+          "width": 593,
+          "height": 356,
+          "bytes": 60809,
+          "sha256": "065a250f2b3bbac06ba0b02a178e31b5298651221a597a4f51104f06d50b99d4"
+        }
+      ]
+    },
+    {
+      "id": "misp-for-cti-part-1-001-cover-retained",
+      "translation_key": "misp-for-cti-part-1-001",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2025-03-02-misp-part-1/main/misp-picture.png",
+          "width": 1300,
+          "height": 500,
+          "bytes": 77140,
+          "sha256": "ac9a3ac625b96fc8a0ee65c9cb266b9b446aa098cecc08a9d33b266ba9f31fbe"
+        }
+      ]
+    },
+    {
+      "id": "substack-vienas-scam-domenas-retai-buna-vienas-cover-retained",
+      "translation_key": "substack-vienas-scam-domenas-retai-buna-vienas",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/substack/vienas-scam-domenas-retai-buna-vienas/01.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 86994,
+          "sha256": "43c21055ed0c746d0cc8f16e90d2caab36cb7a5e8487401b8eccf1e729dd2a57"
+        },
+        {
+          "path": "/assets/img/posts/substack/vienas-scam-domenas-retai-buna-vienas/01-card.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 22594,
+          "sha256": "f2860bedeb05f906df6bc15e3693c8d3da4b0baf32590436bab2569c7149fe65"
+        }
+      ]
+    },
+    {
+      "id": "cra-article-14-reporting-guide-cover-retained",
+      "translation_key": "cra-article-14-reporting-guide",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-02-cra-article-14/cra-article-14-reporting.jpg",
+          "width": 1200,
+          "height": 630,
+          "bytes": 118179,
+          "sha256": "4888957e82647fa80a8928305db5af0334db3ca64634c727e1a15fbb5d21900b"
+        },
+        {
+          "path": "/assets/img/posts/2026-08-02-cra-article-14/cra-article-14-reporting-card.jpg",
+          "width": 720,
+          "height": 405,
+          "bytes": 41931,
+          "sha256": "61d320630ca2a78fe71384fd51aac6b4ff870690e4c5d9f2fe6807cde38e1d1b"
+        }
+      ]
+    },
+    {
+      "id": "infrastructure-pivoting-101-unipark-cover-retained",
+      "translation_key": "infrastructure-pivoting-101-unipark",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-13-pivoting-101/pivoting-101-hero-v2.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 163074,
+          "sha256": "8786b9a0248c83ec90dd7765549988ffa74c8927a42ee436b57f8b9ff97d1cfe"
+        },
+        {
+          "path": "/assets/img/posts/2026-08-13-pivoting-101/pivoting-101-card-v2.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 37348,
+          "sha256": "6383814c217ff77f172c5ab6111cb5be8b4ecfb98d3f1770586b4b0c96939dc8"
+        }
+      ]
+    },
+    {
+      "id": "certificate-transparency-brand-monitoring-cover-retained",
+      "translation_key": "certificate-transparency-brand-monitoring",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/certificate-transparency-brand-monitoring-hero-v2.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 154772,
+          "sha256": "86f649c670ab5770ce63a56c9bc2086341239b10c9a98c34e1ac30f7b7007e5a"
+        },
+        {
+          "path": "/assets/img/posts/2026-08-31-certificate-transparency-brand-monitoring/certificate-transparency-brand-monitoring-card-v2.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 38644,
+          "sha256": "667cf07de9c53a7957c4f7ed2cef91ce5532dda7a81e04ba0f12640c9219d16b"
+        }
+      ]
+    },
+    {
+      "id": "evilginx-detection-cover-retained",
+      "translation_key": "evilginx-detection",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-31-evilginx-detection/evilginx-detection-hero-v2.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 106014,
+          "sha256": "97b3d7623a7e0a7dd7ecf8d1dfad5dff52e7c7db84432e603a29965ea3dfd3bd"
+        },
+        {
+          "path": "/assets/img/posts/2026-08-31-evilginx-detection/evilginx-detection-card-v2.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 26708,
+          "sha256": "ce301df5b60ee1aff3120137974f43a9781c3da749fadfafce9aead5a2842e47"
+        }
+      ]
+    },
+    {
+      "id": "facebook-cloaking-explained-cover-retained",
+      "translation_key": "facebook-cloaking-explained",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-31-facebook-cloaking-explained/facebook-cloaking-explained-hero-v2.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 129586,
+          "sha256": "0efd09d5295ea6b1e487534c38c6f0412c2c8da8078f598c178203709cf44064"
+        },
+        {
+          "path": "/assets/img/posts/2026-08-31-facebook-cloaking-explained/facebook-cloaking-explained-card-v2.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 31180,
+          "sha256": "396a8b6237cec067f4f4bd641fffaff2ed1efbc1cda902fb0389e9772bae2150"
+        }
+      ]
+    },
+    {
+      "id": "marketplace-buyer-phishing-cover-retained",
+      "translation_key": "marketplace-buyer-phishing",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-buyer-phishing-hero-v2.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 155428,
+          "sha256": "d29eab2eb311363df5723b8ac383741ca6a54e78c5d5b7148cd6f3e7d0037e92"
+        },
+        {
+          "path": "/assets/img/posts/2026-08-31-marketplace-buyer-phishing/marketplace-buyer-phishing-card-v2.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 35150,
+          "sha256": "c926493d7137292c698064f156ebecffdcc419efec09e2c193026ddd92e797ad"
+        }
+      ]
+    },
+    {
+      "id": "suspicious-sms-link-safety-guide-cover-retained",
+      "translation_key": "suspicious-sms-link-safety-guide",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-31-suspicious-sms-guide/suspicious-sms-guide-hero-v2.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 139048,
+          "sha256": "38a80148ae8cbc60e408d9d8571ca5b6f34adaba5637dd372eb725d05b8f6235"
+        },
+        {
+          "path": "/assets/img/posts/2026-08-31-suspicious-sms-guide/suspicious-sms-guide-card-v2.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 32246,
+          "sha256": "c9e87c2c56d4318c266ffca624c2b0b9cc01819a77f80134203a5e41483e1ccb"
+        }
+      ]
+    },
+    {
+      "id": "t1187-forced-authentication-cover-retained",
+      "translation_key": "t1187-forced-authentication",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-31-t1187-forced-authentication/t1187-forced-authentication-hero-v2.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 92796,
+          "sha256": "a454d8172f81bef4710aca24dea3d352c7effeb4b71c91665bbc33462e99acc0"
+        },
+        {
+          "path": "/assets/img/posts/2026-08-31-t1187-forced-authentication/t1187-forced-authentication-card-v2.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 23164,
+          "sha256": "b56c7ba0e7a0914fdad51ffbf860e39842afeb76079e602c9cba6e99f193d463"
+        }
+      ]
+    },
+    {
+      "id": "post-phishing-banking-response-cover-retained",
+      "translation_key": "post-phishing-banking-response",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-31-post-phishing-banking-response/post-phishing-banking-response-hero-v2.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 145902,
+          "sha256": "f5717a2ea629745f069d10605166def73e812ca99212b46d228a05b505d937a8"
+        },
+        {
+          "path": "/assets/img/posts/2026-08-31-post-phishing-banking-response/post-phishing-banking-response-card-v2.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 33842,
+          "sha256": "37a8d670da52d2ff17fb79f7900fa2cd6d80a09a490a94a1c8eaa1c321d59bf2"
+        }
+      ]
+    },
+    {
+      "id": "confidence-method-001-cover-retained",
+      "translation_key": "confidence-method-001",
+      "placement": "cover",
+      "presentation": "illustration",
+      "source_type": "retained",
+      "rights": "Existing asset rights remain unchanged. No software or publication-text licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/hecavex-editorial/confidence-field.svg",
+          "width": 1200,
+          "height": 630,
+          "bytes": 1177,
+          "sha256": "49c1847f335dba52f123db4f573799d67bec813db427ff5b6aba993bddbda3b9"
+        }
+      ]
+    },
+    {
+      "id": "suspicious-sms-link-safety-guide-inline-generated-v1",
+      "translation_key": "suspicious-sms-link-safety-guide",
+      "placement": "inline",
+      "presentation": "illustration",
+      "source_type": "generated",
+      "rights": "Generated for HECAVEX editorial use. No third-party brand or evidence licence is implied.",
+      "files": [
+        {
+          "path": "/assets/img/posts/2026-08-31-suspicious-sms-guide/sms-safe-pause-inline-v1.webp",
+          "width": 1200,
+          "height": 675,
+          "bytes": 43408,
+          "sha256": "1f666a73768f4c1220e92f007b5f75b2cac6add562c697cd151e4ef48dea0655"
+        }
+      ],
+      "generation": {
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "recorded_at": "2026-10-09 03:05:42 UTC",
+        "request_id": "exec-c0e3c956-f0f9-4dd6-97b4-863d4a3397d1",
+        "prompt": "Use case: stylized-concept. Create one polished editorial illustration for a practical blog guide about safely handling a suspicious SMS link. This is explicitly an illustrative fictional scene, not a screenshot or real evidence. Wide 16:9 landscape composition if available. Subject: a modern unbranded smartphone resting on a near-black desk, screen showing a single abstract message card with an intentionally unreadable short-link line and a small restrained caution marker, next to a clean physical pause token and a magnifying glass. The concept is pause before tapping and verify through a trusted route; calm and empowering, not alarmist. Phone and verification objects large enough to read in an article figure; no hands or identifiable person. Palette near-black #111416 and graphite with muted teal #55b9b1 and soft off-white highlights; restrained warm amber for the small caution marker only. Professional photographic sculptural editorial still life, realistic tactile materials, subtle side lighting, uncluttered negative space. No readable text, no actual message contents, no real URLs, no QR codes, no bank/payment/service brands, no numbers or statistics, no attack instructions, no skulls, no hooded hacker, no exaggerated neon or futuristic UI. Do not imply that this is a real incident screenshot. Opaque background. Deliver one finished image.",
+        "original_sha256": "32ba19962524b72fe91608be970baa1d8a16fe2bf2fac92830065f4a6c5abc8c",
+        "reference_images_used": false,
+        "processing": "Format conversion and proportional center crop to 16:9 using Pillow, Lanczos, WebP quality82, metadata stripped."
+      }
+    }
+  ]
+}

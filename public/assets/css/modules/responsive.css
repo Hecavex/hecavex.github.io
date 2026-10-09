@@ -99,17 +99,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .post-card,
-  .post-card--prominent {
-    grid-template-columns: 1fr;
-  }
-
-  .post-card-image {
-    min-height: 11rem;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
   .topic-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

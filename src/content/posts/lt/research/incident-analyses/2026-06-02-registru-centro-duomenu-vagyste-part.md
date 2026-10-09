@@ -39,6 +39,11 @@ image:
   thumbnail: /assets/img/posts/substack/registru-centro-duomenu-vagyste-part/01-card.webp
   width: 1280
   height: 719
+  presentation: illustration
+  source_type: retained
+  provenance_id: substack-registru-centro-duomenu-vagyste-part-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 404
 source_url: https://deivlis.substack.com/p/registru-centro-duomenu-vagyste-part
 ---
 ![Registrų centro incidento analizės skydelis su pastato, duomenų ir įsilaužimo rodikliais.](/assets/img/posts/substack/registru-centro-duomenu-vagyste-part/01.webp)

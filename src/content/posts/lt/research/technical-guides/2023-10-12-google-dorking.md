@@ -26,6 +26,11 @@ image:
   alt: "\"Google\" paieškos langas, iliustruojantis pažangiąsias OSINT užklausas"
   width: 593
   height: 356
+  presentation: illustration
+  source_type: retained
+  provenance_id: google-dorking-001-cover-retained
+  thumbnail_width: 593
+  thumbnail_height: 356
 featured: false
 draft: false
 toc: true

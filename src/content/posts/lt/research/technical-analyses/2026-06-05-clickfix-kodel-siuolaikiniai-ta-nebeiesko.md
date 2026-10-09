@@ -38,6 +38,11 @@ image:
   thumbnail: /assets/img/posts/substack/clickfix-kodel-siuolaikiniai-ta-nebeiesko/01-card.webp
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: substack-clickfix-kodel-siuolaikiniai-ta-nebeiesko-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 source_url: https://deivlis.substack.com/p/clickfix-kodel-siuolaikiniai-ta-nebeiesko
 ---
 *Per beveik dešimtmetį dirbant Cyber Crime Intelligence ir Cyber Threat Intelligence (aka Kibernetinių nusikaltimų žvalgyboje ir Kibernetinių grėsmių žvalgyboje.. realiai tas pats tik kitas.. rankoje) teko matyti daug skirtingų grėsmių etapų kaip pvz.:*

@@ -1,5 +1,6 @@
 import { readdir, readFile } from 'node:fs/promises';
 import { extname, join, relative, resolve } from 'node:path';
+import { checkEditorialMedia } from './check-editorial-media.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const authoredImageRoot = join(root, 'public', 'assets', 'img');
@@ -65,3 +66,4 @@ if (failures.length > 0) {
 }
 
 console.log(`Editorial SVG contract passed (${svgFiles.length} authored SVGs; raster evidence remains native).`);
+await checkEditorialMedia(root);

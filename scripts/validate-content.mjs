@@ -155,7 +155,7 @@ export async function validate() {
     for (const field of parityFields) {
       if (JSON.stringify(en.data[field] ?? null) !== JSON.stringify(lt.data[field] ?? null)) errors.push(`${key}: ${field} differs between ${en.file} and ${lt.file}`);
     }
-    for (const field of ['path', 'thumbnail']) {
+    for (const field of ['path', 'thumbnail', 'presentation', 'source_type', 'provenance_id', 'width', 'height', 'thumbnail_width', 'thumbnail_height']) {
       if (JSON.stringify(en.data.image?.[field] ?? null) !== JSON.stringify(lt.data.image?.[field] ?? null)) errors.push(`${key}: image.${field} differs between language editions`);
     }
   }

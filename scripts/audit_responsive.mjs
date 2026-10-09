@@ -159,7 +159,7 @@ try {
           const title = card.querySelector('h3 a');
           const action = card.querySelector('.card-action');
           const image = card.querySelector('.post-card-image');
-          const imageRect = image?.getBoundingClientRect();
+          const imageRect = image?.querySelector('img')?.getBoundingClientRect();
           const copyRect = card.querySelector('.post-card-copy')?.getBoundingClientRect();
           return {
             left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom, width: rect.width,
@@ -171,7 +171,11 @@ try {
               && title.getAttribute('tabindex') !== '-1' && action.getAttribute('tabindex') !== '-1'),
             imageRatio: imageRect?.height ? imageRect.width / imageRect.height : 0,
             copyBelowImage: Boolean(imageRect && copyRect && copyRect.top >= imageRect.bottom - 1),
-            typographic: card.getAttribute('data-preview') === 'typographic' && !image,
+            preview: Boolean(['illustration', 'evidence'].includes(card.getAttribute('data-preview')) && image?.querySelector('img[width][height]') && image?.querySelector('figcaption')?.textContent.trim()),
+            href: title?.getAttribute('href'),
+            date: card.querySelector('time')?.getAttribute('datetime'),
+            imageLoading: image?.querySelector('img')?.getAttribute('loading'),
+            titleBottom: title?.getBoundingClientRect().bottom ?? 0,
             readingTime: Boolean(card.querySelector('.card-reading')?.textContent.trim())
           };
         });
@@ -186,7 +190,7 @@ try {
         const referenceGrid = document.querySelector('#primary .post-grid');
         const referenceCard = referenceGrid?.querySelector('.post-card');
         const referenceTitle = referenceCard?.querySelector('h3 a');
-        const referenceImageRect = referenceCard?.querySelector('.post-card-image')?.getBoundingClientRect();
+        const referenceImageRect = referenceCard?.querySelector('.post-card-image img')?.getBoundingClientRect();
         const referenceGridStyle = referenceGrid ? getComputedStyle(referenceGrid) : undefined;
         const standardProse = document.querySelector('.standard-page > .prose');
         const aboutParagraphs = [...(standardProse?.querySelectorAll(':scope > p:not(:has(> img:only-child))') ?? [])];
@@ -234,6 +238,7 @@ try {
           heroChildOverflow: heroRect ? Math.max(0, ...[...hero.children].map((child) => child.getBoundingClientRect().bottom - heroRect.bottom)) : 0,
           bodyFontSize: Number.parseFloat(bodyStyle.fontSize),
           bodyColor: bodyStyle.color,
+          publicationBackground: getComputedStyle(document.querySelector('.home-shell, .page-shell, .article-shell, .landing-portal, .not-found')).backgroundColor,
           tokens: ['--bg-elevated', '--surface', '--surface-strong', '--line', '--line-strong', '--text-soft', '--muted', '--faint', '--cyan', '--cyan-bright'].map((token) => rootStyle.getPropertyValue(token).trim()),
           dot: dotStyle ? { display: dotStyle.display, content: dotStyle.content } : undefined,
           displayFont: h1Style?.fontFamily ?? '',
@@ -337,6 +342,7 @@ try {
       if (state.networkLabels.join('|') !== 'Research|Radar|APT Notes|Labs|Data') fail(route, width, 'network navigation order differs from the portfolio contract');
       if (state.footerTypeMismatches.length) fail(route, width, `footer typography differs from the portfolio contract: ${state.footerTypeMismatches.join(', ')}`);
       if (Math.abs(state.bodyFontSize - 16) > 0.05 || state.bodyColor !== 'rgb(236, 233, 225)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
+      if (state.publicationBackground !== 'rgb(17, 20, 22)') fail(route, width, `publication surface is not portfolio graphite (${state.publicationBackground})`);
       if (!state.displayFont.includes('Space Grotesk')) fail(route, width, 'shared self-hosted display type is missing');
       if (!state.heroOpen) fail(route, width, 'hero has reverted to a closed panel');
       if (state.tokens.join('|') !== '#171b1d|#171b1d|#1d2326|#30383b|#30383b|#ece9e1|#8d969a|#8d969a|#55b9b1|#55b9b1') fail(route, width, `shared HECAVEX tokens changed (${state.tokens.join('|')})`);
@@ -358,7 +364,7 @@ try {
           && Math.abs(state.oddResearchLastCardLeftGap - 1) <= 1
           && Math.abs(state.oddResearchLastCardRightGap - 1) <= 1;
         if (!oddCardFillsGrid) fail(route, width, `final odd research card does not fill its row (${state.oddResearchCardCount} cards, ${state.oddResearchLastCardLeftGap}px/${state.oddResearchLastCardRightGap}px edges)`);
-        if (state.oddResearchLastCardBorders.join('|') !== '1px|1px|1px|1px') fail(route, width, `final odd research card is not fully enclosed (${state.oddResearchLastCardBorders.join('/')})`);
+        if (state.oddResearchLastCardBorders[0] !== '1px') fail(route, width, 'final odd research card lost its dividing rule');
       }
       if (contactRoutes.has(route) && (state.actionRouteCount !== 4 || state.actionLinkCount !== 5)) fail(route, width, `contact action rail is incomplete (${state.actionRouteCount} routes, ${state.actionLinkCount} links)`);
       if (catalogueIntroRoutes.has(route)) {
@@ -403,11 +409,22 @@ try {
           }))
         }));
         const edition = route.slice(1, 3);
+        const catalogue = JSON.parse(await readFile(join(siteRoot, 'data/publications.json'), 'utf8'));
+        const ordinaryPaths = new Set(catalogue.publications.filter(item => item.language === edition && item.publicationClass !== 'signal-brief').map(item => new URL(item.id).pathname));
+        // Citation dates are calendar-only and cannot order publications on the
+        // same day. Search retains full timestamps and canonical exact-tie order.
+        const search = JSON.parse(await readFile(join(siteRoot, edition, 'search.json'), 'utf8'));
+        const expectedArticles = search.filter(item => ordinaryPaths.has(item.url)).sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+        const expected = expectedArticles.map(item => item.url);
         if (discovery.taskRoutes.length !== 4 || discovery.taskRoutes.some(link => !link.href?.startsWith(`/${edition}/`) && !(edition === 'en' && link.href === '/data/') || link.height < 43.5 || !link.text) || !discovery.updated) fail(route, width, `localized task discovery is incomplete (${JSON.stringify(discovery.taskRoutes)})`);
         if (discovery.paths.length !== 4 || discovery.paths.some(path => !path.href?.startsWith(`/${edition}/`) || !path.title || !path.summary || !path.date || !path.citation?.endsWith('.bib') || path.targets.some(height => height < 43.5))) fail(route, width, 'compact reading paths lost their localized records, citations or accessible targets');
         const columns = width > 680 ? 2 : 1;
         const expectedCardWidth = (state.latestGridWidth - state.latestColumnGap * (columns - 1)) / columns;
         const cards = state.latestCardGeometry;
+        if (JSON.stringify(cards.map(card => card.href)) !== JSON.stringify(expected)) fail(route, width, `newest approved article order differs from full publication timestamps (${cards.map(card => card.href)})`);
+        if (cards.some((card, index) => card.date !== expectedArticles[index]?.date)) fail(route, width, 'latest article datetimes differ from the full publication timestamps');
+        if (cards[0]?.imageLoading !== 'eager' || cards.slice(1).some(card => card.imageLoading !== 'lazy')) fail(route, width, 'first article preview must load eagerly and later previews lazily');
+        if (cards[0]?.top > (width <= 680 ? 570 : 480) || cards[0]?.titleBottom > (width <= 680 ? 760 : 650)) fail(route, width, 'newest article image/title are pushed below the initial reading viewport');
         if (state.hasOversizedHomeLead || cards.length !== 5) fail(route, width, `latest research is not five ordinary cards (${cards.length} cards, oversized lead ${state.hasOversizedHomeLead})`);
         if (state.latestColumnGap < 16 || state.latestRowGap < 16) fail(route, width, `latest research gaps are below 16px (${state.latestColumnGap}px/${state.latestRowGap}px)`);
         if (cards.some((card) => Math.abs(card.width - expectedCardWidth) > 1)) fail(route, width, `latest research cards do not share the ordinary ${columns}-column width (${cards.map((card) => card.width).join('/')} versus ${expectedCardWidth}px)`);
@@ -416,7 +433,7 @@ try {
         const rowGaps = state.latestRows.slice(1).map((row, index) => row.top - state.latestRows[index].bottom);
         if (rowGaps.some((gap) => gap < 15.5 || Math.abs(gap - state.latestRowGap) > 1)) fail(route, width, `latest research rows touch or have inconsistent spacing (${rowGaps.join('/')}px)`);
         if (columns === 2 && cards.length > 1 && Math.abs(cards[1].left - cards[0].right - state.latestColumnGap) > 1) fail(route, width, 'latest research columns do not have the declared visible gap');
-        if (cards.some((card) => !card.accessibleLinks || !card.typographic || !card.readingTime || card.titleSize <= 0 || card.titleSize > 26.1)) fail(route, width, `latest research typographic card presentation/accessibility is wrong (${JSON.stringify(cards)})`);
+        if (cards.some((card) => !card.accessibleLinks || !card.preview || !card.readingTime || card.titleSize <= 0 || card.titleSize > 26.1)) fail(route, width, `latest article image presentation/accessibility is wrong (${JSON.stringify(cards)})`);
         cardPresentations.set(`${route.slice(1, 3)}:${width}`, {
           cards, columnGap: state.latestColumnGap, rowGap: state.latestRowGap
         });
@@ -450,7 +467,7 @@ try {
         if (Math.abs(state.utilityWidth - 144) > 1) fail(route, width, `desktop utility is ${state.utilityWidth}px instead of 9rem`);
       }
       if (['/en/', '/lt/'].includes(route) && width === 1440) {
-        if (state.heroHeight < 319 || state.heroHeight > 460) fail(route, width, `home hero is outside the compact open-intro range (${state.heroHeight}px)`);
+        if (state.heroHeight <= 0 || state.heroHeight > 230) fail(route, width, `home hero is outside the compact open-intro range (${state.heroHeight}px)`);
         if (state.heroChildOverflow > 1) fail(route, width, `home hero child overflows its panel by ${state.heroChildOverflow}px`);
       }
 
@@ -480,8 +497,39 @@ try {
         if (!(await page.locator('[data-search-input]').evaluate((node) => document.activeElement === node))) fail(route, width, 'search input did not receive focus');
         await page.keyboard.press('Escape');
       }
+      if (homeRoutes.has(route)) {
+        const mobile = width <= 1160;
+        const returnTarget = page.locator(mobile ? '.mobile-navigation > summary' : '.header-utilities [data-search-open]');
+        if (mobile) {
+          await returnTarget.focus();
+          await page.keyboard.press('Enter');
+        }
+        const searchTrigger = page.locator(mobile ? '.mobile-navigation [data-search-open]' : '.header-utilities [data-search-open]');
+        await searchTrigger.focus();
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(() => document.activeElement?.matches('[data-search-input]'));
+        if (mobile && await page.locator('.mobile-navigation').evaluate(node => node.open)) fail(route, width, 'opening search did not collapse mobile menu');
+        await page.keyboard.press('Escape');
+        await page.waitForFunction(selector => document.activeElement?.matches(selector), mobile ? '.mobile-navigation > summary' : '.header-utilities [data-search-open]');
+        if (!(await returnTarget.evaluate(node => document.activeElement === node && node.checkVisibility({ visibilityProperty: true })))) fail(route, width, 'search dismissal lost visible keyboard focus');
+        await page.locator('.home-discovery a[href="#latest-title"]').click();
+        const latestJump = await page.evaluate(() => ({
+          headingTop: document.getElementById('latest-title').getBoundingClientRect().top,
+          headerBottom: document.querySelector('.site-header').getBoundingClientRect().bottom
+        }));
+        if (latestJump.headingTop < latestJump.headerBottom + 8) fail(route, width, 'latest articles jump hides its heading behind the sticky header');
+      }
       await context.close();
     }
+  }
+
+  for (const language of ['en', 'lt']) {
+    const shortPhone = await browser.newContext({ viewport: { width: 320, height: 568 }, reducedMotion: 'reduce' });
+    const shortPage = await shortPhone.newPage();
+    await shortPage.goto(`${baseUrl}/${language}/`, { waitUntil: 'networkidle' });
+    const firstTitle = await shortPage.locator('.home-latest-grid .post-card h3').first().boundingBox();
+    if (!firstTitle || firstTitle.y + firstTitle.height > 568) fail(`/${language}/`, 320, 'newest article title is clipped below the short-phone arrival viewport');
+    await shortPhone.close();
   }
 
   const noScript = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 900 }, reducedMotion: 'reduce', serviceWorkers: 'block' });

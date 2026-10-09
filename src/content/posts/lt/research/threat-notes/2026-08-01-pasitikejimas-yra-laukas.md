@@ -29,6 +29,13 @@ image:
   social: /assets/img/social/confidence-method-001-lt.png
   alt: "Analitinis pasitikėjimas pavaizduotas įrodymų juostomis kalibruotame lauke"
   thumbnail: /assets/img/posts/hecavex-editorial/confidence-field.svg
+  presentation: illustration
+  source_type: retained
+  provenance_id: confidence-method-001-cover-retained
+  width: 1200
+  height: 630
+  thumbnail_width: 1200
+  thumbnail_height: 630
 ---
 
 Analitinis pasitikėjimas nusako, kaip gerai turimi įrodymai pagrindžia konkretų vertinimą. Jis nenusako, kaip stipriai analitikui patinka jo paties išvada, kaip rimtai skamba tema ar kiek svetainių pakartojo tą patį sakinį.

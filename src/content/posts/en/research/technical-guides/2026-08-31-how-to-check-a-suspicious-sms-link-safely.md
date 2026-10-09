@@ -52,6 +52,11 @@ image:
   thumbnail: /assets/img/posts/2026-08-31-suspicious-sms-guide/suspicious-sms-guide-card-v2.webp
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: suspicious-sms-link-safety-guide-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## The safest answer is usually not hidden inside the link
@@ -65,6 +70,11 @@ This guide explains what an ordinary recipient can check without visiting the li
 <aside class="hx-callout warning"><strong>The 30-second response</strong>Do not tap the link. Capture the sender, full message and receipt time. Verify the claim in the organisation's official app or independently typed website. If it is false or still suspicious, report it. If you already entered a password, payment data or an authentication code, skip the investigation and contain the account immediately.</aside>
 
 The term **smishing** simply means phishing delivered by SMS or another text-message channel. The sender label, phone number and position inside an existing message thread can all be misleading. The [Bank of Lithuania warns](https://www.lb.lt/lt/duomenu-viliojimas) that forged messages may appear alongside genuine bank messages and that cloned sites can closely reproduce the real one. A familiar conversation is context, not authentication.
+
+
+![A fictional unbranded phone beside a pause token and a magnifying glass illustrates pausing before following an SMS link](/assets/img/posts/2026-08-31-suspicious-sms-guide/sms-safe-pause-inline-v1.webp)
+
+*AI-generated editorial illustration, not evidence or an incident screenshot. Pause before tapping and verify the claim through a trusted route.*
 
 ## 1. Read the message as a claim, not as an instruction
 

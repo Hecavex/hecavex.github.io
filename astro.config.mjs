@@ -5,24 +5,20 @@ import rehypeTableRegions from './src/lib/rehype-table-regions.mjs';
 import remarkKramdownAttributes from './src/lib/remark-kramdown-attributes.mjs';
 import remarkCanonicalCode from './src/lib/remark-canonical-code.mjs';
 
-// Keep code examples inside the same editorial colour system as the article.
-// The previous bundled dark theme produced a near-black slab and introduced a
-// second, unrelated syntax palette. This deliberately restrained light theme
-// uses weight and the ink/rule contrast to express syntax without sacrificing
-// legibility on the paper reading surface.
+// Code examples share the portfolio's dark surfaces and readable syntax tokens.
 const hecavexCodeTheme = {
-  name: 'hecavex-editorial-light',
-  type: 'light',
+  name: 'hecavex-editorial-dark',
+  type: 'dark',
   colors: {
-    'editor.background': '#ece9e1',
-    'editor.foreground': '#151719'
+    'editor.background': '#171b1d',
+    'editor.foreground': '#ece9e1'
   },
   tokenColors: [
-    { scope: ['comment', 'punctuation.definition.comment'], settings: { foreground: '#30383b', fontStyle: 'italic' } },
-    { scope: ['keyword', 'storage', 'storage.type', 'entity.name.tag'], settings: { foreground: '#151719', fontStyle: 'bold' } },
-    { scope: ['string', 'constant', 'support.constant', 'entity.other.attribute-name'], settings: { foreground: '#30383b' } },
-    { scope: ['entity.name.function', 'support.function', 'variable.language'], settings: { foreground: '#151719', fontStyle: 'bold' } },
-    { scope: ['invalid', 'invalid.illegal'], settings: { foreground: '#151719', fontStyle: 'bold underline' } }
+    { scope: ['comment', 'punctuation.definition.comment'], settings: { foreground: '#8d969a', fontStyle: 'italic' } },
+    { scope: ['keyword', 'storage', 'storage.type', 'entity.name.tag'], settings: { foreground: '#55b9b1', fontStyle: 'bold' } },
+    { scope: ['string', 'constant', 'support.constant', 'entity.other.attribute-name'], settings: { foreground: '#86b77e' } },
+    { scope: ['entity.name.function', 'support.function', 'variable.language'], settings: { foreground: '#ece9e1', fontStyle: 'bold' } },
+    { scope: ['invalid', 'invalid.illegal'], settings: { foreground: '#d06c65', fontStyle: 'bold underline' } }
   ]
 };
 

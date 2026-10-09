@@ -366,8 +366,8 @@
   padding: 0.7rem;
   border: 1px solid var(--line-strong);
   border-radius: 0;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--surface);
+  color: var(--text);
   font: inherit;
 }
 

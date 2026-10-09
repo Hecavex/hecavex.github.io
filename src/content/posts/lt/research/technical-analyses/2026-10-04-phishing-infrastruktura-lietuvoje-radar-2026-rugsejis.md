@@ -43,6 +43,17 @@ key_findings:
   - "Užfiksuota 2 419 CertStream bandymų iš 2 880 planuotų. Klausymosi ribos sudarė maždaug 44,791–44,795 % rugsėjo kalendorinio laiko, kai planuotos lubos buvo 53,333 %."
   - "Užfiksuotų bandymų santykis pakilo nuo 513 iš 960 rugsėjo 1–10 d. iki 1 906 iš 1 920 rugsėjo 11–30 d. Tai pagrindžia rinkimo atsistatymą, ne nusikalstamos veiklos pokyčio įvertį."
   - "Atskiroje spalio 1 d. suvestinėje liko 105 vien pavadinimu paremti kandidatai ir nebuvo eksportuotų užbaigtų analitiko peržiūrų. Jos įrodymų būsenos negalima retrospektyviai priskirti visiems 447 rugsėjo kandidatams."
+image:
+  path: /assets/img/posts/2026-10-04-radar-september-baseline/radar-september-baseline-hero-v1.webp
+  thumbnail: /assets/img/posts/2026-10-04-radar-september-baseline/radar-september-baseline-card-v1.webp
+  alt: "Simbolinis sertifikatų plokštelių, stebėjimo dėklų ir didinamojo stiklo archyvas, sujungtas prislopintomis žalsvomis linijomis"
+  presentation: illustration
+  source_type: generated
+  provenance_id: lithuania-phishing-infrastructure-radar-2026-09-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## Ką iš tikrųjų parodė rugsėjis

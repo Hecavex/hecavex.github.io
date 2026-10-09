@@ -53,6 +53,11 @@ image:
   alt: "Reverse-proxy phishing evidence model connecting a user, deceptive proxy and legitimate identity provider with lure, web, sign-in and token telemetry"
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: evilginx-detection-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## Experimental analytic and offline fixtures

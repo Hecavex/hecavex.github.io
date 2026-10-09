@@ -43,6 +43,17 @@ key_findings:
   - "There were 2,419 recorded CertStream attempts against a plan of 2,880. Bounded listening covered approximately 44.791–44.795% of September's wall-clock time, against a planned 53.333% ceiling."
   - "Recorded attempts rose from 513 of 960 planned attempts on 1–10 September to 1,906 of 1,920 on 11–30 September. This supports an operational recovery finding, not an estimate of changes in criminal activity."
   - "The separate 1 October snapshot retained 105 name-only candidates, with no exported completed analyst reviews. Its evidence state cannot be assigned retrospectively to all 447 September candidates."
+image:
+  path: /assets/img/posts/2026-10-04-radar-september-baseline/radar-september-baseline-hero-v1.webp
+  thumbnail: /assets/img/posts/2026-10-04-radar-september-baseline/radar-september-baseline-card-v1.webp
+  alt: "A symbolic archive of certificate plates, observation trays and a magnifying lens connected by muted teal lines"
+  presentation: illustration
+  source_type: generated
+  provenance_id: lithuania-phishing-infrastructure-radar-2026-09-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## What September actually established

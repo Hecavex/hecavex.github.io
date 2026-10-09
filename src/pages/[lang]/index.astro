@@ -9,7 +9,7 @@ import { copy, findPage, getLocalizedPosts, latestContentUpdate, type Lang, type
 export function getStaticPaths() { return [{ params: { lang: 'en' } }, { params: { lang: 'lt' } }]; }
 const lang = Astro.params.lang as Lang;
 const posts = await getLocalizedPosts(lang);
-const research = posts.filter((post) => ['primary-research', 'technical-assessment'].includes(post.publicationClass));
+const research = posts.filter((post) => post.contentType !== 'signal-brief');
 const briefings = posts.filter((post) => post.contentType === 'signal-brief');
 const recent = research.slice(0, 5);
 const latestBriefing = briefings[0];
@@ -35,19 +35,23 @@ const topicPosts = topicDefinitions
   <div class="shell home-shell">
     <section class="home-hero" aria-labelledby="home-title">
       <div class="home-hero-copy">
-        <p class="eyebrow">{lang === 'lt' ? 'Nepriklausomi grėsmių žvalgybos tyrimai' : 'Independent threat intelligence research'}</p>
-        <h1 id="home-title">{hx.tagline}</h1>
-        <p class="hero-deck">{hx.supporting}</p>
-        <p>{lang === 'lt' ? 'Nepriklausomas Deivido Lis leidinys. Tyrimai, praktiniai vadovai ir šaltiniai pasiekiami be registracijos.' : 'An independent publication by Deividas Lis. Read the research, practical guides and sources without an account.'}</p>
-        <div class="hero-actions"><a class="button button--primary" href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.all_articles}</a><a href={lang === 'lt' ? '/lt/metodika/' : '/en/methodology/'}>{lang === 'lt' ? 'Kaip atliekami tyrimai' : 'How the research is done'} →</a></div>
+        <p class="eyebrow">{lang === 'lt' ? 'Deivido Lis nepriklausomas leidinys' : 'An independent publication by Deividas Lis'}</p>
+        <h1 id="home-title">{lang === 'lt' ? 'Grėsmių žvalgybos tyrimai' : 'Threat intelligence research'}</h1>
+        <p class="hero-deck">{lang === 'lt' ? 'Tyrimai, praktiniai vadovai ir juos pagrindžiantys šaltiniai.' : 'Investigations, practical guides and the sources behind them.'}</p>
       </div>
-      <HomeTaskRoutes {lang} {posts} {latestUpdate} />
+      <nav class="home-discovery" aria-label={lang === 'lt' ? 'Leidinio navigacija' : 'Publication navigation'}>
+        <a href="#latest-title">{lang === 'lt' ? 'Naujausi straipsniai' : 'Latest articles'}</a>
+        <a href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.all_articles} <span aria-hidden="true">→</span></a>
+        <a href={lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/'}>Signal Brief <span aria-hidden="true">→</span></a>
+      </nav>
     </section>
 
-    {recent.length > 0 && <section class="home-section" aria-labelledby="latest-title">
-      <header class="section-head"><h2 id="latest-title">{hx.latest_research}</h2><a href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.view_all} →</a></header>
-      <div class="post-grid home-latest-grid">{recent.map((post) => <PostCard {post} />)}</div>
+    {recent.length > 0 && <section class="home-section home-latest" aria-labelledby="latest-title">
+      <header class="section-head"><h2 id="latest-title">{lang === 'lt' ? 'Naujausi straipsniai' : 'Latest articles'}</h2><a href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.view_all} →</a></header>
+      <div class="post-grid home-latest-grid">{recent.map((post, index) => <PostCard {post} eager={index === 0} />)}</div>
     </section>}
+
+    <HomeTaskRoutes {lang} {posts} {latestUpdate} />
 
     {topicPosts.length > 0 && <section class="home-section" aria-labelledby="topic-title">
       <header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Temų keliai' : 'Research paths'}</p><h2 id="topic-title">{lang === 'lt' ? 'Pradėkite nuo temos' : 'Explore by topic'}</h2><p>{lang === 'lt' ? 'Atrinkti, nuolat vertingi tyrimai apie phishing, infrastruktūrą, kenkėjišką kodą ir CTI praktiką.' : 'Selected evergreen research on phishing, infrastructure, malware and practical threat intelligence.'}</p></div><a href={lang === 'lt' ? '/lt/tyrimai/' : '/en/research/'}>{hx.view_all} →</a></header>

@@ -1,0 +1,112 @@
+/* Dark publication surfaces share the portfolio tokens in foundation.css. */
+.home-shell,
+.page-shell,
+.article-shell,
+.landing-portal,
+.not-found {
+  background: var(--bg);
+  color: var(--text-soft);
+}
+
+.article-shell .article-head h1 {
+  max-width: 18ch;
+  font-size: var(--display-title-size);
+}
+
+.article-shell :is(.update-history, .citation-block, .article-footer, .translation-note) {
+  width: 100%;
+  max-width: none;
+}
+
+.article-shell :is(.update-history, .citation-block, .translation-note) > :is(p, ol) {
+  max-width: var(--reading-wide);
+}
+
+.article-shell .article-body.prose {
+  font-size: 1.03rem;
+}
+
+.article-shell .article-hero,
+.article-shell .prose .hx-evidence-figure {
+  padding: clamp(0.55rem, 1vw, 0.85rem);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.article-shell .article-hero figcaption,
+.article-shell .prose .hx-evidence-figure figcaption {
+  color: var(--muted);
+}
+
+.landing-portal .landing-current-grid {
+  gap: clamp(0.8rem, 1.5vw, 1.2rem);
+  padding: 0;
+  background: transparent;
+}
+
+.landing-portal .landing-current-card {
+  border: 1px solid var(--line);
+}
+
+.page-shell.data-catalogue {
+  max-width: var(--content);
+}
+
+.data-catalogue .page-head h1 {
+  max-width: 18ch;
+  font-size: var(--page-title-size);
+}
+
+.data-catalogue .data-catalogue__boundary {
+  background: rgb(85 185 177 / 8%);
+}
+
+.data-catalogue .data-catalogue__section {
+  margin-top: var(--major-section-space);
+}
+
+.data-catalogue .data-product-list {
+  gap: clamp(0.9rem, 1.6vw, 1.2rem);
+  padding: 0;
+  background: transparent;
+}
+
+.data-catalogue .data-product {
+  display: grid;
+  grid-template-areas:
+    "identity endpoints"
+    "description endpoints";
+  grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
+  gap: 1rem clamp(1.5rem, 3vw, 3rem);
+  border: 1px solid var(--line-strong);
+  border-top: 3px solid var(--rule);
+  background: var(--surface);
+}
+
+.data-catalogue .data-product__head {
+  grid-area: identity;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+}
+
+.data-catalogue .data-product__head > p {
+  grid-column: 2;
+}
+
+.data-catalogue .data-product__description {
+  grid-area: description;
+  margin: 0 0 0 3.25rem;
+}
+
+.data-catalogue .data-product__links {
+  grid-area: endpoints;
+  align-self: stretch;
+  margin: 0;
+}
+
+.data-catalogue .data-product__links li {
+  background: var(--surface-strong);
+}
+
+.data-catalogue .data-product__links li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}

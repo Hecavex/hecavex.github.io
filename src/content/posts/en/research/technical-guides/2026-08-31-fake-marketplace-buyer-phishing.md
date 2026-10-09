@@ -48,6 +48,11 @@ image:
   alt: "A fake marketplace buyer moves a seller from a trusted chat to an external payment page, followed by a bank and incident-response path"
   width: 1600
   height: 900
+  presentation: illustration
+  source_type: retained
+  provenance_id: marketplace-buyer-phishing-cover-retained
+  thumbnail_width: 720
+  thumbnail_height: 405
 ---
 
 ## The 30-second rule for sellers

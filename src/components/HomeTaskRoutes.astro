@@ -12,7 +12,7 @@ const routes = [
 ];
 ---
 <nav class="home-route-rail" aria-label={t('Start with your task', 'Pradėkite nuo užduoties')}>
-  <h2>{t('What brings you here?', 'Ko ieškote?')}</h2>
+  <h2>{t('Find what you need', 'Raskite, ko ieškote')}</h2>
   <ul>{routes.map(route => <li><a href={route.href}><strong>{route.title}</strong><span>{route.note}</span></a></li>)}</ul>
   <p class="home-route-updated">{t('Content updated', 'Turinys atnaujintas')}: {latestUpdate ? <time datetime={latestUpdate.toISOString()}>{dateText(latestUpdate)}</time> : '—'}</p>
 </nav>
