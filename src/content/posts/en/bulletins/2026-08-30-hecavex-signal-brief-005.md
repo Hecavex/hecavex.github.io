@@ -46,10 +46,17 @@ key_findings:
   - "AI gateways, retrieval services and workflow orchestrators concentrate provider keys, database access and execution capability, making an application compromise materially wider than one container."
   - "Physical-security telemetry can become intelligence collection, while a familiar marketplace conversation can still terminate at a credential-harvesting page."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/fakegit-ai-skills/editorial-cover-hero-v3.webp
   social: /assets/img/social/hecavex-signal-brief-005-en.png
-  alt: "An analytical signal crossing developer platforms, AI control planes, cloud storage and exposed cameras"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "A repository document redirects a download to an archive beside a static inspection frame."
+  thumbnail: /assets/img/posts/fakegit-ai-skills/editorial-cover-card-v3.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-005-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-09-22
     note: "Linked the three retrospective follow-up editions and removed the generic closing summary. The original information cutoff and evidence package are unchanged."

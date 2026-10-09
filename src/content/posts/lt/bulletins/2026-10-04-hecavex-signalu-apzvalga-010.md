@@ -44,10 +44,17 @@ key_findings:
   - "Atskiram NetScaler SAML pažeidžiamumui reikia naujo pritaikomumo patikrinimo po rugsėjo atnaujinimų. Dokumentuotas poveikis yra paslaugos sutrikdymas, ne ankstesnių klaidų kodo vykdymas."
   - "Teisėtas programos parašas, pažįstamas siuntėjo domenas ar panaši svetainė nepakanka nustatyti, ar veikla leista, kenkėjiška arba priskirtina konkrečiam veikėjui."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/hecavex-signal-brief/session-trust-hero-v1.webp
   social: /assets/img/social/hecavex-signal-brief-010-lt.png
-  alt: "Dešimtoji signalų apžvalga apie valdymo sistemų pažeidžiamumus, phishing metodus ir Baltijos rinkimų stebėseną"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "Apgaulingas prisijungimo kelias simbolinį prieigos raktą nukreipia pro tapatybės patikrą į debesijos paslaugą."
+  thumbnail: /assets/img/posts/hecavex-signal-brief/session-trust-card-v1.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-010-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-10-04
     note: "Pirmoji publikacija apie rugsėjo 28–spalio 4 d. Informacijos riba: 2026 m. spalio 4 d., 08:00 UTC. Paskutinė UTC diena nepilna."

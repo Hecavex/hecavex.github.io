@@ -45,10 +45,17 @@ key_findings:
   - "Artifactory įtraukimas į KEV pakeičia išnaudojimo įrodymus nuo apžvalgos #5, bet nepatvirtina konkretaus repository kompromitavimo."
   - "Teisėtam IT pagalbos įrankiui ir kritiniam produkto balui reikia konteksto, kad jie taptų incidento ar skubaus pakeitimo pagrindu."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/fakegit-ai-skills/editorial-cover-hero-v3.webp
   social: /assets/img/social/hecavex-signal-brief-006-lt.png
-  alt: "HECAVEX Signalų apžvalgos serijos ženklas"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "Repozitorijos dokumentas nukreipia atsisiuntimą į archyvą šalia statinės analizės schemos."
+  thumbnail: /assets/img/posts/fakegit-ai-skills/editorial-cover-card-v3.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-006-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-09-22
     note: "Pirmoji retrospektyvi publikacija. Apima 2026 m. rugpjūčio 31–rugsėjo 6 d., informacijos riba – rugsėjo 6 d. 23:59:59 UTC."

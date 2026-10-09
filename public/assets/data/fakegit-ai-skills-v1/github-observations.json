@@ -1,0 +1,673 @@
+{
+  "schema": "hecavex.ai-supply-chain-observations.v2",
+  "collection_date": "2026-10-09",
+  "purpose": "Finite public-source observations supporting an article; not a malware census or endpoint test.",
+  "evidence_rules": {
+    "binary_bytes_requested": false,
+    "archives_extracted": false,
+    "suspect_code_executed": false,
+    "third_party_outreach_sent": false,
+    "current_binary_liveness_verified": false,
+    "git_blob_algorithm": "sha1",
+    "reported_archive_hash_algorithm": "sha256",
+    "phase_scope": "Earlier source/metadata observations in this file, before the separately recorded October 9 archive acquisition and static-analysis phase. False byte/extraction fields are preserved as observations of that earlier phase."
+  },
+  "discovery": {
+    "scope_created_dates_inclusive": [
+      "2026-07-11",
+      "2026-10-09"
+    ],
+    "pagination": "First page only; ranked repository search results; not exhaustive.",
+    "queries": [
+      {
+        "query": "\"mcp\" created:2026-07-11..2026-10-09",
+        "returned_result_rows": 30,
+        "page": 1
+      },
+      {
+        "query": "\"skill\" created:2026-07-11..2026-10-09",
+        "returned_result_rows": 20,
+        "page": 1
+      },
+      {
+        "query": "\"claude\" \"skill\" created:2026-07-11..2026-10-09",
+        "returned_result_rows": 30,
+        "page": 1
+      },
+      {
+        "query": "\"cursor\" created:2026-07-11..2026-10-09",
+        "returned_result_rows": 30,
+        "page": 1
+      },
+      {
+        "query": "\"mcp\" \"official\" created:2026-07-11..2026-10-09 stars:<5",
+        "returned_result_rows": 25,
+        "page": 1
+      },
+      {
+        "query": "\"skill\" \"security\" created:2026-07-11..2026-10-09 stars:<5",
+        "returned_result_rows": 25,
+        "page": 1
+      },
+      {
+        "query": "\"cursor-free-trial\" created:2026-07-11..2026-10-09",
+        "returned_result_rows": 12,
+        "page": 1
+      }
+    ],
+    "result_rows": 172,
+    "unique_repository_identifiers": 162,
+    "source_tree_triage_repository_count": 6,
+    "limitation": "Search-result count is not audit count, malicious-repository count or prevalence. Queries overlap."
+  },
+  "pinned_public_lists": [
+    {
+      "publisher": "Island",
+      "source_permalink": "https://github.com/island-io/island-security-research-artifacts/blob/72b77c0e2cc53cae92acd27258cf229077e1bfca/agentbaiting/malicious-repositories-and-zip-hashes-2026-07.csv",
+      "revision": "72b77c0e2cc53cae92acd27258cf229077e1bfca",
+      "path": "agentbaiting/malicious-repositories-and-zip-hashes-2026-07.csv",
+      "git_blob_sha1": "5be67adc8d831be40465f56123163f727ea31b2d",
+      "data_rows_excluding_header": 7854,
+      "unique_repository_strings": 7600,
+      "distinct_archive_sha256_strings": 7115,
+      "count_semantics": "Repository-to-hash associations; not downloads, victims or current live repositories."
+    },
+    {
+      "publisher": "Orchid Files",
+      "source_permalink": "https://github.com/orchidfiles/git-malware-finder/blob/5ffa27e2bc9dce7758379519aa6a272438b01192/full-list.txt",
+      "revision": "5ffa27e2bc9dce7758379519aa6a272438b01192",
+      "path": "full-list.txt",
+      "git_blob_sha1": "80d34decf109d678d2bb8fb8eabd1663716d5ba3",
+      "nonempty_rows": 9330,
+      "unique_repository_strings": 9330,
+      "count_semantics": "Repository strings in this retrieved revision; not the earlier blog headline."
+    }
+  ],
+  "known_indicator_sample": {
+    "selection": "Purposive fixed sample: six Island article examples plus eight manually selected skill/MCP names among the first 35 name-matched CSV rows. Not random or representative.",
+    "repository_count": 14,
+    "api_readable": 7,
+    "api_404": 7,
+    "outcomes": [
+      {
+        "repository_defanged": "github[.]com/45d5r/databricks-mcp-server",
+        "observation_utc": "2026-10-09T13:47:38.894Z",
+        "outcome": "api_404",
+        "api_status": 404
+      },
+      {
+        "repository_defanged": "github[.]com/Mann1988/awesome-claude-skills",
+        "observation_utc": "2026-10-09T13:47:37.761Z",
+        "outcome": "api_404",
+        "api_status": 404
+      },
+      {
+        "repository_defanged": "github[.]com/DomingosNgongo/walmart-mcp",
+        "observation_utc": "2026-10-09T13:47:38.126Z",
+        "outcome": "api_404",
+        "api_status": 404
+      },
+      {
+        "repository_defanged": "github[.]com/StanLeyJ03/mcp-for-security",
+        "observation_utc": "2026-10-09T13:47:38.003Z",
+        "outcome": "api_404",
+        "api_status": 404
+      },
+      {
+        "repository_defanged": "github[.]com/hahaha-saygex/gmail-mcp",
+        "observation_utc": "2026-10-09T13:47:37.965Z",
+        "outcome": "api_404",
+        "api_status": 404
+      },
+      {
+        "repository_defanged": "github[.]com/waynestimulative605/docker-mcp-gateway",
+        "observation_utc": "2026-10-09T13:47:38.452Z",
+        "outcome": "api_readable",
+        "api_status": 200
+      },
+      {
+        "repository_defanged": "github[.]com/428alexander9/claude-skills-marketplace",
+        "observation_utc": "2026-10-09T13:47:38.474Z",
+        "outcome": "api_readable",
+        "api_status": 200
+      },
+      {
+        "repository_defanged": "github[.]com/Abwor9658/social-media-skills",
+        "observation_utc": "2026-10-09T13:47:38.462Z",
+        "outcome": "api_readable",
+        "api_status": 200
+      },
+      {
+        "repository_defanged": "github[.]com/Aditya923-c/xpoz-agent-skills",
+        "observation_utc": "2026-10-09T13:47:38.455Z",
+        "outcome": "api_readable",
+        "api_status": 200
+      },
+      {
+        "repository_defanged": "github[.]com/Adri3l-R3nan/cognify-skills",
+        "observation_utc": "2026-10-09T13:47:38.265Z",
+        "outcome": "api_404",
+        "api_status": 404
+      },
+      {
+        "repository_defanged": "github[.]com/amanahmed2222/skills",
+        "observation_utc": "2026-10-09T13:47:38.468Z",
+        "outcome": "api_readable",
+        "api_status": 200
+      },
+      {
+        "repository_defanged": "github[.]com/amosshadowy76/ai-product-skills",
+        "observation_utc": "2026-10-09T13:47:38.169Z",
+        "outcome": "api_404",
+        "api_status": 404
+      },
+      {
+        "repository_defanged": "github[.]com/andredon/skills-for-ai-agents-by-CoinMarketCap",
+        "observation_utc": "2026-10-09T13:47:38.486Z",
+        "outcome": "api_readable",
+        "api_status": 200
+      },
+      {
+        "repository_defanged": "github[.]com/ariefalabbasi/mcp-audit",
+        "observation_utc": "2026-10-09T13:47:38.479Z",
+        "outcome": "api_readable",
+        "api_status": 200
+      }
+    ],
+    "outcome_limits": "Readable refers to repository metadata access through this connection. API 404 alone cannot establish deletion, takedown or campaign containment."
+  },
+  "independently_observed_cases": [
+    {
+      "case_id": "K1",
+      "repository_defanged": "github[.]com/waynestimulative605/docker-mcp-gateway",
+      "classification": "Previously reported indicator; historical malware classification attributed to Island. Current source observation only.",
+      "commit_sha": "6d3da0d79e7a3c6a2b8921bf6c7ba43b594e6b20",
+      "parent_commit_sha": "2f8a67e68417fbb1bd28c701b690fe48fb710cb5",
+      "git_tree_sha1": "deb0463d573b476ca04de4418d2fff72d6f6ed3a",
+      "commit_recorded_utc": "2026-10-06T06:14:03Z",
+      "observation_utc": "2026-10-09T13:44:36.051Z",
+      "exact_tree_observation_utc": "2026-10-09T13:47:09.974Z",
+      "recursive_tree_truncated": false,
+      "recursive_tree_entry_count": 16,
+      "changed_file_count": 1,
+      "changed_files": [
+        "README.md"
+      ],
+      "readme_changes": {
+        "markdown_destinations_repointed": 2,
+        "image_sources_repointed": 0,
+        "from": "repository homepage",
+        "to": "branch-based raw ZIP path"
+      },
+      "archive": {
+        "path": "docs/gateway-docker-mcp-v1.6-alpha.5.zip",
+        "size_bytes": 467443,
+        "git_blob_sha1": "5d8e8f7182d185f14dd05908595efb129ec5cd75",
+        "reported_old_sha256": "3c858facbad66f5479e2c4add171421dc1b6488b36f33e7cff073aba585954a7",
+        "reported_old_sha256_source": "Island pinned July CSV; repository association",
+        "current_bytes_hash_verified": false
+      },
+      "interpretation": "README-only re-pointing is independently observed. No archive fetch, current byte comparison, execution, new attribution or victim count."
+    },
+    {
+      "case_id": "K2",
+      "repository_defanged": "github[.]com/amanahmed2222/skills",
+      "classification": "Previously reported indicator; historical malware classification attributed to Island. Current source observation only.",
+      "commit_sha": "84a4fdc3840133c30e283ee34adb730b49d3dff4",
+      "parent_commit_sha": "d3dff5f7c5cd7ad53b5a14a7fc6c31fe719f6d73",
+      "git_tree_sha1": "d72911369808d8c434e9b006d294134a2313ae85",
+      "commit_recorded_utc": "2026-10-09T13:37:13Z",
+      "observation_utc": "2026-10-09T13:44:35.987Z",
+      "exact_tree_observation_utc": "2026-10-09T13:47:09.977Z",
+      "recursive_tree_truncated": false,
+      "recursive_tree_entry_count": 129,
+      "changed_file_count": 1,
+      "changed_files": [
+        "README.md"
+      ],
+      "readme_changes": {
+        "markdown_destinations_repointed": 4,
+        "image_sources_repointed": 1,
+        "from": "repository homepage (destinations) and badge image (image source)",
+        "to": "branch-based raw ZIP path"
+      },
+      "archive": {
+        "path": "skills/create-branch/Software_v2.0-alpha.3.zip",
+        "size_bytes": 487650,
+        "git_blob_sha1": "f8ef6f6e39990c57cbc35ca540c8c0895bfa97c4",
+        "reported_old_sha256": "06cd34cacbcc7046b7e0bac0cdfb6d94e79049cb974218dca247b28e619c59ac",
+        "reported_old_sha256_source": "Island pinned July CSV; repository association",
+        "current_bytes_hash_verified": false
+      },
+      "sibling_skill": {
+        "path": "skills/create-branch/SKILL.md",
+        "git_blob_sha1": "30cbd932db2f280dc8d1780054b6542bf81dbe4d",
+        "tree_size_bytes": 1109,
+        "decoded_character_count": 1105,
+        "decoded_line_count": 25,
+        "archive_terms_searched_case_insensitive": [
+          ".zip",
+          "software_v",
+          "launcher",
+          "luajit"
+        ],
+        "archive_terms_found": [],
+        "observed_subject": "Branch naming validation, issue linking and branch creation."
+      },
+      "interpretation": "A normal-looking SKILL.md does not inventory its sibling archive. No claim that the archive was copied to, or executed on, an endpoint."
+    }
+  ],
+  "installer_source_review": {
+    "publisher": "vercel-labs",
+    "repository": "skills",
+    "revision": "e878c4502674f84094dc27b5ad94ddaf64f22551",
+    "observation_utc": "2026-10-09T13:44:36.464Z",
+    "source_permalink": "https://github.com/vercel-labs/skills/blob/e878c4502674f84094dc27b5ad94ddaf64f22551/src/installer.ts",
+    "test_source_permalink": "https://github.com/vercel-labs/skills/blob/e878c4502674f84094dc27b5ad94ddaf64f22551/tests/installer-copy.test.ts",
+    "code_points": [
+      {
+        "lines": [
+          371,
+          402
+        ],
+        "observation": "Copy and canonical paths pass skill.path to copyDirectory."
+      },
+      {
+        "lines": [
+          471,
+          478
+        ],
+        "observation": "Explicit exclusions are metadata.json and the .git, __pycache__, __pypackages__ directories."
+      },
+      {
+        "lines": [
+          513,
+          547
+        ],
+        "observation": "Remaining directory entries recurse or copy via cp; source mode bits retained."
+      }
+    ],
+    "excluded_file_names": [
+      "metadata.json"
+    ],
+    "excluded_directory_names": [
+      ".git",
+      "__pycache__",
+      "__pypackages__"
+    ],
+    "analysis_type": "Static source review only; upstream test source read but not executed.",
+    "conditional_inference": "If this directory-copy path installs a selected skill, a regular sibling ZIP is not among these exclusions and qualifies for copying.",
+    "execution_inference": false,
+    "limitation": "Copy semantics do not establish a vulnerability, automatic execution, a zero-click exploit or endpoint compromise."
+  },
+  "anonymous_candidates": [
+    {
+      "case_id": "A",
+      "observed_pattern": "A purported official MCP integration has no server implementation in its inspected source tree, but directs readers toward a password-protected installer and disabling antivirus before administrator execution.",
+      "assessment": "Unsupported provenance and hazardous installation guidance observed. Malware behavior, attribution and novelty unconfirmed.",
+      "identity_withheld": true,
+      "binary_analyzed": false
+    },
+    {
+      "case_id": "B",
+      "observed_pattern": "A README-only repository advertises open source, a license, verified hashes and clean scan badges without the corresponding source, license file, digest or independent scan report in its inspected tree.",
+      "assessment": "Security/source claims are unsupported by the inspected material. Malware behavior, attribution and novelty unconfirmed.",
+      "identity_withheld": true,
+      "binary_analyzed": false
+    }
+  ],
+  "claims_not_made": [
+    "A new malware family or campaign was discovered.",
+    "The candidates are proven malware.",
+    "A registry listing is an endorsement.",
+    "Copying a ZIP executes it.",
+    "Downloads equal people or victims.",
+    "API 404 proves deletion.",
+    "This bounded sample measures GitHub-wide prevalence."
+  ],
+  "revision_note": "Adds a separate finite expansion and an anonymized static corpus finding. Baseline, discovery and expansion denominators remain separate. A separately dated later static-analysis reference now distinguishes acquired archive evidence from the unchanged original source-phase values.",
+  "connected_expansion": {
+    "selection": "Purposive bounded pivots from known indicators, archive/readme search motifs and corpus references. Separate from the fixed known-indicator metadata sample and initial six source triages.",
+    "searches": {
+      "repository_query_count": 4,
+      "code_source_query_count": 23,
+      "public_query_receipts": [
+        {
+          "kind": "repository",
+          "query": "user:amanahmed2222",
+          "returned_count": 1
+        },
+        {
+          "kind": "repository",
+          "query": "user:waynestimulative605",
+          "returned_count": 1
+        },
+        {
+          "kind": "repository",
+          "query": "\"skills\" \"Download\" pushed:>=2026-10-07",
+          "returned_count": 7
+        },
+        {
+          "kind": "repository",
+          "query": "\"mcp\" \"Software\" pushed:>=2026-10-07",
+          "returned_count": 7
+        },
+        {
+          "kind": "code",
+          "query": "Software_v2.0-alpha.3.zip",
+          "returned_count": 1
+        },
+        {
+          "kind": "code",
+          "query": "gateway-docker-mcp-v1.6-alpha.5.zip",
+          "returned_count": 2
+        },
+        {
+          "kind": "code",
+          "query": "Software_v2.0",
+          "returned_count": 6
+        },
+        {
+          "kind": "code",
+          "query": "Run anyway",
+          "returned_count": 6
+        },
+        {
+          "kind": "code",
+          "query": "Launcher.cmd",
+          "returned_count": 6
+        },
+        {
+          "kind": "code",
+          "query": "\"Software_v\" \"MCP\"",
+          "returned_count": 6
+        },
+        {
+          "kind": "code",
+          "query": "\"Software_v\" \"skill\"",
+          "returned_count": 6
+        },
+        {
+          "kind": "code",
+          "query": "\"Download Latest Release\" \"mcp\"",
+          "returned_count": 6
+        },
+        {
+          "kind": "code",
+          "query": "\"Turn off real-time protection\"",
+          "returned_count": 6
+        },
+        {
+          "kind": "code",
+          "query": "\"Software_v2.0.zip\" \"mcp\"",
+          "returned_count": 2
+        },
+        {
+          "kind": "code",
+          "query": "\"Software_v2.0.zip\" \"skill\"",
+          "returned_count": 4
+        },
+        {
+          "kind": "code",
+          "query": "\"Software_v2.0-alpha\"",
+          "returned_count": 1
+        },
+        {
+          "kind": "code",
+          "query": "\"Software_v\" \".zip\"",
+          "returned_count": 7
+        },
+        {
+          "kind": "code",
+          "query": "\"Software_v2.1.zip\"",
+          "returned_count": 6
+        },
+        {
+          "kind": "code",
+          "query": "\"mcp\" \"Run anyway\"",
+          "returned_count": 6
+        },
+        {
+          "kind": "code",
+          "query": "\"skill\" \"Run anyway\"",
+          "returned_count": 6
+        },
+        {
+          "kind": "code",
+          "query": "\"Software_v2.4.zip\"",
+          "returned_count": 3
+        }
+      ],
+      "withheld_query_count": 6,
+      "withheld_reason": "Queries containing unconfirmed candidate identities and the withheld collector source are excluded.",
+      "result_count_semantics": "Returned search entries, not global match totals or unique audited repositories."
+    },
+    "selected_repository_candidates": 14,
+    "readable_commit_tree_pairs": 11,
+    "published_list_matches": 6,
+    "unconfirmed_candidates_absent_both_pins": 5,
+    "api_404": 3,
+    "additional_collector_source_reviews": 1,
+    "receipt_saved_utc": "2026-10-09T13:52:48.876Z",
+    "recorded_commit_times_after_apiiro_october_6_snapshot_count": 5,
+    "known_cases": [
+      {
+        "repository_defanged": "github[.]com/kaindrakonis/vibedev",
+        "classification": "Previously listed by Island; current source facts independently reviewed. Current binary behavior unverified.",
+        "commit_sha": "6875a1eeac41adaaffa5338b8d70e4996bf121c3",
+        "parent_commit_shas": [
+          "be98ddc1e5fd459d7a370de21f7d6ed8b4ce0d21"
+        ],
+        "git_tree_sha1": "a4ff69abd1a45217b0425b066071905bbc918e5f",
+        "commit_recorded_utc": "2026-10-08T06:13:20Z",
+        "observed_date_utc": "2026-10-09",
+        "exact_fetch_timestamp_available_in_this_receipt": false,
+        "recursive_tree_truncated": false,
+        "changed_files": [
+          {
+            "path": "README.md",
+            "added_lines": 9,
+            "deleted_lines": 9
+          }
+        ],
+        "changed_line_semantics": "Added/deleted README lines; not a count of Markdown destinations. A line may contain multiple URL occurrences.",
+        "archive_target": {
+          "path": ".specify/templates/Software_v2.0.zip",
+          "size_bytes": 587686,
+          "git_blob_sha1": "f7fd58a32a65bd002a4667dec1caf8c3ddedf203",
+          "current_bytes_hash_verified": false
+        },
+        "interpretation": "README-only archive-target changes and pinned archive metadata observed; no current archive-byte comparison, execution, attribution or victim count."
+      },
+      {
+        "repository_defanged": "github[.]com/iampriam-dev/new",
+        "classification": "Previously listed by Island; current source facts independently reviewed. Current binary behavior unverified.",
+        "commit_sha": "2aa39bacb0bd05721601f7da34fac0964d540659",
+        "parent_commit_shas": [
+          "d887056cf2d392d8f89587bb7fe2551e8e70bf27"
+        ],
+        "git_tree_sha1": "c5580a212544aa1c9feb7a2102a003313135c309",
+        "commit_recorded_utc": "2026-02-20T08:43:58Z",
+        "observed_date_utc": "2026-10-09",
+        "exact_fetch_timestamp_available_in_this_receipt": false,
+        "recursive_tree_truncated": false,
+        "changed_files": [
+          {
+            "path": "README.md",
+            "added_lines": 12,
+            "deleted_lines": 12
+          }
+        ],
+        "changed_line_semantics": "Added/deleted README lines; not a count of Markdown destinations. A line may contain multiple URL occurrences.",
+        "archive_target": {
+          "path": "src/app/[locale]/about/Software_v2.0.zip",
+          "size_bytes": 584482,
+          "git_blob_sha1": "2a0e341c6094a06e441f444401baf777aedfa100",
+          "current_bytes_hash_verified": false
+        },
+        "interpretation": "README-only archive-target changes and pinned archive metadata observed; no current archive-byte comparison, execution, attribution or victim count."
+      },
+      {
+        "repository_defanged": "github[.]com/Sahilrajveer/reasonbench",
+        "classification": "Previously listed by Island; current source facts independently reviewed. Current binary behavior unverified.",
+        "commit_sha": "f4dbdcd8fe37732369793cd5a27ae00d8ca7dd80",
+        "parent_commit_shas": [
+          "498bd7b81e54a0aa317de603309137573397e9dd"
+        ],
+        "git_tree_sha1": "1ce14c72f76828170846b66fc70b7ae2aad71f33",
+        "commit_recorded_utc": "2026-10-08T06:02:16Z",
+        "observed_date_utc": "2026-10-09",
+        "exact_fetch_timestamp_available_in_this_receipt": false,
+        "recursive_tree_truncated": false,
+        "changed_files": [
+          {
+            "path": "README.md",
+            "added_lines": 1,
+            "deleted_lines": 1
+          }
+        ],
+        "changed_line_semantics": "Added/deleted README lines; not a count of Markdown destinations. A line may contain multiple URL occurrences.",
+        "archive_target": {
+          "path": "curstness/Software_v2.0.zip",
+          "size_bytes": 510128,
+          "git_blob_sha1": "9a90354c65c552a8a1f6cc4cd9fc7bb3d4220782",
+          "current_bytes_hash_verified": false
+        },
+        "interpretation": "README-only archive-target changes and pinned archive metadata observed; no current archive-byte comparison, execution, attribution or victim count."
+      },
+      {
+        "repository_defanged": "github[.]com/lozforlife120/hyprzoom",
+        "classification": "Previously listed by Island; current source facts independently reviewed. Current binary behavior unverified.",
+        "commit_sha": "f5a79c7db98d8bc8a8edb7aff571f2edb50da74d",
+        "parent_commit_shas": [
+          "149d808ad1ed15fa0067bca67fb3bb592f7466ee"
+        ],
+        "git_tree_sha1": "c65eff0df994750e19ce559a31d15589c187d913",
+        "commit_recorded_utc": "2026-10-09T07:05:41Z",
+        "observed_date_utc": "2026-10-09",
+        "exact_fetch_timestamp_available_in_this_receipt": false,
+        "recursive_tree_truncated": false,
+        "changed_files": [
+          {
+            "path": "README.md",
+            "added_lines": 4,
+            "deleted_lines": 4
+          }
+        ],
+        "changed_line_semantics": "Added/deleted README lines; not a count of Markdown destinations. A line may contain multiple URL occurrences.",
+        "archive_target": {
+          "path": "src/Software_v2.0.zip",
+          "size_bytes": 587570,
+          "git_blob_sha1": "dea4d39431be382ad7dc472147b6d148a1600653",
+          "current_bytes_hash_verified": false
+        },
+        "interpretation": "README-only archive-target changes and pinned archive metadata observed; no current archive-byte comparison, execution, attribution or victim count."
+      },
+      {
+        "repository_defanged": "github[.]com/Alejandro920/Zhouyi",
+        "classification": "Previously listed by Island; current source facts independently reviewed. Current binary behavior unverified.",
+        "commit_sha": "31515265dd1bcf61ff9264d6582f3bf9f80ceabf",
+        "parent_commit_shas": [
+          "540f6a508d2d9223332070ffc03951ad122d25a1"
+        ],
+        "git_tree_sha1": "fe2f8cf112afe414e41aa1ff5fd4746ec3f14d38",
+        "commit_recorded_utc": "2026-10-08T06:13:03Z",
+        "observed_date_utc": "2026-10-09",
+        "exact_fetch_timestamp_available_in_this_receipt": false,
+        "recursive_tree_truncated": false,
+        "changed_files": [
+          {
+            "path": "README.md",
+            "added_lines": 3,
+            "deleted_lines": 3
+          }
+        ],
+        "changed_line_semantics": "Added/deleted README lines; not a count of Markdown destinations. A line may contain multiple URL occurrences.",
+        "archive_target": {
+          "path": "kittysol/Software_v2.1.zip",
+          "size_bytes": 546286,
+          "git_blob_sha1": "33c7a5c19687f472014d368923aa72417b13be78",
+          "current_bytes_hash_verified": false
+        },
+        "interpretation": "README-only archive-target changes and pinned archive metadata observed; no current archive-byte comparison, execution, attribution or victim count."
+      },
+      {
+        "repository_defanged": "github[.]com/Adie0609/suvadu",
+        "classification": "Previously listed by Island; current source facts independently reviewed. Current binary behavior unverified.",
+        "commit_sha": "70de2dc5008f76d23f31cd7dc6b2712d448d9a8a",
+        "parent_commit_shas": [
+          "394f2c3ceaf76e4689bfe3e1ca023b7d772706d5"
+        ],
+        "git_tree_sha1": "6afd6a677e4ebc537f0e7f8953b18011124996ad",
+        "commit_recorded_utc": "2026-10-09T07:14:09Z",
+        "observed_date_utc": "2026-10-09",
+        "exact_fetch_timestamp_available_in_this_receipt": false,
+        "recursive_tree_truncated": false,
+        "changed_files": [
+          {
+            "path": "README.md",
+            "added_lines": 11,
+            "deleted_lines": 11
+          }
+        ],
+        "changed_line_semantics": "Added/deleted README lines; not a count of Markdown destinations. A line may contain multiple URL occurrences.",
+        "archive_target": {
+          "path": "demo/Software_v2.4.zip",
+          "size_bytes": 541353,
+          "git_blob_sha1": "64527fd08ab5ac31f1974e40dc732fabb0286318",
+          "current_bytes_hash_verified": false
+        },
+        "interpretation": "README-only archive-target changes and pinned archive metadata observed; no current archive-byte comparison, execution, attribution or victim count."
+      }
+    ],
+    "limits": [
+      "No denominator can be combined into a campaign population without deduplication and compatible selection rules.",
+      "Three unavailable API resources are not three confirmed removed malicious repositories.",
+      "Absence from two pinned files does not establish prior nondisclosure or malware."
+    ]
+  },
+  "anonymous_corpus_finding": {
+    "identity_withheld": true,
+    "underlying_source_withheld_for_editorial_disclosure_review": true,
+    "public_reproducibility_limit": "The source identity is withheld. Public readers cannot reproduce these counts from the baseline lists alone.",
+    "artifact_scope": "One committed JSON input dataset in a directory labelled validated; not the collector's whole corpus or an actual built index.",
+    "records": 52,
+    "unique_repository_identities": 51,
+    "distinct_published_list_matches": 18,
+    "matches_island": 8,
+    "matches_orchid": 10,
+    "matches_both": 0,
+    "matched_full_readme_snippets_with_zip_links": 18,
+    "matched_first_300_character_prefixes_with_complete_zip_urls": 13,
+    "static_dataflow": [
+      "Existing populated collection can return before files are imported.",
+      "Other JSONL inputs are processed before JSON inputs.",
+      "Deduplication keeps the first record for each repository URL.",
+      "A fresh build can join an eligible README's first 300 characters with name, description and language for an embedding document.",
+      "Retrieval returns metadata and distances, rather than the indexed README document.",
+      "Context formatting emits repository URLs and descriptions, rather than README text or ZIP URLs.",
+      "A conditional static call path uses the metadata context to construct a generation prompt."
+    ],
+    "index_run_observed": false,
+    "actual_retrieval_observed": false,
+    "model_response_observed": false,
+    "archive_url_observed_in_final_prompt": false,
+    "archive_retrieved": false,
+    "collector_malicious_intent_attributed": false,
+    "interpretation": "Known-list repository references and ZIP-bearing README snippets persist in a downstream input dataset. A static conditional ingestion/ranking path exists; actual indexing, recommendation, payload retrieval and compromise were not observed."
+  },
+  "source_observation_phase": {
+    "phase": "source_metadata_only_at_observation",
+    "date_utc": "2026-10-09",
+    "semantics": "Original current_bytes_hash_verified and binary_analyzed values describe the source-phase observation time, not every later action in the completed investigation."
+  },
+  "later_static_analysis_reference": {
+    "date_utc": "2026-10-09",
+    "artifact": "static-analysis.json",
+    "separate_evidence_phase": true,
+    "archives_acquired_later": 2,
+    "known_case_acquired_later": "K2",
+    "original_source_phase_values_retained": true,
+    "note": "Later pinned K2 bytes match the pinned Git blob and historical Island SHA-256. Readable DLL/Lua findings and executable access limits are in the separate artifact. One other archive comparison remains anonymous. No K1 byte analysis, sample execution, C2 contact or victim compromise is implied."
+  }
+}

@@ -13,7 +13,7 @@ test('explicit evidence preview retains its separate meaning', () => {
   const evidence = {...post,image:{path:'/evidence.png',thumbnail:'/preview.webp',presentation:'evidence'}};
   assert.equal(publicationPreview(evidence), '/evidence.png');
   assert.equal(publicationPreview(evidence,'thumbnail'), '/preview.webp');
-  assert.equal(publicationPreview({...evidence,contentType:'signal-brief'}), undefined);
+  assert.equal(publicationPreview({...evidence,contentType:'signal-brief'}), '/evidence.png');
 });
 test('approved editorial illustrations are visible and explicitly distinguished from evidence', () => {
   const illustration = {...post,image:{path:'/cover.webp',thumbnail:'/card.webp',presentation:'illustration'}};
@@ -26,7 +26,7 @@ test('approved editorial illustrations are visible and explicitly distinguished 
   assert.equal(publicationImageCaption({...illustration,image:{...illustration.image,source_type:'generated'}}), 'DI sukurta iliustracija · ne įrodymas');
   assert.equal(publicationImageCaption({...illustration,image:{...illustration.image,presentation:'evidence'}}), 'Įrodymų peržiūra');
   assert.equal(publicationImageCaption({...illustration,image:undefined}), '');
-  assert.equal(publicationImagePresentation({...illustration,contentType:'signal-brief'}), undefined);
+  assert.equal(publicationImagePresentation({...illustration,contentType:'signal-brief'}), 'illustration');
 });
 test('intrinsic dimensions and responsive variants keep the actual crop and exclude social imagery', () => {
   const illustration = {...post,image:{path:'/hero.webp',thumbnail:'/card.webp',presentation:'illustration',width:1600,height:900,thumbnail_width:720,thumbnail_height:405}};
@@ -37,6 +37,16 @@ test('intrinsic dimensions and responsive variants keep the actual crop and excl
   assert.equal(publicationImageSrcSet({...illustration,image:{...illustration.image,thumbnail_height:540}},'thumbnail'), undefined);
   assert.equal(publicationImageSrcSet({...illustration,image:{...illustration.image,thumbnail:undefined}},'thumbnail'), undefined);
   assert.equal(publicationImageSrcSet(illustration,'social'), undefined);
+});
+test('classified Briefings share responsive covers and localized generated-art labels', () => {
+  const brief = {...post,contentType:'signal-brief',image:{path:'/brief-hero.webp',thumbnail:'/brief-card.webp',presentation:'illustration',source_type:'generated',width:1600,height:900,thumbnail_width:720,thumbnail_height:405}};
+  assert.equal(publicationPreview(brief), '/brief-hero.webp');
+  assert.equal(publicationPreview(brief,'thumbnail'), '/brief-card.webp');
+  assert.equal(publicationImageSrcSet(brief), '/brief-card.webp 720w, /brief-hero.webp 1600w');
+  assert.equal(publicationImageCaption(brief), 'DI sukurta iliustracija · ne įrodymas');
+  assert.equal(publicationImageCaption({...brief,lang:'en'}), 'AI-generated illustration · not evidence');
+  assert.equal(publicationPreview({...brief,image:{path:'/legacy-brief.svg'}}), undefined);
+  assert.equal(publicationPreview(brief,'social'), '/assets/img/social/research-record-lt.png');
 });
 test('every language edition uses its dedicated typographic social card', () => {
   assert.equal(publicationPreview(post,'social'),'/assets/img/social/research-record-lt.png');

@@ -1,0 +1,87 @@
+{
+  "schema": "hecavex.plugin-source-hunt.v1",
+  "observed_date_utc": "2026-10-09",
+  "scope": "Six discovery queries: two web lead searches and four first-page GitHub code queries. Three purposive pinned source cases; no execution or full repository audit.",
+  "queries": [
+    {
+      "query": "filename:hooks.json \"curl\" \"base64\"",
+      "total_indexed_matches": 21,
+      "retained_rows": 10
+    },
+    {
+      "query": "filename:hooks.json \".aws/credentials\"",
+      "total_indexed_matches": 3,
+      "retained_rows": 3
+    },
+    {
+      "query": "filename:hooks.json \"SessionStart\" \"curl\"",
+      "total_indexed_matches": 171,
+      "retained_rows": 10
+    },
+    {
+      "query": "\".claude-plugin\" \".ssh\" \"curl\"",
+      "total_indexed_matches": 1002,
+      "retained_rows": 10
+    }
+  ],
+  "counts": {
+    "web_lead_queries": 2,
+    "github_code_queries": 4,
+    "github_unique_source_file_urls": 33,
+    "github_unique_repositories": 28,
+    "source_triaged_repositories": 3,
+    "pinned_hooks_manifests_readmes": 9,
+    "python_source_followups_from_hook_command": 1,
+    "text_files_source_sha256_and_git_blob_verified": 10,
+    "confirmed_malicious_publishers_in_inspected_paths": 0
+  },
+  "query_limit": {
+    "pages_per_github_query": 1,
+    "maximum_rows_per_query": 10,
+    "pagination_performed": false,
+    "filename_filter_returned_unrelated_filenames": true
+  },
+  "anonymous_source_cases": [
+    {
+      "case_id": "P1",
+      "observed": "A PermissionRequest prompt directs denial of sensitive-path and risky-command requests. Inspected JSON has no shell credential-collection or transmission command.",
+      "limit": "One prompt path; no whole-package safety verdict."
+    },
+    {
+      "case_id": "P2",
+      "observed": "A PreToolUse hook invokes a local Python blocker. It compares invocation paths and commands with credential patterns and rejects matches. Inspected imports and source show no file-content collection or network transmission.",
+      "limit": "Source tracing only; no hook invocation."
+    },
+    {
+      "case_id": "P3",
+      "observed": "A SessionStart hook conditionally installs a dependency after an import check. The README discloses automatic installation.",
+      "limit": "Minimum-version dependency remains mutable; registry integrity, every dependency and later releases were not audited."
+    }
+  ],
+  "primary_mechanism_context": [
+    {
+      "url": "https://github.com/cursor/cursor/security/advisories/GHSA-pc9j-3qc2-95wv",
+      "published_date": "2026-05-21",
+      "supports": "Upstream workspace-defined Claude hook approval vulnerability.",
+      "limit": "Not evidence these candidates are malicious or that a campaign exploited this issue."
+    },
+    {
+      "url": "https://github.com/cursor/cursor/security/advisories/GHSA-hf2x-r83r-qw5q",
+      "published_date": "2026-03-09",
+      "supports": "Upstream indirect prompt injection with command allowlist bypass.",
+      "limit": "Mechanism context; no exploit reproduced."
+    }
+  ],
+  "separate_known_mirror_availability_check": {
+    "current_skill_source_verified": false,
+    "observed_results": "Live HEAD API and selected web requests returned 404; another selected path returned a stale cached error shell without pinned Markdown.",
+    "limits": "Unavailable source does not prove deletion or takedown. Dated prior reporting remains attributed prior work, not present availability."
+  },
+  "limits": [
+    "Search totals and returned rows are not malicious-package counts.",
+    "The three inspected paths did not establish a malicious publisher; this selected set cannot estimate prevalence or certify ecosystem safety.",
+    "No dependency installation, target execution, payload acquisition, service invocation or outreach in this pass.",
+    "Unconfirmed identities and their source identifiers are withheld."
+  ],
+  "publication_status": "Prepared for owner review; not published."
+}

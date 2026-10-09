@@ -1,0 +1,39 @@
+{
+  "schema": "hecavex.harmless-constant-replay.v1",
+  "classification": "One fixed mathematical data relation, not runtime or malware detection evidence.",
+  "ciphertext_hex": "565139a26198b0effbe5b2da513ad64ceff77b28a6bf3cc679265dc5683455d0926d4e4d6b6fd58261fdae713ff80b49f1a810d7634f3aa34df6b56a6a3ed9e187d41c976a6a348c23f57a53210093535728984a7174d9dbf50d15e2878d3c92ebcae6d907a85b6bc2deb523d2093aacd9b53685bc9b851996453d18d721df3fb720184411a26252a5922a9d4d31ccc26539aac9933dc5eb3e0de6fe16651526e12263dd0f82019d8304d5ce7653",
+  "ciphertext_bytes": 174,
+  "ciphertext_sha256": "2807ea9e86ae814427e1c7ceb9c22aec73e63b70d8a94b0a9f30c9dd8f5d079b",
+  "seed": 28217191696788,
+  "expected_plaintext_utf8": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_call\",\n    \"params\": [\n        {\n            \"to\": \"%s\",\n            \"data\": \"%s\"\n        },\n        \"latest\"\n    ],\n    \"id\": 1\n}\n",
+  "expected_plaintext_bytes": 174,
+  "expected_plaintext_sha256": "487190fca26fbf3acf04520ce3ab7e7447a4d11453003591edd2de51c0f4bf4c",
+  "provenance": {
+    "known_lua_sha256": "33250ded61c43128b6c29b01de7b1cc962b241b236933f54bc42b648afae2398",
+    "offset_convention": "Zero-based bytes, end-exclusive.",
+    "cipher_literal_permutation_span": [
+      176790,
+      177673
+    ],
+    "cipher_literal_permutation_sha256": "fabbad1cd507ff19cf7be2b3ab81ed91b5ba50e280a31f0aa50422bcc60bb2eb",
+    "literal_chunks": 34,
+    "seed_span": [
+      176754,
+      176781
+    ],
+    "seed_source": "xT=28217191079822-(-616966)",
+    "seed_source_sha256": "5db4827532fefe95a642927665daa2eb5e3b4b4f1fc5a4df62a8ac22783505ff",
+    "opaque_call_span": [
+      177688,
+      177696
+    ],
+    "opaque_call_sha256": "6f9ba3220473453f8b9e28b1751612feee111ea391680ecf156c9005b923726b",
+    "source_context_limit": "The opaque callee and runtime reachability are unresolved."
+  },
+  "primary_comparison": {
+    "source": "https://github.com/prometheus-lua/Prometheus/blob/a4efc5f381c50ae2a111bdbb9272fa3203685be3/src/prometheus/steps/EncryptStrings.lua",
+    "license": "https://github.com/prometheus-lua/Prometheus/blob/a4efc5f381c50ae2a111bdbb9272fa3203685be3/LICENSE",
+    "license_git_blob_sha": "138f1d910723ae29450c7562389a2af229e98c90",
+    "attribution": "Based on Prometheus by Elias Oelschner, https://github.com/prometheus-lua/Prometheus"
+  }
+}
