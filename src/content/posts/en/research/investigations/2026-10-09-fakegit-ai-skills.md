@@ -41,7 +41,7 @@ key_findings:
   - "The fixed, purposive sample of 14 previously published indicators returned seven readable GitHub repository resources and seven API 404 responses. It is not a takedown-rate estimate."
   - "Seven further Island-listed repositories had README-only archive-link changes recorded on October 8 or 9 across two separate follow-up samples."
   - "One committed input dataset contained 18 repository identities on published malware lists. Its saved README snippets contained ZIP links, but no actual indexing or recommendation was observed."
-  - "Two archives were retained and hash-matched. The known sample yielded 2,294 quoted literals, 387 constant permutations and 539 mathematical constant-pair transforms producing 292 unique readable values, without sample execution."
+  - "I saved two archives and checked each against its reference hash. Static decoding recovered 292 different readable values from the known sample without running it."
   - "A separate four-query filename/hash pass returned two README files. One identity was already listed, and the other remains private."
   - "Public Polygon records reproduced two reported pointer changes. Two providers agreed on the getter value at a fixed October 9 block."
 scope: "Public GitHub source and metadata checks on October 9, 2026, two pinned comparison lists, bounded IOC/filename pivots, static installer/MCP review, two retained archives and passive enrichment of reported SmartLoader indicators."
@@ -165,13 +165,36 @@ Windows rejected the executable's later independent hash-file read with a virus-
 
 ### How I decoded the constants
 
-The first pass decoded 2,294 quoted literals and 387 constant chunk-permutation sites. It read Lua syntax as data, without evaluating the Lua program. Here are the exact 73 original bytes at `[267943, 268016)` in `icon16.txt`, before decoding. Offsets start at zero and exclude the end:
+The Lua file hides letters as numbers and splits words into chunks. I first used my own Python code to read those numbers and put the chunks back together. I did not run the Lua program.
+
+Here is one example from the original file:
 
 ```text
 AT({1;2,{"\099\117\114\114\101","\110\116\068\108\108\080\097\116\104"}})
 ```
 
-The parser reads `\099` as decimal byte 99, ASCII `c`. Lua decimal escapes consume up to three digits. This is the decimal-byte branch of my `quoted_bytes` function in `safe_decode.py`, with the surrounding parser's checks omitted. It has already consumed the backslash and first ASCII digit into `char`. The branch accepts only ASCII digits and rejects values above 255:
+`\099` means the letter `c`. Reading the two encoded chunks gives `curre` and `ntDllPath`. The list `[1, 2]` gives their joining order. The result is `currentDllPath`.
+
+```python
+indices = [1, 2]
+chunks = [b"curre", b"ntDllPath"]
+decoded = b"".join(chunks[i - 1] for i in indices)
+# b"currentDllPath"
+```
+
+This Python example only joins the text chunks already read. It does not call the sample's Lua functions.
+
+![Original escaped source excerpts beside the Python decimal-byte and chunk parsers.](/assets/img/posts/fakegit-ai-skills/vscode-source-parser-v2.webp)
+
+*The escaped strings beside the Python parser.*
+
+<details>
+
+<summary>Python excerpt and original source location</summary>
+
+The original excerpt is 73 bytes at `[267943, 268016)` in `icon16.txt`. Offsets start at zero and exclude the end. The first pass decoded 2,294 strings and 387 chunk-permutation sites.
+
+This part of my `quoted_bytes` function in `safe_decode.py` reads a letter written as a number. The backslash and first digit have already been read into `char`. Only this branch is shown, without the surrounding parser checks. It accepts ASCII digits and rejects values above the byte limit of 255.
 
 ```python
 digits = char
@@ -184,71 +207,15 @@ require(value <= 255, 'decimal byte escape exceeds 255')
 out.append(value)
 ```
 
-The two quoted chunks decode to `curre` and `ntDllPath`. In the inspected helper's literal arrangement, the order `[1, 2]` selects those chunks using one-based indices. Commas and semicolons separate table entries. My Python reconstruction subtracts one from each index:
+Lua numbers these chunks from one. Python starts at zero. That is why the joining example above subtracts one from each index. Commas and semicolons separate entries in the original Lua table.
 
-```python
-indices = [1, 2]
-chunks = [b"curre", b"ntDllPath"]
-decoded = b"".join(chunks[i - 1] for i in indices)
-# b"currentDllPath"
-```
+</details>
 
-The walkthrough follows the data through `quoted_bytes` for escapes, `literal_at` for indexed chunks, fixed seed parsing, `constant_transform` for the mathematics, and JSON/hash checks for the result. These are my Python functions. They do not invoke the sample's Lua helpers.
+Other strings needed more than joining letters. My Python decoder took the encoded text and a starting number found in the code, then used them to recover readable text. I recovered 292 distinct values. One was this JSON request template:
 
-![Original escaped source excerpts beside the Python decimal-byte and chunk parsers.](/assets/img/posts/fakegit-ai-skills/vscode-source-parser-v2.webp)
+![The Python decoder beside the recovered JSON with placeholders.](/assets/img/posts/fakegit-ai-skills/vscode-transform-output-v2.webp)
 
-*The escaped strings beside the Python parser.*
-
-I compared the string-transform arithmetic with the [pinned Prometheus EncryptStrings implementation](https://github.com/prometheus-lua/Prometheus/blob/a4efc5f381c50ae2a111bdbb9272fa3203685be3/src/prometheus/steps/EncryptStrings.lua#L121). The comparison covers seed initialization, two recurrences, a rotated 32-bit word and previous-byte feedback. Attribution: "Based on Prometheus by Elias Oelschner, https://github.com/prometheus-lua/Prometheus". The pinned [Prometheus license](https://github.com/prometheus-lua/Prometheus/blob/a4efc5f381c50ae2a111bdbb9272fa3203685be3/LICENSE) records the copyright and attribution conditions. This identifies a compatible transform, not the sample's obfuscator version or operator.
-
-The following is my simplified pseudocode for the mathematical transform, not the full parser or a callable sample function. `ROR32` rotates a 32-bit unsigned word right. The four bytes are stored low to high and consumed from the end, so the high byte is used first:
-
-```text
-s45 = seed % (1 << 45)
-s8 = seed % 255 + 2
-previous = 68
-pending = []
-for encrypted_byte in ciphertext:
-    if pending is empty:
-        s45 = (s45 * 241 + 31330050365433) % (1 << 45)
-        repeat up to 256 times:
-            s8 = (s8 * 186) % 257
-            if s8 != 1: break
-        if no accepted state: reject pair
-        r = s8 % 32
-        shift = 13 - (s8 - r) / 32
-        word = floor(s45 / 2**shift) % (1 << 32)
-        rnd = ROR32(word, r)
-        pending = [rnd & 255, (rnd >> 8) & 255,
-                   (rnd >> 16) & 255, (rnd >> 24) & 255]
-    previous = (encrypted_byte + pop_last(pending) + previous) % 256
-    append_output_byte(previous)
-```
-
-Only constant ciphertext/seed arguments were accepted. The scanner did not follow dispatch states. Its conservative reset rules can be summarized as pseudocode:
-
-```text
-at branch, join, loop or function boundary: clear(bindings)
-at unsupported assignment: invalidate(assigned_bindings)
-at simultaneous assignment: clear(bindings)
-after opaque call: clear(bindings)
-```
-
-Applying that mathematical transform to 539 candidate constant pairs yielded 292 unique readable values. The initial four manually checked pairs are included in that total. Independent integer-rotate and floating-expression implementations agreed on every transformed byte, and a separate reviewer reproduced all 539 outputs from the recorded ciphertext/seed inputs without importing my decoder. That reviewer independently checked five selected original source pairings. The 539 total counts arithmetic outputs, not 539 independently source-verified call sites. The restricted grammar deliberately leaves values crossing a boundary unresolved. It does not prove the identity of each opaque callee or that a recovered value is reached at runtime.
-
-For the mathematical stage, I used one saved constant pair. The ciphertext permutation at `[176790, 177673)` reconstructs 174 bytes from 34 quoted chunks. Its seed assignment at `[176754, 176781)` is also present in the original source:
-
-```text
-xT=28217191079822-(-616966)
-```
-
-Reading only that fixed subtraction gives `28217191079822 - (-616966) = 28217191696788`. The earlier lexical proof connects the constants to `B(yT,xT)` at `[177688, 177696)`. It does not identify the opaque callee or establish that this call is reached at runtime.
-
-![The bounded mathematical transform beside its saved output and placeholder JSON.](/assets/img/posts/fakegit-ai-skills/vscode-transform-output-v2.webp)
-
-*The transform and its saved result.*
-
-Applying the verified mathematical transform to those bytes and that seed produces this exact 174-byte value, encoded as UTF-8 with LF line endings and one final LF:
+*The decoder and recovered JSON.*
 
 ```json
 {
@@ -265,22 +232,34 @@ Applying the verified mathematical transform to those bytes and that seed produc
 }
 ```
 
-| Constant data | SHA-256 |
-| --- | --- |
-| Reconstructed ciphertext | `2807ea9e86ae814427e1c7ceb9c22aec73e63b70d8a94b0a9f30c9dd8f5d079b` |
-| Recovered JSON bytes | `487190fca26fbf3acf04520ce3ab7e7447a4d11453003591edd2de51c0f4bf4c` |
+The `to` and `data` fields still contain `%s`: placeholders for values that would have to be filled in. This template gives me no actual contract, getter value, RPC provider or complete destination. It also does not independently connect these bytes to the Polygon contract discussed later.
 
-The template retains placeholders: no actual contract, getter literal, RPC provider or complete destination is recovered here. This template does not independently connect these bytes to the Polygon contract discussed later.
-
-A fresh run of my Python walkthrough exited with code 0 and reproduced both hashes. It ran only my decoder on the retained text excerpts.
-
-The selected constant can now be replayed without obtaining the sample. Save the [Python helper](/assets/data/fakegit-ai-skills-v1/constant-replay/constant_replay.py), [fixed fixture](/assets/data/fakegit-ai-skills-v1/constant-replay/fixture.json), [README](/assets/data/fakegit-ai-skills-v1/constant-replay/README.md) and [complete pinned license](/assets/data/fakegit-ai-skills-v1/constant-replay/LICENSE-Prometheus.txt) in one directory, then run:
+You can check this one text-recovery step without downloading the malware sample. Save the [Python helper](/assets/data/fakegit-ai-skills-v1/constant-replay/constant_replay.py), [fixed fixture](/assets/data/fakegit-ai-skills-v1/constant-replay/fixture.json), [README](/assets/data/fakegit-ai-skills-v1/constant-replay/README.md) and [complete pinned license](/assets/data/fakegit-ai-skills-v1/constant-replay/LICENSE-Prometheus.txt) in one directory, then run:
 
 ```sh
 python -B constant_replay.py
 ```
 
-This standard-library helper checks the ciphertext digest, applies the integer transform and checks the exact output digest. A fresh run passed, including controls that change the ciphertext, seed and output. The fixture contains one placeholder template. It adds no new result to the 539 total. The hashes of the original Lua and source spans are included as provenance metadata. This helper neither obtains nor revalidates those source files. Replaying constant arithmetic does not resolve the opaque callee or demonstrate execution.
+This example recovers one saved template and checks that the resulting bytes match. It does not run the Lua program or verify all 539 pairings against the original source.
+
+<details>
+
+<summary>Sources and result checks</summary>
+
+The saved encrypted-text and starting-number pairs produced 539 outputs, with 292 distinct values. The first four manually checked pairs are included in that total. A separate reviewer reproduced all 539 outputs from the saved pairs without using my decoder and checked five selected pairings against the original source. That is not 539 independently source-verified locations. These checks do not identify every hidden function or establish whether the program would reach it at runtime.
+
+I compared the text-recovery method with the [pinned Prometheus EncryptStrings implementation](https://github.com/prometheus-lua/Prometheus/blob/a4efc5f381c50ae2a111bdbb9272fa3203685be3/src/prometheus/steps/EncryptStrings.lua#L121). The comparison identified a compatible transform. It does not establish the sample's obfuscator version or operator. Attribution: "Based on Prometheus by Elias Oelschner, https://github.com/prometheus-lua/Prometheus". The [pinned Prometheus license](https://github.com/prometheus-lua/Prometheus/blob/a4efc5f381c50ae2a111bdbb9272fa3203685be3/LICENSE) applies.
+
+The JSON shown here is exactly 174 bytes: UTF-8 text, LF line endings and one final LF. My Python check exited with code 0 and reproduced these hashes:
+
+| Constant data | SHA-256 |
+| --- | --- |
+| Reconstructed ciphertext | `2807ea9e86ae814427e1c7ceb9c22aec73e63b70d8a94b0a9f30c9dd8f5d079b` |
+| Recovered JSON bytes | `487190fca26fbf3acf04520ce3ab7e7447a4d11453003591edd2de51c0f4bf4c` |
+
+The public Python example uses only the standard library. It checks the hashes of one input and its output. The replay passed, including controls with altered input, starting number and output. This is the same one template within the 539-output total. The helper does not obtain the original Lua file, recheck its source or excerpt hashes, or demonstrate execution. The accompanying README and [static-analysis observations](/assets/data/fakegit-ai-skills-v1/static-analysis.json) retain the exact input and limits.
+
+</details>
 
 Other recovered content includes WinINet API names, an 8,514-byte block of Windows PE/PEB/LDR declarations, screenshot-related names such as `BitBlt`, and scheduled-task/PowerShell command fragments. These are static contents. They do not establish an executed request, screenshot, injection or persistence operation. Full command fragments remain private.
 
@@ -288,7 +267,7 @@ Other recovered content includes WinINet API names, an 8,514-byte block of Windo
 
 A later filename pivot, described below, produced a second candidate archive. Its retained bytes matched the passive provider's selected SHA-256 and the pinned Git blob. A neighboring skill described an ordinary audit workflow and did not mention the archive among the explicit indicators checked. The candidate's name, hash and source references remain private.
 
-Its Lua source shared the two literal-permutation structures and numeric-state scaffolding. The bounded parser decoded 3,830 quoted literals and 413 constant permutations. Its recurrence and feedback constants differed from the known sample's. No cipher plaintext or executed behavior was reconstructed for this candidate.
+Its Lua source shared the two literal-permutation structures and numeric-state scaffolding. The bounded parser decoded 3,830 quoted literals and 413 constant permutations. The number-sequence and previous-byte constants differed from the known sample's. No cipher plaintext or executed behavior was reconstructed for this candidate.
 
 The first independent DLL byte read failed with `OSError: [Errno 22] Invalid argument`. PE comparison stopped before parsing that DLL or attempting the executable. The cause was not established, so this is not a confirmed antivirus detection. Shared scaffolding and a provider hash match do not establish a common operator, final payload or victim compromise.
 
