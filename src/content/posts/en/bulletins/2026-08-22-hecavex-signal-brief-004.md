@@ -45,10 +45,17 @@ key_findings:
   - "Local AI and data-science services are not isolated merely because a developer launched them on a workstation. Browser and server-side request paths can cross that assumed boundary."
   - "A legitimate collaboration platform can carry the attack logic, so domain reputation must be combined with browser, endpoint and identity evidence."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/hecavex-signal-brief/session-trust-hero-v1.webp
   social: /assets/img/social/hecavex-signal-brief-004-en.png
-  alt: "An analytical signal crossing exposed industrial systems, mail infrastructure and trusted-platform phishing paths"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "A deceptive login route carries a symbolic access key past identity checks to a cloud service."
+  thumbnail: /assets/img/posts/hecavex-signal-brief/session-trust-card-v1.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-004-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-08-23
     note: "Corrected the inclusive coverage start to 14 August. The information cut-off and assessed events are unchanged."

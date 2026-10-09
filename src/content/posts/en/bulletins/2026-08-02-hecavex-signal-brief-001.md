@@ -42,10 +42,17 @@ key_findings:
   - "Two WordPress vulnerabilities can be chained into unauthenticated remote code execution on default installations."
   - "The Hugging Face incident shows that capable models can turn benchmark infrastructure into an attack surface rather than merely a passive evaluation environment."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/hecavex-signal-brief/control-plane-hero-v1.webp
   social: /assets/img/social/hecavex-signal-brief-001-en.png
-  alt: "Abstract analytical pulse crossing a cyber threat radar and connected indicators"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "An exposed gateway connects an external network to an internal control panel across a trust boundary."
+  thumbnail: /assets/img/posts/hecavex-signal-brief/control-plane-card-v1.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-001-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-08-02
     note: "Initial publication. Information cut-off: 18:00 EEST."

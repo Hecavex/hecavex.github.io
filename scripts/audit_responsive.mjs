@@ -48,6 +48,7 @@ const monthlyRadarRoutes = [
 const routes = [
   ...recentBriefRoutes,
   ...monthlyRadarRoutes,
+  '/en/research/fakegit-ai-skills-mutable-downloads/', '/lt/tyrimai/fakegit-ai-igudziai-kintantys-atsisiuntimai/',
   '/', '/data/', '/lt/duomenys/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/', '/en/projects/', '/lt/projektai/',
   '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/',
   '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
@@ -57,6 +58,7 @@ const routes = [
 ];
 const factRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
 const outlineRoutes = new Set([
+  '/en/research/fakegit-ai-skills-mutable-downloads/', '/lt/tyrimai/fakegit-ai-igudziai-kintantys-atsisiuntimai/',
   ...recentBriefRoutes,
   ...monthlyRadarRoutes,
   '/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/',
@@ -568,6 +570,22 @@ try {
   if (noScriptOutline.open) fail('/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/ (no JavaScript)', 390, 'mobile outline should start collapsed');
   if (noScriptOutline.missingTargets.length) fail('/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/ (no JavaScript)', 390, `outline targets are missing: ${noScriptOutline.missingTargets.join(', ')}`);
   if (noScriptOutline.overflow > 1) fail('/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/ (no JavaScript)', 390, `page overflows horizontally by ${noScriptOutline.overflow}px`);
+  for (const route of ['/en/research/fakegit-ai-skills-mutable-downloads/', '/lt/tyrimai/fakegit-ai-igudziai-kintantys-atsisiuntimai/']) {
+    await page.goto(baseUrl + route, { waitUntil: 'domcontentloaded' });
+    const article = await page.evaluate(() => ({
+      title: document.querySelector('main h1')?.textContent.trim(),
+      overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      codeExamples: document.querySelectorAll('.article-body pre code').length,
+      figures: [...document.querySelectorAll('.hx-evidence-figure')].map(figure => ({
+        caption: Boolean(figure.querySelector('figcaption')?.textContent.trim()),
+        original: Boolean(figure.querySelector('a.evidence-original[href]')),
+        alt: Boolean(figure.querySelector('img')?.alt.trim())
+      }))
+    }));
+    if (!article.title || !article.codeExamples) fail(route + ' (no JavaScript)', 390, 'article or static-analysis code examples are unavailable');
+    if (article.overflow > 1) fail(route + ' (no JavaScript)', 390, `page overflows horizontally by ${article.overflow}px`);
+    if (article.figures.length !== 9 || article.figures.some(figure => !figure.caption || !figure.original || !figure.alt)) fail(route + ' (no JavaScript)', 390, 'evidence figures require readable captions, alt text and native original links');
+  }
   await noScript.close();
 
   const readingContext = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce', serviceWorkers: 'block' });

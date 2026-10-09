@@ -1,0 +1,171 @@
+{
+  "schema": "hecavex.broader-ai-tooling-hunt.v1",
+  "date_utc": "2026-10-09",
+  "scope": "Ten first-page public GitHub searches followed by six purposive pinned source triages. Separate from all earlier FakeGit samples.",
+  "query_count": 10,
+  "queries": [
+    {
+      "id": 1,
+      "kind": "repository",
+      "q": "\"claude\" \"plugin\" created:2026-08-01..2026-10-09 stars:<10",
+      "limit": 20,
+      "requested_at_utc": "2026-10-09T14:05:01.670Z",
+      "response_error": false,
+      "returned_result_rows": 20,
+      "provider_reported_total_matches": null,
+      "incomplete_results": null
+    },
+    {
+      "id": 2,
+      "kind": "repository",
+      "q": "\"mcp\" created:2026-09-01..2026-10-09 stars:<5",
+      "limit": 20,
+      "requested_at_utc": "2026-10-09T14:05:01.670Z",
+      "response_error": false,
+      "returned_result_rows": 20,
+      "provider_reported_total_matches": null,
+      "incomplete_results": null
+    },
+    {
+      "id": 3,
+      "kind": "api_code",
+      "q": "filename:SKILL.md \".env\" \"curl\"",
+      "limit": 20,
+      "requested_at_utc": "2026-10-09T14:05:01.670Z",
+      "response_error": false,
+      "returned_result_rows": 20,
+      "provider_reported_total_matches": 74368,
+      "incomplete_results": false
+    },
+    {
+      "id": 4,
+      "kind": "api_code",
+      "q": "filename:hooks.json \"curl\" \"PreToolUse\"",
+      "limit": 20,
+      "requested_at_utc": "2026-10-09T14:05:01.672Z",
+      "response_error": false,
+      "returned_result_rows": 20,
+      "provider_reported_total_matches": 177,
+      "incomplete_results": false
+    },
+    {
+      "id": 5,
+      "kind": "api_code",
+      "q": "filename:package.json \"mcp\" \"postinstall\" \"base64\"",
+      "limit": 20,
+      "requested_at_utc": "2026-10-09T14:05:01.672Z",
+      "response_error": false,
+      "returned_result_rows": 20,
+      "provider_reported_total_matches": 69,
+      "incomplete_results": false
+    },
+    {
+      "id": 6,
+      "kind": "api_code",
+      "q": "filename:SKILL.md \".ssh\" \"requests.post\"",
+      "limit": 20,
+      "requested_at_utc": "2026-10-09T14:05:01.672Z",
+      "response_error": false,
+      "returned_result_rows": 20,
+      "provider_reported_total_matches": 728,
+      "incomplete_results": false
+    },
+    {
+      "id": 7,
+      "kind": "api_code",
+      "q": "filename:SKILL.md \"curl\" \".aws/credentials\" -auditor -security -pentest",
+      "limit": 20,
+      "requested_at_utc": "2026-10-09T14:05:39.878Z",
+      "response_error": false,
+      "returned_result_rows": 20,
+      "provider_reported_total_matches": 372,
+      "incomplete_results": false
+    },
+    {
+      "id": 8,
+      "kind": "api_code",
+      "q": "filename:hooks.json \"base64\" \"exec\"",
+      "limit": 20,
+      "requested_at_utc": "2026-10-09T14:05:39.879Z",
+      "response_error": false,
+      "returned_result_rows": 20,
+      "provider_reported_total_matches": 185,
+      "incomplete_results": false
+    },
+    {
+      "id": 9,
+      "kind": "api_code",
+      "q": "\"mcp\" \"id_rsa\" \"requests.post\" -test -example",
+      "limit": 20,
+      "requested_at_utc": "2026-10-09T14:05:39.879Z",
+      "response_error": false,
+      "returned_result_rows": 20,
+      "provider_reported_total_matches": 28,
+      "incomplete_results": false
+    },
+    {
+      "id": 10,
+      "kind": "api_code",
+      "q": "filename:SKILL.md \"curl\" \"--data-binary\"",
+      "limit": 20,
+      "requested_at_utc": "2026-10-09T14:05:39.879Z",
+      "response_error": false,
+      "returned_result_rows": 20,
+      "provider_reported_total_matches": 3632,
+      "incomplete_results": false
+    }
+  ],
+  "counts": {
+    "repositoryRows": 40,
+    "repositoryUnique": 40,
+    "codeRows": 160,
+    "uniqueCodeFiles": 160,
+    "uniqueReposAll": 181
+  },
+  "source_triaged_repositories": 6,
+  "text_files_retrieved": 17,
+  "credible_hidden_credential_exfiltration_candidates_established": 0,
+  "source_signal_outcomes": [
+    {
+      "case_id": "R1",
+      "observed": "Credential theft terms occurred in a scanner's detection table and research references.",
+      "assessment": "Defensive documentation signal; not an observed stealing instruction."
+    },
+    {
+      "case_id": "R2",
+      "observed": "A provider plugin's token handling supports a loopback bridge and explicit upstream request forwarding. Its package has no install lifecycle hook; inspected forwarding code rejects redirects.",
+      "assessment": "Declared functionality in inspected source. No covert external credential destination established."
+    },
+    {
+      "case_id": "R3",
+      "observed": "Credential provisioning instructions activate on the user's setup request, write local MCP configuration and describe optional checks against the selected service.",
+      "assessment": "Explicit credential setup; not an observed unsolicited secret upload."
+    },
+    {
+      "case_id": "R4",
+      "observed": "An MCP code-review tool sends chosen source to its configured service, but the public call path rejects secret-named target files before building their context.",
+      "assessment": "The searched secret-name and network strings do not establish a stealing chain."
+    },
+    {
+      "case_id": "R5",
+      "observed": "Two base64 hook wrappers decode to local command rewriting and local token-budget logging helpers.",
+      "assessment": "Encoding alone did not establish malicious behavior. No credential collection or network upload observed in those inspected wrappers/helpers."
+    },
+    {
+      "case_id": "R6",
+      "observed": "Webhook instructions send an explicit message body to a user-created callback URL, limit lifetimes/deliveries and treat external bodies as untrusted.",
+      "assessment": "Disclosed callback functionality; no automatic local credential collection shown by inspected material."
+    }
+  ],
+  "limits": [
+    "Search-result rows and total-match counters are not audited-repository or malware counts.",
+    "The recent date bounds apply to the two repository-discovery queries; code searches were global default-branch searches without that date filter.",
+    "Seventeen text files were retrieved for focused source tracing, not every line of every dependency or every release artifact.",
+    "No installation, execution, live endpoint test, victim telemetry or complete benign certification was performed.",
+    "Zero established candidates in this selected set does not prove the wider discovery pool is safe.",
+    "No linkage to FakeGit, ClawHavoc, or any other campaign is inferred from keywords, encoding or shared tooling."
+  ],
+  "identity_policy": "Source targets remain anonymous in this summary. Exact refs and source receipts are retained privately.",
+  "publication_status": "Prepared for owner review; not published.",
+  "phase_scope": "Search and pinned-source observations on 2026-10-09. Later acquisitions and pure-data analyses are separately recorded in static-analysis.json; they do not retroactively change this source-pass denominator."
+}

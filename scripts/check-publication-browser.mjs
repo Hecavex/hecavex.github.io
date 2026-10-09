@@ -48,6 +48,8 @@ const cases = [
  ['/lt/tyrimai/kaip-saugiai-patikrinti-itartina-sms-nuoroda/', true],
  ['/en/research/github-and-malware/', false],
  ['/lt/tyrimai/github-and-malware/', false],
+ ['/en/research/fakegit-ai-skills-mutable-downloads/', false],
+ ['/lt/tyrimai/fakegit-ai-igudziai-kintantys-atsisiuntimai/', false],
  ['/en/research/facebook-cloaking-explained/', false],
  ['/en/research/adform-supply-chain-crypto-clipper/', false]
 ];
@@ -80,6 +82,7 @@ try {
    check(!state.boxes, route + ': disabled checkboxes');
    check(state.csp, route + ': CSP missing');
    if (route.includes('sms') || route.includes('adform')) check(state.figures.length > 0 && state.figures.every(f => f.link && f.caption), route + ': inspectable figures');
+   if (route.includes('fakegit-ai-')) check(state.figures.length === 9 && state.figures.every(f => f.link && f.caption && /px/.test(f.text)), route + ': all nine evidence figures retain captions and inspectable dimensions');
    check(state.metadata >= 12, route + ': metadata below 12px');
    if (width <= 600) check(state.proseAligned, route + ': narrow prose remains justified');
    if (route.includes('sms')) {

@@ -45,10 +45,17 @@ key_findings:
   - "Artifactory's KEV addition changes the exploitation evidence since Brief #5 without proving any local repository compromise."
   - "A legitimate remote-support tool and a critical product score each need context before they become an incident or emergency change."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/fakegit-ai-skills/editorial-cover-hero-v3.webp
   social: /assets/img/social/hecavex-signal-brief-006-en.png
-  alt: "HECAVEX Signal Brief series mark"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "A repository document redirects a download to an archive beside a static inspection frame."
+  thumbnail: /assets/img/posts/fakegit-ai-skills/editorial-cover-card-v3.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-006-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-09-22
     note: "Initial retrospective publication. Covers 31 August–6 September 2026 with an information cutoff of 6 September at 23:59:59 UTC."

@@ -45,10 +45,17 @@ key_findings:
   - "DI agentai iš pagalbinio įrankio keliauja į realius intrusion workflow, bet vieši įrodymai vis dar nepagrindžia kiekvienos antraštės apie visiškai autonominį cyber karą."
   - "Logistikos duomenys tampa paruoštu social engineering kontekstu, o viešbučių tinklai rodo, kad priešiškas gali būti net kelias iki login puslapio."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/hecavex-signal-brief/control-plane-hero-v1.webp
   social: /assets/img/social/hecavex-signal-brief-003-lt.png
-  alt: "Analitinis signalas kerta išnaudojamos programinės įrangos, geopolitinių cyber operacijų ir šnipinėjimo kampanijų radarą"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "Atviras šliuzas per pasitikėjimo ribą sujungia išorinį tinklą su vidiniu valdymo skydeliu."
+  thumbnail: /assets/img/posts/hecavex-signal-brief/control-plane-card-v1.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-003-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-08-14
     note: "Pirmoji publikacija. Informacijos riba 11:30 EEST."

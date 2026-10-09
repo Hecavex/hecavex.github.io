@@ -76,7 +76,7 @@ export async function checkEditorialMedia(root = resolve(import.meta.dirname,'..
     const match = source.replace(/^\uFEFF/,'').match(/^---\r?\n([\s\S]*?)\r?\n---/);
     if (!match) continue;
     const data = parse(match[1]);
-    if (!isApprovedPublication(data) || data.content_type === 'signal-brief') continue;
+    if (!isApprovedPublication(data)) continue;
     const image = data.image;
     if (image) {
       covers += 1;

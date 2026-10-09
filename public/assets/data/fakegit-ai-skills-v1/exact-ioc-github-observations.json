@@ -1,0 +1,320 @@
+{
+  "schema_version": "1.1",
+  "observed_on": "2026-10-09",
+  "method": "Bounded IOC-to-source-context-to-repository metadata pivot",
+  "search_matcher": "Two separate passes: plain keyword helper and corrective native /search/code quoted literal queries",
+  "search_limitations": [
+    "No complete repository, branch or archive-content census",
+    "Quoted uix.txt returned benign substring matches in guix/quix/Maxcuix",
+    "Four successful responses reached requested12file cap",
+    "Result totals/incomplete_results were not supplied by this helper",
+    "Five429responses are failures, not zero hits",
+    "The initial helper pass left three standalone searches unreturned; the separate native pass later covered all eight exact IOC terms",
+    "Those strings also appeared in source contexts returned by other successful queries; copied strings do not identify malicious repositories"
+  ],
+  "hit_context_counts": {
+    "research-audit-report-context": 22,
+    "ioc-feed-blocklist": 13,
+    "benign-filename-substring": 10,
+    "historic-unrelated-log": 2,
+    "unconfirmed-archive-host-with-lab-warning": 1
+  },
+  "confirmed_observations": [
+    {
+      "repository": "Kalainilavann/takeout_downloader_script",
+      "prior_classification": "Named in Island's pinned published repository list; current archive bytes not analyzed",
+      "island_csv_line": 3639,
+      "commit": "a28cb23c7dafe882ba3182311f987084a69494a2",
+      "committer_time_utc": "2026-10-09T13:25:05Z",
+      "files_changed": [
+        {
+          "path": "README.md",
+          "additions": 3,
+          "deletions": 3
+        }
+      ],
+      "tree_sha": "708df51973fc88755b57e24c3b6920ef8459ebb0",
+      "tree_truncated": false,
+      "archive_entries": [
+        {
+          "path": "outscorn/downloader-script-takeout-v1.1.zip",
+          "git_blob_sha": "32ad4e9badd54e5b618c96ca945ed456db8e6f8c",
+          "listed_size_bytes": 1394887
+        },
+        {
+          "path": "outscorn/downloader_takeout_script_v3.8.zip",
+          "git_blob_sha": "15f6d0e65d1177c20b71d38d358264013d102ab4",
+          "listed_size_bytes": 515391
+        },
+        {
+          "path": "outscorn/takeout-downloader-script-galvanocauterization.zip",
+          "git_blob_sha": "7f343860aa450dc3a4a0c9adb1e6b8e9d80336fd",
+          "listed_size_bytes": 1394887
+        }
+      ],
+      "observed_event": "README-only change redirects archive links; tree retains ZIP entries",
+      "current_archive_sha256_verified": false,
+      "current_archive_execution_verified": false,
+      "commit_url_defanged": "hxxps://github[.]com/Kalainilavann/takeout_downloader_script/commit/a28cb23c7dafe882ba3182311f987084a69494a2",
+      "source_observation_date_utc": "2026-10-09"
+    },
+    {
+      "repository": "guiziinn1/modulout-llc",
+      "prior_classification": "Named in Island's pinned published repository list; current archive bytes not analyzed",
+      "island_csv_line": 2662,
+      "commit": "5527079a8b63bb9aac7735fde88b19a1ba491661",
+      "committer_time_utc": "2026-10-09T07:01:21Z",
+      "files_changed": [
+        {
+          "path": "README.md",
+          "additions": 4,
+          "deletions": 4
+        }
+      ],
+      "tree_sha": "638ffba8960526db364c024052a102d93cefb008",
+      "tree_truncated": false,
+      "archive_entries": [
+        {
+          "path": "diaclasis/modulout-llc-1.4.zip",
+          "git_blob_sha": "42a467515b09f1d39acb856619f30ea5249f9644",
+          "listed_size_bytes": 517076
+        },
+        {
+          "path": "diaclasis/modulout-llc-2.0.zip",
+          "git_blob_sha": "eaf01b1de5f2eaab8ba72303a2de27f82f5ca167",
+          "listed_size_bytes": 1394698
+        }
+      ],
+      "observed_event": "README-only change redirects archive links; tree retains ZIP entries",
+      "current_archive_sha256_verified": false,
+      "current_archive_execution_verified": false,
+      "commit_url_defanged": "hxxps://github[.]com/guiziinn1/modulout-llc/commit/5527079a8b63bb9aac7735fde88b19a1ba491661",
+      "source_observation_date_utc": "2026-10-09"
+    }
+  ],
+  "baseline": {
+    "source_url": "https://github.com/island-io/island-security-research-artifacts/blob/72b77c0e2cc53cae92acd27258cf229077e1bfca/agentbaiting/malicious-repositories-and-zip-hashes-2026-07.csv",
+    "ref": "72b77c0e2cc53cae92acd27258cf229077e1bfca"
+  },
+  "source_contexts": [
+    {
+      "purpose": "The audit names the first observed repository as its reported upstream source",
+      "source_url": "https://github.com/AppliedEllipsis/takeout-downloader/blob/3f703976e1de6fdc07b2cc44f33aba5b95d30917/audit_summary.md",
+      "lines": [
+        3,
+        13,
+        51
+      ]
+    },
+    {
+      "purpose": "The safety review names the second observed repository and describes archive contents",
+      "source_url": "https://github.com/jaayslaughter-cpu/bucket/blob/28eceb476ebb2e9d33e8a5494ee21c9d5054d497/docs/external_odds_repos_review.md",
+      "lines": [
+        14,
+        30
+      ]
+    }
+  ],
+  "evidence_boundary": "Report contents are source claims. Current commit patches and tree metadata were independently read. ExactIOC strings in a defensive list are not evidence of a malicious repository. No archive fetched/executed, no current archive SHA256 comparison, no attribution or global novelty claim. Native literal source occurrences identify text contexts, not payload behavior or malicious ownership. The four-byte selector also appears in unrelated CTF source.",
+  "withheld": "Unconfirmed archive-host identities and unavailable references are omitted.",
+  "summary_en": "The keyword helper and native literal passes are separate. Literal IOC hits mainly led to defensive reports, lists and unrelated selector use. Following two report contexts yielded fresh README-only archive-link changes in two already published repository identities. No new distribution repository was confirmed by a direct exact-IOC payload match.",
+  "summary_lt": "Raktažodžių pagalbinės paieškos ir vietinės GitHub API paieškos pagal pažodines IOC reikšmes rezultatai atskirti. IOC sutapimai daugiausia vedė į gynybinius pranešimus, sąrašus ir nesusijusį selektoriaus naudojimą. Sekant dviejų pranešimų kontekstą užfiksuoti nauji tik README archyvų nuorodų pakeitimai dviejose jau paskelbtose repozitorijose. Nauja platinimo repozitorija tiesioginiu tikslaus IOC sutapimu kenkėjiškame komponente nepatvirtinta.",
+  "helper_pass": {
+    "search_attempts": 12,
+    "distinct_search_terms": 10,
+    "successful_search_responses": 7,
+    "rate_limit_responses": 5,
+    "returned_hit_rows": 61,
+    "unique_files": 48,
+    "unique_repositories": 33,
+    "full_text_files_read": 10,
+    "full_text_repositories": 9,
+    "reported_distribution_reference_metadata_pivots": 6,
+    "readable_commit_tree_pairs": 3,
+    "api_404": 3
+  },
+  "native_literal_pass": {
+    "requests": 8,
+    "successful_responses": 8,
+    "rate_limit_responses": 0,
+    "retries": 0,
+    "per_page": 12,
+    "pages_per_query": 1,
+    "returned_rows": 61,
+    "unique_files": 49,
+    "unique_repositories": 28,
+    "query_result_counts": [
+      {
+        "label": "contract",
+        "literal_display": "0x1823A9a0Ec8e0C25dD957D0841e3D41a4474bAdc",
+        "total_indexed_matches": 15,
+        "returned_first_page_items": 12,
+        "incomplete_results": false
+      },
+      {
+        "label": "getter",
+        "literal_display": "0x3bc5de30",
+        "total_indexed_matches": 298,
+        "returned_first_page_items": 12,
+        "incomplete_results": false
+      },
+      {
+        "label": "ip-early",
+        "literal_display": "83[.]97[.]20[.]150",
+        "total_indexed_matches": 15,
+        "returned_first_page_items": 12,
+        "incomplete_results": false
+      },
+      {
+        "label": "ip-middle",
+        "literal_display": "194[.]48[.]248[.]94",
+        "total_indexed_matches": 6,
+        "returned_first_page_items": 6,
+        "incomplete_results": false
+      },
+      {
+        "label": "ip-current",
+        "literal_display": "185[.]10[.]68[.]110",
+        "total_indexed_matches": 6,
+        "returned_first_page_items": 6,
+        "incomplete_results": false
+      },
+      {
+        "label": "sha256-lua",
+        "literal_display": "8cede35b80b1deaf732c2b178d908f91b3e7a0c114d06dfae9075b8a9bf78b8f",
+        "total_indexed_matches": 5,
+        "returned_first_page_items": 5,
+        "incomplete_results": false
+      },
+      {
+        "label": "sha256-f943",
+        "literal_display": "f9436ccb986760ca379d6cd2f00726e032a1d9c250a9bd261d40d98b914e7ef9",
+        "total_indexed_matches": 6,
+        "returned_first_page_items": 6,
+        "incomplete_results": false
+      },
+      {
+        "label": "sha256-73f3",
+        "literal_display": "73f3c4ae76c086f962a06d790be6cc104a47c9d1bfcaebd12eebb3455b090660",
+        "total_indexed_matches": 2,
+        "returned_first_page_items": 2,
+        "incomplete_results": false
+      }
+    ],
+    "full_source_validation": {
+      "target_terms": 8,
+      "unique_pinned_files": 4,
+      "all_selected_literal_occurrences_verified": true,
+      "all_returned_files_fully_reviewed": false
+    },
+    "exact_source_contexts": [
+      {
+        "label": "contract",
+        "literal_display": "0x1823A9a0Ec8e0C25dD957D0841e3D41a4474bAdc",
+        "source_url": "https://github.com/AppliedEllipsis/takeout-downloader/blob/3f703976e1de6fdc07b2cc44f33aba5b95d30917/audit_summary.md",
+        "blob_sha": "80e9b6851c8455068646362180e3ac99b47ca701",
+        "line_numbers": [
+          111
+        ],
+        "source_context_type": "Security/provenance audit",
+        "literal_occurrence_verified": true,
+        "malicious_repository_inferred": false
+      },
+      {
+        "label": "getter",
+        "literal_display": "0x3bc5de30",
+        "source_url": "https://github.com/DeFiHackLabs/Web3-CTF-Intensive-CoLearning/blob/d084f6026b05148455e50b3aae8c0750d1976327/Writeup/Tanner/src/QuillCTF/PseudoRandom.sol",
+        "blob_sha": "ce5a25ae4f2de73f2cb47714c527c5cc0a1f668a",
+        "line_numbers": [
+          47
+        ],
+        "source_context_type": "Unrelated CTF code literal",
+        "literal_occurrence_verified": true,
+        "malicious_repository_inferred": false
+      },
+      {
+        "label": "ip-early",
+        "literal_display": "83[.]97[.]20[.]150",
+        "source_url": "https://github.com/joshnck/luaJit_malware_report/blob/8adfc78325a9ef10674ee9c5f66a7c997e82add6/decoded/contract_resolution.json",
+        "blob_sha": "2cbcb36b3674cd102c41e1a83877e612fb98b1ae",
+        "line_numbers": [
+          8
+        ],
+        "source_context_type": "Researcher-preserved resolver response",
+        "literal_occurrence_verified": true,
+        "malicious_repository_inferred": false
+      },
+      {
+        "label": "ip-middle",
+        "literal_display": "194[.]48[.]248[.]94",
+        "source_url": "https://github.com/kraven-security/hunting-packages/blob/d8b33965fb15dcd52406ee9850d2a53b176ba9c3/osint-articles/2026/2026-10-09%20Massive%20FakeGit%20Campaign%20Hijacks%2017,600%2B%20GitHub%20Repos%20to%20Deliver%20SmartLoader%20Malware/iocs.txt",
+        "blob_sha": "275e73beb7d2534997a1526ea566a435356aa17b",
+        "line_numbers": [
+          7
+        ],
+        "source_context_type": "Defensive IOC list",
+        "literal_occurrence_verified": true,
+        "malicious_repository_inferred": false
+      },
+      {
+        "label": "ip-current",
+        "literal_display": "185[.]10[.]68[.]110",
+        "source_url": "https://github.com/kraven-security/hunting-packages/blob/d8b33965fb15dcd52406ee9850d2a53b176ba9c3/osint-articles/2026/2026-10-09%20Massive%20FakeGit%20Campaign%20Hijacks%2017,600%2B%20GitHub%20Repos%20to%20Deliver%20SmartLoader%20Malware/iocs.txt",
+        "blob_sha": "275e73beb7d2534997a1526ea566a435356aa17b",
+        "line_numbers": [
+          8
+        ],
+        "source_context_type": "Defensive IOC list",
+        "literal_occurrence_verified": true,
+        "malicious_repository_inferred": false
+      },
+      {
+        "label": "sha256-lua",
+        "literal_display": "8cede35b80b1deaf732c2b178d908f91b3e7a0c114d06dfae9075b8a9bf78b8f",
+        "source_url": "https://github.com/kraven-security/hunting-packages/blob/d8b33965fb15dcd52406ee9850d2a53b176ba9c3/osint-articles/2026/2026-10-09%20Massive%20FakeGit%20Campaign%20Hijacks%2017,600%2B%20GitHub%20Repos%20to%20Deliver%20SmartLoader%20Malware/iocs.txt",
+        "blob_sha": "275e73beb7d2534997a1526ea566a435356aa17b",
+        "line_numbers": [
+          1
+        ],
+        "source_context_type": "Defensive IOC list",
+        "literal_occurrence_verified": true,
+        "malicious_repository_inferred": false
+      },
+      {
+        "label": "sha256-f943",
+        "literal_display": "f9436ccb986760ca379d6cd2f00726e032a1d9c250a9bd261d40d98b914e7ef9",
+        "source_url": "https://github.com/kraven-security/hunting-packages/blob/d8b33965fb15dcd52406ee9850d2a53b176ba9c3/osint-articles/2026/2026-10-09%20Massive%20FakeGit%20Campaign%20Hijacks%2017,600%2B%20GitHub%20Repos%20to%20Deliver%20SmartLoader%20Malware/iocs.txt",
+        "blob_sha": "275e73beb7d2534997a1526ea566a435356aa17b",
+        "line_numbers": [
+          2
+        ],
+        "source_context_type": "Defensive IOC list",
+        "literal_occurrence_verified": true,
+        "malicious_repository_inferred": false
+      },
+      {
+        "label": "sha256-73f3",
+        "literal_display": "73f3c4ae76c086f962a06d790be6cc104a47c9d1bfcaebd12eebb3455b090660",
+        "source_url": "https://github.com/kraven-security/hunting-packages/blob/d8b33965fb15dcd52406ee9850d2a53b176ba9c3/osint-articles/2026/2026-10-09%20Massive%20FakeGit%20Campaign%20Hijacks%2017,600%2B%20GitHub%20Repos%20to%20Deliver%20SmartLoader%20Malware/iocs.txt",
+        "blob_sha": "275e73beb7d2534997a1526ea566a435356aa17b",
+        "line_numbers": [
+          3
+        ],
+        "source_context_type": "Defensive IOC list",
+        "literal_occurrence_verified": true,
+        "malicious_repository_inferred": false
+      }
+    ],
+    "new_direct_distribution_hit": false,
+    "limits": [
+      "Native API quoted literal search is an indexed code-search query, not an exhaustive repository or payload census",
+      "Only the first12items were retained for total15contract,total298selector,total15earlyIP",
+      "All8incomplete_results flags werefalse; this does not mean we fetched every page",
+      "Eight chosen term/file occurrences were verified case-sensitively in full pinned text; not every49returned file was independently fetched",
+      "No archive interior or payload byte matching was performed",
+      "The getter literal also appears in unrelated CTF contracts; a selector by itself is not a campaign identity"
+    ]
+  },
+  "phase_scope": "Search and pinned-source observations on 2026-10-09. Later acquisitions and pure-data analyses are separately recorded in static-analysis.json; they do not retroactively change this source-pass denominator.",
+  "publication_status": "Prepared for owner review; not published."
+}

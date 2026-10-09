@@ -45,10 +45,17 @@ key_findings:
   - "AI agents are moving from support tooling into operational intrusion workflows, but public evidence still does not justify every headline about fully autonomous warfare."
   - "Shipping data is becoming ready-made social-engineering context, while hotel networks show that even the path to the login page can be hostile."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/hecavex-signal-brief/control-plane-hero-v1.webp
   social: /assets/img/social/hecavex-signal-brief-003-en.png
-  alt: "An analytical signal crossing a radar of exploited software, geopolitical cyber operations and espionage campaigns"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "An exposed gateway connects an external network to an internal control panel across a trust boundary."
+  thumbnail: /assets/img/posts/hecavex-signal-brief/control-plane-card-v1.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-003-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-08-14
     note: "Initial publication. Information cut-off: 11:30 EEST."

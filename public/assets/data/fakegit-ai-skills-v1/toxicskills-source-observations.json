@@ -1,0 +1,83 @@
+{
+  "schema": "hecavex.known-toxic-skills-source-recheck.v1",
+  "classification": "PUBLIC_SANITIZED_OBSERVATIONS",
+  "source_report": {
+    "title": "ToxicSkills: Malicious AI Agent Skills on ClawHub",
+    "url": "https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/",
+    "published_date": "2026-02-05",
+    "attribution": "Snyk previously named this repository and four skill paths among malicious skills on GitHub."
+  },
+  "source_repository_defanged": "github[.]com/aztr0nutzs/NET_NiNjA.v1.2",
+  "source_ref": "b857b9cb9154c9be6f63295cca91d331be28c250",
+  "source_ref_recorded_at_utc": "2026-02-26T01:53:35Z",
+  "root_tree_sha1": "18474df2fb73c04f287dbcdca54b50f33b04e54b",
+  "root_tree_entry_count": 64,
+  "root_tree_truncated": false,
+  "scoped_skills_tree_sha1": "3826d4d75a872fcf893cb5b884f739ad9fedc8bf",
+  "scoped_tree_entry_count": 558,
+  "scoped_tree_truncated": false,
+  "discovery_query_count": 0,
+  "inspected_skill_text_files": 3,
+  "source_observation_utc": [
+    "2026-10-09T14:09:24.497Z",
+    "2026-10-09T14:09:24.498Z",
+    "2026-10-09T14:09:24.498Z"
+  ],
+  "current_path_caveat": "The report's four root-level path names are absent at the observed head. Nested skills/skills-folders equivalents are present; no historical move or rename is established.",
+  "files": [
+    {
+      "path": "skills/skills-folders/clawhub/SKILL.md",
+      "git_blob_sha1": "7f0d24e22ccd5257d1e5e2386c69e8639ba076d1",
+      "tree_size_bytes": 11702,
+      "observed_at_utc": "2026-10-09T14:09:24.497Z",
+      "prerequisite_lines": {
+        "dependency": 13,
+        "windows": 15,
+        "macos": 17
+      },
+      "source_permalink_defanged": "hxxps://github[.]com/aztr0nutzs/NET_NiNjA.v1.2/blob/b857b9cb9154c9be6f63295cca91d331be28c250/skills/skills-folders/clawhub/SKILL.md"
+    },
+    {
+      "path": "skills/skills-folders/whatsapp-mgv/SKILL.md",
+      "git_blob_sha1": "4e45a290675a0d2d3a11e2aa68b5687a974d0b71",
+      "tree_size_bytes": 3310,
+      "observed_at_utc": "2026-10-09T14:09:24.498Z",
+      "prerequisite_lines": {
+        "dependency": 10,
+        "windows": 14,
+        "macos": 16
+      },
+      "source_permalink_defanged": "hxxps://github[.]com/aztr0nutzs/NET_NiNjA.v1.2/blob/b857b9cb9154c9be6f63295cca91d331be28c250/skills/skills-folders/whatsapp-mgv/SKILL.md"
+    },
+    {
+      "path": "skills/skills-folders/coding-agent-1gx/SKILL.md",
+      "git_blob_sha1": "d47cb7b6c830e36534154c1d744cb023f319f072",
+      "tree_size_bytes": 4920,
+      "observed_at_utc": "2026-10-09T14:09:24.498Z",
+      "prerequisite_lines": {
+        "dependency": 10,
+        "windows": 14,
+        "macos": 16
+      },
+      "source_permalink_defanged": "hxxps://github[.]com/aztr0nutzs/NET_NiNjA.v1.2/blob/b857b9cb9154c9be6f63295cca91d331be28c250/skills/skills-folders/coding-agent-1gx/SKILL.md"
+    }
+  ],
+  "observations": [
+    "All three inspected skills frame an external utility as a prerequisite for ordinary skill functionality.",
+    "All three Windows prerequisites direct the reader to a password-protected release ZIP and instruct running its executable.",
+    "All three macOS prerequisites contain the same Base64 string. Text-only decoding shows remote HTTP retrieval passed to a shell.",
+    "The command's visible installer label names an HTTPS domain. Its decoded retrieval uses a different literal-IP HTTP destination."
+  ],
+  "decoded_destination_defanged": "hxxp://91[.]92[.]242[.]30/q0c7ew2ro8l2cfqp",
+  "limits": [
+    "This is a current-source recheck of a previously disclosed lead, not discovery of a new malware family.",
+    "The commit recorded date is February 26, 2026; the October observation does not establish a newly changed malicious prerequisite.",
+    "No payload URL was requested and no archive, executable or external script was downloaded or executed.",
+    "Source instructions alone do not establish payload behavior, observed compromise, victim count or present control of the destination.",
+    "No ownership intent or relationship to FakeGit is inferred. The repository may include security research, fixtures or preserved samples; that context is not resolved by these three source reads.",
+    "The fourth named skill's text was not read. Broader repository functionality and bundled files were not audited."
+  ],
+  "publication_status": "Prepared for owner review; not published.",
+  "phase_scope": "Search and pinned-source observations on 2026-10-09. Later acquisitions and pure-data analyses are separately recorded in static-analysis.json; they do not retroactively change this source-pass denominator.",
+  "later_acquisition_note": "A later attempt to retrieve the previously referenced Windows release archive received HTTP 404 and yielded no archive bytes. This does not prove deletion or takedown."
+}

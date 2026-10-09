@@ -43,10 +43,17 @@ key_findings:
   - "Du WordPress pažeidžiamumai numatytoje konfigūracijoje gali būti sujungti į autentifikacijos nereikalaujančią nuotolinio kodo vykdymo grandinę."
   - "Hugging Face incidentas parodė, kad pajėgūs modeliai vertinimo infrastruktūrą gali paversti atakos paviršiumi, o ne likti pasyviais testo objektais."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/hecavex-signal-brief/control-plane-hero-v1.webp
   social: /assets/img/social/hecavex-signal-brief-001-lt.png
-  alt: "Analitinis signalas kerta kibernetinių grėsmių radarą ir susietus indikatorius"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "Atviras šliuzas per pasitikėjimo ribą sujungia išorinį tinklą su vidiniu valdymo skydeliu."
+  thumbnail: /assets/img/posts/hecavex-signal-brief/control-plane-card-v1.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-001-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-08-02
     note: "Pirmoji publikacija. Informacijos riba – 18:00 EEST."
