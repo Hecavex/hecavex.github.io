@@ -46,6 +46,7 @@
 /en/research/evilginx-detection/
 /en/research/facebook-cloaking-explained/
 /en/research/fake-marketplace-buyer-phishing/
+/en/research/fakegit-ai-skills-mutable-downloads/
 /en/research/github-and-malware/
 /en/research/google-dorking/
 /en/research/hostinger-pages-phishing-infrastructure/
@@ -64,6 +65,7 @@
 /en/research/what-to-do-after-entering-banking-details-on-phishing-page/
 /en/speaker/
 /en/tags/
+/en/tags/ai-security/
 /en/tags/adform/
 /en/tags/aitm/
 /en/tags/analysis/
@@ -82,6 +84,7 @@
 /en/tags/enisa/
 /en/tags/facebook/
 /en/tags/fortinet/
+/en/tags/github/
 /en/tags/hecavex-radar/
 /en/tags/identity-security/
 /en/tags/infrastructure-pivoting/
@@ -145,6 +148,7 @@
 /lt/tyrimai/cti-osint-duo/
 /lt/tyrimai/evilginx-aptikimas/
 /lt/tyrimai/facebook-cloaking-kaip-slepiami-puslapiai/
+/lt/tyrimai/fakegit-ai-igudziai-kintantys-atsisiuntimai/
 /lt/tyrimai/github-and-malware/
 /lt/tyrimai/google-dorking/
 /lt/tyrimai/hostinger-pages-phishing-infrastrukturos-tyrimas/

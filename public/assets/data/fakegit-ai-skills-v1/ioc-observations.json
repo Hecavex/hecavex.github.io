@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "status": "publication-candidate",
+  "observation_date_utc": "2026-10-09",
+  "chain": {
+    "name": "Polygon mainnet",
+    "chain_id": 137,
+    "contract": "0x1823A9a0Ec8e0C25dD957D0841e3D41a4474bAdc",
+    "getter_selector": "0x3bc5de30",
+    "read_method": "eth_call"
+  },
+  "scope": "Passive public-chain and catalogue metadata. Decoded destinations were not contacted. No payload was downloaded or executed.",
+  "state_semantics": "eth_call at a numeric block returns end-of-block state. N-1/N comparisons are not a transaction-level execution trace. Null block metadata was not separately retrieved.",
+  "states": [
+    {
+      "provider": "https://polygon.publicnode.com",
+      "captured_at_utc": "2026-10-09T13:47:21.474059+00:00",
+      "block_number": 95232281,
+      "block_number_hex": "0x5ad2119",
+      "block_hash": "0x5bd844e2348bfd3ce6d868d98f66865baac5cabcebf7b0d40a3dfbc5e37d1c4e",
+      "block_timestamp_utc": "2026-10-09T13:47:21+00:00",
+      "return_abi_hex": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000014687474703a2f2f3138352e31302e36382e313130000000000000000000000000",
+      "decoded_destination_defanged": "hxxp://185[.]10[.]68[.]110"
+    },
+    {
+      "provider": "https://polygon.drpc.org",
+      "captured_at_utc": "2026-10-09T13:47:21.598590+00:00",
+      "block_number": 95019999,
+      "block_number_hex": "0x5a9e3df",
+      "block_hash": "0x19ca3e02995c4bf63bb0463fcaef0969e1e052f97d1e8d128e3a809e67ba3c15",
+      "block_timestamp_utc": "2026-10-05T21:19:10+00:00",
+      "return_abi_hex": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000014687474703a2f2f3138352e31302e36382e313130000000000000000000000000",
+      "decoded_destination_defanged": "hxxp://185[.]10[.]68[.]110"
+    },
+    {
+      "provider": "https://polygon.drpc.org",
+      "captured_at_utc": "2026-10-09T13:47:21.895880+00:00",
+      "block_number": 95232281,
+      "block_number_hex": "0x5ad2119",
+      "block_hash": "0x5bd844e2348bfd3ce6d868d98f66865baac5cabcebf7b0d40a3dfbc5e37d1c4e",
+      "block_timestamp_utc": "2026-10-09T13:47:21+00:00",
+      "return_abi_hex": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000014687474703a2f2f3138352e31302e36382e313130000000000000000000000000",
+      "decoded_destination_defanged": "hxxp://185[.]10[.]68[.]110"
+    },
+    {
+      "provider": "https://polygon.drpc.org",
+      "captured_at_utc": "2026-10-09T13:49:06.940702+00:00",
+      "block_number": 91820365,
+      "block_number_hex": "0x579114d",
+      "block_hash": null,
+      "block_timestamp_utc": null,
+      "return_abi_hex": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000013687474703a2f2f38332e39372e32302e31353000000000000000000000000000",
+      "decoded_destination_defanged": "hxxp://83[.]97[.]20[.]150"
+    },
+    {
+      "provider": "https://polygon.drpc.org",
+      "captured_at_utc": "2026-10-09T13:49:07.103706+00:00",
+      "block_number": 91820366,
+      "block_number_hex": "0x579114e",
+      "block_hash": "0x5d862ab8e57b018a7f8e489409af003f12cc41c2fa06500de03d253d3e7c0d8a",
+      "block_timestamp_utc": "2026-08-11T08:06:16+00:00",
+      "return_abi_hex": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000014687474703a2f2f3139342e34382e3234382e3934000000000000000000000000",
+      "decoded_destination_defanged": "hxxp://194[.]48[.]248[.]94"
+    },
+    {
+      "provider": "https://polygon.drpc.org",
+      "captured_at_utc": "2026-10-09T13:49:07.694452+00:00",
+      "block_number": 93979041,
+      "block_number_hex": "0x59a01a1",
+      "block_hash": null,
+      "block_timestamp_utc": null,
+      "return_abi_hex": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000014687474703a2f2f3139342e34382e3234382e3934000000000000000000000000",
+      "decoded_destination_defanged": "hxxp://194[.]48[.]248[.]94"
+    },
+    {
+      "provider": "https://polygon.drpc.org",
+      "captured_at_utc": "2026-10-09T13:49:07.970147+00:00",
+      "block_number": 93979042,
+      "block_number_hex": "0x59a01a2",
+      "block_hash": "0x51071c5a0bf233a7172ea7fe4b8ba275654de656a0b4128e27f647b9bbd4f8d5",
+      "block_timestamp_utc": "2026-09-17T19:33:16+00:00",
+      "return_abi_hex": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000014687474703a2f2f3138352e31302e36382e313130000000000000000000000000",
+      "decoded_destination_defanged": "hxxp://185[.]10[.]68[.]110"
+    }
+  ],
+  "successful_update_transactions": [
+    {
+      "transaction_hash": "0x88b650e20a3e22cf9eddb07fe66221bbd83f8e16dc58aa71fd5f52fe1546e98f",
+      "explorer_url": "https://polygonscan.com/tx/0x88b650e20a3e22cf9eddb07fe66221bbd83f8e16dc58aa71fd5f52fe1546e98f",
+      "provider": "https://polygon.drpc.org",
+      "transaction_captured_at_utc": "2026-10-09T13:49:06.403755+00:00",
+      "receipt_captured_at_utc": "2026-10-09T13:49:06.641388+00:00",
+      "block": {
+        "number": 91820366,
+        "number_hex": "0x579114e",
+        "hash": "0x5d862ab8e57b018a7f8e489409af003f12cc41c2fa06500de03d253d3e7c0d8a",
+        "timestamp_utc": "2026-08-11T08:06:16+00:00"
+      },
+      "from_address": "0xde275ad38c3352a7cb6b0d3efcbf45900c9716f2",
+      "to_contract": "0x1823a9a0ec8e0c25dd957d0841e3d41a4474badc",
+      "receipt_status": "0x1",
+      "input_abi_hex": "0x68446ead00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000014687474703a2f2f3139342e34382e3234382e3934000000000000000000000000",
+      "decoded_input_destination_defanged": "hxxp://194[.]48[.]248[.]94",
+      "receipt_event_data_hex": [
+        "0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000013687474703a2f2f38332e39372e32302e313530000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014687474703a2f2f3139342e34382e3234382e3934000000000000000000000000"
+      ],
+      "comparison_blocks": [
+        91820365,
+        91820366
+      ]
+    },
+    {
+      "transaction_hash": "0x086f877cf8227cdc9ce2bcd905f121e0ea8449fb9216e38c506ccdbb16424fbf",
+      "explorer_url": "https://polygonscan.com/tx/0x086f877cf8227cdc9ce2bcd905f121e0ea8449fb9216e38c506ccdbb16424fbf",
+      "provider": "https://polygon.drpc.org",
+      "transaction_captured_at_utc": "2026-10-09T13:49:07.239561+00:00",
+      "receipt_captured_at_utc": "2026-10-09T13:49:07.376372+00:00",
+      "block": {
+        "number": 93979042,
+        "number_hex": "0x59a01a2",
+        "hash": "0x51071c5a0bf233a7172ea7fe4b8ba275654de656a0b4128e27f647b9bbd4f8d5",
+        "timestamp_utc": "2026-09-17T19:33:16+00:00"
+      },
+      "from_address": "0xde275ad38c3352a7cb6b0d3efcbf45900c9716f2",
+      "to_contract": "0x1823a9a0ec8e0c25dd957d0841e3d41a4474badc",
+      "receipt_status": "0x1",
+      "input_abi_hex": "0x68446ead00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000014687474703a2f2f3138352e31302e36382e313130000000000000000000000000",
+      "decoded_input_destination_defanged": "hxxp://185[.]10[.]68[.]110",
+      "receipt_event_data_hex": [
+        "0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000014687474703a2f2f3139342e34382e3234382e39340000000000000000000000000000000000000000000000000000000000000000000000000000000000000014687474703a2f2f3138352e31302e36382e313130000000000000000000000000"
+      ],
+      "comparison_blocks": [
+        93979041,
+        93979042
+      ]
+    }
+  ],
+  "provider_errors": [
+    {
+      "provider": "https://polygon.publicnode.com",
+      "captured_at_utc": "2026-10-09T13:47:21.341416+00:00",
+      "block_number": 95019999,
+      "block_number_hex": "0x5a9e3df",
+      "block_hash": "0x19ca3e02995c4bf63bb0463fcaef0969e1e052f97d1e8d128e3a809e67ba3c15",
+      "block_timestamp_utc": "2026-10-05T21:19:10+00:00",
+      "error": "HTTP Error 403: Forbidden"
+    }
+  ],
+  "catalogue_records": [
+    {
+      "source": "ThreatFox",
+      "url": "https://threatfox.abuse.ch/ioc/1954488/",
+      "indicator_defanged": "194[.]48[.]248[.]94:80",
+      "provider_first_seen_utc": "2026-10-06T08:17:55+00:00",
+      "provider_family_label": "SmartLoader",
+      "provider_confidence_percent": 75
+    },
+    {
+      "source": "ThreatFox",
+      "url": "https://threatfox.abuse.ch/ioc/1954489/",
+      "indicator_defanged": "185[.]10[.]68[.]110:80",
+      "provider_first_seen_utc": "2026-10-06T08:17:54+00:00",
+      "provider_family_label": "SmartLoader",
+      "provider_confidence_percent": 75
+    }
+  ],
+  "limits": [
+    "Apiiro already published the August and September destinations. This artifact contributes independent verification, not newly discovered malicious servers.",
+    "Block timestamps date the inspected chain state and transactions. Capture timestamps date this retrieval. Catalogue first-seen fields date provider records, not campaign onset or server creation.",
+    "The current fixed block has two-provider agreement. Historical transitions and the October 5 block were read through dRPC only. PublicNode rejected the October 5 state request with HTTP 403.",
+    "State changes do not establish victim execution, infections, endpoint reachability, old endpoint shutdown, operator identity or all loader behavior.",
+    "Sender addresses, registries, hosting services, Polygon and public RPC providers are not attributed as malicious operators.",
+    "Provider confidence is a catalogue field, not a measured compromise probability."
+  ],
+  "source_receipt_sha256": [
+    "1db82b99b6d89e312e919dffb252e02638f94f7a7f5cff439a55c18f74739607",
+    "4b6c3a9defa7daf91940efaa9acc81c628793321d550f974f68ebf11ce172879"
+  ]
+}

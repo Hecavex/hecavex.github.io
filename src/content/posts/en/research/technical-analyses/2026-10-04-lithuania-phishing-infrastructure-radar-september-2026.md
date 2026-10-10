@@ -44,12 +44,12 @@ key_findings:
   - "Recorded attempts rose from 513 of 960 planned attempts on 1–10 September to 1,906 of 1,920 on 11–30 September. This supports an operational recovery finding, not an estimate of changes in criminal activity."
   - "The separate 1 October snapshot retained 105 name-only candidates, with no exported completed analyst reviews. Its evidence state cannot be assigned retrospectively to all 447 September candidates."
 image:
-  path: /assets/img/posts/2026-10-04-radar-september-baseline/radar-september-baseline-hero-v1.webp
-  thumbnail: /assets/img/posts/2026-10-04-radar-september-baseline/radar-september-baseline-card-v1.webp
-  alt: "A symbolic archive of certificate plates, observation trays and a magnifying lens connected by muted teal lines"
+  path: /assets/img/posts/2026-10-04-radar-september-baseline/radar-september-baseline-hero-v2.webp
+  thumbnail: /assets/img/posts/2026-10-04-radar-september-baseline/radar-september-baseline-card-v2.webp
+  alt: "A symbolic observation ring receiving certificate documents, with a separate queue of retained records awaiting review."
   presentation: illustration
   source_type: generated
-  provenance_id: lithuania-phishing-infrastructure-radar-2026-09-cover-generated-v1
+  provenance_id: lithuania-phishing-infrastructure-radar-2026-09-cover-generated-v2
   width: 1600
   height: 900
   thumbnail_width: 720

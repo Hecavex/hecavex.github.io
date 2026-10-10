@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "scope": "Offline byte reconstruction and three independently checked native configuration strings; two fixed public replays; no runtime infection demonstration",
+  "primary_source": "https://www.spectrum.security/blog/fake-onionclaw-infostealer",
+  "task_source": {
+    "repository": "Sydneycondemnatory52/ssh",
+    "commit": "3a21ace0edddbc2f5163f08ea0c5ee1321c7a354",
+    "tree": "93b7422972879d18abb7278048ee6b6adee3ce4d",
+    "encoded_files": [
+      {
+        "path": "22/cd.txt",
+        "git_blob_sha1": "7e3bc72a227c536065ae86b8c1f0578316ab8398",
+        "bytes": 396876,
+        "sha256": "c506fe9d218d6ff18e3ffc1f45e2f245b019b733e56dc6dd508ff0bb219a0c9b"
+      },
+      {
+        "path": "22/ip.txt",
+        "git_blob_sha1": "3236b263f10fb605a6ca86178fde8f49981ac53a",
+        "bytes": 2422784,
+        "sha256": "4f5414d1fb4c432bf706f626b0a83a6d60ada0e39efab5ebc62c86a1d2b76166"
+      }
+    ]
+  },
+  "transforms": [
+    {
+      "source": "22/cd.txt",
+      "method": "ASCII hex decode then repeating XOR",
+      "key_provenance": "Reused from cited published research",
+      "hex_decoded_sha256": "7900605c562d45ae7564d9d35e1135da189007bcefe3ccafb84c3e04a03dc856",
+      "output_bytes": 198438,
+      "output_sha256": "06bed48e1b04e9bb0b8a62cc3c733fb52a4a44496f6461795623dae61952a26f",
+      "wrong_key_negative_control": true
+    },
+    {
+      "source": "22/ip.txt",
+      "method": "ASCII hex decode then repeating XOR",
+      "key_provenance": "Reused from cited published research",
+      "hex_decoded_sha256": "a7121147918a997e030b0d37e33770b7b6cd8b32b6c63345f4dfb5afa51b5a81",
+      "output_bytes": 1211392,
+      "output_sha256": "e8a038fdb6adfbea7740e9654c3dff46f3d58cfa4c1eb08850912e5810b46b0a",
+      "wrong_key_negative_control": true
+    }
+  ],
+  "resource": {
+    "labels": [
+      10,
+      101,
+      1033
+    ],
+    "wrapper_file_offset": 362144,
+    "encoded_bytes": 846552,
+    "encoded_sha256": "7691f3c390d6cd18589a9def097228904e943ae4dfcfab5c2a5d57ea4d34b931",
+    "base64_decoded_bytes": 634912,
+    "base64_decoded_sha256": "4bcbe05a57b05091f3cbff4bb7e96b2cbd0ea40d396d0ad15df0fd7148b7a8e6"
+  },
+  "aes": {
+    "mode": "AES-256-ECB",
+    "key_provenance": "Independently reconstructed from eight actual MOVABS immediates and VPXOR; matches published key",
+    "key_sha256": "a15d2dac3005a758d33d992769e20357980f4c879645974609d80c79ff141180",
+    "immediate_file_offsets": [
+      1071,
+      1103,
+      1125,
+      1147,
+      1193,
+      1215,
+      1237,
+      1259
+    ],
+    "immediate_length_each": 8,
+    "vpxor_instruction_file_offset": 1311,
+    "full_output_bytes": 634912,
+    "full_output_sha256": "7cfae1ce518609ecb88e966c60613dd2dcd0e3ff1ebb7024ab2fb0d5872c3faa",
+    "observed_suffix": {
+      "offset": 634880,
+      "bytes": 32,
+      "value_hex": "20"
+    },
+    "inner_pe_extent": {
+      "bytes": 634880,
+      "derived_from": "maximum raw PE section end",
+      "sha256": "d0bb735a344aab2dc5b874a9c928ce0bf5815c0e573ab313f8552b28aabc0601"
+    }
+  },
+  "rc4": {
+    "key": "MUdKjf9c8jzn5iJhFE",
+    "key_provenance": "First reused from published indicators; then exact 18-byte literal independently located in the inner PE",
+    "key_literal_file_offset": 520216,
+    "key_bytes": 18,
+    "fixtures": [
+      {
+        "inner_file_offset": 520624,
+        "original_ascii_bytes": 28,
+        "original_base64": "YcboTgsXIXfPFG4ZYPI+cUThqas=",
+        "original_sha256": "92fc267b5cd9dfe57d1e238c0518bf47e93417c4b19343cda3a13c27a3a2ff64",
+        "cipher_bytes": 20,
+        "cipher_sha256": "4cf2c1edec85cb10de5c4b5793783a739b5b0bc18c51b185b8cca8f81a599627",
+        "output_bytes": 20,
+        "output_sha256_before_defanging": "c39ee9106e1f64925813a2eb51718d2d5a7fc423bcae126192dd432087c75e91",
+        "output_for_display": "hxxp://144[.]31[.]57[.]121"
+      },
+      {
+        "inner_file_offset": 527232,
+        "original_ascii_bytes": 8,
+        "original_base64": "asD5X0Vd",
+        "original_sha256": "da77cfe814db265121dd278bebb3cf05c7a6726ffe8cd7de441f2a7c6d8d68cf",
+        "cipher_bytes": 6,
+        "cipher_sha256": "095eaab00245b2c76b67e738d5bb836c53d735d3386fad42821088a20fdac536",
+        "output_bytes": 6,
+        "output_sha256_before_defanging": "fa8847b0c33183273f5945508b31c3208a9e4ece58ca47233a05628d8dba3799",
+        "output_for_display": "create"
+      },
+      {
+        "inner_file_offset": 520240,
+        "original_ascii_bytes": 32,
+        "original_base64": "MOGufQBafwjPeC1fCYxIMAmq0+rQzA==",
+        "original_sha256": "6d25b5f4727fb39cf6b3957d9d3b8f3c3196afc5596253cbcdcaa9dc88db866b",
+        "cipher_bytes": 22,
+        "cipher_sha256": "ab6b9f3cebb5ada5a3a571c72e61d5ef4fdc77ddb6cefe65922b4cfcb3624242",
+        "output_bytes": 22,
+        "output_sha256_before_defanging": "8ccb431b039ae16a292a695de2ed20330eada3b749537a9cb4d6d1a8cb8dc0d2",
+        "output_for_display": "9S2C1bqN4XmuXPCvczHpRq",
+        "role": "Reported network key, distinct from the static-string key; runtime use not demonstrated"
+      }
+    ]
+  },
+  "verification": {
+    "independent_peer_checked": "AES key construction, PE extent, three exact native string spans and their hashes; not every printable candidate",
+    "fixed_public_replays": 2,
+    "rfc6229_vector_passed": true,
+    "changed_ciphertext_controls": 2,
+    "changed_key_controls": 2,
+    "changed_output_controls": 2
+  },
+  "limits": {
+    "malicious_code_executed": false,
+    "native_sample_loaded": false,
+    "emulation": false,
+    "c2_requests": 0,
+    "unmodified_victim_chain_demonstrated": false,
+    "response_key_mismatch_preserved": true,
+    "polygon_to_native_endpoint_link_established": false,
+    "initial_aes_attempt_wrote_inert_padded_bytes": true,
+    "later_artifact_read_failed": true,
+    "artifact_read_failure_cause_confirmed": false,
+    "failed_artifact_read_retried": false,
+    "standard_pkcs7_assumption_failed_and_receipt_preserved": true,
+    "earlier_skill_archives_to_native_link_established": false
+  },
+  "observed_date": "2026-10-09",
+  "archive": {
+    "repository": "christinminor459/OnionClaw",
+    "commit": "524d4aa245cdc172b894f68b9397c885bcfb985b",
+    "path": ".github/ISSUE_TEMPLATE/Claw_Onion_1.9.zip",
+    "bytes": 580808,
+    "sha256": "a4d836eec38f35f790522da33cdb745a6623ce6802744aae9dac03e8d15cedcc",
+    "members": [
+      {
+        "name": "Launcher.cmd",
+        "bytes": 26,
+        "sha256": "d71cdcdd390fb300904a7fdc31d56c0a3a728350eca2debf3d00d7932dc14839"
+      },
+      {
+        "name": "lua51.exe",
+        "bytes": 872448,
+        "sha256": "3ee51b5f9579b775e87edb23c238650a512c2fe46efc06694cd906a771727f97"
+      },
+      {
+        "name": "rest.txt",
+        "bytes": 299679,
+        "sha256": "58448cb79f50cf71408e7eabfe7e0718e77a09910fd59963f83840b67faa245f"
+      }
+    ],
+    "launcher_ascii": "start lua51.exe rest.txt\r\n"
+  },
+  "original_excerpts": [
+    {
+      "source": "22/ip.txt",
+      "sourceOffset": 0,
+      "sourceLength": 64,
+      "sourceASCII": "0819f53655474c524e756d328ea6746c8f394f694f553761086f74375a68626e",
+      "sourceSliceSHA256": "f9bc15bc3e5b6bf14a52de4d3d415fd82eeb491f49b3a34bdb02d23b7433766b",
+      "decodedBytes": 32,
+      "decodedHex": "4d5a90000300000004000000ffff0000b8000000000000004000000000000000"
+    },
+    {
+      "source": "22/cd.txt",
+      "sourceOffset": 0,
+      "sourceLength": 96,
+      "sourceASCII": "292c06573a6714307713185c122d1d0359111d40233a5400244f1f0a784a04013763200b676b6f0065474103513d1b4c",
+      "sourceSliceSHA256": "6e1e9b2457da447ac78cdd9c8ed22c5cc4045e95677af904596e3bc2ff4ff39c"
+    }
+  ]
+}

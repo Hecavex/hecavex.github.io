@@ -1,0 +1,119 @@
+{
+  "schema": "hecavex.vt-filename-to-github-source-pivot.v1",
+  "classification": "PUBLIC_SANITIZED_OBSERVATIONS",
+  "observed_date_utc": "2026-10-09",
+  "seed_scope": "Two selected filename/hash rows from a public reputation platform's relation view, separately captured by the root investigator. The relation label is platform metadata, not our runtime observation.",
+  "queries": [
+    {
+      "id": "filename-1",
+      "kind": "native quoted filename-reference search",
+      "query_literal": "hub_skill_ai_1.6.zip",
+      "per_page": 20,
+      "page": 1,
+      "total_indexed_matches": 1,
+      "retained_rows": 1,
+      "incomplete_results": false
+    },
+    {
+      "id": "filename-2",
+      "kind": "native quoted filename-reference search",
+      "query_literal_withheld": true,
+      "per_page": 20,
+      "page": 1,
+      "total_indexed_matches": 1,
+      "retained_rows": 1,
+      "incomplete_results": false
+    },
+    {
+      "id": "hash-1",
+      "kind": "native quoted SHA256 text search",
+      "query_literal": "00f97591d3269397a27a5fa45d7fd2f4b6482381ad8f3d0f5118537e6e095be0",
+      "per_page": 12,
+      "page": 1,
+      "total_indexed_matches": 0,
+      "retained_rows": 0,
+      "incomplete_results": false
+    },
+    {
+      "id": "hash-2",
+      "kind": "native quoted SHA256 text search",
+      "query_literal_withheld": true,
+      "per_page": 12,
+      "page": 1,
+      "total_indexed_matches": 0,
+      "retained_rows": 0,
+      "incomplete_results": false
+    }
+  ],
+  "counts": {
+    "native_queries": 4,
+    "successful_search_responses": 4,
+    "returned_rows": 2,
+    "unique_files": 2,
+    "unique_repositories": 2,
+    "source_tree_followup_repositories": 2,
+    "full_source_texts": 2
+  },
+  "known_case": {
+    "repository_defanged": "github[.]com/nunzioaccording289/ai-skill-hub",
+    "commit": "8da0c76fa95af93cf3975f927ebcea81857605c9",
+    "recorded_committer_time_utc": "2026-10-09T13:53:13Z",
+    "tree_sha1": "2de7225cb321eb449a3127a15e7b2add0bd3c1ec",
+    "tree_truncated": false,
+    "tree_entry_count": 3,
+    "readme_git_blob_sha1": "06632efa55da99e571e5d98372efc58099fe45f0",
+    "readme_changed_lines": {
+      "added": 2,
+      "deleted": 2
+    },
+    "markdown_destinations_repointed": 2,
+    "archive_entry": {
+      "path": "subpiston/hub_skill_ai_1.6.zip",
+      "git_blob_sha1": "8331f37c97e0f165a952afd56d6ee455f9fc804e",
+      "tree_size_bytes": 476614
+    },
+    "source_observation_pass_start_utc": "2026-10-09T14:27:58.582Z",
+    "already_published_in_island": true,
+    "island_csv_line": 5208,
+    "reported_old_sha256": "00f97591d3269397a27a5fa45d7fd2f4b6482381ad8f3d0f5118537e6e095be0",
+    "current_archive_sha256_verified": false,
+    "platform_hash_matches_reported_historical_island_sha256": true,
+    "hash_comparison_limit": "The selected platform record and Island historical list agree. Current V1 archive bytes were not retrieved or hashed."
+  },
+  "anonymous_case": {
+    "case_id": "V2",
+    "observed": "An AI security-skill repository had a README-only change redirecting one Markdown link and two bare URLs to an archive. The same skill directory contained SKILL.md in the pinned tree.",
+    "baseline_relation": "Its identity was absent from both fixed comparison lists; that does not establish prior non-disclosure or novelty.",
+    "classification": "Source pattern and file adjacency are confirmed. At the source-only pass close, current-byte equality was unverified; the separately recorded later root acquisition matched the platform file hash and pinned Git blob. Archive behavior, network behavior and owner intent remain unverified.",
+    "identity_policy": "Identity, exact source paths, filenames, hashes and identifying commit time are withheld pending owner review."
+  },
+  "limits": [
+    "Quoted filename searches locate text references, not archive bytes or a content-hash match.",
+    "Both SHA256 text searches returned zero indexed code hits. That is not proof that the files are unknown or absent from GitHub.",
+    "The reputation platform's relation/filename may refer to a differently named or earlier artifact. No archive bytes were fetched in this pass.",
+    "One case already appears in Island's published inventory; the other remains anonymous and receives no malware/actor verdict.",
+    "The anonymous queries are described and counted but their identifying literals are withheld, so that part is not fully reproducible from this public excerpt.",
+    "No common operator, active C2 communication, infection or exploitation is established."
+  ],
+  "later_static_phase": {
+    "acquisition_performed_by": "root investigator",
+    "archive_sha256_matches_selected_platform_record": true,
+    "archive_git_blob_matches_pinned_tree": true,
+    "adjacent_skill_text_reviewed": true,
+    "adjacent_text_mentions_archive_runtime_indicators_among_explicit_checks": false,
+    "pe_parse_success_in_this_subagent": false,
+    "pe_access_limit": "The first V2 inert PE member read returned a local OSError; the static reader stopped without retry or alternate access. No detection family was established.",
+    "exact_identity_and_byte_identifiers_withheld": true,
+    "support_record": "static-analysis.json"
+  },
+  "publication_status": "Prepared for owner review; not published.",
+  "phase_scope": "Search and pinned-source observations on 2026-10-09. Later acquisitions and pure-data analyses are separately recorded in static-analysis.json; they do not retroactively change this source-pass denominator.",
+  "relation_capture": {
+    "captured_at_utc": "2026-10-09T14:26:54.957Z",
+    "platform_relation_label": "communicating files",
+    "displayed_object_total": 547,
+    "visible_first_page_rows": 10,
+    "analyst_observed_communications": false,
+    "limits": "Platform relationship metadata, not 547 campaign files, infections or independently observed communications. Two selected rows seeded the four separately counted searches. Unconfirmed identifying row data is withheld."
+  }
+}

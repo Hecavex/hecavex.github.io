@@ -1,0 +1,168 @@
+{
+  "schema": "hecavex.passive-reputation.v1",
+  "observed_date_utc": "2026-10-09",
+  "connector_phase": {
+    "schema_version": "1.0",
+    "original_receipt_status": "private editorial candidate before sanitized publication",
+    "checked_on_utc": "2026-10-09",
+    "request_count": 8,
+    "scan_upload_or_c2_request": false,
+    "records": [
+      {
+        "provider": "virustotal",
+        "indicator_defanged": "83[.]97[.]20[.]150",
+        "source_url": "hxxps://www[.]virustotal[.]com/gui/ip-address/83[.]97[.]20[.]150",
+        "requested_at_utc": "2026-10-09T14:19:39.553309+00:00",
+        "completed_at_utc": "2026-10-09T14:19:39.882936+00:00",
+        "http_status": 200,
+        "response_sha256": "71225501931889774e8596d84dc4492cbd476c9a220c5362cdbdb1631aea1a72",
+        "response_size": 7336,
+        "reputation_data_obtained": false,
+        "outcome": "HTTP 200 GUI application shell only. No current detection ratio, verdict, resolution or relationship data extracted."
+      },
+      {
+        "provider": "urlscan",
+        "indicator_defanged": "83[.]97[.]20[.]150",
+        "source_url": "https://urlscan.io/api/v1/search/?q=ip%3A83.97.20.150&size=10",
+        "requested_at_utc": "2026-10-09T14:19:39.887544+00:00",
+        "completed_at_utc": "2026-10-09T14:19:40.240040+00:00",
+        "http_status": 200,
+        "response_sha256": "9e1954459b263f18aee76c8c4cf576920c9e081425c2cf96e0325d5fcc5dc11f",
+        "response_size": 100,
+        "returned_records": 0,
+        "provider_total": 0,
+        "search_date_limit_days": 30,
+        "has_more": false,
+        "observations": []
+      },
+      {
+        "provider": "virustotal",
+        "indicator_defanged": "194[.]48[.]248[.]94",
+        "source_url": "hxxps://www[.]virustotal[.]com/gui/ip-address/194[.]48[.]248[.]94",
+        "requested_at_utc": "2026-10-09T14:19:40.243661+00:00",
+        "completed_at_utc": "2026-10-09T14:19:40.504504+00:00",
+        "http_status": 200,
+        "response_sha256": "71225501931889774e8596d84dc4492cbd476c9a220c5362cdbdb1631aea1a72",
+        "response_size": 7336,
+        "reputation_data_obtained": false,
+        "outcome": "HTTP 200 GUI application shell only. No current detection ratio, verdict, resolution or relationship data extracted."
+      },
+      {
+        "provider": "urlscan",
+        "indicator_defanged": "194[.]48[.]248[.]94",
+        "source_url": "https://urlscan.io/api/v1/search/?q=ip%3A194.48.248.94&size=10",
+        "requested_at_utc": "2026-10-09T14:19:40.508505+00:00",
+        "completed_at_utc": "2026-10-09T14:19:40.705785+00:00",
+        "http_status": 200,
+        "response_sha256": "3f6de8e304fad9867909ac5b569c85dc934e207c433a0a8453ccbbb71e26742c",
+        "response_size": 100,
+        "returned_records": 0,
+        "provider_total": 0,
+        "search_date_limit_days": 30,
+        "has_more": false,
+        "observations": []
+      },
+      {
+        "provider": "virustotal",
+        "indicator_defanged": "185[.]10[.]68[.]110",
+        "source_url": "hxxps://www[.]virustotal[.]com/gui/ip-address/185[.]10[.]68[.]110",
+        "requested_at_utc": "2026-10-09T14:19:40.710117+00:00",
+        "completed_at_utc": "2026-10-09T14:19:40.960959+00:00",
+        "http_status": 200,
+        "response_sha256": "71225501931889774e8596d84dc4492cbd476c9a220c5362cdbdb1631aea1a72",
+        "response_size": 7336,
+        "reputation_data_obtained": false,
+        "outcome": "HTTP 200 GUI application shell only. No current detection ratio, verdict, resolution or relationship data extracted."
+      },
+      {
+        "provider": "urlscan",
+        "indicator_defanged": "185[.]10[.]68[.]110",
+        "source_url": "https://urlscan.io/api/v1/search/?q=ip%3A185.10.68.110&size=10",
+        "requested_at_utc": "2026-10-09T14:19:40.964145+00:00",
+        "completed_at_utc": "2026-10-09T14:19:41.177600+00:00",
+        "http_status": 200,
+        "response_sha256": "a32335524241ed87054b5bcdd0d7a0272497f83c59d071379c8ae79e47e39d7a",
+        "response_size": 1703,
+        "returned_records": 1,
+        "provider_total": 1,
+        "search_date_limit_days": 30,
+        "has_more": false,
+        "observations": [
+          {
+            "provider_record_url": "https://urlscan.io/api/v1/result/01a11335-62e8-74da-b047-058c3c79a3e7/",
+            "provider_web_url": "https://urlscan.io/result/01a11335-62e8-74da-b047-058c3c79a3e7/",
+            "third_party_scan_time_utc": "2026-10-06T21:53:54.215Z",
+            "page_ip_defanged": "185[.]10[.]68[.]110",
+            "page_status": "404",
+            "page_title": "404 Not Found",
+            "recorded_request_count": 2,
+            "evidence_level": "Existing search-result metadata. Full result/network trace not retrieved in this eight-request pass.",
+            "limit": "Root-page 404 on a provider-style hostname does not establish malware endpoint reachability, host shutdown, maliciousness or common operator. Hostname deliberately omitted."
+          }
+        ]
+      },
+      {
+        "provider": "virustotal",
+        "indicator_defanged": "91[.]92[.]242[.]30",
+        "source_url": "hxxps://www[.]virustotal[.]com/gui/ip-address/91[.]92[.]242[.]30",
+        "requested_at_utc": "2026-10-09T14:19:41.177600+00:00",
+        "completed_at_utc": "2026-10-09T14:19:41.433346+00:00",
+        "http_status": 200,
+        "response_sha256": "71225501931889774e8596d84dc4492cbd476c9a220c5362cdbdb1631aea1a72",
+        "response_size": 7336,
+        "reputation_data_obtained": false,
+        "outcome": "HTTP 200 GUI application shell only. No current detection ratio, verdict, resolution or relationship data extracted."
+      },
+      {
+        "provider": "urlscan",
+        "indicator_defanged": "91[.]92[.]242[.]30",
+        "source_url": "https://urlscan.io/api/v1/search/?q=ip%3A91.92.242.30&size=10",
+        "requested_at_utc": "2026-10-09T14:19:41.437552+00:00",
+        "completed_at_utc": "2026-10-09T14:19:41.663077+00:00",
+        "http_status": 200,
+        "response_sha256": "a22d9116a3ae771112cc909d961a9c178a8fda3127cdcf7d3b20f53df82902c4",
+        "response_size": 100,
+        "returned_records": 0,
+        "provider_total": 0,
+        "search_date_limit_days": 30,
+        "has_more": false,
+        "observations": []
+      }
+    ],
+    "limits": [
+      "All four urlscan responses explicitly restricted search to 30 days. Zero returned records means zero visible matches in this limited response, not all-time absence or a benign verdict.",
+      "VirusTotal's four byte-identical GUI shells contain no extracted IP reputation data. A working page response is not a reputation result.",
+      "Provider observations, retrieval times and campaign report dates are separate. IP reputation or hosting metadata does not establish a shared actor across FakeGit and ClawHub cases.",
+      "Response hashes identify these provider receipt bytes, not malware payloads or server content obtained directly by HECAVEX."
+    ]
+  },
+  "separate_browser_augmentation": {
+    "kind": "existing_browser_rendered_ip_report",
+    "source": "VirusTotal",
+    "source_url": "hxxps://www[.]virustotal[.]com/gui/ip-address/185[.]10[.]68[.]110",
+    "address_defanged": "185[.]10[.]68[.]110",
+    "captured_at_utc": "2026-10-09T14:25:37.627Z",
+    "displayed_last_analysis_local": "Fri Oct 09 2026 14:14:20 GMT+0300",
+    "last_analysis_utc": "2026-10-09T11:14:20Z",
+    "visible_vendor_ratio": {
+      "malicious": 3,
+      "total": 92
+    },
+    "analyst_action": "Read an existing report in Chrome. No Reanalyze, scan submission, sample upload or target-host request.",
+    "capture_record_sha256": "fcf74e9b8a2d6d0c4422beb1466d9cd00fa2f682b0d089d7dd14e1767377e984",
+    "browser_screenshot_sha256": "b46a2482be1c63afac20981c9455997495e4786930332457ab4be23b19f62f57",
+    "limits": [
+      "Browser-rendered augmentation applies to this one IP only; the preceding eight-request connector pass returned application shells for all four VirusTotal pages.",
+      "Vendor ratio describes that IP report at capture. It is neither an infection result nor a probability.",
+      "Provider-related-object totals are not investigation findings or campaign totals.",
+      "Reputation does not establish common actor, service liveness, complete infrastructure history or maliciousness of an unrelated repository."
+    ]
+  },
+  "phase_boundary": "Eight connector requests covered four IP indicators. A later Chrome reading obtained rendered reputation only for one of those IPs. Its ratio must not be applied to the other three.",
+  "limits": [
+    "Only existing third-party reports/search responses were read. No Reanalyze, scan submission, sample upload or suspect endpoint request.",
+    "Provider response HTTP200 is not endpoint availability. A historical root-page HTTP404 is not a malware-endpoint shutdown verdict.",
+    "Reputation and relationship labels do not establish actor identity, victim count or execution of either inspected archive."
+  ],
+  "publication_status": "Prepared for owner review; not published."
+}

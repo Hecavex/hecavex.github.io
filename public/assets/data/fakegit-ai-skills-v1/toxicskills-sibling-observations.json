@@ -1,0 +1,118 @@
+{
+  "schema": "hecavex.toxicskills-sibling-source-hunt.v1",
+  "classification": "PUBLIC_SANITIZED_OBSERVATIONS",
+  "date_utc": "2026-10-09",
+  "scope": "Six native public GitHub code searches derived from a previously reported skill's source indicators, followed by four purposive pinned-source triages. Separately counted from every other search/sample in this article.",
+  "queries": [
+    {
+      "id": 1,
+      "query_display": "\"91[.]92[.]242[.]30\" filename:SKILL.md -repo:aztr0nutzs/NET_NiNjA.v1.2",
+      "requested_at_utc": "2026-10-09T14:14:09.164Z",
+      "per_page": 20,
+      "page": 1,
+      "returned_rows": 20,
+      "total_indexed_matches": 69,
+      "incomplete_results": false
+    },
+    {
+      "id": 2,
+      "query_display": "\"q0c7ew2ro8l2cfqp\" -repo:aztr0nutzs/NET_NiNjA.v1.2",
+      "requested_at_utc": "2026-10-09T14:14:10.153Z",
+      "per_page": 20,
+      "page": 1,
+      "returned_rows": 20,
+      "total_indexed_matches": 52,
+      "incomplete_results": false
+    },
+    {
+      "id": 3,
+      "query_display": "\"denboss99/openclaw-core\" filename:SKILL.md -repo:aztr0nutzs/NET_NiNjA.v1.2",
+      "requested_at_utc": "2026-10-09T14:14:10.856Z",
+      "per_page": 20,
+      "page": 1,
+      "returned_rows": 20,
+      "total_indexed_matches": 114,
+      "incomplete_results": false
+    },
+    {
+      "id": 4,
+      "query_display": "\"openclawcore-1.0.3.zip\" -repo:aztr0nutzs/NET_NiNjA.v1.2",
+      "requested_at_utc": "2026-10-09T14:14:11.634Z",
+      "per_page": 20,
+      "page": 1,
+      "returned_rows": 20,
+      "total_indexed_matches": 192,
+      "incomplete_results": false
+    },
+    {
+      "id": 5,
+      "query_display": "\"download[.]setup-service[.]com/pkg\" filename:SKILL.md -repo:aztr0nutzs/NET_NiNjA.v1.2",
+      "requested_at_utc": "2026-10-09T14:14:12.706Z",
+      "per_page": 20,
+      "page": 1,
+      "returned_rows": 20,
+      "total_indexed_matches": 315,
+      "incomplete_results": false
+    },
+    {
+      "id": 6,
+      "query_display": "filename:SKILL.md \"requires the openclaw-core utility\" -repo:aztr0nutzs/NET_NiNjA.v1.2",
+      "requested_at_utc": "2026-10-09T14:14:13.645Z",
+      "per_page": 20,
+      "page": 1,
+      "returned_rows": 20,
+      "total_indexed_matches": 32,
+      "incomplete_results": false
+    }
+  ],
+  "counts": {
+    "requests": 6,
+    "successful_responses": 6,
+    "returned_rows": 120,
+    "unique_files": 105,
+    "unique_repositories": 38,
+    "source_triaged_repositories": 4,
+    "text_files_retrieved": 12,
+    "source_prerequisite_repetitions": 3,
+    "explicit_demo_control": 1,
+    "established_malicious_operators": 0
+  },
+  "selected_source_results": [
+    {
+      "case_id": "P1",
+      "context": "A functional agent/bot repository's skill directory.",
+      "observed": "An inspected skill preserves the same password-archive prerequisite and identical Base64-decoded HTTP retrieval passed to a shell as the previously reported source.",
+      "boundary": "Source reuse is verified. Runtime loading, payload behavior, publishing intent and operator relationship remain unestablished."
+    },
+    {
+      "case_id": "P2",
+      "context": "An application repository's agent-skills directory.",
+      "observed": "An inspected skill requires the same named utility, points Windows readers to a password-protected release archive and directs macOS readers to obtain a command from an external paste service.",
+      "boundary": "The external paste was not requested. Its command, present payload availability and any execution are unknown."
+    },
+    {
+      "case_id": "P3",
+      "context": "An MCP skill library that advertises on-demand skill loading.",
+      "observed": "An inspected library skill preserves the password-archive-and-paste prerequisite. Static source can index valid local skill files and return their complete text through its load tool, without content sanitization in that inspected path.",
+      "boundary": "The path is conditional on filesystem mode and selection of the indexed entry. No tool invocation, production bundle inspection, recommendation, execution or compromise was observed."
+    },
+    {
+      "case_id": "P4",
+      "context": "An explicitly documented policy-remediation demo.",
+      "observed": "The IP search hit was inside a sample security-audit finding, rather than a prerequisite to execute it.",
+      "boundary": "Excluded from a distributor verdict. The demo's intentional vulnerable behavior does not establish a malicious publisher."
+    }
+  ],
+  "cross_pass_correction": "A defensive scanner skill examined in the earlier six-target generic pass belongs to the library in P3. That earlier result concerns one guard file and never established whole-library safety. The sibling pass independently found another library file with dangerous instructions.",
+  "limits": [
+    "All six API requests succeeded; each retained only twenty first-page rows. Every reported total exceeds the retained page size.",
+    "The 120 result rows deduplicate to 105 files in 38 repositories. These are discovery metadata, not 38 source audits.",
+    "Explicit benchmark, security-report, fixture and archive-mirror paths were excluded from the four source triages; no maliciousness conclusion follows from those search hits.",
+    "Three repeated prerequisite instruction patterns are not three confirmed malicious publishers or three new campaigns.",
+    "No downloaded payload, external paste, executable archive, endpoint, victim telemetry or actual tool call was inspected.",
+    "No shared operator or relationship to FakeGit is inferred from repeated source text or shared URLs.",
+    "Unconfirmed selected repository identities, exact paths, source hashes and identifying commit timestamps are withheld from this artifact."
+  ],
+  "publication_status": "Prepared for owner review; not published.",
+  "phase_scope": "Search and pinned-source observations on 2026-10-09. Later acquisitions and pure-data analyses are separately recorded in static-analysis.json; they do not retroactively change this source-pass denominator."
+}

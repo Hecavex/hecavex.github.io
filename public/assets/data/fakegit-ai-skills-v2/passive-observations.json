@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "observed_date": "2026-10-09",
+  "kind": "existing-provider-records",
+  "submitted_scans": 0,
+  "contacted_observed_endpoints": 0,
+  "urlscan": {
+    "declared_search_window_days": 30,
+    "queries": [
+      {
+        "results": 2,
+        "has_more": false,
+        "records": [
+          "01a0e1ba-5268-733d-93e4-3030e7470a6e",
+          "01a0c77e-edb8-752b-a32c-246e091ec027"
+        ],
+        "observed_result": "September22/27 final404 pages on www.layer1[.]icu, Vercel-labelled. No current-control inference.",
+        "query_display": "domain:layer1[.]icu"
+      },
+      {
+        "results": 0,
+        "has_more": false,
+        "query_display": "domain:aproxy[.]app"
+      },
+      {
+        "results": 0,
+        "has_more": false,
+        "query_display": "page.ip:144.31.57[.]121"
+      },
+      {
+        "results": 0,
+        "has_more": false,
+        "query_display": "page.ip:89.169.12[.]149"
+      },
+      {
+        "results": 1,
+        "has_more": false,
+        "records": [
+          "01a11335-62e8-74da-b047-058c3c79a3e7"
+        ],
+        "observed_result": "October6 reverse-IP hostname GET returned404; not a test of the loader POST protocol.",
+        "query_display": "page.ip:185.10.68[.]110"
+      },
+      {
+        "results": 0,
+        "has_more": false,
+        "query_display": "\"3d9c1a1d0dc9436eb7b7.php\""
+      }
+    ]
+  },
+  "ct": {
+    "services": [
+      "https://crt.sh/ (queries for layer1[.]icu and aproxy[.]app; existing records only)"
+    ],
+    "new_distinctive_subdomains": 0,
+    "limitations": "Certificate logs contain duplicate certificate serials. Names and validity starts do not establish malicious control or campaign beginning."
+  },
+  "unreadable_services": [
+    {
+      "service": "ThreatFox domain searches",
+      "status": "browser-verification page; IOC results unread"
+    },
+    {
+      "service": "MalwareBazaar inner-hash page",
+      "status": "browser-verification page; sample result unread"
+    }
+  ],
+  "rdap": {
+    "scope": "Two existing RIPE IP-allocation records, not BGP origin or operator attribution",
+    "names": [
+      "AS210546-iPv4"
+    ],
+    "ranges": [
+      "144.31.57.0/24",
+      "89.169.12.0/24"
+    ]
+  },
+  "limitations": [
+    "Zero results describe the returned 30-day search window only.",
+    "Shared CDN/platform IPs from old-domain scans are not campaign indicators.",
+    "Historical domain names can change hosting and control."
+  ]
+}

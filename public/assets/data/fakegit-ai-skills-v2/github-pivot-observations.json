@@ -1,0 +1,240 @@
+{
+  "schema": "hecavex.github-pivot-observations.v1",
+  "observation_date_utc": "2026-10-09",
+  "status": "bounded passive search observations",
+  "code_search_capture_utc": {
+    "started_at": "2026-10-09T20:01:59.840Z",
+    "completed_at": "2026-10-09T20:05:59.848Z"
+  },
+  "method": {
+    "endpoint": "GET https://api.github.com/search/code",
+    "transport": "Authenticated GitHub connector",
+    "query_semantics": "Submitted text queries using GitHub’s legacy code-search syntax. Search is case-insensitive and ignores documented punctuation. Selected exact literals were checked against acquired source. A SHA-256 query searches text mentioning that hexadecimal value, not calculated file hashes. A repository-name query searches indexed content, not repository metadata.",
+    "per_page": 50,
+    "sort": "Default best match",
+    "pages": "One page per query except Q08, which returned 50 plus 16 rows on page 2.",
+    "rate_limit": "Q16's first request returned a rate-limit error. The retained retry succeeded.",
+    "result_role": "A search hit is a source lead. A report, blocklist, detector, dataset or copied indicator is not evidence that its repository distributes malware.",
+    "source_review_scope": "Eight selected whole text files from seven repositories were acquired inertly and their Git blob identities checked. Review depth varied. This was not a scan or execution of 128 files."
+  },
+  "counts": {
+    "distinct_queries": 20,
+    "search_requests_including_retry_and_pagination": 22,
+    "successful_search_requests": 21,
+    "returned_rows": 180,
+    "unique_repository_path_blob_records": 128,
+    "unique_blob_ids": 104,
+    "unique_repositories": 59,
+    "selected_whole_text_files_acquired": 8,
+    "selected_source_repositories": 7,
+    "responses_declaring_incomplete_results_true": 0,
+    "new_malicious_distribution_repositories_confirmed": 0,
+    "operator_linkage_established": false
+  },
+  "query_observations": [
+    {
+      "id": "Q01",
+      "query": "\"rd898/package\"",
+      "total_count": 8,
+      "rows_retained": 8,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q02",
+      "query": "\"Mahmudul-Riad/www\"",
+      "total_count": 0,
+      "rows_retained": 0,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q03",
+      "query": "\"ECe6VGLRJum2qYtl79OiOU7aHot7Zhbn\"",
+      "total_count": 5,
+      "rows_retained": 5,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q04",
+      "query": "\"3d9c1a1d0dc9436eb7b7.php\"",
+      "total_count": 0,
+      "rows_retained": 0,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q05",
+      "query": "\"8b5d6ff49034626532fbf5d2b9f4ffeee53facde63252e3c8aaa89f05029b8d4\"",
+      "total_count": 0,
+      "rows_retained": 0,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q06",
+      "query": "\"8cede35b80b1deaf732c2b178d908f91b3e7a0c114d06dfae9075b8a9bf78b8f\"",
+      "total_count": 5,
+      "rows_retained": 5,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q07",
+      "query": "\"0xd68910ED4D4A5A9bAdF9ec95604CAE0f3378479B\"",
+      "total_count": 6,
+      "rows_retained": 6,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q08",
+      "query": "\"0xb68d1809\"",
+      "total_count": 66,
+      "rows_retained": 66,
+      "pages": 2,
+      "attempts": 1
+    },
+    {
+      "id": "Q09",
+      "query": "\"0x1823A9a0Ec8e0C25dD957D0841e3D41a4474bAdc\"",
+      "total_count": 15,
+      "rows_retained": 15,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q10",
+      "query": "\"L07ker/2Jn4Z+b6y8hfXYVpTiDCvQKc3qRjUEBdo9MzHxtGNgWuA1FSmlaPO5wIs\"",
+      "total_count": 2,
+      "rows_retained": 2,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q11",
+      "query": "\"vm_s390x.exe\" \"lib_bit.txt\"",
+      "total_count": 0,
+      "rows_retained": 0,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q12",
+      "query": "\"uix.txt\" \"lua51.dll\"",
+      "total_count": 3,
+      "rows_retained": 3,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q13",
+      "query": "\"ptd.txt\" \"luajit\"",
+      "total_count": 6,
+      "rows_retained": 6,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q14",
+      "query": "\"pteroclomorphic\" \".zip\"",
+      "total_count": 28,
+      "rows_retained": 28,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q15",
+      "query": "\"Phlegethontal\" \".zip\"",
+      "total_count": 10,
+      "rows_retained": 10,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q16",
+      "query": "\"altisonous\" \".zip\"",
+      "total_count": 22,
+      "rows_retained": 22,
+      "pages": 1,
+      "attempts": 2
+    },
+    {
+      "id": "Q17",
+      "query": "\"yawalinte/80\"",
+      "total_count": 2,
+      "rows_retained": 2,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q18",
+      "query": "\"JuliusMAAR/gpt-re\"",
+      "total_count": 2,
+      "rows_retained": 2,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q19",
+      "query": "\"Sydneycondemnatory52/ssh\"",
+      "total_count": 0,
+      "rows_retained": 0,
+      "pages": 1,
+      "attempts": 1
+    },
+    {
+      "id": "Q20",
+      "query": "\"c506fe9d218d6ff18e3ffc1f45e2f245b019b733e56dc6dd508ff0bb219a0c9b\"",
+      "total_count": 0,
+      "rows_retained": 0,
+      "pages": 1,
+      "attempts": 1
+    }
+  ],
+  "bounded_observations": [
+    "Eight results for one reported dead-drop repository string shared one defensive blocklist blob.",
+    "Three historical distribution URLs selected from the rare-directory pivots already occurred in the fixed Island corpus. They were re-discoveries, not new campaign members.",
+    "The generic getter search returned 66 rows. Selected source checks included a defensive rule and a smart-contract dataset. Selector overlap alone did not establish campaign membership.",
+    "The Netskope task-repository string searches returned two list paths each, with the same two paths across both searches. No additional task host was established.",
+    "The Spectrum repository-name and encoded-file hash text queries returned zero indexed text matches. Those zeros do not establish absence of the task files.",
+    "No additional malicious distributor or common operator was independently established in this bounded pass."
+  ],
+  "limitations": {
+    "native_rest": "GitHub REST Search code documentation limits search to the default branch and files smaller than 384 KB. Responses are not an exhaustive historical inventory. No response in this pass declared incomplete_results=true.",
+    "separate_web_code_search": "GitHub's separate web Code Search documentation excludes files over 350 KiB and binary files, truncates long lines, supports only the default branch and does not support exhaustive search. These limits were not substituted for the REST endpoint's documented limits.",
+    "large_artifacts": "The separately acquired Spectrum encoded files exceed both documented size limits. Their absence from a string/hash-text search cannot clear their content.",
+    "coverage": "Only eight selected text files were acquired directly. Other returned records were not exhaustively reviewed or assigned a malware verdict. Removed, private, inaccessible, non-default-branch or unindexed artifacts remain outside this pass.",
+    "baseline": "Absence from a saved corpus or earlier local receipt is not proof that a repository is new or previously unreported."
+  },
+  "primary_sources": [
+    {
+      "title": "GitHub REST API: Search code",
+      "url": "https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-code"
+    },
+    {
+      "title": "GitHub Code Search: limitations",
+      "url": "https://docs.github.com/en/search-github/github-code-search/about-github-code-search"
+    },
+    {
+      "title": "DERP: FakeGit LuaJIT GitHub campaign",
+      "url": "https://www.derp.ca/research/fakegit-luajit-github-campaign/"
+    },
+    {
+      "title": "Netskope Threat Labs: Developers in the crosshairs",
+      "url": "https://threatlabs.netskope.com/blog/2026/08/developers-in-the-crosshairs-fake-ai-tools-deliver-infostealer"
+    },
+    {
+      "title": "Spectrum: Fake OnionClaw infostealer",
+      "url": "https://www.spectrum.security/blog/fake-onionclaw-infostealer"
+    }
+  ],
+  "safety": {
+    "samples_or_helpers_executed": false,
+    "c2_contacted": false,
+    "uploads_or_scan_submissions": false,
+    "external_disclosure": false,
+    "public_repository_mutations": false
+  }
+}

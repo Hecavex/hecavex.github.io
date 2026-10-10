@@ -46,10 +46,17 @@ key_findings:
   - "DI gateway, retrieval servisai ir workflow orchestratoriai vienoje vietoje sukaupia provider keys, duomenų bazių prieigą ir vykdymo galimybes, todėl vienos aplikacijos kompromitavimo poveikis gali būti daug platesnis už vieną container."
   - "Fizinio saugumo telemetrija gali tapti žvalgybos rinkimu, o pažįstamas marketplace pokalbis vis tiek gali baigtis credentials surinkimo puslapyje."
 image:
-  path: /assets/img/series/hecavex-signal-brief.svg
+  path: /assets/img/posts/fakegit-ai-skills/editorial-cover-hero-v3.webp
   social: /assets/img/social/hecavex-signal-brief-005-lt.png
-  alt: "Analitinis signalas kerta kūrimo platformas, DI valdymo sluoksnius, cloud saugyklas ir atviras kameras"
-  thumbnail: /assets/img/series/hecavex-signal-brief.svg
+  alt: "Repozitorijos dokumentas nukreipia atsisiuntimą į archyvą šalia statinės analizės schemos."
+  thumbnail: /assets/img/posts/fakegit-ai-skills/editorial-cover-card-v3.webp
+  presentation: illustration
+  source_type: generated
+  provenance_id: hecavex-signal-brief-005-cover-generated-v1
+  width: 1600
+  height: 900
+  thumbnail_width: 720
+  thumbnail_height: 405
 updates:
   - date: 2026-09-22
     note: "Pridėtos trijų retrospektyvių tęstinių apžvalgų nuorodos ir pašalinta bendro pobūdžio baigiamoji santrauka. Pradinė informacijos riba ir įrodymų rinkinys nepakeisti."
