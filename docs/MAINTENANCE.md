@@ -35,3 +35,9 @@ Visual acceptance is separate from build validity. [The review contract](EDITORI
 [Editorial media](EDITORIAL-MEDIA.md) owns classified covers, bilingual captions, responsive derivatives and `src/data/editorial-media.json` provenance. Run `npm run check:editorial-assets` after changing a cover or inline illustration. Generated originals remain private, and artwork cannot be classified as source evidence.
 
 The production workflow requires the `HECAVEX_ANALYTICS_TOKEN` repository variable, includes the manually installed Cloudflare Web Analytics beacon and verifies that every generated shell page contains exactly one configured site tag. Local builds omit the beacon unless `PUBLIC_HECAVEX_ANALYTICS_TOKEN` is supplied. The loader honours `Do Not Track: 1`, and the implementation and portfolio boundaries are recorded in [Site measurement](MEASUREMENT.md).
+
+## Defensive engine fixture
+
+The separate [defensive engine workflow](../.github/workflows/defensive-engine.yml) uses Ubuntu 26.04 from [Docker's official image mirror on ECR Public](https://gallery.ecr.aws/docker/), pinned by manifest digest. This avoids dependence on anonymous Docker Hub pulls after a rate-limit failure prevented the fixture container from starting. A mirror or digest update must match the official Ubuntu image content and pass the native fixture on the exact pull-request head.
+
+Keep Suricata pinned to `1:8.0.3-1` and install `scripts/suricata-policy-rc.d` before the package so capture services do not start. The check runs `public/assets/detections/adform/v1.0.0/validate_suricata.py` for native rule syntax and harmless offline PCAP fixtures. It does not authorize live capture, candidate visits or execution of captured samples. The full publication verification and security gates remain required alongside this fixture.
