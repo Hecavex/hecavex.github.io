@@ -318,11 +318,13 @@ Finding Evilginx-like behaviour does not attribute an incident to either actor. 
 - [Microsoft Security: From cookie theft to BEC](https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/)
 - [Microsoft Security: Detecting and mitigating a multi-stage AiTM phishing and BEC campaign](https://www.microsoft.com/en-us/security/blog/2023/06/08/detecting-and-mitigating-a-multi-stage-aitm-phishing-and-bec-campaign/)
 - [Microsoft Security: Token tactics](https://www.microsoft.com/en-us/security/blog/2022/11/16/token-tactics-how-to-prevent-detect-and-respond-to-cloud-token-theft/)
+- [Microsoft Security: Void Blizzard targets critical sectors for espionage](https://www.microsoft.com/en-us/security/blog/2025/05/27/new-russia-affiliated-actor-void-blizzard-targets-critical-sectors-for-espionage/)
 - [Microsoft Learn: Token theft playbook](https://learn.microsoft.com/en-us/security/operations/token-theft-playbook)
 - [Microsoft Learn: sign-in log activity details](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-in-log-activity-details)
 - [Microsoft Learn: Entra risk detections](https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks)
 - [Microsoft Learn: revoke user access](https://learn.microsoft.com/en-us/entra/identity/users/users-revoke-access)
 - [Microsoft Learn: Conditional Access authentication strengths](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-strengths)
+- [UK NCSC: Star Blizzard continues spear-phishing campaigns](https://www.ncsc.gov.uk/news/star-blizzard-continues-spear-phishing-campaigns)
 - [CISA: More than a Password](https://www.cisa.gov/ncas/tips/st05-012)
 
 _Assessment date: 31 August 2026. Confidence is high for the reverse-proxy session-theft model and cited defensive guidance. A framework identification or account-compromise conclusion remains case-specific and must be supported by correlated evidence._

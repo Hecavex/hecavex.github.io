@@ -3,7 +3,7 @@ layout: page
 lang: en
 translation_key: corrections
 title: Corrections
-last_modified_at: 2026-09-10
+last_modified_at: 2026-10-17
 description: HECAVEX corrections and update policy.
 permalink: /en/corrections/
 ---
@@ -19,6 +19,8 @@ The native Suricata check also found missing continuation characters in the mult
 ## Labs browser-storage disclosure
 
 **10 September 2026 · privacy notice dated 23 August → 10 September.** [Privacy](/en/privacy/#cookies-and-browser-storage) no longer describes the removed Labs readiness workspace as current. Transient filters, deliberate links and file downloads are distinct from localStorage. Legacy values may remain in an older browser. No automatic deletion or new data collection is claimed.
+
+_Labs has not been publicly available since 17 October 2026. This record is kept as originally published._
 
 ## Hostinger package integrity
 

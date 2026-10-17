@@ -16,7 +16,7 @@ Atnaujinta 2026 m. spalio 17 d.
 
 Šis pranešimas apima viešą HECAVEX svetainių rinkinį: `hecavex.com` ir `radar.hecavex.com`. Kiekviena svetainė diegiama atskirai ir įkelia savo matavimo kodą.
 
-Toliau aprašytas rankiniu būdu įdiegtas "Cloudflare Web Analytics" matavimo kodas veikia visų keturių svetainių produkcinėse versijose. Jos naudoja tą pačią viešą svetainės žymą, todėl apibendrintus matavimus galima peržiūrėti kartu. Paspaudus svetainių rinkinio nuorodą kodas ar išsaugota būsena neperkeliami iš vienos svetainės į kitą. Paskirties svetainė įkelia savo kodą.
+Toliau aprašytas rankiniu būdu įdiegtas "Cloudflare Web Analytics" matavimo kodas veikia abiejų svetainių produkcinėse versijose. Jos naudoja tą pačią viešą svetainės žymą, todėl apibendrintus matavimus galima peržiūrėti kartu. Paspaudus svetainių rinkinio nuorodą kodas ar išsaugota būsena neperkeliami iš vienos svetainės į kitą. Paskirties svetainė įkelia savo kodą.
 
 ## Slapukai ir naršyklės saugykla
 
@@ -30,7 +30,7 @@ Pagrindinės svetainės užklausos rengyklė tekstą parengia tik atvertame pusl
 
 ## „Cloudflare Web Analytics“
 
-Visos keturios produkcinės svetainės iš `static.cloudflareinsights.com` įkelia kliento pusėje veikiantį matavimo kodą. Jis „Cloudflare“ siunčia realių naudotojų puslapių veikimo ir apibendrintus lankomumo matavimus. Priklausomai nuo konkrečios svetainės pateikimo būdo, duomenys perduodami jos `/cdn-cgi/rum` adresu arba į `cloudflareinsights.com`.
+Abi produkcinės svetainės iš `static.cloudflareinsights.com` įkelia kliento pusėje veikiantį matavimo kodą. Jis „Cloudflare“ siunčia realių naudotojų puslapių veikimo ir apibendrintus lankomumo matavimus. Priklausomai nuo konkrečios svetainės pateikimo būdo, duomenys perduodami jos `/cdn-cgi/rum` adresu arba į `cloudflareinsights.com`.
 
 Matavimai gali apimti:
 

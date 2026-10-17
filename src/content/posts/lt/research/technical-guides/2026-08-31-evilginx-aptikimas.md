@@ -318,11 +318,13 @@ Evilginx primenanti elgsena nepriskiria incidento nė vienam actor'iui. Open-sou
 - [Microsoft Security: From cookie theft to BEC](https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/)
 - [Microsoft Security: Detecting and mitigating a multi-stage AiTM phishing and BEC campaign](https://www.microsoft.com/en-us/security/blog/2023/06/08/detecting-and-mitigating-a-multi-stage-aitm-phishing-and-bec-campaign/)
 - [Microsoft Security: Token tactics](https://www.microsoft.com/en-us/security/blog/2022/11/16/token-tactics-how-to-prevent-detect-and-respond-to-cloud-token-theft/)
+- [Microsoft Security: Void Blizzard targets critical sectors for espionage](https://www.microsoft.com/en-us/security/blog/2025/05/27/new-russia-affiliated-actor-void-blizzard-targets-critical-sectors-for-espionage/)
 - [Microsoft Learn: Token theft playbook](https://learn.microsoft.com/en-us/security/operations/token-theft-playbook)
 - [Microsoft Learn: sign-in log activity details](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-in-log-activity-details)
 - [Microsoft Learn: Entra risk detections](https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks)
 - [Microsoft Learn: revoke user access](https://learn.microsoft.com/en-us/entra/identity/users/users-revoke-access)
 - [Microsoft Learn: Conditional Access authentication strengths](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-strengths)
+- [UK NCSC: Star Blizzard continues spear-phishing campaigns](https://www.ncsc.gov.uk/news/star-blizzard-continues-spear-phishing-campaigns)
 - [CISA: More than a Password](https://www.cisa.gov/ncas/tips/st05-012)
 
 _Vertinimo data: 2026 m. rugpjūčio 31 d. Reverse-proxy session-theft modeliui ir cituotoms kontrolėms taikomas high confidence. Framework identifikavimas ar account compromise išvada lieka konkretaus incidento teiginys, kuriam reikia koreliuotų įrodymų._

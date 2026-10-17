@@ -16,7 +16,7 @@ This revision records that APT Notes and Labs are no longer publicly available. 
 
 This notice covers the public HECAVEX portfolio: `hecavex.com` and `radar.hecavex.com`. Each property is deployed separately and loads its own measurement code.
 
-The manually installed Cloudflare Web Analytics beacon described below is active in the production build of all four properties. They use the same public site tag so their aggregate measurements can be viewed together. Following a portfolio link does not carry code or stored state from one property to another. The destination loads its own beacon.
+The manually installed Cloudflare Web Analytics beacon described below is active in the production build of both properties. They use the same public site tag so their aggregate measurements can be viewed together. Following a portfolio link does not carry code or stored state from one property to another. The destination loads its own beacon.
 
 ## Cookies and browser storage
 
@@ -30,7 +30,7 @@ Main's enquiry editor prepares text locally in the current page. It does not sav
 
 ## Cloudflare Web Analytics
 
-All four production properties load a client-side measurement script from `static.cloudflareinsights.com`. The script sends real-user performance and aggregate audience measurements to Cloudflare. Depending on how a property is delivered, the reporting endpoint is its `/cdn-cgi/rum` path or `cloudflareinsights.com`.
+Both production properties load a client-side measurement script from `static.cloudflareinsights.com`. The script sends real-user performance and aggregate audience measurements to Cloudflare. Depending on how a property is delivered, the reporting endpoint is its `/cdn-cgi/rum` path or `cloudflareinsights.com`.
 
 The measurements can include:
 
