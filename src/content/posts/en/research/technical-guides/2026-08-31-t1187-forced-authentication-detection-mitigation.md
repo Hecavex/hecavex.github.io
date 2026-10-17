@@ -1,5 +1,5 @@
 ---
-last_modified_at: 2026-09-07
+last_modified_at: 2026-10-17
 research_artifacts:
   - label: "Experimental analytic and synthetic fixtures"
     url: "https://github.com/Hecavex/research-artifacts/tree/846937aee43d792a81bcf1b3c05c396f440588f0/releases/t1187-outbound-smb-analytic/v1.0.0"
@@ -265,9 +265,9 @@ Never point a managed workstation at an authentication-capture service to demons
 
 ## Threat context without turning a technique into attribution
 
-Public reporting has tied forced authentication to multiple actors and vulnerabilities. The APT Notes record for [APT28](https://apt.hecavex.com/actors/apt28/) preserves Microsoft's attribution and the observed use of CVE-2023-23397, while the supporting [Forced Authentication technique record](https://apt.hecavex.com/techniques/forced-authentication/) keeps the ATT&CK relationship explicit.
+Public reporting has tied forced authentication to multiple actors and vulnerabilities. Microsoft has identified [Forest Blizzard (STRONTIUM)](https://www.microsoft.com/en-us/security/blog/2023/03/24/guidance-for-investigating-attacks-using-cve-2023-23397/), the group MITRE tracks as [APT28](https://attack.mitre.org/groups/G0007/), actively exploiting CVE-2023-23397. ATT&CK records the behaviour as [Forced Authentication (T1187)](https://attack.mitre.org/techniques/T1187/).
 
-Those records are context, not a shortcut. Seeing T1187 in one environment does not identify APT28. A technique can be reproduced by different actors, security tools, misconfigurations and benign workflows. Attribution requires source-specific evidence beyond the behaviour itself. HECAVEX's [confidence framework](/en/research/confidence-is-a-field/) explains why the technique observation can be high confidence while an actor claim remains unsupported.
+That reporting is context, not a shortcut. Seeing T1187 in one environment does not identify APT28. A technique can be reproduced by different actors, security tools, misconfigurations and benign workflows. Attribution requires source-specific evidence beyond the behaviour itself. HECAVEX's [confidence framework](/en/research/confidence-is-a-field/) explains why the technique observation can be high confidence while an actor claim remains unsupported.
 
 ## A minimum operational standard
 

@@ -1,5 +1,5 @@
 ---
-last_modified_at: 2026-09-07
+last_modified_at: 2026-10-17
 research_artifacts:
   - label: "Eksperimentinė aptikimo taisyklė ir sintetiniai bandymai"
     url: "https://github.com/Hecavex/research-artifacts/tree/846937aee43d792a81bcf1b3c05c396f440588f0/releases/t1187-outbound-smb-analytic/v1.0.0"
@@ -269,7 +269,7 @@ Incidento įraše atskirkite prevention, detection ir response rezultatus. Pavyz
 
 ## Threat context nėra attribution įrodymas
 
-Vieši šaltiniai T1187 sieja su skirtingais actor'iais ir pažeidžiamumais. APT Notes [APT28 dossier](https://apt.hecavex.com/actors/apt28/) išsaugo Microsoft attribution bei CVE-2023-23397 naudojimo kontekstą, o [Forced Authentication technikos įrašas](https://apt.hecavex.com/techniques/forced-authentication/) aiškiai parodo ATT&CK ryšį.
+Vieši šaltiniai T1187 sieja su skirtingais actor'iais ir pažeidžiamumais. Microsoft nustatė, kad [Forest Blizzard (STRONTIUM)](https://www.microsoft.com/en-us/security/blog/2023/03/24/guidance-for-investigating-attacks-using-cve-2023-23397/), kurią MITRE žymi kaip [APT28](https://attack.mitre.org/groups/G0007/), aktyviai išnaudojo CVE-2023-23397, o ATT&CK šią elgseną žymi kaip [Forced Authentication (T1187)](https://attack.mitre.org/techniques/T1187/).
 
 Tai nėra attribution shortcut'as. T1187 aptikimas jūsų aplinkoje nereiškia APT28. Techniką gali naudoti daug actor'ių, ją gali atkartoti security įrankis, o panašų network signalą gali sukurti klaidinga konfigūracija. HECAVEX [confidence metodika](/lt/tyrimai/pasitikejimas-yra-laukas/) leidžia pažymėti technikos stebėjimą high confidence, bet palikti actor claim'ą unsupported.
 

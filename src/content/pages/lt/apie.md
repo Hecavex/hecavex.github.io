@@ -9,7 +9,7 @@ permalink: /lt/apie/
 
 **HECAVEX** yra nepriklausomas kibernetinių grėsmių žvalgybos ir skaitmeninių tyrimų leidinys, kurį kuria ir redaguoja tyrėjas **Deividas Lis**.
 
-HECAVEX yra leidinio ir tyrimų identitetas, o Deividas – jo autorius ir redaktorius. Straipsniai, Signalų apžvalgos ir susieta APT Notes žinių bazė yra skirtingi to paties nepriklausomo darbo formatai.
+HECAVEX yra leidinio ir tyrimų identitetas, o Deividas – jo autorius ir redaktorius. Straipsniai ir Signalų apžvalgos yra skirtingi to paties nepriklausomo darbo formatai.
 
 Čia nagrinėjama kibernetinių nusikaltimų infrastruktūra, kenkėjiškas kodas, šnipinėjimo veikla, sukčiavimas, informacinės operacijos ir už skaitmeninių grėsmių esantys žmonės. Tyrimų geografija nėra ribojama vienu regionu. Patikrinti faktai atskiriami nuo pranešimų, išvadų ir analitinių vertinimų, o neapibrėžtumas įvardijamas tiesiai.
 

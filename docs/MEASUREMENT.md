@@ -39,7 +39,7 @@ Primary provider references:
 
 ## Portfolio scope
 
-All four production properties—HECAVEX Research, APT Notes, Radar and Labs—load the same Cloudflare Web Analytics site tag. Each repository installs its own beacon; navigating between properties does not transfer the script or browser state from one deployment to another.
+Both production properties—HECAVEX Research and Radar—load the same Cloudflare Web Analytics site tag. APT Notes and Labs have not been publicly available since 17 October 2026. Each repository installs its own beacon; navigating between properties does not transfer the script or browser state from one deployment to another.
 
 Current Labs explorers use transient filters/comparisons and deliberate URL sharing or file exports. They do not implement the former localStorage readiness/incident/draft workspace. Historical values may remain in an older visitor's browser, and the former Labs clearing control is unavailable. Browser site-data controls can remove those values. No automatic legacy deletion is claimed. Main enquiry drafts are in-memory and never auto-sent. Downloads are user-managed files, not analytics or persisted workspace records.
 

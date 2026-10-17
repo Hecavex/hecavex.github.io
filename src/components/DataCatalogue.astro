@@ -26,37 +26,6 @@ const catalogues = [
   },
   {
     index: '02',
-    id: 'apt-notes',
-    name: 'APT Notes',
-    owner: 'APT Notes',
-    cadence: t("Curated, release-versioned records", "Atrinkti, versijuotų laidų įrašai"),
-    description: t("Source-backed actor, campaign, software, technique and relationship records. The catalogue preserves source-specific attribution and review boundaries.", "Šaltiniais pagrįsti veikėjų, kampanijų, programinės įrangos, technikų ir ryšių įrašai. Išlaikomi konkrečių šaltinių priskyrimai ir peržiūros ribos."),
-    links: [
-      { label: t("API catalogue", "API katalogas"), detail: t("JSON · canonical endpoint directory", "JSON · pagrindinių prieigos taškų katalogas"), href: 'https://apt.hecavex.com/api/index.json' },
-      { label: t("Actors", "Veikėjai"), detail: t("JSON · public actor dossiers", "JSON · vieši veikėjų aprašai"), href: 'https://apt.hecavex.com/api/actors.json' },
-      { label: t("Knowledge catalogue", "Žinių katalogas"), detail: t("JSON · campaigns, software, tools and techniques", "JSON · kampanijos, programinė įranga, įrankiai ir technikos"), href: 'https://apt.hecavex.com/api/knowledge.json' },
-      { label: t("Relationships", "Ryšiai"), detail: t("JSON · source-supported entity mappings", "JSON · šaltiniais pagrįsti objektų ryšiai"), href: 'https://apt.hecavex.com/api/relationships.json' },
-      { label: t("Release version", "Laidos versija"), detail: t("JSON · publication and schema state", "JSON · publikavimo ir schemos būsena"), href: 'https://apt.hecavex.com/api/version.json' },
-      { label: t("Relationship table", "Ryšių lentelė"), detail: t("CSV · flat relationship export", "CSV · plokščiasis ryšių eksportas"), href: 'https://apt.hecavex.com/data/relationships.csv' }
-    ]
-  },
-  {
-    index: '03',
-    id: 'labs',
-    name: 'HECAVEX Labs',
-    owner: 'Labs',
-    cadence: t("Curated workspace releases", "Atrinktos tyrimų darbo erdvių laidos"),
-    description: t("Bounded datasets behind public research workspaces. Labs publishes only files listed in its deny-by-default public manifest.", "Ribotos apimties viešų tyrimų darbo erdvių duomenys. Labs skelbia tik aiškiai viešame manifeste leistus failus."),
-    links: [
-      { label: t("Dataset catalogue", "Duomenų rinkinių katalogas"), detail: t("JSON · dataset descriptions and update state", "JSON · rinkinių aprašai ir atnaujinimo būsena"), href: 'https://labs.hecavex.com/data/catalogue.json' },
-      { label: t("Publication manifest", "Publikavimo manifestas"), detail: t("JSON · exact public-file allowlist", "JSON · tikslus leidžiamų viešinti failų sąrašas"), href: 'https://labs.hecavex.com/data/public-manifest.json' },
-      { label: t("Baltic Threat Atlas", "Baltijos grėsmių atlasas"), detail: t("JSON · Baltic observations and bounded Europe actor context", "JSON · Baltijos stebėjimai ir ribotas Europos veikėjų kontekstas"), href: 'https://labs.hecavex.com/data/atlas/records.json' },
-      { label: t("Source-linked ATT&CK evidence", "ATT&CK įrodymai su šaltiniais"), detail: t("JSON · mappings and explicit review state from APT Notes", "JSON · APT Notes ryšiai ir aiški peržiūros būsena"), href: 'https://labs.hecavex.com/data/attack/intelligence/reviewed-evidence.json' },
-      { label: t("Pivot cases", "Pivoting atvejai"), detail: t("JSON · four public case graphs including Hostinger infrastructure", "JSON · keturi vieši atvejų grafai, įskaitant Hostinger infrastruktūrą"), href: 'https://labs.hecavex.com/data/pivots/cases.json' }
-    ]
-  },
-  {
-    index: '04',
     id: 'research',
     name: 'HECAVEX Research',
     owner: 'Research',
@@ -76,7 +45,7 @@ const catalogues = [
 <BaseLayout
   lang={lang}
   title={t("Public data catalogue", "Viešų duomenų katalogas")}
-  description={t("Canonical directory of public datasets and publication metadata maintained by HECAVEX Research, Radar, APT Notes and Labs.", "Pagrindinis HECAVEX Research, Radar, APT Notes ir Labs viešų duomenų rinkinių ir publikacijų metaduomenų katalogas.")}
+  description={t("Canonical directory of public datasets and publication metadata maintained by HECAVEX Research and Radar.", "Pagrindinis HECAVEX Research ir Radar viešų duomenų rinkinių ir publikacijų metaduomenų katalogas.")}
   canonicalPath={lang === 'lt' ? '/lt/duomenys/' : '/data/'}
   alternatePath={lang === 'lt' ? '/data/' : '/lt/duomenys/'}
   xDefaultPath="/data/"
@@ -86,7 +55,7 @@ const catalogues = [
     <PageHeader
       lang={lang}
       title={t("Public data catalogue", "Viešų duomenų katalogas")}
-      description={t("A portfolio-level directory for public machine-readable records maintained by Research, Radar, APT Notes and Labs.", "Bendras Research, Radar, APT Notes ir Labs viešų mašininiu būdu skaitomų įrašų katalogas.")}
+      description={t("A portfolio-level directory for public machine-readable records maintained by Research and Radar.", "Bendras Research ir Radar viešų mašininiu būdu skaitomų įrašų katalogas.")}
       eyebrow={t("HECAVEX / DATA", "HECAVEX / DUOMENYS")}
     />
 

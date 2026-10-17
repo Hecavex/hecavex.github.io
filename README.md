@@ -7,7 +7,7 @@ Source for [hecavex.com](https://hecavex.com/), the English and Lithuanian cyber
 - [English](https://hecavex.com/en/) and [Lietuviškai](https://hecavex.com/lt/): publication entrypoints.
 - [Research](https://hecavex.com/en/research/), [Signal Briefs](https://hecavex.com/en/briefings/) and [public data](https://hecavex.com/data/): investigations, dated coverage and reusable evidence.
 - [Methodology](https://hecavex.com/en/methodology/), [author](https://hecavex.com/en/about/) and [corrections](https://hecavex.com/en/corrections/): scope, authorship and material changes.
-- Related properties: [Radar](https://radar.hecavex.com/), [APT Notes](https://apt.hecavex.com/) and [Labs](https://labs.hecavex.com/).
+- Related property: [Radar](https://radar.hecavex.com/).
 
 ## Find and change the source
 

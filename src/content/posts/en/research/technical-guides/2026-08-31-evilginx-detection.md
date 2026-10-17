@@ -1,5 +1,5 @@
 ---
-last_modified_at: 2026-09-07
+last_modified_at: 2026-10-17
 research_artifacts:
   - label: "Experimental analytic and synthetic fixtures"
     url: "https://github.com/Hecavex/research-artifacts/tree/846937aee43d792a81bcf1b3c05c396f440588f0/releases/aitm-auth-journey-analytic/v1.0.0"
@@ -304,7 +304,7 @@ Do not deploy Evilginx, create a phishlet, submit credentials, or proxy a real i
 
 ## Threat context without tool-based attribution
 
-APT Notes records [Evilginx](https://apt.hecavex.com/tools/evilginx/) as supporting software and links it to source-backed procedures. The [Star Blizzard](https://apt.hecavex.com/actors/star-blizzard/) and [Void Blizzard](https://apt.hecavex.com/actors/void-blizzard/) dossiers describe reported use against European, NATO and Ukraine-related targets. The supporting [Adversary-in-the-Middle technique record](https://apt.hecavex.com/techniques/adversary-in-the-middle/) preserves the behaviour separately from actor identity.
+Public reporting ties Evilginx to state-linked phishing. The UK NCSC reports that [Star Blizzard uses EvilGinx](https://www.ncsc.gov.uk/news/star-blizzard-continues-spear-phishing-campaigns) to harvest credentials and session cookies, and Microsoft assesses that [Void Blizzard uses Evilginx](https://www.microsoft.com/en-us/security/blog/2025/05/27/new-russia-affiliated-actor-void-blizzard-targets-critical-sectors-for-espionage/) for adversary-in-the-middle phishing. ATT&CK keeps the behaviour, [Adversary-in-the-Middle (T1557)](https://attack.mitre.org/techniques/T1557/), separate from actor identity.
 
 Finding Evilginx-like behaviour does not attribute an incident to either actor. Open tools, shared services and copied tradecraft are not unique fingerprints. Attribution requires victimology, chronology, infrastructure, operational behaviour and source-specific reporting that survives alternatives.
 

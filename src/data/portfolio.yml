@@ -15,8 +15,8 @@ projects:
       en: Defenders, researchers, decision-makers, journalists and readers who need sourced explanations rather than an indicator dump.
       lt: Gynybos specialistai, tyrėjai, sprendimų priėmėjai, žurnalistai ir skaitytojai, kuriems reikia šaltiniais pagrįstų paaiškinimų, o ne indikatorių sąrašo.
     relationship:
-      en: The publication of record. Radar observations, APT Notes entities, Labs views and public data releases should link back to the analysis that gives them context.
-      lt: Pagrindinis publikavimo šaltinis. Radar stebėjimai, APT Notes objektai, Labs vaizdai ir vieši duomenų leidimai turi būti susieti su kontekstą suteikiančia analize.
+      en: The publication of record. Radar observations and public data releases should link back to the analysis that gives them context.
+      lt: Pagrindinis publikavimo šaltinis. Radar stebėjimai ir vieši duomenų leidimai turi būti susieti su kontekstą suteikiančia analize.
     limitations:
       en: Independent, best-effort research—not continuous monitoring, incident response or an authoritative attribution service. Scope and confidence are stated per publication.
       lt: Nepriklausomi, geriausiomis pastangomis atliekami tyrimai, o ne nuolatinė stebėsena, reagavimo į incidentus ar autoritetingo priskyrimo paslauga. Apimtis ir pasitikėjimas nurodomi kiekvienoje publikacijoje.
@@ -65,8 +65,8 @@ projects:
       en: Lithuanian security teams, brand-protection staff, researchers and informed users investigating possible phishing infrastructure.
       lt: Lietuvos saugumo komandos, prekių ženklų apsaugos specialistai, tyrėjai ir informuoti naudotojai, tikrinantys galimą phishing infrastruktūrą.
     relationship:
-      en: Radar is the discovery and candidate layer. Strong clusters can become HECAVEX investigations, be explored in Labs and link to relevant APT Notes entities only when evidence supports that relationship.
-      lt: Radar yra aptikimo ir kandidatų sluoksnis. Stiprūs klasteriai gali tapti HECAVEX tyrimais, būti nagrinėjami Labs ir siejami su APT Notes objektais tik tuomet, kai ryšį pagrindžia įrodymai.
+      en: Radar is the discovery and candidate layer. Strong clusters can become HECAVEX investigations when the evidence supports it.
+      lt: Radar yra aptikimo ir kandidatų sluoksnis. Stiprūs klasteriai gali tapti HECAVEX tyrimais, kai tai pagrindžia įrodymai.
     limitations:
       en: A listing is a research candidate, not proof of maliciousness. Certificate-stream coverage is sampled, URLScan absence is not a benign verdict, and the service provides no continuous-monitoring SLA.
       lt: Įrašas yra tyrimo kandidatas, o ne kenkėjiškumo įrodymas. Sertifikatų srautas stebimas atrankiniu būdu, URLScan duomenų nebuvimas nereiškia, kad domenas saugus, o paslauga neteikia nuolatinės stebėsenos SLA.
@@ -100,106 +100,6 @@ projects:
           lt: https://github.com/Hecavex/radar.hecavex.com
         kind: repo
 
-  - id: apt-notes
-    name: APT Notes
-    code: ACTORS
-    status:
-      en: Maintained
-      lt: Prižiūrimas
-    status_key: maintained
-    updated: "2026-08-21"
-    purpose:
-      en: Maintains deeply sourced dossiers that preserve actor aliases, campaigns, capabilities, targeting and source-specific attribution without flattening uncertainty.
-      lt: Tvarko išsamiai šaltiniais pagrįstus dosjė, išsaugančius veikėjų alternatyvius pavadinimus, kampanijas, gebėjimus, taikinius ir konkrečių šaltinių priskyrimą, nesupaprastinant neapibrėžtumo.
-    audience:
-      en: CTI analysts, threat hunters, researchers and defenders who need traceable actor context and machine-readable profiles.
-      lt: CTI analitikai, grėsmių medžiotojai, tyrėjai ir gynybos specialistai, kuriems reikia atsekamo veikėjų konteksto ir mašininiu būdu skaitomų profilių.
-    relationship:
-      en: Provides the normalized entity layer used by research and selected Labs datasets. It adds durable actor context; it is not the source of live Radar verdicts.
-      lt: Suteikia normalizuotų objektų sluoksnį, naudojamą tyrimuose ir atrinktuose Labs duomenų rinkiniuose. Tai ilgalaikis veikėjų kontekstas, o ne gyvų Radar verdiktų šaltinis.
-    limitations:
-      en: A curated dossier collection, not an exhaustive actor directory or live feed. Public reporting is incomplete, actor boundaries change, and every profile is bounded by its review date.
-      lt: Atrinktų dosjė rinkinys, o ne išsamus veikėjų katalogas ar tiesioginis srautas. Viešoji informacija yra neišsami, veikėjų ribos kinta, o kiekvieną profilį riboja jo peržiūros data.
-    links:
-      - label:
-          en: Open APT Notes
-          lt: Atverti APT Notes
-        url:
-          en: https://apt.hecavex.com/
-          lt: https://apt.hecavex.com/
-        kind: primary
-      - label:
-          en: Methodology
-          lt: Metodika
-        url:
-          en: https://apt.hecavex.com/about/methodology/
-          lt: https://apt.hecavex.com/about/methodology/
-        kind: method
-      - label:
-          en: Actor API
-          lt: Veikėjų API
-        url:
-          en: https://apt.hecavex.com/api/actors.json
-          lt: https://apt.hecavex.com/api/actors.json
-        kind: data
-      - label:
-          en: Source repository
-          lt: Pirminio kodo saugykla
-        url:
-          en: https://github.com/Hecavex/apt.hecavex.com
-          lt: https://github.com/Hecavex/apt.hecavex.com
-        kind: repo
-
-  - id: labs
-    name: HECAVEX Labs
-    code: LABS
-    status:
-      en: Maintained · experimental workspaces
-      lt: Prižiūrimas · eksperimentinės darbo sritys
-    status_key: experimental
-    updated: "2026-08-21"
-    purpose:
-      en: Turns selected evidence, methods and datasets into inspectable browser-based tools for mapping, pivoting and defensive assessment.
-      lt: Paverčia atrinktus įrodymus, metodus ir duomenų rinkinius naršyklėje naudojamais įrankiais, skirtais žemėlapiams, ryšių paieškai ir gynybiniam vertinimui.
-    audience:
-      en: Analysts, defenders, students and researchers who want to inspect relationships and methods without installing a platform.
-      lt: Analitikai, gynybos specialistai, studentai ir tyrėjai, norintys nagrinėti ryšius ir metodus neįdiegdami atskiros platformos.
-    relationship:
-      en: Labs is the interactive analysis layer. It visualizes selected Research, APT Notes and public data records while retaining their original provenance and evidence class.
-      lt: Labs yra interaktyvios analizės sluoksnis. Jis vizualizuoja atrinktus Research, APT Notes ir viešų duomenų įrašus, išsaugodamas jų kilmę bei įrodymų klasę.
-    limitations:
-      en: Workspaces are research aids, not automated attribution or production detection systems. Coverage is selected, and locally entered assessment data may remain only in the browser.
-      lt: Darbo sritys yra tyrimo pagalbinės priemonės, o ne automatinio priskyrimo ar produkcinės aptikimo sistemos. Aprėptis atrankinė, o vietoje įvesti vertinimo duomenys gali likti tik naršyklėje.
-    links:
-      - label:
-          en: Open Labs
-          lt: Atverti Labs
-        url:
-          en: https://labs.hecavex.com/
-          lt: https://labs.hecavex.com/
-        kind: primary
-      - label:
-          en: Baltic Threat Atlas
-          lt: Baltijos grėsmių atlasas
-        url:
-          en: https://labs.hecavex.com/baltic-threat-atlas/
-          lt: https://labs.hecavex.com/baltic-threat-atlas/
-        kind: method
-      - label:
-          en: Data catalogue
-          lt: Duomenų katalogas
-        url:
-          en: https://hecavex.com/data/
-          lt: https://hecavex.com/lt/duomenys/
-        kind: data
-      - label:
-          en: Source repository
-          lt: Pirminio kodo saugykla
-        url:
-          en: https://github.com/Hecavex/labs.hecavex.com
-          lt: https://github.com/Hecavex/labs.hecavex.com
-        kind: repo
-
   - id: data
     name: HECAVEX Data
     code: DATA
@@ -215,8 +115,8 @@ projects:
       en: Researchers, defenders, journalists and developers who need citable, reusable records with schemas, provenance and licensing.
       lt: Tyrėjai, gynybos specialistai, žurnalistai ir kūrėjai, kuriems reikia cituojamų bei pakartotinai naudojamų įrašų su schemomis, kilme ir licencijomis.
     relationship:
-      en: The catalogue is the machine-readable delivery layer. Published bundles support Research, feed Labs and may preserve reviewed Radar or APT Notes exports without replacing their canonical interfaces.
-      lt: Katalogas yra mašininiu būdu skaitomų duomenų pateikimo sluoksnis. Paskelbti paketai pagrindžia Research, teikia duomenis Labs ir gali išsaugoti peržiūrėtus Radar ar APT Notes eksportus, nepakeisdami jų pagrindinių sąsajų.
+      en: The catalogue is the machine-readable delivery layer. Published bundles support Research and may preserve reviewed Radar exports without replacing their canonical interfaces.
+      lt: Katalogas yra mašininiu būdu skaitomų duomenų pateikimo sluoksnis. Paskelbti paketai pagrindžia Research ir gali išsaugoti peržiūrėtus Radar eksportus, nepakeisdami jų pagrindinių sąsajų.
     limitations:
       en: Only material safe and lawful to redistribute is published. Raw or quarantined observations, credentials, personal data and active payloads are excluded; each dataset retains its own scope and licence.
       lt: Skelbiama tik saugiai ir teisėtai platinti tinkama medžiaga. Neapdoroti ar karantinuoti stebėjimai, prisijungimo duomenys, asmens duomenys ir aktyvūs kenkėjiški failai neįtraukiami; kiekvienas rinkinys turi savo apimtį ir licenciją.
