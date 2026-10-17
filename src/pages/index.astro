@@ -38,6 +38,8 @@ const network = [
     description: 'Citable datasets, schemas and versioned evidence bundles supporting published research.'
   }
 ];
+// This publication plus each linked surface in the network section.
+const connectedProjects = network.length + 1;
 ---
 <BaseLayout lang="en" title="HECAVEX | Cyber Threat Intelligence" description="Independent bilingual cyber threat intelligence research and digital investigations by Deividas Lis." canonicalPath="/" alternatePath="/lt/" languageAlternates={{ en: '/en/', lt: '/lt/' }} xDefaultPath="/" type="CollectionPage">
   <div class="shell landing-portal">
@@ -67,7 +69,7 @@ const network = [
     <dl class="landing-index" aria-label="HECAVEX publication index">
       <div><dt>Published work <span lang="lt">/ Publikuota</span></dt><dd>{publishedWorks} bilingual records</dd></div>
       <div><dt>Signal Briefs <span lang="lt">/ Apžvalgos</span></dt><dd>{briefingCount} issues per edition</dd></div>
-      <div><dt>Research surfaces <span lang="lt">/ Erdvės</span></dt><dd>5 connected projects</dd></div>
+      <div><dt>Research surfaces <span lang="lt">/ Erdvės</span></dt><dd>{connectedProjects} connected projects</dd></div>
       <div><dt>Latest update <span lang="lt">/ Atnaujinta</span></dt><dd>{latestUpdate ? dateText(latestUpdate) : '—'}</dd></div>
     </dl>
 
@@ -124,7 +126,7 @@ const network = [
         <div>
           <p class="eyebrow">HECAVEX NETWORK</p>
           <h2 id="network-title">One research system. Several public surfaces.</h2>
-          <p>Move from discovery to context, interactive analysis and reusable evidence without leaving the same research record.</p>
+          <p>Move from discovery to context and reusable evidence without leaving the same research record.</p>
         </div>
         <a href="/en/projects/">How the projects connect →</a>
       </header>
