@@ -18,6 +18,8 @@ seo_keywords:
 date: 2026-08-31 18:25:00 +0300
 lang: en
 translation_key: post-phishing-banking-response
+audience: beginner
+summary: "If you typed card or online-banking details into a fake page, act now. This checklist shows who to call, what to block and how to check for further damage."
 permalink: /en/research/what-to-do-after-entering-banking-details-on-phishing-page/
 author: deividas-lis
 content_type: technical-guide

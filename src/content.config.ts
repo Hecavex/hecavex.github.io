@@ -50,6 +50,8 @@ const posts = defineCollection({
     featured: z.boolean().default(false),
     draft: z.boolean().optional(),
     published: z.boolean().optional(),
+    audience: z.enum(['beginner', 'in-depth']).optional(),
+    summary: z.string().min(40).max(280).optional(),
     toc: z.boolean().default(true),
     prose_width: z.enum(['standard', 'wide']).optional(),
     redirect_from: z.array(z.string()).default([]),

@@ -14,6 +14,8 @@ date: 2026-08-01 12:00:00 +0300
 last_modified_at: 2026-08-14 12:00:00 +0300
 lang: lt
 translation_key: introducing-hecavex-001
+audience: beginner
+summary: "Kas yra HECAVEX, kas jį rašo ir kaip čia atskiriama tai, kas žinoma, nuo to, kas tik įtariama."
 categories: [commentary]
 tags: [hecavex, metodika]
 author: deividas-lis

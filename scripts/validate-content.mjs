@@ -67,6 +67,21 @@ export function validatePortfolio(source, errors) {
   }
 }
 
+// Beginner posts need a plain-language summary; summaries stay free of links and threat data.
+export function validateAudience(data, file, errors) {
+  if (data.audience !== undefined && !['beginner', 'in-depth'].includes(data.audience)) errors.push(`${file}: audience must be beginner or in-depth`);
+  if (data.audience === 'beginner') {
+    if (data.summary === undefined) errors.push(`${file}: audience: beginner requires summary`);
+    if (data.content_type === 'signal-brief') errors.push(`${file}: a signal brief cannot be audience: beginner`);
+  }
+  if (data.summary !== undefined) {
+    const text = String(data.summary);
+    if (text.length < 40 || text.length > 280) errors.push(`${file}: summary must be 40-280 characters (found ${text.length})`);
+    if (/[\r\n]/.test(text.trim())) errors.push(`${file}: summary must be a single line`);
+    if (/https?:\/\/|hxxp/i.test(text)) errors.push(`${file}: summary must not contain links or defanged links`);
+  }
+}
+
 async function walk(directory) {
   const output = [];
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -159,6 +174,7 @@ export async function validate() {
     for (const field of ['title', 'description', 'translation_key']) if (!String(data[field] ?? '').trim()) errors.push(`${file}: missing ${field}`);
     const searchDescription = String(data.seo_description ?? data.description ?? '').trim();
     if (searchDescription.length > 160) errors.push(`${file}: effective search description exceeds 160 characters (${searchDescription.length}); add a concise seo_description`);
+    validateAudience(data, file, errors);
     if (!allowedTypes.has(String(data.content_type))) errors.push(`${file}: missing or invalid content_type`);
     if (evidenceTypes.has(data.content_type)) {
       for (const field of ['key_findings', 'scope', 'limitations', 'evidence_basis', 'methods']) if (!data[field] || (Array.isArray(data[field]) && !data[field].length)) errors.push(`${file}: evidence-bearing publication missing ${field}`);
@@ -196,7 +212,7 @@ export async function validate() {
   }
 
   if (keys.size === 0 || keys.size % 2 !== 0) errors.push(`expected a non-zero even number of approved bilingual posts, found ${keys.size}`);
-  const parityFields = ['date', 'last_modified_at', 'content_type', 'categories', 'author', 'confidence', 'tlp', 'featured', 'draft', 'published', 'toc', 'comments', 'series', 'issue', 'coverage_start', 'coverage_end', 'information_cutoff', 'critical_count', 'high_count', 'watch_count'];
+  const parityFields = ['date', 'last_modified_at', 'content_type', 'audience', 'categories', 'author', 'confidence', 'tlp', 'featured', 'draft', 'published', 'toc', 'comments', 'series', 'issue', 'coverage_start', 'coverage_end', 'information_cutoff', 'critical_count', 'high_count', 'watch_count'];
   for (const key of new Set([...keys.keys()].map((value) => value.split(':')[0]))) {
     const languages = ['en', 'lt'].filter((lang) => keys.has(`${key}:${lang}`));
     if (languages.length !== 2) {

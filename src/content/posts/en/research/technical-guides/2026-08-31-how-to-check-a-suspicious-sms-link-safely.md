@@ -18,6 +18,8 @@ seo_keywords:
 date: 2026-08-31 18:00:00 +0300
 lang: en
 translation_key: suspicious-sms-link-safety-guide
+audience: beginner
+summary: "Got a text with a link you don't trust? This guide shows how to check it without opening it, where to report it, and what to do if you already tapped it."
 permalink: /en/research/how-to-check-a-suspicious-sms-link-safely/
 author: deividas-lis
 content_type: technical-guide

@@ -14,6 +14,8 @@ seo_keywords:
 date: 2026-08-31 18:30:00 +0300
 lang: en
 translation_key: marketplace-buyer-phishing
+audience: beginner
+summary: 'Selling something online and a "buyer" sends a payment or courier link? It is a common scam. Learn the signs and what to do if you entered card details or approved a Smart-ID request.'
 permalink: /en/research/fake-marketplace-buyer-phishing/
 author: deividas-lis
 content_type: technical-guide

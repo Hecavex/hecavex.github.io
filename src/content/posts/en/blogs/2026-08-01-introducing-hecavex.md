@@ -13,6 +13,8 @@ date: 2026-08-01 12:00:00 +0300
 last_modified_at: 2026-08-14 12:00:00 +0300
 lang: en
 translation_key: introducing-hecavex-001
+audience: beginner
+summary: "What HECAVEX is, who writes it, and how it separates what is known from what is only suspected."
 categories: [commentary]
 tags: [hecavex, methodology]
 author: deividas-lis

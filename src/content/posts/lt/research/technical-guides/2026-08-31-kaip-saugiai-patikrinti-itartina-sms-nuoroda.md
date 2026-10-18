@@ -19,6 +19,8 @@ seo_keywords:
 date: 2026-08-31 18:00:00 +0300
 lang: lt
 translation_key: suspicious-sms-link-safety-guide
+audience: beginner
+summary: "Gavote SMS su įtartina nuoroda? Šis vadovas parodo, kaip ją patikrinti jos neatidarius, kur apie ją pranešti ir ką daryti, jei jau paspaudėte."
 permalink: /lt/tyrimai/kaip-saugiai-patikrinti-itartina-sms-nuoroda/
 author: deividas-lis
 content_type: technical-guide

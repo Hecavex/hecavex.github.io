@@ -14,6 +14,8 @@ seo_keywords:
 date: 2026-08-31 18:30:00 +0300
 lang: lt
 translation_key: marketplace-buyer-phishing
+audience: beginner
+summary: 'Parduodate daiktą internete, o "pirkėjas" atsiunčia mokėjimo ar kurjerio nuorodą? Tai dažna apgaulė. Sužinokite, kaip ją atpažinti ir ką daryti, jei suvedėte kortelės duomenis ar patvirtinote Smart-ID užklausą.'
 permalink: /lt/tyrimai/netikras-marketplace-pirkejas-phishing/
 author: deividas-lis
 content_type: technical-guide
