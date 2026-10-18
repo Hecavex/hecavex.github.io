@@ -6,6 +6,10 @@ Maintainer guide for this operated HECAVEX publication. [The repository README](
 
 Use the Node and npm requirements in `package.json` with the committed `package-lock.json`. Run `npm ci`, `npm run dev` for a local preview, and `npm run verify` for the complete release gate. Start feature changes from [CODEMAP.md](CODEMAP.md).
 
+## HECAVEX projects
+
+To add or retire a project, edit `src/data/portfolio.yml` only. Navigation, network cards, JSON-LD, `llms.txt`, the Projects page and the audit expectations read from it, and `npm run validate` rejects an inconsistent registry.
+
 ## Editorial operation
 
 Publications are maintained in three localized collections:

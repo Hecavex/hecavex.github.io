@@ -4,6 +4,7 @@ import { createServer } from 'node:http';
 import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve, sep } from 'node:path';
+import { navHrefs } from './portfolio-registry.mjs';
 import { chromium } from 'playwright-core';
 
 const siteRoot = resolve(process.argv[2] ?? 'dist');
@@ -139,7 +140,7 @@ try {
   const page = await browser.newPage();
   await page.addInitScript(() => Object.defineProperty(navigator, 'doNotTrack', { value: '1' }));
   await page.goto(baseUrl + '/' + lang + '/');
-  const expected = lang === 'lt' ? '/lt/tyrimai/' : '/en/research/';
+  const expected = navHrefs(lang)[0];
   check(await page.locator('.portfolio-navigation a').first().getAttribute('href') === expected, lang + ': navigation language');
   await page.evaluate(() => document.querySelector('[data-search-dialog]').showModal());
   const input = page.locator('[data-search-input]');

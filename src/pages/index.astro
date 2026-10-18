@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SpeakingInvitation from '../components/SpeakingInvitation.astro';
-import { dateText, getPublicPosts, latestContentUpdate, type Post } from '../lib/site';
+import { dateText, getPublicPosts, latestContentUpdate, networkCards, type Post } from '../lib/site';
 
 const posts = await getPublicPosts();
 const englishPosts = posts.filter((post) => post.lang === 'en');
@@ -18,26 +18,7 @@ const lithuanianEdition = (post: Post | undefined) => post
 const latestResearchLt = lithuanianEdition(latestResearch);
 const latestBriefingLt = lithuanianEdition(latestBriefing);
 
-const network = [
-  {
-    index: '01',
-    name: 'Radar',
-    href: 'https://radar.hecavex.com/',
-    description: 'Potential impersonation domains relevant to Lithuania. Candidates for review, not verdicts.'
-  },
-  {
-    index: '02',
-    name: 'Open Domain Radar',
-    href: 'https://github.com/Hecavex/open-domain-radar',
-    description: 'Open-source, self-hosted tool for collecting and reviewing candidate impersonation domains.'
-  },
-  {
-    index: '03',
-    name: 'Public data',
-    href: '/data/',
-    description: 'Citable datasets, schemas and versioned evidence bundles supporting published research.'
-  }
-];
+const network = networkCards('en');
 // This publication plus each linked surface in the network section.
 const connectedProjects = network.length + 1;
 ---
@@ -131,10 +112,10 @@ const connectedProjects = network.length + 1;
         <a href="/en/projects/">How the projects connect →</a>
       </header>
       <div class="network-grid landing-network-grid">
-        {network.map((project) => <a href={project.href}>
-          <span>{project.index}</span>
-          <strong>{project.name}</strong>
-          <small>{project.description}</small>
+        {network.map((project, index) => <a href={project.href}>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <strong>{project.title}</strong>
+          <small>{project.summary}</small>
         </a>)}
       </div>
     </section>

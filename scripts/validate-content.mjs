@@ -14,6 +14,56 @@ const allowedCategories = new Set(['threat-intelligence', 'investigations', 'fra
 const allowedTypes = new Set(['investigation', 'malware-analysis', 'incident-analysis', 'technical-analysis', 'technical-guide', 'commentary', 'threat-note', 'signal-brief']);
 const evidenceTypes = new Set(['investigation', 'malware-analysis', 'incident-analysis', 'technical-analysis', 'technical-guide']);
 
+const portfolioKinds = new Set(['service', 'self-hosted']);
+
+// Every {en, lt} object needs both non-empty keys; plain strings must be non-empty.
+function textProblem(value) {
+  if (typeof value === 'string') return value.trim() ? '' : 'is empty';
+  if (value && typeof value === 'object') return ['en', 'lt'].some((lang) => typeof value[lang] !== 'string' || !value[lang].trim()) ? 'needs non-empty en and lt' : '';
+  return 'is missing';
+}
+
+function validatePortfolio(source, errors) {
+  const projects = parse(source)?.projects;
+  if (!Array.isArray(projects) || !projects.length) return void errors.push('portfolio.yml: projects must be a non-empty list');
+  const ids = new Set();
+  const orders = new Set();
+  const checkText = (where, value) => { const problem = textProblem(value); if (problem) errors.push(`portfolio.yml ${where} ${problem}`); };
+  const checkHref = (where, value) => {
+    for (const href of typeof value === 'string' ? [value] : Object.values(value ?? {})) {
+      if (typeof href === 'string' && /^\/\//.test(href)) errors.push(`portfolio.yml ${where} must not be protocol-relative`);
+      else if (typeof href === 'string' && !/^(\/|https:\/\/)/.test(href)) errors.push(`portfolio.yml ${where} must start with / or https://`);
+    }
+  };
+  for (const project of projects) {
+    const where = `project ${project?.id ?? '(no id)'}`;
+    if (!project?.id || ids.has(project.id)) errors.push(`portfolio.yml ${where}: id is missing or duplicated`);
+    ids.add(project?.id);
+    if (!Number.isInteger(project?.order) || orders.has(project.order)) errors.push(`portfolio.yml ${where}: order must be a unique integer`);
+    orders.add(project?.order);
+    if (!portfolioKinds.has(project?.kind)) errors.push(`portfolio.yml ${where}: kind must be one of ${[...portfolioKinds].join(', ')}`);
+    checkText(`${where} name`, project?.name);
+    if (project?.site !== undefined && !/^https:\/\/[^/]+\/$/.test(project.site)) errors.push(`portfolio.yml ${where}: site must be an https origin ending in /`);
+    if (project?.nav) {
+      checkText(`${where} nav.label`, project.nav.label);
+      checkText(`${where} nav.href`, project.nav.href);
+      checkHref(`${where} nav.href`, project.nav.href);
+    }
+    if (project?.card) {
+      for (const field of ['title', 'href', 'summary']) checkText(`${where} card.${field}`, project.card[field]);
+      checkHref(`${where} card.href`, project.card.href);
+    }
+    for (const link of project?.links ?? []) {
+      checkText(`${where} link label`, link.label);
+      checkText(`${where} link url`, link.url);
+      checkHref(`${where} link url`, link.url);
+    }
+    for (const field of ['status', 'purpose', 'audience', 'relationship', 'limitations', 'description']) {
+      if (project?.[field] !== undefined) checkText(`${where} ${field}`, project[field]);
+    }
+  }
+}
+
 async function walk(directory) {
   const output = [];
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -214,6 +264,8 @@ export async function validate() {
       if (!/<desc\b[^>]*>.+?<\/desc>/s.test(svg)) errors.push(`${diagram}: accessible SVG description is missing`);
     }
   }
+
+  validatePortfolio(await readFile(join(root, 'src', 'data', 'portfolio.yml'), 'utf8'), errors);
 
   for (const message of warnings) console.warn(`WARNING: ${message}`);
   if (errors.length) throw new Error(`Content validation failed:\n- ${[...new Set(errors)].join('\n- ')}`);

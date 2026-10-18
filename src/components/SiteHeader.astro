@@ -5,7 +5,8 @@ interface Props { lang: Lang; alternatePath?: string; }
 const { lang, alternatePath } = Astro.props;
 const path = Astro.url.pathname;
 const active = (href: string) => href.endsWith('/') ? path === href || (href.includes('/research/') || href.includes('/tyrimai/')) && path.startsWith(href) : path === href;
-const activeNetworkItem = path.startsWith('/data/') || path.startsWith('/lt/duomenys/') ? 'Data' : 'Research';
+const networkItems = networkNavigation(lang);
+const activeNetworkItem = (networkItems.find((item) => item.href.startsWith('/') && path.startsWith(item.href)) ?? networkItems[0])?.id;
 const menuLabel = lang === 'lt' ? 'Atverti navigacijos meniu' : 'Open navigation menu';
 const searchLabel = lang === 'lt' ? 'Paieška' : 'Search';
 const otherLanguage = lang === 'lt' ? 'EN' : 'LT';
@@ -18,7 +19,7 @@ const languageHref = alternatePath ?? (lang === 'lt' ? '/en/' : '/lt/');
       <span class="brand-copy"><strong>HECAVEX</strong><small>{lang === 'lt' ? 'Tyrimai / nepriklausomas leidinys' : 'Research / independent publication'}</small></span>
     </a>
     <nav class="portfolio-navigation" aria-label="HECAVEX network">
-      {networkNavigation(lang).map((item) => <a href={item.href} aria-current={item.name === activeNetworkItem ? 'page' : undefined}>{item.name}</a>)}
+      {networkItems.map((item) => <a href={item.href} aria-current={item.id === activeNetworkItem ? 'page' : undefined}>{item.name}</a>)}
     </nav>
     <details class="mobile-navigation" data-mobile-navigation>
       <summary aria-label={menuLabel}>
@@ -35,7 +36,7 @@ const languageHref = alternatePath ?? (lang === 'lt' ? '/en/' : '/lt/');
         </nav>
         <nav class="mobile-portfolio-navigation" aria-label="HECAVEX network">
           <span class="navigation-label">HECAVEX network</span>
-          {networkNavigation(lang).map((item) => <a href={item.href} aria-current={item.name === activeNetworkItem ? 'page' : undefined}>{item.name}</a>)}
+          {networkItems.map((item) => <a href={item.href} aria-current={item.id === activeNetworkItem ? 'page' : undefined}>{item.name}</a>)}
         </nav>
       </div>
     </details>

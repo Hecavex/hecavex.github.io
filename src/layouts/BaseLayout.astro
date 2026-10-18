@@ -3,7 +3,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 import ResourcePolicy from '../components/ResourcePolicy.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import CloudflareWebAnalytics from '../components/CloudflareWebAnalytics.astro';
-import type { Lang } from '../lib/site';
+import { portfolioProjects, type Lang } from '../lib/site';
 import { citationDate, citationPath } from '../lib/publication-citations.mjs';
 
 interface Props {
@@ -78,13 +78,14 @@ const breadcrumbNode = breadcrumbs.length > 1 ? {
   }))
 } : undefined;
 if (breadcrumbNode) pageNode.breadcrumb = { '@id': breadcrumbNode['@id'] };
+const sitedProjects = portfolioProjects.filter((project) => project.site);
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     { '@type': 'Organization', '@id': 'https://hecavex.com/#organization', name: 'HECAVEX', url: 'https://hecavex.com/', logo: { '@type': 'ImageObject', '@id': 'https://hecavex.com/#logo', url: 'https://hecavex.com/icon-512.png', contentUrl: 'https://hecavex.com/icon-512.png', width: 512, height: 512 }, founder: { '@id': 'https://hecavex.com/#deividas-lis' }, sameAs: ['https://github.com/Hecavex'] },
     { '@type': 'Person', '@id': 'https://hecavex.com/#deividas-lis', name: 'Deividas Lis', url: 'https://hecavex.com/en/about/', description: 'Independent cyber threat intelligence researcher, former cybercrime investigator and public speaker.', sameAs: ['https://www.linkedin.com/in/deilis'] },
-    { '@type': 'WebSite', '@id': 'https://hecavex.com/#website', name: 'HECAVEX', url: 'https://hecavex.com/', inLanguage: ['en', 'lt'], hasPart: [{ '@id': 'https://radar.hecavex.com/#website' }] },
-    { '@type': 'WebSite', '@id': 'https://radar.hecavex.com/#website', name: 'HECAVEX Radar', url: 'https://radar.hecavex.com/', isPartOf: { '@id': 'https://hecavex.com/#website' } },
+    { '@type': 'WebSite', '@id': 'https://hecavex.com/#website', name: 'HECAVEX', url: 'https://hecavex.com/', inLanguage: ['en', 'lt'], hasPart: sitedProjects.map(({ site }) => ({ '@id': `${site}#website` })) },
+    ...sitedProjects.map(({ site, name }) => ({ '@type': 'WebSite', '@id': `${site}#website`, name, url: site, isPartOf: { '@id': 'https://hecavex.com/#website' } })),
     pageNode,
     ...(breadcrumbNode ? [breadcrumbNode] : [])
   ]
