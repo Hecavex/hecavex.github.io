@@ -9,7 +9,7 @@ permalink: /en/about/
 
 **HECAVEX** is the independent cyber threat intelligence and digital investigations publication created and edited by researcher **Deividas Lis**.
 
-HECAVEX is the publication and research identity; Deividas is its author and editor. Articles, Signal Briefs and the connected APT Notes knowledge base are different formats within the same body of independent work.
+HECAVEX is the publication and research identity; Deividas is its author and editor. Articles and Signal Briefs are different formats within the same body of independent work.
 
 The publication examines cybercrime infrastructure, malware, espionage, fraud, information operations and the people behind digital threats. Its scope is international. Its work separates verified evidence from reporting, inference and assessment, and states uncertainty where it exists.
 

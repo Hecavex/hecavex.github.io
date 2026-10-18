@@ -121,7 +121,7 @@ for (const file of htmlFiles) {
         const graph = JSON.parse(graphSource)['@graph'];
         const nodes = Array.isArray(graph) ? graph : [];
         const ids = new Set(nodes.map((node) => node['@id']).filter(Boolean));
-        for (const id of ['https://hecavex.com/#organization', 'https://hecavex.com/#deividas-lis', 'https://hecavex.com/#website', 'https://apt.hecavex.com/#website', 'https://labs.hecavex.com/#website', 'https://radar.hecavex.com/#website']) if (!ids.has(id)) failures.push(`${route}: JSON-LD is missing ${id}`);
+        for (const id of ['https://hecavex.com/#organization', 'https://hecavex.com/#deividas-lis', 'https://hecavex.com/#website', 'https://radar.hecavex.com/#website']) if (!ids.has(id)) failures.push(`${route}: JSON-LD is missing ${id}`);
         const organization = nodes.find((node) => node['@id'] === 'https://hecavex.com/#organization');
         if (!organization?.logo?.url || !organization?.logo?.width || !organization?.logo?.height) failures.push(`${route}: Organization JSON-LD is missing a complete publisher logo`);
         if (articleDocument) {
@@ -142,7 +142,7 @@ for (const file of htmlFiles) {
     if (!/<link\s+[^>]*rel=["']manifest["'][^>]*href=["']\/site\.webmanifest["']/i.test(html)) failures.push(`${route}: missing origin web manifest`);
     const network = [...html.matchAll(/<nav\s+class=["']portfolio-navigation["'][\s\S]*?<\/nav>/gi)][0]?.[0] ?? '';
     let previous = -1;
-    for (const label of ['Research', 'Radar', 'APT Notes', 'Labs', 'Data']) {
+    for (const label of ['Research', 'Radar', 'Data']) {
       const index = network.indexOf(`>${label}<`);
       if (index < previous || index < 0) failures.push(`${route}: portfolio navigation order is incorrect at ${label}`);
       previous = index;

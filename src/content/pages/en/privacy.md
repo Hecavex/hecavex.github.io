@@ -3,20 +3,20 @@ layout: page
 lang: en
 translation_key: privacy
 title: Privacy
-last_modified_at: 2026-09-10
+last_modified_at: 2026-10-17
 description: HECAVEX privacy, browser storage and audience measurement policy.
 permalink: /en/privacy/
 ---
 
-Last updated: 10 September 2026
+Last updated: 17 October 2026
 
-The [material-correction index](/en/corrections/#labs-browser-storage-disclosure) explains the Labs storage clarification in this revision.
+This revision records that APT Notes and Labs are no longer publicly available. The [material-correction index](/en/corrections/#labs-browser-storage-disclosure) explains the earlier Labs storage clarification.
 
 ## Scope
 
-This notice covers the public HECAVEX portfolio: `hecavex.com`, `apt.hecavex.com`, `radar.hecavex.com` and `labs.hecavex.com`. Each property is deployed separately and loads its own measurement code.
+This notice covers the public HECAVEX portfolio: `hecavex.com` and `radar.hecavex.com`. Each property is deployed separately and loads its own measurement code.
 
-The manually installed Cloudflare Web Analytics beacon described below is active in the production build of all four properties. They use the same public site tag so their aggregate measurements can be viewed together. Following a portfolio link does not carry code or stored state from one property to another. The destination loads its own beacon.
+The manually installed Cloudflare Web Analytics beacon described below is active in the production build of both properties. They use the same public site tag so their aggregate measurements can be viewed together. Following a portfolio link does not carry code or stored state from one property to another. The destination loads its own beacon.
 
 ## Cookies and browser storage
 
@@ -24,13 +24,13 @@ The main publication does not set first-party advertising or analytics cookies, 
 
 [Cloudflare states in its RUM beacon documentation](https://developers.cloudflare.com/speed/observatory/rum-beacon/) that its Web Analytics beacon does not read or write cookies, `localStorage`, `sessionStorage` or IndexedDB and does not keep a persistent analytics identifier in the browser. It generates the measurement in memory for the page currently being viewed.
 
-The current Labs evidence explorers keep filters and comparisons in memory, not in a saved readiness workspace. Deliberately shared links may contain the selected filters, and deliberate exports save files that you control. These are distinct from `localStorage`. The former readiness assessments, incident timelines and observation drafts are no longer part of the current product. Older visitors may still have data written by a previous version. We have not automatically deleted it. Use your browser's site-data controls for `labs.hecavex.com` to remove any legacy values. The former Labs workspace-clearing control is no longer available.
+APT Notes (`apt.hecavex.com`) and Labs (`labs.hecavex.com`) have not been publicly available since 17 October 2026. If an earlier Labs version saved values in your browser, they stay under your control. You can remove them with your browser's site-data controls for `labs.hecavex.com`.
 
 Main's enquiry editor prepares text locally in the current page. It does not save the draft in browser storage or send it automatically. An email is sent only if you choose to send it through your email service. Downloaded biographies, evidence and other files are user-managed files, not analytics records.
 
 ## Cloudflare Web Analytics
 
-All four production properties load a client-side measurement script from `static.cloudflareinsights.com`. The script sends real-user performance and aggregate audience measurements to Cloudflare. Depending on how a property is delivered, the reporting endpoint is its `/cdn-cgi/rum` path or `cloudflareinsights.com`.
+Both production properties load a client-side measurement script from `static.cloudflareinsights.com`. The script sends real-user performance and aggregate audience measurements to Cloudflare. Depending on how a property is delivered, the reporting endpoint is its `/cdn-cgi/rum` path or `cloudflareinsights.com`.
 
 The measurements can include:
 

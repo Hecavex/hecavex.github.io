@@ -3,20 +3,20 @@ layout: page
 lang: lt
 translation_key: privacy
 title: Privatumas
-last_modified_at: 2026-09-10
+last_modified_at: 2026-10-17
 description: HECAVEX privatumo, naršyklės saugyklos ir lankomumo matavimo politika.
 permalink: /lt/privatumas/
 ---
 
-Atnaujinta 2026 m. rugsėjo 10 d.
+Atnaujinta 2026 m. spalio 17 d.
 
-[Esminių pataisymų rodyklėje](/lt/pataisymai/) paaiškintas šios redakcijos Labs saugyklos aprašo patikslinimas.
+Ši redakcija fiksuoja, kad APT Notes ir Labs nebėra viešai prieinami. [Esminių pataisymų rodyklėje](/lt/pataisymai/) paaiškintas ankstesnis Labs saugyklos aprašo patikslinimas.
 
 ## Taikymo sritis
 
-Šis pranešimas apima viešą HECAVEX svetainių rinkinį: `hecavex.com`, `apt.hecavex.com`, `radar.hecavex.com` ir `labs.hecavex.com`. Kiekviena svetainė diegiama atskirai ir įkelia savo matavimo kodą.
+Šis pranešimas apima viešą HECAVEX svetainių rinkinį: `hecavex.com` ir `radar.hecavex.com`. Kiekviena svetainė diegiama atskirai ir įkelia savo matavimo kodą.
 
-Toliau aprašytas rankiniu būdu įdiegtas "Cloudflare Web Analytics" matavimo kodas veikia visų keturių svetainių produkcinėse versijose. Jos naudoja tą pačią viešą svetainės žymą, todėl apibendrintus matavimus galima peržiūrėti kartu. Paspaudus svetainių rinkinio nuorodą kodas ar išsaugota būsena neperkeliami iš vienos svetainės į kitą. Paskirties svetainė įkelia savo kodą.
+Toliau aprašytas rankiniu būdu įdiegtas "Cloudflare Web Analytics" matavimo kodas veikia abiejų svetainių produkcinėse versijose. Jos naudoja tą pačią viešą svetainės žymą, todėl apibendrintus matavimus galima peržiūrėti kartu. Paspaudus svetainių rinkinio nuorodą kodas ar išsaugota būsena neperkeliami iš vienos svetainės į kitą. Paskirties svetainė įkelia savo kodą.
 
 ## Slapukai ir naršyklės saugykla
 
@@ -24,13 +24,13 @@ Pagrindinė publikacija nenustato pirmosios šalies reklaminių ar analitikos sl
 
 [„Cloudflare“ RUM matavimo kodo dokumentacijoje nurodo](https://developers.cloudflare.com/speed/observatory/rum-beacon/), kad jos Web Analytics kodas neskaito ir nerašo slapukų, `localStorage`, `sessionStorage` ar IndexedDB ir naršyklėje nesaugo nuolatinio analitikos identifikatoriaus. Konkretaus puslapio matavimas sukuriamas atmintyje ir susijęs su tuo metu peržiūrimu puslapiu.
 
-Dabartiniai Labs įrodymų įrankiai filtrus ir palyginimus laiko atmintyje, o ne išsaugotoje pasirengimo darbo erdvėje. Sąmoningai bendrinamoje nuorodoje gali būti pasirinkti filtrai, o eksportuojami failai lieka jūsų žinioje. Tai nėra `localStorage`. Ankstesni pasirengimo vertinimai, incidentų laiko juostos ir stebėjimų juodraščiai nebėra dabartinio produkto dalis. Ankstesnių lankytojų naršyklėse gali būti likę senos versijos duomenų. Jų automatiškai neištrynėme. Norėdami pašalinti galimas senas reikšmes, naudokite naršyklės svetainės duomenų valdiklius domenui `labs.hecavex.com`. Ankstesnio Labs darbo erdvės išvalymo valdiklio nebėra.
+APT Notes (`apt.hecavex.com`) ir Labs (`labs.hecavex.com`) nuo 2026 m. spalio 17 d. nebėra viešai prieinami. Jei ankstesnė Labs versija išsaugojo reikšmių jūsų naršyklėje, jos lieka jūsų žinioje. Pašalinti jas galite naršyklės svetainės duomenų valdikliais domenui `labs.hecavex.com`.
 
 Pagrindinės svetainės užklausos rengyklė tekstą parengia tik atvertame puslapyje. Ji nesaugo juodraščio naršyklės saugykloje ir jo automatiškai nesiunčia. Laiškas išsiunčiamas tik tada, kai patys pasirenkate jį siųsti savo el. pašto paslaugoje. Atsisiųstos biografijos, įrodymai ir kiti failai yra jūsų valdomi failai, o ne analitikos įrašai.
 
 ## „Cloudflare Web Analytics“
 
-Visos keturios produkcinės svetainės iš `static.cloudflareinsights.com` įkelia kliento pusėje veikiantį matavimo kodą. Jis „Cloudflare“ siunčia realių naudotojų puslapių veikimo ir apibendrintus lankomumo matavimus. Priklausomai nuo konkrečios svetainės pateikimo būdo, duomenys perduodami jos `/cdn-cgi/rum` adresu arba į `cloudflareinsights.com`.
+Abi produkcinės svetainės iš `static.cloudflareinsights.com` įkelia kliento pusėje veikiantį matavimo kodą. Jis „Cloudflare“ siunčia realių naudotojų puslapių veikimo ir apibendrintus lankomumo matavimus. Priklausomai nuo konkrečios svetainės pateikimo būdo, duomenys perduodami jos `/cdn-cgi/rum` adresu arba į `cloudflareinsights.com`.
 
 Matavimai gali apimti:
 

@@ -1,5 +1,5 @@
 ---
-last_modified_at: 2026-09-07
+last_modified_at: 2026-10-17
 research_artifacts:
   - label: "Experimental analytic and synthetic fixtures"
     url: "https://github.com/Hecavex/research-artifacts/tree/846937aee43d792a81bcf1b3c05c396f440588f0/releases/aitm-auth-journey-analytic/v1.0.0"
@@ -304,7 +304,7 @@ Do not deploy Evilginx, create a phishlet, submit credentials, or proxy a real i
 
 ## Threat context without tool-based attribution
 
-APT Notes records [Evilginx](https://apt.hecavex.com/tools/evilginx/) as supporting software and links it to source-backed procedures. The [Star Blizzard](https://apt.hecavex.com/actors/star-blizzard/) and [Void Blizzard](https://apt.hecavex.com/actors/void-blizzard/) dossiers describe reported use against European, NATO and Ukraine-related targets. The supporting [Adversary-in-the-Middle technique record](https://apt.hecavex.com/techniques/adversary-in-the-middle/) preserves the behaviour separately from actor identity.
+Public reporting ties Evilginx to state-linked phishing. The UK NCSC reports that [Star Blizzard uses EvilGinx](https://www.ncsc.gov.uk/news/star-blizzard-continues-spear-phishing-campaigns) to harvest credentials and session cookies, and Microsoft assesses that [Void Blizzard uses Evilginx](https://www.microsoft.com/en-us/security/blog/2025/05/27/new-russia-affiliated-actor-void-blizzard-targets-critical-sectors-for-espionage/) for adversary-in-the-middle phishing. ATT&CK keeps the behaviour, [Adversary-in-the-Middle (T1557)](https://attack.mitre.org/techniques/T1557/), separate from actor identity.
 
 Finding Evilginx-like behaviour does not attribute an incident to either actor. Open tools, shared services and copied tradecraft are not unique fingerprints. Attribution requires victimology, chronology, infrastructure, operational behaviour and source-specific reporting that survives alternatives.
 
@@ -318,11 +318,13 @@ Finding Evilginx-like behaviour does not attribute an incident to either actor. 
 - [Microsoft Security: From cookie theft to BEC](https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/)
 - [Microsoft Security: Detecting and mitigating a multi-stage AiTM phishing and BEC campaign](https://www.microsoft.com/en-us/security/blog/2023/06/08/detecting-and-mitigating-a-multi-stage-aitm-phishing-and-bec-campaign/)
 - [Microsoft Security: Token tactics](https://www.microsoft.com/en-us/security/blog/2022/11/16/token-tactics-how-to-prevent-detect-and-respond-to-cloud-token-theft/)
+- [Microsoft Security: Void Blizzard targets critical sectors for espionage](https://www.microsoft.com/en-us/security/blog/2025/05/27/new-russia-affiliated-actor-void-blizzard-targets-critical-sectors-for-espionage/)
 - [Microsoft Learn: Token theft playbook](https://learn.microsoft.com/en-us/security/operations/token-theft-playbook)
 - [Microsoft Learn: sign-in log activity details](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-in-log-activity-details)
 - [Microsoft Learn: Entra risk detections](https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks)
 - [Microsoft Learn: revoke user access](https://learn.microsoft.com/en-us/entra/identity/users/users-revoke-access)
 - [Microsoft Learn: Conditional Access authentication strengths](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-strengths)
+- [UK NCSC: Star Blizzard continues spear-phishing campaigns](https://www.ncsc.gov.uk/news/star-blizzard-continues-spear-phishing-campaigns)
 - [CISA: More than a Password](https://www.cisa.gov/ncas/tips/st05-012)
 
 _Assessment date: 31 August 2026. Confidence is high for the reverse-proxy session-theft model and cited defensive guidance. A framework identification or account-compromise conclusion remains case-specific and must be supported by correlated evidence._

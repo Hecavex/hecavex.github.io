@@ -3,7 +3,7 @@ layout: page
 lang: lt
 translation_key: corrections
 title: Pataisymai
-last_modified_at: 2026-09-10
+last_modified_at: 2026-10-17
 description: HECAVEX pataisymų ir atnaujinimų politika.
 permalink: /lt/pataisymai/
 ---
@@ -19,6 +19,8 @@ Patikra pačiame Suricata variklyje taip pat parodė, kad abiejose kalbinėse ve
 ## Labs naršyklės saugyklos aprašymas
 
 **2026 m. rugsėjo 10 d. · privatumo pranešimas atnaujintas nuo rugpjūčio 23 d.** [Privatumo puslapis](/lt/privatumas/) nebepateikia pašalintos Labs pasirengimo darbo erdvės kaip dabartinės funkcijos. Laikini filtrai, sąmoningai bendrinamos nuorodos ir atsisiunčiami failai nėra localStorage. Senoje naršyklėje gali būti likusių reikšmių. Automatinis jų pašalinimas ar naujas duomenų rinkimas nėra teigiami.
+
+_Labs nuo 2026 m. spalio 17 d. nebėra viešai prieinamas. Šis įrašas paliktas toks, koks buvo paskelbtas._
 
 ## Hostinger paketo vientisumas
 

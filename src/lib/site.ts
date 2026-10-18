@@ -232,8 +232,6 @@ export const categoryPath = (lang: Lang, slug: string) => slug === 'security-bri
 export const networkNavigation = (lang: Lang) => [
   { name: 'Research', href: lang === 'lt' ? '/lt/tyrimai/' : '/en/research/' },
   { name: 'Radar', href: 'https://radar.hecavex.com/' },
-  { name: 'APT Notes', href: 'https://apt.hecavex.com/' },
-  { name: 'Labs', href: 'https://labs.hecavex.com/' },
   { name: 'Data', href: lang === 'lt' ? '/lt/duomenys/' : '/data/' }
 ] as const;
 

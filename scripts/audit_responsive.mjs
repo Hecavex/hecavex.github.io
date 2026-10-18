@@ -341,7 +341,7 @@ try {
       if (state.overflow > 1) fail(route, width, `horizontal overflow is ${state.overflow}px (${state.offscreen.join(', ')})`);
       if (state.h1Size > 64.1) fail(route, width, `h1 exceeds the 64px display ceiling (${state.h1Size}px)`);
       if (state.markWidth < 33.5 || state.markWidth > 36.5) fail(route, width, `brand mark is ${state.markWidth}px rather than 34–36px`);
-      if (state.networkLabels.join('|') !== 'Research|Radar|APT Notes|Labs|Data') fail(route, width, 'network navigation order differs from the portfolio contract');
+      if (state.networkLabels.join('|') !== 'Research|Radar|Data') fail(route, width, 'network navigation order differs from the portfolio contract');
       if (state.footerTypeMismatches.length) fail(route, width, `footer typography differs from the portfolio contract: ${state.footerTypeMismatches.join(', ')}`);
       if (Math.abs(state.bodyFontSize - 16) > 0.05 || state.bodyColor !== 'rgb(236, 233, 225)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
       if (state.publicationBackground !== 'rgb(17, 20, 22)') fail(route, width, `publication surface is not portfolio graphite (${state.publicationBackground})`);
@@ -387,7 +387,7 @@ try {
         if (width > 680 && (!state.briefingCardsShareRow || state.briefingImageWidth > state.briefingListWidth * 0.51)) fail(route, width, `briefing catalogue is not a two-column card grid (${state.briefingImageWidth}px image/${state.briefingListWidth}px list)`);
         if (width <= 680 && state.briefingCardsShareRow) fail(route, width, 'briefing catalogue remains two-column on a narrow screen');
       }
-      if (route === '/data/' && (state.oddDataLinkListCount < 1 || !state.oddDataLinksFillRow)) fail(route, width, `odd data endpoint grids leave an empty cell (${state.oddDataLinkListCount} odd grids, fill ${state.oddDataLinksFillRow})`);
+      if (route === '/data/' && state.oddDataLinkListCount > 0 && !state.oddDataLinksFillRow) fail(route, width, `odd data endpoint grids leave an empty cell (${state.oddDataLinkListCount} odd grids, fill ${state.oddDataLinksFillRow})`);
       if (legacyCtaRoutes.has(route) && (!['flex', 'inline-flex'].includes(state.ctaButtonDisplay) || state.ctaButtonHeight < 43 || state.ctaButtonHeight > 45)) fail(route, width, `restored page CTA is not a 44px flex control (${state.ctaButtonDisplay}, ${state.ctaButtonHeight}px)`);
       if (signalCounts.has(route)) {
         const expectedCount = signalCounts.get(route);
@@ -396,7 +396,7 @@ try {
         if (width <= 680 && state.signalFactsShareRow) fail(route, width, 'signal facts remain side-by-side on a narrow screen');
         if (width > 680 && !state.signalFactsShareRow) fail(route, width, 'signal facts do not share a row on a wide screen');
       }
-      if (route === '/' && (state.landingEditionCount !== 2 || state.landingCurrentCount !== 3 || state.landingNetworkCount !== 4)) fail(route, width, `root gateway is incomplete (${state.landingEditionCount} editions, ${state.landingCurrentCount} current records, ${state.landingNetworkCount} network links)`);
+      if (route === '/' && (state.landingEditionCount !== 2 || state.landingCurrentCount !== 3 || state.landingNetworkCount !== 3)) fail(route, width, `root gateway is incomplete (${state.landingEditionCount} editions, ${state.landingCurrentCount} current records, ${state.landingNetworkCount} network links)`);
       if (homeRoutes.has(route)) {
         const discovery = await page.evaluate(() => ({
           taskRoutes: [...document.querySelectorAll('.home-route-rail li a')].map(link => ({ href: link.getAttribute('href'), height: link.getBoundingClientRect().height, text: link.textContent.trim() })),
@@ -487,7 +487,7 @@ try {
         }
         const mobileNetworkLabels = (await page.locator('.mobile-navigation[open] .mobile-portfolio-navigation a').allTextContents())
           .map((label) => label.trim());
-        if (mobileNetworkLabels.join('|') !== 'Research|Radar|APT Notes|Labs|Data') {
+        if (mobileNetworkLabels.join('|') !== 'Research|Radar|Data') {
           fail(route, width, `mobile network navigation differs from the portfolio contract (${mobileNetworkLabels.join('|')})`);
         }
         await page.keyboard.press('Escape');
@@ -549,8 +549,8 @@ try {
   if (noScriptState.overflow > 1) fail('/en/ (no JavaScript)', 390, 'page overflows horizontally');
   if (
     noScriptState.productLinks < 7
-    || noScriptState.networkLinks !== 5
-    || noScriptState.networkLabels.join('|') !== 'Research|Radar|APT Notes|Labs|Data'
+    || noScriptState.networkLinks !== 3
+    || noScriptState.networkLabels.join('|') !== 'Research|Radar|Data'
   ) fail('/en/ (no JavaScript)', 390, 'native details navigation is incomplete');
   if (!noScriptState.purpose) fail('/en/ (no JavaScript)', 390, 'page purpose is unavailable');
 

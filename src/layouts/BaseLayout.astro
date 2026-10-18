@@ -83,9 +83,7 @@ const jsonLd = {
   '@graph': [
     { '@type': 'Organization', '@id': 'https://hecavex.com/#organization', name: 'HECAVEX', url: 'https://hecavex.com/', logo: { '@type': 'ImageObject', '@id': 'https://hecavex.com/#logo', url: 'https://hecavex.com/icon-512.png', contentUrl: 'https://hecavex.com/icon-512.png', width: 512, height: 512 }, founder: { '@id': 'https://hecavex.com/#deividas-lis' }, sameAs: ['https://github.com/Hecavex'] },
     { '@type': 'Person', '@id': 'https://hecavex.com/#deividas-lis', name: 'Deividas Lis', url: 'https://hecavex.com/en/about/', description: 'Independent cyber threat intelligence researcher, former cybercrime investigator and public speaker.', sameAs: ['https://www.linkedin.com/in/deilis'] },
-    { '@type': 'WebSite', '@id': 'https://hecavex.com/#website', name: 'HECAVEX', url: 'https://hecavex.com/', inLanguage: ['en', 'lt'], hasPart: [{ '@id': 'https://apt.hecavex.com/#website' }, { '@id': 'https://labs.hecavex.com/#website' }, { '@id': 'https://radar.hecavex.com/#website' }] },
-    { '@type': 'WebSite', '@id': 'https://apt.hecavex.com/#website', name: 'APT Notes by HECAVEX', url: 'https://apt.hecavex.com/', isPartOf: { '@id': 'https://hecavex.com/#website' } },
-    { '@type': 'WebSite', '@id': 'https://labs.hecavex.com/#website', name: 'HECAVEX Labs', url: 'https://labs.hecavex.com/', isPartOf: { '@id': 'https://hecavex.com/#website' } },
+    { '@type': 'WebSite', '@id': 'https://hecavex.com/#website', name: 'HECAVEX', url: 'https://hecavex.com/', inLanguage: ['en', 'lt'], hasPart: [{ '@id': 'https://radar.hecavex.com/#website' }] },
     { '@type': 'WebSite', '@id': 'https://radar.hecavex.com/#website', name: 'HECAVEX Radar', url: 'https://radar.hecavex.com/', isPartOf: { '@id': 'https://hecavex.com/#website' } },
     pageNode,
     ...(breadcrumbNode ? [breadcrumbNode] : [])
