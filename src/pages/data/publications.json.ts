@@ -14,6 +14,6 @@ export const GET: APIRoute = async () => {
     reuse: 'Metadata supports discovery and citation. Article text, images, datasets and upstream evidence retain their page- or package-specific terms.',
     publicationCount: new Set(posts.map(post => post.translationKey)).size,
     languageEditionCount: posts.length,
-    publications: posts.slice().sort((a, b) => a.url.localeCompare(b.url, 'en')).map(post => publicationRecord(post, posts))
+    publications: posts.slice().sort((a, b) => a.url.localeCompare(b.url, 'en')).map(post => ({ ...publicationRecord(post, posts), audience: post.audience }))
   }, null, 2)}\n`, { headers: { 'Content-Type': 'application/json; charset=utf-8' } });
 };

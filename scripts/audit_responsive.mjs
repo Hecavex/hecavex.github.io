@@ -6,7 +6,19 @@ import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve, sep } from 'node:path';
 import { chromium } from 'playwright-core';
 import { signalBriefEditions } from './signal-brief-editions.mjs';
-import { cardCount, navLabels } from './portfolio-registry.mjs';
+import { parse } from 'yaml';
+import { networkLabels } from './portfolio-registry.mjs';
+
+// Expectations come from the data files, never from literals: card counts (home.yml) and copy (hecavex/{en,lt}.yml).
+const readYaml = async (path) => parse(await readFile(new URL(path, import.meta.url), 'utf8'));
+const homeCounts = await readYaml('../src/data/home.yml');
+const copy = { en: await readYaml('../src/data/hecavex/en.yml'), lt: await readYaml('../src/data/hecavex/lt.yml') };
+// Section bar = the copy-table navigation keys (nav_start ... nav_contact).
+const sectionCount = Object.keys(copy.en).filter((key) => /^nav_(start|research|briefs|glossary|about|speaking|contact)$/.test(key)).length;
+const startHereRoute = { en: '/en/start-here/', lt: '/lt/pradekite-cia/' };
+const glossaryRoute = { en: '/en/glossary/', lt: '/lt/zodynas/' };
+// Network links mark external targets with a trailing aria-hidden arrow that is not part of the label.
+const linkLabels = (labels) => labels.map((label) => label.replace(/\s*↗$/u, '').trim());
 
 const siteRoot = resolve(process.argv[2] ?? 'dist');
 const browserCandidates = [
@@ -46,6 +58,7 @@ const monthlyRadarRoutes = [
   '/en/research/lithuania-phishing-infrastructure-radar-september-2026/',
   '/lt/tyrimai/phishing-infrastruktura-lietuvoje-radar-2026-rugsejis/'
 ];
+const beginnerArticleRoutes = ['/en/research/how-to-check-a-suspicious-sms-link-safely/', '/lt/tyrimai/kaip-saugiai-patikrinti-itartina-sms-nuoroda/'];
 const routes = [
   ...recentBriefRoutes,
   ...monthlyRadarRoutes,
@@ -55,7 +68,9 @@ const routes = [
   '/en/research/unipark-smishing-campaign-infrastructure/', '/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/',
   '/en/research/cra-article-14-vulnerability-incident-reporting-guide/', '/lt/tyrimai/infrastrukturos-pivoting-101/',
   '/en/research/adform-supply-chain-crypto-clipper/', '/lt/tyrimai/adform-supply-chain-crypto-clipper/',
-  '/en/briefings/2026-08-22/', '/lt/apzvalgos/2026-08-22/'
+  '/en/briefings/2026-08-22/', '/lt/apzvalgos/2026-08-22/',
+  '/en/start-here/', '/lt/pradekite-cia/',
+  ...beginnerArticleRoutes
 ];
 const factRoutes = new Set(['/en/research/', '/lt/tyrimai/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/']);
 const outlineRoutes = new Set([
@@ -77,7 +92,8 @@ const briefingRoutes = new Set(['/en/briefings/', '/lt/apzvalgos/']);
 const recordFooterRoutes = new Set(['/en/research/adform-supply-chain-crypto-clipper/', '/lt/tyrimai/adform-supply-chain-crypto-clipper/']);
 const standardizedPageTitleRoutes = new Set([
   '/data/', '/en/', '/lt/', '/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/',
-  '/en/projects/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/'
+  '/en/projects/', '/en/about/', '/lt/apie/', '/en/speaker/', '/lt/pranesejas/', '/en/contact/', '/lt/kontaktai/',
+  '/en/start-here/', '/lt/pradekite-cia/'
 ]);
 const legacyCtaRoutes = new Set(['/en/about/', '/lt/apie/', '/en/contact/', '/lt/kontaktai/']);
 const signalCounts = new Map([
@@ -216,10 +232,10 @@ try {
             const family = style.fontFamily.split(',')[0].replaceAll('"', '').toLowerCase();
             const tracking = Number.parseFloat(style.letterSpacing) || 0;
             return family !== (brand ? 'ibm plex mono' : 'inter')
-              || Number.parseFloat(style.fontSize) !== 12
+              || Number.parseFloat(style.fontSize) !== 13
               || style.fontWeight !== (brand ? '600' : '500')
               || style.lineHeight !== 'normal'
-              || Math.abs(tracking - (brand ? 1.44 : 0)) > 0.025
+              || Math.abs(tracking - (brand ? 1.56 : 0)) > 0.025
               || style.textTransform !== 'none';
           }).map((element) => element.textContent.trim()),
           undersizedFooterTargets: [...document.querySelectorAll('.site-footer nav a')].filter((link) => {
@@ -327,7 +343,9 @@ try {
           aboutHeadingAlign: aboutHeading ? getComputedStyle(aboutHeading).textAlign : '',
           landingEditionCount: document.querySelectorAll('.landing-edition-rail a').length,
           landingCurrentCount: document.querySelectorAll('.landing-current-grid > *').length,
-          landingNetworkCount: document.querySelectorAll('.landing-network-grid > a').length,
+          landingIndexCount: document.querySelectorAll('.landing-index').length,
+          landingNetworkGridCount: document.querySelectorAll('.landing-network-grid').length,
+          landingNewcomerHrefs: [...document.querySelectorAll('.landing-current-grid > :nth-child(3) a[href]')].map((link) => link.getAttribute('href')),
           versionedAssets: Boolean(stylesheet?.getAttribute('href')?.match(/\?v=[^&]+$/) && siteScript?.getAttribute('src')?.match(/\?v=[^&]+$/))
         };
       }, width);
@@ -346,7 +364,7 @@ try {
       if (state.overflow > 1) fail(route, width, `horizontal overflow is ${state.overflow}px (${state.offscreen.join(', ')})`);
       if (state.h1Size > 64.1) fail(route, width, `h1 exceeds the 64px display ceiling (${state.h1Size}px)`);
       if (state.markWidth < 33.5 || state.markWidth > 36.5) fail(route, width, `brand mark is ${state.markWidth}px rather than 34–36px`);
-      if (state.networkLabels.join('|') !== navLabels(state.htmlLang).join('|')) fail(route, width, 'network navigation order differs from the portfolio contract');
+      if (linkLabels(state.networkLabels).join('|') !== networkLabels(state.htmlLang).join('|')) fail(route, width, 'network navigation order differs from the portfolio contract');
       if (state.footerTypeMismatches.length) fail(route, width, `footer typography differs from the portfolio contract: ${state.footerTypeMismatches.join(', ')}`);
       if (Math.abs(state.bodyFontSize - 16) > 0.05 || state.bodyColor !== 'rgb(236, 233, 225)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
       if (state.publicationBackground !== 'rgb(17, 20, 22)') fail(route, width, `publication surface is not portfolio graphite (${state.publicationBackground})`);
@@ -404,17 +422,27 @@ try {
         if (width <= 680 && state.signalFactsShareRow) fail(route, width, 'signal facts remain side-by-side on a narrow screen');
         if (width > 680 && !state.signalFactsShareRow) fail(route, width, 'signal facts do not share a row on a wide screen');
       }
-      if (route === '/' && (state.landingEditionCount !== 2 || state.landingCurrentCount !== 3 || state.landingNetworkCount !== cardCount())) fail(route, width, `root gateway is incomplete (${state.landingEditionCount} editions, ${state.landingCurrentCount} current records, ${state.landingNetworkCount} network links)`);
+      if (route === '/') {
+        const newcomerLinksBoth = Object.values(startHereRoute).every((href) => state.landingNewcomerHrefs.includes(href));
+        if (state.landingEditionCount !== 2 || state.landingCurrentCount !== 3 || !newcomerLinksBoth || state.landingIndexCount !== 0 || state.landingNetworkGridCount !== 0) fail(route, width, `root gateway is incomplete (${state.landingEditionCount} editions, ${state.landingCurrentCount} current records, newcomer card links ${state.landingNewcomerHrefs.join(' ')}, ${state.landingIndexCount} index, ${state.landingNetworkGridCount} network grids)`);
+      }
       if (homeRoutes.has(route)) {
         const discovery = await page.evaluate(() => ({
           taskRoutes: [...document.querySelectorAll('.home-route-rail li a')].map(link => ({ href: link.getAttribute('href'), height: link.getBoundingClientRect().height, text: link.textContent.trim() })),
           updated: document.querySelector('.home-route-updated time')?.getAttribute('datetime'),
-          paths: [...document.querySelectorAll('.research-path')].map(path => ({
+          heroPrimary: (() => {
+            const button = document.querySelector('.home-discovery .button--primary');
+            return { href: button?.getAttribute('href'), bottom: button ? button.getBoundingClientRect().bottom : Infinity };
+          })(),
+          discoveryPrimaryCount: document.querySelectorAll('.home-discovery .button--primary').length,
+          discoveryTextHrefs: [...document.querySelectorAll('.home-discovery a:not(.button--primary)')].map(link => link.getAttribute('href')),
+          pagePrimaryCount: [...document.querySelectorAll('.button--primary')].filter(button => !button.closest('header')).length,
+          paths: [...document.querySelectorAll('.home-basics .research-path')].map(path => ({
             href: path.querySelector('h3 a')?.getAttribute('href'),
             title: path.querySelector('h3 a')?.textContent.trim(),
             summary: path.querySelector('.research-path-summary')?.textContent.trim(),
             date: path.querySelector('time')?.getAttribute('datetime'),
-            citation: path.querySelector('a[download]')?.getAttribute('href'),
+            hasDownload: Boolean(path.querySelector('a[download]')),
             targets: [...path.querySelectorAll('a')].map(link => link.getBoundingClientRect().height)
           }))
         }));
@@ -426,15 +454,28 @@ try {
         const search = JSON.parse(await readFile(join(siteRoot, edition, 'search.json'), 'utf8'));
         const expectedArticles = search.filter(item => ordinaryPaths.has(item.url)).sort((a, b) => new Date(b.date) - new Date(a.date));
         const cards = state.latestCardGeometry;
-        const expected = expectedArticles.slice(0, cards.length).map(item => item.url);
+        const expectedLatest = Math.min(homeCounts.latest, expectedArticles.length);
+        const expected = expectedArticles.slice(0, expectedLatest).map(item => item.url);
+        // Start here lists every beginner post; the home basics are its first N cards.
+        const startHereHtml = await readFile(join(siteRoot, startHereRoute[edition], 'index.html'), 'utf8');
+        const beginnerHrefs = [...(startHereHtml.match(/<section id="basics"[\s\S]*?<\/section>/)?.[0] ?? '').matchAll(/<h3[^>]*>\s*<a[^>]*href="([^"]+)"/g)].map(match => match[1]);
+        const expectedBasics = beginnerHrefs.slice(0, Math.min(homeCounts.basics, beginnerHrefs.length));
+        const searchBeginner = search.filter(item => item.audience === 'beginner').map(item => item.url);
+        const missingBeginner = searchBeginner.filter(href => !beginnerHrefs.includes(href));
+        if (missingBeginner.length) fail(route, width, `Start here basics omit beginner search records: ${missingBeginner.join(' ')}`);
         if (discovery.taskRoutes.length !== 4 || discovery.taskRoutes.some(link => !link.href?.startsWith(`/${edition}/`) && !(edition === 'en' && link.href === '/data/') || link.height < 43.5 || !link.text) || !discovery.updated) fail(route, width, `localized task discovery is incomplete (${JSON.stringify(discovery.taskRoutes)})`);
-        if (discovery.paths.length !== 4 || discovery.paths.some(path => !path.href?.startsWith(`/${edition}/`) || !path.title || !path.summary || !path.date || !path.citation?.endsWith('.bib') || path.targets.some(height => height < 43.5))) fail(route, width, 'compact reading paths lost their localized records, citations or accessible targets');
+        if (expectedBasics.length === 0 || JSON.stringify(discovery.paths.map(path => path.href)) !== JSON.stringify(expectedBasics)
+          || discovery.paths.some(path => !path.href?.startsWith(`/${edition}/`) || !path.title || !path.summary || !path.date || path.hasDownload || path.targets.some(height => height < 43.5))) fail(route, width, `home basics differ from the first ${homeCounts.basics} Start here guides or lost their localized records/targets (${JSON.stringify(discovery.paths.map(path => path.href))} versus ${JSON.stringify(expectedBasics)})`);
+        if (cards.length !== expectedLatest) fail(route, width, `home shows ${cards.length} latest cards instead of ${expectedLatest} (home.yml latest ${homeCounts.latest})`);
+        if (discovery.heroPrimary.href !== startHereRoute[edition] || discovery.heroPrimary.bottom > (width <= 680 ? 570 : 480)) fail(route, width, `hero Start here button is not on the first screen (${discovery.heroPrimary.href}, bottom ${discovery.heroPrimary.bottom}px)`);
+        if (discovery.discoveryPrimaryCount !== 1 || discovery.pagePrimaryCount !== 1) fail(route, width, `home must have exactly one primary button (${discovery.discoveryPrimaryCount} in the hero, ${discovery.pagePrimaryCount} on the page)`);
+        const indexHrefs = edition === 'en' ? ['/en/research/', '/en/briefings/'] : ['/lt/tyrimai/', '/lt/apzvalgos/'];
+        if (JSON.stringify(discovery.discoveryTextHrefs) !== JSON.stringify(indexHrefs)) fail(route, width, `hero text links are not the research and briefings indexes (${discovery.discoveryTextHrefs.join(' ')})`);
         const columns = width > 680 ? 2 : 1;
         const expectedCardWidth = (state.latestGridWidth - state.latestColumnGap * (columns - 1)) / columns;
         if (JSON.stringify(cards.map(card => card.href)) !== JSON.stringify(expected)) fail(route, width, `newest approved article order differs from full publication timestamps (${cards.map(card => card.href)})`);
         if (cards.some((card, index) => card.date !== expectedArticles[index]?.date)) fail(route, width, 'latest article datetimes differ from the full publication timestamps');
-        if (cards[0]?.imageLoading !== 'eager' || cards.slice(1).some(card => card.imageLoading !== 'lazy')) fail(route, width, 'first article preview must load eagerly and later previews lazily');
-        if (cards[0]?.top > (width <= 680 ? 570 : 480) || cards[0]?.titleBottom > (width <= 680 ? 760 : 650)) fail(route, width, 'newest article image/title are pushed below the initial reading viewport');
+        if (cards.some(card => card.imageLoading !== 'lazy')) fail(route, width, 'latest article previews sit below the hero and must all load lazily');
         if (state.hasOversizedHomeLead || cards.length < 1) fail(route, width, `latest research has no ordinary cards (${cards.length} cards, oversized lead ${state.hasOversizedHomeLead})`);
         if (state.latestColumnGap < 16 || state.latestRowGap < 16) fail(route, width, `latest research gaps are below 16px (${state.latestColumnGap}px/${state.latestRowGap}px)`);
         if (cards.some((card) => Math.abs(card.width - expectedCardWidth) > 1)) fail(route, width, `latest research cards do not share the ordinary ${columns}-column width (${cards.map((card) => card.width).join('/')} versus ${expectedCardWidth}px)`);
@@ -481,6 +522,87 @@ try {
         if (state.heroChildOverflow > 1) fail(route, width, `home hero child overflows its panel by ${state.heroChildOverflow}px`);
       }
 
+      // Beginner-first contracts: type floor on every route, article measure and chrome, research newcomer link.
+      const lang = route.slice(1, 3);
+      const extra = await page.evaluate(() => {
+        const tiny = [];
+        for (const root of document.querySelectorAll('header, main, footer')) {
+          const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+          for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+            const element = node.parentElement;
+            if (!node.textContent.trim() || !element || element.closest('script, style, noscript, template')) continue;
+            if (!element.checkVisibility({ visibilityProperty: true })) continue;
+            const size = Number.parseFloat(getComputedStyle(element).fontSize);
+            if (size < 12.9) tiny.push(`${element.tagName}.${String(element.className).replace(/\s+/g, '.')} ${size}px "${node.textContent.trim().slice(0, 24)}"`);
+          }
+        }
+        const body = document.querySelector('.article-body');
+        const paragraph = body?.querySelector(':scope > p:not(:has(> img:only-child))');
+        let proseChars = 0;
+        if (paragraph) {
+          // 1ch in the paragraph's own font, so the measure is read in the unit the CSS contract uses.
+          const probe = document.createElement('span');
+          probe.style.cssText = 'position:absolute;visibility:hidden;width:1ch';
+          paragraph.append(probe);
+          proseChars = paragraph.getBoundingClientRect().width / probe.getBoundingClientRect().width;
+          probe.remove();
+        }
+        const newcomer = document.querySelector('.article-newcomer');
+        const featured = document.querySelector('#featured');
+        return {
+          tiny: [...new Set(tiny)].slice(0, 8),
+          isArticle: Boolean(body),
+          wide: Boolean(body?.classList.contains('article-body--wide')),
+          proseChars,
+          newcomerHrefs: [...(newcomer?.querySelectorAll('a') ?? [])].map((link) => link.getAttribute('href')),
+          hasSummary: Boolean(document.querySelector('.article-summary')),
+          hasRecordDetails: Boolean(document.querySelector('details.research-record-details')),
+          hasOutline: Boolean(document.querySelector('.content-outline--mobile')),
+          researchNewcomerHref: document.querySelector('.research-newcomer a')?.getAttribute('href'),
+          featuredLabel: featured?.getAttribute('data-outline-label'),
+          featuredHeading: featured?.querySelector('h2')?.textContent.trim(),
+          featuredOutline: document.querySelector('.content-outline--desktop a[href="#featured"]')?.textContent.trim() ?? ''
+        };
+      });
+      if (extra.tiny.length) fail(route, width, `visible text below the 13px floor: ${extra.tiny.join('; ')}`);
+      const beginnerArticle = beginnerArticleRoutes.includes(route);
+      if (extra.isArticle && width === 1440 && !extra.wide && extra.proseChars > (beginnerArticle ? 64.5 : 72.5)) fail(route, width, `article paragraphs run ${extra.proseChars.toFixed(1)}ch, past the ${beginnerArticle ? 64 : 72}ch measure`);
+      if (extra.isArticle && width === 1440 && !extra.wide && extra.proseChars < (beginnerArticle ? 55 : 60)) fail(route, width, `article paragraphs run ${extra.proseChars.toFixed(1)}ch, under the ${beginnerArticle ? 55 : 60}ch lower bound`);
+      if (extra.isArticle && beginnerArticle && (!extra.hasSummary || !extra.hasRecordDetails || extra.newcomerHrefs.length)) fail(route, width, `beginner article is missing its In short box or collapsed research record, or shows the newcomer line (${JSON.stringify(extra)})`);
+      if (extra.isArticle && !beginnerArticle && JSON.stringify(extra.newcomerHrefs) !== JSON.stringify([startHereRoute[lang], glossaryRoute[lang]])) fail(route, width, `in-depth article newcomer line must link Start here and the glossary (${extra.newcomerHrefs.join(' ')})`);
+      if (extra.isArticle && extra.hasOutline && width === 1440) {
+        if (await page.locator('.back-to-contents').first().isVisible()) fail(route, width, 'back-to-contents link is visible on desktop where the outline is already in view');
+      }
+      if (extra.isArticle && extra.hasOutline && width <= 1160) {
+        await page.evaluate(() => window.scrollTo(0, (document.documentElement.scrollHeight - innerHeight) / 2));
+        const back = await page.evaluate(() => {
+          const link = document.querySelector('.back-to-contents');
+          const rect = link?.getBoundingClientRect();
+          return {
+            visible: Boolean(link?.checkVisibility({ visibilityProperty: true }) && rect && rect.top >= 0 && rect.bottom <= innerHeight),
+            width: rect?.width ?? 0, height: rect?.height ?? 0,
+            target: Boolean(link && document.getElementById(decodeURIComponent(link.hash.slice(1))))
+          };
+        });
+        if (!back.visible || back.width < 43.5 || back.height < 43.5 || !back.target) fail(route, width, `back-to-contents link is missing, hidden or too small mid-article (${JSON.stringify(back)})`);
+        if (back.visible && width === 390) {
+          await page.locator('.back-to-contents').click();
+          await page.waitForTimeout(400);
+          const landed = await page.evaluate(() => {
+            const link = document.querySelector('.back-to-contents');
+            const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+            return { top: target.getBoundingClientRect().top, header: document.querySelector('.site-header').getBoundingClientRect().bottom };
+          });
+          if (landed.top < landed.header - 1) fail(route, width, `back-to-contents target hides under the sticky header (top ${landed.top}px, header bottom ${landed.header}px)`);
+          await page.reload(); // the click moved the focus origin; the skip-link check below needs a fresh start
+        }
+        await page.evaluate(() => window.scrollTo(0, 0));
+      }
+      if (researchRoutes.has(route)) {
+        const label = copy[lang].research_featured_h2;
+        if (extra.researchNewcomerHref !== startHereRoute[lang] || extra.featuredLabel !== label || extra.featuredHeading !== label || !extra.featuredOutline.includes(label)) fail(route, width, `research index newcomer link or featured label is wrong (${JSON.stringify(extra)}, expected "${label}")`);
+      }
+
       await page.keyboard.press('Tab');
       const focusedSkip = await page.evaluate(() => document.activeElement?.classList.contains('skip-link') && getComputedStyle(document.activeElement).outlineStyle !== 'none');
       if (!focusedSkip) fail(route, width, 'skip link is not the first visibly focused control');
@@ -495,7 +617,7 @@ try {
         }
         const mobileNetworkLabels = (await page.locator('.mobile-navigation[open] .mobile-portfolio-navigation a').allTextContents())
           .map((label) => label.trim());
-        if (mobileNetworkLabels.join('|') !== navLabels(state.htmlLang).join('|')) {
+        if (linkLabels(mobileNetworkLabels).join('|') !== networkLabels(state.htmlLang).join('|')) {
           fail(route, width, `mobile network navigation differs from the portfolio contract (${mobileNetworkLabels.join('|')})`);
         }
         await page.keyboard.press('Escape');
@@ -522,12 +644,6 @@ try {
         await page.keyboard.press('Escape');
         await page.waitForFunction(selector => document.activeElement?.matches(selector), mobile ? '.mobile-navigation > summary' : '.header-utilities [data-search-open]');
         if (!(await returnTarget.evaluate(node => document.activeElement === node && node.checkVisibility({ visibilityProperty: true })))) fail(route, width, 'search dismissal lost visible keyboard focus');
-        await page.locator('.home-discovery a[href="#latest-title"]').click();
-        const latestJump = await page.evaluate(() => ({
-          headingTop: document.getElementById('latest-title').getBoundingClientRect().top,
-          headerBottom: document.querySelector('.site-header').getBoundingClientRect().bottom
-        }));
-        if (latestJump.headingTop < latestJump.headerBottom + 8) fail(route, width, 'latest articles jump hides its heading behind the sticky header');
       }
       await context.close();
     }
@@ -537,8 +653,8 @@ try {
     const shortPhone = await browser.newContext({ viewport: { width: 320, height: 568 }, reducedMotion: 'reduce' });
     const shortPage = await shortPhone.newPage();
     await shortPage.goto(`${baseUrl}/${language}/`, { waitUntil: 'networkidle' });
-    const firstTitle = await shortPage.locator('.home-latest-grid .post-card h3').first().boundingBox();
-    if (!firstTitle || firstTitle.y + firstTitle.height > 568) fail(`/${language}/`, 320, 'newest article title is clipped below the short-phone arrival viewport');
+    const cta = await shortPage.locator('.home-discovery .button--primary').boundingBox();
+    if (!cta || cta.y + cta.height > 568) fail(`/${language}/`, 320, 'hero Start here button is clipped below the short-phone arrival viewport');
     await shortPhone.close();
   }
 
@@ -559,7 +675,8 @@ try {
   await page.locator('.mobile-navigation > summary').click();
   const noScriptState = await page.evaluate(() => ({
     overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-    productLinks: document.querySelectorAll('.mobile-navigation[open] .mobile-product-navigation a').length,
+    productLinks: document.querySelectorAll('.mobile-navigation[open] .mobile-product-navigation a:not([hreflang])').length,
+    firstProductHref: document.querySelector('.mobile-navigation[open] .mobile-product-navigation a:not([hreflang])')?.getAttribute('href'),
     networkLinks: document.querySelectorAll('.mobile-navigation[open] .mobile-portfolio-navigation a').length,
     networkLabels: [...document.querySelectorAll('.mobile-navigation[open] .mobile-portfolio-navigation a')]
       .map((link) => link.textContent.trim()),
@@ -567,9 +684,10 @@ try {
   }));
   if (noScriptState.overflow > 1) fail('/en/ (no JavaScript)', 390, 'page overflows horizontally');
   if (
-    noScriptState.productLinks < 7
-    || noScriptState.networkLinks !== navLabels('en').length
-    || noScriptState.networkLabels.join('|') !== navLabels('en').join('|')
+    noScriptState.productLinks !== sectionCount
+    || noScriptState.firstProductHref !== startHereRoute.en
+    || noScriptState.networkLinks !== networkLabels('en').length
+    || linkLabels(noScriptState.networkLabels).join('|') !== networkLabels('en').join('|')
   ) fail('/en/ (no JavaScript)', 390, 'native details navigation is incomplete');
   if (!noScriptState.purpose) fail('/en/ (no JavaScript)', 390, 'page purpose is unavailable');
 
@@ -692,6 +810,14 @@ try {
     const regionRect = region?.getBoundingClientRect();
     return {
       paragraphWidth: paragraphRect?.width ?? 0,
+      paragraphChar: (() => {
+        const probe = document.createElement('span');
+        probe.style.cssText = 'position:absolute;visibility:hidden;width:1ch';
+        paragraph.append(probe);
+        const size = probe.getBoundingClientRect().width;
+        probe.remove();
+        return size;
+      })(),
       paragraphLeft: paragraphRect?.left ?? 0,
       paragraphRight: paragraphRect?.right ?? 0,
       paragraphAlign: paragraph ? getComputedStyle(paragraph).textAlign : '',
@@ -709,9 +835,10 @@ try {
   const desktopTableSemanticsMatch = wideTableState.regionOverflows
     ? wideTableState.role === 'region' && wideTableState.tabIndex === '0'
     : wideTableState.role === null && wideTableState.tabIndex === null;
+  // Prose keeps the 72ch reading measure; the wide evidence track still starts on the same left edge and may only be wider.
   const desktopArticleEdgesMatch = Math.abs(wideTableState.paragraphLeft - wideTableState.regionLeft) <= 1
-    && Math.abs(wideTableState.paragraphRight - wideTableState.regionRight) <= 1
-    && Math.abs(wideTableState.paragraphWidth - wideTableState.regionWidth) <= 1;
+    && wideTableState.paragraphWidth <= wideTableState.regionWidth + 1
+    && wideTableState.paragraphWidth / wideTableState.paragraphChar <= 72.5;
   if (!desktopArticleEdgesMatch || wideTableState.paragraphAlign !== 'justify' || wideTableState.tableCellAlign !== 'left' || !wideTableState.dataLabel || !desktopTableSemanticsMatch || wideTableState.documentOverflow > 1) fail(tableRoute, 1440, `wide evidence track or article alignment is wrong (${JSON.stringify(wideTableState)})`);
   await wideTableContext.close();
 

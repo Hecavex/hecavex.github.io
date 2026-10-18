@@ -102,7 +102,7 @@
         const meta = document.createElement('small');
         link.href = item.url;
         link.textContent = item.title;
-        meta.textContent = [String(item.date).slice(0, 10), (item.categoryLabels ?? item.categories).join(', ')].filter(Boolean).join(' · ');
+        meta.textContent = [item.audience === 'beginner' ? item.audienceLabel : '', String(item.date).slice(0, 10), (item.categoryLabels ?? item.categories).join(', ')].filter(Boolean).join(' · ');
         entry.append(link, meta);
         list.append(entry);
       }

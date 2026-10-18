@@ -1,0 +1,19 @@
+# Curated keys show first, then every audience: beginner post (newest first), deduplicated.
+basics:
+  - suspicious-sms-link-safety-guide
+  - marketplace-buyer-phishing
+  - post-phishing-banking-response
+  - introducing-hecavex-001
+urgent:
+  - post-phishing-banking-response
+  - suspicious-sms-link-safety-guide
+step_further:
+  - facebook-cloaking-explained
+  - substack-mfa-nera-panaceja-ir-laikas-nustoti
+  - cti-osint-duo-001
+  - confidence-method-001
+in_depth:
+  - unipark-smishing-campaign-infrastructure
+  - substack-clickfix-kodel-siuolaikiniai-ta-nebeiesko
+  - substack-vienas-scam-domenas-retai-buna-vienas
+glossary: [phishing, smishing, malware, mfa, indicator, confidence, attribution, tlp]

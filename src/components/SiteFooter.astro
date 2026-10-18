@@ -1,19 +1,26 @@
 ---
-import { networkNavigation, type Lang } from '../lib/site';
+import { copy, glossaryPath, networkLinks, productNavigation, startHerePath, type Lang } from '../lib/site';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
+const t = copy[lang];
+const links = [
+  [t.nav_start, startHerePath[lang]],
+  productNavigation[lang][1]!,
+  [t.nav_glossary, glossaryPath[lang]],
+  ...networkLinks(lang).map((item) => [item.name, item.href]),
+  [t.nav_methodology, lang === 'lt' ? '/lt/metodika/' : '/en/methodology/'],
+  [t.privacy, lang === 'lt' ? '/lt/privatumas/' : '/en/privacy/'],
+  [t.rss, `/${lang}/feed.xml`]
+];
 ---
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
       <strong>HECAVEX RESEARCH</strong>
-      <span>{lang === 'lt' ? 'Nepriklausomi Deivido Lis kibernetinių grėsmių tyrimai.' : 'Independent cyber threat research by Deividas Lis.'}</span>
+      <span>{t.footer_tagline}</span>
     </div>
-    <nav aria-label={lang === 'lt' ? 'Poraštė' : 'Footer'}>
-      {networkNavigation(lang).map((item) => <a href={item.href}>{item.name}</a>)}
-      <a href={lang === 'lt' ? '/lt/metodika/' : '/en/methodology/'}>{lang === 'lt' ? 'Metodika' : 'Methodology'}</a>
-      <a href={lang === 'lt' ? '/lt/privatumas/' : '/en/privacy/'}>{lang === 'lt' ? 'Privatumas' : 'Privacy'}</a>
-      <a href={lang === 'lt' ? '/lt/feed.xml' : '/en/feed.xml'}>RSS</a>
+    <nav aria-label={t.footer_label}>
+      {links.map(([name, href]) => <a href={href}>{name}</a>)}
     </nav>
   </div>
 </footer>

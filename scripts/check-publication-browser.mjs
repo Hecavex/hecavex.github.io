@@ -4,7 +4,7 @@ import { createServer } from 'node:http';
 import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve, sep } from 'node:path';
-import { navHrefs } from './portfolio-registry.mjs';
+
 import { chromium } from 'playwright-core';
 
 const siteRoot = resolve(process.argv[2] ?? 'dist');
@@ -38,7 +38,6 @@ await new Promise((accept) => server.listen(0, '127.0.0.1', accept));
 const address = server.address();
 const baseUrl = `http://127.0.0.1:${address.port}`;
 
-
 const browser = await chromium.launch({ executablePath, headless: true });
 const failures = [];
 const check = (condition, message) => { if (!condition) failures.push(message); };
@@ -64,7 +63,8 @@ try {
    check(response.status() === 200, route + ': HTTP status');
    const state = await page.evaluate(() => ({
     overflow: document.documentElement.scrollWidth > innerWidth + 1,
-    actions: !!document.querySelector('.article-deck + .immediate-actions'),
+    // Beginner articles put the In short box between the deck and the actions; the actions still lead the page.
+    actions: !!document.querySelector('.article-deck + .immediate-actions, .article-deck + .article-summary + .immediate-actions'),
     boxes: document.querySelectorAll('input[type=checkbox][disabled]').length,
     csp: !!document.querySelector('meta[http-equiv="Content-Security-Policy"]'),
     figures: [...document.querySelectorAll('.hx-evidence-figure')].map(f => ({ link: !!f.querySelector('a.evidence-original'), caption: !!f.querySelector('figcaption'), text: f.querySelector('a.evidence-original')?.textContent })),
@@ -140,8 +140,7 @@ try {
   const page = await browser.newPage();
   await page.addInitScript(() => Object.defineProperty(navigator, 'doNotTrack', { value: '1' }));
   await page.goto(baseUrl + '/' + lang + '/');
-  const expected = navHrefs(lang)[0];
-  check(await page.locator('.portfolio-navigation a').first().getAttribute('href') === expected, lang + ': navigation language');
+  check(await page.locator('.product-navigation a').first().getAttribute('href') === (lang === 'lt' ? '/lt/pradekite-cia/' : '/en/start-here/'), lang + ': navigation language');
   await page.evaluate(() => document.querySelector('[data-search-dialog]').showModal());
   const input = page.locator('[data-search-input]');
   for (const query of ['qMQ9By0xS9aF5IiNtG4neJTkGsJhNSYj3qNHWGt4MFE', 'smarxtech[.]store', 'abb9f700bbacca228df0cee3da36466c144034b0510b827fff1336775a1610b2']) {

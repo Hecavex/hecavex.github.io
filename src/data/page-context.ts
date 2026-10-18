@@ -1,4 +1,4 @@
-import type { Lang } from '../lib/site';
+import { copy, type Lang } from '../lib/site';
 
 export interface ContextLink {
   label: string;
@@ -94,13 +94,13 @@ export function contactRoutesFor(lang: Lang): ActionRoute[] {
 
 export function researchMapFor(lang: Lang, counts: { featured: number; primary: number; assessments: number; commentary: number; briefings: number }): OutlineItem[] {
   return lang === 'lt' ? [
-    ...(counts.featured > 0 ? [{ depth: 2, slug: 'featured', text: 'Pradėkite čia', note: `Autoriaus atranka · ${counts.featured}` }] : []),
+    ...(counts.featured > 0 ? [{ depth: 2, slug: 'featured', text: copy.lt.research_featured_h2!, note: `Autoriaus atranka · ${counts.featured}` }] : []),
     { depth: 2, slug: 'primary', text: 'Pirminiai tyrimai', note: `Pirminiai įrodymai · ${counts.primary}` },
     { depth: 2, slug: 'assessments', text: 'Techniniai vertinimai', note: `Analizė ir metodai · ${counts.assessments}` },
     { depth: 2, slug: 'commentary', text: 'Komentarai', note: `Analitinė pozicija · ${counts.commentary}` },
     { depth: 2, slug: 'briefing-path', text: 'Signal Brief', note: `Laiku apriboti signalai · ${counts.briefings}` }
   ] : [
-    ...(counts.featured > 0 ? [{ depth: 2, slug: 'featured', text: 'Start here', note: `Editor’s selection · ${counts.featured}` }] : []),
+    ...(counts.featured > 0 ? [{ depth: 2, slug: 'featured', text: copy.en.research_featured_h2!, note: `Editor’s selection · ${counts.featured}` }] : []),
     { depth: 2, slug: 'primary', text: 'Primary research', note: `First-party evidence · ${counts.primary}` },
     { depth: 2, slug: 'assessments', text: 'Technical assessments', note: `Analysis and methods · ${counts.assessments}` },
     { depth: 2, slug: 'commentary', text: 'Commentary', note: `Analytical position · ${counts.commentary}` },

@@ -93,9 +93,7 @@
     grid-template-columns: 1fr;
   }
 
-  .landing-current-grid,
-  .landing-network-grid,
-  .landing-index {
+  .landing-current-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -162,7 +160,7 @@
     border-bottom: 1px solid var(--line);
     background: var(--surface-strong);
     color: var(--cyan);
-    font: 500 0.56rem/1.4 var(--mono);
+    font: 500 0.8125rem/1.4 var(--mono);
   }
 
   .home-hero-copy,
@@ -214,7 +212,6 @@
 
   .post-grid,
   .briefing-list,
-  .network-grid,
   .topic-grid,
   .project-copy,
   .glossary-list,
@@ -222,8 +219,7 @@
   .research-record dl,
   .prose .hx-signal-entry > dl,
   .article-navigation,
-  .landing-current-grid,
-  .landing-network-grid {
+  .landing-current-grid {
     grid-template-columns: 1fr;
   }
 
@@ -270,10 +266,6 @@
 @media (max-width: 390px) {
   .brand-copy small {
     display: none;
-  }
-
-  .landing-index {
-    grid-template-columns: 1fr;
   }
 
   .article-edition {

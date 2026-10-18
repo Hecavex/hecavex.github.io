@@ -18,6 +18,8 @@ seo_keywords:
 date: 2026-08-31 18:25:00 +0300
 lang: lt
 translation_key: post-phishing-banking-response
+audience: beginner
+summary: "Jei netikroje svetainėje suvedėte kortelės ar internetinės bankininkystės duomenis, veikite nedelsdami. Šiame sąraše rasite, kam skambinti, ką užblokuoti ir kaip patikrinti, ar nepadaryta daugiau žalos."
 permalink: /lt/tyrimai/ka-daryti-suvedus-banko-duomenis-phishing-puslapyje/
 author: deividas-lis
 content_type: technical-guide

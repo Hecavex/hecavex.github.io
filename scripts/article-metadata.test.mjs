@@ -6,7 +6,7 @@ import { chromium } from 'playwright-core';
 
 const cssRoot = new URL('../public/assets/css/modules/', import.meta.url);
 const css = (await Promise.all(['article-reading.css', 'responsive.css'].map((name) => readFile(new URL(name, cssRoot), 'utf8')))).join('\n');
-const template = await readFile(new URL('../src/pages/[lang]/[section]/[slug].astro', import.meta.url), 'utf8');
+const template = await readFile(new URL('../src/components/ResearchRecord.astro', import.meta.url), 'utf8');
 const browsers = [
   process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
   'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',

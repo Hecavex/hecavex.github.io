@@ -3,7 +3,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { extname, join, relative, resolve } from 'node:path';
 import { hasFragment } from '../src/lib/html-fragments.mjs';
-import { navLabels, siteIds } from './portfolio-registry.mjs';
+import { networkLabels, siteIds } from './portfolio-registry.mjs';
 
 const root = resolve(process.argv[2] ?? 'dist');
 const failures = [];
@@ -144,8 +144,9 @@ for (const file of htmlFiles) {
     const network = [...html.matchAll(/<nav\s+class=["']portfolio-navigation["'][\s\S]*?<\/nav>/gi)][0]?.[0] ?? '';
     let previous = -1;
     const pageLanguage = html.match(/<html\b[^>]*\blang=["']([a-z]{2})/i)?.[1] ?? 'en';
-    for (const label of navLabels(pageLanguage)) {
-      const index = network.indexOf(`>${label}<`);
+    for (const label of networkLabels(pageLanguage)) {
+      // External links carry a trailing aria-hidden arrow, so also accept the label directly followed by that span.
+      const index = [`>${label}<`, `>${label}<span`].map(needle => network.indexOf(needle)).find(i => i >= 0) ?? -1;
       if (index < previous || index < 0) failures.push(`${route}: portfolio navigation order is incorrect at ${label}`);
       previous = index;
     }
@@ -240,7 +241,10 @@ for (const [token, pattern] of [
   ['product hero minimum height', /--frame-product-hero:\s*20rem/],
   ['page heading', /--page-title-size:\s*clamp\(2\.4rem,\s*3\.6vw,\s*3\.25rem\)/],
   ['section heading', /--section-title-size:\s*clamp\(1\.45rem,\s*2\.4vw,\s*2rem\)/],
-  ['display heading', /--display-title-size:\s*clamp\(2\.5rem,\s*4\.2vw,\s*4rem\)/]
+  ['display heading', /--display-title-size:\s*clamp\(2\.5rem,\s*4\.2vw,\s*4rem\)/],
+  // The article selector is `.article-body > :where(p, …)`; the measure is the 72ch --reading token.
+  ['reading measure token', /--reading:\s*72ch/],
+  ['prose measure', /\.article-body\s*>\s*:(?:is|where)\([^)]*\bp\b[^)]*\)\s*\{[^}]*max-width:\s*var\(--reading\)/s]
 ]) if (!pattern.test(css)) failures.push(`portfolio CSS contract missing ${token}`);
 
 if (failures.length) {

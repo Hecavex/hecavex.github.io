@@ -3,7 +3,7 @@ layout: page
 lang: en
 translation_key: portfolio-glossary
 title: HECAVEX intelligence glossary
-description: Shared definitions for observations, facts, inferences, assessments, candidates, indicators, confidence, maliciousness, validation, status, attribution and TLP across HECAVEX.
+description: Plain definitions of phishing, malware, MFA and other basics, plus the terms HECAVEX uses for evidence, confidence and attribution.
 permalink: /en/glossary/
 last_modified_at: 2026-08-21 22:30:00 +0300
 ---

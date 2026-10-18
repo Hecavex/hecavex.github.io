@@ -53,3 +53,77 @@ only_lt: Prieinama tik lietuvių kalba
 not_found_title: Signalas prarastas.
 not_found_text: Prašomas puslapis nerastas, galėjo būti perkeltas arba nebėra pasiekiamas.
 skip_to_content: Pereiti prie turinio
+# Beginner-first redesign
+nav_start: Pradėkite čia
+nav_research: Tyrimai
+nav_briefs: Apžvalgos
+nav_glossary: Žodynas
+nav_about: Apie
+nav_speaking: Pranešėjas
+nav_contact: Kontaktai
+net_radar: Radar
+net_data: Duomenys
+net_projects: Projektai
+net_label: HECAVEX tinklas
+menu_sections: Skyriai
+menu_more: Kiti HECAVEX projektai
+brand_sub: Nepriklausomi kibernetinio saugumo tyrimai
+home_eyebrow: Nepriklausomi Deivido Lis tyrimai
+home_h1: Aiškiai apie kibernetines grėsmes
+home_deck: Aiškūs vadovai tiems, kurie tik pradeda domėtis kibernetiniu saugumu, ir išsamūs tyrimai specialistams. Lietuvių ir anglų kalbomis.
+home_cta: Pradėkite čia
+home_latest_link: Naujausi tyrimai
+home_briefs_link: Signalų apžvalgos
+home_basics_eyebrow: Kibernetinis saugumas jums dar naujas?
+home_basics_h2: Pradėkite nuo pagrindų
+home_basics_more: Visas vadovas
+home_latest_h2: Naujausi tyrimai
+home_briefs_explainer: Trumpa, šaltiniais pagrįsta svarbiausių saugumo naujienų apžvalga specialistams.
+root_eyebrow: HECAVEX · anglų ir lietuvių kalbomis
+root_h1: Nepriklausomi kibernetinių grėsmių tyrimai
+root_deck: Autorius – Deividas Lis. Aiškūs vadovai visiems ir išsamūs tyrimai specialistams.
+root_edition_name: Lietuviškai
+root_edition_text: Pradėkite čia arba naršykite tyrimus.
+root_edition_open: Atidaryti →
+root_newcomer_h3: Kibernetinis saugumas jums dar naujas?
+root_newcomer_p: Pradėkite nuo trumpų praktinių vadovų. Techninių žinių nereikia.
+start_title: Pradėkite čia
+start_description: Kibernetinis saugumas jums dar naujas? Pradėkite nuo šių aiškių vadovų. Techninių žinių nereikia.
+start_intro: HECAVEX – nepriklausomas leidinys, kurį rašo Deividas Lis, buvęs elektroninių nusikaltimų tyrėjas. Jame paaiškinama, kaip veikia internetinės apgaulės ir kibernetinės atakos, ir ką rodo įrodymai. Vieni straipsniai skirti visiems, kiti – išsamūs tyrimai specialistams. Prie kiekvieno nurodyta, kam jis skirtas.
+start_urgent_h2: Reikia pagalbos dabar?
+start_urgent_p: Pirmiausia veikite, skaitykite vėliau. Šie du vadovai prasideda nuo to, ką daryti dabar.
+start_basics_h2: Vadovai pradedantiesiems
+start_further_h2: Žingsnis toliau
+start_further_p: Vis dar suprantama, tik šiek tiek techniškiau.
+start_words_h2: Dažnos sąvokos
+start_words_link: Visas žodynas
+start_depth_h2: Pasiruošę išsamiems tyrimams?
+start_depth_p: "Šie tyrimai parodo visą metodą: nuo vienos užuominos iki platesnio vaizdo."
+audience_beginner: Pradedantiesiems
+audience_in_depth: Išsami analizė
+research_newcomer: Kibernetinis saugumas jums dar naujas? Pradėkite čia
+research_featured_h2: Autorius rekomenduoja
+article_newcomer: Tema jums nauja? {Pradėkite nuo pagrindų} arba {pasitikrinkite terminus žodyne}.
+article_in_short: Trumpai
+article_outline_start: Straipsnio pradžia
+article_record_details: Kaip tai ištirta
+article_read_next: Skaitykite toliau
+article_back_start: Atgal į vadovą pradedantiesiems
+article_back_contents: Atgal į turinį
+author_card: Deividas Lis – Vilniuje gyvenantis kibernetinių grėsmių žvalgybos tyrėjas, buvęs elektroninių nusikaltimų tyrėjas.
+author_card_link: Apie autorių
+nav_methodology: Metodika
+menu_open: Atidaryti navigacijos meniu
+menu_label: Meniu
+footer_label: Poraštė
+footer_tagline: Nepriklausomi Deivido Lis kibernetinių grėsmių tyrimai.
+home_nav_label: Leidinio navigacija
+edition_rail_label: Pasirinkite HECAVEX leidinio kalbą
+research_featured_eyebrow: Autoriaus pasirinkimas
+research_featured_p: "Trys publikacijos, atskleidžiančios Deivido Lis tyrimų spektrą: nuo techninės analizės iki sukčiavimo infrastruktūros ir informacinių operacijų."
+article_edition_link: Read in English
+article_what_now: Ką daryti dabar
+article_confidence: Pasitikėjimas
+article_content_type: Turinio tipas
+article_related_eyebrow: Susiję
+article_related_h2: Susiję tyrimai

@@ -1,4 +1,46 @@
 terms:
+  - id: phishing
+    term:
+      en: Phishing
+      lt: Phishing (sukčiavimas)
+    definition:
+      en: A message or website that pretends to be someone you trust, such as a bank, courier or colleague, to trick you into giving away passwords, card details or money.
+      lt: Žinutė ar svetainė, kuri apsimeta kuo nors, kuo pasitikite, pavyzdžiui, banku, kurjeriu ar kolega, kad išviliotų slaptažodžius, kortelės duomenis ar pinigus.
+  - id: smishing
+    term:
+      en: Smishing
+      lt: Smishing (sukčiavimas per SMS)
+    definition:
+      en: Phishing sent by SMS or a messaging app.
+      lt: Phishing per SMS žinutes ar pokalbių programėles.
+  - id: malware
+    term:
+      en: Malware
+      lt: Kenkėjiška programinė įranga
+    definition:
+      en: Software made to harm a device or its user, for example by stealing data or locking files.
+      lt: Programa, sukurta pakenkti įrenginiui ar jo naudotojui, pavyzdžiui, pavogti duomenis ar užrakinti failus.
+  - id: mfa
+    term:
+      en: Multi-factor authentication (MFA)
+      lt: Kelių veiksnių autentifikavimas (MFA)
+    definition:
+      en: Signing in with something extra besides a password, such as a code, an app approval like Smart-ID, or a security key.
+      lt: Prisijungimas, kai be slaptažodžio reikia dar vieno patikrinimo, pavyzdžiui, kodo, patvirtinimo programėlėje (kaip Smart-ID) ar saugumo rakto.
+  - id: cti
+    term:
+      en: Cyber threat intelligence (CTI)
+      lt: Kibernetinių grėsmių žvalgyba (CTI)
+    definition:
+      en: Evidence-based knowledge about attackers and their methods that helps people make security decisions.
+      lt: Įrodymais pagrįstos žinios apie užpuolikus ir jų metodus, padedančios priimti saugumo sprendimus.
+  - id: osint
+    term:
+      en: Open-source intelligence (OSINT)
+      lt: Atvirųjų šaltinių žvalgyba (OSINT)
+    definition:
+      en: Information collected from public sources, such as websites, public records and social media.
+      lt: Informacija, surinkta iš viešų šaltinių, pavyzdžiui, svetainių, viešų registrų ir socialinių tinklų.
   - id: observation
     term:
       en: Observation
