@@ -187,8 +187,8 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 .card-meta {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.5rem 1rem;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
   margin: 0;
   color: var(--faint);
   font-size: 0.75rem;
@@ -198,6 +198,24 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 
 .card-meta span {
   color: var(--cyan);
+}
+
+.card-meta time {
+  margin-left: auto;
+}
+
+.card-meta .audience-badge {
+  font-size: 0.8125rem;
+}
+
+.card-meta .audience-badge--beginner {
+  padding: 0 0.5rem;
+  border: 1px solid var(--cyan);
+  border-radius: 999px;
+}
+
+.card-meta .audience-badge--in-depth {
+  color: var(--muted);
 }
 
 .post-grid {

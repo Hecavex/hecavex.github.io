@@ -113,3 +113,11 @@ article_back_contents: Back to contents
 author_card: Deividas Lis is a Vilnius-based cyber threat intelligence researcher and former cybercrime investigator.
 author_card_link: About the author
 nav_methodology: Methodology
+menu_open: Open navigation menu
+menu_label: Menu
+footer_label: Footer
+footer_tagline: Independent cyber threat research by Deividas Lis.
+home_nav_label: Publication navigation
+edition_rail_label: Choose a HECAVEX edition
+research_featured_eyebrow: Selected by the author
+research_featured_p: Three pieces demonstrating the range of Deividas Lis’s work, from technical analysis to fraud infrastructure and information operations.

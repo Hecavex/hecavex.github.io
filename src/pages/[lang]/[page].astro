@@ -11,7 +11,7 @@ import ProjectDirectory from '../../components/ProjectDirectory.astro';
 import StartHere from '../../components/StartHere.astro';
 import { contactRoutesFor, pageFactsFor, researchMapFor, type OutlineItem } from '../../data/page-context';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { categoryPath, labelForPost, dateText, getPages, getLocalizedPosts, languagePairPath, latestContentUpdate, slugify, taxonomy, type Lang, type PageEntry } from '../../lib/site';
+import { audienceLabel, categoryPath, copy, labelForPost, startHerePath, dateText, getPages, getLocalizedPosts, languagePairPath, latestContentUpdate, slugify, taxonomy, type Lang, type PageEntry } from '../../lib/site';
 
 export async function getStaticPaths() {
   const pages = await getPages();
@@ -25,6 +25,7 @@ export async function getStaticPaths() {
 interface Props { entry: PageEntry; }
 const { entry } = Astro.props as Props;
 const lang = entry.data.lang as Lang;
+const hx = copy[lang];
 const posts = await getLocalizedPosts(lang);
 const alternatePath = await languagePairPath(entry.data.translation_key, lang);
 const { Content, headings } = await render(entry);
@@ -59,8 +60,9 @@ const researchMap = researchMapFor(lang, {
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} facts={pageFacts} anchorId="page-start" />
       <div class="research-layout">
         <div id="research-catalogue" class="research-catalogue">
+      <p class="research-newcomer"><a href={startHerePath[lang]}>{hx.research_newcomer} →</a></p>
       <ResearchTasks {lang} {posts} />
-      {featured.length > 0 && <section id="featured" class="catalogue-section catalogue-section--featured" data-outline-heading="true" data-outline-label={lang === 'lt' ? 'Pradėkite čia' : 'Start here'}><header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Atrinkta autoriaus' : 'Selected by the author'}</p><h2>{lang === 'lt' ? 'Pradėkite čia' : 'Start here'}</h2><p>{lang === 'lt' ? 'Trys darbai, parodantys Deivido Lis tyrimų spektrą: nuo techninės analizės iki sukčiavimo infrastruktūros ir informacinių operacijų.' : 'Three pieces demonstrating the range of Deividas Lis’s work, from technical analysis to fraud infrastructure and information operations.'}</p></div></header><div class="post-grid">{featured.map((post) => <PostCard {post} prominent />)}</div></section>}
+      {featured.length > 0 && <section id="featured" class="catalogue-section catalogue-section--featured" data-outline-heading="true" data-outline-label={hx.research_featured_h2}><header class="section-head"><div><p class="eyebrow">{hx.research_featured_eyebrow}</p><h2>{hx.research_featured_h2}</h2><p>{hx.research_featured_p}</p></div></header><div class="post-grid">{featured.map((post) => <PostCard {post} prominent />)}</div></section>}
       <section id="primary" class="catalogue-section" data-outline-heading="true" data-outline-label={lang === 'lt' ? 'Pirminiai tyrimai' : 'Primary research'}><header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Originalus įrodymų darbas' : 'Original evidence work'}</p><h2>{lang === 'lt' ? 'Pirminiai tyrimai' : 'Primary research'}</h2><p>{lang === 'lt' ? 'Autoriaus surinkta ir išanalizuota infrastruktūra, kodas, incidentų medžiaga ar kiti techniniai artefaktai.' : 'First-party collection and analysis of infrastructure, code, incident material and other technical artefacts.'}</p></div></header><div class="post-grid">{primary.map((post) => <PostCard {post} />)}</div></section>
       <section id="assessments" class="catalogue-section" data-outline-heading="true" data-outline-label={lang === 'lt' ? 'Techniniai vertinimai' : 'Technical assessments'}><header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Techninis vertinimas ir metodai' : 'Technical judgement and methods'}</p><h2>{lang === 'lt' ? 'Techniniai vertinimai' : 'Technical assessments'}</h2><p>{lang === 'lt' ? 'Incidentų analizė, techniniai paaiškinimai ir pakartojami praktiniai metodai, paremti cituojamais šaltiniais.' : 'Incident analysis, technical explanation and reproducible practitioner methods grounded in cited sources.'}</p></div></header><div class="post-grid">{assessments.map((post) => <PostCard {post} />)}</div></section>
       <section id="commentary" class="catalogue-section" data-outline-heading="true" data-outline-label={lang === 'lt' ? 'Komentarai' : 'Commentary'}><header class="section-head"><div><p class="eyebrow">{lang === 'lt' ? 'Analitinė pozicija' : 'Analytical position'}</p><h2>{lang === 'lt' ? 'Komentarai' : 'Commentary'}</h2><p>{lang === 'lt' ? 'Autoriaus argumentai apie grėsmių žvalgybos praktiką, sprendimus ir analitinį amatą. Tai nėra pirminio tyrimo pakaitalas.' : 'Author arguments on threat-intelligence practice, decisions and analytical tradecraft. These pieces are not presented as primary research.'}</p></div></header><div class="post-grid">{commentary.map((post) => <PostCard {post} />)}</div></section>
@@ -74,7 +76,7 @@ const researchMap = researchMapFor(lang, {
       <div class="briefing-list">{briefings.map((post) => <PostCard {post} prominent />)}</div>
     </> : layout === 'archive-hx' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} />
-      <ol class="archive-list">{posts.map((post) => <li><time datetime={post.date.toISOString()}>{post.date.toISOString().slice(0, 10)}</time><div><span>{labelForPost(post)}</span><a href={post.url}>{post.title}</a></div></li>)}</ol>
+      <ol class="archive-list">{posts.map((post) => <li><time datetime={post.date.toISOString()}>{post.date.toISOString().slice(0, 10)}</time><div><span>{labelForPost(post)}{post.audience === 'beginner' && <span class="audience-badge audience-badge--beginner"> · {audienceLabel(post)}</span>}</span><a href={post.url}>{post.title}</a></div></li>)}</ol>
     </> : layout === 'start-here' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} />
       <div class="prose"><Content /></div>

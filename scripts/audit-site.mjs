@@ -3,7 +3,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { extname, join, relative, resolve } from 'node:path';
 import { hasFragment } from '../src/lib/html-fragments.mjs';
-import { navLabels, siteIds } from './portfolio-registry.mjs';
+import { networkLabels, siteIds } from './portfolio-registry.mjs';
 
 const root = resolve(process.argv[2] ?? 'dist');
 const failures = [];
@@ -144,8 +144,9 @@ for (const file of htmlFiles) {
     const network = [...html.matchAll(/<nav\s+class=["']portfolio-navigation["'][\s\S]*?<\/nav>/gi)][0]?.[0] ?? '';
     let previous = -1;
     const pageLanguage = html.match(/<html\b[^>]*\blang=["']([a-z]{2})/i)?.[1] ?? 'en';
-    for (const label of navLabels(pageLanguage)) {
-      const index = network.indexOf(`>${label}<`);
+    for (const label of networkLabels(pageLanguage)) {
+      // External links carry a trailing aria-hidden arrow, so match the label as a prefix of the link text.
+      const index = network.indexOf(`>${label}<`) >= 0 ? network.indexOf(`>${label}<`) : network.indexOf(`>${label}`);
       if (index < previous || index < 0) failures.push(`${route}: portfolio navigation order is incorrect at ${label}`);
       previous = index;
     }

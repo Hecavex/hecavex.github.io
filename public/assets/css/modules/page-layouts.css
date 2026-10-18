@@ -155,6 +155,21 @@
   text-transform: uppercase;
 }
 
+.archive-list .audience-badge--beginner {
+  color: var(--cyan);
+}
+
+.research-newcomer a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+}
+
+.research-newcomer {
+  margin: 0 0 0.5rem;
+  font: 600 0.875rem/1.5 var(--sans);
+}
+
 .archive-list div {
   display: grid;
   gap: 0.25rem;

@@ -4,7 +4,7 @@ import { createServer } from 'node:http';
 import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve, sep } from 'node:path';
-import { navHrefs } from './portfolio-registry.mjs';
+
 import { chromium } from 'playwright-core';
 
 const siteRoot = resolve(process.argv[2] ?? 'dist');
@@ -140,8 +140,7 @@ try {
   const page = await browser.newPage();
   await page.addInitScript(() => Object.defineProperty(navigator, 'doNotTrack', { value: '1' }));
   await page.goto(baseUrl + '/' + lang + '/');
-  const expected = navHrefs(lang)[0];
-  check(await page.locator('.portfolio-navigation a').first().getAttribute('href') === expected, lang + ': navigation language');
+  check(await page.locator('.product-navigation a').first().getAttribute('href') === (lang === 'lt' ? '/lt/pradekite-cia/' : '/en/start-here/'), lang + ': navigation language');
   await page.evaluate(() => document.querySelector('[data-search-dialog]').showModal());
   const input = page.locator('[data-search-input]');
   for (const query of ['qMQ9By0xS9aF5IiNtG4neJTkGsJhNSYj3qNHWGt4MFE', 'smarxtech[.]store', 'abb9f700bbacca228df0cee3da36466c144034b0510b827fff1336775a1610b2']) {

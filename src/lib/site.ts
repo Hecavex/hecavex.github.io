@@ -7,6 +7,7 @@ import glossarySource from '../data/glossary.yml?raw';
 import copyEnSource from '../data/hecavex/en.yml?raw';
 import copyLtSource from '../data/hecavex/lt.yml?raw';
 import portfolioSource from '../data/portfolio.yml?raw';
+import homeSource from '../data/home.yml?raw';
 import startHereSource from '../data/start-here.yml?raw';
 import publicationClassesSource from '../data/publication_classes.yml?raw';
 import taxonomySource from '../data/taxonomy.yml?raw';
@@ -27,6 +28,7 @@ export const taxonomy = readYaml<Record<string, Localized>>(taxonomySource);
 export const contentTypes = readYaml<Record<string, Localized>>(contentTypesSource);
 export const publicationClasses = readYaml<Record<string, Localized>>(publicationClassesSource);
 export const startHere = readYaml<{ basics: string[]; urgent: string[]; step_further: string[]; in_depth: string[]; glossary: string[] }>(startHereSource);
+export const homeCounts = readYaml<{ latest: number; basics: number }>(homeSource);
 export const glossary = readYaml<{ terms: Array<{ id: string; term: Localized; definition: Localized }> }>(glossarySource);
 type Text = string | Localized;
 interface PortfolioLink { label: Text; url: Text; kind?: string; }
@@ -273,13 +275,19 @@ export const startHerePath: Record<Lang, string> = { en: '/en/start-here/', lt: 
 export const glossaryPath: Record<Lang, string> = { en: '/en/glossary/', lt: '/lt/zodynas/' };
 export const beginnerList = (posts: Post[]): Post[] => curatedBeginnerList(posts, startHere.basics);
 
-export const productNavigation = {
-  en: [
-    ['Overview', '/en/'], ['Research', '/en/research/'], ['Briefings', '/en/briefings/'], ['Projects', '/en/projects/'],
-    ['About', '/en/about/'], ['Speaking', '/en/speaker/'], ['Contact', '/en/contact/']
-  ],
-  lt: [
-    ['Apžvalga', '/lt/'], ['Tyrimai', '/lt/tyrimai/'], ['Apžvalgos', '/lt/apzvalgos/'], ['Projektai', '/lt/projektai/'],
-    ['Apie', '/lt/apie/'], ['Pranešimai', '/lt/pranesejas/'], ['Kontaktai', '/lt/kontaktai/']
-  ]
-} as const;
+export const projectsPath: Record<Lang, string> = { en: '/en/projects/', lt: '/lt/projektai/' };
+
+// Network bar and footer: registry entries with a nav, then the fixed Projects link.
+export const networkLinks = (lang: Lang) => [
+  ...networkNavigation(lang),
+  { id: 'projects', name: copy[lang].net_projects!, href: projectsPath[lang] }
+].map((item) => ({ ...item, external: item.href.startsWith('https://') }));
+
+const sectionKeys = ['nav_start', 'nav_research', 'nav_briefs', 'nav_glossary', 'nav_about', 'nav_speaking', 'nav_contact'];
+const sectionHrefs: Record<Lang, string[]> = {
+  en: [startHerePath.en, '/en/research/', '/en/briefings/', glossaryPath.en, '/en/about/', '/en/speaker/', '/en/contact/'],
+  lt: [startHerePath.lt, '/lt/tyrimai/', '/lt/apzvalgos/', glossaryPath.lt, '/lt/apie/', '/lt/pranesejas/', '/lt/kontaktai/']
+};
+export const productNavigation = Object.fromEntries((['en', 'lt'] as Lang[]).map((lang) => [
+  lang, sectionKeys.map((key, index) => [copy[lang][key]!, sectionHrefs[lang][index]!] as [string, string])
+])) as Record<Lang, Array<[string, string]>>;

@@ -3,11 +3,6 @@ projects:
   - id: research
     order: 1
     kind: service
-    nav:
-      label: Research
-      href:
-        en: /en/research/
-        lt: /lt/tyrimai/
     name: HECAVEX Research
     code: RESEARCH
     status:
@@ -125,7 +120,9 @@ projects:
     order: 4
     kind: service
     nav:
-      label: Data
+      label:
+        en: Data
+        lt: Duomenys
       href:
         en: /data/
         lt: /lt/duomenys/

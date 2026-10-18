@@ -30,7 +30,6 @@
   text-underline-offset: 0.4rem;
 }
 
-.product-identity span,
 .brand-copy small {
   font-family: var(--sans);
   font-size: 0.75rem;

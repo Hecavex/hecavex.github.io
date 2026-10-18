@@ -7,7 +7,7 @@ interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = (en: string, lt: string) => lang === 'lt' ? lt : en;
 const project = (id: string) => portfolioProjects.find((entry) => entry.id === id)!;
-const owner = (id: string) => localized(project(id).nav!.label, lang);
+const owner = (id: string) => project(id).nav ? localized(project(id).nav!.label, lang) : project(id).name;
 
 const catalogues = [
   {

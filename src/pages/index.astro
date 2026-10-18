@@ -1,16 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SpeakingInvitation from '../components/SpeakingInvitation.astro';
-import { dateText, getPublicPosts, latestContentUpdate, networkCards, type Post } from '../lib/site';
+import { copy, dateText, getPublicPosts, startHerePath, type Post } from '../lib/site';
 
 const posts = await getPublicPosts();
 const englishPosts = posts.filter((post) => post.lang === 'en');
 const latestResearch = englishPosts.find((post) => ['primary-research', 'technical-assessment'].includes(post.publicationClass));
 const latestBriefing = englishPosts.find((post) => post.contentType === 'signal-brief');
-const latestUpdate = latestContentUpdate(posts);
-const publishedWorks = new Set(posts.map((post) => post.translationKey)).size;
-const briefingCount = englishPosts.filter((post) => post.contentType === 'signal-brief').length;
-
 const lithuanianEdition = (post: Post | undefined) => post
   ? posts.find((candidate) => candidate.translationKey === post.translationKey && candidate.lang === 'lt')
   : undefined;
@@ -18,41 +14,33 @@ const lithuanianEdition = (post: Post | undefined) => post
 const latestResearchLt = lithuanianEdition(latestResearch);
 const latestBriefingLt = lithuanianEdition(latestBriefing);
 
-const network = networkCards('en');
-// This publication plus each linked surface in the network section.
-const connectedProjects = network.length + 1;
+const { en, lt } = copy;
 ---
 <BaseLayout lang="en" title="HECAVEX | Cyber Threat Intelligence" description="Independent bilingual cyber threat intelligence research and digital investigations by Deividas Lis." canonicalPath="/" alternatePath="/lt/" languageAlternates={{ en: '/en/', lt: '/lt/' }} xDefaultPath="/" type="CollectionPage">
   <div class="shell landing-portal">
     <section class="home-hero landing-hero" aria-labelledby="portal-title">
       <div class="home-hero-copy">
-        <p class="eyebrow">Independent threat intelligence · Nepriklausomi tyrimai</p>
-        <h1 id="portal-title">Intelligence beyond<br /><span>indicators.</span></h1>
-        <p class="hero-deck">Cyber threat intelligence, technical investigations and concise security briefings by Deividas Lis.</p>
-        <p>Original analysis, public research tools and structured data for people who need the evidence, confidence and limitations—not only another indicator list.</p>
+        <p class="eyebrow">{en.root_eyebrow}</p>
+        <h1 id="portal-title">{en.root_h1}</h1>
+        <p class="landing-lt-line" lang="lt">{lt.root_h1}</p>
+        <p class="hero-deck">{en.root_deck}</p>
+        <p class="landing-lt-line" lang="lt">{lt.root_deck}</p>
       </div>
-      <nav class="landing-edition-rail" aria-label="Choose a HECAVEX edition">
+      <nav class="landing-edition-rail" aria-label={en.edition_rail_label}>
         <a href="/en/">
           <span>EN</span>
-          <strong>English edition</strong>
-          <p>Investigations, technical analysis, Signal Briefs and methodology.</p>
-          <small>Open research →</small>
+          <strong>{en.root_edition_name}</strong>
+          <p>{en.root_edition_text}</p>
+          <small>{en.root_edition_open}</small>
         </a>
         <a href="/lt/" lang="lt" hreflang="lt">
           <span>LT</span>
-          <strong>Lietuviškas leidinys</strong>
-          <p>Tyrimai, techninė analizė, Signalų apžvalgos ir metodika.</p>
-          <small>Atverti tyrimus →</small>
+          <strong>{lt.root_edition_name}</strong>
+          <p>{lt.root_edition_text}</p>
+          <small>{lt.root_edition_open}</small>
         </a>
       </nav>
     </section>
-
-    <dl class="landing-index" aria-label="HECAVEX publication index">
-      <div><dt>Published work <span lang="lt">/ Publikuota</span></dt><dd>{publishedWorks} bilingual records</dd></div>
-      <div><dt>Signal Briefs <span lang="lt">/ Apžvalgos</span></dt><dd>{briefingCount} issues per edition</dd></div>
-      <div><dt>Research surfaces <span lang="lt">/ Erdvės</span></dt><dd>{connectedProjects} connected projects</dd></div>
-      <div><dt>Latest update <span lang="lt">/ Atnaujinta</span></dt><dd>{latestUpdate ? dateText(latestUpdate) : '—'}</dd></div>
-    </dl>
 
     <section class="landing-section" aria-labelledby="current-title">
       <header class="section-head landing-section-head">
@@ -88,37 +76,20 @@ const connectedProjects = network.length + 1;
           </footer>
         </article>}
         <aside class="landing-current-card landing-principles">
-          <p class="eyebrow">EDITORIAL RECORD / PRINCIPAI</p>
-          <h3>Evidence before a convenient story.</h3>
-          <p>Sources, confidence, uncertainty, limitations and material corrections stay visible beside the work.</p>
+          <p class="eyebrow">{en.nav_start} / <span lang="lt">{lt.nav_start}</span></p>
+          <h3>{en.root_newcomer_h3}</h3>
+          <p>{en.root_newcomer_p}</p>
+          <p lang="lt">{lt.root_newcomer_p}</p>
           <footer>
-            <span>Independent · public · best effort</span>
-            <nav aria-label="Research methodology">
-              <a href="/en/methodology/">Methodology</a>
-              <a href="/lt/metodika/" lang="lt" hreflang="lt">Metodika</a>
+            <nav aria-label={en.start_title}>
+              <a href={startHerePath.en}>{en.nav_start}</a>
+              <a href={startHerePath.lt} lang="lt" hreflang="lt">{lt.nav_start}</a>
             </nav>
           </footer>
         </aside>
       </div>
     </section>
 
-    <section class="landing-section" aria-labelledby="network-title">
-      <header class="section-head landing-section-head">
-        <div>
-          <p class="eyebrow">HECAVEX NETWORK</p>
-          <h2 id="network-title">One research system. Several public surfaces.</h2>
-          <p>Move from discovery to context and reusable evidence without leaving the same research record.</p>
-        </div>
-        <a href="/en/projects/">How the projects connect →</a>
-      </header>
-      <div class="network-grid landing-network-grid">
-        {network.map((project, index) => <a href={project.href}>
-          <span>{String(index + 1).padStart(2, '0')}</span>
-          <strong>{project.title}</strong>
-          <small>{project.summary}</small>
-        </a>)}
-      </div>
-    </section>
     <SpeakingInvitation lang="en" />
   </div>
 </BaseLayout>

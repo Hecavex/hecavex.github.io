@@ -1,57 +1,55 @@
 ---
-import { networkNavigation, productNavigation, type Lang } from '../lib/site';
+import { copy, networkLinks, productNavigation, type Lang } from '../lib/site';
 
 interface Props { lang: Lang; alternatePath?: string; }
 const { lang, alternatePath } = Astro.props;
+const t = copy[lang];
 const path = Astro.url.pathname;
-const active = (href: string) => href.endsWith('/') ? path === href || (href.includes('/research/') || href.includes('/tyrimai/')) && path.startsWith(href) : path === href;
-const networkItems = networkNavigation(lang);
-const activeNetworkItem = (networkItems.find((item) => item.href.startsWith('/') && path.startsWith(item.href)) ?? networkItems[0])?.id;
-const menuLabel = lang === 'lt' ? 'Atverti navigacijos meniu' : 'Open navigation menu';
-const searchLabel = lang === 'lt' ? 'Paieška' : 'Search';
-const otherLanguage = lang === 'lt' ? 'EN' : 'LT';
-const languageHref = alternatePath ?? (lang === 'lt' ? '/en/' : '/lt/');
+// Research and Signal Briefs also own their article pages.
+const prefixed = ['/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/'];
+const active = (href: string) => path === href || (prefixed.includes(href) && path.startsWith(href));
+const networkItems = networkLinks(lang);
+const activeNetworkItem = networkItems.find((item) => !item.external && path.startsWith(item.href))?.id;
+const sections = productNavigation[lang];
+const otherLanguage = lang === 'lt' ? 'en' : 'lt';
+const languageHref = alternatePath ?? `/${otherLanguage}/`;
 ---
 <header class="site-header" data-portfolio-shell="v2">
   <div class="network-bar shell-frame">
-    <a class="brand" href={`/${lang}/`} aria-label={lang === 'lt' ? 'HECAVEX tyrimai' : 'HECAVEX Research'}>
+    <a class="brand" href={`/${lang}/`}>
       <img src="/assets/img/brand/hecavex-mark.svg" alt="" width="36" height="36" />
-      <span class="brand-copy"><strong>HECAVEX</strong><small>{lang === 'lt' ? 'Tyrimai / nepriklausomas leidinys' : 'Research / independent publication'}</small></span>
+      <span class="brand-copy"><strong>HECAVEX</strong><small>{t.brand_sub}</small></span>
     </a>
-    <nav class="portfolio-navigation" aria-label="HECAVEX network">
-      {networkItems.map((item) => <a href={item.href} aria-current={item.id === activeNetworkItem ? 'page' : undefined}>{item.name}</a>)}
+    <nav class="portfolio-navigation" aria-label={t.net_label}>
+      {networkItems.map((item) => <a href={item.href} aria-current={item.id === activeNetworkItem ? 'page' : undefined}>{item.name}{item.external && <span aria-hidden="true"> ↗</span>}</a>)}
     </nav>
     <details class="mobile-navigation" data-mobile-navigation>
-      <summary aria-label={menuLabel}>
+      <summary aria-label={t.menu_open}>
         <svg class="menu-open-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
         <svg class="menu-close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
-        <span>{lang === 'lt' ? 'Meniu' : 'Menu'}</span>
+        <span>{t.menu_label}</span>
       </summary>
       <div class="mobile-navigation-panel">
-        <nav class="mobile-product-navigation" aria-label={lang === 'lt' ? 'Tyrimų skyriai' : 'Research sections'}>
-          <span class="navigation-label">HECAVEX Research</span>
-          {productNavigation[lang].map(([name, href]) => <a href={href} aria-current={active(href) ? 'page' : undefined}>{name}</a>)}
-          <button type="button" class="navigation-button" data-search-open>{searchLabel}</button>
-          <a href={languageHref} hreflang={lang === 'lt' ? 'en' : 'lt'}>{otherLanguage}</a>
+        <nav class="mobile-product-navigation" aria-label={t.menu_sections}>
+          <span class="navigation-label">{t.menu_sections}</span>
+          {sections.map(([name, href]) => <a href={href} aria-current={active(href) ? 'page' : undefined}>{name}</a>)}
+          <button type="button" class="navigation-button" data-search-open>{t.search}</button>
+          <a href={languageHref} lang={otherLanguage} hreflang={otherLanguage}>{otherLanguage.toUpperCase()}</a>
         </nav>
-        <nav class="mobile-portfolio-navigation" aria-label="HECAVEX network">
-          <span class="navigation-label">HECAVEX network</span>
-          {networkItems.map((item) => <a href={item.href} aria-current={item.id === activeNetworkItem ? 'page' : undefined}>{item.name}</a>)}
+        <nav class="mobile-portfolio-navigation" aria-label={t.menu_more}>
+          <span class="navigation-label">{t.menu_more}</span>
+          {networkItems.map((item) => <a href={item.href} aria-current={item.id === activeNetworkItem ? 'page' : undefined}>{item.name}{item.external && <span aria-hidden="true"> ↗</span>}</a>)}
         </nav>
       </div>
     </details>
   </div>
   <div class="product-bar shell-frame">
-    <a class="product-identity" href={`/${lang}/`}>
-      <strong>HECAVEX Research</strong>
-      <span>{lang === 'lt' ? 'Dvikalbis CTI leidinys' : 'Bilingual CTI publication'}</span>
-    </a>
-    <nav class="product-navigation" aria-label={lang === 'lt' ? 'Tyrimų skyriai' : 'Research sections'}>
-      {productNavigation[lang].map(([name, href]) => <a href={href} aria-current={active(href) ? 'page' : undefined}>{name}</a>)}
+    <nav class="product-navigation" aria-label={t.menu_sections}>
+      {sections.map(([name, href]) => <a href={href} aria-current={active(href) ? 'page' : undefined}>{name}</a>)}
     </nav>
     <div class="header-utilities">
-      <a class="language-link" href={languageHref} hreflang={lang === 'lt' ? 'en' : 'lt'}>{otherLanguage}</a>
-      <button type="button" class="search-trigger" data-search-open aria-haspopup="dialog">⌕ <span>{searchLabel}</span></button>
+      <a class="language-link" href={languageHref} lang={otherLanguage} hreflang={otherLanguage}>{otherLanguage.toUpperCase()}</a>
+      <button type="button" class="search-trigger" data-search-open aria-haspopup="dialog">⌕ <span>{t.search}</span></button>
     </div>
   </div>
 </header>
