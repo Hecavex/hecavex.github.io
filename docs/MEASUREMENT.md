@@ -9,6 +9,7 @@ This is an operating note for the maintained HECAVEX publication. The reader-fac
 The shared Astro component reads `PUBLIC_HECAVEX_ANALYTICS_TOKEN` at build time. When the value is present, every generated HECAVEX shell document contains exactly one loader immediately before the closing `body` tag. The loader:
 
 - stops before making an analytics request when the browser reports `Do Not Track: 1`;
+- waits for the page's `load` event, so the third-party request never delays it (page timings are still read from the browser's buffered performance entries);
 - creates the Cloudflare script as a JavaScript module;
 - loads only `https://static.cloudflareinsights.com/beacon.min.js`; and
 - passes the configured site tag through `data-cf-beacon`.

@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content';
+import ContactEmail from '../../components/ContactEmail.astro';
 import ContentOutline from '../../components/ContentOutline.astro';
 import ResearchTasks from '../../components/ResearchTasks.astro';
 import EnquiryDraft from '../../components/EnquiryDraft.astro';
@@ -8,6 +9,7 @@ import PageActionRail from '../../components/PageActionRail.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import PostCard from '../../components/PostCard.astro';
 import ProjectDirectory from '../../components/ProjectDirectory.astro';
+import SpeakerContact from '../../components/SpeakerContact.astro';
 import StartHere from '../../components/StartHere.astro';
 import { contactRoutesFor, pageFactsFor, researchMapFor, type OutlineItem } from '../../data/page-context';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -73,6 +75,7 @@ const researchMap = researchMapFor(lang, {
     </> : layout === 'briefings' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} eyebrow="HECAVEX SIGNAL BRIEF" />
       <p class="feed-link"><a href={`/${lang}/${lang === 'lt' ? 'apzvalgos' : 'briefings'}/feed.xml`}>{lang === 'lt' ? 'Prenumeruoti apžvalgų RSS' : 'Subscribe to briefing RSS'} →</a></p>
+      <h2 class="visually-hidden">{hx.briefings_list_h2}</h2>
       <div class="briefing-list">{briefings.map((post) => <PostCard {post} prominent />)}</div>
     </> : layout === 'archive-hx' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} />
@@ -97,7 +100,7 @@ const researchMap = researchMapFor(lang, {
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} facts={pageFacts} anchorId="page-start" />
       {showStandardOutline && <ContentOutline {lang} headings={standardOutlineHeadings} scopeId="standard-page-scope" condensed={standardOutlineHeadings.length > 40} />}
       {showActionRail && <PageActionRail {lang} routes={contactRoutesFor(lang)} />}
-      <div class="prose"><Content />{showActionRail && <EnquiryDraft {lang} />}</div>
+      <div class="prose">{showActionRail && <ContactEmail {lang} />}{entry.data.translation_key === 'speaker-media' && <SpeakerContact {lang} />}<Content />{showActionRail && <EnquiryDraft {lang} />}</div>
     </article>}
   </div>
 </BaseLayout>

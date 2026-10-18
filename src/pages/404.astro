@@ -1,6 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { copy, startHerePath, type Lang } from '../lib/site';
+// GitHub Pages serves this one file for every missing path, in either language, so it
+// carries both editions without needing JavaScript to pick one.
+const editions: Array<{ lang: Lang; home: string; research: string }> = [
+  { lang: 'en', home: '/en/', research: '/en/research/' },
+  { lang: 'lt', home: '/lt/', research: '/lt/tyrimai/' }
+];
 ---
-<BaseLayout lang="en" title="Signal lost" description="The requested HECAVEX page could not be found." canonicalPath="/404.html" noindex>
-  <section class="shell not-found"><p class="eyebrow">HTTP / 404</p><h1>Signal lost.</h1><p>The requested page could not be found, may have moved, or is no longer available.</p><a class="button button--primary" href="/en/">Return to HECAVEX Research</a></section>
+<BaseLayout lang="en" title="Page not found | Puslapis nerastas" description="The requested HECAVEX page could not be found. Prašomas HECAVEX puslapis nerastas." canonicalPath="/404.html" noindex>
+  <section class="shell not-found not-found--bilingual">
+    <p class="eyebrow">HTTP / 404</p>
+    <h1><span lang="en">{copy.en.notfound_h1}</span> <span lang="lt">{copy.lt.notfound_h1}</span></h1>
+    <div class="not-found__editions">
+      {editions.map(({ lang, home, research }) => <section lang={lang} class="not-found__edition" aria-labelledby={`not-found-${lang}`}>
+        <h2 id={`not-found-${lang}`}>{copy[lang].notfound_edition}</h2>
+        <p>{copy[lang].notfound_p}</p>
+        <ul class="not-found__links">
+          <li><a href={home}>{copy[lang].notfound_home}</a></li>
+          <li><a href={startHerePath[lang]}>{copy[lang].notfound_start}</a></li>
+          <li><a href={research}>{copy[lang].notfound_research}</a></li>
+        </ul>
+        <button type="button" class="button button--primary" data-search-open>{copy[lang].search}</button>
+      </section>)}
+    </div>
+  </section>
 </BaseLayout>

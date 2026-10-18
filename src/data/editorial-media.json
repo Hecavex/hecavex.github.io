@@ -193,6 +193,20 @@
           "height": 686,
           "bytes": 292718,
           "sha256": "a2b938d4ac589bf8cc6b93c262c7edf68cbb5e981d4cbfd982644ab85f70d175"
+        },
+        {
+          "path": "/assets/img/posts/2024-11-10-github/main/cover-hero-v1.webp",
+          "width": 1200,
+          "height": 686,
+          "bytes": 190898,
+          "sha256": "01519d8b764c34c1ea06d97aaa6c0d9052878d532973df723bcded3b85dfd6b9"
+        },
+        {
+          "path": "/assets/img/posts/2024-11-10-github/main/cover-card-v1.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 86432,
+          "sha256": "0ba9c12f4052f936c9c4eaee26d83c0c7d6b848dbcc9153d58c6956d9efdf23f"
         }
       ]
     },

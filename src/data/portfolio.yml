@@ -208,23 +208,3 @@ projects:
       summary:
         en: "Open-source, self-hosted tool for collecting and reviewing candidate impersonation domains."
         lt: "Atvirojo kodo įrankis, diegiamas savo aplinkoje, galimiems apsimetimo domenams rinkti ir peržiūrėti."
-
-  - id: signalgraph
-    order: 5
-    kind: self-hosted
-    name: SignalGraph
-    status:
-      en: v1.0.0 release candidate
-      lt: v1.0.0 laidos kandidatas
-    description:
-      en: "A self-hosted CTI workspace for entities, source-backed relationships, investigations and reports. It is not yet a stable release. Source is available under the Hecavex Internal Use and Security Research License 1.0, not an OSI-approved open-source licence. Review redistribution, client-service and other restrictions before use."
-      lt: "Savo aplinkoje diegiama CTI darbo erdvė objektams, šaltiniais pagrįstiems ryšiams, tyrimams ir ataskaitoms. Tai dar ne stabili laida. Kodas prieinamas pagal Hecavex Internal Use and Security Research License 1.0, o ne OSI patvirtintą atvirojo kodo licenciją. Prieš naudojimą patikrinkite platinimo, klientų paslaugų ir kitus apribojimus."
-    links:
-      - label:
-          en: Source and release status
-          lt: Kodas ir laidos būsena
-        url: https://github.com/Hecavex/signalgraph
-      - label:
-          en: Use terms
-          lt: Naudojimo sąlygos
-        url: https://github.com/Hecavex/signalgraph/blob/main/LICENSE

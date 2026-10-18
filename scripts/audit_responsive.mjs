@@ -671,7 +671,8 @@ try {
 
   const noScript = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 900 }, reducedMotion: 'reduce', serviceWorkers: 'block' });
   const page = await noScript.newPage();
-  await page.goto(`${baseUrl}/en/`, { waitUntil: 'domcontentloaded' });
+  // Measure after 'load': the stylesheet is render-blocking, so readers never see the unstyled layout (the BibTeX and code blocks wrap via CSS).
+  await page.goto(`${baseUrl}/en/`, { waitUntil: 'load' });
   await page.locator('.mobile-navigation > summary').click();
   const noScriptState = await page.evaluate(() => ({
     overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
@@ -691,7 +692,7 @@ try {
   ) fail('/en/ (no JavaScript)', 390, 'native details navigation is incomplete');
   if (!noScriptState.purpose) fail('/en/ (no JavaScript)', 390, 'page purpose is unavailable');
 
-  await page.goto(`${baseUrl}/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/`, { waitUntil: 'domcontentloaded' });
+  await page.goto(`${baseUrl}/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/`, { waitUntil: 'load' });
   const noScriptOutline = await page.evaluate(() => {
     const outline = document.querySelector('.content-outline--mobile');
     const links = [...(outline?.querySelectorAll('a[href^="#"]') ?? [])];
@@ -708,7 +709,7 @@ try {
   if (noScriptOutline.missingTargets.length) fail('/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/ (no JavaScript)', 390, `outline targets are missing: ${noScriptOutline.missingTargets.join(', ')}`);
   if (noScriptOutline.overflow > 1) fail('/lt/tyrimai/unipark-smishing-infrastrukturos-tyrimas/ (no JavaScript)', 390, `page overflows horizontally by ${noScriptOutline.overflow}px`);
   for (const route of ['/en/research/fakegit-ai-skills-mutable-downloads/', '/lt/tyrimai/fakegit-ai-igudziai-kintantys-atsisiuntimai/']) {
-    await page.goto(baseUrl + route, { waitUntil: 'domcontentloaded' });
+    await page.goto(baseUrl + route, { waitUntil: 'load' });
     const article = await page.evaluate(() => ({
       title: document.querySelector('main h1')?.textContent.trim(),
       overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,

@@ -745,3 +745,11 @@ body[data-language="lt"] .table-scroll-hint::before {
   max-width: var(--content);
 }
 
+
+.hx-reply-time {
+  color: var(--text);
+}
+
+.speaker-contact p {
+  margin-bottom: 0.4rem;
+}

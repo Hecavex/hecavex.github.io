@@ -1,0 +1,17 @@
+---
+import { copy, type Lang } from '../lib/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const c = copy[lang];
+const labelId = `contact-email-${lang}`;
+---
+<aside class="hx-page-cta hx-page-cta--compact" aria-labelledby={labelId}>
+  <div>
+    <p class="hx-page-cta__eyebrow">{c.contact_email_eyebrow}</p>
+    <h2 id={labelId}>info@hecavex.com</h2>
+    <p>{c.contact_email_brief} <span class="hx-reply-time">{c.contact_reply_time}</span> {c.contact_media_deadline}</p>
+  </div>
+  <div class="hx-page-cta__actions">
+    <a class="hx-button hx-button--primary" href="mailto:info@hecavex.com">{c.contact_email_button}</a>
+  </div>
+</aside>
