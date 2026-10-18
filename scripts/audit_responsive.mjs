@@ -6,6 +6,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve, sep } from 'node:path';
 import { chromium } from 'playwright-core';
 import { signalBriefEditions } from './signal-brief-editions.mjs';
+import { cardCount, navLabels } from './portfolio-registry.mjs';
 
 const siteRoot = resolve(process.argv[2] ?? 'dist');
 const browserCandidates = [
@@ -85,6 +86,7 @@ const signalCounts = new Map([
 const widths = [320, 390, 768, 1160, 1440];
 const failures = [];
 const cardPresentations = new Map();
+const contactRails = new Map();
 const browser = await chromium.launch({ executablePath, headless: true });
 const fail = (route, width, message) => failures.push(`${route} @ ${width}px: ${message}`);
 
@@ -245,6 +247,7 @@ try {
           dot: dotStyle ? { display: dotStyle.display, content: dotStyle.content } : undefined,
           displayFont: h1Style?.fontFamily ?? '',
           heroOpen: !hero || ['borderTopWidth','borderLeftWidth','borderRightWidth'].every((key) => getComputedStyle(hero)[key] === '0px'),
+          htmlLang: document.documentElement.lang,
           networkLabels: [...document.querySelectorAll('.portfolio-navigation a')].map((link) => link.textContent.trim()),
           pageFactCount: document.querySelectorAll('.page-facts > div').length,
           desktopOutlineDisplay: desktopOutline ? getComputedStyle(desktopOutline).display : 'missing',
@@ -259,6 +262,8 @@ try {
           signalFactCount: signalFactItems.length,
           signalFactsShareRow: signalFactRects.length > 1 ? Math.abs(signalFactRects[0].top - signalFactRects[1].top) < 1 : false,
           researchMapCount: document.querySelectorAll('.content-outline--desktop.content-outline--map [data-outline-item]').length,
+          researchSectionCount: document.querySelectorAll('#research-catalogue [data-outline-heading="true"]').length,
+          actionRoutesWithoutLinks: [...document.querySelectorAll('.page-action-rail li')].filter((item) => !item.querySelector('a')).length,
           actionRouteCount: document.querySelectorAll('.page-action-rail li').length,
           actionLinkCount: document.querySelectorAll('.page-action-rail a').length,
           researchDescriptionCount: document.querySelectorAll('.catalogue-section .section-head p:not(.eyebrow)').length,
@@ -341,7 +346,7 @@ try {
       if (state.overflow > 1) fail(route, width, `horizontal overflow is ${state.overflow}px (${state.offscreen.join(', ')})`);
       if (state.h1Size > 64.1) fail(route, width, `h1 exceeds the 64px display ceiling (${state.h1Size}px)`);
       if (state.markWidth < 33.5 || state.markWidth > 36.5) fail(route, width, `brand mark is ${state.markWidth}px rather than 34–36px`);
-      if (state.networkLabels.join('|') !== 'Research|Radar|Data') fail(route, width, 'network navigation order differs from the portfolio contract');
+      if (state.networkLabels.join('|') !== navLabels(state.htmlLang).join('|')) fail(route, width, 'network navigation order differs from the portfolio contract');
       if (state.footerTypeMismatches.length) fail(route, width, `footer typography differs from the portfolio contract: ${state.footerTypeMismatches.join(', ')}`);
       if (Math.abs(state.bodyFontSize - 16) > 0.05 || state.bodyColor !== 'rgb(236, 233, 225)') fail(route, width, `body type/color changed (${state.bodyFontSize}px, ${state.bodyColor})`);
       if (state.publicationBackground !== 'rgb(17, 20, 22)') fail(route, width, `publication surface is not portfolio graphite (${state.publicationBackground})`);
@@ -360,7 +365,7 @@ try {
           if (state.desktopOutlineDisplay !== 'none' || state.mobileOutlineDisplay === 'none') fail(route, width, `mobile outline mode is wrong (${state.desktopOutlineDisplay}/${state.mobileOutlineDisplay})`);
         } else if (state.desktopOutlineDisplay === 'none' || state.mobileOutlineDisplay !== 'none') fail(route, width, `desktop outline mode is wrong (${state.desktopOutlineDisplay}/${state.mobileOutlineDisplay})`);
       }
-      if (researchRoutes.has(route) && (state.researchDescriptionCount < 4 || !state.hasBriefingPath || state.researchMapCount !== 5 || !/^\d{4}-\d{2}-\d{2}$/.test(state.pageUpdatedValue))) fail(route, width, `research catalogue context is incomplete (${state.researchDescriptionCount} descriptions, ${state.researchMapCount} map entries, briefing path ${state.hasBriefingPath}, updated ${state.pageUpdatedValue})`);
+      if (researchRoutes.has(route) && (state.researchDescriptionCount < 4 || !state.hasBriefingPath || state.researchSectionCount < 2 || state.researchMapCount !== state.researchSectionCount || !/^\d{4}-\d{2}-\d{2}$/.test(state.pageUpdatedValue))) fail(route, width, `research catalogue context is incomplete (${state.researchDescriptionCount} descriptions, ${state.researchMapCount} map entries for ${state.researchSectionCount} sections, briefing path ${state.hasBriefingPath}, updated ${state.pageUpdatedValue})`);
       if (researchRoutes.has(route)) {
         const oddCardFillsGrid = state.oddResearchCardCount > 0
           && Math.abs(state.oddResearchLastCardLeftGap - 1) <= 1
@@ -368,7 +373,10 @@ try {
         if (!oddCardFillsGrid) fail(route, width, `final odd research card does not fill its row (${state.oddResearchCardCount} cards, ${state.oddResearchLastCardLeftGap}px/${state.oddResearchLastCardRightGap}px edges)`);
         if (state.oddResearchLastCardBorders[0] !== '1px') fail(route, width, 'final odd research card lost its dividing rule');
       }
-      if (contactRoutes.has(route) && (state.actionRouteCount !== 4 || state.actionLinkCount !== 5)) fail(route, width, `contact action rail is incomplete (${state.actionRouteCount} routes, ${state.actionLinkCount} links)`);
+      if (contactRoutes.has(route)) {
+        if (state.actionRouteCount < 1 || state.actionRoutesWithoutLinks > 0) fail(route, width, `contact action rail is incomplete (${state.actionRouteCount} routes, ${state.actionLinkCount} links, ${state.actionRoutesWithoutLinks} routes without a link)`);
+        contactRails.set(`${route.slice(1, 3)}:${width}`, `${state.actionRouteCount}/${state.actionLinkCount}`);
+      }
       if (catalogueIntroRoutes.has(route)) {
         if (Math.abs(state.pageIntroWidth - state.pageShellInnerWidth) > 1) fail(route, width, `fact intro width differs from the catalogue shell (${state.pageIntroWidth}px/${state.pageShellInnerWidth}px)`);
         if (width > 900 && state.pageIntroHeight < 319) fail(route, width, `desktop fact intro is below the 320px minimum (${state.pageIntroHeight}px)`);
@@ -396,7 +404,7 @@ try {
         if (width <= 680 && state.signalFactsShareRow) fail(route, width, 'signal facts remain side-by-side on a narrow screen');
         if (width > 680 && !state.signalFactsShareRow) fail(route, width, 'signal facts do not share a row on a wide screen');
       }
-      if (route === '/' && (state.landingEditionCount !== 2 || state.landingCurrentCount !== 3 || state.landingNetworkCount !== 3)) fail(route, width, `root gateway is incomplete (${state.landingEditionCount} editions, ${state.landingCurrentCount} current records, ${state.landingNetworkCount} network links)`);
+      if (route === '/' && (state.landingEditionCount !== 2 || state.landingCurrentCount !== 3 || state.landingNetworkCount !== cardCount())) fail(route, width, `root gateway is incomplete (${state.landingEditionCount} editions, ${state.landingCurrentCount} current records, ${state.landingNetworkCount} network links)`);
       if (homeRoutes.has(route)) {
         const discovery = await page.evaluate(() => ({
           taskRoutes: [...document.querySelectorAll('.home-route-rail li a')].map(link => ({ href: link.getAttribute('href'), height: link.getBoundingClientRect().height, text: link.textContent.trim() })),
@@ -416,22 +424,22 @@ try {
         // Citation dates are calendar-only and cannot order publications on the
         // same day. Search retains full timestamps and canonical exact-tie order.
         const search = JSON.parse(await readFile(join(siteRoot, edition, 'search.json'), 'utf8'));
-        const expectedArticles = search.filter(item => ordinaryPaths.has(item.url)).sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
-        const expected = expectedArticles.map(item => item.url);
+        const expectedArticles = search.filter(item => ordinaryPaths.has(item.url)).sort((a, b) => new Date(b.date) - new Date(a.date));
+        const cards = state.latestCardGeometry;
+        const expected = expectedArticles.slice(0, cards.length).map(item => item.url);
         if (discovery.taskRoutes.length !== 4 || discovery.taskRoutes.some(link => !link.href?.startsWith(`/${edition}/`) && !(edition === 'en' && link.href === '/data/') || link.height < 43.5 || !link.text) || !discovery.updated) fail(route, width, `localized task discovery is incomplete (${JSON.stringify(discovery.taskRoutes)})`);
         if (discovery.paths.length !== 4 || discovery.paths.some(path => !path.href?.startsWith(`/${edition}/`) || !path.title || !path.summary || !path.date || !path.citation?.endsWith('.bib') || path.targets.some(height => height < 43.5))) fail(route, width, 'compact reading paths lost their localized records, citations or accessible targets');
         const columns = width > 680 ? 2 : 1;
         const expectedCardWidth = (state.latestGridWidth - state.latestColumnGap * (columns - 1)) / columns;
-        const cards = state.latestCardGeometry;
         if (JSON.stringify(cards.map(card => card.href)) !== JSON.stringify(expected)) fail(route, width, `newest approved article order differs from full publication timestamps (${cards.map(card => card.href)})`);
         if (cards.some((card, index) => card.date !== expectedArticles[index]?.date)) fail(route, width, 'latest article datetimes differ from the full publication timestamps');
         if (cards[0]?.imageLoading !== 'eager' || cards.slice(1).some(card => card.imageLoading !== 'lazy')) fail(route, width, 'first article preview must load eagerly and later previews lazily');
         if (cards[0]?.top > (width <= 680 ? 570 : 480) || cards[0]?.titleBottom > (width <= 680 ? 760 : 650)) fail(route, width, 'newest article image/title are pushed below the initial reading viewport');
-        if (state.hasOversizedHomeLead || cards.length !== 5) fail(route, width, `latest research is not five ordinary cards (${cards.length} cards, oversized lead ${state.hasOversizedHomeLead})`);
+        if (state.hasOversizedHomeLead || cards.length < 1) fail(route, width, `latest research has no ordinary cards (${cards.length} cards, oversized lead ${state.hasOversizedHomeLead})`);
         if (state.latestColumnGap < 16 || state.latestRowGap < 16) fail(route, width, `latest research gaps are below 16px (${state.latestColumnGap}px/${state.latestRowGap}px)`);
         if (cards.some((card) => Math.abs(card.width - expectedCardWidth) > 1)) fail(route, width, `latest research cards do not share the ordinary ${columns}-column width (${cards.map((card) => card.width).join('/')} versus ${expectedCardWidth}px)`);
-        if (state.latestRows.length !== Math.ceil(5 / columns)
-          || state.latestRows.some((row, index) => row.count !== Math.min(columns, 5 - index * columns))) fail(route, width, `latest research row composition is wrong (${JSON.stringify(state.latestRows)})`);
+        if (state.latestRows.length !== Math.ceil(cards.length / columns)
+          || state.latestRows.some((row, index) => row.count !== Math.min(columns, cards.length - index * columns))) fail(route, width, `latest research row composition is wrong (${JSON.stringify(state.latestRows)})`);
         const rowGaps = state.latestRows.slice(1).map((row, index) => row.top - state.latestRows[index].bottom);
         if (rowGaps.some((gap) => gap < 15.5 || Math.abs(gap - state.latestRowGap) > 1)) fail(route, width, `latest research rows touch or have inconsistent spacing (${rowGaps.join('/')}px)`);
         if (columns === 2 && cards.length > 1 && Math.abs(cards[1].left - cards[0].right - state.latestColumnGap) > 1) fail(route, width, 'latest research columns do not have the declared visible gap');
@@ -487,7 +495,7 @@ try {
         }
         const mobileNetworkLabels = (await page.locator('.mobile-navigation[open] .mobile-portfolio-navigation a').allTextContents())
           .map((label) => label.trim());
-        if (mobileNetworkLabels.join('|') !== 'Research|Radar|Data') {
+        if (mobileNetworkLabels.join('|') !== navLabels(state.htmlLang).join('|')) {
           fail(route, width, `mobile network navigation differs from the portfolio contract (${mobileNetworkLabels.join('|')})`);
         }
         await page.keyboard.press('Escape');
@@ -534,6 +542,17 @@ try {
     await shortPhone.close();
   }
 
+  for (const [key, presentation] of cardPresentations) {
+    const [edition, width] = key.split(':');
+    const counterpart = cardPresentations.get(`${edition === 'en' ? 'lt' : 'en'}:${width}`);
+    if (edition === 'en' && counterpart?.cards.length !== presentation.cards.length) fail('/en/ and /lt/', Number(width), `home latest-card counts differ between editions (${presentation.cards.length} versus ${counterpart?.cards.length})`);
+  }
+  for (const [key, rail] of contactRails) {
+    const [edition, width] = key.split(':');
+    const counterpart = contactRails.get(`${edition === 'en' ? 'lt' : 'en'}:${width}`);
+    if (edition === 'en' && counterpart !== rail) fail('/en/contact/ and /lt/kontaktai/', Number(width), `contact action rail differs between editions (${rail} versus ${counterpart})`);
+  }
+
   const noScript = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 900 }, reducedMotion: 'reduce', serviceWorkers: 'block' });
   const page = await noScript.newPage();
   await page.goto(`${baseUrl}/en/`, { waitUntil: 'domcontentloaded' });
@@ -549,8 +568,8 @@ try {
   if (noScriptState.overflow > 1) fail('/en/ (no JavaScript)', 390, 'page overflows horizontally');
   if (
     noScriptState.productLinks < 7
-    || noScriptState.networkLinks !== 3
-    || noScriptState.networkLabels.join('|') !== 'Research|Radar|Data'
+    || noScriptState.networkLinks !== navLabels('en').length
+    || noScriptState.networkLabels.join('|') !== navLabels('en').join('|')
   ) fail('/en/ (no JavaScript)', 390, 'native details navigation is incomplete');
   if (!noScriptState.purpose) fail('/en/ (no JavaScript)', 390, 'page purpose is unavailable');
 

@@ -6,6 +6,7 @@ Use [MAINTENANCE.md](MAINTENANCE.md) for reproducible setup, verification and re
 
 | Responsibility | Source | Verification |
 | --- | --- | --- |
+| HECAVEX project list (nav, network cards, JSON-LD sites, `llms.txt`, Projects page, audit expectations) | `src/data/portfolio.yml` (single source), `src/lib/site.ts`, `src/pages/llms.txt.ts`, `scripts/portfolio-registry.mjs`; to add or retire a project, edit `portfolio.yml` | `scripts/validate-content.mjs`, `audit-site.mjs`, `audit_responsive.mjs` |
 | Root language gateway | `src/pages/index.astro` | route, responsive and reader-journey audits |
 | EN/LT home | `src/pages/[lang]/index.astro` | five-card parity and responsive checks |
 | Home reader-task routes and content date | `src/components/HomeTaskRoutes.astro` | `scripts/audit_responsive.mjs`: bilingual routes, real content-update time, accessible targets; static links work without JavaScript |

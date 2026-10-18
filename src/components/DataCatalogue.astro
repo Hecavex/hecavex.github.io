@@ -2,17 +2,19 @@
 import PageHeader from './PageHeader.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-import type { Lang } from '../lib/site';
+import { localized, portfolioProjects, type Lang } from '../lib/site';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = (en: string, lt: string) => lang === 'lt' ? lt : en;
+const project = (id: string) => portfolioProjects.find((entry) => entry.id === id)!;
+const owner = (id: string) => localized(project(id).nav!.label, lang);
 
 const catalogues = [
   {
     index: '01',
     id: 'radar',
-    name: 'HECAVEX Radar',
-    owner: 'Radar',
+    name: project('radar').name,
+    owner: owner('radar'),
     cadence: t("Automated, sampled collection", "Automatizuotas, atrankinis rinkimas"),
     description: t("Potential phishing and impersonation candidates relevant to Lithuania. Automated matches are observations for review, not maliciousness verdicts.", "Lietuvai aktualūs galimo phishing ir apsimetimo kandidatai. Automatiniai sutapimai yra peržiūrai skirti stebėjimai, ne kenkėjiškumo verdiktai."),
     links: [
@@ -27,8 +29,8 @@ const catalogues = [
   {
     index: '02',
     id: 'research',
-    name: 'HECAVEX Research',
-    owner: 'Research',
+    name: project('research').name,
+    owner: owner('research'),
     cadence: t('Approved publication metadata', 'Patvirtintų publikacijų metaduomenys'),
     description: t('Citable metadata for the bilingual publication archive. Language editions are linked, not counted as separate investigations. Article versions and recorded review dates stay distinct.', 'Dvikalbio publikacijų archyvo metaduomenys citavimui. Kalbinės versijos susietos ir nelaikomos atskirais tyrimais. Straipsnio versija atskiriama nuo užfiksuotos peržiūros datos.'),
     links: [

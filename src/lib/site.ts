@@ -25,7 +25,29 @@ export const taxonomy = readYaml<Record<string, Localized>>(taxonomySource);
 export const contentTypes = readYaml<Record<string, Localized>>(contentTypesSource);
 export const publicationClasses = readYaml<Record<string, Localized>>(publicationClassesSource);
 export const glossary = readYaml<{ terms: Array<{ id: string; term: Localized; definition: Localized }> }>(glossarySource);
-export const portfolio = readYaml<{ owner: string; projects: Array<Record<string, unknown>> }>(portfolioSource);
+type Text = string | Localized;
+interface PortfolioLink { label: Text; url: Text; kind?: string; }
+export interface PortfolioProject {
+  id: string;
+  order: number;
+  kind: 'service' | 'self-hosted';
+  name: string;
+  code?: string;
+  status: Text;
+  purpose?: Text;
+  audience?: Text;
+  relationship?: Text;
+  limitations?: Text;
+  description?: Text;
+  links: PortfolioLink[];
+  site?: string;
+  nav?: { label: Text; href: Text };
+  card?: { title: Text; href: Text; summary: Text };
+}
+export const portfolio = readYaml<{ owner: string; projects: PortfolioProject[] }>(portfolioSource);
+
+export const localized = (value: Text | undefined, lang: Lang) => typeof value === 'object' ? value[lang] : value ?? '';
+export const portfolioProjects = [...portfolio.projects].sort((a, b) => a.order - b.order);
 
 const defaults: Array<[string, string]> = [
   ['/blogs/', 'commentary'],
@@ -229,11 +251,13 @@ export const categoryPath = (lang: Lang, slug: string) => slug === 'security-bri
   ? (lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/')
   : `/${lang}/${lang === 'lt' ? 'kategorijos' : 'categories'}/${slug}/`;
 
-export const networkNavigation = (lang: Lang) => [
-  { name: 'Research', href: lang === 'lt' ? '/lt/tyrimai/' : '/en/research/' },
-  { name: 'Radar', href: 'https://radar.hecavex.com/' },
-  { name: 'Data', href: lang === 'lt' ? '/lt/duomenys/' : '/data/' }
-] as const;
+export const networkNavigation = (lang: Lang) => portfolioProjects
+  .filter((project) => project.nav)
+  .map(({ id, nav }) => ({ id, name: localized(nav!.label, lang), href: localized(nav!.href, lang) }));
+
+export const networkCards = (lang: Lang) => portfolioProjects
+  .filter((project) => project.card)
+  .map(({ id, card }) => ({ id, title: localized(card!.title, lang), summary: localized(card!.summary, lang), href: localized(card!.href, lang) }));
 
 export const productNavigation = {
   en: [

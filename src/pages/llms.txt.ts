@@ -1,4 +1,8 @@
-# HECAVEX
+import type { APIRoute } from 'astro';
+import { networkCards } from '../lib/site';
+
+const origin = 'https://hecavex.com';
+const head = `# HECAVEX
 
 > Independent bilingual cyber threat intelligence research and digital investigations by Deividas Lis.
 
@@ -45,12 +49,20 @@ HECAVEX is a public, read-only publication. Cite canonical article URLs and pres
 
 ## HECAVEX network
 
-- [Radar](https://radar.hecavex.com/): Potential Lithuanian phishing and impersonation signals; candidates are not maliciousness verdicts.
-- [Data](https://hecavex.com/data/): Canonical portfolio index for public machine-readable releases.
-- [Projects](https://hecavex.com/en/projects/): Portfolio ownership, status, methodology, and limitations.
+`;
+const tail = `- [Projects](https://hecavex.com/en/projects/): Portfolio ownership, status, methodology, and limitations.
 
 ## Policies
 
 - [Privacy](https://hecavex.com/en/privacy/): Audience measurement and browser-data boundary.
 - [Corrections](https://hecavex.com/en/corrections/): Correction and update policy.
 - [Security contact](https://hecavex.com/.well-known/security.txt): Machine-readable vulnerability-reporting contact.
+`;
+
+export const GET: APIRoute = () => {
+  const network = networkCards('en')
+    .map(({ title, href, summary }) => `- [${title}](${href.startsWith('/') ? origin + href : href}): ${summary}
+`)
+    .join('');
+  return new Response(head + network + tail, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+};
