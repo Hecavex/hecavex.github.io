@@ -80,12 +80,10 @@ export function pageFactsFor(translationKey: string, lang: Lang, updated = '—'
 
 export function contactRoutesFor(lang: Lang): ActionRoute[] {
   return lang === 'lt' ? [
-    { label: 'El. paštas', title: 'Profesinės užklausos', description: 'Pranešimai, interviu, ekspertiniai komentarai ir bendri tyrimai.', links: [{ label: 'Rašyti Deividui', href: 'mailto:info@hecavex.com' }] },
     { label: 'Pranešimai ir žiniasklaida', title: 'Temos, formatai ir biografija', description: 'Informacija renginių organizatoriams, redaktoriams ir tinklalaidžių kūrėjams.', links: [{ label: 'Atverti informaciją žiniasklaidai', href: '/lt/pranesejas/' }] },
     { label: 'Saugumo pranešimai', title: 'Atsakingas atskleidimas', description: 'Jautrių įrodymų nesiųskite įprastu el. paštu.', links: [{ label: 'Atverti saugumo tvarką', href: 'https://github.com/Hecavex/hecavex.github.io/security/policy' }] },
     { label: 'Vieši profiliai', title: 'Kodas ir profesinis profilis', description: 'Viešos HECAVEX saugyklos ir Deivido profesinė paskyra.', links: [{ label: 'GitHub', href: 'https://github.com/Hecavex' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/in/deilis' }] }
   ] : [
-    { label: 'Email', title: 'Professional enquiries', description: 'Speaking, interviews, expert commentary and research collaboration.', links: [{ label: 'Write to Deividas', href: 'mailto:info@hecavex.com' }] },
     { label: 'Speaking and media', title: 'Topics, formats and biography', description: 'Information for event organisers, editors and podcast producers.', links: [{ label: 'Open media information', href: '/en/speaker/' }] },
     { label: 'Security reports', title: 'Responsible disclosure', description: 'Do not send sensitive evidence through ordinary email.', links: [{ label: 'Open the security policy', href: 'https://github.com/Hecavex/hecavex.github.io/security/policy' }] },
     { label: 'Public profiles', title: 'Code and professional profile', description: 'Public HECAVEX repositories and Deividas’s professional profile.', links: [{ label: 'GitHub', href: 'https://github.com/Hecavex' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/in/deilis' }] }
