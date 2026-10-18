@@ -4,7 +4,7 @@ import PostCard from '../../components/PostCard.astro';
 import SpeakingInvitation from '../../components/SpeakingInvitation.astro';
 import HomeTaskRoutes from '../../components/HomeTaskRoutes.astro';
 import ResearchPaths from '../../components/ResearchPaths.astro';
-import { beginnerList, copy, findPage, getLocalizedPosts, homeCounts, latestContentUpdate, startHerePath, audienceLabel, publicationClasses, type Lang } from '../../lib/site';
+import { beginnerList, briefingsPath, copy, findPage, getLocalizedPosts, homeCounts, latestContentUpdate, radarUrl, researchPath, startHerePath, audienceLabel, publicationClasses, type Lang } from '../../lib/site';
 
 export function getStaticPaths() { return [{ params: { lang: 'en' } }, { params: { lang: 'lt' } }]; }
 const lang = Astro.params.lang as Lang;
@@ -17,8 +17,6 @@ const latestBriefing = briefings[0];
 const hx = copy[lang];
 const latestUpdate = latestContentUpdate(posts);
 const alternatePath = lang === 'lt' ? '/en/' : '/lt/';
-const researchPath = lang === 'lt' ? '/lt/tyrimai/' : '/en/research/';
-const briefingsPath = lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/';
 const homePage = await findPage(`/${lang}/`);
 if (!homePage) throw new Error(`Missing ${lang} homepage content record`);
 const title = homePage.data.title;
@@ -35,8 +33,8 @@ const description = homePage.data.seo_description ?? homePage.data.description;
       </div>
       <nav class="home-discovery" aria-label={hx.home_nav_label}>
         <a class="button button--primary" href={startHerePath[lang]}>{hx.home_cta} <span aria-hidden="true">→</span></a>
-        <a href={researchPath}>{hx.home_latest_link} <span aria-hidden="true">→</span></a>
-        <a href={briefingsPath}>{hx.home_briefs_link} <span aria-hidden="true">→</span></a>
+        <a href={researchPath[lang]}>{hx.home_latest_link} <span aria-hidden="true">→</span></a>
+        <a href={briefingsPath[lang]}>{hx.home_briefs_link} <span aria-hidden="true">→</span></a>
       </nav>
     </section>
 
@@ -46,15 +44,15 @@ const description = homePage.data.seo_description ?? homePage.data.description;
     </section>}
 
     {recent.length > 0 && <section class="home-section home-latest" aria-labelledby="latest-title">
-      <header class="section-head"><h2 id="latest-title">{hx.home_latest_h2}</h2><a href={researchPath}>{hx.view_all} →</a></header>
+      <header class="section-head"><h2 id="latest-title">{hx.home_latest_h2}</h2><a href={researchPath[lang]}>{hx.view_all} →</a></header>
       <div class="post-grid home-latest-grid">{recent.map((post) => <PostCard {post} />)}</div>
     </section>}
 
     <HomeTaskRoutes {lang} {posts} {latestUpdate} />
 
     <section class="home-signal-grid">
-      {latestBriefing && <div><header class="section-head"><div><p class="eyebrow">{publicationClasses['signal-brief']![lang]}</p><h2>{hx.latest_briefing}</h2></div><a href={briefingsPath}>{hx.all_briefings} →</a></header><p class="home-briefs-explainer">{hx.home_briefs_explainer}</p><PostCard post={latestBriefing} prominent /></div>}
-      <aside class="radar-note"><p class="eyebrow">HECAVEX RADAR</p><h2>{lang === 'lt' ? 'Galimi apsimetimo domenai Lietuvoje' : 'Potential impersonation domains relevant to Lithuania'}</h2><p>{lang === 'lt' ? 'Viešas, tik skaitymui skirtas signalų sąrašas. Įrašai yra tyrimo kandidatai, o ne kenkėjiškumo nuosprendžiai.' : 'A public, read-only signal index. Listings are research candidates, not verdicts of maliciousness.'}</p><a class="button" href={lang === 'lt' ? 'https://radar.hecavex.com/lt/' : 'https://radar.hecavex.com/'}>{lang === 'lt' ? 'Atverti Radar' : 'Open Radar'} ↗</a></aside>
+      {latestBriefing && <div><header class="section-head"><div><p class="eyebrow">{publicationClasses['signal-brief']![lang]}</p><h2>{hx.latest_briefing}</h2></div><a href={briefingsPath[lang]}>{hx.all_briefings} →</a></header><p class="home-briefs-explainer">{hx.home_briefs_explainer}</p><PostCard post={latestBriefing} prominent /></div>}
+      <aside class="radar-note"><p class="eyebrow">HECAVEX RADAR</p><h2>{hx.radar_h2}</h2><p>{hx.radar_p}</p><a class="button" href={radarUrl[lang]}>{hx.radar_open} ↗</a></aside>
     </section>
 
     <SpeakingInvitation {lang} />

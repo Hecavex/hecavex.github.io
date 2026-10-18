@@ -1,0 +1,107 @@
+# Public data catalogue shown at /data/ and /lt/duomenys/. Names and owners come from portfolio.yml (matched by id).
+# Every text needs non-empty en and lt; hrefs start with / or https://. scripts/validate-content.mjs checks this.
+catalogues:
+  - id: radar
+    index: "01"
+    cadence:
+      en: Automated, sampled collection
+      lt: Automatizuotas, atrankinis rinkimas
+    description:
+      en: Potential phishing and impersonation candidates relevant to Lithuania. Automated matches are observations for review, not maliciousness verdicts.
+      lt: Lietuvai aktualūs galimo phishing ir apsimetimo kandidatai. Automatiniai sutapimai yra peržiūrai skirti stebėjimai, ne kenkėjiškumo verdiktai.
+    links:
+      - label:
+          en: Dataset guide
+          lt: Duomenų rinkinio vadovas
+        detail:
+          en: Human-readable contract and limitations
+          lt: Sutartis ir ribotumai skaitytojui
+        href: https://radar.hecavex.com/dataset/
+      - label:
+          en: Current snapshot
+          lt: Dabartinė suvestinė
+        detail:
+          en: JSON · bounded dashboard view
+          lt: JSON · ribotos apimties valdymo skydelio duomenys
+        href: https://radar.hecavex.com/data/radar.json
+      - label:
+          en: Complete-set index
+          lt: Viso rinkinio indeksas
+        detail:
+          en: JSON · deterministic shard directory
+          lt: JSON · deterministinis dalių katalogas
+        href: https://radar.hecavex.com/data/radar.index.json
+      - label:
+          en: Observation STIX
+          lt: Stebėjimų STIX
+        detail:
+          en: STIX 2.1 · observations, not block indicators
+          lt: STIX 2.1 · stebėjimai, ne blokavimo indikatoriai
+        href: https://radar.hecavex.com/data/radar.stix.json
+      - label:
+          en: Reviewed STIX
+          lt: Peržiūrėtas STIX
+        detail:
+          en: STIX 2.1 · explicit analyst confirmations only
+          lt: STIX 2.1 · tik aiškūs analitiko patvirtinimai
+        href: https://radar.hecavex.com/data/radar-reviewed.stix.json
+      - label:
+          en: Release manifest
+          lt: Laidos manifestas
+        detail:
+          en: JSON · files, schemas, digests and counts
+          lt: JSON · failai, schemos, kontrolinės sumos ir kiekiai
+        href: https://radar.hecavex.com/data/feed-manifest.json
+  - id: research
+    index: "02"
+    cadence:
+      en: Approved publication metadata
+      lt: Patvirtintų publikacijų metaduomenys
+    description:
+      en: Citable metadata for the bilingual publication archive. Language editions are linked, not counted as separate investigations. Article versions and recorded review dates stay distinct.
+      lt: Dvikalbio publikacijų archyvo metaduomenys citavimui. Kalbinės versijos susietos ir nelaikomos atskirais tyrimais. Straipsnio versija atskiriama nuo užfiksuotos peržiūros datos.
+    links:
+      - label:
+          en: Publication catalogue
+          lt: Publikacijų katalogas
+        detail:
+          en: JSON · dates, versions, translations and citation downloads
+          lt: JSON · datos, versijos, vertimai ir citavimo failai
+        href: /data/publications.json
+      - label:
+          en: Browse and cite research
+          lt: Skaityti ir cituoti tyrimus
+        detail:
+          en: Each article offers BibTeX and CSL-JSON
+          lt: Kiekviename straipsnyje pateikiami BibTeX ir CSL-JSON
+        href:
+          en: /en/research/
+          lt: /lt/tyrimai/
+      - label:
+          en: Vulnerability decision companion
+          lt: Pažeidžiamumo sprendimo rinkinys
+        detail:
+          en: JSON · two dated advisories; fictional decisions stay separate
+          lt: JSON · du datuoti pranešimai; fiktyvūs sprendimai atskirti
+        href: /assets/data/signal-brief-005-decisions/records.json
+      - label:
+          en: CRA reporting rehearsal
+          lt: CRA pranešimų pratimas
+        detail:
+          en: JSON · fictional evidence and timeline exercise, not a reporting service
+          lt: JSON · fiktyvus įrodymų ir laiko sekos pratimas, ne pranešimų paslauga
+        href: /assets/data/cra-reporting-rehearsal/scenario.json
+      - label:
+          en: September Radar baseline
+          lt: Rugsėjo Radar apžvalgos duomenys
+        detail:
+          en: JSON · frozen monthly aggregates, not confirmed phishing counts
+          lt: JSON · užfiksuoti mėnesio agregatai, ne patvirtinto phishing skaičiai
+        href: /assets/data/radar-september-2026-baseline/summary.json
+      - label:
+          en: Baseline replay and provenance
+          lt: Apžvalgos atkūrimas ir duomenų kilmė
+        detail:
+          en: Pinned inputs, hashes, calculation code and limitations
+          lt: Fiksuotos įvestys, kontrolinės sumos, skaičiavimo kodas ir ribotumai
+        href: /assets/data/radar-september-2026-baseline/README.md

@@ -5,7 +5,7 @@ import PostCard from '../../../components/PostCard.astro';
 import ResearchRecord from '../../../components/ResearchRecord.astro';
 import type { OutlineItem } from '../../../data/page-context';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { beginnerList, categoryPath, copy, glossaryPath, startHerePath, dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imageCaption, imageDimensions, imagePath, imagePresentation, imageSocialAlt, imageSrcSet, labelForPost, postNeighboursFor, relatedPostsFor, slugify, taxonomy, type Post } from '../../../lib/site';
+import { aboutPath, beginnerList, briefingsPath, categoryPath, copy, glossaryPath, researchPath, startHerePath, tagsPath, dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imageCaption, imageDimensions, imagePath, imagePresentation, imageSocialAlt, imageSrcSet, labelForPost, postNeighboursFor, relatedPostsFor, slugify, taxonomy, type Post } from '../../../lib/site';
 import { recordLabel } from '../../../lib/record-labels.mjs';
 import { coverageDate } from '../../../lib/briefing-record.mjs';
 import { citationPath, publicationRecord, toBibtex } from '../../../lib/publication-citations.mjs';
@@ -42,12 +42,11 @@ const updates = Array.isArray(data.updates) ? data.updates as Array<{ date: Date
 const stableId = String(data.research_id ?? `HCVX-${post.translationKey.toUpperCase().replace(/[^A-Z0-9]+/g, '-')}`);
 const c = copy[post.lang];
 const newcomer = c.article_newcomer!.split(/\{([^}]+)\}/);
-const t = (en: string, lt: string) => post.lang === 'lt' ? lt : en;
 const reviewDate = post.entry.data.last_reviewed_at;
 const artifacts = post.entry.data.research_artifacts ?? [];
 const generatedOutlineHeadings: OutlineItem[] = [
-  ...(findings.length > 0 ? [{ depth: 2, slug: 'findings-title', text: post.lang === 'lt' ? 'Ką rodo įrodymai' : 'What the evidence supports' }] : []),
-  ...(evidenceBearing && !beginner ? [{ depth: 2, slug: 'record-title', text: post.lang === 'lt' ? 'Tyrimo ribos' : 'Research boundaries' }] : [])
+  ...(findings.length > 0 ? [{ depth: 2, slug: 'findings-title', text: c.article_evidence_h2! }] : []),
+  ...(evidenceBearing && !beginner ? [{ depth: 2, slug: 'record-title', text: c.record_boundaries! }] : [])
 ];
 const bodyOutlineHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3) as OutlineItem[];
 const trackedOutlineHeadings: OutlineItem[] = [
@@ -62,35 +61,35 @@ const wideProse = data.prose_width === 'wide' && !beginner; // beginner articles
 const canonical = new URL(post.url, Astro.site).href;
 const bibtex = toBibtex(publicationRecord(post, await getPublicPosts()));
 const sectionPath = post.publicationClass === 'signal-brief'
-  ? `/${post.lang}/${post.lang === 'lt' ? 'apzvalgos' : 'briefings'}/`
-  : `/${post.lang}/${post.lang === 'lt' ? 'tyrimai' : 'research'}/`;
+  ? briefingsPath[post.lang]
+  : researchPath[post.lang];
 const sectionLabel = post.publicationClass === 'signal-brief'
-  ? (post.lang === 'lt' ? 'Signalų apžvalgos' : 'Signal Briefs')
-  : (post.lang === 'lt' ? 'Tyrimai' : 'Research');
+  ? c.section_signal_briefs!
+  : c.nav_research!;
 ---
 <BaseLayout lang={post.lang} title={post.title} seoTitle={post.seoTitle} keywords={post.seoKeywords.length > 0 ? post.seoKeywords : post.tags} articleSection={labelForPost(post)} description={post.seoDescription ?? post.description} canonicalPath={post.url} alternatePath={translation?.url} image={social} imageAlt={imageSocialAlt(post)} type="Article" published={post.date} modified={post.updated ?? post.date} breadcrumbs={[{ name: 'HECAVEX', path: `/${post.lang}/` }, { name: sectionLabel, path: sectionPath }, { name: post.title, path: post.url }]}>
   <article class:list={['shell', 'article-shell', { 'article-shell--beginner': beginner }]}>
-    <nav class="article-breadcrumb" aria-label={post.lang === 'lt' ? 'Publikacijos kelias' : 'Publication path'}>
+    <nav class="article-breadcrumb" aria-label={c.article_path_label}>
       <a href={`/${post.lang}/`}>HECAVEX</a><span aria-hidden="true">/</span><a href={sectionPath}>{sectionLabel}</a><span aria-hidden="true">/</span><span aria-current="page">{post.title}</span>
     </nav>
     <div id="article-reading" class:list={['article-reading-layout', { 'article-reading-layout--with-outline': showOutline }]}>
     <header id="article-start" class="article-head" data-outline-heading="true" data-outline-label={c.article_outline_start}>
-      <div class="article-edition"><span>{post.lang === 'lt' ? 'LIETUVIŲ' : 'ENGLISH'}</span>{translation && <a href={translation.url} hreflang={translation.lang} lang={translation.lang}>{c.article_edition_link} →</a>}</div>
+      <div class="article-edition"><span>{c.edition_badge}</span>{translation && <a href={translation.url} hreflang={translation.lang} lang={translation.lang}>{c.article_edition_link} →</a>}</div>
       <p class="eyebrow">{labelForPost(post)}</p>
       <h1>{post.title}</h1>
       <p class="article-deck">{post.description}</p>
       {post.summary && <section class="article-summary"><h2>{c.article_in_short}</h2><p>{post.summary}</p></section>}
       {post.entry.data.immediate_actions?.length && <section class="immediate-actions" aria-labelledby="immediate-actions-title"><h2 id="immediate-actions-title">{c.article_what_now}</h2><ol>{post.entry.data.immediate_actions.map((action) => <li>{action}</li>)}</ol></section>}
-      <div class="article-meta"><span>{post.lang === 'lt' ? 'Paskelbta' : 'Published'} <time datetime={post.date.toISOString()}>{dateText(post.date)}</time></span>{post.updated && post.updated.valueOf() !== post.date.valueOf() && <span>{post.lang === 'lt' ? 'Atnaujinta' : 'Updated'} <time datetime={post.updated.toISOString()}>{dateText(post.updated)}</time></span>}<span>{post.readingMinutes} {post.lang === 'lt' ? 'min. skaitymo' : 'min read'}</span><span>{post.lang === 'lt' ? 'Autorius' : 'By'} <a href={post.lang === 'lt' ? '/lt/apie/' : '/en/about/'}>Deividas Lis</a></span><span><a href="#cite">{c.article_cite}</a></span></div>
+      <div class="article-meta"><span>{c.published} <time datetime={post.date.toISOString()}>{dateText(post.date)}</time></span>{post.updated && post.updated.valueOf() !== post.date.valueOf() && <span>{c.updated} <time datetime={post.updated.toISOString()}>{dateText(post.updated)}</time></span>}<span>{post.readingMinutes} {c.minutes}</span><span>{c.article_by} <a href={aboutPath[post.lang]}>Deividas Lis</a></span><span><a href="#cite">{c.article_cite}</a></span></div>
       {!beginner && <p class="article-newcomer">{newcomer[0]}<a href={startHerePath[post.lang]}>{newcomer[1]}</a>{newcomer[2]}<a href={glossaryPath[post.lang]}>{newcomer[3]}</a>{newcomer[4]}</p>}
       <dl class="article-signals"><div><dt>{c.article_content_type}</dt><dd>{labelForPost(post)}</dd></div><div><dt><a href={`${glossaryPath[post.lang]}#confidence`}>{c.article_confidence}</a></dt><dd>{recordLabel(data.confidence ?? 'not stated', post.lang)}</dd></div><div><dt><a href={`${glossaryPath[post.lang]}#tlp`}>TLP</a></dt><dd>{String(data.tlp ?? 'clear').toUpperCase()}</dd></div></dl>
-      {hero && <figure class="article-hero" data-preview={imagePresentation(post)}><img src={hero} srcset={imageSrcSet(post, 'hero')} sizes="(max-width: 960px) calc(100vw - 40px), 1120px" alt={alt} width={heroDimensions?.width} height={heroDimensions?.height} loading="eager" fetchpriority="high" decoding="async" /><figcaption>{imageCaption(post)}{image?.caption && <> · {image.caption}</>} <a href={hero}>{image?.source_type === 'generated' ? t('Open full-size illustration', 'Atverti viso dydžio iliustraciją') : t('Open original image', 'Atverti originalų vaizdą')}</a></figcaption></figure>}
+      {hero && <figure class="article-hero" data-preview={imagePresentation(post)}><img src={hero} srcset={imageSrcSet(post, 'hero')} sizes="(max-width: 960px) calc(100vw - 40px), 1120px" alt={alt} width={heroDimensions?.width} height={heroDimensions?.height} loading="eager" fetchpriority="high" decoding="async" /><figcaption>{imageCaption(post)}{image?.caption && <> · {image.caption}</>} <a href={hero}>{image?.source_type === 'generated' ? c.article_image_full : c.article_image_original}</a></figcaption></figure>}
     </header>
 
       {showOutline && <ContentOutline lang={post.lang} headings={outlineHeadings} scopeId="article-reading" condensed={condensedOutline} />}
       <div class:list={['article-body', 'prose', { 'article-body--wide': wideProse }]}>
-        {post.contentType === 'signal-brief' && <aside class="brief-record"><span>HECAVEX SIGNAL BRIEF · #{String(data.issue ?? '—')}</span><dl><div><dt>{post.lang === 'lt' ? 'Aprėptis' : 'Coverage'}</dt><dd>{coverageDate(data.coverage_start)} — {coverageDate(data.coverage_end)}</dd></div><div><dt>{post.lang === 'lt' ? 'Informacijos riba' : 'Information cut-off'}</dt><dd>{String(data.information_cutoff ?? '—')}</dd></div></dl></aside>}
-        {findings.length > 0 && <section class="editorial-summary" aria-labelledby="findings-title"><p class="eyebrow">{post.lang === 'lt' ? 'Esminės išvados' : 'Key findings'}</p><h2 id="findings-title">{post.lang === 'lt' ? 'Ką rodo įrodymai' : 'What the evidence supports'}</h2><ul>{findings.map((finding) => <li>{finding}</li>)}</ul></section>}
+        {post.contentType === 'signal-brief' && <aside class="brief-record"><span>HECAVEX SIGNAL BRIEF · #{String(data.issue ?? '—')}</span><dl><div><dt>{c.brief_coverage}</dt><dd>{coverageDate(data.coverage_start)} — {coverageDate(data.coverage_end)}</dd></div><div><dt>{c.brief_cutoff}</dt><dd>{String(data.information_cutoff ?? '—')}</dd></div></dl></aside>}
+        {findings.length > 0 && <section class="editorial-summary" aria-labelledby="findings-title"><p class="eyebrow">{c.article_key_findings}</p><h2 id="findings-title">{c.article_evidence_h2}</h2><ul>{findings.map((finding) => <li>{finding}</li>)}</ul></section>}
         {evidenceBearing && !beginner && <ResearchRecord post={post} data={data} stableId={stableId} methods={methods} artifacts={artifacts} reviewDate={reviewDate} />}
         <Content />
         {evidenceBearing && beginner && <details class="research-record-details"><summary>{c.article_record_details}</summary><ResearchRecord post={post} data={data} stableId={stableId} methods={methods} artifacts={artifacts} reviewDate={reviewDate} /></details>}
@@ -98,24 +97,24 @@ const sectionLabel = post.publicationClass === 'signal-brief'
       </div>
     </div>
 
-    {updates.length > 0 && <section class="update-history"><p class="eyebrow">{post.lang === 'lt' ? 'Atnaujinimų istorija' : 'Update history'}</p><ol>{updates.map((update) => <li><time datetime={new Date(update.date).toISOString()}>{dateText(new Date(update.date))}</time><p>{update.note}</p></li>)}</ol></section>}
-    <aside class="author-card" aria-label={c.author_card_link}><p>{c.author_card}</p><a href={post.lang === 'lt' ? '/lt/apie/' : '/en/about/'}>{c.author_card_link} →</a></aside>
+    {updates.length > 0 && <section class="update-history"><p class="eyebrow">{c.article_update_history}</p><ol>{updates.map((update) => <li><time datetime={new Date(update.date).toISOString()}>{dateText(new Date(update.date))}</time><p>{update.note}</p></li>)}</ol></section>}
+    <aside class="author-card" aria-label={c.author_card_link}><p>{c.author_card}</p><a href={aboutPath[post.lang]}>{c.author_card_link} →</a></aside>
     <aside id="cite" class="citation-block"><h2>{c.article_cite}</h2><p>Lis, Deividas. "{post.title}." HECAVEX, {dateText(post.date)}. <a href={post.url}>{canonical}</a>.</p>
-      {data.research_version && <p>{t('Research version', 'Tyrimo versija')}: {String(data.research_version)}. {t('The evidence package may have a different version.', 'Įrodymų paketo versija gali skirtis.')}</p>}
-      <p class="citation-downloads"><a href={citationPath(post, 'bib')} download>{t('Download BibTeX', 'Atsisiųsti BibTeX')}</a><a href={citationPath(post, 'json')} download>{t('Download CSL-JSON', 'Atsisiųsti CSL-JSON')}</a></p>
+      {data.research_version && <p>{c.article_research_version}: {String(data.research_version)}. {c.article_version_note}</p>}
+      <p class="citation-downloads"><a href={citationPath(post, 'bib')} download>{c.article_download_bibtex}</a><a href={citationPath(post, 'json')} download>{c.article_download_csl}</a></p>
       <details class="citation-bibtex"><summary>{c.article_cite_bibtex}</summary><pre>{bibtex}</pre></details>
-      <p>{t('Import into your reference manager. These files describe this language edition and its recorded version, not a peer-review certification.', 'Importuokite į bibliografijos tvarkymo programą. Failai aprašo šią kalbinę versiją ir užfiksuotą tyrimo versiją, o ne patvirtina mokslinį recenzavimą.')}</p>
+      <p>{c.article_import_note}</p>
     </aside>
-    {!translation && <p class="translation-note">{post.lang === 'lt' ? 'Šio turinio vertimas dar neparengtas.' : 'This content is currently available only in its original language.'}</p>}
+    {!translation && <p class="translation-note">{c.translation_unavailable}</p>}
     <footer class="article-footer">
-      {post.categories.length > 0 && <div class="taxonomy-row"><strong>{post.lang === 'lt' ? 'Kategorijos' : 'Categories'}</strong>{post.categories.map((category) => <a href={categoryPath(post.lang, category)}>{taxonomy[category]?.[post.lang] ?? category}</a>)}</div>}
-      {post.tags.length > 0 && <div class="taxonomy-row"><strong>{post.lang === 'lt' ? 'Žymos' : 'Tags'}</strong>{post.tags.map((tag) => <a href={`/${post.lang}/${post.lang === 'lt' ? 'zymos' : 'tags'}/${slugify(tag)}/`}>{tag}</a>)}</div>}
-      <div class="article-share"><strong>{post.lang === 'lt' ? 'Dalytis' : 'Share'}</strong><a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonical)}`}>LinkedIn</a><a href={`mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(canonical)}`}>{t('Email', 'El. paštas')}</a><button type="button" data-copy-link data-success={post.lang === 'lt' ? 'Nukopijuota' : 'Copied'}>{post.lang === 'lt' ? 'Kopijuoti nuorodą' : 'Copy link'}</button></div>
-      <p class="content-license">{post.lang === 'lt' ? 'Jei nenurodyta kitaip, autoriaus tekstas platinamas pagal ' : "Unless stated otherwise, the author's text is licensed under "}<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
+      {post.categories.length > 0 && <div class="taxonomy-row"><strong>{c.categories}</strong>{post.categories.map((category) => <a href={categoryPath(post.lang, category)}>{taxonomy[category]?.[post.lang] ?? category}</a>)}</div>}
+      {post.tags.length > 0 && <div class="taxonomy-row"><strong>{c.tags}</strong>{post.tags.map((tag) => <a href={`${tagsPath[post.lang]}${slugify(tag)}/`}>{tag}</a>)}</div>}
+      <div class="article-share"><strong>{c.share}</strong><a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonical)}`}>LinkedIn</a><a href={`mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(canonical)}`}>{c.contact_email_eyebrow}</a><button type="button" data-copy-link data-success={c.copy_done}>{c.copy_link}</button></div>
+      <p class="content-license">{c.article_license} <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
     </footer>
 
     {readNext.length > 0 && <section class="related-posts"><header class="section-head"><div><p class="eyebrow">{c.article_related_eyebrow}</p><h2>{beginner ? c.article_read_next : c.article_related_h2}</h2></div></header><div class="post-grid">{readNext.map((candidate) => <PostCard post={candidate} />)}</div></section>}
     {beginner && <p class="article-back-start"><a href={startHerePath[post.lang]}>← {c.article_back_start}</a></p>}
-    <nav class="article-navigation" aria-label={post.lang === 'lt' ? 'Publikacijų navigacija' : 'Publication navigation'}>{newer && <a href={newer.url}><span>← {post.lang === 'lt' ? 'Naujesnė' : 'Newer'}</span><strong>{newer.cardTitle}</strong></a>}{older && <a href={older.url}><span>{post.lang === 'lt' ? 'Ankstesnė' : 'Older'} →</span><strong>{older.cardTitle}</strong></a>}</nav>
+    <nav class="article-navigation" aria-label={c.article_nav_label}>{newer && <a href={newer.url}><span>← {c.article_newer}</span><strong>{newer.cardTitle}</strong></a>}{older && <a href={older.url}><span>{c.article_older} →</span><strong>{older.cardTitle}</strong></a>}</nav>
   </article>
 </BaseLayout>

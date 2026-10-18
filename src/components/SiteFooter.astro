@@ -1,15 +1,15 @@
 ---
-import { copy, glossaryPath, networkLinks, productNavigation, startHerePath, type Lang } from '../lib/site';
+import { copy, glossaryPath, methodologyPath, networkLinks, privacyPath, researchPath, startHerePath, type Lang } from '../lib/site';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = copy[lang];
 const links = [
   [t.nav_start, startHerePath[lang]],
-  productNavigation[lang][1]!,
+  [t.nav_research, researchPath[lang]],
   [t.nav_glossary, glossaryPath[lang]],
   ...networkLinks(lang).map((item) => [item.name, item.href]),
-  [t.nav_methodology, lang === 'lt' ? '/lt/metodika/' : '/en/methodology/'],
-  [t.privacy, lang === 'lt' ? '/lt/privatumas/' : '/en/privacy/'],
+  [t.nav_methodology, methodologyPath[lang]],
+  [t.privacy, privacyPath[lang]],
   [t.rss, `/${lang}/feed.xml`]
 ];
 ---

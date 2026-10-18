@@ -1,6 +1,6 @@
 ---
 import type { OutlineItem } from '../data/page-context';
-import type { Lang } from '../lib/site';
+import { copy, withCount, type Lang } from '../lib/site';
 
 interface Props {
   lang: Lang;
@@ -12,21 +12,22 @@ interface Props {
 }
 
 const { lang, headings, scopeId, kind = 'contents', condensed = false, topHref = `#${headings[0]?.slug ?? 'main-content'}` } = Astro.props;
+const c = copy[lang];
 const isMap = kind === 'research-map';
 const eyebrow = isMap
-  ? (lang === 'lt' ? 'Tyrimų žemėlapis' : 'Research map')
-  : (lang === 'lt' ? 'Šiame puslapyje' : 'On this page');
+  ? c.outline_map_eyebrow
+  : c.outline_page_eyebrow;
 const title = isMap
-  ? (lang === 'lt' ? 'Publikacijų katalogas' : 'Publication catalogue')
-  : (lang === 'lt' ? 'Turinys' : 'Contents');
+  ? c.outline_map_title
+  : c.outline_page_title;
 const progressLabel = isMap
-  ? (lang === 'lt' ? 'Katalogo skiltis' : 'Catalogue position')
-  : (lang === 'lt' ? 'Skaitymo eiga' : 'Reading position');
-const currentLabel = lang === 'lt' ? 'Dabar' : 'Current';
-const nextLabel = lang === 'lt' ? 'Toliau' : 'Up next';
-const completeLabel = lang === 'lt' ? 'Pabaiga' : 'End of page';
-const topLabel = lang === 'lt' ? 'Grįžti į pradžią' : 'Back to the beginning';
-const sectionCount = lang === 'lt' ? `Skyriai · ${headings.length}` : `${headings.length} sections`;
+  ? c.outline_map_progress
+  : c.outline_page_progress;
+const currentLabel = c.outline_current;
+const nextLabel = c.outline_next;
+const completeLabel = c.outline_complete;
+const topLabel = c.outline_top;
+const sectionCount = withCount(c.outline_sections!, headings.length);
 const outlineKey = `${kind}-${scopeId}`;
 const titleId = `${outlineKey}-title`;
 ---

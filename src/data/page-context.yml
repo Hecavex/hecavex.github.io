@@ -1,0 +1,130 @@
+facts:
+  about:
+    en:
+      - label: Role
+        value: Independent CTI researcher and HECAVEX editor
+      - label: Background
+        value: Cybercrime investigations · financial-sector security
+      - label: Base and languages
+        value: Vilnius · English · Lithuanian
+      - label: Profiles
+        links:
+          - label: GitHub
+            href: https://github.com/Hecavex
+          - label: LinkedIn
+            href: https://www.linkedin.com/in/deilis
+    lt:
+      - label: Veikla
+        value: Nepriklausomas CTI tyrėjas ir HECAVEX redaktorius
+      - label: Patirtis
+        value: Elektroninių nusikaltimų tyrimai · finansų sektoriaus saugumas
+      - label: Vieta ir kalbos
+        value: Vilnius · lietuvių · anglų
+      - label: Profiliai
+        links:
+          - label: GitHub
+            href: https://github.com/Hecavex
+          - label: LinkedIn
+            href: https://www.linkedin.com/in/deilis
+  speaker-media:
+    en:
+      - label: Availability
+        value: Remote or in person by arrangement
+      - label: Formats
+        value: Conference · panel · podcast · interview
+      - label: Languages
+        value: English · Lithuanian
+      - label: Media kit
+        value: Open the English media kit
+        href: /assets/media/hecavex-media-kit-en.html
+    lt:
+      - label: Dalyvavimas
+        value: Nuotoliu arba gyvai pagal susitarimą
+      - label: Formatai
+        value: Konferencija · diskusija · tinklalaidė · interviu
+      - label: Kalbos
+        value: Lietuvių · anglų
+      - label: Medijos rinkinys
+        value: Atverti lietuvišką rinkinį
+        href: /assets/media/hecavex-media-kit-lt.html
+  contact:
+    en:
+      - label: Response channel
+        value: Professional requests are handled by email
+      - label: Best for
+        value: Speaking · media · research collaboration
+      - label: Include
+        value: Subject · format · deadline
+      - label: Sensitive material
+        value: Do not send through ordinary email
+    lt:
+      - label: Atsakymo kanalas
+        value: Profesinės užklausos priimamos el. paštu
+      - label: Tinka
+        value: Pranešimams · žiniasklaidai · bendriems tyrimams
+      - label: Nurodykite
+        value: Temą · formatą · terminą
+      - label: Jautri medžiaga
+        value: Nesiųskite įprastu el. paštu
+  research-index:
+    en:
+      - label: Formats
+        value: Primary research · assessments · commentary
+      - label: Coverage
+        value: CTI · malware · fraud · information operations
+      - label: Method
+        value: Evidence is kept separate from inference and assessment
+      - label: Updated
+        value: "{updated}"
+    lt:
+      - label: Formatai
+        value: Pirminiai tyrimai · vertinimai · komentarai
+      - label: Temos
+        value: CTI · kenkėjiškas kodas · sukčiavimas · informacinės operacijos
+      - label: Metodas
+        value: Įrodymai atskiriami nuo išvadų ir vertinimų
+      - label: Atnaujinta
+        value: "{updated}"
+contact_routes:
+  en:
+    - label: Speaking and media
+      title: Topics, formats and biography
+      description: Information for event organisers, editors and podcast producers.
+      links:
+        - label: Open media information
+          href: /en/speaker/
+    - label: Security reports
+      title: Responsible disclosure
+      description: Do not send sensitive evidence through ordinary email.
+      links:
+        - label: Open the security policy
+          href: https://github.com/Hecavex/hecavex.github.io/security/policy
+    - label: Public profiles
+      title: Code and professional profile
+      description: Public HECAVEX repositories and Deividas’s professional profile.
+      links:
+        - label: GitHub
+          href: https://github.com/Hecavex
+        - label: LinkedIn
+          href: https://www.linkedin.com/in/deilis
+  lt:
+    - label: Pranešimai ir žiniasklaida
+      title: Temos, formatai ir biografija
+      description: Informacija renginių organizatoriams, redaktoriams ir tinklalaidžių kūrėjams.
+      links:
+        - label: Atverti informaciją žiniasklaidai
+          href: /lt/pranesejas/
+    - label: Saugumo pranešimai
+      title: Atsakingas atskleidimas
+      description: Jautrių įrodymų nesiųskite įprastu el. paštu.
+      links:
+        - label: Atverti saugumo tvarką
+          href: https://github.com/Hecavex/hecavex.github.io/security/policy
+    - label: Vieši profiliai
+      title: Kodas ir profesinis profilis
+      description: Viešos HECAVEX saugyklos ir Deivido profesinė paskyra.
+      links:
+        - label: GitHub
+          href: https://github.com/Hecavex
+        - label: LinkedIn
+          href: https://www.linkedin.com/in/deilis
