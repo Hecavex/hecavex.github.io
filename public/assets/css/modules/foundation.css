@@ -164,6 +164,25 @@ pre code {
   color: inherit;
 }
 
+/* Shiki token classes (src/lib/code-theme.mjs) replace inline styles so the CSP needs no 'unsafe-inline'. */
+.astro-code {
+  /* Pinned like the old inline style, so print (which lightens --surface) keeps readable code. */
+  background-color: #171b1d;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.hx-code-text { color: #ece9e1; }
+.hx-code-comment { color: #8d969a; }
+.hx-code-keyword { color: #55b9b1; }
+.hx-code-string { color: #86b77e; }
+.hx-code-invalid { color: #d06c65; }
+.hx-code-bold { font-weight: bold; }
+.hx-code-italic { font-style: italic; }
+.hx-code-underline { text-decoration: underline; }
+.hx-code-nosel { user-select: none; }
+
 .skip-link {
   position: fixed;
   z-index: 1000;
