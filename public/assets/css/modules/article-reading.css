@@ -368,6 +368,7 @@
 }
 
 .citation-block {
+  scroll-margin-top: calc(var(--header-offset) + 1.25rem);
   padding: 1rem;
   border: 1px solid var(--line);
   background: var(--surface);
@@ -571,10 +572,6 @@
 
 .article-head .article-summary + .immediate-actions {
   margin-top: 1rem;
-}
-
-.citation-block {
-  scroll-margin-top: calc(var(--header-offset) + 1.25rem);
 }
 
 .citation-block h2 {
