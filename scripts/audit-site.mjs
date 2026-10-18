@@ -73,7 +73,9 @@ for (const file of htmlFiles) {
     else if (/unsafe-inline|unsafe-eval/.test(policy) || !policy.includes("script-src 'self' https://static.cloudflareinsights.com/beacon.min.js;")) failures.push(`${route}: content security policy is weaker than the publication contract`);
     if (!/<meta\s+name=["']referrer["'][^>]*content=["']strict-origin-when-cross-origin["']/i.test(html)) failures.push(`${route}: missing referrer policy`);
   }
-  const citation = html.match(/<aside id="cite" class="citation-block">([\s\S]*?)<\/aside>/)?.[1] ?? '';
+  const citationMatch = html.match(/<aside id="cite" class="citation-block">([\s\S]*?)<\/aside>/);
+  if (articleDocument && !citationMatch) failures.push(`${route}: article has no findable citation block (#cite)`);
+  const citation = citationMatch?.[1] ?? '';
   if (/[\u201c\u201d\u201e]/u.test(citation)) failures.push(`${route}: citation template must use straight quotes`);
   const record = html.match(/<section class="research-record"([\s\S]*?)<\/section>/)?.[1] ?? '';
   const signals = html.match(/<dl class="article-signals">([\s\S]*?)<\/dl>/)?.[1] ?? '';
