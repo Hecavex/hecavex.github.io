@@ -4,6 +4,7 @@ lang: en
 translation_key: analytical-methodology
 title: Evidence and attribution framework
 description: How HECAVEX separates observations, inferences and assessments, evaluates sources, handles infrastructure overlap, assigns confidence and corrects analytical conclusions.
+seo_description: "How HECAVEX separates observations from assessments, evaluates sources and infrastructure overlap, assigns confidence and corrects conclusions."
 permalink: /en/methodology/
 last_modified_at: 2026-10-17
 ---

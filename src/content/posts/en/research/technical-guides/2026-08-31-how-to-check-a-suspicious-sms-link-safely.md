@@ -6,8 +6,8 @@ immediate_actions:
 title: "Suspicious SMS Link? A Practical Guide to Checking It Safely"
 card_title: "How to Check a Suspicious SMS Link Safely"
 description: "A practical defensive workflow for suspicious SMS links: defanging, safe short-link checks, cloaking clues, phishing reports, and post-click response."
-seo_title: "How to Check a Suspicious SMS Link Safely"
-seo_description: "A practical defensive workflow for suspicious SMS links: defanging, safe short-link checks, cloaking clues, phishing reports, and post-click response."
+seo_title: "Suspicious SMS Link? How to Check It Without Clicking"
+seo_description: "Check a suspicious SMS link without opening it: defang it, expand short links safely, spot cloaking, report it, and what to do if you already tapped."
 seo_keywords:
   - "suspicious SMS link"
   - "how to check a suspicious text message"

@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { networkCards } from '../lib/site';
+import { getLocalizedPosts, networkCards, type Lang } from '../lib/site';
 
 const origin = 'https://hecavex.com';
 const head = `# HECAVEX
@@ -20,6 +20,7 @@ HECAVEX is a public, read-only publication. Cite canonical article URLs and pres
 - [Evidence and attribution framework](https://hecavex.com/en/methodology/): Research method, confidence, sourcing, attribution, and corrections.
 - [Įrodymų ir atribucijos metodika](https://hecavex.com/lt/metodika/): Tyrimų metodika, pasitikėjimas, šaltiniai, atribucija ir pataisymai.
 - [Editorial standards](https://hecavex.com/en/editorial/): Publication, translation, disclosure, and evidence standards.
+- [Deividas Lis](https://hecavex.com/en/about/): Author and editor; independent cyber threat intelligence researcher and former cybercrime investigator.
 
 ## Practical defensive guides and current baseline
 
@@ -59,10 +60,18 @@ const tail = `- [Projects](https://hecavex.com/en/projects/): Portfolio ownershi
 - [Security contact](https://hecavex.com/.well-known/security.txt): Machine-readable vulnerability-reporting contact.
 `;
 
-export const GET: APIRoute = () => {
+// One line per approved article, generated from the content collection so the index never drifts.
+const articleIndex = async (lang: Lang, heading: string) => `
+## ${heading}
+
+${(await getLocalizedPosts(lang)).map((post) => `- [${post.title}](${origin}${post.url}): ${post.seoDescription ?? post.description}`).join('\n')}
+`;
+
+export const GET: APIRoute = async () => {
   const network = networkCards('en')
     .map(({ title, href, summary }) => `- [${title}](${href.startsWith('/') ? origin + href : href}): ${summary}
 `)
     .join('');
-  return new Response(head + network + tail, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+  const articles = await articleIndex('en', 'English articles') + await articleIndex('lt', 'Lietuviški straipsniai');
+  return new Response(head + network + tail + articles, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 };

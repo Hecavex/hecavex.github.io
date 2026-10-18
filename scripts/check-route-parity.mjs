@@ -43,6 +43,9 @@ const slugify = (value) => String(value)
   .replace(/[^a-z0-9]+/g, '-')
   .replace(/^-|-$/g, '');
 
+// Retired taxonomy slugs may remain as redirect stubs to their merged route.
+async function isRedirectStub(file) { try { return /http-equiv="refresh"/i.test(await readFile(file, 'utf8')); } catch { return false; } }
+
 async function directoryNames(path) {
   return new Set((await readdir(path, { withFileTypes: true })).filter((entry) => entry.isDirectory()).map((entry) => entry.name));
 }
@@ -54,7 +57,7 @@ for (const [lang, tagPath, categoryPath] of [['en', 'en/tags', 'en/categories'],
   for (const [path, expected] of [[tagPath, expectedTags], [categoryPath, expectedCategories]]) {
     const actual = await directoryNames(join(root, path));
     for (const slug of expected) if (!actual.has(slug)) failures.push(`${path} dropped generated taxonomy route ${slug}`);
-    for (const slug of actual) if (!expected.has(slug)) failures.push(`${path} contains an unexpected taxonomy route ${slug}`);
+    for (const slug of actual) if (!expected.has(slug) && !await isRedirectStub(join(root, path, slug, 'index.html'))) failures.push(`${path} contains an unexpected taxonomy route ${slug}`);
   }
 }
 

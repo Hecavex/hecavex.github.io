@@ -5,6 +5,7 @@ lang: lt
 translation_key: speaker-media
 title: Kibernetinio saugumo pranešėjas ir ekspertas žiniasklaidai
 description: Kvieskite kibernetinių grėsmių žvalgybos tyrėją, buvusį elektroninių nusikaltimų tyrėją ir HECAVEX redaktorių Deividą Lis į konferencijas, diskusijas, tinklalaides ir žiniasklaidą.
+seo_description: "Kvieskite Deividą Lis, kibernetinių grėsmių žvalgybos tyrėją ir buvusį elektroninių nusikaltimų tyrėją, į konferencijas, diskusijas ir žiniasklaidą."
 permalink: /lt/pranesejas/
 ---
 

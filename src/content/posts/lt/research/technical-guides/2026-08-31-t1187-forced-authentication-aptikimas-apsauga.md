@@ -7,8 +7,8 @@ research_artifacts:
 title: "T1187 Forced Authentication: kaip aptikti ir suvaldyti NTLM autentifikavimo prievartą"
 card_title: "T1187 Forced Authentication: aptikimas ir apsauga"
 description: "Gynybinis T1187 vadovas apie priverstinį SMB ir WebDAV autentifikavimą, Windows įrodymus, NTLM auditą, egress kontrolę ir incidento valdymą."
-seo_title: "T1187 Forced Authentication aptikimas ir apsauga"
-seo_description: "Kaip aptikti T1187 priverstinį SMB ir WebDAV autentifikavimą, susieti Windows bei tinklo įrodymus ir suvaldyti galimą NTLM ekspoziciją."
+seo_title: "T1187 Forced Authentication: kaip aptikti ir blokuoti"
+seo_description: "Kaip aptikti T1187 priverstinį SMB ir WebDAV autentifikavimą: kuriuos Windows įvykius ir tinklo požymius tikrinti ir kaip blokuoti NTLM nutekėjimą."
 seo_keywords:
   - "T1187 Forced Authentication"
   - "priverstinis NTLM autentifikavimas"

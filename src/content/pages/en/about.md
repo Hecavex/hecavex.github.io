@@ -4,6 +4,8 @@ lang: en
 translation_key: about
 title: Deividas Lis — researcher and editor of HECAVEX
 description: Deividas Lis is an independent cyber threat intelligence researcher, former cybercrime investigator, threat hunter, public speaker and media commentator behind HECAVEX.
+seo_description: "Deividas Lis is an independent cyber threat intelligence researcher, former cybercrime investigator and speaker behind HECAVEX phishing and OSINT research."
+seo_title: "Deividas Lis – Cyber Threat Intelligence Researcher"
 permalink: /en/about/
 ---
 

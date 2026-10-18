@@ -24,8 +24,6 @@ The main publication does not set first-party advertising or analytics cookies, 
 
 [Cloudflare states in its RUM beacon documentation](https://developers.cloudflare.com/speed/observatory/rum-beacon/) that its Web Analytics beacon does not read or write cookies, `localStorage`, `sessionStorage` or IndexedDB and does not keep a persistent analytics identifier in the browser. It generates the measurement in memory for the page currently being viewed.
 
-APT Notes (`apt.hecavex.com`) and Labs (`labs.hecavex.com`) have not been publicly available since 17 October 2026. If an earlier Labs version saved values in your browser, they stay under your control. You can remove them with your browser's site-data controls for `labs.hecavex.com`.
-
 Main's enquiry editor prepares text locally in the current page. It does not save the draft in browser storage or send it automatically. An email is sent only if you choose to send it through your email service. Downloaded biographies, evidence and other files are user-managed files, not analytics records.
 
 ## Cloudflare Web Analytics

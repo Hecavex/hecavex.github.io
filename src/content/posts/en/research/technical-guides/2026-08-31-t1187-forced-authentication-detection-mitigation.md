@@ -7,8 +7,8 @@ research_artifacts:
 title: "T1187 Forced Authentication: Detection and Mitigation for Windows Environments"
 card_title: "T1187 Forced Authentication: Detection and Mitigation"
 description: "A defensive guide to forced SMB and WebDAV authentication, Windows and network evidence, NTLM auditing, egress controls, triage, and identity hardening."
-seo_title: "T1187 Forced Authentication Detection and Mitigation"
-seo_description: "Detect T1187 forced SMB and WebDAV authentication with Windows, network and identity evidence, then contain exposure and harden NTLM egress."
+seo_title: "T1187 Forced Authentication: How to Detect and Block It"
+seo_description: "Detect T1187 forced SMB and WebDAV authentication: which Windows events and network signs to check, and how to block outbound NTLM leaks."
 seo_keywords:
   - "T1187 forced authentication"
   - "forced authentication detection"

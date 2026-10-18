@@ -1,39 +1,81 @@
-threat-intelligence:
-  en: Threat Intelligence
-  lt: Grėsmių žvalgyba
-investigations:
-  en: Investigations
-  lt: Tyrimai
-fraud-scams:
-  en: Fraud & Scams
-  lt: Sukčiavimas
-osint:
-  en: OSINT
-  lt: OSINT
-malware:
-  en: Malware
-  lt: Kenkėjiška programinė įranga
-social-engineering:
-  en: Social Engineering
-  lt: Socialinė inžinerija
-ai-security:
-  en: AI & Emerging Threats
-  lt: DI ir naujos grėsmės
-information-operations:
-  en: Information Operations
-  lt: Informacinės operacijos
-tradecraft:
-  en: Tradecraft
-  lt: Analitiniai metodai
-commentary:
-  en: Commentary
-  lt: Komentarai
-identity-security:
-  en: Identity Security
-  lt: Tapatybės saugumas
-data-breaches:
-  en: Data Breaches
-  lt: Duomenų saugumo incidentai
-security-briefings:
-  en: Security Briefings
-  lt: Saugumo apžvalgos
+# Categories: label per language plus optional description_en/description_lt
+# (meta description and page intro; falls back to the generic taxonomy_description copy).
+categories:
+  threat-intelligence:
+    en: Threat Intelligence
+    lt: Grėsmių žvalgyba
+    description_en: "Cyber threat intelligence research by HECAVEX on phishing infrastructure, threat actors and campaigns, with evidence and confidence stated."
+    description_lt: "HECAVEX kibernetinių grėsmių žvalgybos (CTI) tyrimai apie phishing infrastruktūrą, grėsmių veikėjus ir kampanijas su įrodymais."
+  investigations:
+    en: Investigations
+    lt: Skaitmeniniai tyrimai
+    description_en: "Digital investigations into phishing, scam and fraud infrastructure targeting Lithuania and Europe, built on retained evidence and pivoting."
+    description_lt: "Skaitmeniniai sukčiavimo, phishing ir scam infrastruktūros tyrimai Lietuvoje ir Europoje, paremti išsaugotais įrodymais."
+  fraud-scams:
+    en: Fraud & Scams
+    lt: Sukčiavimas
+    description_en: "How online fraud and scams work, from fake buyers and investment scams to smishing, and what to do if you are targeted."
+    description_lt: "Kaip veikia internetinis sukčiavimas: netikri pirkėjai, investiciniai scamai, apgaulingos SMS ir ką daryti, jei sukčiai jus pasiekė."
+  osint:
+    en: OSINT
+    lt: OSINT
+    description_en: "Open-source intelligence (OSINT) methods and case studies for investigating domains, infrastructure and online fraud."
+    description_lt: "Atvirųjų šaltinių žvalgybos (OSINT) metodai ir atvejai, kaip tirti domenus, infrastruktūrą ir internetinį sukčiavimą."
+  malware:
+    en: Malware
+    lt: Kenkėjiška programinė įranga
+    description_en: "Malware analysis of loaders, infostealers, crypto clippers and supply-chain packages, with detection notes for defenders."
+    description_lt: "Kenkėjiškos programinės įrangos analizė: loaderiai, infostealeriai, crypto clipperiai ir tiekimo grandinės paketai."
+  social-engineering:
+    en: Social Engineering
+    lt: Socialinė inžinerija
+    description_en: "Social engineering techniques such as phishing, smishing, ClickFix and fake buyers, and how to recognise and stop them."
+    description_lt: "Socialinės inžinerijos būdai: phishing, apgaulingos SMS, ClickFix ir netikri pirkėjai, ir kaip juos atpažinti bei sustabdyti."
+  ai-security:
+    en: AI & Emerging Threats
+    lt: DI ir naujos grėsmės
+    description_en: "AI security and emerging threats, including attacks on AI tooling and how attackers use new technology."
+    description_lt: "DI saugumas ir naujos grėsmės: atakos prieš DI įrankius ir kaip užpuolikai naudoja naujas technologijas."
+  information-operations:
+    en: Information Operations
+    lt: Informacinės operacijos
+    description_en: "Information operations and disinformation analysis focused on Lithuania, the Baltics and their information space."
+    description_lt: "Informacinių operacijų ir dezinformacijos analizė, skirta Lietuvai, Baltijos šalims ir jų informacinei erdvei."
+  tradecraft:
+    en: Tradecraft
+    lt: Analitiniai metodai
+    description_en: "CTI tradecraft and analytical methods: infrastructure pivoting, evidence handling, confidence and OPSEC for investigators."
+    description_lt: "CTI analitiniai metodai: infrastruktūros pivoting, įrodymų tvarkymas, pasitikėjimo vertinimas ir OPSEC tyrėjams."
+  commentary:
+    en: Commentary
+    lt: Komentarai
+  identity-security:
+    en: Identity Security
+    lt: Tapatybės saugumas
+    description_en: "Identity security research on MFA, session theft, reverse-proxy phishing and forced authentication, with detection guidance."
+    description_lt: "Tapatybės saugumo tyrimai apie MFA, sesijų vagystes, reverse-proxy phishing ir priverstinį autentifikavimą."
+  data-breaches:
+    en: Data Breaches
+    lt: Duomenų saugumo incidentai
+    description_en: "Analysis of data breaches and data theft incidents, what was exposed and what affected people and organisations should do."
+    description_lt: "Duomenų nutekėjimų ir vagysčių analizė: kas atskleista ir ką turėtų daryti nukentėję žmonės bei organizacijos."
+  security-briefings:
+    en: Security Briefings
+    lt: Saugumo apžvalgos
+
+# Tag display labels keyed by slugify(tag). Labels change only the visible text, never the URL.
+tag_labels:
+  social-engineering: { en: Social engineering, lt: Socialinė inžinerija }
+  phishing: { en: Phishing, lt: Sukčiavimas (phishing) }
+  smishing: { en: Smishing, lt: Apgaulingos SMS (smishing) }
+  identity-security: { en: Identity security, lt: Tapatybės saugumas }
+  incident-response: { en: Incident response, lt: Incidentų valdymas }
+  lithuania: { en: Lithuania, lt: Lietuva }
+  payment-fraud: { en: Payment fraud, lt: Mokėjimų sukčiavimas }
+  threat-hunting: { en: Threat hunting, lt: Grėsmių medžioklė }
+  network-security: { en: Network security, lt: Tinklo saugumas }
+  session-theft: { en: Session theft, lt: Sesijų vagystė }
+  infrastructure-pivoting: { en: Infrastructure pivoting, lt: Infrastruktūros pivoting }
+  detection-engineering: { en: Detection engineering, lt: Aptikimo inžinerija }
+  supply-chain: { en: Supply-chain security, lt: Tiekimo grandinės saugumas }
+  credential-phishing: { en: Credential phishing, lt: Prisijungimo duomenų phishing }

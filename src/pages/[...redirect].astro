@@ -5,7 +5,11 @@ import { copy, getPublicPosts, type Lang } from '../lib/site';
 
 export async function getStaticPaths() {
   const posts = await getPublicPosts();
-  const redirects: Array<{ from: string; to: string; lang: string }> = [{ from: '/lt/research/', to: '/lt/tyrimai/', lang: 'lt' }];
+  const redirects: Array<{ from: string; to: string; lang: string }> = [
+    { from: '/lt/research/', to: '/lt/tyrimai/', lang: 'lt' },
+    // Merged duplicate tag: Lietuva posts now carry Lithuania (shown as "Lietuva" via tag_labels).
+    { from: '/lt/zymos/lietuva/', to: '/lt/zymos/lithuania/', lang: 'lt' }
+  ];
   for (const post of posts) for (const from of post.entry.data.redirect_from) redirects.push({ from, to: post.url, lang: post.lang });
   return redirects.map((redirect) => ({ params: { redirect: redirect.from.replace(/^\//, '').replace(/\/$/, '') }, props: redirect }));
 }
@@ -16,4 +20,4 @@ const c = copy[lang as Lang];
 const absoluteTarget = new URL(to, Astro.site);
 ---
 <!doctype html>
-<html lang={lang}><head><meta charset="utf-8" /><ResourcePolicy /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="robots" content="noindex,follow" /><meta http-equiv="refresh" content={`0; url=${absoluteTarget.href}`} /><link rel="canonical" href={absoluteTarget} /><title>{c.redirect_title} | HECAVEX</title></head><body><p>{c.redirect_moved} <a href={to}>{c.redirect_continue}</a>.</p><CloudflareWebAnalytics /></body></html>
+<html lang={lang}><head><meta charset="utf-8" /><ResourcePolicy /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta http-equiv="refresh" content={`0; url=${absoluteTarget.href}`} /><link rel="canonical" href={absoluteTarget} /><title>{c.redirect_title} | HECAVEX</title></head><body><p>{c.redirect_moved} <a href={to}>{c.redirect_continue}</a>.</p><CloudflareWebAnalytics /></body></html>

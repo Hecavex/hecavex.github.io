@@ -63,7 +63,7 @@ That is the practical problem behind **Facebook cloaking**. The entry URL is not
 
 Google's official [spam policy defines cloaking](https://developers.google.com/search/docs/essentials/spam-policies#cloaking) as presenting different content to users and search engines with an intent to manipulate or mislead. The same documentation distinguishes malicious redirection from normal redirects used for moves, localisation and authenticated navigation. For threat intelligence, that distinction matters. **Different content is an observation. Deceptive intent is an assessment that needs context.**
 
-The longer [HECAVEX Facebook cloaking investigation](/en/research/when-fake-news-scams-and-cloaking-meet/) documents a real investment-scam ecosystem built around cloned media, advertising traffic and conditional delivery. This guide has a narrower purpose. It explains the mechanism, the questions a defender should ask and the evidence that can support an answer without becoming a playbook for defeating the operator's controls.
+The longer [fake news investment scam investigation](/en/research/when-fake-news-scams-and-cloaking-meet/) documents a real investment-scam ecosystem built around cloned media, advertising traffic and conditional delivery. This guide has a narrower purpose. It explains the mechanism, the questions a defender should ask and the evidence that can support an answer without becoming a playbook for defeating the operator's controls.
 
 ## What can influence the response
 
@@ -321,7 +321,7 @@ Use time-bounded language: "observed at", "reported by", "preserved response", "
 3. [urlscan.io API documentation and scan-visibility guidance](https://urlscan.io/docs/api/)
 4. [W3C: Fetch Metadata Request Headers](https://www.w3.org/TR/fetch-metadata/)
 5. [Meta Help Center: tips for shopping safely](https://www.facebook.com/help/123884166448529/)
-6. [HECAVEX: Facebook cloaking, fake news and investment-scam infrastructure](/en/research/when-fake-news-scams-and-cloaking-meet/)
+6. [HECAVEX: Fake news investment scams: inside the cloaking and redirect infrastructure](/en/research/when-fake-news-scams-and-cloaking-meet/)
 7. [HECAVEX: Information factories on Lithuania's border](/en/research/information-factories-on-lithuanias-border/)
 8. [HECAVEX: Infrastructure Pivoting 101](/en/research/infrastructure-pivoting-101/)
 

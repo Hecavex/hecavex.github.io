@@ -24,8 +24,6 @@ Pagrindinė publikacija nenustato pirmosios šalies reklaminių ar analitikos sl
 
 [„Cloudflare“ RUM matavimo kodo dokumentacijoje nurodo](https://developers.cloudflare.com/speed/observatory/rum-beacon/), kad jos Web Analytics kodas neskaito ir nerašo slapukų, `localStorage`, `sessionStorage` ar IndexedDB ir naršyklėje nesaugo nuolatinio analitikos identifikatoriaus. Konkretaus puslapio matavimas sukuriamas atmintyje ir susijęs su tuo metu peržiūrimu puslapiu.
 
-APT Notes (`apt.hecavex.com`) ir Labs (`labs.hecavex.com`) nuo 2026 m. spalio 17 d. nebėra viešai prieinami. Jei ankstesnė Labs versija išsaugojo reikšmių jūsų naršyklėje, jos lieka jūsų žinioje. Pašalinti jas galite naršyklės svetainės duomenų valdikliais domenui `labs.hecavex.com`.
-
 Pagrindinės svetainės užklausos rengyklė tekstą parengia tik atvertame puslapyje. Ji nesaugo juodraščio naršyklės saugykloje ir jo automatiškai nesiunčia. Laiškas išsiunčiamas tik tada, kai patys pasirenkate jį siųsti savo el. pašto paslaugoje. Atsisiųstos biografijos, įrodymai ir kiti failai yra jūsų valdomi failai, o ne analitikos įrašai.
 
 ## „Cloudflare Web Analytics“

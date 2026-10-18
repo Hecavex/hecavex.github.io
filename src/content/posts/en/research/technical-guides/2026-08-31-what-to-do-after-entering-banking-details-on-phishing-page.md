@@ -6,8 +6,8 @@ immediate_actions:
 title: "Entered Banking Details on a Phishing Page? Do This Now"
 card_title: "What to Do After Banking Phishing"
 description: "An emergency response guide for exposed card details, online-banking credentials, Smart-ID or OTP approvals, stolen sessions, transfers, and installed apps."
-seo_title: "Entered Bank Details on a Phishing Page? Act Now"
-seo_description: "A practical emergency checklist for exposed cards, bank credentials, Smart-ID, OTP codes, transfers, sessions and apps after a phishing page."
+seo_title: "Entered Bank Details on a Phishing Page? Do This Now"
+seo_description: "Step by step: who to call first, how to block your card, secure online banking, revoke Smart-ID or OTP approvals and check transfers after phishing."
 seo_keywords:
   - "entered bank details on phishing page"
   - "what to do after phishing"

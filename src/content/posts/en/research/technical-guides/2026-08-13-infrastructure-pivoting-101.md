@@ -5,7 +5,8 @@ published: true
 title: "Infrastructure Pivoting for CTI: DNS, URLScan, TLS and Hashes"
 card_title: "Infrastructure Pivoting with DNS, URLScan and Hashes"
 description: "A practical CTI guide to pivoting across DNS, RDAP, URLScan, TLS, JavaScript hashes and timelines without turning correlations into unsupported attribution."
-seo_title: "CTI Infrastructure Pivoting: DNS, URLScan and Hashes"
+seo_description: "How to pivot from one phishing domain to related infrastructure with DNS, RDAP, URLScan, TLS and JavaScript hashes, and when a match is not proof."
+seo_title: "Infrastructure Pivoting 101: From One Domain to a Campaign"
 seo_keywords:
   - "phishing infrastructure pivoting"
   - "URLScan hash pivoting"

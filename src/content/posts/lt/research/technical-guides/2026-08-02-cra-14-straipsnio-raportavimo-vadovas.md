@@ -5,7 +5,8 @@ published: true
 title: "CRA 14 straipsnis: 24 ir 72 valandų pranešimų vadovas"
 card_title: "CRA 14 straipsnis: pranešimų terminai"
 description: "Praktinis CRA 14 straipsnio vadovas apie 24 valandų ankstyvąjį perspėjimą, 72 valandų pranešimą ENISA, išnaudojamus pažeidžiamumus ir incidentus."
-seo_title: "CRA 14 straipsnis: 24 ir 72 valandų terminai"
+seo_description: "Ką CRA 14 straipsnis įpareigoja pranešti ENISA per 24 ir 72 valandas nuo 2026 m. rugsėjo 11 d. ir kada teikti galutinę ataskaitą: terminų lentelė."
+seo_title: "CRA 14 str. terminai: 24 val., 72 val. ir galutinė ataskaita"
 seo_keywords:
   - "CRA 14 straipsnio pranešimai"
   - "Kibernetinio atsparumo aktas"

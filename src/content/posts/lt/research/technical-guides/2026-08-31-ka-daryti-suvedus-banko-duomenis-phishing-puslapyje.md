@@ -6,8 +6,8 @@ immediate_actions:
 title: "Suvedėte banko duomenis phishing puslapyje? Veikite dabar"
 card_title: "Ką daryti po bankinio phishing"
 description: "Skubi veiksmų seka, kai phishing puslapyje atskleisti kortelės ar banko duomenys, Smart-ID PIN, OTP kodas, sesija, atliktas pavedimas arba įdiegta programa."
-seo_title: "Suvedžiau banko duomenis phishing puslapyje: ką daryti?"
-seo_description: "Skubus planas po bankinio phishing: kortelės blokavimas, banko prisijungimas, Smart-ID, OTP, pavedimai, sesijos, įdiegtos programos ir pranešimas Lietuvoje."
+seo_title: "Suvedėte banko duomenis sukčiams? Ką daryti dabar"
+seo_description: "Suvedėte banko ar kortelės duomenis netikroje svetainėje? Kam skambinti, kaip blokuoti kortelę, Smart-ID ir pavedimus po sukčiavimo (phishing)."
 seo_keywords:
   - "suvedžiau banko duomenis phishing puslapyje"
   - "ką daryti po phishing"

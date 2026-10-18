@@ -7,8 +7,8 @@ research_artifacts:
 title: "Evilginx aptikimas: reverse-proxy phishing ir pavogtų sesijų požymiai"
 card_title: "Evilginx aptikimas identity aplinkoje"
 description: "Gynybinis Evilginx ir reverse-proxy phishing vadovas apie domenų, HTTP, prisijungimų bei token telemetriją, session containment ir phishing atsparią MFA."
-seo_title: "Evilginx aptikimas: reverse-proxy phishing požymiai"
-seo_description: "Kaip aptikti Evilginx ir reverse-proxy phishing siejant domenų, HTTP, sign-in bei session telemetriją ir suvaldyti galimą token vagystę."
+seo_title: "Kaip aptikti Evilginx: reverse-proxy phishing požymiai"
+seo_description: "Kaip aptikti Evilginx: domenų, HTTP, prisijungimų ir sesijų požymiai, rodantys reverse-proxy phishing, ir kaip greitai suvaldyti pavogtus token."
 seo_keywords:
   - "Evilginx aptikimas"
   - "reverse proxy phishing"

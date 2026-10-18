@@ -13,7 +13,7 @@ import SpeakerContact from '../../components/SpeakerContact.astro';
 import StartHere from '../../components/StartHere.astro';
 import { contactRoutesFor, pageFactsFor, researchMapFor, type OutlineItem } from '../../data/page-context';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { audienceLabel, briefingsPath, categoryPath, copy, labelForPost, startHerePath, tagsPath, dateText, getPages, getLocalizedPosts, languagePairPath, latestContentUpdate, slugify, taxonomy, type Lang, type PageEntry } from '../../lib/site';
+import { audienceLabel, briefingsPath, categoryPath, copy, labelForPost, startHerePath, tagsPath, dateText, getPages, getLocalizedPosts, languagePairPath, latestContentUpdate, slugify, tagLabel, taxonomy, type Lang, type PageEntry } from '../../lib/site';
 
 export async function getStaticPaths() {
   const pages = await getPages();
@@ -39,7 +39,7 @@ const assessments = posts.filter((post) => post.publicationClass === 'technical-
 const commentary = posts.filter((post) => post.publicationClass === 'commentary');
 const briefings = posts.filter((post) => post.publicationClass === 'signal-brief');
 const featured = posts.filter((post) => post.featured).slice(0, 3);
-const tags = [...new Map(posts.flatMap((post) => post.tags).map((tag) => [slugify(tag), tag])).entries()].sort((a, b) => a[1].localeCompare(b[1], lang));
+const tags = [...new Map(posts.flatMap((post) => post.tags).map((tag) => [slugify(tag), tagLabel(tag, lang)])).entries()].sort((a, b) => a[1].localeCompare(b[1], lang));
 const title = entry.data.seo_title ?? entry.data.title;
 const bodyOutlineHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3) as OutlineItem[];
 const standardOutlineHeadings: OutlineItem[] = [{ depth: 2, slug: 'page-start', text: entry.data.title }, ...bodyOutlineHeadings];

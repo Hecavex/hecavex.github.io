@@ -20,7 +20,7 @@ publication_class: primary-research
 confidence: moderate
 tlp: clear
 categories: [threat-intelligence, investigations, fraud-scams, osint]
-tags: [phishing, Lietuva, HECAVEX Radar, prekių ženklų impersonation, Certificate Transparency, matavimas, duomenų kokybė]
+tags: [phishing, Lithuania, HECAVEX Radar, prekių ženklų impersonation, Certificate Transparency, matavimas, duomenų kokybė]
 featured: false
 draft: false
 published: true
