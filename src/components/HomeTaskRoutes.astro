@@ -1,18 +1,18 @@
 ---
-import { dateText, type Lang, type Post } from '../lib/site';
+import { briefingsPath, copy, dataPath, dateText, researchPath, type Lang, type Post } from '../lib/site';
 interface Props { lang: Lang; posts: Post[]; latestUpdate?: Date; }
 const { lang, posts, latestUpdate } = Astro.props;
-const t = (en: string, lt: string) => lang === 'lt' ? lt : en;
+const c = copy[lang];
 const safetyGuide = posts.find(post => post.translationKey === 'suspicious-sms-link-safety-guide');
 const routes = [
-  ...(safetyGuide ? [{ href: safetyGuide.url, title: t('Check a suspicious link safely', 'Saugiai patikrinti įtartiną nuorodą'), note: t('Read the practical guide', 'Skaityti praktinį vadovą') }] : []),
-  { href: lang === 'lt' ? '/lt/tyrimai/' : '/en/research/', title: t('Investigate a threat', 'Tirti skaitmeninę grėsmę'), note: t('Research and technical assessments', 'Tyrimai ir techniniai vertinimai') },
-  { href: lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/', title: t('Catch up on the week', 'Peržvelgti savaitės signalus'), note: t('Dated Signal Briefs with sources', 'Signalų apžvalgos su datomis ir šaltiniais') },
-  { href: lang === 'lt' ? '/lt/duomenys/' : '/data/', title: t('Inspect the published data', 'Peržiūrėti paskelbtus duomenis'), note: t('Citable datasets and evidence limits', 'Cituojami rinkiniai ir įrodymų ribos') },
+  ...(safetyGuide ? [{ href: safetyGuide.url, title: c.home_route_safety_title, note: c.home_route_safety_note }] : []),
+  { href: researchPath[lang], title: c.home_route_research_title, note: c.home_route_research_note },
+  { href: briefingsPath[lang], title: c.home_route_briefs_title, note: c.home_route_briefs_note },
+  { href: dataPath[lang], title: c.home_route_data_title, note: c.home_route_data_note },
 ];
 ---
-<nav class="home-route-rail" aria-label={t('Start with your task', 'Pradėkite nuo užduoties')}>
-  <h2>{t('Find what you need', 'Raskite, ko ieškote')}</h2>
+<nav class="home-route-rail" aria-label={c.home_routes_label}>
+  <h2>{c.home_routes_h2}</h2>
   <ul>{routes.map(route => <li><a href={route.href}><strong>{route.title}</strong><span>{route.note}</span></a></li>)}</ul>
-  <p class="home-route-updated">{t('Content updated', 'Turinys atnaujintas')}: {latestUpdate ? <time datetime={latestUpdate.toISOString()}>{dateText(latestUpdate)}</time> : '—'}</p>
+  <p class="home-route-updated">{c.home_routes_updated}: {latestUpdate ? <time datetime={latestUpdate.toISOString()}>{dateText(latestUpdate)}</time> : '—'}</p>
 </nav>

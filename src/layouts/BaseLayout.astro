@@ -28,7 +28,7 @@ interface Props {
 
 const {
   lang, title, seoTitle, keywords = [], articleSection, description, canonicalPath, alternatePath, languageAlternates, xDefaultPath,
-  image = `/assets/img/og/hecavex-default-${lang}.png`, imageAlt = `${title} social preview`,
+  image = `/assets/img/og/hecavex-default-${lang}.png`, imageAlt = copy[lang].social_preview_alt!.replace('{title}', () => title),
   noindex = false, type = 'WebPage', published, modified, breadcrumbs = []
 } = Astro.props;
 const c = copy[lang];

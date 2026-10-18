@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getPages, getPublicPosts, imagePath, slugify, taxonomy, xmlEscape, type Lang } from '../lib/site';
+import { categoriesPath, dataPath, getPages, getPublicPosts, imagePath, slugify, tagsPath, taxonomy, xmlEscape, type Lang } from '../lib/site';
 
 interface SitemapRoute {
   modified?: Date;
@@ -18,9 +18,8 @@ export const GET: APIRoute = async () => {
   const routes = new Map<string, SitemapRoute>();
 
   routes.set('/', { alternates: { en: '/en/', lt: '/lt/' }, xDefault: '/' });
-  const dataAlternates = { en: '/data/', lt: '/lt/duomenys/' };
-  routes.set('/data/', { alternates: dataAlternates, xDefault: '/data/' });
-  routes.set('/lt/duomenys/', { alternates: dataAlternates, xDefault: '/data/' });
+  routes.set(dataPath.en, { alternates: dataPath, xDefault: dataPath.en });
+  routes.set(dataPath.lt, { alternates: dataPath, xDefault: dataPath.en });
 
   const indexablePages = pages.filter(isIndexablePage);
   for (const page of indexablePages) {
@@ -48,11 +47,10 @@ export const GET: APIRoute = async () => {
   const taxonomyPairs = new Map<string, Partial<Record<Lang, string>>>();
   for (const lang of ['en', 'lt'] as Lang[]) {
     const localized = posts.filter((post) => post.lang === lang);
-    const categoryBase = lang === 'lt' ? 'kategorijos' : 'categories';
     for (const slug of Object.keys(taxonomy)) {
       if (slug === 'security-briefings') continue;
       if (localized.filter((post) => post.categories.includes(slug)).length < 2) continue;
-      const path = `/${lang}/${categoryBase}/${slug}/`;
+      const path = `${categoriesPath[lang]}${slug}/`;
       routes.set(path, {});
       const pair = taxonomyPairs.get(`category:${slug}`) ?? {};
       pair[lang] = path;
@@ -61,10 +59,9 @@ export const GET: APIRoute = async () => {
 
     const tagCounts = new Map<string, number>();
     for (const tag of localized.flatMap((post) => post.tags)) tagCounts.set(slugify(tag), (tagCounts.get(slugify(tag)) ?? 0) + 1);
-    const tagBase = lang === 'lt' ? 'zymos' : 'tags';
     for (const [slug, count] of tagCounts) {
       if (count < 2) continue;
-      const path = `/${lang}/${tagBase}/${slug}/`;
+      const path = `${tagsPath[lang]}${slug}/`;
       routes.set(path, {});
       const pair = taxonomyPairs.get(`tag:${slug}`) ?? {};
       pair[lang] = path;

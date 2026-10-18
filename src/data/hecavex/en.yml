@@ -258,3 +258,64 @@ data_note4_title: Check reuse terms.
 data_note4_text: Code licences do not automatically relicense datasets, article text, screenshots or upstream provider material.
 share_email: Email
 project_links_suffix: links
+
+# Message-table migration (R9), remaining components
+social_preview_alt: "{title} social preview"
+notfound_return: Return to HECAVEX Research
+briefing_feed_title: HECAVEX Signal Brief
+speaking_invite_h2: Bring the research into the conversation.
+speaking_invite_p: Deividas Lis for conference talks, discussions and media commentary on threat intelligence, fraud and digital threats.
+speaking_invite_link: Speaking and media
+taxonomy_category: CATEGORY
+taxonomy_tag: TAG
+taxonomy_description: HECAVEX publications filed under {name}.
+taxonomy_count_one: related publication
+taxonomy_count_other: related publications
+taxonomy_briefing_link: Open the briefing catalogue and RSS feed
+home_routes_label: Start with your task
+home_routes_h2: Find what you need
+home_routes_updated: Content updated
+home_route_safety_title: Check a suspicious link safely
+home_route_safety_note: Read the practical guide
+home_route_research_title: Investigate a threat
+home_route_research_note: Research and technical assessments
+home_route_briefs_title: Catch up on the week
+home_route_briefs_note: Dated Signal Briefs with sources
+home_route_data_title: Inspect the published data
+home_route_data_note: Citable datasets and evidence limits
+research_tasks_summary: Find research for a task
+research_tasks_p: A short route through existing work. The full publication catalogue follows below.
+research_task_infra_title: Investigate related infrastructure
+research_task_infra_note: Follow a worked case, then use the pivoting method. Shared infrastructure alone is not attribution.
+research_task_analytic_title: Evaluate a defensive analytic
+research_task_analytic_note: Use the versioned synthetic fixtures linked in these guides. Portable model tests do not validate KQL execution or production efficacy.
+research_tasks_data_link: Need machine-readable records? Open the data catalogue
+research_tasks_data_note: Check the package licence and evidence limits before reuse.
+enquiry_h2: Prepare a request
+enquiry_p: This prepares an email draft, not a booking or a submission. Nothing is sent by this page. Do not include sensitive evidence or credentials.
+enquiry_direct: Use a template in your email app, or write directly to
+enquiry_kind_speaking: Speaking invitation
+enquiry_kind_media: Media request
+enquiry_kind_research: Research collaboration
+enquiry_template: |-
+  Topic:
+  Event or publication:
+  Audience and format:
+  Date or deadline (include time zone):
+  Language and location or remote:
+  On or off the record:
+  Public research link, if relevant:
+enquiry_editor_summary: Prepare a draft on this page
+enquiry_editor_p: Fields stay in this tab and are not saved. Review the text before opening your email app. Availability and arrangements require a reply.
+enquiry_legend: Request details
+enquiry_type: Request type
+enquiry_topic: Topic or proposed talk
+enquiry_event: Event or publication
+enquiry_audience: Audience and format
+enquiry_date: Date or deadline, including time zone
+enquiry_location: Language and location or remote
+enquiry_context: Public research link or on/off-record preference
+enquiry_prepare: Prepare draft
+enquiry_output: Draft to review or copy manually
+enquiry_open_email: Open email app with this draft
+enquiry_no_app: No email app? Select the draft and paste it into your usual mail service.
