@@ -81,7 +81,7 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 .landing-edition-rail span,
 .landing-edition-rail small {
   color: var(--cyan);
-  font: 500 0.59rem var(--mono);
+  font: 500 0.8125rem var(--mono);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -95,40 +95,12 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 .landing-edition-rail p {
   margin: 0.45rem 0 0;
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.8125rem;
   line-height: 1.55;
 }
 
 .landing-edition-rail small {
   margin-top: 0.75rem;
-}
-
-.landing-index {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  margin: 0;
-  padding: 0 1px 1px;
-  background: var(--line);
-}
-
-.landing-index > div {
-  min-width: 0;
-  padding: 0.9rem 1.1rem;
-  background: var(--surface);
-}
-
-.landing-index dt {
-  color: var(--faint);
-  font: 500 0.55rem var(--mono);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.landing-index dd {
-  margin: 0.25rem 0 0;
-  color: var(--text);
-  font-size: 0.8rem;
 }
 
 .hero-actions {
@@ -142,7 +114,7 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 .article-signals dt,
 .research-record dt {
   color: var(--faint);
-  font: 500 0.57rem var(--mono);
+  font: 500 0.8125rem var(--mono);
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -191,7 +163,7 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
   gap: 0.5rem 0.75rem;
   margin: 0;
   color: var(--faint);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -272,7 +244,7 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 .post-card-image figcaption {
   margin-top: 0.4rem;
   color: var(--muted);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   line-height: 1.5;
 }
 
@@ -297,7 +269,7 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 .card-action {
   margin-top: auto;
   color: var(--cyan-bright);
-  font: 600 0.75rem var(--mono);
+  font: 600 0.8125rem var(--mono);
   text-decoration: none;
 }
 
@@ -348,7 +320,7 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
 
 .network-grid span,
 .network-grid small {
-  font: 500 0.58rem var(--mono);
+  font: 500 0.8125rem var(--mono);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }

@@ -173,7 +173,7 @@ pre code {
   padding: 0.7rem 0.9rem;
   background: var(--cyan);
   color: var(--bg);
-  font: 600 0.72rem var(--mono);
+  font: 600 0.8125rem var(--mono);
 }
 
 .skip-link:focus {

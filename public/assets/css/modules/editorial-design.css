@@ -6,9 +6,13 @@
 .mobile-navigation-panel a,
 .navigation-button {
   font-family: var(--sans);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   letter-spacing: 0;
   text-transform: none;
+}
+
+.portfolio-navigation a {
+  font-size: 0.875rem;
 }
 
 .button,
@@ -32,14 +36,14 @@
 
 .brand-copy small {
   font-family: var(--sans);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   letter-spacing: 0;
   text-transform: none;
 }
 
 :is(.home-shell, .page-shell, .article-shell, .landing-portal) .eyebrow {
   padding-left: 0;
-  font: 600 0.75rem/1.5 var(--sans);
+  font: 600 0.8125rem/1.5 var(--sans);
   letter-spacing: 0.02em;
   text-transform: none;
 }
@@ -186,7 +190,7 @@
 
 .home-route-rail a span,
 .home-route-updated {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.6;
 }
 
@@ -216,7 +220,7 @@
 
 .research-path-label {
   margin: 0;
-  font: 600 0.75rem/1.5 var(--sans);
+  font: 600 0.8125rem/1.5 var(--sans);
 }
 
 .research-path h3 {
@@ -245,7 +249,7 @@
   gap: 0.25rem 1rem;
   margin-top: auto;
   padding-top: 0.5rem;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .research-path-record a {
@@ -281,9 +285,8 @@
 
 .page-facts dt,
 .article-signals dt,
-.research-record dt,
-.landing-index dt {
-  font: 500 0.75rem/1.5 var(--sans);
+.research-record dt {
+  font: 500 0.8125rem/1.5 var(--sans);
   letter-spacing: 0;
   text-transform: none;
 }
@@ -311,7 +314,7 @@
 }
 
 .card-meta {
-  font: 500 0.75rem/1.5 var(--sans);
+  font: 500 0.8125rem/1.5 var(--sans);
   letter-spacing: 0;
   text-transform: none;
 }
@@ -333,7 +336,7 @@ main .card-meta span {
   gap: 0.4rem 1rem;
   margin: auto 0 0.6rem;
   padding-top: 1rem;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .card-action {
@@ -378,7 +381,7 @@ main .card-meta span {
 
 .landing-portal .landing-edition-rail :is(span, small),
 .landing-current-card footer {
-  font: 500 0.75rem/1.6 var(--sans);
+  font: 500 0.8125rem/1.6 var(--sans);
   letter-spacing: 0;
   text-transform: none;
 }
@@ -386,23 +389,6 @@ main .card-meta span {
 .landing-portal .landing-edition-rail p,
 .landing-current-card > p:not(.eyebrow) {
   font-size: 0.9375rem;
-}
-
-.landing-index {
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  padding: 0 0 1.5rem;
-  border-bottom: 1px solid var(--line);
-  background: transparent;
-}
-
-.landing-index > div {
-  padding: 0;
-  background: transparent;
-}
-
-.landing-index dd {
-  font-size: 1rem;
 }
 
 .landing-current-card h3 {
@@ -472,7 +458,7 @@ main .card-meta span {
 .taxonomy-row,
 .article-share,
 .search-results small {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.6;
   letter-spacing: 0;
   text-transform: none;

@@ -54,7 +54,7 @@ const description = homePage.data.seo_description ?? homePage.data.description;
 
     <section class="home-signal-grid">
       {latestBriefing && <div><header class="section-head"><div><p class="eyebrow">Signal Brief</p><h2>{hx.latest_briefing}</h2></div><a href={briefingsPath}>{hx.all_briefings} →</a></header><p class="home-briefs-explainer">{hx.home_briefs_explainer}</p><PostCard post={latestBriefing} prominent /></div>}
-      <aside class="radar-note"><p class="eyebrow">HECAVEX RADAR</p><h2>{lang === 'lt' ? 'Galimi apsimetimo domenai Lietuvoje' : 'Potential impersonation domains relevant to Lithuania'}</h2><p>{lang === 'lt' ? 'Viešas, tik skaitymui skirtas signalų sąrašas. Įrašai yra tyrimo kandidatai, o ne kenkėjiškumo nuosprendžiai.' : 'A public, read-only signal index. Listings are research candidates, not verdicts of maliciousness.'}</p><a class="button button--primary" href={lang === 'lt' ? 'https://radar.hecavex.com/lt/' : 'https://radar.hecavex.com/'}>{lang === 'lt' ? 'Atverti Radar' : 'Open Radar'} ↗</a></aside>
+      <aside class="radar-note"><p class="eyebrow">HECAVEX RADAR</p><h2>{lang === 'lt' ? 'Galimi apsimetimo domenai Lietuvoje' : 'Potential impersonation domains relevant to Lithuania'}</h2><p>{lang === 'lt' ? 'Viešas, tik skaitymui skirtas signalų sąrašas. Įrašai yra tyrimo kandidatai, o ne kenkėjiškumo nuosprendžiai.' : 'A public, read-only signal index. Listings are research candidates, not verdicts of maliciousness.'}</p><a class="button" href={lang === 'lt' ? 'https://radar.hecavex.com/lt/' : 'https://radar.hecavex.com/'}>{lang === 'lt' ? 'Atverti Radar' : 'Open Radar'} ↗</a></aside>
     </section>
 
     <SpeakingInvitation {lang} />

@@ -46,14 +46,14 @@
 
 .brand-copy strong {
   color: var(--text);
-  font: 700 0.8rem var(--mono);
+  font: 700 0.8125rem var(--mono);
   letter-spacing: 0.22em;
 }
 
 .brand-copy small {
   margin-top: 0.42rem;
   color: var(--faint);
-  font: 500 0.56rem var(--mono);
+  font: 500 0.8125rem var(--mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -73,7 +73,7 @@
   display: inline-flex;
   align-items: center;
   color: var(--muted);
-  font: 600 0.65rem var(--mono);
+  font: 600 0.8125rem var(--mono);
   letter-spacing: 0.055em;
   text-decoration: none;
   text-transform: uppercase;
@@ -152,7 +152,7 @@
   background: transparent;
   color: var(--muted);
   cursor: pointer;
-  font: 600 0.6rem var(--mono);
+  font: 600 0.8125rem var(--mono);
   letter-spacing: 0.045em;
   text-decoration: none;
   text-transform: uppercase;
@@ -184,7 +184,7 @@
   border: 1px solid var(--line);
   color: var(--text-soft);
   cursor: pointer;
-  font: 600 0.67rem var(--mono);
+  font: 600 0.8125rem var(--mono);
   letter-spacing: 0.06em;
   list-style: none;
   text-transform: uppercase;
@@ -239,7 +239,7 @@
 .navigation-label {
   padding: 0.55rem 0.65rem;
   color: var(--cyan);
-  font: 600 0.6rem var(--mono);
+  font: 600 0.8125rem var(--mono);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -255,7 +255,7 @@
   background: transparent;
   color: var(--muted);
   cursor: pointer;
-  font: 600 0.68rem var(--mono);
+  font: 600 0.8125rem var(--mono);
   letter-spacing: 0.04em;
   text-align: left;
   text-decoration: none;
@@ -286,7 +286,7 @@ main {
 .eyebrow {
   margin: 0;
   color: var(--cyan);
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -301,7 +301,7 @@ main {
   padding: 0.68rem 0.92rem;
   border: 1px solid var(--line-strong);
   color: var(--text);
-  font: 600 0.68rem var(--mono);
+  font: 600 0.8125rem var(--mono);
   text-decoration: none;
 }
 

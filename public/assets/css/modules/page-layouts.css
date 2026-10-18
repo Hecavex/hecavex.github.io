@@ -51,7 +51,7 @@
 
 .page-facts dt {
   color: var(--faint);
-  font: 500 0.57rem var(--mono);
+  font: 500 0.8125rem var(--mono);
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -59,7 +59,7 @@
 .page-facts dd {
   margin: 0.25rem 0 0;
   color: var(--text);
-  font-size: 0.78rem;
+  font-size: 0.8125rem;
   line-height: 1.45;
 }
 
@@ -117,7 +117,7 @@
   padding: 0.55rem 0.75rem;
   border: 1px solid var(--line);
   background: var(--surface);
-  font: 500 0.67rem var(--mono);
+  font: 500 0.8125rem var(--mono);
   text-decoration: none;
 }
 
@@ -151,7 +151,7 @@
 .archive-list time,
 .archive-list span {
   color: var(--faint);
-  font: 500 0.62rem var(--mono);
+  font: 500 0.8125rem var(--mono);
   text-transform: uppercase;
 }
 
@@ -251,7 +251,7 @@
   padding: 0.35rem 0.55rem;
   border: 1px solid var(--green);
   color: var(--green);
-  font: 500 0.59rem var(--mono);
+  font: 500 0.8125rem var(--mono);
 }
 
 .project-copy {
@@ -269,7 +269,7 @@
 
 .project-copy h3 {
   margin: 0 0 0.4rem;
-  font: 600 0.63rem var(--mono);
+  font: 600 0.8125rem var(--mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -289,7 +289,7 @@
 .project-record > nav a {
   padding: 0.55rem 0.7rem;
   border: 1px solid var(--line);
-  font: 500 0.63rem var(--mono);
+  font: 500 0.8125rem var(--mono);
   text-decoration: none;
 }
 
