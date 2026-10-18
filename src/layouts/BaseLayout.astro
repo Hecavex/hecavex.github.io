@@ -127,6 +127,10 @@ const assetQuery = `?v=${encodeURIComponent(assetVersion)}`;
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    {/* Faces every page renders; preloading starts them in parallel with the stylesheets. */}
+    <link rel="preload" href="/assets/fonts/space-grotesk/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/inter/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    {lang === 'lt' && <link rel="preload" href="/assets/fonts/inter/inter-latin-ext-400-normal.woff2" as="font" type="font/woff2" crossorigin />}
     <link rel="stylesheet" href={`/assets/css/fonts.css${assetQuery}`} />
     <link rel="stylesheet" href={`/assets/css/hecavex.css${assetQuery}`} />
     <script is:inline src={`/assets/js/site.js${assetQuery}`} defer></script>
