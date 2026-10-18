@@ -253,3 +253,29 @@
   text-decoration: none;
   text-transform: none;
 }
+
+.not-found__editions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1.5rem;
+}
+
+.not-found__edition {
+  padding: 1.2rem;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  font-size: 1rem;
+}
+
+.not-found__edition h2 {
+  margin-top: 0;
+}
+
+.not-found__links {
+  padding-left: 1.2rem;
+}
+
+.not-found__links a {
+  display: inline-block;
+  padding-block: 0.4rem;
+}
