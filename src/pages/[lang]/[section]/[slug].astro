@@ -8,7 +8,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { beginnerList, categoryPath, copy, glossaryPath, startHerePath, dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imageCaption, imageDimensions, imagePath, imagePresentation, imageSocialAlt, imageSrcSet, labelForPost, postNeighboursFor, relatedPostsFor, slugify, taxonomy, type Post } from '../../../lib/site';
 import { recordLabel } from '../../../lib/record-labels.mjs';
 import { coverageDate } from '../../../lib/briefing-record.mjs';
-import { citationPath } from '../../../lib/publication-citations.mjs';
+import { citationPath, publicationRecord, toBibtex } from '../../../lib/publication-citations.mjs';
 
 export async function getStaticPaths() {
   const posts = await getPublicPosts();
@@ -60,6 +60,7 @@ const outlineHeadings = condensedOutline ? trackedOutlineHeadings.filter((headin
 const showOutline = data.toc !== false && trackedOutlineHeadings.length > 1;
 const wideProse = data.prose_width === 'wide' && !beginner; // beginner articles always keep the readable measure
 const canonical = new URL(post.url, Astro.site).href;
+const bibtex = toBibtex(publicationRecord(post, await getPublicPosts()));
 const sectionPath = post.publicationClass === 'signal-brief'
   ? `/${post.lang}/${post.lang === 'lt' ? 'apzvalgos' : 'briefings'}/`
   : `/${post.lang}/${post.lang === 'lt' ? 'tyrimai' : 'research'}/`;
@@ -80,7 +81,7 @@ const sectionLabel = post.publicationClass === 'signal-brief'
       <p class="article-deck">{post.description}</p>
       {post.summary && <section class="article-summary"><h2>{c.article_in_short}</h2><p>{post.summary}</p></section>}
       {post.entry.data.immediate_actions?.length && <section class="immediate-actions" aria-labelledby="immediate-actions-title"><h2 id="immediate-actions-title">{c.article_what_now}</h2><ol>{post.entry.data.immediate_actions.map((action) => <li>{action}</li>)}</ol></section>}
-      <div class="article-meta"><span>{post.lang === 'lt' ? 'Paskelbta' : 'Published'} <time datetime={post.date.toISOString()}>{dateText(post.date)}</time></span>{post.updated && post.updated.valueOf() !== post.date.valueOf() && <span>{post.lang === 'lt' ? 'Atnaujinta' : 'Updated'} <time datetime={post.updated.toISOString()}>{dateText(post.updated)}</time></span>}<span>{post.readingMinutes} {post.lang === 'lt' ? 'min. skaitymo' : 'min read'}</span><span>{post.lang === 'lt' ? 'Autorius' : 'By'} <a href={post.lang === 'lt' ? '/lt/apie/' : '/en/about/'}>Deividas Lis</a></span></div>
+      <div class="article-meta"><span>{post.lang === 'lt' ? 'Paskelbta' : 'Published'} <time datetime={post.date.toISOString()}>{dateText(post.date)}</time></span>{post.updated && post.updated.valueOf() !== post.date.valueOf() && <span>{post.lang === 'lt' ? 'Atnaujinta' : 'Updated'} <time datetime={post.updated.toISOString()}>{dateText(post.updated)}</time></span>}<span>{post.readingMinutes} {post.lang === 'lt' ? 'min. skaitymo' : 'min read'}</span><span>{post.lang === 'lt' ? 'Autorius' : 'By'} <a href={post.lang === 'lt' ? '/lt/apie/' : '/en/about/'}>Deividas Lis</a></span><span><a href="#cite">{c.article_cite}</a></span></div>
       {!beginner && <p class="article-newcomer">{newcomer[0]}<a href={startHerePath[post.lang]}>{newcomer[1]}</a>{newcomer[2]}<a href={glossaryPath[post.lang]}>{newcomer[3]}</a>{newcomer[4]}</p>}
       <dl class="article-signals"><div><dt>{c.article_content_type}</dt><dd>{labelForPost(post)}</dd></div><div><dt><a href={`${glossaryPath[post.lang]}#confidence`}>{c.article_confidence}</a></dt><dd>{recordLabel(data.confidence ?? 'not stated', post.lang)}</dd></div><div><dt><a href={`${glossaryPath[post.lang]}#tlp`}>TLP</a></dt><dd>{String(data.tlp ?? 'clear').toUpperCase()}</dd></div></dl>
       {hero && <figure class="article-hero" data-preview={imagePresentation(post)}><img src={hero} srcset={imageSrcSet(post, 'hero')} sizes="(max-width: 960px) calc(100vw - 40px), 1120px" alt={alt} width={heroDimensions?.width} height={heroDimensions?.height} loading="eager" fetchpriority="high" decoding="async" /><figcaption>{imageCaption(post)}{image?.caption && <> · {image.caption}</>} <a href={hero}>{image?.source_type === 'generated' ? t('Open full-size illustration', 'Atverti viso dydžio iliustraciją') : t('Open original image', 'Atverti originalų vaizdą')}</a></figcaption></figure>}
@@ -99,9 +100,10 @@ const sectionLabel = post.publicationClass === 'signal-brief'
 
     {updates.length > 0 && <section class="update-history"><p class="eyebrow">{post.lang === 'lt' ? 'Atnaujinimų istorija' : 'Update history'}</p><ol>{updates.map((update) => <li><time datetime={new Date(update.date).toISOString()}>{dateText(new Date(update.date))}</time><p>{update.note}</p></li>)}</ol></section>}
     <aside class="author-card" aria-label={c.author_card_link}><p>{c.author_card}</p><a href={post.lang === 'lt' ? '/lt/apie/' : '/en/about/'}>{c.author_card_link} →</a></aside>
-    <aside class="citation-block"><p class="eyebrow">{post.lang === 'lt' ? 'Citavimas' : 'Citation'}</p><p>Lis, Deividas. "{post.title}." HECAVEX, {dateText(post.date)}. <a href={post.url}>{canonical}</a>.</p>
+    <aside id="cite" class="citation-block"><h2>{c.article_cite}</h2><p>Lis, Deividas. "{post.title}." HECAVEX, {dateText(post.date)}. <a href={post.url}>{canonical}</a>.</p>
       {data.research_version && <p>{t('Research version', 'Tyrimo versija')}: {String(data.research_version)}. {t('The evidence package may have a different version.', 'Įrodymų paketo versija gali skirtis.')}</p>}
       <p class="citation-downloads"><a href={citationPath(post, 'bib')} download>{t('Download BibTeX', 'Atsisiųsti BibTeX')}</a><a href={citationPath(post, 'json')} download>{t('Download CSL-JSON', 'Atsisiųsti CSL-JSON')}</a></p>
+      <details class="citation-bibtex"><summary>{c.article_cite_bibtex}</summary><pre>{bibtex}</pre></details>
       <p>{t('Import into your reference manager. These files describe this language edition and its recorded version, not a peer-review certification.', 'Importuokite į bibliografijos tvarkymo programą. Failai aprašo šią kalbinę versiją ir užfiksuotą tyrimo versiją, o ne patvirtina mokslinį recenzavimą.')}</p>
     </aside>
     {!translation && <p class="translation-note">{post.lang === 'lt' ? 'Šio turinio vertimas dar neparengtas.' : 'This content is currently available only in its original language.'}</p>}

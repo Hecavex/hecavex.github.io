@@ -68,7 +68,7 @@ for (const file of htmlFiles) {
       failures.push(`${route}: code block does not use the dark publication surface/text`);
     }
   }
-  const citation = html.match(/<aside class="citation-block">([\s\S]*?)<\/aside>/)?.[1] ?? '';
+  const citation = html.match(/<aside id="cite" class="citation-block">([\s\S]*?)<\/aside>/)?.[1] ?? '';
   if (/[\u201c\u201d\u201e]/u.test(citation)) failures.push(`${route}: citation template must use straight quotes`);
   const record = html.match(/<section class="research-record"([\s\S]*?)<\/section>/)?.[1] ?? '';
   const signals = html.match(/<dl class="article-signals">([\s\S]*?)<\/dl>/)?.[1] ?? '';

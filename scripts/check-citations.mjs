@@ -80,9 +80,15 @@ try {
         canonical: doc.querySelector('meta[name="DC.identifier"]')?.content,
         type: doc.querySelector('meta[name="DC.type"]')?.content,
         highwire: Boolean(doc.querySelector('meta[name="citation_title"]')),
-        links: [...doc.querySelectorAll('.citation-downloads a')].map(link => link.getAttribute('href'))
+        links: [...doc.querySelectorAll('.citation-downloads a')].map(link => link.getAttribute('href')),
+        inlineBibtex: doc.querySelector('#cite .citation-bibtex pre')?.textContent,
+        citeLink: doc.querySelector('.article-meta a[href="#cite"]')?.getAttribute('href')
       };
     }, html);
+    // "Cite this" must be findable and its inline BibTeX must equal the downloadable .bib byte for byte.
+    assert.equal(metadata.citeLink, '#cite', 'Article meta line must link to the citation block');
+    assert.equal(metadata.inlineBibtex, await load(new URL(record.citation.bibtex).pathname), 'Inline BibTeX must equal the .bib download');
+    delete metadata.inlineBibtex; delete metadata.citeLink;
     assert.deepEqual(metadata, {
       title: record.title, author: 'Lis, Deividas', date: record.published,
       language: record.language, canonical: record.id, type: 'Text', highwire: false,
