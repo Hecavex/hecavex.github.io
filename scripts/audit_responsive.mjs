@@ -594,6 +594,7 @@ try {
             return { top: target.getBoundingClientRect().top, header: document.querySelector('.site-header').getBoundingClientRect().bottom };
           });
           if (landed.top < landed.header - 1) fail(route, width, `back-to-contents target hides under the sticky header (top ${landed.top}px, header bottom ${landed.header}px)`);
+          await page.reload(); // the click moved the focus origin; the skip-link check below needs a fresh start
         }
         await page.evaluate(() => window.scrollTo(0, 0));
       }
