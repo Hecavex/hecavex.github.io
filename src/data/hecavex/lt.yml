@@ -225,7 +225,7 @@ cite_bibtex_download: Atsisiųsti BibTeX citatą
 redirect_title: Publikacija perkelta
 redirect_moved: Publikacija perkelta.
 redirect_continue: Atverti naują adresą
-publication_count_one: publikacijos
+publication_count_one: publikacija
 publication_count_other: publikacijos
 publication_count_none: publikacijų
 label_default: HECAVEX tyrimas
@@ -258,3 +258,64 @@ data_note4_title: Patikrinkite pakartotinio naudojimo sąlygas.
 data_note4_text: Kodo licencijos savaime nekeičia rinkinių, straipsnių, ekrano kopijų ar pirminių teikėjų medžiagos licencijų.
 share_email: El. paštas
 project_links_suffix: nuorodos
+
+# Message-table migration (R9), remaining components
+social_preview_alt: "Dalijimosi kortelė: {title}"
+notfound_return: Grįžti į HECAVEX
+briefing_feed_title: HECAVEX Signal Brief
+speaking_invite_h2: Tyrimai, apie kuriuos verta kalbėti.
+speaking_invite_p: Deividas Lis konferencijoms, diskusijoms ir žiniasklaidos komentarams apie grėsmių žvalgybą, apgaules ir skaitmenines grėsmes.
+speaking_invite_link: Pranešimai ir žiniasklaida
+taxonomy_category: KATEGORIJA
+taxonomy_tag: ŽYMA
+taxonomy_description: "HECAVEX publikacijos: {name}."
+taxonomy_count_one: susijusi publikacija
+taxonomy_count_other: susijusios publikacijos
+taxonomy_briefing_link: Atverti apžvalgų katalogą ir RSS
+home_routes_label: Pradėkite nuo užduoties
+home_routes_h2: Raskite, ko ieškote
+home_routes_updated: Turinys atnaujintas
+home_route_safety_title: Saugiai patikrinti įtartiną nuorodą
+home_route_safety_note: Skaityti praktinį vadovą
+home_route_research_title: Tirti skaitmeninę grėsmę
+home_route_research_note: Tyrimai ir techniniai vertinimai
+home_route_briefs_title: Peržvelgti savaitės signalus
+home_route_briefs_note: Signalų apžvalgos su datomis ir šaltiniais
+home_route_data_title: Peržiūrėti paskelbtus duomenis
+home_route_data_note: Cituojami rinkiniai ir įrodymų ribos
+research_tasks_summary: Raskite tyrimą pagal užduotį
+research_tasks_p: Trumpas kelias per jau paskelbtus darbus. Visas publikacijų katalogas pateiktas žemiau.
+research_task_infra_title: Tirti susijusią infrastruktūrą
+research_task_infra_note: Pradėkite nuo konkretaus tyrimo, tada pereikite prie pivoting metodo. Vien bendra infrastruktūra neįrodo priskyrimo.
+research_task_analytic_title: Įvertinti aptikimo logiką
+research_task_analytic_note: Naudokite vadovuose pateiktus versijuotus sintetinius testus. Modelio testai nepatvirtina KQL vykdymo ar veiksmingumo realioje aplinkoje.
+research_tasks_data_link: Reikia mašininiu būdu skaitomų įrašų? Atverkite duomenų katalogą
+research_tasks_data_note: Prieš naudodami patikrinkite paketo licenciją ir įrodymų ribas.
+enquiry_h2: Parenkite užklausą
+enquiry_p: Čia parengiamas laiško juodraštis, o ne rezervacija ar išsiųsta užklausa. Šis puslapis nieko nesiunčia. Neįtraukite jautrių įrodymų ar prisijungimo duomenų.
+enquiry_direct: Naudokite šabloną savo pašto programoje arba rašykite tiesiogiai
+enquiry_kind_speaking: Kvietimas pranešimui
+enquiry_kind_media: Žiniasklaidos užklausa
+enquiry_kind_research: Bendras tyrimas
+enquiry_template: |-
+  Tema:
+  Renginys ar leidinys:
+  Auditorija ir formatas:
+  Data ar terminas (nurodykite laiko juostą):
+  Kalba ir vieta arba nuotoliu:
+  Viešas ar neviešas pokalbis:
+  Viešo tyrimo nuoroda, jei aktualu:
+enquiry_editor_summary: Parengti juodraštį šiame puslapyje
+enquiry_editor_p: Laukai lieka šiame skirtuke ir nėra išsaugomi. Prieš atverdami pašto programą peržiūrėkite tekstą. Dėl galimybės dalyvauti ir sąlygų reikia susitarti atsakant į laišką.
+enquiry_legend: Užklausos informacija
+enquiry_type: Užklausos tipas
+enquiry_topic: Tema ar siūlomas pranešimas
+enquiry_event: Renginys ar leidinys
+enquiry_audience: Auditorija ir formatas
+enquiry_date: Data ar terminas su laiko juosta
+enquiry_location: Kalba ir vieta arba nuotoliu
+enquiry_context: Viešo tyrimo nuoroda arba viešo / neviešo pokalbio pasirinkimas
+enquiry_prepare: Parengti juodraštį
+enquiry_output: Juodraštis peržiūrai arba kopijavimui
+enquiry_open_email: Atverti pašto programą su šiuo juodraščiu
+enquiry_no_app: Nėra pašto programos? Pažymėkite juodraštį ir įklijuokite į įprastą paštą.
