@@ -241,7 +241,10 @@ for (const [token, pattern] of [
   ['product hero minimum height', /--frame-product-hero:\s*20rem/],
   ['page heading', /--page-title-size:\s*clamp\(2\.4rem,\s*3\.6vw,\s*3\.25rem\)/],
   ['section heading', /--section-title-size:\s*clamp\(1\.45rem,\s*2\.4vw,\s*2rem\)/],
-  ['display heading', /--display-title-size:\s*clamp\(2\.5rem,\s*4\.2vw,\s*4rem\)/]
+  ['display heading', /--display-title-size:\s*clamp\(2\.5rem,\s*4\.2vw,\s*4rem\)/],
+  // The article selector is `.article-body > :where(p, …)`; the measure is the 72ch --reading token.
+  ['reading measure token', /--reading:\s*72ch/],
+  ['prose measure', /\.article-body\s*>\s*:(?:is|where)\([^)]*\bp\b[^)]*\)\s*\{[^}]*max-width:\s*var\(--reading\)/s]
 ]) if (!pattern.test(css)) failures.push(`portfolio CSS contract missing ${token}`);
 
 if (failures.length) {

@@ -64,7 +64,8 @@ try {
    check(response.status() === 200, route + ': HTTP status');
    const state = await page.evaluate(() => ({
     overflow: document.documentElement.scrollWidth > innerWidth + 1,
-    actions: !!document.querySelector('.article-deck + .immediate-actions'),
+    // Beginner articles put the In short box between the deck and the actions; the actions still lead the page.
+    actions: !!document.querySelector('.article-deck + .immediate-actions, .article-deck + .article-summary + .immediate-actions'),
     boxes: document.querySelectorAll('input[type=checkbox][disabled]').length,
     csp: !!document.querySelector('meta[http-equiv="Content-Security-Policy"]'),
     figures: [...document.querySelectorAll('.hx-evidence-figure')].map(f => ({ link: !!f.querySelector('a.evidence-original'), caption: !!f.querySelector('figcaption'), text: f.querySelector('a.evidence-original')?.textContent })),

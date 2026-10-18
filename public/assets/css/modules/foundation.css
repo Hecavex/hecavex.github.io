@@ -145,7 +145,7 @@ code {
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--cyan);
-  font-size: 0.84em;
+  font-size: max(0.84em, 0.8125rem); /* keep code at or above the 13px type floor */
 }
 
 pre {

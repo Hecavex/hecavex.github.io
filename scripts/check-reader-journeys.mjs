@@ -123,6 +123,21 @@ try {
     }
     assert.deepEqual(errors,[]);checked++;await page.close();
    }
+   {
+    // Home -> hero Start here -> Start here page -> first beginner card resolves.
+    const page=await ctx.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+    const start=lang==='en'?'/en/start-here/':'/lt/pradekite-cia/';
+    assert.equal((await page.goto(baseUrl+'/'+lang+'/')).status(),200);
+    const cta=page.locator('.home-discovery .button--primary');
+    assert.equal(await cta.getAttribute('href'),start);
+    await Promise.all([page.waitForURL('**'+start),width<768?cta.tap():cta.click()]);
+    assert.equal(await page.locator('main h1').count(),1);
+    const first=page.locator('#basics .post-card h3 a').first();
+    const href=await first.getAttribute('href');
+    assert(href.startsWith('/'+lang+'/'));
+    assert.equal((await ctx.request.get(baseUrl+href)).status(),200);
+    assert.deepEqual(errors,[]);checked++;await page.close();
+   }
    if(enabled){
     const page=await ctx.newPage();const route=lang==='en'?'contact':'kontaktai';
     for(const value of ['0','1','2','bad']){
