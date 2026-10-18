@@ -75,6 +75,7 @@ const researchMap = researchMapFor(lang, {
     </> : layout === 'briefings' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} eyebrow="HECAVEX SIGNAL BRIEF" />
       <p class="feed-link"><a href={`/${lang}/${lang === 'lt' ? 'apzvalgos' : 'briefings'}/feed.xml`}>{lang === 'lt' ? 'Prenumeruoti apžvalgų RSS' : 'Subscribe to briefing RSS'} →</a></p>
+      <h2 class="visually-hidden">{hx.briefings_list_h2}</h2>
       <div class="briefing-list">{briefings.map((post) => <PostCard {post} prominent />)}</div>
     </> : layout === 'archive-hx' ? <>
       <PageHeader {lang} title={entry.data.title} description={entry.data.description} />
