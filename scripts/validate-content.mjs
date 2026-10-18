@@ -23,7 +23,7 @@ function textProblem(value) {
   return 'is missing';
 }
 
-function validatePortfolio(source, errors) {
+export function validatePortfolio(source, errors) {
   const projects = parse(source)?.projects;
   if (!Array.isArray(projects) || !projects.length) return void errors.push('portfolio.yml: projects must be a non-empty list');
   const ids = new Set();
