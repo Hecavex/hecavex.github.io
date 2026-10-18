@@ -10,8 +10,6 @@ permalink: /en/speaker/
 
 Deividas Lis is a Vilnius-based cyber threat intelligence researcher, former cybercrime investigator and public speaker. He explains technically complex threats in direct language for security professionals, executives, journalists and general audiences.
 
-For speaking or media enquiries, email **[info@hecavex.com](mailto:info@hecavex.com)** or contact Deividas through [LinkedIn](https://www.linkedin.com/in/deilis).
-
 ## Speaking topics
 
 - Cyber threat intelligence that supports decisions rather than producing longer IOC lists

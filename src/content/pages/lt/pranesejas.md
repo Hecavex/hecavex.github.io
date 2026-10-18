@@ -10,8 +10,6 @@ permalink: /lt/pranesejas/
 
 Deividas Lis – Vilniuje gyvenantis kibernetinių grėsmių žvalgybos tyrėjas, buvęs elektroninių nusikaltimų tyrėjas ir viešas pranešėjas. Sudėtingas technines grėsmes jis paaiškina tiesiai ir suprantamai saugumo specialistams, vadovams, žurnalistams bei plačiajai auditorijai.
 
-Dėl pranešimų ar komentarų žiniasklaidai rašykite **[info@hecavex.com](mailto:info@hecavex.com)** arba susisiekite su Deividu per [LinkedIn](https://www.linkedin.com/in/deilis).
-
 ## Pranešimų temos
 
 - Sprendimus palaikanti kibernetinių grėsmių žvalgyba, o ne dar ilgesni IOC sąrašai

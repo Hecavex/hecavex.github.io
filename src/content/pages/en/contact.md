@@ -7,17 +7,6 @@ description: Contact Deividas Lis for cybersecurity conference talks, media inte
 permalink: /en/contact/
 ---
 
-<aside class="hx-page-cta hx-page-cta--compact" aria-labelledby="contact-email-en">
-  <div>
-    <p class="hx-page-cta__eyebrow">Email</p>
-    <h2 id="contact-email-en">info@hecavex.com</h2>
-    <p>Include the subject, format, deadline and whether the conversation is on or off the record. Requests are answered by email. If you have a media deadline, put it in the subject line.</p>
-  </div>
-  <div class="hx-page-cta__actions">
-    <a class="hx-button hx-button--primary" href="mailto:info@hecavex.com">Email Deividas</a>
-  </div>
-</aside>
-
 For conference talks, media interviews, expert commentary, podcasts, research collaboration or other professional enquiries, use the email address above.
 
 Journalists and event organisers can review [speaking topics, biography and previous appearances](/en/speaker/).

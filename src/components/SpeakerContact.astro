@@ -1,0 +1,10 @@
+---
+import { copy, type Lang } from '../lib/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const c = copy[lang];
+---
+<div class="speaker-contact">
+  <p>{c.speaker_contact_lead} <strong><a href="mailto:info@hecavex.com">info@hecavex.com</a></strong> {c.speaker_contact_or} <a href="https://www.linkedin.com/in/deilis">LinkedIn</a>.</p>
+  <p class="hx-reply-time">{c.contact_reply_time}</p>
+</div>
