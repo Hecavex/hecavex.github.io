@@ -53,13 +53,16 @@ export function validatePortfolio(source, errors) {
       for (const field of ['title', 'href', 'summary']) checkText(`${where} card.${field}`, project.card[field]);
       checkHref(`${where} card.href`, project.card.href);
     }
-    for (const link of project?.links ?? []) {
-      checkText(`${where} link label`, link.label);
-      checkText(`${where} link url`, link.url);
-      checkHref(`${where} link url`, link.url);
+    if (!Array.isArray(project?.links) || !project.links.length) errors.push(`portfolio.yml ${where}: links must be a non-empty list`);
+    for (const link of Array.isArray(project?.links) ? project.links : []) {
+      checkText(`${where} link label`, link?.label);
+      checkText(`${where} link url`, link?.url);
+      checkHref(`${where} link url`, link?.url);
     }
-    for (const field of ['status', 'purpose', 'audience', 'relationship', 'limitations', 'description']) {
-      if (project?.[field] !== undefined) checkText(`${where} ${field}`, project[field]);
+    // The Projects page renders these fields for each kind, so they are required there.
+    const required = project?.kind === 'service' ? ['code', 'status', 'purpose', 'audience', 'relationship', 'limitations'] : ['status', 'description'];
+    for (const field of ['code', 'status', 'purpose', 'audience', 'relationship', 'limitations', 'description']) {
+      if (required.includes(field) || project?.[field] !== undefined) checkText(`${where} ${field}`, project?.[field]);
     }
   }
 }
