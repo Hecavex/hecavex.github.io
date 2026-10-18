@@ -3,7 +3,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 import ResourcePolicy from '../components/ResourcePolicy.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import CloudflareWebAnalytics from '../components/CloudflareWebAnalytics.astro';
-import { portfolioProjects, type Lang } from '../lib/site';
+import { copy, portfolioProjects, type Lang } from '../lib/site';
 import { citationDate, citationPath } from '../lib/publication-citations.mjs';
 
 interface Props {
@@ -31,6 +31,7 @@ const {
   image = `/assets/img/og/hecavex-default-${lang}.png`, imageAlt = `${title} social preview`,
   noindex = false, type = 'WebPage', published, modified, breadcrumbs = []
 } = Astro.props;
+const c = copy[lang];
 const canonical = new URL(canonicalPath, Astro.site);
 const socialImage = new URL(image, Astro.site);
 const otherLang: Lang = lang === 'lt' ? 'en' : 'lt';
@@ -40,7 +41,7 @@ const resolvedXDefaultPath = xDefaultPath
   ?? (lang === 'en' ? canonicalPath : alternatePath)
   ?? canonicalPath;
 const hasAlternateLocale = Boolean(languageAlternates?.[otherLang] ?? alternatePath);
-const alternateOgLocale = otherLang === 'lt' ? 'lt_LT' : 'en_US';
+const alternateOgLocale = copy[otherLang].locale;
 const searchTitle = seoTitle ?? title;
 const fullTitle = searchTitle.includes('HECAVEX') ? searchTitle : `${searchTitle} | HECAVEX`;
 const pageId = `${canonical.href}#webpage`;
@@ -119,7 +120,7 @@ const assetQuery = `?v=${encodeURIComponent(assetVersion)}`;
       ? Object.entries(languageAlternates).map(([language, path]) => <link rel="alternate" hreflang={language} href={new URL(path, Astro.site)} />)
       : <>
           <link rel="alternate" hreflang={lang} href={canonical} />
-          {alternatePath && <link rel="alternate" hreflang={lang === 'lt' ? 'en' : 'lt'} href={new URL(alternatePath, Astro.site)} />}
+          {alternatePath && <link rel="alternate" hreflang={otherLang} href={new URL(alternatePath, Astro.site)} />}
         </>}
     <link rel="alternate" hreflang="x-default" href={new URL(resolvedXDefaultPath, Astro.site)} />
     <link rel="alternate" type="application/atom+xml" title="HECAVEX Research" href={`/${lang}/feed.xml`} />
@@ -137,7 +138,7 @@ const assetQuery = `?v=${encodeURIComponent(assetVersion)}`;
     <script is:inline src={`/assets/js/site.js${assetQuery}`} defer></script>
     <meta property="og:type" content={type === 'Article' ? 'article' : 'website'} />
     <meta property="og:site_name" content="HECAVEX" />
-    <meta property="og:locale" content={lang === 'lt' ? 'lt_LT' : 'en_US'} />
+    <meta property="og:locale" content={c.locale} />
     {hasAlternateLocale && <meta property="og:locale:alternate" content={alternateOgLocale} />}
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
@@ -154,20 +155,20 @@ const assetQuery = `?v=${encodeURIComponent(assetVersion)}`;
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd).replaceAll('<', '\\u003c')} />
   </head>
   <body data-language={lang}>
-    <a class="skip-link" href="#main-content">{lang === 'lt' ? 'Pereiti prie turinio' : 'Skip to content'}</a>
+    <a class="skip-link" href="#main-content">{c.skip_to_content}</a>
     <SiteHeader lang={lang} alternatePath={alternatePath} />
     <main id="main-content"><slot /></main>
     <SiteFooter lang={lang} />
     <dialog class="search-dialog" data-search-dialog aria-labelledby="search-title">
       <form method="dialog" class="search-dialog-head">
-        <div><span class="eyebrow">HECAVEX / {lang.toUpperCase()}</span><h2 id="search-title">{lang === 'lt' ? 'Ieškoti tyrimų' : 'Search research'}</h2></div>
-        <button value="close" aria-label={lang === 'lt' ? 'Uždaryti paiešką' : 'Close search'}>×</button>
+        <div><span class="eyebrow">HECAVEX / {lang.toUpperCase()}</span><h2 id="search-title">{c.search_title}</h2></div>
+        <button value="close" aria-label={c.search_close}>×</button>
       </form>
-      <label for="search-input">{lang === 'lt' ? 'Paieškos užklausa' : 'Search query'}</label>
-      <input id="search-input" type="search" autocomplete="off" placeholder={lang === 'lt' ? 'Tema, metodas arba indikatorius' : 'Topic, method or indicator'} data-search-input />
+      <label for="search-input">{c.search_query}</label>
+      <input id="search-input" type="search" autocomplete="off" placeholder={c.search_placeholder} data-search-input />
       <div class="search-results" data-search-results aria-live="polite"></div>
     </dialog>
-    <button class="back-to-top" type="button" data-back-to-top aria-label={lang === 'lt' ? 'Grįžti į viršų' : 'Back to top'}>↑</button>
+    <button class="back-to-top" type="button" data-back-to-top aria-label={c.back_to_top}>↑</button>
     <CloudflareWebAnalytics />
   </body>
 </html>

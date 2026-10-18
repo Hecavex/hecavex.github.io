@@ -143,3 +143,118 @@ notfound_p: Puslapis galėjo būti perkeltas, adresas parašytas netiksliai arba
 notfound_home: HECAVEX pradžia
 notfound_start: "Pradėkite čia: vadovai pradedantiesiems"
 notfound_research: Tyrimai
+
+# Message-table migration (R9): strings that used to be inline in components
+outline_map_eyebrow: Tyrimų žemėlapis
+outline_page_eyebrow: Šiame puslapyje
+outline_map_title: Publikacijų katalogas
+outline_page_title: Turinys
+outline_map_progress: Katalogo skiltis
+outline_page_progress: Skaitymo eiga
+outline_current: Dabar
+outline_next: Toliau
+outline_complete: Pabaiga
+outline_top: Grįžti į pradžią
+outline_sections: Skyriai · {n}
+article_evidence_h2: Ką rodo įrodymai
+record_boundaries: Tyrimo ribos
+section_signal_briefs: Signalų apžvalgos
+article_path_label: Publikacijos kelias
+edition_badge: LIETUVIŲ
+article_by: Autorius
+brief_coverage: Aprėptis
+brief_cutoff: Informacijos riba
+article_key_findings: Esminės išvados
+article_update_history: Atnaujinimų istorija
+copy_done: Nukopijuota
+article_newer: Naujesnė
+article_older: Ankstesnė
+article_nav_label: Publikacijų navigacija
+article_image_full: Atverti viso dydžio iliustraciją
+article_image_original: Atverti originalų vaizdą
+article_research_version: Tyrimo versija
+article_version_note: Įrodymų paketo versija gali skirtis.
+article_download_bibtex: Atsisiųsti BibTeX
+article_download_csl: Atsisiųsti CSL-JSON
+article_import_note: Importuokite į bibliografijos tvarkymo programą. Failai aprašo šią kalbinę versiją ir užfiksuotą tyrimo versiją, o ne patvirtina mokslinį recenzavimą.
+article_license: Jei nenurodyta kitaip, autoriaus tekstas platinamas pagal
+record_publication: Publikacijos įrašas
+record_version: Versija
+record_status: Būsena
+record_evidence_basis: Įrodymų pagrindas
+record_evidence_missing: Atskiras įrodymų pagrindo įrašas neišsaugotas. Žr. straipsnyje pateiktą medžiagą ir ribotumus.
+record_scope: Apimtis
+record_limitations: Ribotumai
+record_methods: Metodai
+record_methods_missing: Atskiras metodų įrašas neišsaugotas.
+record_review: Turinio peržiūra
+record_not_recorded: Neužfiksuota
+record_open_artifacts: Atverti tyrimo artefaktus
+record_artifact_version: Artefakto versija
+cat_primary_eyebrow: Originalus įrodymų darbas
+cat_primary_h2: Pirminiai tyrimai
+cat_primary_p: Autoriaus surinkta ir išanalizuota infrastruktūra, kodas, incidentų medžiaga ar kiti techniniai artefaktai.
+cat_assess_eyebrow: Techninis vertinimas ir metodai
+cat_assess_h2: Techniniai vertinimai
+cat_assess_p: Incidentų analizė, techniniai paaiškinimai ir pakartojami praktiniai metodai, paremti cituojamais šaltiniais.
+cat_comm_eyebrow: Analitinė pozicija
+cat_comm_h2: Komentarai
+cat_comm_p: Autoriaus argumentai apie grėsmių žvalgybos praktiką, sprendimus ir analitinį amatą. Tai nėra pirminio tyrimo pakaitalas.
+cat_brief_h2: Trumpas aktualių signalų formatas
+cat_brief_p: Trumpi, laiku apriboti pažeidžiamumų, incidentų, kampanijų ir geopolitinių pokyčių vertinimai laikomi atskirame sraute.
+cat_brief_open: Atverti Signalų apžvalgas
+briefing_rss: Prenumeruoti apžvalgų RSS
+radar_h2: Galimi apsimetimo domenai Lietuvoje
+radar_p: Viešas, tik skaitymui skirtas signalų sąrašas. Įrašai yra tyrimo kandidatai, o ne kenkėjiškumo nuosprendžiai.
+radar_open: Atverti Radar
+project_purpose: Paskirtis
+project_audience: Kam skirta
+project_relationship: Ryšys
+project_limitations: Ribos
+selfhosted_eyebrow: Diegiama savo aplinkoje
+selfhosted_h2: Tyrimų programinė įranga
+selfhosted_p: Atskiri projektai, kuriuos operatorius diegia ir prižiūri pats. Tai nėra HECAVEX teikiamos talpinimo ar stebėjimo paslaugos.
+search_title: Ieškoti tyrimų
+search_close: Uždaryti paiešką
+search_query: Paieškos užklausa
+search_placeholder: Tema, metodas arba indikatorius
+rail_eyebrow: Be el. pašto
+rail_title: Kiti būdai susisiekti
+card_action: Skaityti
+cite_bibtex_download: Atsisiųsti BibTeX citatą
+redirect_title: Publikacija perkelta
+redirect_moved: Publikacija perkelta.
+redirect_continue: Atverti naują adresą
+publication_count_one: publikacijos
+publication_count_other: publikacijos
+publication_count_none: publikacijų
+label_default: HECAVEX tyrimas
+feed_title: HECAVEX tyrimai
+map_note_featured: Autoriaus atranka · {n}
+map_note_primary: Pirminiai įrodymai · {n}
+map_note_assessments: Analizė ir metodai · {n}
+map_note_commentary: Analitinė pozicija · {n}
+map_note_briefing: Laiku apriboti signalai · {n}
+data_title: Viešų duomenų katalogas
+data_description: Pagrindinis HECAVEX Research ir Radar viešų duomenų rinkinių ir publikacijų metaduomenų katalogas.
+data_header_description: Bendras Research ir Radar viešų mašininiu būdu skaitomų įrašų katalogas.
+data_eyebrow: HECAVEX / DUOMENYS
+data_boundary_eyebrow: Publikavimo ribos
+data_boundary_h2: Vienas indeksas, failai lieka pas leidėjus
+data_boundary_p: Šis puslapis nekopijuoja rinkinių ir netarpininkauja juos gaunant. Nuorodos atveria pagrindinius failus HECAVEX projektuose, kurie prižiūri jų schemas, kilmę, atnaujinimo ciklus, licencijas ir ribotumus.
+data_releases_eyebrow: Mašininiu būdu skaitomos laidos
+data_releases_h2: Dabartiniai vieši katalogai
+data_releases_p: Prieš integruodami rinkinį perskaitykite projekto dokumentaciją. Viešas failas savaime nėra verdiktas, priskyrimo teiginys, aptikimo taisyklė ar leidimas perskelbti pirminių teikėjų medžiagą.
+data_maintained_by: Prižiūri
+data_notes_eyebrow: Pastabos naudotojui
+data_notes_h2: Prieš naudojant duomenų rinkinį
+data_note1_title: Perskaitykite rinkinio sutartį.
+data_note1_text: Projektų apimtis, naujumas, pasitikėjimas, saugojimo trukmė ir laukų reikšmės skiriasi.
+data_note2_title: Kai svarbus atkartojamumas, nurodykite konkrečią laidą.
+data_note2_text: Naudokite versiją, manifestą ar kontrolinę sumą. Nelaikykite veikiančio URL nekintamu failu.
+data_note3_title: Išlaikykite kilmę ir neapibrėžtumą.
+data_note3_text: Kandidato, pranešto ryšio ar riboto stebėjimo neverskite stipresniu teiginiu, nei leidžia šaltinis.
+data_note4_title: Patikrinkite pakartotinio naudojimo sąlygas.
+data_note4_text: Kodo licencijos savaime nekeičia rinkinių, straipsnių, ekrano kopijų ar pirminių teikėjų medžiagos licencijų.
+share_email: El. paštas
+project_links_suffix: nuorodos

@@ -1,6 +1,6 @@
 ---
 import type { ActionRoute } from '../data/page-context';
-import type { Lang } from '../lib/site';
+import { copy, type Lang } from '../lib/site';
 
 interface Props {
   lang: Lang;
@@ -8,12 +8,13 @@ interface Props {
 }
 
 const { lang, routes } = Astro.props;
+const c = copy[lang];
 const titleId = `contact-routes-${lang}`;
 ---
 <aside class="page-action-rail" aria-labelledby={titleId}>
   <header>
-    <p class="eyebrow">{lang === 'lt' ? 'Be el. pašto' : 'Besides email'}</p>
-    <h2 id={titleId}>{lang === 'lt' ? 'Kiti būdai susisiekti' : 'Other ways to reach HECAVEX'}</h2>
+    <p class="eyebrow">{c.rail_eyebrow}</p>
+    <h2 id={titleId}>{c.rail_title}</h2>
   </header>
   <ol>
     {routes.map((route, index) => <li>

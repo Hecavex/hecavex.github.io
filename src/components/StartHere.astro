@@ -2,7 +2,7 @@
 import Glossary from './Glossary.astro';
 import PostCard from './PostCard.astro';
 import ResearchPaths from './ResearchPaths.astro';
-import { audienceLabel, beginnerList, copy, glossaryPath, startHere, type Lang, type Post } from '../lib/site';
+import { audienceLabel, beginnerList, briefingsPath, copy, glossaryPath, methodologyPath, researchPath, startHere, type Lang, type Post } from '../lib/site';
 interface Props { lang: Lang; posts: Post[]; }
 const { lang, posts } = Astro.props;
 const t = copy[lang];
@@ -14,9 +14,6 @@ const pick = (keys: string[]) => keys.map((key) => {
 const urgent = pick(startHere.urgent);
 const stepFurther = pick(startHere.step_further);
 const inDepth = pick(startHere.in_depth);
-const researchPath = lang === 'lt' ? '/lt/tyrimai/' : '/en/research/';
-const briefsPath = lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/';
-const methodologyPath = lang === 'lt' ? '/lt/metodika/' : '/en/methodology/';
 ---
 <div class="start-here">
   <aside class="start-urgent" aria-labelledby="urgent-title">
@@ -39,6 +36,6 @@ const methodologyPath = lang === 'lt' ? '/lt/metodika/' : '/en/methodology/';
   <section id="in-depth" class="catalogue-section" aria-labelledby="depth-title">
     <header class="section-head"><div><h2 id="depth-title">{t.start_depth_h2}</h2><p>{t.start_depth_p}</p></div></header>
     <ul class="start-depth-list">{inDepth.map((post) => <li><a href={post.url}>{post.cardTitle}</a></li>)}</ul>
-    <p class="start-depth-links"><a href={researchPath}>{t.nav_research}</a> · <a href={briefsPath}>{t.nav_briefs}</a> · <a href={methodologyPath}>{t.nav_methodology}</a></p>
+    <p class="start-depth-links"><a href={researchPath[lang]}>{t.nav_research}</a> · <a href={briefingsPath[lang]}>{t.nav_briefs}</a> · <a href={methodologyPath[lang]}>{t.nav_methodology}</a></p>
   </section>
 </div>

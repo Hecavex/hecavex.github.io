@@ -6,6 +6,7 @@ import contentTypesSource from '../data/content_types.yml?raw';
 import glossarySource from '../data/glossary.yml?raw';
 import copyEnSource from '../data/hecavex/en.yml?raw';
 import copyLtSource from '../data/hecavex/lt.yml?raw';
+import dataCatalogueSource from '../data/data-catalogue.yml?raw';
 import portfolioSource from '../data/portfolio.yml?raw';
 import homeSource from '../data/home.yml?raw';
 import startHereSource from '../data/start-here.yml?raw';
@@ -18,6 +19,22 @@ export type PageEntry = CollectionEntry<'pages'>;
 
 type Localized = Record<Lang, string>;
 
+// Per-language route paths. Every page, component and endpoint takes its links from here.
+export const startHerePath: Record<Lang, string> = { en: '/en/start-here/', lt: '/lt/pradekite-cia/' };
+export const glossaryPath: Record<Lang, string> = { en: '/en/glossary/', lt: '/lt/zodynas/' };
+export const projectsPath: Record<Lang, string> = { en: '/en/projects/', lt: '/lt/projektai/' };
+export const researchPath: Record<Lang, string> = { en: '/en/research/', lt: '/lt/tyrimai/' };
+export const briefingsPath: Record<Lang, string> = { en: '/en/briefings/', lt: '/lt/apzvalgos/' };
+export const methodologyPath: Record<Lang, string> = { en: '/en/methodology/', lt: '/lt/metodika/' };
+export const privacyPath: Record<Lang, string> = { en: '/en/privacy/', lt: '/lt/privatumas/' };
+export const aboutPath: Record<Lang, string> = { en: '/en/about/', lt: '/lt/apie/' };
+export const speakerPath: Record<Lang, string> = { en: '/en/speaker/', lt: '/lt/pranesejas/' };
+export const contactPath: Record<Lang, string> = { en: '/en/contact/', lt: '/lt/kontaktai/' };
+export const dataPath: Record<Lang, string> = { en: '/data/', lt: '/lt/duomenys/' };
+export const tagsPath: Record<Lang, string> = { en: '/en/tags/', lt: '/lt/zymos/' };
+export const categoriesPath: Record<Lang, string> = { en: '/en/categories/', lt: '/lt/kategorijos/' };
+export const radarUrl: Record<Lang, string> = { en: 'https://radar.hecavex.com/', lt: 'https://radar.hecavex.com/lt/' };
+
 const readYaml = <T>(source: string): T => parse(source) as T;
 
 export const copy = {
@@ -28,6 +45,9 @@ export const taxonomy = readYaml<Record<string, Localized>>(taxonomySource);
 export const contentTypes = readYaml<Record<string, Localized>>(contentTypesSource);
 export const publicationClasses = readYaml<Record<string, Localized>>(publicationClassesSource);
 export const startHere = readYaml<{ basics: string[]; urgent: string[]; step_further: string[]; in_depth: string[]; glossary: string[] }>(startHereSource);
+export interface DataCatalogueLink { label: Localized; detail: Localized; href: Text; }
+export interface DataCatalogueEntry { id: string; index: string; cadence: Localized; description: Localized; links: DataCatalogueLink[]; }
+export const dataCatalogue = readYaml<{ catalogues: DataCatalogueEntry[] }>(dataCatalogueSource).catalogues;
 export const homeCounts = readYaml<{ latest: number; basics: number }>(homeSource);
 export const glossary = readYaml<{ terms: Array<{ id: string; term: Localized; definition: Localized }> }>(glossarySource);
 type Text = string | Localized;
@@ -69,6 +89,9 @@ const dateFromId = (id: string) => {
   const value = id.match(/(?:^|\/)(\d{4}-\d{2}-\d{2})-/)?.[1];
   return value ? new Date(`${value}T00:00:00Z`) : new Date(0);
 };
+
+// Fills the {n} placeholder of a message-table template.
+export const withCount = (template: string, n: number) => template.replace('{n}', String(n));
 
 export const slugify = (value: string) => value
   .normalize('NFKD')
@@ -118,7 +141,7 @@ export const hydratePost = (entry: PostEntry): Post => {
   const publicationClass = entry.data.publication_class
     ?? defaults.find(([segment]) => path.includes(segment))?.[1]
     ?? (entry.data.content_type === 'signal-brief' ? 'signal-brief' : 'commentary');
-  const url = normalizePath(entry.data.permalink ?? `/${lang}/${lang === 'lt' ? 'tyrimai' : 'research'}/${slug}/`);
+  const url = normalizePath(entry.data.permalink ?? `${researchPath[lang]}${slug}/`);
   const words = (entry.body ?? '').replace(/<[^>]*>|[`*_#>|\[\]()-]/g, ' ').trim().split(/\s+/).filter(Boolean).length;
   return {
     entry,
@@ -228,7 +251,7 @@ export const findPage = async (permalink: string) => (await getPages()).find((pa
 
 export const labelForPost = (post: Post) => publicationClasses[post.publicationClass]?.[post.lang]
   ?? contentTypes[post.contentType]?.[post.lang]
-  ?? (post.lang === 'lt' ? 'HECAVEX tyrimas' : 'HECAVEX Research');
+  ?? copy[post.lang].label_default!;
 
 export {
   publicationPreview as imagePath,
@@ -259,8 +282,8 @@ export const languagePairPath = async (translationKey: string, lang: Lang) => {
 };
 
 export const categoryPath = (lang: Lang, slug: string) => slug === 'security-briefings'
-  ? (lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/')
-  : `/${lang}/${lang === 'lt' ? 'kategorijos' : 'categories'}/${slug}/`;
+  ? briefingsPath[lang]
+  : `${categoriesPath[lang]}${slug}/`;
 
 export const networkNavigation = (lang: Lang) => portfolioProjects
   .filter((project) => project.nav)
@@ -271,11 +294,8 @@ export const networkCards = (lang: Lang) => portfolioProjects
   .map(({ id, card }) => ({ id, title: localized(card!.title, lang), summary: localized(card!.summary, lang), href: localized(card!.href, lang) }));
 
 export const audienceLabel = (post: Post) => copy[post.lang][post.audience === 'beginner' ? 'audience_beginner' : 'audience_in_depth']!;
-export const startHerePath: Record<Lang, string> = { en: '/en/start-here/', lt: '/lt/pradekite-cia/' };
-export const glossaryPath: Record<Lang, string> = { en: '/en/glossary/', lt: '/lt/zodynas/' };
 export const beginnerList = (posts: Post[]): Post[] => curatedBeginnerList(posts, startHere.basics);
 
-export const projectsPath: Record<Lang, string> = { en: '/en/projects/', lt: '/lt/projektai/' };
 
 // Network bar and footer: registry entries with a nav, then the fixed Projects link.
 export const networkLinks = (lang: Lang) => [
@@ -284,10 +304,7 @@ export const networkLinks = (lang: Lang) => [
 ].map((item) => ({ ...item, external: item.href.startsWith('https://') }));
 
 const sectionKeys = ['nav_start', 'nav_research', 'nav_briefs', 'nav_glossary', 'nav_about', 'nav_speaking', 'nav_contact'];
-const sectionHrefs: Record<Lang, string[]> = {
-  en: [startHerePath.en, '/en/research/', '/en/briefings/', glossaryPath.en, '/en/about/', '/en/speaker/', '/en/contact/'],
-  lt: [startHerePath.lt, '/lt/tyrimai/', '/lt/apzvalgos/', glossaryPath.lt, '/lt/apie/', '/lt/pranesejas/', '/lt/kontaktai/']
-};
+const sectionHrefs = (lang: Lang) => [startHerePath, researchPath, briefingsPath, glossaryPath, aboutPath, speakerPath, contactPath].map((path) => path[lang]);
 export const productNavigation = Object.fromEntries((['en', 'lt'] as Lang[]).map((lang) => [
-  lang, sectionKeys.map((key, index) => [copy[lang][key]!, sectionHrefs[lang][index]!] as [string, string])
+  lang, sectionKeys.map((key, index) => [copy[lang][key]!, sectionHrefs(lang)[index]!] as [string, string])
 ])) as Record<Lang, Array<[string, string]>>;

@@ -10,6 +10,6 @@ const basics = variant === 'basics';
     <p class="research-path-label">{label}</p>
     <h3><a href={post.url}>{post.cardTitle}</a></h3>
     <p class="research-path-summary">{basics ? post.summary ?? post.description : post.description}</p>
-    <div class="research-path-record"><span><time datetime={post.date.toISOString()}>{dateText(post.date)}</time> · {post.readingMinutes} {copy[lang].minutes}</span>{!basics && <a href={citationPath(post, 'bib')} download aria-label={`${lang === 'lt' ? 'Atsisiųsti BibTeX citatą' : 'Download BibTeX citation'}: ${post.title}`}>BibTeX</a>}</div>
+    <div class="research-path-record"><span><time datetime={post.date.toISOString()}>{dateText(post.date)}</time> · {post.readingMinutes} {copy[lang].minutes}</span>{!basics && <a href={citationPath(post, 'bib')} download aria-label={`${copy[lang].cite_bibtex_download}: ${post.title}`}>BibTeX</a>}</div>
   </li>)}
 </ul>

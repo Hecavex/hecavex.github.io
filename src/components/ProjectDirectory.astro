@@ -1,7 +1,8 @@
 ---
-import { localized, portfolioProjects, type Lang } from '../lib/site';
+import { copy, localized, portfolioProjects, type Lang } from '../lib/site';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
+const c = copy[lang];
 const services = portfolioProjects.filter((project) => project.kind === 'service');
 const selfHosted = portfolioProjects.filter((project) => project.kind === 'self-hosted');
 ---
@@ -9,24 +10,24 @@ const selfHosted = portfolioProjects.filter((project) => project.kind === 'self-
   {services.map((project, index) => (
     <article class="project-record">
       <header><span class="eyebrow">{String(index + 1).padStart(2, '0')} / {project.code}</span><h2>{project.name}</h2><span class="status-badge">{localized(project.status, lang)}</span></header>
-      <div class="project-copy"><div><h3>{lang === 'lt' ? 'Paskirtis' : 'Purpose'}</h3><p>{localized(project.purpose, lang)}</p></div><div><h3>{lang === 'lt' ? 'Kam skirta' : 'Audience'}</h3><p>{localized(project.audience, lang)}</p></div><div><h3>{lang === 'lt' ? 'Ryšys' : 'Relationship'}</h3><p>{localized(project.relationship, lang)}</p></div><div><h3>{lang === 'lt' ? 'Ribos' : 'Limitations'}</h3><p>{localized(project.limitations, lang)}</p></div></div>
-      <nav aria-label={`${project.name} links`}>{project.links.map((link) => <a href={localized(link.url, lang)}>{localized(link.label, lang)} <span aria-hidden="true">↗</span></a>)}</nav>
+      <div class="project-copy"><div><h3>{c.project_purpose}</h3><p>{localized(project.purpose, lang)}</p></div><div><h3>{c.project_audience}</h3><p>{localized(project.audience, lang)}</p></div><div><h3>{c.project_relationship}</h3><p>{localized(project.relationship, lang)}</p></div><div><h3>{c.project_limitations}</h3><p>{localized(project.limitations, lang)}</p></div></div>
+      <nav aria-label={`${project.name} ${c.project_links_suffix}`}>{project.links.map((link) => <a href={localized(link.url, lang)}>{localized(link.label, lang)} <span aria-hidden="true">↗</span></a>)}</nav>
     </article>
   ))}
 </div>
 <section class="project-directory" aria-labelledby="self-hosted-tools-title">
   <header class="section-head">
     <div>
-      <p class="eyebrow">{lang === 'lt' ? 'Diegiama savo aplinkoje' : 'Self-hosted tools'}</p>
-      <h2 id="self-hosted-tools-title">{lang === 'lt' ? 'Tyrimų programinė įranga' : 'Research software'}</h2>
-      <p>{lang === 'lt' ? 'Atskiri projektai, kuriuos operatorius diegia ir prižiūri pats. Tai nėra HECAVEX teikiamos talpinimo ar stebėjimo paslaugos.' : 'Separate projects installed and operated by their users. These are not HECAVEX-hosted monitoring or managed services.'}</p>
+      <p class="eyebrow">{c.selfhosted_eyebrow}</p>
+      <h2 id="self-hosted-tools-title">{c.selfhosted_h2}</h2>
+      <p>{c.selfhosted_p}</p>
     </div>
   </header>
   {selfHosted.map((project) => (
     <article class="project-record">
       <header><h3>{project.name}</h3><span class="status-badge">{localized(project.status, lang)}</span></header>
       <p>{localized(project.description, lang)}</p>
-      <nav aria-label={lang === 'lt' ? `${project.name} nuorodos` : `${project.name} links`}>{project.links.map((link) => <a href={localized(link.url, lang)}>{localized(link.label, lang)} ↗</a>)}</nav>
+      <nav aria-label={`${project.name} ${c.project_links_suffix}`}>{project.links.map((link) => <a href={localized(link.url, lang)}>{localized(link.label, lang)} ↗</a>)}</nav>
     </article>
   ))}
 </section>

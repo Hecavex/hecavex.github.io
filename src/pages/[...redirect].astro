@@ -1,7 +1,7 @@
 ---
 import CloudflareWebAnalytics from '../components/CloudflareWebAnalytics.astro';
 import ResourcePolicy from '../components/ResourcePolicy.astro';
-import { getPublicPosts } from '../lib/site';
+import { copy, getPublicPosts, type Lang } from '../lib/site';
 
 export async function getStaticPaths() {
   const posts = await getPublicPosts();
@@ -12,7 +12,8 @@ export async function getStaticPaths() {
 
 interface Props { from: string; to: string; lang: string; }
 const { to, lang } = Astro.props;
+const c = copy[lang as Lang];
 const absoluteTarget = new URL(to, Astro.site);
 ---
 <!doctype html>
-<html lang={lang}><head><meta charset="utf-8" /><ResourcePolicy /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="robots" content="noindex,follow" /><meta http-equiv="refresh" content={`0; url=${absoluteTarget.href}`} /><link rel="canonical" href={absoluteTarget} /><title>{lang === 'lt' ? 'Publikacija perkelta' : 'This publication has moved'} | HECAVEX</title></head><body><p>{lang === 'lt' ? 'Publikacija perkelta.' : 'This publication has moved.'} <a href={to}>{lang === 'lt' ? 'Atverti naują adresą' : 'Continue to the new address'}</a>.</p><CloudflareWebAnalytics /></body></html>
+<html lang={lang}><head><meta charset="utf-8" /><ResourcePolicy /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="robots" content="noindex,follow" /><meta http-equiv="refresh" content={`0; url=${absoluteTarget.href}`} /><link rel="canonical" href={absoluteTarget} /><title>{c.redirect_title} | HECAVEX</title></head><body><p>{c.redirect_moved} <a href={to}>{c.redirect_continue}</a>.</p><CloudflareWebAnalytics /></body></html>

@@ -143,3 +143,118 @@ notfound_p: This page may have moved, the address may be mistyped, or it is no l
 notfound_home: HECAVEX Research home
 notfound_start: Start here, for beginners
 notfound_research: Research
+
+# Message-table migration (R9): strings that used to be inline in components
+outline_map_eyebrow: Research map
+outline_page_eyebrow: On this page
+outline_map_title: Publication catalogue
+outline_page_title: Contents
+outline_map_progress: Catalogue position
+outline_page_progress: Reading position
+outline_current: Current
+outline_next: Up next
+outline_complete: End of page
+outline_top: Back to the beginning
+outline_sections: "{n} sections"
+article_evidence_h2: What the evidence supports
+record_boundaries: Research boundaries
+section_signal_briefs: Signal Briefs
+article_path_label: Publication path
+edition_badge: ENGLISH
+article_by: By
+brief_coverage: Coverage
+brief_cutoff: Information cut-off
+article_key_findings: Key findings
+article_update_history: Update history
+copy_done: Copied
+article_newer: Newer
+article_older: Older
+article_nav_label: Publication navigation
+article_image_full: Open full-size illustration
+article_image_original: Open original image
+article_research_version: Research version
+article_version_note: The evidence package may have a different version.
+article_download_bibtex: Download BibTeX
+article_download_csl: Download CSL-JSON
+article_import_note: Import into your reference manager. These files describe this language edition and its recorded version, not a peer-review certification.
+article_license: Unless stated otherwise, the author's text is licensed under
+record_publication: Publication record
+record_version: Version
+record_status: Status
+record_evidence_basis: Evidence basis
+record_evidence_missing: No separate evidence-basis record was retained. See the material and limitations in the article.
+record_scope: Scope
+record_limitations: Limitations
+record_methods: Methods
+record_methods_missing: No separate methods record was retained.
+record_review: Substantive review
+record_not_recorded: Not recorded
+record_open_artifacts: Open research artefacts
+record_artifact_version: Artifact version
+cat_primary_eyebrow: Original evidence work
+cat_primary_h2: Primary research
+cat_primary_p: First-party collection and analysis of infrastructure, code, incident material and other technical artefacts.
+cat_assess_eyebrow: Technical judgement and methods
+cat_assess_h2: Technical assessments
+cat_assess_p: Incident analysis, technical explanation and reproducible practitioner methods grounded in cited sources.
+cat_comm_eyebrow: Analytical position
+cat_comm_h2: Commentary
+cat_comm_p: Author arguments on threat-intelligence practice, decisions and analytical tradecraft. These pieces are not presented as primary research.
+cat_brief_h2: The concise current-signal format
+cat_brief_p: Short, time-bounded assessments of vulnerabilities, incidents, campaigns and geopolitical developments live in a separate stream.
+cat_brief_open: Open Signal Briefs
+briefing_rss: Subscribe to briefing RSS
+radar_h2: Potential impersonation domains relevant to Lithuania
+radar_p: A public, read-only signal index. Listings are research candidates, not verdicts of maliciousness.
+radar_open: Open Radar
+project_purpose: Purpose
+project_audience: Audience
+project_relationship: Relationship
+project_limitations: Limitations
+selfhosted_eyebrow: Self-hosted tools
+selfhosted_h2: Research software
+selfhosted_p: Separate projects installed and operated by their users. These are not HECAVEX-hosted monitoring or managed services.
+search_title: Search research
+search_close: Close search
+search_query: Search query
+search_placeholder: Topic, method or indicator
+rail_eyebrow: Besides email
+rail_title: Other ways to reach HECAVEX
+card_action: Read analysis
+cite_bibtex_download: Download BibTeX citation
+redirect_title: This publication has moved
+redirect_moved: This publication has moved.
+redirect_continue: Continue to the new address
+publication_count_one: publication
+publication_count_other: publications
+publication_count_none: publications
+label_default: HECAVEX Research
+feed_title: HECAVEX Research
+map_note_featured: Editor’s selection · {n}
+map_note_primary: First-party evidence · {n}
+map_note_assessments: Analysis and methods · {n}
+map_note_commentary: Analytical position · {n}
+map_note_briefing: Time-bounded signals · {n}
+data_title: Public data catalogue
+data_description: Canonical directory of public datasets and publication metadata maintained by HECAVEX Research and Radar.
+data_header_description: A portfolio-level directory for public machine-readable records maintained by Research and Radar.
+data_eyebrow: HECAVEX / DATA
+data_boundary_eyebrow: Publication boundary
+data_boundary_h2: One index, files stay with their publishers
+data_boundary_p: This page does not copy or proxy the datasets. Each link opens the canonical file on the HECAVEX product that maintains its schema, provenance, update cycle, licence, and limitations.
+data_releases_eyebrow: Machine-readable releases
+data_releases_h2: Current public catalogues
+data_releases_p: Use the product-level documentation before integrating a distribution. A public file is not automatically a verdict, attribution claim, detection rule, or permission to redistribute upstream material.
+data_maintained_by: Maintained by
+data_notes_eyebrow: Consumer notes
+data_notes_h2: Before using a dataset
+data_note1_title: Read its local contract.
+data_note1_text: Scope, freshness, confidence, retention and field semantics differ between products.
+data_note2_title: Pin a release where reproducibility matters.
+data_note2_text: Use the product version, manifest or digest instead of assuming that a live URL never changes.
+data_note3_title: Preserve provenance and uncertainty.
+data_note3_text: Do not turn a candidate, reported relationship or bounded observation into a stronger claim than its source supports.
+data_note4_title: Check reuse terms.
+data_note4_text: Code licences do not automatically relicense datasets, article text, screenshots or upstream provider material.
+share_email: Email
+project_links_suffix: links

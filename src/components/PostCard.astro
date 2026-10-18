@@ -1,10 +1,11 @@
 ---
-import { audienceLabel, dateText, imagePath, imagePresentation, imageCaption, imageDimensions, imageSrcSet, labelForPost, type Post } from '../lib/site';
+import { audienceLabel, copy, dateText, imagePath, imagePresentation, imageCaption, imageDimensions, imageSrcSet, labelForPost, type Post } from '../lib/site';
 interface Props { post: Post; prominent?: boolean; eyebrow?: string; eager?: boolean; }
 const { post, prominent = false, eyebrow, eager = false } = Astro.props;
 const thumbnail = imagePath(post, 'thumbnail');
 const dimensions = imageDimensions(post, 'thumbnail') ?? { width: 640, height: 360 };
-const actionLabel = post.lang === 'lt' ? 'Skaityti' : 'Read analysis';
+const c = copy[post.lang];
+const actionLabel = c.card_action;
 ---
 <article class:list={['post-card', { 'post-card--prominent': prominent, 'post-card--typographic': !thumbnail }]} data-preview={imagePresentation(post) ?? 'typographic'}>
   {thumbnail && <figure class="post-card-image"><a href={post.url} tabindex="-1" aria-hidden="true"><img src={thumbnail} srcset={imageSrcSet(post, 'thumbnail')} sizes="(max-width: 680px) 34vw, 17vw" alt="" width={dimensions.width} height={dimensions.height} loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : undefined} /></a><figcaption>{imageCaption(post)}</figcaption></figure>}
@@ -12,7 +13,7 @@ const actionLabel = post.lang === 'lt' ? 'Skaityti' : 'Read analysis';
     <p class="card-meta"><span>{eyebrow ?? labelForPost(post)}</span>{post.contentType !== 'signal-brief' && <span class={`audience-badge audience-badge--${post.audience}`}>{audienceLabel(post)}</span>}<time datetime={post.date.toISOString()}>{dateText(post.date)}</time></p>
     <h3><a href={post.url}>{post.cardTitle}</a></h3>
     <p>{post.description}</p>
-    <p class="card-reading"><span>{post.readingMinutes} {post.lang === 'lt' ? 'min. skaitymo' : 'min read'}</span><span>Deividas Lis · HECAVEX</span></p>
+    <p class="card-reading"><span>{post.readingMinutes} {c.minutes}</span><span>Deividas Lis · HECAVEX</span></p>
     <a class="card-action" href={post.url} aria-label={`${actionLabel}: ${post.title}`}>{actionLabel} <span aria-hidden="true">→</span></a>
   </div>
 </article>

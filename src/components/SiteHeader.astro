@@ -1,12 +1,12 @@
 ---
-import { copy, networkLinks, productNavigation, type Lang } from '../lib/site';
+import { briefingsPath, copy, networkLinks, productNavigation, researchPath, type Lang } from '../lib/site';
 
 interface Props { lang: Lang; alternatePath?: string; }
 const { lang, alternatePath } = Astro.props;
 const t = copy[lang];
 const path = Astro.url.pathname;
 // Research and Signal Briefs also own their article pages.
-const prefixed = ['/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/'];
+const prefixed = [researchPath.en, researchPath.lt, briefingsPath.en, briefingsPath.lt];
 const active = (href: string) => path === href || (prefixed.includes(href) && path.startsWith(href));
 const current = (href: string) => path === href ? 'page' : active(href) ? 'true' : undefined;
 const networkItems = networkLinks(lang);

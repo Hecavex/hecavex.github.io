@@ -67,6 +67,64 @@ export function validatePortfolio(source, errors) {
   }
 }
 
+// The public data catalogue: every text is bilingual and every href is internal (/) or https.
+export function validateDataCatalogue(source, errors, projectIds) {
+  const catalogues = parse(source)?.catalogues;
+  if (!Array.isArray(catalogues) || !catalogues.length) return void errors.push('data-catalogue.yml: catalogues must be a non-empty list');
+  const ids = new Set();
+  const checkText = (where, value) => { const problem = textProblem(value); if (problem) errors.push(`data-catalogue.yml ${where} ${problem}`); };
+  for (const catalogue of catalogues) {
+    const where = `catalogue ${catalogue?.id ?? '(no id)'}`;
+    if (!catalogue?.id || ids.has(catalogue.id)) errors.push(`data-catalogue.yml ${where}: id is missing or duplicated`);
+    ids.add(catalogue?.id);
+    if (projectIds && !projectIds.has(catalogue?.id)) errors.push(`data-catalogue.yml ${where}: id must match a project in portfolio.yml`);
+    if (typeof catalogue?.index !== 'string' || !catalogue.index) errors.push(`data-catalogue.yml ${where}: index is missing`);
+    checkText(`${where} cadence`, catalogue?.cadence);
+    checkText(`${where} description`, catalogue?.description);
+    if (!Array.isArray(catalogue?.links) || !catalogue.links.length) errors.push(`data-catalogue.yml ${where}: links must be a non-empty list`);
+    for (const link of Array.isArray(catalogue?.links) ? catalogue.links : []) {
+      checkText(`${where} link label`, link?.label);
+      checkText(`${where} link detail`, link?.detail);
+      checkText(`${where} link href`, link?.href);
+      for (const href of typeof link?.href === 'string' ? [link.href] : Object.values(link?.href ?? {})) {
+        if (typeof href === 'string' && !/^(\/(?!\/)|https:\/\/)/.test(href)) errors.push(`data-catalogue.yml ${where} link href must start with / or https://`);
+      }
+    }
+  }
+}
+
+// en.yml and lt.yml are one message table: same keys, no empty values.
+export function validateMessageTables(enSource, ltSource, errors) {
+  const tables = { en: parse(enSource) ?? {}, lt: parse(ltSource) ?? {} };
+  for (const [lang, table] of Object.entries(tables)) {
+    const other = tables[lang === 'en' ? 'lt' : 'en'];
+    for (const [key, value] of Object.entries(table)) {
+      if (typeof value !== 'string' || !value.trim()) errors.push(`hecavex/${lang}.yml: ${key} must be a non-empty string`);
+      if (!(key in other)) errors.push(`hecavex/${lang}.yml: ${key} is missing from the ${lang === 'en' ? 'lt' : 'en'} table`);
+      else if (lang === 'en' && placeholders(value) !== placeholders(other[key])) errors.push(`hecavex: ${key} placeholders differ between en and lt (${placeholders(value) || 'none'} vs ${placeholders(other[key]) || 'none'})`);
+    }
+  }
+}
+
+const placeholders = (value) => [...String(value ?? '').matchAll(/\{(\w+)\}/g)].map((match) => match[1]).sort().join(',');
+
+// page-context.yml: each page's facts and the contact routes line up in EN and LT.
+export function validatePageContext(source, errors) {
+  const context = parse(source) ?? {};
+  const sections = [...Object.entries(context.facts ?? {}).map(([key, value]) => [`facts.${key}`, value]), ['contact_routes', context.contact_routes]];
+  for (const [where, value] of sections) {
+    const [en, lt] = [value?.en, value?.lt];
+    if (!Array.isArray(en) || !Array.isArray(lt) || en.length !== lt.length) { errors.push(`page-context.yml ${where}: en and lt need lists of the same length`); continue; }
+    en.forEach((item, index) => {
+      for (const [lang, entry] of [['en', item], ['lt', lt[index]]]) {
+        if (typeof entry?.label !== 'string' || !entry.label.trim()) errors.push(`page-context.yml ${where}.${lang}[${index}]: label is missing`);
+        if (typeof entry?.value === 'string' && /\{/.test(entry.value) && entry.value !== '{updated}') errors.push(`page-context.yml ${where}.${lang}[${index}]: the only placeholder allowed is "{updated}"`);
+      }
+      if (placeholders(item?.value) !== placeholders(lt[index]?.value)) errors.push(`page-context.yml ${where}[${index}]: placeholders differ between en and lt`);
+    });
+  }
+}
+
 // Beginner posts need a plain-language summary; summaries stay free of links and defanged hxxp/[.] indicators.
 export function validateAudience(data, file, errors) {
   if (data.audience !== undefined && !['beginner', 'in-depth'].includes(data.audience)) errors.push(`${file}: audience must be beginner or in-depth`);
@@ -285,6 +343,10 @@ export async function validate() {
   }
 
   validatePortfolio(await readFile(join(root, 'src', 'data', 'portfolio.yml'), 'utf8'), errors);
+  const projectIds = new Set((parse(await readFile(join(root, 'src', 'data', 'portfolio.yml'), 'utf8'))?.projects ?? []).map((project) => project?.id));
+  validateDataCatalogue(await readFile(join(root, 'src', 'data', 'data-catalogue.yml'), 'utf8'), errors, projectIds);
+  validatePageContext(await readFile(join(root, 'src', 'data', 'page-context.yml'), 'utf8'), errors);
+  validateMessageTables(await readFile(join(root, 'src', 'data', 'hecavex', 'en.yml'), 'utf8'), await readFile(join(root, 'src', 'data', 'hecavex', 'lt.yml'), 'utf8'), errors);
 
   for (const message of warnings) console.warn(`WARNING: ${message}`);
   if (errors.length) throw new Error(`Content validation failed:\n- ${[...new Set(errors)].join('\n- ')}`);
