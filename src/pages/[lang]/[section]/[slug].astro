@@ -5,7 +5,7 @@ import PostCard from '../../../components/PostCard.astro';
 import ResearchRecord from '../../../components/ResearchRecord.astro';
 import type { OutlineItem } from '../../../data/page-context';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { aboutPath, beginnerList, briefingsPath, categoryPath, copy, glossaryPath, researchPath, startHerePath, tagsPath, dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imageCaption, imageDimensions, imagePath, imagePresentation, imageSocialAlt, imageSrcSet, labelForPost, postNeighboursFor, relatedPostsFor, slugify, taxonomy, type Post } from '../../../lib/site';
+import { aboutPath, beginnerList, briefingsPath, categoryPath, copy, glossaryPath, researchPath, startHerePath, tagsPath, dateText, findTranslation, getLocalizedPosts, getPublicPosts, imageAlt, imageCaption, imageDimensions, imagePath, imagePresentation, imageSocialAlt, imageSrcSet, labelForPost, postNeighboursFor, relatedPostsFor, slugify, tagLabel, taxonomy, type Post } from '../../../lib/site';
 import { recordLabel } from '../../../lib/record-labels.mjs';
 import { coverageDate } from '../../../lib/briefing-record.mjs';
 import { citationPath, publicationRecord, toBibtex } from '../../../lib/publication-citations.mjs';
@@ -108,7 +108,7 @@ const sectionLabel = post.publicationClass === 'signal-brief'
     {!translation && <p class="translation-note">{c.translation_unavailable}</p>}
     <footer class="article-footer">
       {post.categories.length > 0 && <div class="taxonomy-row"><strong>{c.categories}</strong>{post.categories.map((category) => <a href={categoryPath(post.lang, category)}>{taxonomy[category]?.[post.lang] ?? category}</a>)}</div>}
-      {post.tags.length > 0 && <div class="taxonomy-row"><strong>{c.tags}</strong>{post.tags.map((tag) => <a href={`${tagsPath[post.lang]}${slugify(tag)}/`}>{tag}</a>)}</div>}
+      {post.tags.length > 0 && <div class="taxonomy-row"><strong>{c.tags}</strong>{post.tags.map((tag) => <a href={`${tagsPath[post.lang]}${slugify(tag)}/`}>{tagLabel(tag, post.lang)}</a>)}</div>}
       <div class="article-share"><strong>{c.share}</strong><a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonical)}`}>LinkedIn</a><a href={`mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(canonical)}`}>{c.share_email}</a><button type="button" data-copy-link data-success={c.copy_done}>{c.copy_link}</button></div>
       <p class="content-license">{c.article_license} <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
     </footer>

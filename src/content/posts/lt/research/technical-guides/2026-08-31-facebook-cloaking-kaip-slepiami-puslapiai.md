@@ -63,7 +63,7 @@ Tai praktinė **Facebook cloaking** problema. Pradinis URL nepasako visko, ką p
 
 Oficialioje Google [spam politikoje cloaking apibrėžiamas](https://developers.google.com/search/docs/essentials/spam-policies#cloaking) kaip skirtingo turinio pateikimas žmonėms ir paieškos sistemoms siekiant manipuliuoti ar klaidinti. Ta pati dokumentacija skiria apgaulingą peradresavimą nuo įprastų redirect, naudojamų svetainės perkėlimui, lokalizacijai ar prisijungusio naudotojo navigacijai. Grėsmių žvalgyboje šis skirtumas būtinas: **skirtingas turinys yra stebėjimas, o apgaulingas tikslas – konteksto reikalaujantis vertinimas**.
 
-Ilgesniame [HECAVEX Facebook cloaking tyrime](/lt/tyrimai/kai-fake-news-scamai-ir-cloaking/) dokumentuota tikra investicinio scam ekosistema, kurioje susijungė klonuota žiniasklaida, reklaminis srautas ir sąlyginis turinio pateikimas. Šio vadovo paskirtis siauresnė: paaiškinti mechanizmą, gynybinius klausimus ir įrodymus, bet nesukurti instrukcijos, kaip pergudrauti operatoriaus tikrinimus.
+Ilgesniame [investicinio sukčiavimo per netikras naujienas tyrime](/lt/tyrimai/kai-fake-news-scamai-ir-cloaking/) dokumentuota tikra investicinio scam ekosistema, kurioje susijungė klonuota žiniasklaida, reklaminis srautas ir sąlyginis turinio pateikimas. Šio vadovo paskirtis siauresnė: paaiškinti mechanizmą, gynybinius klausimus ir įrodymus, bet nesukurti instrukcijos, kaip pergudrauti operatoriaus tikrinimus.
 
 ## Kas gali pakeisti pateikiamą atsakymą
 
@@ -321,7 +321,7 @@ Naudokite laiku apribotą kalbą: "stebėta", "pranešė", "išsaugotas atsakas"
 3. [urlscan.io API dokumentacija ir skenų matomumo rekomendacijos](https://urlscan.io/docs/api/)
 4. [W3C: Fetch Metadata Request Headers](https://www.w3.org/TR/fetch-metadata/)
 5. [Meta Help Center: saugaus apsipirkimo patarimai](https://www.facebook.com/help/123884166448529/)
-6. [HECAVEX: Facebook cloaking, netikros naujienos ir investicinio scam infrastruktūra](/lt/tyrimai/kai-fake-news-scamai-ir-cloaking/)
+6. [HECAVEX: Investicinis sukčiavimas per netikras naujienas: cloaking ir redirect infrastruktūra](/lt/tyrimai/kai-fake-news-scamai-ir-cloaking/)
 7. [HECAVEX: Informacijos gamyklos prie Lietuvos](/lt/tyrimai/informacijos-gamyklos-prie-lietuvos/)
 8. [HECAVEX: Infrastructure Pivoting 101](/lt/tyrimai/infrastrukturos-pivoting-101/)
 

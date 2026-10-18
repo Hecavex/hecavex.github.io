@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { categoriesPath, dataPath, getPages, getPublicPosts, imagePath, slugify, tagsPath, taxonomy, xmlEscape, type Lang } from '../lib/site';
+import { categoriesPath, dataPath, getPages, getPublicPosts, imagePath, minIndexedTagPosts, slugify, tagsPath, taxonomy, xmlEscape, type Lang } from '../lib/site';
 
 interface SitemapRoute {
   modified?: Date;
@@ -60,7 +60,7 @@ export const GET: APIRoute = async () => {
     const tagCounts = new Map<string, number>();
     for (const tag of localized.flatMap((post) => post.tags)) tagCounts.set(slugify(tag), (tagCounts.get(slugify(tag)) ?? 0) + 1);
     for (const [slug, count] of tagCounts) {
-      if (count < 2) continue;
+      if (count < minIndexedTagPosts) continue;
       const path = `${tagsPath[lang]}${slug}/`;
       routes.set(path, {});
       const pair = taxonomyPairs.get(`tag:${slug}`) ?? {};

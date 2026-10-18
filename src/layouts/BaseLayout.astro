@@ -3,7 +3,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 import ResourcePolicy from '../components/ResourcePolicy.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import CloudflareWebAnalytics from '../components/CloudflareWebAnalytics.astro';
-import { copy, portfolioProjects, type Lang } from '../lib/site';
+import { aboutPath, briefingsPath, copy, portfolioProjects, type Lang } from '../lib/site';
 import { citationDate, citationPath } from '../lib/publication-citations.mjs';
 
 interface Props {
@@ -43,7 +43,8 @@ const resolvedXDefaultPath = xDefaultPath
 const hasAlternateLocale = Boolean(languageAlternates?.[otherLang] ?? alternatePath);
 const alternateOgLocale = copy[otherLang].locale;
 const searchTitle = seoTitle ?? title;
-const fullTitle = searchTitle.includes('HECAVEX') ? searchTitle : `${searchTitle} | HECAVEX`;
+// Long titles skip the brand suffix so search results do not truncate the keyword-bearing part.
+const fullTitle = searchTitle.includes('HECAVEX') || searchTitle.length > 55 ? searchTitle : `${searchTitle} | HECAVEX`;
 const pageId = `${canonical.href}#webpage`;
 const pageNode: Record<string, unknown> = {
   '@type': type,
@@ -84,7 +85,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     { '@type': 'Organization', '@id': 'https://hecavex.com/#organization', name: 'HECAVEX', url: 'https://hecavex.com/', logo: { '@type': 'ImageObject', '@id': 'https://hecavex.com/#logo', url: 'https://hecavex.com/icon-512.png', contentUrl: 'https://hecavex.com/icon-512.png', width: 512, height: 512 }, founder: { '@id': 'https://hecavex.com/#deividas-lis' }, sameAs: ['https://github.com/Hecavex'] },
-    { '@type': 'Person', '@id': 'https://hecavex.com/#deividas-lis', name: 'Deividas Lis', url: 'https://hecavex.com/en/about/', description: 'Independent cyber threat intelligence researcher, former cybercrime investigator and public speaker.', sameAs: ['https://www.linkedin.com/in/deilis'] },
+    { '@type': 'Person', '@id': 'https://hecavex.com/#deividas-lis', name: 'Deividas Lis', url: 'https://hecavex.com/en/about/', description: 'Independent cyber threat intelligence researcher, former cybercrime investigator and public speaker.', jobTitle: 'Cyber threat intelligence researcher', knowsAbout: ['Cyber threat intelligence', 'Phishing', 'OSINT', 'Infrastructure pivoting'], sameAs: ['https://www.linkedin.com/in/deilis', 'https://github.com/Hecavex', 'https://radar.hecavex.com/'] },
     { '@type': 'WebSite', '@id': 'https://hecavex.com/#website', name: 'HECAVEX', url: 'https://hecavex.com/', inLanguage: ['en', 'lt'], hasPart: sitedProjects.map(({ site }) => ({ '@id': `${site}#website` })) },
     ...sitedProjects.map(({ site, name }) => ({ '@type': 'WebSite', '@id': `${site}#website`, name, url: site, isPartOf: { '@id': 'https://hecavex.com/#website' } })),
     pageNode,
@@ -124,6 +125,7 @@ const assetQuery = `?v=${encodeURIComponent(assetVersion)}`;
         </>}
     <link rel="alternate" hreflang="x-default" href={new URL(resolvedXDefaultPath, Astro.site)} />
     <link rel="alternate" type="application/atom+xml" title="HECAVEX Research" href={`/${lang}/feed.xml`} />
+    <link rel="alternate" type="application/atom+xml" title={`HECAVEX ${c.section_signal_briefs}`} href={`${briefingsPath[lang]}feed.xml`} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -137,6 +139,9 @@ const assetQuery = `?v=${encodeURIComponent(assetVersion)}`;
     <link rel="stylesheet" href={`/assets/css/hecavex.css${assetQuery}`} />
     <script is:inline src={`/assets/js/site.js${assetQuery}`} defer></script>
     <meta property="og:type" content={type === 'Article' ? 'article' : 'website'} />
+    {type === 'Article' && published && <meta property="article:published_time" content={published.toISOString()} />}
+    {type === 'Article' && modified && <meta property="article:modified_time" content={modified.toISOString()} />}
+    {type === 'Article' && <meta property="article:author" content={new URL(aboutPath[lang], Astro.site).href} />}
     <meta property="og:site_name" content="HECAVEX" />
     <meta property="og:locale" content={c.locale} />
     {hasAlternateLocale && <meta property="og:locale:alternate" content={alternateOgLocale} />}

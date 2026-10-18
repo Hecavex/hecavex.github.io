@@ -41,7 +41,12 @@ export const copy = {
   en: readYaml<Record<string, string>>(copyEnSource),
   lt: readYaml<Record<string, string>>(copyLtSource)
 };
-export const taxonomy = readYaml<Record<string, Localized>>(taxonomySource);
+const taxonomySourceData = readYaml<{ categories: Record<string, Localized & { description_en?: string; description_lt?: string }>; tag_labels: Record<string, Localized> }>(taxonomySource);
+export const taxonomy = taxonomySourceData.categories;
+// Display label for a tag; the URL slug always comes from slugify(tag), so labels never move routes.
+export const tagLabel = (tag: string, lang: Lang) => taxonomySourceData.tag_labels[slugify(tag)]?.[lang] ?? tag;
+// Tag pages with fewer posts stay noindex and out of the sitemap.
+export const minIndexedTagPosts = 3;
 export const contentTypes = readYaml<Record<string, Localized>>(contentTypesSource);
 export const publicationClasses = readYaml<Record<string, Localized>>(publicationClassesSource);
 export const startHere = readYaml<{ basics: string[]; urgent: string[]; step_further: string[]; in_depth: string[]; glossary: string[] }>(startHereSource);

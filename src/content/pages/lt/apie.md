@@ -4,6 +4,8 @@ lang: lt
 translation_key: about
 title: Deividas Lis — HECAVEX tyrėjas ir redaktorius
 description: Deividas Lis yra nepriklausomas kibernetinių grėsmių žvalgybos tyrėjas, buvęs elektroninių nusikaltimų tyrėjas, grėsmių medžiotojas, viešas pranešėjas ir HECAVEX autorius.
+seo_description: "Deividas Lis – nepriklausomas kibernetinių grėsmių žvalgybos tyrėjas, buvęs elektroninių nusikaltimų tyrėjas, pranešėjas ir HECAVEX autorius."
+seo_title: "Deividas Lis – kibernetinių grėsmių žvalgybos tyrėjas"
 permalink: /lt/apie/
 ---
 

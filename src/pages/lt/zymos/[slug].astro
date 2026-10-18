@@ -1,6 +1,6 @@
 ---
 import TaxonomyResults from '../../../components/TaxonomyResults.astro';
-import { getLocalizedPosts, slugify } from '../../../lib/site';
+import { getLocalizedPosts, minIndexedTagPosts, slugify, tagLabel } from '../../../lib/site';
 export async function getStaticPaths() {
   const [posts, alternatePosts] = await Promise.all([getLocalizedPosts('lt'), getLocalizedPosts('en')]);
   const tags = new Map(posts.flatMap((post) => post.tags).map((tag) => [slugify(tag), tag]));
@@ -13,9 +13,9 @@ export async function getStaticPaths() {
     params: { slug },
     props: {
       slug,
-      label,
+      label: tagLabel(label, 'lt'),
       posts: posts.filter((post) => post.tags.some((tag) => slugify(tag) === slug)),
-      alternatePath: (alternateCounts.get(slug) ?? 0) >= 2 ? `/en/tags/${slug}/` : undefined
+      alternatePath: (alternateCounts.get(slug) ?? 0) >= minIndexedTagPosts ? `/en/tags/${slug}/` : undefined
     }
   }));
 }

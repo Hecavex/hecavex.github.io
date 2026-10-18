@@ -4,6 +4,7 @@ lang: lt
 translation_key: analytical-methodology
 title: Įrodymų ir atribucijos metodika
 description: Kaip HECAVEX atskiria stebėjimus, išvadas ir vertinimus, tikrina šaltinius, vertina infrastruktūros ryšius, nustato pasitikėjimą ir taiso analitines išvadas.
+seo_description: "Kaip HECAVEX atskiria stebėjimus nuo vertinimų, tikrina šaltinius ir infrastruktūros ryšius, nustato pasitikėjimą ir taiso analitines išvadas."
 permalink: /lt/metodika/
 last_modified_at: 2026-10-17
 ---

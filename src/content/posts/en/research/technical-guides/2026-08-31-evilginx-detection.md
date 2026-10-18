@@ -7,8 +7,8 @@ research_artifacts:
 title: "Evilginx Detection: Finding Reverse-Proxy Phishing and Session Theft"
 card_title: "Evilginx Detection for Identity Defenders"
 description: "A defensive guide to reverse-proxy phishing indicators, identity and authentication telemetry, domain and HTTP clues, session containment, and phishing-resistant MFA."
-seo_title: "Evilginx Detection: Reverse-Proxy Phishing Indicators"
-seo_description: "Detect Evilginx and reverse-proxy phishing by correlating lure, domain, HTTP, sign-in and session telemetry, then contain stolen identity material."
+seo_title: "Evilginx Detection: Signs of Reverse-Proxy Phishing"
+seo_description: "How to detect Evilginx: the domain, HTTP, sign-in and session signals of reverse-proxy phishing, and how to contain stolen session tokens fast."
 seo_keywords:
   - "Evilginx detection"
   - "reverse proxy phishing detection"

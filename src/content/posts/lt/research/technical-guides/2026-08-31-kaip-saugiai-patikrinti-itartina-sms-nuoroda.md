@@ -6,8 +6,8 @@ immediate_actions:
 title: "Gavote įtartiną SMS? Kaip saugiai patikrinti phishing nuorodą"
 card_title: "Kaip saugiai patikrinti įtartiną SMS nuorodą"
 description: "Praktinis vadovas, kaip išsaugoti įtartiną SMS, neutralizuoti nuorodą, patikrinti domeną, shortener'į ir peradresavimus neatskleidžiant duomenų."
-seo_title: "Kaip patikrinti įtartiną SMS ir phishing nuorodą"
-seo_description: "Praktinis vadovas, kaip saugiai tikrinti įtartiną SMS, phishing nuorodą, domeną, shortener'į ir peradresavimus, o po paspaudimo greitai reaguoti."
+seo_title: "Apgaulinga SMS? Kaip saugiai patikrinti netikrą nuorodą"
+seo_description: "Gavote apgaulingą SMS? Kaip patikrinti netikrą nuorodą jos neatidarius, atpažinti sukčius, pranešti apie sukčiavimą ir ką daryti, jei jau paspaudėte."
 seo_keywords:
   - "kaip patikrinti įtartiną SMS"
   - "kaip patikrinti phishing nuorodą"

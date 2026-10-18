@@ -25,7 +25,7 @@ information_cutoff: 2026-08-22 00:15:00 +0300
 confidence: high
 tlp: clear
 categories: [security-briefings]
-tags: [CISA KEV, operacinės technologijos, Siemens S7, Zimbra, Microsoft IKE, SharePoint, VMware vCenter, macOS, Ray, MLflow, TrueConf, phishing, ransomware, Lietuva]
+tags: [CISA KEV, operacinės technologijos, Siemens S7, Zimbra, Microsoft IKE, SharePoint, VMware vCenter, macOS, Ray, MLflow, TrueConf, phishing, ransomware, Lithuania]
 featured: false
 draft: false
 toc: true

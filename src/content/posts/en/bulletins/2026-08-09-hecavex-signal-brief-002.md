@@ -24,7 +24,7 @@ information_cutoff: 2026-08-09 11:30:00 +0300
 confidence: high
 tlp: clear
 categories: [security-briefings]
-tags: [CISA KEV, N-able, N-central, Langflow, TeamCity, Progress LoadMaster, Apache Tomcat, Adform, supply-chain security]
+tags: [CISA KEV, N-able, N-central, Langflow, TeamCity, Progress LoadMaster, Apache Tomcat, Adform, supply-chain]
 featured: false
 draft: false
 toc: true

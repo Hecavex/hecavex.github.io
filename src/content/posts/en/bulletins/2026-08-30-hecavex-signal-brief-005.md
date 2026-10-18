@@ -233,7 +233,7 @@ Panevėžys police recorded a report on 26 August involving a person born in 200
 
 The police summary establishes the reported sequence and loss. It does not identify the domain, phishing kit, beneficiary, authentication flow or a wider campaign. Those missing fields matter. Marketplace phishing often succeeds because the conversation begins inside a familiar platform and moves the seller to an external "payment" or "delivery" page at the moment a transaction feels expected.
 
-The practical investigation path is covered in [One Scam Domain Is Rarely Alone](/en/research/one-scam-domain-is-rarely-alone/). Where social advertising, cloned media and visitor selection are involved, the [Facebook cloaking investigation](/en/research/when-fake-news-scams-and-cloaking-meet/) provides separate comparative context without asserting that this police report belongs to that campaign.
+The practical investigation path is covered in [One Scam Domain Is Rarely Alone](/en/research/one-scam-domain-is-rarely-alone/). Where social advertising, cloned media and visitor selection are involved, the [fake news investment scam investigation](/en/research/when-fake-news-scams-and-cloaking-meet/) provides separate comparative context without asserting that this police report belongs to that campaign.
 
 **Do now:** treat buyer-supplied payment and delivery links as hostile until independently verified. Sellers should open the bank or marketplace through a saved application or manually typed address, never through the conversation link. For investigation, preserve the full chat export, exact URL, page screenshots, SMS or app prompts, beneficiary and transaction identifiers, and browser history before deciding how credentials or approval were captured.
 

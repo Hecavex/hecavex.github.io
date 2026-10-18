@@ -2,8 +2,8 @@
 title: "Netikras Vinted ar Facebook Marketplace pirkėjas: kaip veikia phishing schema"
 card_title: "Kaip veikia netikro Marketplace pirkėjo phishing"
 description: "Praktinis vadovas apie netikrus pirkėjus, išorines kurjerio ir mokėjimo nuorodas, kortelės, banko bei Smart-ID riziką, įrodymus ir skubų reagavimą."
-seo_title: "Netikras Marketplace pirkėjas ir mokėjimo phishing"
-seo_description: "Kaip netikri Vinted ar Facebook Marketplace pirkėjai naudoja kurjerio bei mokėjimo nuorodas, kokius įrodymus saugoti ir kaip nedelsiant reaguoti."
+seo_title: "Netikras pirkėjas Vinted ar Marketplace: sukčiavimo schema"
+seo_description: "Netikras pirkėjas siunčia kurjerio ar mokėjimo nuorodą? Kaip atpažinti sukčius ir netikrą nuorodą, ką daryti suvedus kortelės ar Smart-ID duomenis."
 seo_keywords:
   - "netikras Marketplace pirkėjas"
   - "Vinted phishing"

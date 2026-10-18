@@ -5,6 +5,7 @@ lang: en
 translation_key: speaker-media
 title: Cybersecurity Speaker and Media Expert
 description: Invite cyber threat intelligence researcher, former cybercrime investigator and HECAVEX editor Deividas Lis for conferences, panels, podcasts and media commentary.
+seo_description: "Invite Deividas Lis, cyber threat intelligence researcher and former cybercrime investigator, for conferences, panels, podcasts and media comment."
 permalink: /en/speaker/
 ---
 

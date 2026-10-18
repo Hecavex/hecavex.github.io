@@ -2,16 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from './PageHeader.astro';
 import PostCard from './PostCard.astro';
-import { briefingsPath, categoriesPath, copy, tagsPath, taxonomy, type Lang, type Post } from '../lib/site';
+import { briefingsPath, categoriesPath, copy, minIndexedTagPosts, tagsPath, taxonomy, type Lang, type Post } from '../lib/site';
 interface Props { lang: Lang; kind: 'category' | 'tag'; slug: string; label: string; posts: Post[]; alternatePath?: string; }
 const { lang, kind, slug, label, posts, alternatePath } = Astro.props;
 const c = copy[lang];
 const canonicalPath = `${(kind === 'category' ? categoriesPath : tagsPath)[lang]}${slug}/`;
 const briefingAlias = kind === 'category' && slug === 'security-briefings';
 const heading = kind === 'category' ? (taxonomy[slug]?.[lang] ?? label) : label;
-const description = c.taxonomy_description!.replace('{name}', () => heading);
+const description = (kind === 'category' ? taxonomy[slug]?.[`description_${lang}`] : undefined) ?? c.taxonomy_description!.replace('{name}', () => heading);
 ---
-<BaseLayout {lang} title={heading} {description} {canonicalPath} {alternatePath} noindex={briefingAlias || posts.length < 2} type="CollectionPage">
+<BaseLayout {lang} title={heading} {description} {canonicalPath} {alternatePath} noindex={briefingAlias || posts.length < (kind === 'tag' ? minIndexedTagPosts : 2)} type="CollectionPage">
   <div class="shell page-shell taxonomy-results">
     <PageHeader {lang} title={heading} {description} eyebrow={kind === 'category' ? c.taxonomy_category : c.taxonomy_tag} />
     <p class="result-count">{posts.length} {posts.length === 1 ? c.taxonomy_count_one : c.taxonomy_count_other}</p>

@@ -5,7 +5,8 @@ published: true
 title: "Phishing infrastruktūros pivoting: DNS, URLScan, TLS ir hash'ai"
 card_title: "Infrastruktūros pivoting su DNS, URLScan ir hash'ais"
 description: "Praktinis CTI vadovas apie pivoting per DNS, RDAP, URLScan, TLS, JavaScript hash'us ir laiko juostas, nepaverčiant koreliacijos nepagrįsta attribution."
-seo_title: "Phishing infrastruktūros pivoting: CTI vadovas"
+seo_description: "Kaip nuo vieno phishing domeno rasti susijusią infrastruktūrą per DNS, RDAP, URLScan, TLS ir JavaScript hash'us ir kada sutapimas dar nėra įrodymas."
+seo_title: "Pivoting: nuo vieno phishing domeno iki visos kampanijos"
 seo_keywords:
   - "CTI infrastruktūros pivoting"
   - "threat intelligence pivoting"
