@@ -256,3 +256,5 @@ data_note3_title: Preserve provenance and uncertainty.
 data_note3_text: Do not turn a candidate, reported relationship or bounded observation into a stronger claim than its source supports.
 data_note4_title: Check reuse terms.
 data_note4_text: Code licences do not automatically relicense datasets, article text, screenshots or upstream provider material.
+share_email: Email
+project_links_suffix: links
