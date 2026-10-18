@@ -28,6 +28,8 @@ Approved articles also provide version-aware [citation exports](CITATION-EXPORTS
 
 The authoritative deployment is the GitHub Pages workflow on `main`. Every release is checked for content validity, Astro type safety, preserved public routes, internal-link and metadata integrity, accessibility, responsive behavior and payload budgets before the Pages artifact is published.
 
+Pull-request CI also runs `npm audit --omit=dev --audit-level=high`, so an advisory in a shipped (runtime) dependency fails the build. Development-only advisories are tracked, not gated: as of 2026-10-18 the only one is `braces` (GHSA-vfj7-8cjw-p6xm) via `stylelint`, which only reads the repository's own CSS globs. Re-check with `npm audit` when Dependabot raises `stylelint`, and add an `overrides` entry once a fixed `braces` is released.
+
 The same release gate is available to the maintainer as `npm run verify`. It is an operational control for this publication, not a promise that the repository is a supported downstream website package.
 
 Pull requests and pushes to `publish/**` run the same `verify` workflow. The branch trigger checks the exact publication commit before it reaches `main`; it does not deploy.

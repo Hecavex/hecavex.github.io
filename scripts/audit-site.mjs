@@ -63,10 +63,15 @@ for (const file of htmlFiles) {
   const shellDocument = !route.startsWith('/assets/media/');
   const articleDocument = /class=["'][^"']*\barticle-body\b[^"']*\bprose\b/i.test(html);
   for (const [code] of html.matchAll(/<pre\b[^>]*\bclass=["'][^"']*\bastro-code\b[^"']*["'][^>]*>/gi)) {
-    const style = attr(code, 'style');
-    if (!/background-color:\s*#171b1d\b/i.test(style) || !/(?:^|;)\s*color:\s*#ece9e1\b/i.test(style)) {
-      failures.push(`${route}: code block does not use the dark publication surface/text`);
-    }
+    if (!/\bhx-code-text\b/.test(attr(code, 'class'))) failures.push(`${route}: code block does not use the publication text class`);
+  }
+  if (shellDocument) {
+    // The CSP allows no inline styles, so a style attribute or element would be blocked in browsers.
+    if (/<[a-z][^>]*\sstyle=/i.test(html) || /<style\b/i.test(html)) failures.push(`${route}: inline style is blocked by the content security policy`);
+    const policy = attr(html.match(/<meta\s+http-equiv=["']Content-Security-Policy["'][^>]*>/i)?.[0] ?? '', 'content');
+    if (!policy) failures.push(`${route}: missing content security policy`);
+    else if (/unsafe-inline|unsafe-eval/.test(policy) || !policy.includes("script-src 'self' https://static.cloudflareinsights.com/beacon.min.js;")) failures.push(`${route}: content security policy is weaker than the publication contract`);
+    if (!/<meta\s+name=["']referrer["'][^>]*content=["']strict-origin-when-cross-origin["']/i.test(html)) failures.push(`${route}: missing referrer policy`);
   }
   const citation = html.match(/<aside id="cite" class="citation-block">([\s\S]*?)<\/aside>/)?.[1] ?? '';
   if (/[\u201c\u201d\u201e]/u.test(citation)) failures.push(`${route}: citation template must use straight quotes`);

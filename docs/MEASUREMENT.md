@@ -48,7 +48,7 @@ Changes in another repository must be reviewed against the public privacy wordin
 
 ## Security boundary
 
-The site now publishes a meta Content Security Policy through `ResourcePolicy.astro`. Its script policy permits self-hosted JavaScript and `https://static.cloudflareinsights.com`, without unsafe inline scripts. The self-hosted analytics loader uses those permissions. `connect-src` permits the same origin and `https://cloudflareinsights.com` for reporting. This is the current source contract, not an assertion that response-header-only protections such as `frame-ancestors` have been deployed.
+The site now publishes a meta Content Security Policy and a `strict-origin-when-cross-origin` referrer policy through `ResourcePolicy.astro`, on every shell page and on the redirect stubs. Its script policy permits self-hosted JavaScript and only `https://static.cloudflareinsights.com/beacon.min.js`, without unsafe inline scripts. `style-src` is `'self'` without `'unsafe-inline'`: code highlighting uses classes (`src/lib/code-theme.mjs`) instead of inline styles, and `npm run audit:site` fails on any inline style in a shell page. The self-hosted analytics loader uses those permissions. `connect-src` permits the same origin and `https://cloudflareinsights.com` for reporting. This is the current source contract, not an assertion that response-header-only protections such as `frame-ancestors` have been deployed.
 
 Cloudflare does not currently offer a stable versioned beacon URL suitable for Subresource Integrity. Do not invent an integrity hash for the moving `beacon.min.js` target.
 
