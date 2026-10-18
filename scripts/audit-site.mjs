@@ -145,8 +145,8 @@ for (const file of htmlFiles) {
     let previous = -1;
     const pageLanguage = html.match(/<html\b[^>]*\blang=["']([a-z]{2})/i)?.[1] ?? 'en';
     for (const label of networkLabels(pageLanguage)) {
-      // External links carry a trailing aria-hidden arrow, so match the label as a prefix of the link text.
-      const index = network.indexOf(`>${label}<`) >= 0 ? network.indexOf(`>${label}<`) : network.indexOf(`>${label}`);
+      // External links carry a trailing aria-hidden arrow, so also accept the label directly followed by that span.
+      const index = [`>${label}<`, `>${label}<span`].map(needle => network.indexOf(needle)).find(i => i >= 0) ?? -1;
       if (index < previous || index < 0) failures.push(`${route}: portfolio navigation order is incorrect at ${label}`);
       previous = index;
     }

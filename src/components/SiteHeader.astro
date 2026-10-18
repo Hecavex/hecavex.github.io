@@ -8,6 +8,7 @@ const path = Astro.url.pathname;
 // Research and Signal Briefs also own their article pages.
 const prefixed = ['/en/research/', '/lt/tyrimai/', '/en/briefings/', '/lt/apzvalgos/'];
 const active = (href: string) => path === href || (prefixed.includes(href) && path.startsWith(href));
+const current = (href: string) => path === href ? 'page' : active(href) ? 'true' : undefined;
 const networkItems = networkLinks(lang);
 const activeNetworkItem = networkItems.find((item) => !item.external && path.startsWith(item.href))?.id;
 const sections = productNavigation[lang];
@@ -32,7 +33,7 @@ const languageHref = alternatePath ?? `/${otherLanguage}/`;
       <div class="mobile-navigation-panel">
         <nav class="mobile-product-navigation" aria-label={t.menu_sections}>
           <span class="navigation-label">{t.menu_sections}</span>
-          {sections.map(([name, href]) => <a href={href} aria-current={active(href) ? 'page' : undefined}>{name}</a>)}
+          {sections.map(([name, href]) => <a href={href} aria-current={current(href)}>{name}</a>)}
           <button type="button" class="navigation-button" data-search-open>{t.search}</button>
           <a href={languageHref} lang={otherLanguage} hreflang={otherLanguage}>{otherLanguage.toUpperCase()}</a>
         </nav>
@@ -45,7 +46,7 @@ const languageHref = alternatePath ?? `/${otherLanguage}/`;
   </div>
   <div class="product-bar shell-frame">
     <nav class="product-navigation" aria-label={t.menu_sections}>
-      {sections.map(([name, href]) => <a href={href} aria-current={active(href) ? 'page' : undefined}>{name}</a>)}
+      {sections.map(([name, href]) => <a href={href} aria-current={current(href)}>{name}</a>)}
     </nav>
     <div class="header-utilities">
       <a class="language-link" href={languageHref} lang={otherLanguage} hreflang={otherLanguage}>{otherLanguage.toUpperCase()}</a>

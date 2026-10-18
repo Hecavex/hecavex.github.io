@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { parse } from 'yaml';
 import { beginnerList } from '../src/lib/beginner-list.mjs';
 import { validateAudience } from './validate-content.mjs';
 
@@ -32,4 +34,15 @@ test('audience and summary rules', () => {
   assert(problems({ summary: `${summary}\nsecond line` }).some((e) => e.includes('single line')));
   assert(problems({ summary: `${summary} hxxp://bad.example` }).some((e) => e.includes('links')));
   assert(problems({ summary: `${summary} https://bad.example` }).some((e) => e.includes('links')));
+});
+
+test('article_newcomer keeps exactly two {link} placeholders in both languages', () => {
+  for (const lang of ['en', 'lt']) {
+    const text = parse(readFileSync(new URL(`../src/data/hecavex/${lang}.yml`, import.meta.url), 'utf8')).article_newcomer;
+    assert.equal((text.match(/\{[^}]+\}/g) ?? []).length, 2, lang);
+  }
+});
+
+test('summary rejects defanged domains', () => {
+  assert(problems({ summary: `${summary} bad[.]example` }).some((e) => e.includes('links')));
 });

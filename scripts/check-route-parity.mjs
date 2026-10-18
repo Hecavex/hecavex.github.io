@@ -67,6 +67,12 @@ async function walk(directory) {
   }
   return files;
 }
+// A source post with draft: true must never render, whatever the sitemap says (shortcut: relies on the permalink front-matter key).
+for (const file of (await walk(resolve(import.meta.dirname, '..', 'src', 'content', 'posts'))).filter((path) => extname(path) === '.md')) {
+  const head = (await readFile(file, 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+  const permalink = head.match(/^permalink:\s*["']?(\S+?)["']?\s*$/m)?.[1];
+  if (/^draft:\s*true\s*$/m.test(head) && permalink && await isFile(routeFile(permalink))) failures.push(`draft post ${file} was rendered at ${permalink}`);
+}
 const files = await walk(root);
 const htmlCount = files.filter((file) => extname(file) === '.html').length;
 

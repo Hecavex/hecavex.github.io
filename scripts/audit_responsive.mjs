@@ -460,6 +460,9 @@ try {
         const startHereHtml = await readFile(join(siteRoot, startHereRoute[edition], 'index.html'), 'utf8');
         const beginnerHrefs = [...(startHereHtml.match(/<section id="basics"[\s\S]*?<\/section>/)?.[0] ?? '').matchAll(/<h3[^>]*>\s*<a[^>]*href="([^"]+)"/g)].map(match => match[1]);
         const expectedBasics = beginnerHrefs.slice(0, Math.min(homeCounts.basics, beginnerHrefs.length));
+        const searchBeginner = search.filter(item => item.audience === 'beginner').map(item => item.url);
+        const missingBeginner = searchBeginner.filter(href => !beginnerHrefs.includes(href));
+        if (missingBeginner.length) fail(route, width, `Start here basics omit beginner search records: ${missingBeginner.join(' ')}`);
         if (discovery.taskRoutes.length !== 4 || discovery.taskRoutes.some(link => !link.href?.startsWith(`/${edition}/`) && !(edition === 'en' && link.href === '/data/') || link.height < 43.5 || !link.text) || !discovery.updated) fail(route, width, `localized task discovery is incomplete (${JSON.stringify(discovery.taskRoutes)})`);
         if (expectedBasics.length === 0 || JSON.stringify(discovery.paths.map(path => path.href)) !== JSON.stringify(expectedBasics)
           || discovery.paths.some(path => !path.href?.startsWith(`/${edition}/`) || !path.title || !path.summary || !path.date || path.hasDownload || path.targets.some(height => height < 43.5))) fail(route, width, `home basics differ from the first ${homeCounts.basics} Start here guides or lost their localized records/targets (${JSON.stringify(discovery.paths.map(path => path.href))} versus ${JSON.stringify(expectedBasics)})`);
@@ -564,8 +567,12 @@ try {
       if (extra.tiny.length) fail(route, width, `visible text below the 13px floor: ${extra.tiny.join('; ')}`);
       const beginnerArticle = beginnerArticleRoutes.includes(route);
       if (extra.isArticle && width === 1440 && !extra.wide && extra.proseChars > (beginnerArticle ? 64.5 : 72.5)) fail(route, width, `article paragraphs run ${extra.proseChars.toFixed(1)}ch, past the ${beginnerArticle ? 64 : 72}ch measure`);
+      if (extra.isArticle && width === 1440 && !extra.wide && extra.proseChars < (beginnerArticle ? 55 : 60)) fail(route, width, `article paragraphs run ${extra.proseChars.toFixed(1)}ch, under the ${beginnerArticle ? 55 : 60}ch lower bound`);
       if (extra.isArticle && beginnerArticle && (!extra.hasSummary || !extra.hasRecordDetails || extra.newcomerHrefs.length)) fail(route, width, `beginner article is missing its In short box or collapsed research record, or shows the newcomer line (${JSON.stringify(extra)})`);
       if (extra.isArticle && !beginnerArticle && JSON.stringify(extra.newcomerHrefs) !== JSON.stringify([startHereRoute[lang], glossaryRoute[lang]])) fail(route, width, `in-depth article newcomer line must link Start here and the glossary (${extra.newcomerHrefs.join(' ')})`);
+      if (extra.isArticle && extra.hasOutline && width === 1440) {
+        if (await page.locator('.back-to-contents').first().isVisible()) fail(route, width, 'back-to-contents link is visible on desktop where the outline is already in view');
+      }
       if (extra.isArticle && extra.hasOutline && width <= 1160) {
         await page.evaluate(() => window.scrollTo(0, (document.documentElement.scrollHeight - innerHeight) / 2));
         const back = await page.evaluate(() => {
@@ -578,6 +585,16 @@ try {
           };
         });
         if (!back.visible || back.width < 43.5 || back.height < 43.5 || !back.target) fail(route, width, `back-to-contents link is missing, hidden or too small mid-article (${JSON.stringify(back)})`);
+        if (back.visible && width === 390) {
+          await page.locator('.back-to-contents').click();
+          await page.waitForTimeout(400);
+          const landed = await page.evaluate(() => {
+            const link = document.querySelector('.back-to-contents');
+            const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+            return { top: target.getBoundingClientRect().top, header: document.querySelector('.site-header').getBoundingClientRect().bottom };
+          });
+          if (landed.top < landed.header - 1) fail(route, width, `back-to-contents target hides under the sticky header (top ${landed.top}px, header bottom ${landed.header}px)`);
+        }
         await page.evaluate(() => window.scrollTo(0, 0));
       }
       if (researchRoutes.has(route)) {

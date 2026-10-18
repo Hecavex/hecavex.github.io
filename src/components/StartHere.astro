@@ -26,7 +26,7 @@ const methodologyPath = lang === 'lt' ? '/lt/metodika/' : '/en/methodology/';
   </aside>
   <section id="basics" class="catalogue-section" aria-labelledby="basics-title">
     <header class="section-head"><div><h2 id="basics-title">{t.start_basics_h2}</h2></div></header>
-    <div class="post-grid">{beginnerList(posts).map((post) => <PostCard {post} eyebrow={audienceLabel(post)} />)}</div>
+    <div class="post-grid">{beginnerList(posts).map((post) => <PostCard {post} />)}</div>
   </section>
   <section id="step-further" class="catalogue-section" aria-labelledby="further-title">
     <header class="section-head"><div><h2 id="further-title">{t.start_further_h2}</h2><p>{t.start_further_p}</p></div></header>

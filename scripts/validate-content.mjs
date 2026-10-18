@@ -67,7 +67,7 @@ export function validatePortfolio(source, errors) {
   }
 }
 
-// Beginner posts need a plain-language summary; summaries stay free of links and threat data.
+// Beginner posts need a plain-language summary; summaries stay free of links and defanged hxxp/[.] indicators.
 export function validateAudience(data, file, errors) {
   if (data.audience !== undefined && !['beginner', 'in-depth'].includes(data.audience)) errors.push(`${file}: audience must be beginner or in-depth`);
   if (data.audience === 'beginner') {
@@ -78,7 +78,7 @@ export function validateAudience(data, file, errors) {
     const text = String(data.summary);
     if (text.length < 40 || text.length > 280) errors.push(`${file}: summary must be 40-280 characters (found ${text.length})`);
     if (/[\r\n]/.test(text.trim())) errors.push(`${file}: summary must be a single line`);
-    if (/https?:\/\/|hxxp/i.test(text)) errors.push(`${file}: summary must not contain links or defanged links`);
+    if (/https?:\/\/|hxxp|\[\.\]/i.test(text)) errors.push(`${file}: summary must not contain links or defanged links or domains`);
   }
 }
 

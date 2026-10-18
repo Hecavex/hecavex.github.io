@@ -38,7 +38,6 @@ await new Promise((accept) => server.listen(0, '127.0.0.1', accept));
 const address = server.address();
 const baseUrl = `http://127.0.0.1:${address.port}`;
 
-
 const browser = await chromium.launch({ executablePath, headless: true });
 const failures = [];
 const check = (condition, message) => { if (!condition) failures.push(message); };

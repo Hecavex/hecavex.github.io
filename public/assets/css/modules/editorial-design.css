@@ -396,35 +396,6 @@ main .card-meta span {
   line-height: 1.2;
 }
 
-:is(.home-shell, .landing-portal) .network-grid {
-  gap: 1.5rem;
-  padding: 0;
-  border: 0;
-  background: transparent;
-}
-
-:is(.home-shell, .landing-portal) .network-grid a {
-  align-content: start;
-  gap: 0.6rem;
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--line);
-  background: transparent;
-}
-
-:is(.home-shell, .landing-portal) .network-grid a:nth-child(even) {
-  background: transparent;
-}
-
-:is(.home-shell, .landing-portal) .network-grid span {
-  display: none;
-}
-
-:is(.home-shell, .landing-portal) .network-grid small {
-  font: 400 0.9375rem/1.6 var(--sans);
-  letter-spacing: 0;
-  text-transform: none;
-}
-
 .speaking-invitation {
   display: flex;
   flex-wrap: wrap;

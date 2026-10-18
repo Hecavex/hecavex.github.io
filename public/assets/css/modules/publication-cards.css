@@ -300,37 +300,3 @@ main > :is(.home-shell, .page-shell, .article-shell, .landing-portal, .not-found
   margin-top: 0.8rem;
 }
 
-.network-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  padding: 1px;
-  background: var(--line);
-}
-
-.network-grid a {
-  display: grid;
-  min-height: 9rem;
-  align-content: space-between;
-  padding: 1.2rem;
-  background: var(--surface);
-  color: var(--muted);
-  text-decoration: none;
-}
-
-.network-grid span,
-.network-grid small {
-  font: 500 0.8125rem var(--mono);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.network-grid span {
-  color: var(--cyan);
-}
-
-.network-grid strong {
-  color: var(--text);
-  font-size: 1.25rem;
-}
-
