@@ -1,8 +1,12 @@
 ---
-import { glossary, type Lang } from '../lib/site';
-interface Props { lang: Lang; }
-const { lang } = Astro.props;
+import { glossary, glossaryPath, type Lang } from '../lib/site';
+interface Props { lang: Lang; ids?: string[]; }
+const { lang, ids } = Astro.props;
+// With `ids` the subset keeps that order, emits no anchors (the full glossary owns them) and links each term there.
+const terms = ids
+  ? ids.map((id) => glossary.terms.find((item) => item.id === id) ?? (() => { throw new Error(`Unknown glossary term: ${id}`); })())
+  : glossary.terms;
 ---
-<dl class="glossary-list">
-  {glossary.terms.map((item) => <div id={item.id}><dt>{item.term[lang]}</dt><dd>{item.definition[lang]}</dd></div>)}
+<dl class:list={['glossary-list', { 'glossary-list--subset': ids }]}>
+  {terms.map((item) => <div id={ids ? undefined : item.id}><dt>{ids ? <a href={`${glossaryPath[lang]}#${item.id}`}>{item.term[lang]}</a> : item.term[lang]}</dt><dd>{item.definition[lang]}</dd></div>)}
 </dl>

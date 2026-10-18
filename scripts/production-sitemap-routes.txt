@@ -214,3 +214,5 @@
 /lt/zymos/threat-hunting/
 /lt/zymos/urlscan/
 /lt/zymos/windows/
+/en/start-here/
+/lt/pradekite-cia/

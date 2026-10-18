@@ -53,3 +53,63 @@ only_lt: Available in Lithuanian only
 not_found_title: Signal lost.
 not_found_text: The requested page could not be found, may have moved, or is no longer available.
 skip_to_content: Skip to content
+# Beginner-first redesign
+nav_start: Start here
+nav_research: Research
+nav_briefs: Signal Briefs
+nav_glossary: Glossary
+nav_about: About
+nav_speaking: Speaking
+nav_contact: Contact
+net_radar: Radar
+net_data: Data
+net_projects: Projects
+net_label: HECAVEX network
+menu_sections: Sections
+menu_more: More from HECAVEX
+brand_sub: Independent cybersecurity research
+home_eyebrow: Independent research by Deividas Lis
+home_h1: Cyber threats, explained
+home_deck: Plain-language guides for people new to cybersecurity, and in-depth investigations for specialists. In English and Lithuanian.
+home_cta: Start here
+home_latest_link: Latest research
+home_briefs_link: Signal Briefs
+home_basics_eyebrow: New to cybersecurity?
+home_basics_h2: Start with the basics
+home_basics_more: See the full guide
+home_latest_h2: Latest research
+home_briefs_explainer: A short, sourced round-up of the most important security news, for security professionals.
+root_eyebrow: HECAVEX · English and Lithuanian
+root_h1: Independent cyber threat research
+root_deck: By Deividas Lis. Plain guides for everyone, in-depth investigations for specialists.
+root_edition_name: English
+root_edition_text: Start here or browse the research.
+root_edition_open: Open →
+root_newcomer_h3: New to cybersecurity?
+root_newcomer_p: Begin with short, practical guides. No technical background needed.
+start_title: Start here
+start_description: New to cybersecurity? Begin with these plain-language guides. No technical background needed.
+start_intro: HECAVEX is an independent publication by Deividas Lis, a former cybercrime investigator. It explains how online scams and cyber attacks work, and what the evidence shows. Some articles are written for everyone, others are deep investigations for specialists, and each one is labelled.
+start_urgent_h2: Need help right now?
+start_urgent_p: Act first, read later. These two guides start with what to do now.
+start_basics_h2: Beginner-friendly guides
+start_further_h2: A step further
+start_further_p: Still readable, a little more technical.
+start_words_h2: Words you will see
+start_words_link: Full glossary
+start_depth_h2: Ready for in-depth research?
+start_depth_p: These investigations show the full method, from one clue to the wider picture.
+audience_beginner: Beginner-friendly
+audience_in_depth: In-depth
+research_newcomer: New to cybersecurity? Start here
+research_featured_h2: Author's picks
+article_newcomer: New to this topic? {Start with the basics} or {look up terms in the glossary}.
+article_in_short: In short
+article_outline_start: Article start
+article_record_details: How this was researched
+article_read_next: Read next
+article_back_start: Back to the beginner guide
+article_back_contents: Back to contents
+author_card: Deividas Lis is a Vilnius-based cyber threat intelligence researcher and former cybercrime investigator.
+author_card_link: About the author
+nav_methodology: Methodology

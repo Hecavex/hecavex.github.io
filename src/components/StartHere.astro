@@ -1,0 +1,44 @@
+---
+import Glossary from './Glossary.astro';
+import PostCard from './PostCard.astro';
+import ResearchPaths from './ResearchPaths.astro';
+import { audienceLabel, beginnerList, copy, glossaryPath, startHere, type Lang, type Post } from '../lib/site';
+interface Props { lang: Lang; posts: Post[]; }
+const { lang, posts } = Astro.props;
+const t = copy[lang];
+const pick = (keys: string[]) => keys.map((key) => {
+  const post = posts.find((item) => item.translationKey === key);
+  if (!post) throw new Error(`Missing start-here publication: ${key}/${lang}`);
+  return post;
+});
+const urgent = pick(startHere.urgent);
+const stepFurther = pick(startHere.step_further);
+const inDepth = pick(startHere.in_depth);
+const researchPath = lang === 'lt' ? '/lt/tyrimai/' : '/en/research/';
+const briefsPath = lang === 'lt' ? '/lt/apzvalgos/' : '/en/briefings/';
+const methodologyPath = lang === 'lt' ? '/lt/metodika/' : '/en/methodology/';
+---
+<div class="start-here">
+  <aside class="start-urgent" aria-labelledby="urgent-title">
+    <h2 id="urgent-title">{t.start_urgent_h2}</h2>
+    <p>{t.start_urgent_p}</p>
+    <ul>{urgent.map((post) => <li><a href={post.url}>{post.cardTitle}</a></li>)}</ul>
+  </aside>
+  <section id="basics" class="catalogue-section" aria-labelledby="basics-title">
+    <header class="section-head"><div><h2 id="basics-title">{t.start_basics_h2}</h2></div></header>
+    <div class="post-grid">{beginnerList(posts).map((post) => <PostCard {post} eyebrow={audienceLabel(post)} />)}</div>
+  </section>
+  <section id="step-further" class="catalogue-section" aria-labelledby="further-title">
+    <header class="section-head"><div><h2 id="further-title">{t.start_further_h2}</h2><p>{t.start_further_p}</p></div></header>
+    <ResearchPaths {lang} variant="basics" entries={stepFurther.map((post) => ({ label: audienceLabel(post), post }))} />
+  </section>
+  <section id="words" class="catalogue-section" aria-labelledby="words-title">
+    <header class="section-head"><div><h2 id="words-title">{t.start_words_h2}</h2></div><a href={glossaryPath[lang]}>{t.start_words_link} <span aria-hidden="true">→</span></a></header>
+    <Glossary {lang} ids={startHere.glossary} />
+  </section>
+  <section id="in-depth" class="catalogue-section" aria-labelledby="depth-title">
+    <header class="section-head"><div><h2 id="depth-title">{t.start_depth_h2}</h2><p>{t.start_depth_p}</p></div></header>
+    <ul class="start-depth-list">{inDepth.map((post) => <li><a href={post.url}>{post.cardTitle}</a></li>)}</ul>
+    <p class="start-depth-links"><a href={researchPath}>{t.nav_research}</a> · <a href={briefsPath}>{t.nav_briefs}</a> · <a href={methodologyPath}>{t.nav_methodology}</a></p>
+  </section>
+</div>

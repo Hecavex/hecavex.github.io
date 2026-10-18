@@ -399,3 +399,48 @@
   margin-top: 2.5rem;
 }
 
+
+.start-here {
+  display: grid;
+  gap: 3rem;
+  margin-top: 2.5rem;
+}
+
+.start-urgent {
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--cyan);
+  background: var(--surface);
+}
+
+.start-urgent h2 {
+  margin: 0 0 0.4rem;
+}
+
+.start-urgent p {
+  margin: 0 0 0.6rem;
+  color: var(--muted);
+}
+
+.start-urgent ul,
+.start-depth-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.start-urgent li,
+.start-depth-list li {
+  padding-block: 0.2rem;
+}
+
+.start-here .catalogue-section {
+  margin: 0;
+}
+
+.start-depth-links {
+  margin: 1rem 0 0;
+}
+
+.glossary-list--subset dt a {
+  color: inherit;
+}
